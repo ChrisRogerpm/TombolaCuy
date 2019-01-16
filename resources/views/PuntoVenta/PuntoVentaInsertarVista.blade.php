@@ -11,7 +11,7 @@
                 <div class="panel-heading">
 
                     <!-- Panel Title -->
-                    <div class="panel-title">Empresa</div>
+                    <div class="panel-title">Punto de Venta</div>
                     <!-- /Panel Title -->
 
                 </div>
@@ -22,35 +22,27 @@
 
                     <form id="frmNuevo" autocomplete="off">
                         <div class="row">
-                            <input type="hidden" name="idEmpresa" value="{{$empresa->idEmpresa}}">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Razon Social</label>
-                                    <input type="text" class="form-control" name="razonSocial" value="{{$empresa->razonSocial}}">
+                                    <label>Empresa</label>
+                                    <select name="idEmpresa" class="form-control" id="cboEmpresa"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Ubigeo</label>
+                                    <select name="idUbigeo" class="form-control input-sm" id="cboUbigeo"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input type="text" name="nombre" class="form-control input-sm">
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">RUC</label>
-                                    <input type="text" class="form-control" name="ruc" value="{{$empresa->ruc}}">
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Direccion</label>
-                                    <input type="text" class="form-control" name="direccion" value="{{$empresa->direccion}}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Telefono</label>
-                                    <input type="text" class="form-control" name="telefono" value="{{$empresa->telefono}}">
-                                </div>
-                            </div>
                         </div>
-                        <a href="{{route('Empresa.Listar')}}" class="btn btn-info"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+                        <a href="{{route('PuntoVenta.Listar')}}" class="btn btn-info"><i class="fa fa-arrow-circle-left"></i> Volver</a>
                         <button type="button" id="btnGuardar" class="btn btn-success pull-right">Guardar</button>
                     </form>
 
@@ -65,5 +57,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/Empresa/EmpresaEditar.js')}}"></script>
+    <script src="{{asset('../assets/PuntoVenta/PuntoVentaInsertar.js')}}"></script>
 @endpush

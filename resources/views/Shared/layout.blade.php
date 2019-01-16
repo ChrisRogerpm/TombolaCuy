@@ -24,7 +24,7 @@
     <!-- /OpenGraph meta -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../images/xampp.ico">
     <!-- /Favicon -->
 
     <!-- AppleTouch Icons -->
@@ -40,10 +40,11 @@
     <!-- /AppleTouch Icons -->
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/theme.css')}}">
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="{{asset('components/toastr/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/demo.css')}}">
+    <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <!-- /Styles -->
 
 </head>
@@ -725,6 +726,7 @@
             <ul class="nav-sidebar">
 
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Empresa</span></a></li>
+                <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
 
                 {{--<li class="sub">--}}
                     {{--<a href="#" class="sub-toggle">--}}
@@ -775,36 +777,29 @@
 
 
 <!-- SCRIPTS -->
-<script src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
-<script src="{{asset('components/jquery-ui/jquery-ui.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/moment-with-locales.js')}}"></script>
-<script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-<script src="{{asset('js/jquery.stellar.min.js')}}"></script>
-<script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('js/pnotify.custom.min.js')}}"></script>
-<script src="{{asset('js/owl.carousel.min.js')}}"></script>
-<script src="{{asset('js/jquery.validate.min.js')}}"></script>
-<script src="{{asset('js/jquery.animateNumber.min.js')}}"></script>
-<script src="{{asset('js/Chart.min.js')}}"></script>
-<script src="{{asset('js/sweetalert.min.js')}}"></script>
-<script src="{{asset('js/circle-progress.min.js')}}"></script>
-<script src="{{asset('components/jstree/jstree.min.js')}}"></script>
-<script src="{{asset('js/fullcalendar.min.js')}}"></script>
-<script src="{{asset('js/general.js')}}"></script>
-<script src="{{asset('components/toastr/toastr.min.js')}}"></script>
-<script src="{{asset('components/jquery-validation/jquery.validate.js')}}"></script>
-<script src="{{asset('components/loadingoverlay/loadingoverlay.min.js')}}"></script>
+<script src="{{asset('../js/jquery-2.2.4.min.js')}}"></script>
+<script src="{{asset('../components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('../js/bootstrap.min.js')}}"></script>
+<script src="{{asset('../js/moment-with-locales.js')}}"></script>
+<script src="{{asset('../js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('../js/jquery.stellar.min.js')}}"></script>
+<script src="{{asset('../js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('../js/pnotify.custom.min.js')}}"></script>
+<script src="{{asset('../js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('../js/jquery.validate.min.js')}}"></script>
+<script src="{{asset('../js/jquery.animateNumber.min.js')}}"></script>
+<script src="{{asset('../js/Chart.min.js')}}"></script>
+<script src="{{asset('../js/sweetalert.min.js')}}"></script>
+<script src="{{asset('../js/circle-progress.min.js')}}"></script>
+<script src="{{asset('../components/jstree/jstree.min.js')}}"></script>
+<script src="{{asset('../js/fullcalendar.min.js')}}"></script>
+<script src="{{asset('../js/general.js')}}"></script>
+<script src="{{asset('../components/toastr/toastr.min.js')}}"></script>
+<script src="{{asset('../components/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
+<script src="{{asset('../components/select2/select2.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
-<script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
 @stack('Js')
-
-{{--<script src="{{asset('js/demo.js')}}"></script>--}}
-<!-- /SCRIPTS -->
-
-{{--<script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter35435255 = new Ya.Metrika({ id:35435255, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "../../../mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/35435255" style="position:absolute; left:-9999px;" alt="" /></div></noscript>--}}
-
 </body>
-
-<!-- Mirrored from vtdes.ru/demo/caspero/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Jan 2019 14:11:53 GMT -->
 </html>

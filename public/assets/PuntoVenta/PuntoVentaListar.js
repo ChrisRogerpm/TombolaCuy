@@ -1,19 +1,20 @@
 $(document).ready(function () {
-    ListarEmpresa();
+    ListarPuntoVenta();
     $(document).on('click', '.btnEditar', function () {
-        var idEmpresa = $(this).data("id");
-        var url = basePath + "EmpresaEditar/" + idEmpresa;
+        var idPuntoVenta = $(this).data("id");
+        var url = basePath + "PuntoVentaEditar/" + idPuntoVenta;
         window.location.replace(url);
     })
 });
 
-function ListarEmpresa() {
+function ListarPuntoVenta() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'EmpresaListarJson',
+        url: basePath + 'PuntoVentaListarJson',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
+            debugger
             var resp = response.data;
             $("#table").DataTable({
                 "bDestroy": true,
@@ -26,14 +27,13 @@ function ListarEmpresa() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "razonSocial", title: "Razon Social"},
-                    {data: "ruc", title: "RUC"},
-                    {data: "direccion", title: "Direccion"},
-                    {data: "telefono", title: "Telefono"},
+                    {data: "nombre", title: "Punto de Venta"},
+                    {data: "razonSocial", title: "Empresa"},
+                    {data: "Ubigeo", title: "Ubigeo"},
                     {
                         data: null, title: "",
                         "render": function (value) {
-                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idEmpresa + '"><i class="fa fa-edit"></i></button>';
+                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idPuntoVenta + '"><i class="fa fa-edit"></i></button>';
                         }
                     }
                 ],

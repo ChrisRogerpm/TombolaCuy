@@ -2,114 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9acf4761-a65d-4110-8063-8b4ad425da50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Empresa/EmpresaEditar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Empresa/EmpresaInsertar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/js/funciones.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_444444_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_555555_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_777620_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_777777_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_cc0000_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/images/ui-icons_ffffff_256x240.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/jquery-ui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/jquery-ui.structure.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-ui/jquery-ui.theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-validation/additional-methods.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-validation/jquery.validate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jquery-validation/jquery.validate.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jstree/jstree.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/jstree/themes/casper/style.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/loadingoverlay/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/loadingoverlay/loadingoverlay.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/loadingoverlay/loadingoverlay.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/toastr/toastr.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/toastr/toastr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/demo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/mCSB_buttons.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/ElegantIcons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/ElegantIcons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/ElegantIcons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/ElegantIcons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/ElegantIconsd41d.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont3e6e.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont3e6e.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont3e6e.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont3e6e.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfont3e6e.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fontawesome-webfontd41d.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regulard41d.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-ann-james.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-ashley-warren.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-benjamin-jacobs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-christopher-tucker.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-deborah-young.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-eric-martinez.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-joshua-ward.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-karen-garcia.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-lori-harrison.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-louis-hawkins.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-louis-mendoza.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-phillip-cole.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-susan-estrada.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/avatar-tyler-brewer.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/cover-louis-hawkins.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo-big-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo-big.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo-small.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-05-thumbnail.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-06-thumbnail.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-06.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-07-thumbnail.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-07.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-08.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/post-09.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumbnail-64x64.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumbnail-image.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumbnail-video.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/AjaxLoader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/grabbing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/Chart.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/circle-progress.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/demo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/general.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery-2.2.4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.animateNumber.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.mCustomScrollbar.concat.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.magnific-popup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.stellar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.validate.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/moment-with-locales.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/owl.carousel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/pnotify.custom.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/sweetalert.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaListarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/components/datatables/jquery.dataTables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/components/datatables/jquery.dataTables.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/components/select2/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/components/select2/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/xampp.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaEditarVista.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaInsertarVista.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/funciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/funciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,50 +45,62 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="2" />
-          <entry key="env" value="1" />
+          <entry key="css" value="4" />
+          <entry key="env" value="2" />
           <entry key="html" value="1" />
-          <entry key="js" value="14" />
-          <entry key="php" value="26" />
+          <entry key="js" value="31" />
+          <entry key="php" value="90" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="1" />
-          <entry key="Blade" value="12" />
-          <entry key="CSS" value="2" />
+          <entry key=".env file" value="2" />
+          <entry key="Blade" value="35" />
+          <entry key="CSS" value="4" />
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="14" />
-          <entry key="PHP" value="14" />
+          <entry key="JavaScript" value="31" />
+          <entry key="PHP" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="5" />
-          <entry key="js" value="547" />
-          <entry key="php" value="2125" />
+          <entry key="js" value="787" />
+          <entry key="php" value="3149" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="5" />
-          <entry key="Blade" value="887" />
+          <entry key="Blade" value="1338" />
           <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="546" />
-          <entry key="PHP" value="1238" />
+          <entry key="JavaScript" value="786" />
+          <entry key="PHP" value="1811" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UbigeoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="989">
-              <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+            <state relative-caret-position="391">
+              <caret line="19" column="81" lean-forward="true" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
               <folding>
-                <element signature="e#40#56#0#PHP" expanded="true" />
+                <element signature="e#40#55#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PuntoVentaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-574">
+              <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+              <folding>
+                <element signature="e#40#59#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,7 +121,14 @@
       <find>content container-fluid</find>
       <find>sidebar-collapse</find>
       <find>Empresas</find>
+      <find>Empresa</find>
+      <find>PuntoVenta</find>
+      <find>PuntoVentaListarJson</find>
     </findStrings>
+    <replaceStrings>
+      <replace>PuntoVenta</replace>
+      <replace>Ubigeo</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -203,22 +137,35 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_01_16_151055_create_empresas_table.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Empresa.php" />
         <option value="$PROJECT_DIR$/resources/views/Empresa/EmpresaListarVista.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/js/funciones.js" />
-        <option value="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" />
-        <option value="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/Empresa/EmpresaEditar.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" />
-        <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/Empresa/EmpresaInsertar.js" />
+        <option value="$PROJECT_DIR$/webpack.mix.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_01_16_183930_create_ubigeo_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_01_16_183845_create_punto_venta_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php" />
+        <option value="$PROJECT_DIR$/app/Ubigeo.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UbigeoController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaInsertarVista.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" />
+        <option value="$PROJECT_DIR$/app/PuntoVenta.php" />
+        <option value="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js" />
+        <option value="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaEditarVista.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/funciones.js" />
+        <option value="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" />
+        <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PuntoVentaController.php" />
       </list>
     </option>
   </component>
@@ -229,6 +176,9 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
@@ -368,17 +318,6 @@
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
               <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -405,6 +344,13 @@
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
               <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="PuntoVenta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -425,6 +371,18 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Empresa" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="PuntoVenta" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -432,7 +390,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;Empresaco&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/EmpresaController.php" />
+    <property name="SearchEverywhereHistoryKey" value="layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;we&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;func&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;Empresaco&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/EmpresaController.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SGCS_Web" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -441,11 +399,15 @@
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TombolaCuy\resources\views\PuntoVenta" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\TombolaCuy\public\components\datatables" />
+      <recent name="C:\xampp\htdocs\TombolaCuy\public\components\select2" />
+      <recent name="C:\xampp\htdocs\TombolaCuy\public\images" />
       <recent name="C:\xampp\htdocs\TombolaCuy\public\components" />
       <recent name="C:\xampp\htdocs\TombolaCuy\public\components\toastr" />
-      <recent name="C:\xampp\htdocs\TombolaCuy\public" />
-      <recent name="C:\xampp\htdocs\TombolaCuy" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -470,12 +432,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1547650394364</updated>
-      <workItem from="1547650399160" duration="7432000" />
+      <workItem from="1547650399160" duration="16728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7432000" />
+    <option name="totallyTimeSpent" value="16728000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -492,7 +454,7 @@
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24962178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24659607" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
@@ -509,7 +471,7 @@
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,24 +514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_16_151055_create_empresa_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="20" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -589,16 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Empresa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/general.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -609,66 +547,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaListarVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="38" column="75" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="75" />
-          <folding>
-            <element signature="e#601#626#0#HTML" expanded="true" />
-            <element signature="e#2154#2172#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/components/toastr/toastr.min.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/js/funciones.js">
+    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        <state relative-caret-position="345">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php">
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaListarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
-          <caret line="56" column="32" lean-forward="true" selection-end-line="67" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="28" column="51" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
+          <caret line="33" lean-forward="true" selection-end-line="39" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="24" column="94" selection-start-line="24" selection-start-column="94" selection-end-line="24" selection-end-column="94" />
+        <state relative-caret-position="161">
+          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="726" column="137" selection-start-line="726" selection-start-column="137" selection-end-line="726" selection-end-column="137" />
+        <state relative-caret-position="299">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Empresa/EmpresaInsertar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Empresa.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="30" />
+          <caret line="33" column="11" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_16_183930_create_ubigeo_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_16_152206_create_empresa_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_16_183845_create_punto_venta_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Ubigeo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="47" />
+          <folding>
+            <element signature="e#23#30#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="62" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/select2/select2.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/components/datatables/jquery.dataTables.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="18" column="52" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PuntoVenta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding>
+            <element signature="e#23#30#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaInsertarVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="35" column="24" lean-forward="true" selection-end-line="60" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -679,12 +680,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
+    <entry file="file://$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
-          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+        <state relative-caret-position="323">
+          <caret line="64" column="33" lean-forward="true" selection-end-line="86" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaEditarVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1426">
+          <caret line="62" column="63" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/funciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="19" column="72" selection-start-line="19" selection-start-column="72" selection-end-line="19" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16376">
+          <caret line="778" column="16" lean-forward="true" selection-start-line="778" selection-start-column="16" selection-end-line="778" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="124" selection-start-line="4" selection-start-column="124" selection-end-line="4" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Empresa/EmpresaInsertar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2024">
+          <caret line="88" column="7" lean-forward="true" selection-start-line="33" selection-end-line="88" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UbigeoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="19" column="81" lean-forward="true" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
           <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PuntoVentaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-574">
+          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+          <folding>
+            <element signature="e#40#59#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

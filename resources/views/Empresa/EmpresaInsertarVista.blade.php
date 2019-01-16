@@ -20,7 +20,7 @@
             <!-- Panel Body -->
             <div class="panel-body">
 
-                <form id="frmNuevo">
+                <form id="frmNuevo" autocomplete="off">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
