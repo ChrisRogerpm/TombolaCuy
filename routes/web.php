@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('EmpresaListar', 'EmpresaController@EmpresaListarVista')->name('Empresa.Listar');
+Route::get('EmpresaInsertar', 'EmpresaController@EmpresaInsertarVista')->name('Empresa.Insertar');
+Route::get('EmpresaEditar/{idEmpresa}', 'EmpresaController@EmpresaEditarVista')->name('Empresa.Editar');
+
+Route::get('EmpresaListarJson','EmpresaController@EmpresaListarJson');
+Route::post('EmpresaInsertarJson','EmpresaController@EmpresaInsertarJson');
+Route::post('EmpresaEditarJson','EmpresaController@EmpresaEditarJson');
