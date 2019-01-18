@@ -34,3 +34,8 @@ Route::post('PuntoVentaListarJson','PuntoVentaController@PuntoVentaListarJson');
 Route::post('PuntoVentaInsertarJson','PuntoVentaController@PuntoVentaInsertarJson');
 Route::post('PuntoVentaEditarJson','PuntoVentaController@PuntoVentaEditarJson');
 Route::post('UbigeoListarJson','UbigeoController@UbigeoListarJson');
+
+
+Route::get('ProgresivoListar','ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
+Route::get('ProgresivoInsertar','ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
+Route::get('ProgresivoConfiguracion','ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');

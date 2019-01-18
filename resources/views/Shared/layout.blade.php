@@ -727,18 +727,18 @@
 
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
+                {{--<li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span></a></li>--}}
 
-                {{--<li class="sub">--}}
-                    {{--<a href="#" class="sub-toggle">--}}
-                        {{--<i class="icon icon-inline fa fa-fonticons"></i> <span class="title">Extra Pages</span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub-menu collapse" data-menu-title="Extra Pages">--}}
-                        {{--<li><a href="xp-404.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">404</span></a></li>--}}
-                        {{--<li><a href="xp-403.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">403</span></a></li>--}}
-                        {{--<li><a href="xp-login.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Login</span></a></li>--}}
-                        {{--<li><a href="xp-lockscreen.html"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">LockScreen</span></a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Progresivo</span></a></li>
+                        <li><a href="{{route('Progresivo.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a></li>
+                        <li><a href="{{route('Progresivo.Configuracion')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 

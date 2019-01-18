@@ -1,66 +1,99 @@
 @extends('Shared.layout')
 
 @section('content')
-<div class="row">
-    <div class="col-xs-12 col-md-12">
-
-        <!-- PANEL: Basic Example -->
-        <div class="panel">
-
-            <!-- Panel Heading -->
-            <div class="panel-heading">
-
-                <!-- Panel Title -->
-                <div class="panel-title">Empresa</div>
-                <!-- /Panel Title -->
-
-            </div>
-            <!-- /Panel Heading -->
-
-            <!-- Panel Body -->
-            <div class="panel-body">
-
-                <form id="frmNuevo" autocomplete="off">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-body" style="padding-bottom: 10px;">
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Razon Social</label>
-                                <input type="text" class="form-control" name="razonSocial">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="">RUC</label>
-                                <input type="text" class="form-control" name="ruc">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="">Direccion</label>
-                                <input type="text" class="form-control" name="direccion">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="">Telefono</label>
-                                <input type="text" class="form-control" name="telefono">
+                        <div class="col-md-12">
+                            <div class="block">
+                                <div class="block-content-outer">
+                                    <div class="block-content-inner">
+                                        <div class="row">
+                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                                <h6>
+                                                    <i class="glyphicon glyphicon-th mr-2"></i>
+                                                    Registro de Empresa
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <a href="{{route('Empresa.Listar')}}" class="btn btn-info"><i class="fa fa-arrow-circle-left"></i> Volver</a>
-                    <button type="button" id="btnGuardar" class="btn btn-success pull-right">Guardar</button>
-                </form>
-
+                </div>
             </div>
-            <!-- /Panel Body -->
-
         </div>
-        <!-- /PANEL: Basic Example -->
-
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button type="button" id="btnGuardar"
+                                            class="btn btn-primary btn-sm col-md-12 col-xs-12">
+                                        <span class="glyphicon glyphicon-file"></span> GUARDAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <a href="{{route('Empresa.Listar')}}"
+                                       class="btn btn-success btn-sm col-md-12 col-xs-12"><span
+                                                class="fa fa-arrow-circle-left"></span> VOLVER</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+
+                    <form id="frmNuevo" autocomplete="off">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Razon Social</label>
+                                    <input type="text" class="form-control" name="razonSocial">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">RUC</label>
+                                    <input type="text" class="form-control" name="ruc">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Direccion</label>
+                                    <input type="text" class="form-control" name="direccion">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Telefono</label>
+                                    <input type="text" class="form-control" name="telefono">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @push('Js')
