@@ -11,8 +11,9 @@ function ListarPuntoVenta() {
     $.ajax({
         type: 'POST',
         url: basePath + 'PuntoVentaListarJson',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
+        data: {
+            '_token': $('input[name=_token]').val(),
+        },
         success: function (response) {
             debugger
             var resp = response.data;

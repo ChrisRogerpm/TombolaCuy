@@ -1,13 +1,8 @@
 $(document).ready(function () {
-    ListarEmpresa();
-    $(document).on('click', '.btnEditar', function () {
-        var idEmpresa = $(this).data("id");
-        var url = basePath + "EmpresaEditar/" + idEmpresa;
-        window.location.replace(url);
-    })
+    ListarJackpotConfiguracion();
 });
 
-function ListarEmpresa() {
+function ListarJackpotConfiguracion() {
     $.ajax({
         type: 'POST',
         url: basePath + 'EmpresaListarJson',
@@ -27,10 +22,21 @@ function ListarEmpresa() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "razonSocial", title: "Razon Social"},
-                    {data: "ruc", title: "RUC"},
-                    {data: "direccion", title: "Direccion"},
-                    {data: "telefono", title: "Telefono"},
+                    {data: "idConfiguracionJackpot", title: "Id"},
+                    {data: "nombre", title: "Nombre"},
+                    {data: "NroPozos", title: "Nro Pozos"},
+                    {
+                        data: "superjackpot", title: "MegaJackpot",
+                        "render":function (value) {
+                            var superjackpot;
+                            if (value == 1){
+                                superjackpot = "SI";
+                            }else{
+                                superjackpot = "NO";
+                            }
+                            return superjackpot;
+                        }
+                    },
                     {
                         data: null, title: "",
                         "render": function (value) {

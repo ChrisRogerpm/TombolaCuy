@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{!! csrf_token() !!}" />
     <!-- /Meta -->
 
     <!-- SEO Meta -->
@@ -53,7 +54,7 @@
 <!-- NAVIGATION: Top Menu -->
 <nav class="navbar navbar-fixed-top top-menu">
     <div class="container-fluid">
-
+{{csrf_field()}}
         <!-- Navigation header -->
         <div class="navbar-header">
 
@@ -727,8 +728,6 @@
 
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
-                {{--<li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span></a></li>--}}
-
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>
@@ -737,6 +736,16 @@
                         <li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Progresivo</span></a></li>
                         <li><a href="{{route('Progresivo.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a></li>
                         <li><a href="{{route('Progresivo.Configuracion')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a></li>
+                    </ul>
+                </li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Jackpot</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Jackpot</span></a></li>
+                        <li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Jackpot</span></a></li>
+                        <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a></li>
                     </ul>
                 </li>
             </ul>
