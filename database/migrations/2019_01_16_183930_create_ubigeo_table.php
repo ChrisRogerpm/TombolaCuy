@@ -15,11 +15,11 @@ class CreateUbigeoTable extends Migration
     {
         Schema::create('ubigeo', function (Blueprint $table) {
             $table->increments('idUbigeo');
-            $table->string('PaisId')->nullable();
-            $table->string('DepartamentoId')->nullable();
-            $table->string('ProvinciaId')->nullable();
-            $table->string('DistritoId')->nullable();
-            $table->string('Nombre')->nullable();
+            $table->string('PaisId',100)->nullable();
+            $table->string('DepartamentoId',100)->nullable();
+            $table->string('ProvinciaId',100)->nullable();
+            $table->string('DistritoId',100)->nullable();
+            $table->string('Nombre',100)->nullable();
             $table->date('fechaRegistro')->nullable();
             $table->boolean('Estado')->nullable();
         });

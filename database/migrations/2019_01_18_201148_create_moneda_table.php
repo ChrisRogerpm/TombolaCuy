@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuntoVentaTable extends Migration
+class CreateMonedaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreatePuntoVentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('punto_venta', function (Blueprint $table) {
-            $table->increments('idPuntoVenta');
-            $table->unsignedInteger('idEmpresa')->nullable();
-            $table->unsignedInteger('idUbigeo')->nullable();
+        Schema::create('moneda', function (Blueprint $table) {
+            $table->increments('idMoneda');
             $table->string('nombre',50)->nullable();
+            $table->string('simbolo',50)->nullable();
+            $table->string('codlso',50)->nullable();
+            $table->integer('principal')->nullable();
+            $table->integer('estado')->nullable();
         });
     }
 
@@ -28,6 +30,6 @@ class CreatePuntoVentaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('punto_venta');
+        Schema::dropIfExists('moneda');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuntoVentaTable extends Migration
+class CreateTipoApuestaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePuntoVentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('punto_venta', function (Blueprint $table) {
-            $table->increments('idPuntoVenta');
-            $table->unsignedInteger('idEmpresa')->nullable();
-            $table->unsignedInteger('idUbigeo')->nullable();
+        Schema::create('tipo_apuesta', function (Blueprint $table) {
+            $table->increments('idTipoApuesta');
+            $table->unsignedInteger('idTipoPago')->nullable();
+            $table->integer('valorapuesta')->nullable();
             $table->string('nombre',50)->nullable();
+            $table->integer('estado')->nullable();
         });
     }
 
@@ -28,6 +29,6 @@ class CreatePuntoVentaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('punto_venta');
+        Schema::dropIfExists('tipo_apuesta');
     }
 }

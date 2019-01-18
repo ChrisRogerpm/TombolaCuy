@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">SALA</div>
-                                    <select class="form-control input-sm select2">
+                                    <select class="form-control input-sm select2" style="width: 100%;">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">PROGRESIVO</div>
-                                    <select class="form-control input-sm select2">
+                                    <select class="form-control input-sm select2" style="width: 100%;">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">LUGAR PAGO</div>
-                                    <select class="form-control input-sm select2">
+                                    <select class="form-control input-sm select2" style="width: 100%;">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">IMAGEN</div>
-                                    <select class="form-control input-sm select2">
+                                    <select class="form-control input-sm select2" style="width: 100%;">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">ESTADO</div>
-                                    <select class="form-control input-sm select2">
+                                    <select class="form-control input-sm select2" style="width: 100%;">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>

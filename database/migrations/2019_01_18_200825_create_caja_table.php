@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuntoVentaTable extends Migration
+class CreateCajaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePuntoVentaTable extends Migration
      */
     public function up()
     {
-        Schema::create('punto_venta', function (Blueprint $table) {
-            $table->increments('idPuntoVenta');
-            $table->unsignedInteger('idEmpresa')->nullable();
-            $table->unsignedInteger('idUbigeo')->nullable();
+        Schema::create('caja', function (Blueprint $table) {
+            $table->increments('idCaja');
+            $table->unsignedInteger('idPuntoVenta')->nullable();
             $table->string('nombre',50)->nullable();
+            $table->integer('estado');
         });
     }
 
@@ -28,6 +28,6 @@ class CreatePuntoVentaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('punto_venta');
+        Schema::dropIfExists('caja');
     }
 }
