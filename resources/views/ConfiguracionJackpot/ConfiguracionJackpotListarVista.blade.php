@@ -56,5 +56,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/Jackpot/JackpotConfiguracion/JackpotConfiguracionListar.js')}}"></script>
+    <script src="{{asset('../assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotListar.js')}}"></script>
 @endpush

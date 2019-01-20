@@ -1,11 +1,16 @@
 $(document).ready(function () {
     ListarJackpotConfiguracion();
+    $(document).on('click', '.btnEditar', function () {
+        var idConfiguracionJackpot = $(this).data("id");
+        var url = basePath + "ConfiguracionJackpotEditar/" + idConfiguracionJackpot;
+        window.location.replace(url);
+    })
 });
 
 function ListarJackpotConfiguracion() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'EmpresaListarJson',
+        url: basePath + 'ConfiguracionJackpotListarJson',
         data: {
             '_token': $('input[name=_token]').val(),
         },
@@ -27,11 +32,11 @@ function ListarJackpotConfiguracion() {
                     {data: "NroPozos", title: "Nro Pozos"},
                     {
                         data: "superjackpot", title: "MegaJackpot",
-                        "render":function (value) {
+                        "render": function (value) {
                             var superjackpot;
-                            if (value == 1){
+                            if (value == 1) {
                                 superjackpot = "SI";
-                            }else{
+                            } else {
                                 superjackpot = "NO";
                             }
                             return superjackpot;
@@ -40,7 +45,7 @@ function ListarJackpotConfiguracion() {
                     {
                         data: null, title: "",
                         "render": function (value) {
-                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idEmpresa + '"><i class="fa fa-edit"></i></button>';
+                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idConfiguracionJackpot + '"><i class="fa fa-edit"></i></button>';
                         }
                     }
                 ],

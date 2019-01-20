@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
     <!-- /Styles -->
 
 </head>
@@ -807,6 +808,7 @@
 <script src="{{asset('../components/jquery-validation/jquery.validate.js')}}"></script>
 <script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
 <script src="{{asset('../components/select2/select2.min.js')}}"></script>
+<script src="{{asset('../components/icheck/icheck.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
 <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
 @stack('Js')

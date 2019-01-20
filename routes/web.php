@@ -48,6 +48,11 @@ Route::get('ConfiguracionJackpotInsertar', 'ConfiguracionJackpotController@Confi
 Route::get('ConfiguracionJackpotEditar/{idConfiguracionJackpot}', 'ConfiguracionJackpotController@ConfiguracionJackpotEditarVista')->name('ConfiguracionJackpot.Editar');
 
 Route::post('ConfiguracionJackpotListarJson','ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
+Route::post('ConfiguracionJackpotInsertarJson','ConfiguracionJackpotController@ConfiguracionJackpotInsertarJson');
+Route::post('ConfiguracionJackpotEditarJson','ConfiguracionJackpotController@ConfiguracionJackpotEditarJson');
+Route::post('ConfiguracionPozoListarJson','ConfiguracionPozoController@ConfiguracionPozoListarJson');
+Route::post('ConfiguracionPozoEliminarJson','ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
+Route::post('CambiarEstadoConfiguracionPozoJson','ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
 #endregion
 
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
