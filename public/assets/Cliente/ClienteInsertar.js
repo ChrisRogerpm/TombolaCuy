@@ -1,17 +1,8 @@
 $(document).ready(function () {
-
-    $.when(llenarSelect(basePath + "EmpresaListarJson", {'_token': $("input[name='_token']").val()}, "cboEmpresa", "idEmpresa", "razonSocial","")).then(function (response, textStatus) {
-        $("#cboEmpresa").select2();
-    });
-
-    $.when(llenarSelect(basePath + "UbigeoListarJson", {'_token': $("input[name='_token']").val()}, "cboUbigeo", "idUbigeo", "Nombre","")).then(function (response, textStatus) {
-        $("#cboUbigeo").select2();
-    });
-
     $('#btnGuardar').on('click', function (e) {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "PuntoVentaInsertarJson";
+            var url = basePath + "ClienteInsertarJson";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
                 url: url,
@@ -43,38 +34,42 @@ $(document).ready(function () {
 $("#frmNuevo")
     .validate({
         rules: {
-            idEmpresa:
+            nombres:
                 {
                     required: true,
 
-                },
-            idUbigeo:
+                }, apePaterno:
                 {
                     required: true,
 
-                },
-            nombre:
+                }, apeMaterno:
                 {
                     required: true,
 
-                },
+                }, dni:
+                {
+                    required: true,
+
+                }
         },
         messages: {
-            idEmpresa:
+            nombres:
                 {
                     required: '',
 
-                },
-            idUbigeo:
+                }apePaterno:
                 {
                     required: '',
 
-                },
-            nombre:
+                }apeMaterno:
                 {
                     required: '',
 
-                },
+                }dni:
+                {
+                    required: '',
+
+                }
         },
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {

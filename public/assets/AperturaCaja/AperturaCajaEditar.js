@@ -1,17 +1,22 @@
 $(document).ready(function () {
 
-    $.when(llenarSelect(basePath + "EmpresaListarJson", {'_token': $("input[name='_token']").val()}, "cboEmpresa", "idEmpresa", "razonSocial","")).then(function (response, textStatus) {
-        $("#cboEmpresa").select2();
+    $.when(llenarSelect(basePath + "CajaListarJson", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "nombre", parseInt($("#txtidCaja").val()))).then(function (response, textStatus) {
+        $("#cboCaja").select2();
     });
 
-    $.when(llenarSelect(basePath + "UbigeoListarJson", {'_token': $("input[name='_token']").val()}, "cboUbigeo", "idUbigeo", "Nombre","")).then(function (response, textStatus) {
-        $("#cboUbigeo").select2();
+    $.when(llenarSelect(basePath + "TurnoListarJson", {'_token': $("input[name='_token']").val()}, "cboTurno", "idTurno", "nombre", parseInt($("#txtidTurno").val()))).then(function (response, textStatus) {
+        $("#cboTurno").select2();
     });
-
+    var dateNow = new Date();
+    $("#txtfechaOperacion").datetimepicker({
+        pickTime: false,
+        format: 'YYYY/MM/DD',
+        defaultDate: dateNow,
+    });
     $('#btnGuardar').on('click', function (e) {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "PuntoVentaInsertarJson";
+            var url = basePath + "AperturaCajaEditarJson";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
                 url: url,
@@ -28,7 +33,6 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
-                        $("#frmNuevo")[0].reset();
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }
@@ -43,38 +47,40 @@ $(document).ready(function () {
 $("#frmNuevo")
     .validate({
         rules: {
-            idEmpresa:
+            idCaja:
                 {
                     required: true,
-
                 },
-            idUbigeo:
+            idTurno:
                 {
                     required: true,
-
                 },
-            nombre:
+            usuario:
                 {
                     required: true,
-
                 },
+            fechaOperacion:
+                {
+                    required: true,
+                }
         },
         messages: {
-            idEmpresa:
+            idCaja:
                 {
                     required: '',
-
                 },
-            idUbigeo:
+            idTurno:
                 {
                     required: '',
-
                 },
-            nombre:
+            usuario:
                 {
                     required: '',
-
                 },
+            fechaOperacion:
+                {
+                    required: '',
+                }
         },
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {

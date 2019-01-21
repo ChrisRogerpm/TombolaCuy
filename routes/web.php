@@ -36,13 +36,13 @@ Route::post('PuntoVentaEditarJson', 'PuntoVentaController@PuntoVentaEditarJson')
 Route::post('UbigeoListarJson', 'UbigeoController@UbigeoListarJson');
 #endregion
 
-#region Jackpot
+#region [Jackpot]
 Route::get('JackpotListar', 'JackpotController@JackpotListarVista')->name('Jackpot.Listar');
 Route::get('JackpotInsertar', 'JackpotController@JackpotInsertarVista')->name('Jackpot.Insertar');
 Route::get('JackpotEditar/{idJackpot}', 'JackpotController@JackpotEditarVista')->name('Jackpot.Editar');
 #endregion
 
-#region ConfiguracionJackpot
+#region [ConfiguracionJackpot]
 Route::get('ConfiguracionJackpotListar', 'ConfiguracionJackpotController@ConfiguracionJackpotListarVista')->name('ConfiguracionJackpot.Listar');
 Route::get('ConfiguracionJackpotInsertar', 'ConfiguracionJackpotController@ConfiguracionJackpotInsertarVista')->name('ConfiguracionJackpot.Insertar');
 Route::get('ConfiguracionJackpotEditar/{idConfiguracionJackpot}', 'ConfiguracionJackpotController@ConfiguracionJackpotEditarVista')->name('ConfiguracionJackpot.Editar');
@@ -55,6 +55,45 @@ Route::post('ConfiguracionPozoEliminarJson','ConfiguracionPozoController@Configu
 Route::post('CambiarEstadoConfiguracionPozoJson','ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
 #endregion
 
+#region [Caja]
+Route::get('CajaListar', 'CajaController@CajaListarVista')->name('Caja.Listar');
+Route::get('CajaInsertar', 'CajaController@CajaInsertarVista')->name('Caja.Insertar');
+Route::get('CajaEditar/{idCaja}', 'CajaController@CajaEditarVista')->name('Caja.Editar');
+
+Route::post('CajaListarJson', 'CajaController@CajaListarJson');
+Route::post('CajaInsertarJson', 'CajaController@CajaInsertarJson');
+Route::post('CajaEditarJson', 'CajaController@CajaEditarJson');
+#endregion
+
+#region [AperturaCaja]
+Route::get('AperturaCajaListar', 'AperturaCajaController@AperturaCajaListarVista')->name('AperturaCaja.Listar');
+Route::get('AperturaCajaInsertar', 'AperturaCajaController@AperturaCajaInsertarVista')->name('AperturaCaja.Insertar');
+Route::get('AperturaCajaEditar/{idAperturaCaja}', 'AperturaCajaController@AperturaCajaEditarVista')->name('AperturaCaja.Editar');
+
+Route::post('AperturaCajaListarJson', 'AperturaCajaController@AperturaCajaListarJson');
+Route::post('AperturaCajaInsertarJson', 'AperturaCajaController@AperturaCajaInsertarJson');
+Route::post('AperturaCajaEditarJson', 'AperturaCajaController@AperturaCajaEditarJson');
+#endregion
+
+#region [Turno]
+Route::get('TurnoListar', 'TurnoController@TurnoListarVista')->name('Turno.Listar');
+Route::get('TurnoInsertar', 'TurnoController@TurnoInsertarVista')->name('Turno.Insertar');
+Route::get('TurnoEditar/{idTurno}', 'TurnoController@TurnoEditarVista')->name('Turno.Editar');
+
+Route::post('TurnoListarJson', 'TurnoController@TurnoListarJson');
+Route::post('TurnoInsertarJson', 'TurnoController@TurnoInsertarJson');
+Route::post('TurnoEditarJson', 'TurnoController@TurnoEditarJson');
+#endregion
+
+#region [Cliente]
+Route::get('ClienteListar', 'ClienteController@ClienteListarVista')->name('Cliente.Listar');
+Route::get('ClienteInsertar', 'ClienteController@ClienteInsertarVista')->name('Cliente.Insertar');
+Route::get('ClienteEditar/{idCliente}', 'ClienteController@ClienteEditarVista')->name('Cliente.Editar');
+
+Route::post('ClienteListarJson', 'ClienteController@ClienteListarJson');
+Route::post('ClienteInsertarJson', 'ClienteController@ClienteInsertarJson');
+Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
+#endregion
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
 Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
 Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');

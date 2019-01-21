@@ -62,7 +62,7 @@
                     <form id="frmNuevo" autocomplete="off">
                         <div class="row">
                             <input type="hidden" name="idConfiguracionJackpot" value="{{$ConfiguracionJackPot->idConfiguracionJackpot}}">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nombre MegaJackpot</label>
                                     <input type="text" class="form-control input-sm" name="nombre"
@@ -70,7 +70,16 @@
                                     <input type="hidden" id="txtsuperjackpot" value="{{$ConfiguracionJackPot->superjackpot}}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select class="form-control input-sm" name="estado_" id="cboEstado">
+                                        <option value="1" {{$ConfiguracionJackPot->estado == 1 ? 'selected': ''}}>Activo</option>
+                                        <option value="0" {{$ConfiguracionJackPot->estado == 0 ? 'selected': ''}}>Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>MegaJackpot</label>
                                     <div class="contenedor_checkbox"></div>
@@ -83,8 +92,8 @@
                                     <thead>
                                     <tr>
                                         <th rowspan="2" class="text-center">Nro Pozo</th>
-                                        <th colspan="4" class="text-center">Jackpot</th>
-                                        <th colspan="4" class="text-center">Pozo Oculto</th>
+                                        <th colspan="3" class="text-center">Jackpot</th>
+                                        <th colspan="3" class="text-center">Pozo Oculto</th>
                                         <th rowspan="2" class="text-center">Estado</th>
                                         <th rowspan="2" class="text-center">
                                             <button type="button" id="btnAgregar" class="btn-primary btn-sm"><i
@@ -92,12 +101,12 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th class="text-center">Monto Base</th>
-                                        <th class="text-center">Incr. Jackpot</th>
+                                        {{--<th class="text-center">Monto Base</th>--}}
+                                        <th class="text-center">Incr. Jackpot (%)</th>
                                         <th class="text-center">Limite Inferior</th>
                                         <th class="text-center">Limite Superior</th>
-                                        <th class="text-center">Monto Base</th>
-                                        <th class="text-center">Incr. Pozo Oculto</th>
+                                        {{--<th class="text-center">Monto Base</th>--}}
+                                        <th class="text-center">Incr. Pozo Oculto (%)</th>
                                         <th class="text-center">Limite Inferior</th>
                                         <th class="text-center">Limite Superior</th>
                                     </tr>

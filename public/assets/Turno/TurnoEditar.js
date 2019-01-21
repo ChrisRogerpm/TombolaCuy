@@ -1,17 +1,8 @@
 $(document).ready(function () {
-
-    $.when(llenarSelect(basePath + "EmpresaListarJson", {'_token': $("input[name='_token']").val()}, "cboEmpresa", "idEmpresa", "razonSocial","")).then(function (response, textStatus) {
-        $("#cboEmpresa").select2();
-    });
-
-    $.when(llenarSelect(basePath + "UbigeoListarJson", {'_token': $("input[name='_token']").val()}, "cboUbigeo", "idUbigeo", "Nombre","")).then(function (response, textStatus) {
-        $("#cboUbigeo").select2();
-    });
-
     $('#btnGuardar').on('click', function (e) {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "PuntoVentaInsertarJson";
+            var url = basePath + "TurnoEditarJson";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
                 url: url,
@@ -28,7 +19,6 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
-                        $("#frmNuevo")[0].reset();
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }
@@ -43,38 +33,18 @@ $(document).ready(function () {
 $("#frmNuevo")
     .validate({
         rules: {
-            idEmpresa:
-                {
-                    required: true,
-
-                },
-            idUbigeo:
-                {
-                    required: true,
-
-                },
             nombre:
                 {
                     required: true,
 
-                },
+                }
         },
         messages: {
-            idEmpresa:
-                {
-                    required: '',
-
-                },
-            idUbigeo:
-                {
-                    required: '',
-
-                },
             nombre:
                 {
                     required: '',
 
-                },
+                }
         },
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {

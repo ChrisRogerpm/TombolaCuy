@@ -14,7 +14,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Registro de Punto Venta
+                                                    Registro de Turno
                                                 </h6>
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <a href="{{route('PuntoVenta.Listar')}}"
+                                    <a href="{{route('Turno.Listar')}}"
                                        class="btn btn-success btn-sm col-md-12 col-xs-12"><span
                                                 class="fa fa-arrow-circle-left"></span> VOLVER</a>
                                 </div>
@@ -61,38 +61,32 @@
 
                     <form id="frmNuevo" autocomplete="off">
                         {{csrf_field()}}
+                        <input type="hidden" name="idTurno" value="{{$Turno->idTurno}}">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Empresa</label>
-                                    <select name="idEmpresa" class="form-control" id="cboEmpresa"></select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Ubigeo</label>
-                                    <select name="idUbigeo" class="form-control input-sm" id="cboUbigeo"></select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
                                     <label>Nombre</label>
-                                    <input type="text" name="nombre" class="form-control input-sm">
+                                    <input type="text" class="form-control" name="nombre" value="{{$Turno->nombre}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select name="estado" class="form-control">
+                                        <option value="1" {{$Turno->estado == 1 ? 'selected':''}}>Activo</option>
+                                        <option value="0" {{$Turno->estado == 0 ? 'selected':''}}>Inactivo</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </form>
 
                 </div>
-                <!-- /Panel Body -->
-
             </div>
-            <!-- /PANEL: Basic Example -->
-
         </div>
     </div>
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/PuntoVenta/PuntoVentaInsertar.js')}}"></script>
+    <script src="{{asset('../assets/Turno/TurnoEditar.js')}}"></script>
 @endpush

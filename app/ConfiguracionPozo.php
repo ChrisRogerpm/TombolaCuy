@@ -34,8 +34,8 @@ class ConfiguracionPozo extends Model
         $configuracionPozo = new ConfiguracionPozo();
         $configuracionPozo->idConfiguracionJackpot = $IdConfiguracionJackpot;
         $configuracionPozo->numeroPozo = $Pozo['numeroPozo'];
-        $configuracionPozo->montoBase = $Pozo['montoBase'];
-        $configuracionPozo->montoBaseOculto = $Pozo['montoBaseOculto'];
+        $configuracionPozo->montoBase = 0;
+        $configuracionPozo->montoBaseOculto = 0;
         $configuracionPozo->incrementoJackpot = $Pozo['incrementoJackpot'];
         $configuracionPozo->incrementoPozoOculto = $Pozo['incrementoPozoOculto'];
         $configuracionPozo->limiteInferior = $Pozo['limiteInferior'];
@@ -68,8 +68,8 @@ class ConfiguracionPozo extends Model
         $configuracionPozo = ConfiguracionPozo::findorfail($Pozo['idConfiguracionPozo']);
         $configuracionPozo->idConfiguracionJackpot = $IdConfiguracionJackpot;
         $configuracionPozo->numeroPozo = $Pozo['numeroPozo'];
-        $configuracionPozo->montoBase = $Pozo['montoBase'];
-        $configuracionPozo->montoBaseOculto = $Pozo['montoBaseOculto'];
+        $configuracionPozo->montoBase = 0;
+        $configuracionPozo->montoBaseOculto = 0;
         $configuracionPozo->incrementoJackpot = $Pozo['incrementoJackpot'];
         $configuracionPozo->incrementoPozoOculto = $Pozo['incrementoPozoOculto'];
         $configuracionPozo->limiteInferior = $Pozo['limiteInferior'];

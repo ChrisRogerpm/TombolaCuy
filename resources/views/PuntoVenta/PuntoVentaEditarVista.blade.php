@@ -14,7 +14,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Registro de Punto Venta
+                                                    Editar Punto Venta
                                                 </h6>
                                             </div>
                                         </div>
@@ -59,6 +59,7 @@
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <form id="frmNuevo" autocomplete="off">
+                        {{csrf_field()}}
                         <div class="row">
                             <input type="hidden" name="idPuntoVenta" value="{{$PuntoVenta->idPuntoVenta}}">
                             <div class="col-md-4">

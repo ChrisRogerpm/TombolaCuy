@@ -63,6 +63,7 @@
                 <div class="panel-body">
 
                     <form id="frmNuevo" autocomplete="off">
+                        {{csrf_field()}}
                         <div class="row">
                             <input type="hidden" name="idEmpresa" value="{{$empresa->idEmpresa}}">
                             <div class="col-md-4">

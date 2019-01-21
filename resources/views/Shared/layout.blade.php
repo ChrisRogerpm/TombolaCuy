@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
     <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
@@ -729,6 +730,10 @@
 
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
+                <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Caja</span></a></li>
+                <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Turno</span></a></li>
+                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Apertura Caja</span></a></li>
+                <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Cliente</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>
@@ -809,6 +814,8 @@
 <script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
 <script src="{{asset('../components/select2/select2.min.js')}}"></script>
 <script src="{{asset('../components/icheck/icheck.min.js')}}"></script>
+<script src="{{asset('../components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
 <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
 @stack('Js')

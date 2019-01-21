@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ConfiguracionJackpot;
 use App\ConfiguracionPozo;
+use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 

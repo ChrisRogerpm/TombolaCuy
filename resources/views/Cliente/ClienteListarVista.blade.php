@@ -14,7 +14,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Lista de Jackpots
+                                                    Lista de Clientes
                                                 </h6>
                                             </div>
                                         </div>
@@ -33,7 +33,7 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <a href="{{route('Jackpot.Insertar')}}"
+                                    <a href="{{route('Cliente.Insertar')}}"
                                        class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
                                                 class="glyphicon glyphicon-file"></span> NUEVO</a>
                                 </div>
@@ -56,5 +56,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/Jackpot/Jackpot/JackpotListar.js')}}"></script>
+    <script src="{{asset('../assets/Cliente/ClienteListar.js')}}"></script>
 @endpush

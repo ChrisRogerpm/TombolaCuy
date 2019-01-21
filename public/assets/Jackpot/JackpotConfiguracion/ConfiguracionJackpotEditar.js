@@ -3,15 +3,15 @@ $(document).ready(function () {
     $(document).on('click', '#btnAgregar', function () {
         var tr =
             '<tr>\n' +
-            '<td class="text-center"><input type="hidden" name="idConfiguracionPozo" value="0" /><input type="number" min="1" name="numeroPozo" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="montoBase" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="montoBaseOculto" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="incrementoJackpot" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="incrementoPozoOculto" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="limiteInferior" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="limiteSuperior" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="limiteInferiorOculto" class="form-control input-sm"></td>\n' +
-            '<td class="text-center"><input type="number" min="1" name="limiteSuperiorOculto" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="hidden" name="idConfiguracionPozo" value="0" /><input type="number" name="numeroPozo" class="form-control input-sm"></td>\n' +
+            // '<td class="text-center"><input type="number" name="montoBase" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="incrementoJackpot" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="limiteInferior" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="limiteSuperior" class="form-control input-sm"></td>\n' +
+            // '<td class="text-center"><input type="number" name="montoBaseOculto" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="incrementoPozoOculto" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="limiteInferiorOculto" class="form-control input-sm"></td>\n' +
+            '<td class="text-center"><input type="number" name="limiteSuperiorOculto" class="form-control input-sm"></td>\n' +
             '<td class="text-center"></td>\n' +
             '<td class="text-center"><button type="button" class="btn btn-danger btn-sm btnEliminar"><i class="fa fa-close"></i></button></td>\n' +
             '</tr>';
@@ -36,6 +36,7 @@ $(document).ready(function () {
         if (validar.valid()) {
             var idConfiguracionJackpot = $("input[name='idConfiguracionJackpot']").val();
             var nombre = $("input[name='nombre']").val();
+            var estado = $("#cboEstado").val();
             var superjackpot = $("input[name='superjackpot']:checked").val() == undefined ? "0" : $("input[name='superjackpot']:checked").val();
             var pozo = LlenarConfigurazionPozo();
             if (pozo.length > 0) {
@@ -44,10 +45,10 @@ $(document).ready(function () {
                     'idConfiguracionJackpot': idConfiguracionJackpot,
                     'nombre': nombre,
                     'superjackpot': superjackpot,
+                    'estado': estado,
                     'pozo': pozo
                 };
                 var url = basePath + "ConfiguracionJackpotEditarJson";
-                console.log(pozo)
                 EditarConfiguracionJackpot(dataForm, url);
             }
         }
@@ -80,26 +81,65 @@ $(document).ready(function () {
 });
 
 function LlenarConfigurazionPozo() {
+
     var pozo = [];
     $("#table tbody tr").each(function () {
+        debugger
         var idConfiguracionPozo = $(this).find('input[name="idConfiguracionPozo"]').val();
         var numeroPozo = $(this).find('input[name="numeroPozo"]').val();
-        var montoBase = $(this).find('input[name="montoBase"]').val();
-        var montoBaseOculto = $(this).find('input[name="montoBaseOculto"]').val();
+        // var montoBase = $(this).find('input[name="montoBase"]').val();
+        // var montoBaseOculto = $(this).find('input[name="montoBaseOculto"]').val();
         var incrementoJackpot = $(this).find('input[name="incrementoJackpot"]').val();
         var incrementoPozoOculto = $(this).find('input[name="incrementoPozoOculto"]').val();
         var limiteInferior = $(this).find('input[name="limiteInferior"]').val();
         var limiteSuperior = $(this).find('input[name="limiteSuperior"]').val();
         var limiteInferiorOculto = $(this).find('input[name="limiteInferiorOculto"]').val();
         var limiteSuperiorOculto = $(this).find('input[name="limiteSuperiorOculto"]').val();
-        var estado = $(this).find("input[name='estado']:checked").val() == undefined ? "0" : $("input[name='estado']:checked").val();
-
-        // $("input[name='superjackpot']:checked").val() == undefined ? "0" : $("input[name='superjackpot']:checked").val();
+        var estado = $(this).find("input[name='estado']:checked").val() === undefined ? "0" : $("input[name='estado']:checked").val();
         var validar = true;
-        if (numeroPozo === "" || montoBase === "" || montoBaseOculto === "" || montoBaseOculto === "" || incrementoJackpot === "" || incrementoPozoOculto === "" || limiteInferior === "" || limiteSuperior === "" ||
+
+
+        if (numeroPozo === "" ||  incrementoJackpot === "" || incrementoPozoOculto === "" || limiteInferior === "" || limiteSuperior === "" ||
             limiteSuperiorOculto === "" || limiteInferiorOculto === "") {
             validar = false;
             toastr.warning('Todo los campos de la tabla deben ser llenados', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+        if (incrementoJackpot > 5 || incrementoJackpot < 1) {
+            validar = false;
+            toastr.warning('El rango Incr. Jackpot es de 1-5 - Jackpot ', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+        if (incrementoPozoOculto > 5 || incrementoPozoOculto < 1) {
+            validar = false;
+            toastr.warning('El rango Incr. Pozo Oculto es de 1-5 - Pozo Oculto ', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+        if (limiteSuperior < limiteInferior) {
+            validar = false;
+            toastr.warning('El Limite Superior debe ser mayor a Limite Inferior - Jackpot ', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+        if (limiteInferior > limiteSuperior) {
+            validar = false;
+            toastr.warning('El Limite Inferior no debe ser mayor a Limite Superior  - Jackpot ', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+
+        if (limiteSuperiorOculto < limiteInferiorOculto) {
+            validar = false;
+            toastr.warning('El Limite Superior debe ser mayor a Limite Inferior - Pozo Oculto ', 'Mensaje Servidor');
+            pozo = [];
+            return false;
+        }
+        if (limiteInferiorOculto > limiteSuperiorOculto) {
+            validar = false;
+            toastr.warning('El Limite Inferior no debe ser mayor a Limite Superior  - Pozo Oculto ', 'Mensaje Servidor');
             pozo = [];
             return false;
         }
@@ -108,10 +148,10 @@ function LlenarConfigurazionPozo() {
                 config_pozo = {
                     'idConfiguracionPozo': idConfiguracionPozo,
                     'numeroPozo': numeroPozo,
-                    'montoBase': montoBase,
-                    'montoBaseOculto': montoBaseOculto,
-                    'incrementoJackpot': incrementoJackpot,
-                    'incrementoPozoOculto': incrementoPozoOculto,
+                    // 'montoBase': montoBase,
+                    // 'montoBaseOculto': montoBaseOculto,
+                    'incrementoJackpot': (incrementoJackpot / 100),
+                    'incrementoPozoOculto': (incrementoPozoOculto / 100),
                     'limiteInferior': limiteInferior,
                     'limiteSuperior': limiteSuperior,
                     'limiteInferiorOculto': limiteInferiorOculto,
@@ -198,15 +238,16 @@ function CargarConfiguracionPozo() {
                 var estado = value.estado == 1 ? 'checked' : '';
                 var tr =
                     '<tr>\n' +
-                    '<td class="text-center"><input type="hidden" name="idConfiguracionPozo" value="' + value.idConfiguracionPozo + '" /><input type="number" min="1" name="numeroPozo" value="' + value.numeroPozo + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="montoBase" value="' + value.montoBase + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="montoBaseOculto" value="' + value.montoBaseOculto + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="incrementoJackpot" value="' + value.incrementoJackpot + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="incrementoPozoOculto" value="' + value.incrementoPozoOculto + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="limiteInferior" value="' + value.limiteInferior + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="limiteSuperior" value="' + value.limiteSuperior + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="limiteInferiorOculto" value="' + value.limiteInferiorOculto + '" class="form-control input-sm"></td>\n' +
-                    '<td class="text-center"><input type="number" min="1" name="limiteSuperiorOculto" value="' + value.limiteSuperiorOculto + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="hidden" name="idConfiguracionPozo" value="' + value.idConfiguracionPozo + '" /><input type="number" name="numeroPozo" value="' + value.numeroPozo + '" class="form-control input-sm"></td>\n' +
+                    // '<td class="text-center"><input type="number" name="montoBase" value="' + value.montoBase + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="number" name="incrementoJackpot" value="' + (value.incrementoJackpot*100) + '" class="form-control input-sm"></td>\n' +
+
+                    '<td class="text-center"><input type="number" name="limiteInferior" value="' + value.limiteInferior + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="number" name="limiteSuperior" value="' + value.limiteSuperior + '" class="form-control input-sm"></td>\n' +
+                    // '<td class="text-center"><input type="number" name="montoBaseOculto" value="' + value.montoBaseOculto + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="number" name="incrementoPozoOculto" value="' + (value.incrementoPozoOculto*100) + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="number" name="limiteInferiorOculto" value="' + value.limiteInferiorOculto + '" class="form-control input-sm"></td>\n' +
+                    '<td class="text-center"><input type="number" name="limiteSuperiorOculto" value="' + value.limiteSuperiorOculto + '" class="form-control input-sm"></td>\n' +
                     '<td class="text-center"><div class="icheck-inline"><input type="checkbox" name="estado" ' + estado + ' value="1" data-id="' + value.idConfiguracionPozo + '"  data-checkbox="icheckbox_square-blue"></div></td>\n' +
                     '<td class="text-center"><button type="button" class="btn btn-danger btn-sm btnEliminar" data-id="' + value.idConfiguracionPozo + '"><i class="fa fa-close"></i></button></td>\n' +
                     '</tr>';
@@ -282,17 +323,12 @@ $("#frmNuevo")
                     required: true,
 
                 },
+            estado:
+                {
+                    required: true,
+
+                },
             numeroPozo:
-                {
-                    required: true,
-
-                },
-            montoBase:
-                {
-                    required: true,
-
-                },
-            montoBaseOculto:
                 {
                     required: true,
 
@@ -328,18 +364,12 @@ $("#frmNuevo")
                 {
                     required: '',
 
+                }, estado:
+                {
+                    required: '',
+
                 },
             numeroPozo:
-                {
-                    required: '',
-
-                },
-            montoBase:
-                {
-                    required: '',
-
-                },
-            montoBaseOculto:
                 {
                     required: '',
 
