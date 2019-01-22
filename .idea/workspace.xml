@@ -5,53 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9acf4761-a65d-4110-8063-8b4ad425da50" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaInsertar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaListar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Caja/CajaEditar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Caja/CajaListar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Cliente/ClienteEditar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Cliente/ClienteInsertar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Cliente/ClienteListar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Turno/TurnoEditar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Turno/TurnoInsertar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/Turno/TurnoListar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/components/momentjs/moment_locales.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaEditarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaListarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Caja/CajaEditarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Caja/CajaInsertarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Caja/CajaListarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Cliente/ClienteEditarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Cliente/ClienteInsertarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Cliente/ClienteListarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Turno/TurnoEditarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Turno/TurnoInsertarVista.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/Turno/TurnoListarVista.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2019_01_22_093627_create_jackpot_punto_venta_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ConfiguracionJackpot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ConfiguracionJackpot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ConfiguracionPozo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ConfiguracionPozo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfiguracionJackpotController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfiguracionJackpotController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ConfiguracionJackpot/ConfiguracionJackpotEditarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ConfiguracionJackpot/ConfiguracionJackpotEditarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ConfiguracionJackpot/ConfiguracionJackpotInsertarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ConfiguracionJackpot/ConfiguracionJackpotInsertarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaEditarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Empresa/EmpresaInsertarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Jackpot/JackpotListarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Jackpot/JackpotListarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaEditarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaEditarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaInsertarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaInsertarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,15 +21,17 @@
     <session id="-1498953092">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.61" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="1" />
           <entry key="js" value="70" />
-          <entry key="php" value="103" />
+          <entry key="php" value="105" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -82,7 +39,7 @@
           <entry key=".env file" value="1" />
           <entry key="Blade" value="57" />
           <entry key="JavaScript" value="70" />
-          <entry key="PHP" value="46" />
+          <entry key="PHP" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -105,50 +62,9 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="94" column="72" selection-start-line="94" selection-start-column="72" selection-end-line="94" selection-end-column="72" />
-              <folding>
-                <element signature="e#454#471#0#PHP" />
-                <element signature="e#1696#1713#0#PHP" />
-                <element signature="e#2023#2053#0#PHP" />
-                <element signature="e#3194#3208#0#PHP" />
-                <element signature="e#3676#3691#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1220">
-              <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
-              <folding>
-                <element signature="e#40#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteInsertarVista.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="97" column="59" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/assets/Cliente/ClienteInsertar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_22_093627_create_jackpot_punto_venta_table.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -381,7 +297,7 @@
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
@@ -418,6 +334,17 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
@@ -467,13 +394,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Caja" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="Cliente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
@@ -545,11 +465,12 @@
       <workItem from="1547842018661" duration="8417000" />
       <workItem from="1547990293594" duration="24019000" />
       <workItem from="1547853066531" duration="23821000" />
+      <workItem from="1548197705870" duration="345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85852000" />
+    <option name="totallyTimeSpent" value="86197000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,7 +485,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2624811" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30559757" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -615,35 +536,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="247" column="105" lean-forward="true" selection-start-line="247" selection-start-column="105" selection-end-line="247" selection-end-column="105" />
-          <caret line="242" column="102" selection-start-line="242" selection-start-column="102" selection-end-line="242" selection-end-column="102" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#EliminarConfiguracionPozo#0" />
-            <element signature="n#!!block;n#CambiarEstadoConfiguracionPozo#0" />
-            <element signature="e#14329#16352#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="117" column="20" selection-start-line="117" selection-start-column="20" selection-end-line="118" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/ConfiguracionJackpot.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="45" column="66" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
-          <folding>
-            <element signature="e#23#30#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -722,9 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-965">
           <caret column="19" selection-start-column="19" selection-end-column="19" />
-          <folding>
-            <element signature="e#2281#2299#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,9 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
           <caret line="45" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="45" selection-end-column="5" />
-          <folding>
-            <element signature="e#23#30#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -763,9 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,9 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="875">
           <caret line="58" column="61" selection-start-line="58" selection-start-column="61" selection-end-line="58" selection-end-column="61" />
-          <folding>
-            <element signature="e#2295#2313#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -824,9 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-          <folding>
-            <element signature="e#23#41#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,9 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="22" column="21" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#40#61#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,22 +750,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="41" column="5" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Cliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="35" column="48" lean-forward="true" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Cliente.php" />
     <entry file="file://$PROJECT_DIR$/public/assets/Turno/TurnoEditar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
@@ -899,15 +765,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="62" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteEditarVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteEditarVista.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/Caja/CajaListarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -915,16 +776,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteListarVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
-          <folding>
-            <element signature="e#2285#2303#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteListarVista.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/Turno/TurnoEditarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
@@ -956,20 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="94" column="72" selection-start-line="94" selection-start-column="72" selection-end-line="94" selection-end-column="72" />
-          <folding>
-            <element signature="e#454#471#0#PHP" />
-            <element signature="e#1696#1713#0#PHP" />
-            <element signature="e#2023#2053#0#PHP" />
-            <element signature="e#3194#3208#0#PHP" />
-            <element signature="e#3676#3691#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Turno/TurnoInsertar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -984,29 +822,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClienteController.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteInsertarVista.blade.php" />
+    <entry file="file://$PROJECT_DIR$/public/assets/Cliente/ClienteInsertar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+        <state relative-caret-position="391">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="94" column="69" selection-start-line="94" selection-start-column="69" selection-end-line="94" selection-end-column="69" />
           <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
+            <element signature="e#454#471#0#PHP" />
+            <element signature="e#1696#1713#0#PHP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Cliente/ClienteInsertarVista.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="97" column="59" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="59" />
-        </state>
+        <state relative-caret-position="-1287" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Cliente/ClienteInsertar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_22_093627_create_jackpot_punto_venta_table.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
