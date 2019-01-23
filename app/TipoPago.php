@@ -26,6 +26,10 @@ class TipoPago extends Model
     {
         $TipoPago = new TipoPago();
         $TipoPago->nombre = $request->input('nombre');
+        $TipoPago->multiplicadorDefecto = $request->input('multiplicadorDefecto'); 
+        $TipoPago->plenoMinimo = $request->input('plenoMinimo');
+        $TipoPago->plenoMaximo = $request->input('plenoMaximo');
+        $TipoPago->intercalado = $request->input('intercalado');
         $TipoPago->estado = 1;
         $TipoPago->save();
         return $TipoPago;
@@ -36,6 +40,10 @@ class TipoPago extends Model
         $idTipoPago = $request->input('idTipoPago');
         $TipoPago = TipoPago::findorfail($idTipoPago);
         $TipoPago->nombre = $request->input('nombre');
+        $TipoPago->multiplicadorDefecto = $request->input('multiplicadorDefecto'); 
+        $TipoPago->plenoMinimo = $request->input('plenoMinimo');
+        $TipoPago->plenoMaximo = $request->input('plenoMaximo');
+        $TipoPago->intercalado = $request->input('intercalado');
         $TipoPago->estado = $request->input('estado');
         $TipoPago->save();
         return $TipoPago;

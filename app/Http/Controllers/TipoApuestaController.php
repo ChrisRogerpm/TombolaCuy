@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\TipoPago;
+use App\TipoApuesta;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class TipoPagoController extends Controller
+class TipoApuestaController extends Controller
 {
-	public function TipoPagoListarVista()
+	public function TipoApuestaListarVista()
 	{
-		return view('TipoPago.TipoPagoListarVista');
+		return view('TipoApuesta.TipoApuestaListarVista');
 	}
-	public function TipoPagoInsertarVista()
+	public function TipoApuestaInsertarVista()
 	{
-		return view('TipoPago.TipoPagoInsertarVista');
+		return view('TipoApuesta.TipoApuestaInsertarVista');
 	}
 
-	public function TipoPagoEditarVista($idTipoPago)
+	public function TipoApuestaEditarVista($idTipoApuesta)
 	{
-		$TipoPago = TipoPago::findorfail($idTipoPago);
-		return view('TipoPago.TipoPagoEditarVista', compact('TipoPago'));
+		$TipoApuesta = TipoApuesta::findorfail($idTipoApuesta);
+		return view('TipoApuesta.TipoApuestaEditarVista', compact('TipoApuesta'));
 	}
-	public function TipoPagoListarJson()
+	public function TipoApuestaListarJson()
 	{
 		$lista = "";
 		$mensaje_error = "";
 		try {
-			$lista = TipoPago::TipoPagoListarJson();
+			$lista = TipoApuesta::TipoApuestaListarJson();
 		} catch (QueryException $ex) {
 			$mensaje_error = $ex->errorInfo;
 		}
 		return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
 	}
-	public function TipoPagoInsertarJson(Request $request)
+	public function TipoApuestaInsertarJson(Request $request)
 	{
 		$respuesta = false;
 		$mensaje_error = "";
 		try {
-			TipoPago::TipoPagoInsertarJson($request);
+			TipoApuesta::TipoApuestaInsertarJson($request);
 			$respuesta = true;
 		} catch (QueryException $ex) {
 			$mensaje_error = $ex->errorInfo;
@@ -46,12 +46,12 @@ class TipoPagoController extends Controller
 		return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
 	}
 
-	public function TipoPagoEditarJson(Request $request)
+	public function TipoApuestaEditarJson(Request $request)
 	{
 		$respuesta = false;
 		$mensaje_error = "";
 		try {
-			TipoPago::TipoPagoEditarJson($request);
+			TipoApuesta::TipoApuestaEditarJson($request);
 			$respuesta = true;
 		} catch (QueryException $ex) {
 			$mensaje_error = $ex->errorInfo;

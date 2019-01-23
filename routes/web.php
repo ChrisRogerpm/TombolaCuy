@@ -88,11 +88,21 @@ Route::post('TurnoEditarJson', 'TurnoController@TurnoEditarJson');
 #region [TipoPago]
 Route::get('TipoPagoListar', 'TipoPagoController@TipoPagoListarVista')->name('TipoPago.Listar');
 Route::get('TipoPagoInsertar', 'TipoPagoController@TipoPagoInsertarVista')->name('TipoPago.Insertar');
-//Route::get('TipoPagoEditar/{idTipoPago}', 'TipoPagoController@TipoPagoEditarVista')->name('TipoPago.Editar');
+Route::get('TipoPagoEditar/{idTipoPago}', 'TipoPagoController@TipoPagoEditarVista')->name('TipoPago.Editar');
 
 Route::post('TipoPagoListarJson', 'TipoPagoController@TipoPagoListarJson');
 Route::post('TipoPagoInsertarJson', 'TipoPagoController@TipoPagoInsertarJson');
 Route::post('TipoPagoEditarJson', 'TipoPagoController@TipoPagoEditarJson');
+#endregion
+
+#region [TipoApuesta]
+Route::get('TipoApuestaListar', 'TipoApuestaController@TipoApuestaListarVista')->name('TipoApuesta.Listar');
+Route::get('TipoApuestaInsertar', 'TipoApuestaController@TipoApuestaInsertarVista')->name('TipoApuesta.Insertar');
+Route::get('TipoApuestaEditar/{idTipoApuesta}', 'TipoApuestaController@TipoApuestaEditarVista')->name('TipoApuesta.Editar');
+
+Route::post('TipoApuestaListarJson', 'TipoApuestaController@TipoApuestaListarJson');
+Route::post('TipoApuestaInsertarJson', 'TipoApuestaController@TipoApuestaInsertarJson');
+Route::post('TipoApuestaEditarJson', 'TipoApuestaController@TipoApuestaEditarJson');
 #endregion
 
 #region [Cliente]

@@ -14,7 +14,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Registro de TipoPago
+                                                    Registro de TipoApuesta
                                                 </h6>
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <a href="{{route('TipoPago.Listar')}}"
+                                    <a href="{{route('TipoApuesta.Listar')}}"
                                        class="btn btn-success btn-sm col-md-12 col-xs-12"><span
                                                 class="fa fa-arrow-circle-left"></span> VOLVER</a>
                                 </div>
@@ -102,5 +102,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/TipoPago/TipoPagoInsertar.js')}}"></script>
+    <script src="{{asset('../assets/TipoApuesta/TipoApuestaInsertar.js')}}"></script>
 @endpush

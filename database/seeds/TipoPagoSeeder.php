@@ -30,7 +30,7 @@ class TipoPagoSeeder extends Seeder
     	);
     	DB::select(DB::raw(
         	"INSERT INTO tipo_pago(idTipoPago ,nombre ,multiplicadorDefecto ,plenoMinimo ,plenoMaximo ,intercalado ,estado) 
-        	VALUES (5, 'Del 1 al 9, 10 al 18',  1.2, 1, 3, 1, 1)")
+        	VALUES (5, 'Del 1 al 12, 13 al 24',  1.2, 1, 3, 1, 1)")
     	);
     	DB::select(DB::raw(
         	"INSERT INTO tipo_pago(idTipoPago ,nombre ,multiplicadorDefecto ,plenoMinimo ,plenoMaximo ,intercalado ,estado) 

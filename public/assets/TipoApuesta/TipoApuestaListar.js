@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    ListarTipoPago();
+    ListarTipoApuesta();
     $(document).on('click', '.btnEditar', function () {
-        var idTipoPago = $(this).data("id");
-        var url = basePath + "TipoPagoEditar/" + idTipoPago;
+        var idTipoApuesta = $(this).data("id");
+        var url = basePath + "TipoApuestaEditar/" + idTipoApuesta;
         window.location.replace(url);
     })
 });
 
-function ListarTipoPago() {
+function ListarTipoApuesta() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'TipoPagoListarJson',
+        url: basePath + 'TipoApuestaListarJson',
         data: {
             '_token': $('input[name=_token]').val(),
         },
@@ -27,9 +27,10 @@ function ListarTipoPago() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                {data: "idTipoPago", title: "Id"},
-                {data: "nombre", title: "Nombre"},
-                {data: "multiplicadorDefecto", title: "Multiplicador Defecto"},
+                {data: "idTipoApuesta", title: "idTipoApuesta"},
+                {data: "idTipoPago", title: "idTipoPago"},
+                {data: "valorapuesta", title: "Valor Apuesta"},
+                 {data: "nombre", title: "Nombre"},
                 {
                     data:"estado",title:"Estado",
                     "render":function (value) {
@@ -37,13 +38,12 @@ function ListarTipoPago() {
                         return estado;
                     }
                 },
-                {data: "plenoMinimo", title: "Pleno Minimo"},
-                {data: "plenoMaximo", title: "Pleno Maximo"},
-                {data: "intercalado", title: "Intercalado"},
+               
+              
                 {
                     data: null, title: "",
                     "render": function (value) {
-                        return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idTipoPago + '"><i class="fa fa-edit"></i></button>';
+                        return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idTipoApuesta + '"><i class="fa fa-edit"></i></button>';
                     }
                 }
                 ],
