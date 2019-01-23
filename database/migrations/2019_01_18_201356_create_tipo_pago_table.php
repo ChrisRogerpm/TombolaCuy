@@ -17,6 +17,9 @@ class CreateTipoPagoTable extends Migration
             $table->increments('idTipoPago');
             $table->string('nombre',50)->nullable();
             $table->decimal('multiplicadorDefecto',18,2)->nullable();
+            $table->integer('plenoMinimo')->nullable();
+            $table->integer('plenoMaximo')->nullable();
+            $table->integer('intercalado')->nullable();
             $table->integer('estado')->nullable();
         });
     }

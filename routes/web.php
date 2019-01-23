@@ -85,6 +85,16 @@ Route::post('TurnoInsertarJson', 'TurnoController@TurnoInsertarJson');
 Route::post('TurnoEditarJson', 'TurnoController@TurnoEditarJson');
 #endregion
 
+#region [TipoPago]
+Route::get('TipoPagoListar', 'TipoPagoController@TipoPagoListarVista')->name('TipoPago.Listar');
+Route::get('TipoPagoInsertar', 'TipoPagoController@TipoPagoInsertarVista')->name('TipoPago.Insertar');
+//Route::get('TipoPagoEditar/{idTipoPago}', 'TipoPagoController@TipoPagoEditarVista')->name('TipoPago.Editar');
+
+Route::post('TipoPagoListarJson', 'TipoPagoController@TipoPagoListarJson');
+Route::post('TipoPagoInsertarJson', 'TipoPagoController@TipoPagoInsertarJson');
+Route::post('TipoPagoEditarJson', 'TipoPagoController@TipoPagoEditarJson');
+#endregion
+
 #region [Cliente]
 Route::get('ClienteListar', 'ClienteController@ClienteListarVista')->name('Cliente.Listar');
 Route::get('ClienteInsertar', 'ClienteController@ClienteInsertarVista')->name('Cliente.Insertar');

@@ -732,6 +732,7 @@
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
                 <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Caja</span></a></li>
                 <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Turno</span></a></li>
+                <li><a href="{{route('TipoPago.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">TipoPago</span></a></li>
                 <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Apertura Caja</span></a></li>
                 <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Cliente</span></a></li>
                 <li class="sub">
