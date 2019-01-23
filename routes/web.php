@@ -47,12 +47,12 @@ Route::get('ConfiguracionJackpotListar', 'ConfiguracionJackpotController@Configu
 Route::get('ConfiguracionJackpotInsertar', 'ConfiguracionJackpotController@ConfiguracionJackpotInsertarVista')->name('ConfiguracionJackpot.Insertar');
 Route::get('ConfiguracionJackpotEditar/{idConfiguracionJackpot}', 'ConfiguracionJackpotController@ConfiguracionJackpotEditarVista')->name('ConfiguracionJackpot.Editar');
 
-Route::post('ConfiguracionJackpotListarJson','ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
-Route::post('ConfiguracionJackpotInsertarJson','ConfiguracionJackpotController@ConfiguracionJackpotInsertarJson');
-Route::post('ConfiguracionJackpotEditarJson','ConfiguracionJackpotController@ConfiguracionJackpotEditarJson');
-Route::post('ConfiguracionPozoListarJson','ConfiguracionPozoController@ConfiguracionPozoListarJson');
-Route::post('ConfiguracionPozoEliminarJson','ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
-Route::post('CambiarEstadoConfiguracionPozoJson','ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
+Route::post('ConfiguracionJackpotListarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
+Route::post('ConfiguracionJackpotInsertarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotInsertarJson');
+Route::post('ConfiguracionJackpotEditarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotEditarJson');
+Route::post('ConfiguracionPozoListarJson', 'ConfiguracionPozoController@ConfiguracionPozoListarJson');
+Route::post('ConfiguracionPozoEliminarJson', 'ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
+Route::post('CambiarEstadoConfiguracionPozoJson', 'ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
 #endregion
 
 #region [Caja]
@@ -114,6 +114,11 @@ Route::post('ClienteListarJson', 'ClienteController@ClienteListarJson');
 Route::post('ClienteInsertarJson', 'ClienteController@ClienteInsertarJson');
 Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
 #endregion
+
+#region [Reporte]
+Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
+#endregion
+
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
 Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
 Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');

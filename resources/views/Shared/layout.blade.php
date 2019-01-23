@@ -756,6 +756,7 @@
                             <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a></li>
                         </ul>
                     </li>
+                    <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte Apuesta</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 
