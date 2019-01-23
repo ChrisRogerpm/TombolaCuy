@@ -13,7 +13,7 @@ class TipoPago extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['nombre', 'estado'];
+    public $fillable = ['nombre','multiplicadorDefecto', 'estado'];
 
 
     public static function TipoPagoListarJson()

@@ -27,20 +27,22 @@ function ListarTipoPago() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "nombre", title: "Nombre"},
-                    {
-                        data:"estado",title:"Estado",
-                        "render":function (value) {
-                            var estado = value === 1 ? 'Activo': 'Inactivo';
-                            return estado;
-                        }
-                    },
-                    {
-                        data: null, title: "",
-                        "render": function (value) {
-                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idTipoPago + '"><i class="fa fa-edit"></i></button>';
-                        }
+                {data: "idTipoPago", title: "Id"},
+                {data: "nombre", title: "Nombre"},
+                {data: "multiplicadorDefecto", title: "Multiplicador Defecto"},
+                {
+                    data:"estado",title:"Estado",
+                    "render":function (value) {
+                        var estado = value === 1 ? 'Activo': 'Inactivo';
+                        return estado;
                     }
+                },
+                {
+                    data: null, title: "",
+                    "render": function (value) {
+                        return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idTipoPago + '"><i class="fa fa-edit"></i></button>';
+                    }
+                }
                 ],
                 "drawCallback": function (settings) {
                     $('.btnEditar').tooltip({

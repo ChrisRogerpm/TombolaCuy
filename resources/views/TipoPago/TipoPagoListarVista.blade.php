@@ -14,7 +14,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Lista de TipoPagos
+                                                    Lista de Tipo de Pagos
                                                 </h6>
                                             </div>
                                         </div>
