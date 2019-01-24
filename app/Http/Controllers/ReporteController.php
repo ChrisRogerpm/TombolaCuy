@@ -25,4 +25,22 @@ class ReporteController extends Controller
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
 
     }
+
+    //REPORTE HISTORIAL DE GANADORES
+    public function ReporteHistorialGanadoresVista()
+    {
+        return view('Reportes.ReporteHistorialGanadoresVista');
+    }
+    public function ReporteHistorialGanadoresJson(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ReporteHistorialGanadoresJson($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+
+    }
 }

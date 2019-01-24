@@ -41,13 +41,19 @@
     <!-- /AppleTouch Icons -->
 
     <!-- Styles -->
+    
+    
     <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
     <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
+
+    
+   
     <!-- /Styles -->
 
 </head>
@@ -757,6 +763,7 @@
                         </ul>
                     </li>
                     <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte Apuesta</span></a></li>
+                    <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte HistorialGanadores</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 

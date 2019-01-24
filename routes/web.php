@@ -117,6 +117,7 @@ Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
 
 #region [Reporte]
 Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
+Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
 #endregion
 
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
