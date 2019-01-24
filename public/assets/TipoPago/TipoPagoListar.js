@@ -7,7 +7,7 @@ $(document).ready(function () {
     })
 });
 
-function ListarTipoPago() {
+function ListarTipoPago() {debugger;
     $.ajax({
         type: 'POST',
         url: basePath + 'TipoPagoListarJson',

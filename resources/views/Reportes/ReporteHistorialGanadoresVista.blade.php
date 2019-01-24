@@ -90,7 +90,115 @@
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
+                    <table id="table" class="table table-bordered table-striped dataTable no-footer" style="width:100%" role="grid" aria-describedby="table_info">
+   <thead>
+      <tr role="row">
+                         
+
+         <th class="sorting_asc" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id: activate to sort column descending">tienda</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Nombre: activate to sort column ascending">evento</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Multiplicador Defecto: activate to sort column ascending">fecha</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Estado: activate to sort column ascending">total jugadores</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Pleno Minimo: activate to sort column ascending">total ganadores</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Pleno Maximo: activate to sort column ascending">monto total apostado</th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Intercalado: activate to sort column ascending">monto total pagado  </th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Intercalado: activate to sort column ascending">NR ticket ganador  </th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Intercalado: activate to sort column ascending">tipo de apuesta  </th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label="Intercalado: activate to sort column ascending">valor de apuesta </th>
+         <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1" aria-label=": activate to sort column ascending"></th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr role="row" class="odd">
+         <td class="sorting_1">1</td>
+         <td>Pleno</td>
+         <td>1.10</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="1" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="even">
+         <td class="sorting_1">2</td>
+         <td>Color</td>
+         <td>1.40</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="2" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="odd">
+         <td class="sorting_1">3</td>
+         <td>Par e Impar</td>
+         <td>1.50</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="3" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="even">
+         <td class="sorting_1">4</td>
+         <td>1era, 2da, 3ra ½ docena</td>
+         <td>1.10</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="4" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="odd">
+         <td class="sorting_1">5</td>
+         <td>Del 1 al 12, 13 al 24</td>
+         <td>1.20</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="5" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="even">
+         <td class="sorting_1">6</td>
+         <td>CajaBoqueda</td>
+         <td>1.60</td>
+         <td>Activo</td>
+         <td>1</td>
+         <td>3</td>
+         <td>1</td>
+         <td>dato</td>
+         <td>dato2</td>
+         <td>dato3</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="6" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+      <tr role="row" class="odd">
+         <td class="sorting_1">7</td>
+         <td>registro pago</td>
+         <td>4.00</td>
+         <td>Activo</td>
+         <td>6</td>
+         <td>22</td>
+         <td>5</td>
+         <td><button type="button" class="btn btn-success btn-sm btnEditar" data-id="7" data-original-title="" title=""><i class="fa fa-edit"></i></button></td>
+      </tr>
+   </tbody>
+</table>
                 </div>
             </div>
         </div>

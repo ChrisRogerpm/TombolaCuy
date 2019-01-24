@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Reporte;
+
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+
 
 class ReporteController extends Controller
 {
@@ -31,16 +36,23 @@ class ReporteController extends Controller
     {
         return view('Reportes.ReporteHistorialGanadoresVista');
     }
-    public function ReporteHistorialGanadoresJson(Request $request)
+    
+    public function ReporteHistorialGanadoresListarJson()
     {
         $lista = "";
         $mensaje_error = "";
         try {
-            $lista = Reporte::ReporteHistorialGanadoresJson($request);
+            //$lista = Reporte::ReporteHistorialGanadoresListarJson();
+
+            
+            //$lista = DB::table('tipo_apuesta')->get();
+            $lista = DB::table('tipo_apuesta')
+                     ->select(DB::raw('idTipoPago'.'valorapuesta','nombre', 'estado'))
+                     ->get();
+
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
-
     }
 }
