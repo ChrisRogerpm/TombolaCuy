@@ -2,7 +2,7 @@ $(document).ready(function () {
     $('#btnGuardar').on('click', function (e) {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "ClienteInsertarJson";
+            var url = basePath + "TipoApuestaInsertarJson";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
                 url: url,
@@ -32,53 +32,27 @@ $(document).ready(function () {
 });
 
 $("#frmNuevo")
-.validate({
-    rules: {
-        nombres:
-        {
-            required: true,
+    .validate({
+        rules: {
+            nombre:
+                {
+                    required: true,
 
-        }, apePaterno:
-        {
-            required: true,
+                }
+        },
+        messages: {
+            nombre:
+                {
+                    required: '',
 
-        }, apeMaterno:
-        {
-            required: true,
-
-        }, dni:
-        {
-            required: true,
-
+                }
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                element.closest('.option-group').after(error);
+            }
+            else {
+                error.insertAfter(element);
+            }
         }
-    },
-    messages: {
-        nombres:
-        {
-            required: 'nombre'
-
-        },apePaterno:
-        {
-            required: 'apellido'
-
-        },apeMaterno:
-        {
-            required: 'materno'
-
-        },dni:
-        {
-            required: 'dni'
-
-        }
-    },
-
-
-    errorPlacement: function (error, element) {
-        if (element.is(":radio") || element.is(":checkbox")) {
-            element.closest('.option-group').after(error);
-        }
-        else {
-            error.insertAfter(element);
-        }
-    }
-});
+    });
