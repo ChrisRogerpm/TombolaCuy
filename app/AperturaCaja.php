@@ -56,7 +56,7 @@ class AperturaCaja extends Model
       public static function AperturaCajaListarActiva($usuario)
     {
        
-        $listar = DB::select(DB::raw("select puntodeventa.nombre as tienda,caj.nombre as caja, ape.fechaOperacion as fechaOperacion, tur.nombre as turno from apertura_caja  ape
+        $listar = DB::select(DB::raw("select puntodeventa.idPuntoVenta,puntodeventa.nombre as tienda,caj.nombre as caja, ape.fechaOperacion as fechaOperacion, tur.nombre as turno from apertura_caja  ape
 left join turno tur on tur.idTurno=ape.idTurno
 left join caja caj on caj.idCaja=ape.idCaja
 left join punto_venta as puntodeventa on puntodeventa.idPuntoVenta=caj.idCaja

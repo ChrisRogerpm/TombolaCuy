@@ -24,7 +24,7 @@ function ListarVentaDatosJson() {
                           $("#div_configuracioneventos").append(
                             $("<div>")
                                 .addClass("configuracioneventosdiv")
-                                .data("id","#"+e.idEvento)
+                                .data("id",e.idEvento)
                                 .data("nombre",e.nombre)
                                 .data("apuestaMinima",e.apuestaMinima)
                                 .data("apuestaMaxima",e.apuestaMaxima)
@@ -52,6 +52,76 @@ function ListarVentaDatosJson() {
                                 );
                 })
              ///fin apuestas  
+        },
+    })
+}
+
+
+
+function EventoDatosJson(idEvento,idPuntoVenta) {
+    $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'EventoDatosJson',
+        data: {
+            '_token': $('input[name=_token]').val(),
+            'idEvento': idEvento,
+            'idPuntoVenta': idPuntoVenta,
+        },
+        success: function (response) {
+            eventodatos=response.eventodatos;
+            hora_servidor=response.hora_servidor;
+            jugador=response.jugador;
+            divisa=response.divisa;
+            jackpotsuma=response.jackpotsuma;
+            $("#row_datosevento #jugador").text(jugador);
+            $("#row_datosevento #divisa").text(divisa);
+            $("#row_datosevento #jackpotsuma").text(jackpotsuma);
+
+           proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
+            ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
+            var minutos=proxima_fecha.diff(ahora,'minutes');
+            var segundos=0;//proxima_fecha.diff(ahora,'seconds');
+
+            var timer2 = minutos+":01";//"5:01";
+            if(typeof interval!="undefined"){
+                clearInterval(interval);$('.countdown').html("00:00")
+            }
+            interval = setInterval(function() {
+                      var timer = timer2.split(':');
+                      var minutes = parseInt(timer[0], 10);
+                      var seconds = parseInt(timer[1], 10);
+                      --seconds;
+                      minutes = (seconds < 0) ? --minutes : minutes;
+                      if (minutes < 0) clearInterval(interval);
+                      seconds = (seconds < 0) ? 59 : seconds;
+                      seconds = (seconds < 10) ? '0' + seconds : seconds;
+                      $('.countdown').html(minutes + ':' + seconds);
+                      timer2 = minutes + ':' + seconds;
+            }, 1000)
+        },
+    })
+}
+
+
+function HistorialJson() {
+    $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'HistorialDatosJson',
+        data: {
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+            historialdatos=response.historial;
+            $(historialdatos).each(function(i,e){
+                  $(".historial_numeros").append(
+
+                    $("<div>").addClass("rectangulo_rojo").text(e.Valor)
+                )
+
+
+            })
+          
+
         },
     })
 }
@@ -206,44 +276,18 @@ function sacar_totales_y_maximo(){
 $(document).ready(function () {
      ListarVentaDatosJson();
 
-
     $("#div_configuracioneventos .configuracioneventosdiv").on("click",function(){
         $(".nombre_tituloconfiguracionevento ").text($(this).data("nombre"));
-        $(".id_tituloconfiguracionevento ").text($(this).data("id"));
+        $(".id_tituloconfiguracionevento ").text("#"+$(this).data("id"));
 
+
+        EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val());
         eventoactual={};
         eventoactual.FechaEvento=$(this).data("FechaEvento");
         eventoactual.nombre=$(this).data("nombre");
         eventoactual.IdEvento=$(this).data("id");
         eventoactual.apuestaMinima=$(this).data("apuestaMinima");
         eventoactual.apuestaMaxima=$(this).data("apuestaMaxima");
-
-
-        proxima_fecha=moment(eventoactual.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
-        //ahora=moment(moment().format('YYYY-MM-DD')+" "+$("#liveclock").text(), "YYYY-MM-DD HH:mm:ss a");
-        ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
-
-        hora_servidor
-        var minutos=proxima_fecha.diff(ahora,'minutes');
-        var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-
-
-        var timer2 = minutos+":01";//"5:01";
-        if(typeof interval!="undefined"){
-            clearInterval(interval);$('.countdown').html("00:00")
-        }
-        interval = setInterval(function() {
-                  var timer = timer2.split(':');
-                  var minutes = parseInt(timer[0], 10);
-                  var seconds = parseInt(timer[1], 10);
-                  --seconds;
-                  minutes = (seconds < 0) ? --minutes : minutes;
-                  if (minutes < 0) clearInterval(interval);
-                  seconds = (seconds < 0) ? 59 : seconds;
-                  seconds = (seconds < 10) ? '0' + seconds : seconds;
-                  $('.countdown').html(minutes + ':' + seconds);
-                  timer2 = minutes + ':' + seconds;
-        }, 1000)
 
     })
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body" style="padding-bottom: 10px;">
                     <div class="row">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+     <!--    <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <div class="row">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
    
 
@@ -56,6 +56,9 @@
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">TIENDA</div>
                                      <input type="text" class="form-control input-sm" id="tienda">
+                                     <input type="hidden" class="form-control input-sm" id="idPuntoVenta">
+
+
                                 </div>
                             </div>
                         </div>
@@ -123,7 +126,7 @@
                         </div>
                     </div>
 
-                      <div class="row">
+                      <div class="row" id="row_datosevento">
                         <div class="col-xs-12 col-md-2">
                             <span id="fechaHoy"></span><span id="liveclock"></span>
                         </div>
@@ -132,13 +135,15 @@
                             <span id="proximo_en" class="countdown"></span>
                         </div>
                         <div class="col-xs-12 col-md-2">
-                        2
+                            <span id="jugador" ></span>
+
                         </div>
                         <div class="col-xs-12 col-md-4">
-                        S/.
+                            <span id="divisa" ></span>
+
                         </div>
                          <div class="col-xs-12 col-md-1">
-                        S/.
+                            <span id="jackpotsuma" ></span>
                         </div>
                     </div>
                 </div>
@@ -223,24 +228,24 @@
 
 
                     <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
-        <div class="">
-            <div class="historialfila">
+        <!-- <div class="">
+            <div class="historialfila"> -->
                  <div class=" historial_numeros">
+                                     <!--    <div class="rectangulo_rojo">1</div>
+                                        <div class="rectangulo_negro">4</div>
+                                        <div class="rectangulo_verde">22</div> -->
+                 </div>    
+         <!--    </div>
+        </div> -->
+        <!--  <div class="">
+            <div class="historialfila"> -->
+              <!--    <div class=" historial_numeros">
                                         <div class="rectangulo_rojo">1</div>
                                         <div class="rectangulo_negro">4</div>
                                         <div class="rectangulo_verde">22</div>
-                 </div>    
-            </div>
-        </div>
-         <div class="">
-            <div class="historialfila">
-                 <div class=" historial_numeros">
-                                        <div class="rectangulo_rojo">1</div>
-                                        <div class="rectangulo_negro">4</div>
-                                        <div class="rectangulo_verde">22</div>
-                 </div>    
-            </div>
-        </div>
+                 </div>  -->   
+           <!--  </div>
+        </div> -->
         <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
          
             

@@ -7874,14 +7874,18 @@ margin-bottom:10px;
 
    
 }
+.historial_numeros{
+	display:table;width:100%;
+}
 
 .historial_numeros div{
 width:9%;
 	height:8vh;
 	line-height:8vh;
-	margin-left: 0.1px;
+	/*margin-left: 0.1px;
 	margin-bottom: 0.1px;
-	margin-top: 1px;
+	margin-top: 1px;*/
+	margin:1px;
 	display:inline-block;
 	vertical-align:middle;
 	text-align:center;

@@ -46,6 +46,8 @@ Route::get('JackpotEditar/{idJackpot}', 'JackpotController@JackpotEditarVista')-
 Route::get('Index', 'VentaController@Index')->name('Venta.Index');
 
 Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+Route::post('EventoDatosJson','VentaController@EventoDatosJson');
+Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
 
 
 #endregion
