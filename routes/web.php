@@ -42,6 +42,16 @@ Route::get('JackpotInsertar', 'JackpotController@JackpotInsertarVista')->name('J
 Route::get('JackpotEditar/{idJackpot}', 'JackpotController@JackpotEditarVista')->name('Jackpot.Editar');
 #endregion
 
+#region [Venta]
+Route::get('Index', 'VentaController@Index')->name('Venta.Index');
+
+Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+Route::post('EventoDatosJson','VentaController@EventoDatosJson');
+Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
+
+
+#endregion
+
 #region [ConfiguracionJackpot]
 Route::get('ConfiguracionJackpotListar', 'ConfiguracionJackpotController@ConfiguracionJackpotListarVista')->name('ConfiguracionJackpot.Listar');
 Route::get('ConfiguracionJackpotInsertar', 'ConfiguracionJackpotController@ConfiguracionJackpotInsertarVista')->name('ConfiguracionJackpot.Insertar');
@@ -117,8 +127,10 @@ Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
 
 #region [Reporte]
 Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
-Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
 #endregion
+
+Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
+Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
 
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
 Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');

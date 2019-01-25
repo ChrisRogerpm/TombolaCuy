@@ -18,9 +18,11 @@ class ConfiguracionJackpot extends Model
 
     public static function ConfiguracionJackpotListar()
     {
-        $listar = DB::select(DB::raw("select  c.idConfiguracionJackpot,c.nombre,(select count(cp.idConfiguracionPozo) from configuracion_pozo as cp
-                where cp.idConfiguracionJackpot = c.idConfiguracionJackpot) NroPozos,c.superjackpot,
-                c.estado from configuracion_jackpot as c"));
+        $listar = DB::table('configuracion_jackpot as c')
+            ->select(
+                'c.*',
+                DB::raw("(select count(cp.idConfiguracionPozo) from configuracion_pozo as cp where cp.idConfiguracionJackpot = c.idConfiguracionJackpot) NroPozos"))
+            ->get();
 
         return $listar;
     }

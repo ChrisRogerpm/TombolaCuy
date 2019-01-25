@@ -1,0 +1,87 @@
+<?php
+
+namespace App;
+
+use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+
+class Evento extends Model
+{
+    protected $table = 'evento';
+
+    protected $primaryKey = 'idEvento';
+
+    //protected $fillable = ['nombre', 'superjackpot', 'estado'];
+
+    public $timestamps = false;
+
+
+    public static function EventoListar()
+    {
+       
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,
+ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
+from evento ev
+where ev.estadoEvento=1'));
+        return $listar;
+    }
+       public static function EventoId($idEvento)
+    {
+       
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,
+ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
+from evento ev
+where ev.estadoEvento=1 and idEvento='.$idEvento));
+        return $listar;
+    }
+    public static function CantidadGanadorEventoListar($idEvento)
+    {
+        $listar = DB::select(DB::raw("select  COUNT(*)  as cantidadganadores FROM ticket WHERE IDEVENTO =".$idEvento));
+        return $listar;
+    }
+     public static function SimboloEvento($idEvento)
+    {
+        $listar = DB::select(DB::raw("select mon.simbolo as simbolo  FROM evento ev left join moneda mon on mon.idMoneda=ev.idMoneda WHERE IDEVENTO =".$idEvento));
+        return $listar;
+    }
+      public static function JackPotEvento($idEvento)
+    {
+        $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
+			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
+			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
+			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
+			WHERE JPV.idPuntoVenta=1
+			"));
+        return $listar;
+    }
+       public static function JackPotSumaEvento($idEvento)
+    {
+        $listar = DB::select(DB::raw("select  sum(POL.montoActual) as sumajackpots FROM pozo_online POL
+			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
+			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
+			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
+			WHERE JPV.idPuntoVenta=1
+			"));
+        return $listar;
+    }
+
+
+           public static function HistorialEvento()
+    {
+        $listar = DB::select(DB::raw("select  res.valorGanador as Valor FROM  resultado_evento res
+inner join evento evt on res.idEvento=evt.idEvento
+WHERE evt.IDJUEGO=1 and res.idtipopago=1
+order by evt.fechaEvento DESC
+LIMIT 50
+			"));
+        return $listar;
+    }
+
+
+
+
+
+
+}

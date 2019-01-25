@@ -18,11 +18,11 @@ class CreateEventoTable extends Migration
             $table->unsignedInteger('idConfiguracionEvento')->nullable();
             $table->decimal('incrementoJackpot',18,2)->nullable();
             $table->date('fechaEvento')->nullable();
-            $table->dateTime('horaInicio')->nullable();
-            $table->dateTime('horaFin')->nullable();
+            $table->time('horaInicio')->nullable();
+            $table->time('horaFin')->nullable();
             $table->date('fechaEventoReprogramacion')->nullable();
-            $table->dateTime('horaInicioReprogramacion')->nullable();
-            $table->dateTime('horaFinReprogramacion')->nullable();
+            $table->time('horaInicioReprogramacion')->nullable();
+            $table->time('horaFinReprogramacion')->nullable();
             $table->integer('estadoApuestas')->nullable();
             $table->integer('estadoEvento')->nullable();
         });

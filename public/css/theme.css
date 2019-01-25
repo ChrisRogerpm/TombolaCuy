@@ -3268,6 +3268,10 @@ del.hover {
   font-size: 14px;
   text-align: center;
 }
+
+.icon.icon-1_5x {
+  font-size: 1.5em;
+}
 .icon.icon-2x {
   font-size: 2em;
 }
@@ -7700,6 +7704,380 @@ table > tbody > tr > td.danger,
     width: 100%;
   }
 }
+
+/*clases tabla*/
+
+.contenedor_tablaprincipal{
+		height:47vh;
+		width:100%;
+
+
+}
+
+#columna_izq{
+	width  : 8.33333%;
+	float :left;
+}
+
+#numeros_tabla{
+	width  : 91.6667%;
+	float :left;
+	height:100%;
+}
+.rectangulo_rojo{
+    background:rgb(151,16,1);
+	outline:none;
+}
+.rectangulo_negro{	
+	outline:none;
+    background:rgb(11,12,11);
+}
+.rectangulo_verde{	
+	outline:none;
+    background:rgb(96,184,103);
+}
+.numeros_rect{
+
+	width:100%;float:left;
+}
+.numeros_rect div{
+	outline:none;
+	width:11.6%;
+	height:10vh;
+	line-height:10vh;
+	margin-left: 0.1px;
+	margin-bottom: 0.1px;
+	margin-top: 1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:5px;
+	font-size:5vh;
+	cursor:pointer;
+}
+.numeros_rango
+{
+width:100%;height:17.3%;
+float:left
+
+}
+.numeros_rango2
+{
+width:100%;height:17.3%;
+float:left;
+margin-top:2px;
+
+}
+.numeros_rango div{
+	width:23.9%;
+
+	/*height:40px;*/
+	height:100%;
+	line-height:55px;
+	margin-left: 0.1px;
+	margin-bottom: 0.1px;
+	margin-top: 1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:5px;
+	font-size:3vh;
+}
+.rectangulo_azul{	
+    background:rgb(25,81,158) ;
+}
+
+.numeros_rango2 div{
+	width:15.7%;
+	height:40px;
+	line-height:40px;
+	margin-left: 0.1px;
+	margin-bottom: 0.1px;
+	margin-top: 1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:5px;
+	font-size:3vh;
+
+}
+.numeros_rango2 div{
+	width:15.7%;
+	/*height:40px;*/
+	height:100%;
+	line-height:55px;
+	margin-left: 0.1px;
+	margin-bottom: 0.1px;
+	margin-top: 1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:5px;
+	font-size:3vh;
+
+}
+
+.rectangulo_izquierda{
+	width:96%;
+	/*height:200px;*/
+	height:100%;
+	/*margin-left: 0.1px;
+	margin-bottom: 0.1px;*/
+	margin-top: 1px;
+	display:inline-block;
+	vertical-align:middle;
+	border-radius:5px;
+	font-size:3vh;
+    background:rgb(24,98,37);
+}
+
+.rectangulo_izquierda2{
+	width:96%;
+	/*height:81px;
+*/
+height:100%;
+
+	/*margin-left: 0.1px;
+	margin-bottom: 0.1px;*/
+	margin-top: 2px;
+	display:inline-block;
+	vertical-align:middle;
+	border-radius:5px;
+	font-size:3vh;
+    background:rgb(25,81,158) ;
+   
+}
+
+.rowhistorial{
+text-align: center;
+font-weight:bold;
+margin-top:10px;
+margin-bottom:10px;
+}
+.historial{
+	display: inline-block;
+	text-align:center
+	width:17%;
+	height:25px;
+	vertical-align:middle;
+	font-size:2vh;
+	color:white;
+    background:rgb(100,111,156) ;
+
+   
+}
+.historial_numeros{
+	display:table;width:100%;
+}
+
+.historial_numeros div{
+width:9%;
+	height:8vh;
+	line-height:8vh;
+	/*margin-left: 0.1px;
+	margin-bottom: 0.1px;
+	margin-top: 1px;*/
+	margin:1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:5px;
+	font-size:5vh;
+}
+
+.rowconfiguracioneventosdiv{
+	margin-top:10px;
+}
+.rowconfiguracioneventosdiv div{
+width:24%;
+	height:7vh;
+	line-height:8vh;
+	margin:1px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:2px;
+	font-size:3vh;
+    background:rgb(137,157,198);
+	cursor:pointer;
+
+
+}
+
+
+.tituloconfiguracionevento{
+width:100%;
+background-color:rgb(173,158,126);
+}
+
+.nombre_tituloconfiguracionevento{
+	color:rgb(38,36,37);
+	float:left;
+}
+.id_tituloconfiguracionevento{
+	color:rgb(38,36,37);
+
+	float:right;
+}
+
+.rowtablaeventos{
+	width:100%;
+	height:43vh;
+	font-size:11px;
+	overflow:auto;
+	padding-top:5px;
+}
+
+.rowtablaeventos td {
+	min-height:20px;
+}
+.rowtableeventos_footer{
+	font-weight:bold;
+    background-color:rgb(77,88,108);
+	width:100%;
+	color:white;
+	font-family:'Calibri';
+}
+.rowtableeventos_footer .apuesta{
+float:left;
+line-height:7vh;
+}
+.rowtableeventos_footer .valorestotalmax{
+float:right;
+}
+
+
+
+.rowapuestas{
+	margin-top:4px;
+	width:100%;
+    background-color:rgb(77,88,108);
+    padding:5px;
+
+}
+.rowapuestas div{
+width:23%;
+	height:8vh;
+	line-height:8vh;
+	margin:2.5px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:2px;
+	font-size:3vh;
+    background:rgb(77,88,108);
+    border-width:1px;
+    border-color:white;
+    border-style:solid;
+	cursor:pointer;
+
+}
+
+.rowbotones{
+	margin-top:4px;
+	width:100%;
+    background-color:rgb(77,88,108);
+    padding:5px;
+
+}
+.rowbotones div{
+width:22%;
+	height:7vh;
+	/*line-height:8vh;*/
+	margin:2.5px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	color:white;
+	font-weight: bold;
+	border-radius:2px;
+	font-size:3vh;
+    border-width:1px;
+    border-color:white;
+    border-style:solid;
+	cursor:pointer;
+
+}
+.rowbotones .check{
+    background-color:rgb(71,172,156);
+}
+.rowbotones .cerrar{
+    background-color:rgb(229,104,116);
+}
+.rowbotones .barcode{
+    background-color:rgb( 54,97,164);
+}
+.rowbotones .print{
+    background-color:rgb(217,202,110);
+}
+
+.seleccionado {
+/*filter:	brightness(150%);*/
+border-style:solid;
+border-width:2px;
+border-color:orange;
+}
+
+.seleccionadoapuesta {
+	border-style:solid !important;
+	border-width:2px !important;
+	border-color:orange !important;
+}
+.seleccionadorojo {
+filter:	brightness(150%);
+}
+.seleccionadonegro {
+    background-color:rgb(150,150,150);
+
+}
+.table-stripedVenta{
+	margin-bottom:0px !important;
+
+
+}
+.table-stripedVenta thead{
+	background-color:rgb(36,36,37);
+}
+.table-stripedVenta thead>tr>th{
+	color:white;
+}
+.table.table-stripedVenta > tbody {
+	color:white;
+}
+.table.table-stripedVenta > tbody > tr:nth-of-type(2n+1) {
+    background-color:rgb(192,183,176);
+    font-weight:bold;
+
+}
+
+.table.table-stripedVenta > tbody > tr:nth-of-type(2n) {
+    font-weight:bold;
+    background-color:rgb(159,159,157);
+
+}
+
+.divcerrarfila{
+float: right; 
+display:inline;
+background-color:red;
+line-height:13px
+
+}
+/*fin clases tabla*/
 /*--------------------------------------------------------------------------------------------------------------------
  * Responsive
  *--------------------------------------------------------------------------------------------------------------------*/

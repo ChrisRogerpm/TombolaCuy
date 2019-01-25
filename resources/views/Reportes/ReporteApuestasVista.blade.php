@@ -33,9 +33,9 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <a href="#"
-                                       class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
-                                                class="glyphicon glyphicon-search"></span> Buscar</a>
+                                    <button class="btn btn-primary btn-sm col-md-12 col-xs-12" id="btnBuscar"><span
+                                                class="glyphicon glyphicon-search"></span> Buscar
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -53,20 +53,27 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Fecha Inicio</label>
-                                    <input type="text" class="form-control input-sm" name="fechaInicio">
+                                    <label for="">Fecha Inicio</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input type="text" class="form-control input-sm Fecha" name="fechaInicio">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Fecha Inicio</label>
-                                    <input type="text" class="form-control input-sm" name="fechaFin">
+                                    <label for="">Fecha Fin</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        <input type="text" class="form-control input-sm Fecha" name="fechaFin">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
-                                    <select class="form-control input-sm select2" style="width: 100%;">
+                                    <select class="form-control input-sm select2" name="tiendas" style="width: 100%;"
+                                            id="cboTienda" multiple="multiple">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
@@ -82,7 +89,17 @@
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
+                    <table id="table" class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Tienda</th>
+                            <th>Apuestas</th>
+                            <th>Pagos</th>
+                            <th>Evento</th>
+                            <th>Nro Jugadores</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>

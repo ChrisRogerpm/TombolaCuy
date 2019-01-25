@@ -24,6 +24,8 @@ class AperturaCaja extends Model
         return $listar;
     }
 
+
+
     public static function AperturaCajaInsertarJson(Request $request)
     {
         $AperturaCaja = new AperturaCaja();
@@ -49,5 +51,20 @@ class AperturaCaja extends Model
         $AperturaCaja->save();
         return $AperturaCaja;
     }
+
+
+      public static function AperturaCajaListarActiva($usuario)
+    {
+       
+        $listar = DB::select(DB::raw("select puntodeventa.idPuntoVenta,puntodeventa.nombre as tienda,caj.nombre as caja, ape.fechaOperacion as fechaOperacion, tur.nombre as turno from apertura_caja  ape
+left join turno tur on tur.idTurno=ape.idTurno
+left join caja caj on caj.idCaja=ape.idCaja
+left join punto_venta as puntodeventa on puntodeventa.idPuntoVenta=caj.idCaja
+where ape.usuario =".$usuario." and ape.estado=1"));
+        return $listar;
+
+
+    }
+
 
 }
