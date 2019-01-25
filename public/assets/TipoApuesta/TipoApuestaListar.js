@@ -16,6 +16,7 @@ function ListarTipoApuesta() {
         },
         success: function (response) {
             var resp = response.data;
+            debugger;
             $("#table").DataTable({
                 "bDestroy": true,
                 "bSort": true,
