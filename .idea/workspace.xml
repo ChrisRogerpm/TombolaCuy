@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9acf4761-a65d-4110-8063-8b4ad425da50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ConfiguracionJackpot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ConfiguracionJackpot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_01_18_201043_create_evento_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_01_18_201043_create_evento_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,25 +22,27 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="7" />
-          <entry key="project.open.time.0" value="5" />
+          <entry key="project.open.time.0" value="6" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.61" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="env" value="6" />
+          <entry key="env" value="7" />
+          <entry key="html" value="1" />
           <entry key="js" value="90" />
-          <entry key="php" value="147" />
+          <entry key="php" value="148" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="6" />
-          <entry key="Blade" value="69" />
+          <entry key=".env file" value="7" />
+          <entry key="Blade" value="70" />
+          <entry key="HTML" value="1" />
           <entry key="JavaScript" value="90" />
           <entry key="PHP" value="78" />
           <entry key="XML" value="1" />
@@ -55,13 +52,13 @@
         <counts>
           <entry key="env" value="57" />
           <entry key="js" value="1349" />
-          <entry key="php" value="2975" />
+          <entry key="php" value="3029" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="57" />
-          <entry key="Blade" value="1378" />
+          <entry key="Blade" value="1432" />
           <entry key="HTML" value="10" />
           <entry key="JavaScript" value="1339" />
           <entry key="PHP" value="1597" />
@@ -70,7 +67,22 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="919" lean-forward="true" selection-start-line="919" selection-end-line="919" />
+              <folding>
+                <element signature="e#32108#34185#0#HTML" />
+                <element signature="e#32807#34117#0#HTML" />
+                <element signature="e#40742#41487#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -82,15 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Checkboxes &amp; Radios</find>
-      <find>Custom Components</find>
-      <find>custom-checkbox-primary</find>
-      <find>cb-custom-primary</find>
-      <find>custom-checkbox</find>
-      <find>Responsive Table (w/Nowrap)</find>
-      <find>Hover Data Table</find>
-      <find>JackpotConfiguracion</find>
-      <find>ConfiguracionJackpotListarJson</find>
       <find>!== &quot;&quot;</find>
       <find>CargarSuperjackpot</find>
       <find>Illegal</find>
@@ -108,10 +111,19 @@
       <find>PuntoVentaListarJson</find>
       <find>cboPuntoVenta</find>
       <find>Caja</find>
-      <find>Listar</find>
       <find>Turno</find>
       <find>ClienteInsertar</find>
       <find>Empresa</find>
+      <find>Listar</find>
+      <find>Venta</find>
+      <find>Venta.Index</find>
+      <find>nav-sidebar</find>
+      <find>s</find>
+      <find>sidebar</find>
+      <find>Blog</find>
+      <find>content container-fluid</find>
+      <find>Elements</find>
+      <find>Card Box</find>
     </findStrings>
     <replaceStrings>
       <replace>PuntoVenta</replace>
@@ -181,16 +193,16 @@
         <option value="$PROJECT_DIR$/public/assets/Cliente/ClienteListar.js" />
         <option value="$PROJECT_DIR$/resources/views/Cliente/ClienteInsertarVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/Cliente/ClienteInsertar.js" />
-        <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_01_18_201043_create_evento_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/ConfiguracionJackpot.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Reporte.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReporteController.php" />
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
       </list>
     </option>
   </component>
@@ -398,6 +410,13 @@
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
               <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -465,11 +484,12 @@
       <workItem from="1548369735844" duration="675000" />
       <workItem from="1548371692485" duration="3483000" />
       <workItem from="1548446447745" duration="590000" />
+      <workItem from="1548447526561" duration="851000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103519000" />
+    <option name="totallyTimeSpent" value="104370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -482,8 +502,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24583964" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -534,13 +555,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaEditarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -633,13 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" column="20" selection-end-line="59" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="758" column="150" selection-start-line="758" selection-start-column="150" selection-end-line="758" selection-end-column="150" />
         </state>
       </provider>
     </entry>
@@ -756,13 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ConfiguracionJackpotController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -821,6 +821,37 @@
           <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
           <folding>
             <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Mis lugares Web/CasperoBoard/vtdes.ru/demo/caspero/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="774" column="21" lean-forward="true" selection-start-line="759" selection-start-column="16" selection-end-line="774" selection-end-column="21" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#ul#0;n#div#0;n#div#0;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#main#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="919" lean-forward="true" selection-start-line="919" selection-end-line="919" />
+          <folding>
+            <element signature="e#32108#34185#0#HTML" />
+            <element signature="e#32807#34117#0#HTML" />
+            <element signature="e#40742#41487#0#HTML" />
           </folding>
         </state>
       </provider>
