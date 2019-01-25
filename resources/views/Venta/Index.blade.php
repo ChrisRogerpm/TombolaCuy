@@ -256,12 +256,12 @@
         </div>
         <div class="col-xs-12 col-md-4">
      
-            <div class="row  tituloconfiguracionevento">
+            <div class="tituloconfiguracionevento">
                 <span CLASS="nombre_tituloconfiguracionevento"></span><span class="id_tituloconfiguracionevento"></span>   
             </div>
 
 
-            <div class="row rowtablaeventos">
+            <div class="rowtablaeventos">
                 <table class="table table-condensed table-stripedVenta" id="tabla_eventos">
                     <thead>
                     <tr>
@@ -338,7 +338,7 @@
                     </tbody>
                 </table>
             </div><!--rowtablaeventos-->
-            <div class="row rowtableeventos_footer">
+            <div class="rowtableeventos_footer">
                 <div class="col-md-6  apuesta">
                                 <span class="rowtableeventos_footer_apuesta">APUESTA</span>
                 </div>
@@ -353,12 +353,12 @@
             </div><!--rowtableeventos_footer-->
 
 
-            <div class="row rowapuestas" id="div_apuestas">
+            <div class="rowapuestas" id="div_apuestas">
                    <!--      <div class="rowapuestasdiv">
                         </div> -->
             </div><!--rowapuestas-->
 
-              <div class="row rowbotones" id="div_botones">
+              <div class="rowbotones" id="div_botones">
                        <div class="rowbotonesdiv check">
                         <i style="margin-top:8px"  class="icon icon-1_5x fa fa-check"></i>
                         </div> 
