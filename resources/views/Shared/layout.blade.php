@@ -754,6 +754,16 @@
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a></li>
                     </ul>
                 </li>
+
+                 <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Venta</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">ruleta</span></a></li>
+                      
+                    </ul>
+                </li>
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 
@@ -818,6 +828,8 @@
 <script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
 <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('../js/moment.js')}}"></script>
+
 @stack('Js')
 </body>
 </html>

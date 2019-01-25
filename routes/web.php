@@ -42,6 +42,14 @@ Route::get('JackpotInsertar', 'JackpotController@JackpotInsertarVista')->name('J
 Route::get('JackpotEditar/{idJackpot}', 'JackpotController@JackpotEditarVista')->name('Jackpot.Editar');
 #endregion
 
+#region [Venta]
+Route::get('Index', 'VentaController@Index')->name('Venta.Index');
+
+Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+
+
+#endregion
+
 #region [ConfiguracionJackpot]
 Route::get('ConfiguracionJackpotListar', 'ConfiguracionJackpotController@ConfiguracionJackpotListarVista')->name('ConfiguracionJackpot.Listar');
 Route::get('ConfiguracionJackpotInsertar', 'ConfiguracionJackpotController@ConfiguracionJackpotInsertarVista')->name('ConfiguracionJackpot.Insertar');
