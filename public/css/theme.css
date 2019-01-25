@@ -7742,7 +7742,7 @@ table > tbody > tr > td.danger,
 }
 .numeros_rect div{
 	outline:none;
-	width:11.6%;
+	width:11.9%;
 	height:10vh;
 	line-height:10vh;
 	margin-left: 0.1px;
@@ -7771,7 +7771,7 @@ margin-top:2px;
 
 }
 .numeros_rango div{
-	width:23.9%;
+	width:24.4%;
 
 	/*height:40px;*/
 	height:100%;
@@ -7792,7 +7792,7 @@ margin-top:2px;
 }
 
 .numeros_rango2 div{
-	width:15.7%;
+	width:16.05%;
 	height:40px;
 	line-height:40px;
 	margin-left: 0.1px;
@@ -7808,7 +7808,7 @@ margin-top:2px;
 
 }
 .numeros_rango2 div{
-	width:15.7%;
+	width:16;
 	/*height:40px;*/
 	height:100%;
 	line-height:55px;
@@ -7947,6 +7947,7 @@ background-color:rgb(173,158,126);
 	font-weight:bold;
     background-color:rgb(77,88,108);
 	width:100%;
+	display:table;
 	color:white;
 	font-family:'Calibri';
 }
