@@ -34,7 +34,7 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
             $("#" + select).attr("disabled", "disabled");
             //$.LoadingOverlay("show");
         },
-        success: function (response) {
+        success: function (response) {debugger;
             var datos = response.data;
             var mensaje = response.mensaje;
             if (datos.length > 0) {
