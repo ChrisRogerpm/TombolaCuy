@@ -41,13 +41,19 @@
     <!-- /AppleTouch Icons -->
 
     <!-- Styles -->
+    
+    
     <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
     <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
+
+    
+   
     <!-- /Styles -->
 
 </head>
@@ -757,11 +763,61 @@
                         </ul>
                     </li>
                     <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte Apuesta</span></a></li>
+                    <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte HistorialGanadores</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 
             </div>
+<<<<<<< HEAD
+            <!-- /SIDEBAR PROFILE -->
+
+            <!-- SIDEBAR NAVIGATION -->
+            <ul class="nav-sidebar">
+
+                <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Empresa</span></a></li>
+                <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Punto Venta</span></a></li>
+                <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Caja</span></a></li>
+                <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Turno</span></a></li>
+                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Apertura Caja</span></a></li>
+                <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Cliente</span></a></li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Progresivo</span></a></li>
+                        <li><a href="{{route('Progresivo.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a></li>
+                        <li><a href="{{route('Progresivo.Configuracion')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a></li>
+                    </ul>
+                </li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Jackpot</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Jackpot</span></a></li>
+                        <li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Jackpot</span></a></li>
+                        <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a></li>
+                    </ul>
+                </li>
+
+                 <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Venta</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span class="title">ruleta</span></a></li>
+                      
+                    </ul>
+                </li>
+            </ul>
+            <!-- /SIDEBAR NAVIGATION -->
+
+        </div>
+        <!-- /Scrollable -->
+=======
             <!-- /Scrollable -->
+>>>>>>> 60977faa1aeeda50f85cb7df3465b21ba09c0409
 
             <!-- Bottom Bar -->
             <div class="sidebar-fixed-bottom">
@@ -784,6 +840,48 @@
         </div>
         <!-- /SIDEBAR LEFT -->
 
+<<<<<<< HEAD
+    <!-- CONTENT AREA -->
+    <div class="content container-fluid">
+        @yield('content')
+    </div>
+    <!-- /CONTENT AREA -->
+
+</main>
+<!-- /MAIN CONTAINER -->
+
+
+<!-- SCRIPTS -->
+<script src="{{asset('../js/jquery-2.2.4.min.js')}}"></script>
+<script src="{{asset('../components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('../js/bootstrap.min.js')}}"></script>
+<script src="{{asset('../js/moment-with-locales.js')}}"></script>
+<script src="{{asset('../js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('../js/jquery.stellar.min.js')}}"></script>
+<script src="{{asset('../js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('../js/pnotify.custom.min.js')}}"></script>
+<script src="{{asset('../js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('../js/jquery.validate.min.js')}}"></script>
+<script src="{{asset('../js/jquery.animateNumber.min.js')}}"></script>
+<script src="{{asset('../js/Chart.min.js')}}"></script>
+<script src="{{asset('../js/sweetalert.min.js')}}"></script>
+<script src="{{asset('../js/circle-progress.min.js')}}"></script>
+<script src="{{asset('../components/jstree/jstree.min.js')}}"></script>
+<script src="{{asset('../js/fullcalendar.min.js')}}"></script>
+<script src="{{asset('../js/general.js')}}"></script>
+<script src="{{asset('../components/toastr/toastr.min.js')}}"></script>
+<script src="{{asset('../components/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
+<script src="{{asset('../components/select2/select2.min.js')}}"></script>
+<script src="{{asset('../components/icheck/icheck.min.js')}}"></script>
+<script src="{{asset('../components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
+<script src="{{asset('../assets/js/funciones.js')}}"></script>
+<script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('../js/moment.js')}}"></script>
+
+@stack('Js')
+=======
         <!-- CONTENT AREA -->
         <div class="content container-fluid">
             @yield('content')
@@ -822,5 +920,6 @@
     <script src="{{asset('../assets/js/funciones.js')}}"></script>
     <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
     @stack('Js')
+>>>>>>> 60977faa1aeeda50f85cb7df3465b21ba09c0409
 </body>
 </html>

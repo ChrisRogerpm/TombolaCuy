@@ -32,51 +32,53 @@ $(document).ready(function () {
 });
 
 $("#frmNuevo")
-    .validate({
-        rules: {
-            nombres:
-                {
-                    required: true,
+.validate({
+    rules: {
+        nombres:
+        {
+            required: true,
 
-                }, apePaterno:
-                {
-                    required: true,
+        }, apePaterno:
+        {
+            required: true,
 
-                }, apeMaterno:
-                {
-                    required: true,
+        }, apeMaterno:
+        {
+            required: true,
 
-                }, dni:
-                {
-                    required: true,
+        }, dni:
+        {
+            required: true,
 
-                }
-        },
-        messages: {
-            nombres:
-                {
-                    required: '',
-
-                }apePaterno:
-                {
-                    required: '',
-
-                }apeMaterno:
-                {
-                    required: '',
-
-                }dni:
-                {
-                    required: '',
-
-                }
-        },
-        errorPlacement: function (error, element) {
-            if (element.is(":radio") || element.is(":checkbox")) {
-                element.closest('.option-group').after(error);
-            }
-            else {
-                error.insertAfter(element);
-            }
         }
-    });
+    },
+    messages: {
+        nombres:
+        {
+            required: 'nombre'
+
+        },apePaterno:
+        {
+            required: 'apellido'
+
+        },apeMaterno:
+        {
+            required: 'materno'
+
+        },dni:
+        {
+            required: 'dni'
+
+        }
+    },
+
+
+    errorPlacement: function (error, element) {
+        if (element.is(":radio") || element.is(":checkbox")) {
+            element.closest('.option-group').after(error);
+        }
+        else {
+            error.insertAfter(element);
+        }
+    }
+});
