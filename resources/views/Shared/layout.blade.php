@@ -849,6 +849,7 @@
 
                     </ul>
                 </li>
+                <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte HistorialGanadores</span></a></li>
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 
