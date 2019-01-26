@@ -257,7 +257,12 @@
         <div class="col-xs-12 col-md-4">
      
             <div class="tituloconfiguracionevento">
-                <span CLASS="nombre_tituloconfiguracionevento"></span><span class="id_tituloconfiguracionevento"></span>   
+
+<div class="izquierda">
+                <span CLASS="nombre_tituloconfiguracionevento"></span></div>
+<div class="derecha">
+    <span class="id_tituloconfiguracionevento"></span>   
+</div>
             </div>
 
 
