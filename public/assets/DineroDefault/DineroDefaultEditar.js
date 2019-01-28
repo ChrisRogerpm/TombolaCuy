@@ -34,17 +34,17 @@ $("#frmNuevo")
     .validate({
         rules: {
             monto:
-                {
-                    required: true,
+            {
+                required: true,
 
-                }
+            }
         },
         messages: {
             monto:
-                {
-                    required: '',
+            {
+                required: '',
 
-                }
+            }
         },
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {
