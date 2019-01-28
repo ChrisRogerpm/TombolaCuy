@@ -103,7 +103,7 @@
     <div class="row">
 
 
-   <div class="col-md-12">
+<!--    <div class="col-md-12">
             <div class="panel panel-primary">
 
                 <div class="panel-body">
@@ -150,14 +150,65 @@
             </div>
     
     </div>
-
+ -->
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
+<div class="row rowcabecera">
+    
+        <div class=" rowcabecera_nombres">
+                        <div style="width:20%" class="">
+                            HORA
+                        </div>
+
+                        <div style="width:15%"class="">
+                        PRÓXIMO EN
+                        </div>
+                        <div style="width:15%"class="">
+                        JUGADOR
+                        </div>
+                        <div style="width:15%" class="">
+                        DIVISA
+                        </div>
+                          <div style="width:35%;text-align:right" class="">
+                        JACKPOT
+                        </div>
+         </div>
+
+                  <div class=" rowcabecera_datos" id="row_datosevento">
+                        <div style="width:20%" class="">
+
+                            <span id="fechaHoy"></span><span id="liveclock">-</span>
+                        </div>
+
+                        <div style="width:15%" class="">
+                            <span id="proximo_en" class="countdown">-</span>
+                        </div>
+                        <div style="width:15%" class="">
+                            <span id="jugador" >-</span>
+
+                        </div>
+                        <div style="width:15%" class="">
+                            <span id="divisa" >-</span>
+
+                        </div>
+                        <div style="width:35%;text-align:right" class="">
+                            <span id="jackpotsuma" >0.00</span>
+                        </div>
+                    </div>
+
+</div>
+
 
                     <div class="row">
-        <div class="col-xs-12 col-md-8"  >
+        <div class="columna_principalizquierda"  >
+
+            <div class="row_pleno" >
+<div class="div_pleno">PLENO</div>
+            </div>
             <div class="contenedor_tablaprincipal" >
+
+
                       <div class="" style="height:100%" id="columna_izq">
                             <div class="" style="height:65%">
                                 <div class="rectangulo_izquierda"></div>
@@ -222,42 +273,72 @@
           </div>-->
 
                     </div><!--div col 10-->
+
+
+
+                    <div class="" style="height:100%" id="columna_der">
+                            <div class="" style="height:65%">
+                                <div class="rectangulo_derecha"></div>
+                            </div>
+                            <div class=""  style="height:35%">
+                                <div class="rectangulo_derecha2"></div>
+                            </div>
+                      </div>
                       
                       <!-- <div class="col-xs-12 col-md-1"></div> -->
             </div><!--contenedor_tablaprincipal-->
 
 
-                    <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
+            <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
         <!-- <div class="">
             <div class="historialfila"> -->
-                 <div class=" historial_numeros">
-                                     <!--    <div class="rectangulo_rojo">1</div>
-                                        <div class="rectangulo_negro">4</div>
-                                        <div class="rectangulo_verde">22</div> -->
-                 </div>    
-         <!--    </div>
-        </div> -->
-        <!--  <div class="">
-            <div class="historialfila"> -->
-              <!--    <div class=" historial_numeros">
-                                        <div class="rectangulo_rojo">1</div>
-                                        <div class="rectangulo_negro">4</div>
-                                        <div class="rectangulo_verde">22</div>
-                 </div>  -->   
-           <!--  </div>
-        </div> -->
-        <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
-         
-            
-        </div>
+          <!--    <div class=" historial_numeros">
+                                    <div class="rectangulo_rojo">1</div>
+                                    <div class="rectangulo_negro">4</div>
+                                    <div class="rectangulo_verde">22</div>
+             </div>  -->   
+             <!--    </div>
+            </div> -->
+            <!--  <div class="">
+                <div class="historialfila"> -->
+                     <div class=" historial_numeros">
+                                            <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_verde">22</div>
+                                                    <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_verde">22</div>
+                                                    <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_verde">22</div>
+                                                    <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_verde">22</div>
+                                                    <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_verde">22</div>
+                                                    <div class="rectangulo_rojo">1</div>
+                                            <div class="rectangulo_negro">4</div>
+                                            <div class="rectangulo_negro">4</div>
+                                          
+                                            
+                     </div>    
+               <!--  </div>
+            </div> -->
+          
 
 
 
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="columna_principalderecha">
      
             <div class="tituloconfiguracionevento">
-                <span CLASS="nombre_tituloconfiguracionevento"></span><span class="id_tituloconfiguracionevento"></span>   
+
+<div class="izquierda">
+                <span CLASS="nombre_tituloconfiguracionevento"></span></div>
+<div class="derecha">
+    <span class="id_tituloconfiguracionevento"></span>   
+</div>
             </div>
 
 
@@ -333,6 +414,20 @@
                         <td></td>
                     </tr>
                  
+                  <tr>
+                        <td>-</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                 
+                  <tr>
+                        <td>-</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                 
                  
                 
                     </tbody>
@@ -375,9 +470,15 @@
                         </div> 
             </div><!--rowapuestas-->
         </div>
-    </div>
+    </div><!--fin row -->
 
+<div class="row">
+      <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
+             
+                
+            </div>
 
+</div>
               
   
  
