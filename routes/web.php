@@ -34,6 +34,7 @@ Route::post('PuntoVentaListarJson', 'PuntoVentaController@PuntoVentaListarJson')
 Route::post('PuntoVentaInsertarJson', 'PuntoVentaController@PuntoVentaInsertarJson');
 Route::post('PuntoVentaEditarJson', 'PuntoVentaController@PuntoVentaEditarJson');
 Route::post('UbigeoListarJson', 'UbigeoController@UbigeoListarJson');
+Route::post('SincronizarPuntoVenta','PuntoVentaController@SincronizarPuntoVentaAPI');
 #endregion
 
 #region [Jackpot]
