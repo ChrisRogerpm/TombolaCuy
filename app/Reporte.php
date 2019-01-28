@@ -42,7 +42,34 @@ class Reporte extends Model
 
     public static function ReporteHistorialGanadoresListarJson()
     {
-        $listar = Reporte::all();
-        return $listar;
+        
+      
+        $listar = DB::select(DB::raw("
+        SELECT 
+        pv.nombre tienda,
+        /*eve.idEvento IdEvento,*/
+        eve.nombre evento, 
+        eve.fechaEvento fecha,
+        /*sum(apu.montoAPagar),*/
+        tic.idTicket total_jugadores,
+        tic.ganador total_ganadores,
+        tic.montoTotal monto_total_apostado, 
+        apu.montoAPagar monto_total_pagado,
+
+        tic.nroTicketParticipante NR_ticket_ganador,
+        apu.montoAPagar,
+        tpago.nombre tipo_de_apuesta,
+        tapu.nombre valor_de_apuesta
+        from ganador_evento gev
+        INNER JOIN apuesta apu on apu.idApuesta=gev.idApuesta
+        INNER JOIN ticket tic on tic.idTicket=apu.idTicket
+        INNER JOIN apertura_caja apc on apc.idAperturaCaja=tic.idAperturaCaja
+        INNER JOIN caja caj on caj.idCaja=apc.idCaja
+        INNER JOIN evento eve ON eve.idEvento = tic.idEvento
+        INNER JOIN punto_venta pv ON pv.idPuntoVenta= caj.idPuntoVenta
+        INNER JOIN tipo_apuesta tapu ON tapu.idTipoApuesta = apu.idTipoApuesta
+        INNER JOIN tipo_pago tpago ON tpago.idTipoPago= tapu.idTipoPago
+        "));
+                return $listar;
     }
 }
