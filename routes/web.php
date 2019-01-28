@@ -95,6 +95,17 @@ Route::post('TurnoInsertarJson', 'TurnoController@TurnoInsertarJson');
 Route::post('TurnoEditarJson', 'TurnoController@TurnoEditarJson');
 #endregion
 
+#region [DineroDefault]
+Route::get('DineroDefaultListar', 'DineroDefaultController@DineroDefaultListarVista')->name('DineroDefault.Listar');
+Route::get('DineroDefaultInsertar', 'DineroDefaultController@DineroDefaultInsertarVista')->name('DineroDefault.Insertar');
+Route::get('DineroDefaultEditar/{idDineroDefault}', 'DineroDefaultController@DineroDefaultEditarVista')->name('DineroDefault.Editar');
+
+Route::post('DineroDefaultListarJson', 'DineroDefaultController@DineroDefaultListarJson');
+Route::post('DineroDefaultInsertarJson', 'DineroDefaultController@DineroDefaultInsertarJson');
+Route::post('DineroDefaultEditarJson', 'DineroDefaultController@DineroDefaultEditarJson');
+#endregion
+
+
 #region [TipoPago]
 Route::get('TipoPagoListar', 'TipoPagoController@TipoPagoListarVista')->name('TipoPago.Listar');
 Route::get('TipoPagoInsertar', 'TipoPagoController@TipoPagoInsertarVista')->name('TipoPago.Insertar');

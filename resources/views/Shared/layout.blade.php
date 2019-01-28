@@ -797,6 +797,9 @@
             <!-- SIDEBAR NAVIGATION -->
 
             <ul class="nav-sidebar">
+                <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                    class="title">DineroDefault</span></a></li>
+                    
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
