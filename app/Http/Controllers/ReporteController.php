@@ -35,12 +35,12 @@ class ReporteController extends Controller
         return view('Reportes.ReporteHistorialGanadoresVista');
     }
     
-    public function ReporteHistorialGanadoresListarJson()
+    public function ReporteHistorialGanadoresListarJson(Request $request)
     {
         $lista = "";
         $mensaje_error = "";
         try {
-            $lista = Reporte::ReporteHistorialGanadoresListarJson();
+            $lista = Reporte::ReporteHistorialGanadoresListarJson($request);
             
             //$lista = DB::table('tipo_apuesta')->get();
             
