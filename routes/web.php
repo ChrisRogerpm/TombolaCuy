@@ -43,11 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
 #region [Venta]
     Route::get('Index', 'VentaController@Index')->name('Venta.Index');
-
     Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
     Route::post('EventoDatosJson', 'VentaController@EventoDatosJson');
     Route::post('HistorialDatosJson', 'VentaController@HistorialDatosJson');
-
 #endregion
 
 #region [ConfiguracionJackpot]

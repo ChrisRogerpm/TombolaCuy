@@ -9,6 +9,8 @@ function ListarVentaDatosJson() {
             aaaa=response;
 
             hora_servidor=response.hora_servidor;
+
+            dinerodefault=response.dinerodefault;
             ////apertura caja datos
              resp = response.aperturacajadatos;
              resp=resp[0];
@@ -35,20 +37,17 @@ function ListarVentaDatosJson() {
              ///fin conf_eventos 
              ///apuestas
             // apuestas=response.apuestas;
-            apuestas=[];
-            apuestas.push(1);   apuestas.push(10);            apuestas.push(1);
-            apuestas.push(1);   apuestas.push(1);apuestas.push(1);            apuestas.push(1);apuestas.push(1);
-                $(apuestas).each(function(i,e){
+                $(dinerodefault).each(function(i,e){
                           $("#div_apuestas").append(
                             $("<div>")
                                  .addClass("rowapuestasdiv")
                                 // .data("id","#"+e.idConfiguracionEvento)
-                                 .data("valor",e)
+                                 .data("valor",e.monto)
                                  .data("tipo","apuesta")
                                  .attr("data-tipo","apuesta")
                                 // .data("apuestaMinima",e.apuestaMinima)
                                 // .data("apuestaMaxima",e.apuestaMaxima)
-                                .text(e/*e.nombre*/)                
+                                .text(e.monto)                
                                 );
                 })
              ///fin apuestas  
@@ -56,9 +55,28 @@ function ListarVentaDatosJson() {
     })
 }
 
+function JackpotDatosJson(puntoventa){
 
+        $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'JackpotDatosJson',
+        data: {
+            'idPuntoVenta': puntoventa,
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+            jackpotsuma=response.jackpotsuma;
+            $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
+            
+          
+
+        },
+    })
+}
 
 function EventoDatosJson(idEvento,idPuntoVenta) {
+
+    IDPUNTOVENTA=idPuntoVenta;
     $.ajax({
         type: 'POST',async:false,
         url: basePath + 'EventoDatosJson',
@@ -73,15 +91,19 @@ function EventoDatosJson(idEvento,idPuntoVenta) {
             jugador=response.jugador;
             divisa=response.divisa;
             jackpotsuma=response.jackpotsuma;
+tipoapuesta=response.tipoapuesta;
+dinerodefault=response.dinerodefault;
+
             $("#row_datosevento #jugador").text(jugador);
             $("#row_datosevento #divisa").text(divisa);
-            $("#row_datosevento #jackpotsuma").text(jackpotsuma);
+            $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
 
+
+////////PROXIMO EN
            proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
             var minutos=proxima_fecha.diff(ahora,'minutes');
             var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-
             var timer2 = minutos+":01";//"5:01";
             if(typeof interval!="undefined"){
                 clearInterval(interval);$('.countdown').html("00:00")
@@ -98,7 +120,101 @@ function EventoDatosJson(idEvento,idPuntoVenta) {
                       $('.countdown').html(minutes + ':' + seconds);
                       timer2 = minutes + ':' + seconds;
             }, 1000)
-        },
+////////FIN PROXIMO EN
+
+////multiplicadores definir
+///fin multiplicadores
+////PLENO
+    $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
+            var valor=$(e).text();
+            var color="";var cuota="";
+            $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(ee.idTipoPago==1&&valorapuesta.toString()==valor.toString()){
+                        color=ee.rgb;
+                        cuota=ee.multiplicadorDefecto;
+                     
+                    }
+            })  
+            $(e).css("background-color",color);
+            $(e).attr("data-cuota",cuota);
+        
+    })
+
+    $(".numeros_rango2 [data-tipo='rojos']").each(function(i,e){
+            var valor=$(e).text();
+            var color="";var cuota="";
+            $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
+                        color=ee.rgb;
+                        cuota=ee.multiplicadorDefecto;
+                    }
+            })  
+            $(e).css("background-color",color);
+            $(e).attr("data-cuota",cuota);
+
+    })
+    $(".numeros_rango2 [data-tipo='negros']").each(function(i,e){
+            var valor=$(e).text();
+            var color="";var cuota="";
+            $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
+                        color=ee.rgb;
+                        cuota=ee.multiplicadorDefecto;
+                     
+                    }
+            })  
+            $(e).css("background-color",color);
+            $(e).attr("data-cuota",cuota);
+    })
+
+    $(".numeros_rango div").each(function(i,e){
+        var valor=$(e).text();
+            var color="";var cuota="";
+            $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(ee.idTipoPago==4 ){
+                        cuota=ee.multiplicadorDefecto;
+                     
+                    }
+            })  
+            $(e).attr("data-cuota",cuota);
+
+    })
+
+       $(".numeros_rango2 div").each(function(i,e){
+        var valor=$(e).text();
+        var idtipopago=$(e).data("idtipopago")
+            var color="";var cuota="";
+            $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(idtipopago.toString()==(ee.idTipoPago).toString() ){
+                        cuota=ee.multiplicadorDefecto;
+                     
+                    }
+            })  
+            $(e).attr("data-cuota",cuota);
+
+    })
+//FIN PLENO
+
+////jackpot
+
+intervalojackpot=setInterval(function(){
+    JackpotDatosJson();
+
+},2000)
+
+intervalohistorial=setInterval(function(){
+    HistorialJson();
+
+},2000)
+
+///fin jackpot
+
+        },///FIN SUCCESS
     })
 }
 
@@ -112,10 +228,10 @@ function HistorialJson() {
         },
         success: function (response) {
             historialdatos=response.historial;
+            $(".historial_numeros").empty();
             $(historialdatos).each(function(i,e){
                   $(".historial_numeros").append(
-
-                    $("<div>").addClass("rectangulo_rojo").text(e.Valor)
+                    $("<div>").text(e.valorGanador).css("background-color",e.color)
                 )
 
 
@@ -347,7 +463,9 @@ $("#div_botones .check").on("click",function(){
             return false;
         }
         
-        apuesta_fila=parseFloat(SUMAAPUESTAS/cantidadnumeros).toFixed(2);
+//        apuesta_fila=parseFloat(SUMAAPUESTAS/cantidadnumeros).toFixed(2);
+        apuesta_fila=parseFloat(SUMAAPUESTAS).toFixed(2);
+
         if(apuesta_fila<1){
             toastr.error("Error","La apuesta no puede ser mínima al menor");
              apuesta_fila=1;
@@ -361,6 +479,7 @@ $("#div_botones .check").on("click",function(){
             tiponumero=$(e).data("tipo");
             colornumero=$(e).data("color");
             valornumero=$(e).data("valor");
+            cuota=$(e).data("cuota");
             apostado=false;
             console.log(array_apuestas_json);
 
@@ -371,7 +490,9 @@ $("#div_botones .check").on("click",function(){
             })
             console.log("apostado"+apostado+" "+valornumero)
             if(!apostado){   ////SI NO FUE APOSTADO AUN SE  AGREGA TR A TABLA 
-                cuota=tiponumero=="numero"?10:tiponumero=="rango"?10:tiponumero=="pares"?11:tiponumero=="impares"?14:15;
+                //cuota=tiponumero=="numero"?10:tiponumero=="rango"?10:tiponumero=="pares"?11:tiponumero=="impares"?14:15;
+
+
                 FILA_PARA_TABLA.ID_EVENTO=ID_EVENTO;
                 FILA_PARA_TABLA.SELECCION= valornumero;
                 FILA_PARA_TABLA.CUOTA= cuota;
