@@ -70,6 +70,7 @@ where ev.estadoEvento=1 and idEvento='.$idEvento));
 
            public static function HistorialEvento()
     {
+
         $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta

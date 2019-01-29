@@ -797,6 +797,9 @@
             <!-- SIDEBAR NAVIGATION -->
 
             <ul class="nav-sidebar">
+                <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                    class="title">DineroDefault</span></a></li>
+                    
                 <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
@@ -849,7 +852,18 @@
 
                     </ul>
                 </li>
-                <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte HistorialGanadores</span></a></li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Reporte">
+                        <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Reporte Apuesta</span></a></li>
+                        <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Reporte Historial Ganadores</span></a></li>
+
+                    </ul>
+                </li>
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 

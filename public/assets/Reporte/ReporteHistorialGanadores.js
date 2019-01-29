@@ -46,7 +46,7 @@ $(document).ready(function () {
 });
 
 function ListarHistorialGanadores() {
-    debugger;
+    //debugger;
     var fechaInicial = $("#fechaInicio").val();
     var fechaFinal = $("#fechaFin").val();
     //var usuario = $("#cbousuario").val();
@@ -54,46 +54,47 @@ function ListarHistorialGanadores() {
     var tipo = $("#cboTipo").val();
 
     var resp = [];
-    resp = [
-    {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 14:30", 
-    total_jugadores: 55, total_ganadores: 3, 
-    monto_total_apostado: 3, monto_total_pagado: 4, 
-    NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "verde"}
-    ,
-    {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:30", 
-    total_jugadores: 53, total_ganadores: 3, 
-    monto_total_apostado: 3, monto_total_pagado: 4, 
-    NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "rojo"}
-    ,
-    {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:50", 
-    total_jugadores: 53, total_ganadores: 3, 
-    monto_total_apostado: 3, monto_total_pagado: 4, 
-    NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "negro"}
-    ,
-    {tienda: "tienda 1", evento: "evento 1", fecha: "26/01/19 15:50", 
-    total_jugadores: 53, total_ganadores: 2, 
-    monto_total_apostado: 3, monto_total_pagado: 4, 
-    NR_ticket_ganador: 32, tipo_de_apuesta: "pleno", valor_de_apuesta: "2"}
-    ,
-    {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 16:30", 
-    total_jugadores: 53, total_ganadores: 3, 
-    monto_total_apostado: 3, monto_total_pagado: 4, 
-    NR_ticket_ganador: 32, tipo_de_apuesta: "caja bloqueada", valor_de_apuesta: "0"}
-    ];
+    // resp = [
+    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 14:30", 
+    // total_jugadores: 55, total_ganadores: 3, 
+    // monto_total_apostado: 3, monto_total_pagado: 4, 
+    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "verde"}
+    // ,
+    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:30", 
+    // total_jugadores: 53, total_ganadores: 3, 
+    // monto_total_apostado: 3, monto_total_pagado: 4, 
+    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "rojo"}
+    // ,
+    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:50", 
+    // total_jugadores: 53, total_ganadores: 3, 
+    // monto_total_apostado: 3, monto_total_pagado: 4, 
+    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "negro"}
+    // ,
+    // {tienda: "tienda 1", evento: "evento 1", fecha: "26/01/19 15:50", 
+    // total_jugadores: 53, total_ganadores: 2, 
+    // monto_total_apostado: 3, monto_total_pagado: 4, 
+    // NR_ticket_ganador: 32, tipo_de_apuesta: "pleno", valor_de_apuesta: "2"}
+    // ,
+    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 16:30", 
+    // total_jugadores: 53, total_ganadores: 3, 
+    // monto_total_apostado: 3, monto_total_pagado: 4, 
+    // NR_ticket_ganador: 32, tipo_de_apuesta: "caja bloqueada", valor_de_apuesta: "0"}
+    // ];
 
-    // var url = basePath + "AperturaCajaInsertarJson";
-    // $.ajax({
-    //     url: url,
-    //     type: "POST",
-    //     contentType: "application/json",
-    //     data: JSON.stringify(dataForm),
-    //     beforeSend: function () {
-    //         $.LoadingOverlay("show");
-    //     },
-    //     complete: function () {
-    //         $.LoadingOverlay("hide");
-    //     },
-    //     success: function (response) {
+    var url = basePath + "ReporteHistorialGanadoresListarJson";
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: "application/json",
+        //data: JSON.stringify(dataForm),
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
+        success: function (response) {
+            
            $("#table").DataTable({
             "bDestroy": true,
             "bSort": true,
@@ -103,7 +104,8 @@ function ListarHistorialGanadores() {
             "autoWidth": false,
             "bProcessing": true,
             "bDeferRender": true,
-            data: resp,
+            data: response.data,
+            
             columns: [
 
             {data: "tienda", title: "tienda"},
@@ -154,10 +156,10 @@ function ListarHistorialGanadores() {
             ],
 
         });
-       // },
-   //     error: function (jqXHR, textStatus, errorThrown) {
-   //     }
-   // });
+       },
+       error: function (jqXHR, textStatus, errorThrown) {
+       }
+   });
 
 
     

@@ -40,7 +40,7 @@ class ReporteController extends Controller
         $lista = "";
         $mensaje_error = "";
         try {
-            $lista = TipoApuesta::TipoApuestaListarJson();
+            $lista = Reporte::ReporteHistorialGanadoresListarJson();
             
             //$lista = DB::table('tipo_apuesta')->get();
             
@@ -49,5 +49,6 @@ class ReporteController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+        
     }
 }

@@ -34,6 +34,7 @@ Route::post('PuntoVentaListarJson', 'PuntoVentaController@PuntoVentaListarJson')
 Route::post('PuntoVentaInsertarJson', 'PuntoVentaController@PuntoVentaInsertarJson');
 Route::post('PuntoVentaEditarJson', 'PuntoVentaController@PuntoVentaEditarJson');
 Route::post('UbigeoListarJson', 'UbigeoController@UbigeoListarJson');
+Route::post('SincronizarPuntoVenta','PuntoVentaController@SincronizarPuntoVentaAPI');
 #endregion
 
 #region [Jackpot]
@@ -96,6 +97,17 @@ Route::post('TurnoInsertarJson', 'TurnoController@TurnoInsertarJson');
 Route::post('TurnoEditarJson', 'TurnoController@TurnoEditarJson');
 #endregion
 
+#region [DineroDefault]
+Route::get('DineroDefaultListar', 'DineroDefaultController@DineroDefaultListarVista')->name('DineroDefault.Listar');
+Route::get('DineroDefaultInsertar', 'DineroDefaultController@DineroDefaultInsertarVista')->name('DineroDefault.Insertar');
+Route::get('DineroDefaultEditar/{idDineroDefault}', 'DineroDefaultController@DineroDefaultEditarVista')->name('DineroDefault.Editar');
+
+Route::post('DineroDefaultListarJson', 'DineroDefaultController@DineroDefaultListarJson');
+Route::post('DineroDefaultInsertarJson', 'DineroDefaultController@DineroDefaultInsertarJson');
+Route::post('DineroDefaultEditarJson', 'DineroDefaultController@DineroDefaultEditarJson');
+#endregion
+
+
 #region [TipoPago]
 Route::get('TipoPagoListar', 'TipoPagoController@TipoPagoListarVista')->name('TipoPago.Listar');
 Route::get('TipoPagoInsertar', 'TipoPagoController@TipoPagoInsertarVista')->name('TipoPago.Insertar');
@@ -131,7 +143,10 @@ Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Rep
 #endregion
 
 Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
+
+
 Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
+Route::post('ReporteHistorialGanadoresListarJson', 'ReporteController@ReporteHistorialGanadoresListarJson');
 
 Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
 Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
