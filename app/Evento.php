@@ -11,6 +11,7 @@ class Evento extends Model
 {
     protected $table = 'evento';
 
+    
     protected $primaryKey = 'idEvento';
 
     //protected $fillable = ['nombre', 'superjackpot', 'estado'];
