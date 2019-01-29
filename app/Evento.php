@@ -70,12 +70,26 @@ where ev.estadoEvento=1 and idEvento='.$idEvento));
 
            public static function HistorialEvento()
     {
-        $listar = DB::select(DB::raw("select  res.valorGanador as Valor FROM  resultado_evento res
-inner join evento evt on res.idEvento=evt.idEvento
+        $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
+inner join evento evt on res.`idEvento`=evt.`idEvento`
+left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE evt.IDJUEGO=1 and res.idtipopago=1
-order by evt.fechaEvento DESC
-LIMIT 50
+order by evt.`fechaEvento` DESC
+LIMIT 20
 			"));
+        return $listar;
+    }
+
+             public static function TipoApuestaListar()
+    {
+        $listar = DB::select(DB::raw("
+      select * from tipo_apuesta tip_apu LEFT JOIN tipo_pago tip_pag on tip_pag.idTipopago= tip_apu.idTipoPago"));
+        return $listar;
+    }
+
+             public static function DineroDefaultListar()
+    {
+        $listar = DB::select(DB::raw("select * from dinero_default"));
         return $listar;
     }
 
