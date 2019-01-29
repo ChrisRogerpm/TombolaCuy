@@ -46,47 +46,19 @@ $(document).ready(function () {
 });
 
 function ListarHistorialGanadores() {
-    //debugger;
+    debugger;
     var fechaInicial = $("#fechaInicio").val();
     var fechaFinal = $("#fechaFin").val();
-    //var usuario = $("#cbousuario").val();
+    
     var cboTienda = $("#cboTienda").val();
-    var tipo = $("#cboTipo").val();
-
-    var resp = [];
-    // resp = [
-    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 14:30", 
-    // total_jugadores: 55, total_ganadores: 3, 
-    // monto_total_apostado: 3, monto_total_pagado: 4, 
-    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "verde"}
-    // ,
-    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:30", 
-    // total_jugadores: 53, total_ganadores: 3, 
-    // monto_total_apostado: 3, monto_total_pagado: 4, 
-    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "rojo"}
-    // ,
-    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:50", 
-    // total_jugadores: 53, total_ganadores: 3, 
-    // monto_total_apostado: 3, monto_total_pagado: 4, 
-    // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "negro"}
-    // ,
-    // {tienda: "tienda 1", evento: "evento 1", fecha: "26/01/19 15:50", 
-    // total_jugadores: 53, total_ganadores: 2, 
-    // monto_total_apostado: 3, monto_total_pagado: 4, 
-    // NR_ticket_ganador: 32, tipo_de_apuesta: "pleno", valor_de_apuesta: "2"}
-    // ,
-    // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 16:30", 
-    // total_jugadores: 53, total_ganadores: 3, 
-    // monto_total_apostado: 3, monto_total_pagado: 4, 
-    // NR_ticket_ganador: 32, tipo_de_apuesta: "caja bloqueada", valor_de_apuesta: "0"}
-    // ];
-
+    
     var url = basePath + "ReporteHistorialGanadoresListarJson";
+    var dataForm = $('#frmNuevo').serializeFormJSON();
     $.ajax({
         url: url,
         type: "POST",
         contentType: "application/json",
-        //data: JSON.stringify(dataForm),
+        data: JSON.stringify(dataForm),
         beforeSend: function () {
             $.LoadingOverlay("show");
         },
@@ -117,6 +89,10 @@ function ListarHistorialGanadores() {
             {data: "monto_total_pagado", title: "monto total pagado"},
             {data: "NR_ticket_ganador", title: "NR ticket ganador"},
             {data: "tipo_de_apuesta", title: "tipo de apuesta"},
+
+            {data: "valor_apuesta_color_rgb", title: "valor_apuesta_color_rgb"},
+
+            
             {   
                 data: "valor_de_apuesta", 
                 title: "valor de apuesta",
