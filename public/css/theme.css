@@ -8070,14 +8070,24 @@ text-align: center;
 	display:table;
 	color:white;
 	font-family:'Calibri';
-	font-size:1.8vh;
+	font-size:14px;
+	padding-left:15px;
+	display:flex;
+	align-items:center;
 }
 .rowtableeventos_footer .apuesta{
 float:left;
+width:60%;
+	display:flex;
+	align-items:center;
+height:100%;
+
 /*line-height:7vh;*/
 }
 .rowtableeventos_footer .valorestotalmax{
+width:40%;
 float:right;
+
 }
 
 

@@ -434,10 +434,10 @@
                 </table>
             </div><!--rowtablaeventos-->
             <div class="rowtableeventos_footer">
-                <div class="col-md-6  apuesta">
+                <div class="apuesta">
                                 <span class="rowtableeventos_footer_apuesta">APUESTA</span>
                 </div>
-                <div class="col-md-6 valorestotalmax">
+                <div class="valorestotalmax">
                    <div id="valor_total"> 
                     <span>TOTAL: 0.00 S/.</span>
                     </div>
