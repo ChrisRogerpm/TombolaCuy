@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class Evento extends Model
 {
     protected $table = 'evento';
-
     
     protected $primaryKey = 'idEvento';
 
