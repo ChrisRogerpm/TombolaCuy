@@ -212,6 +212,8 @@ intervalohistorial=setInterval(function(){
 
 },2000)
 
+clearInterval(intervalojackpot)
+clearInterval(intervalohistorial)
 ///fin jackpot
 
         },///FIN SUCCESS
@@ -407,7 +409,7 @@ $(document).ready(function () {
 
     })
 
-    //$("#div_configuracioneventos div").eq(0).click();
+    $("#div_configuracioneventos div").eq(0).click();
 /////botones numeros
     $("#numeros_tabla [data-tipo='numero']").off().on("click",function(e){ 
             $(this).toggleClass("seleccionado") ;
@@ -522,10 +524,10 @@ $("#div_botones .check").on("click",function(){
                         )
                      $(".divcerrarfila").off("click").on("click",function(){
 
-                        $(this).closest("tr").remove();
-                         var totales_maximo=sacar_totales_y_maximo();
-                $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" S/.");
-                $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" S/.");
+                            $(this).closest("tr").remove();
+                            var totales_maximo=sacar_totales_y_maximo();
+                            $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" S/.");
+                            $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" S/.");
                      })
                 }
                 else{

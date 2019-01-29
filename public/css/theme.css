@@ -7840,6 +7840,7 @@ float:left;
 
 }
 .numeros_rango div{
+	cursor:pointer;
 	width:25%;
 float:left;
 	/*height:40px;*/
@@ -7888,7 +7889,7 @@ float:left;
 	float:left;
 	border:1px solid white;
 
-
+cursor:pointer;
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -8228,7 +8229,8 @@ filter:	brightness(150%);
 float: right; 
 display:inline;
 background-color:red;
-line-height:13px
+line-height:13px;
+cursor:pointer;
 
 }
 /*fin clases tabla*/
