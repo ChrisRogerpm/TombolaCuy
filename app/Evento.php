@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class Evento extends Model
 {
     protected $table = 'evento';
-
+    
     protected $primaryKey = 'idEvento';
 
     //protected $fillable = ['nombre', 'superjackpot', 'estado'];
@@ -70,31 +70,27 @@ where ev.estadoEvento=1 and idEvento='.$idEvento));
 
            public static function HistorialEvento()
     {
-        $listar = DB::select(DB::raw("
-        SELECT 
-            pv.nombre Punto_Venta,
-            /*eve.idEvento IdEvento,*/
-            eve.nombre Evento, 
-            eve.fechaEvento,
-            /*sum(apu.montoAPagar),*/
-            tic.idTicket,
-            tic.ganador,
-            tic.montoTotal,
-            apu.montoAPagar,
 
-            tic.nroTicketParticipante,
-            apu.montoAPagar,
-            tpago.nombre,
-            tapu.nombre
-            from ganador_evento gev
-            INNER JOIN apuesta apu on apu.idApuesta=gev.idApuesta
-            INNER JOIN ticket tic on tic.idTicket=apu.idTicket
-            INNER JOIN apertura_caja apc on apc.idAperturaCaja=tic.idAperturaCaja
-            INNER JOIN caja caj on caj.idCaja=apc.idCaja
-            INNER JOIN evento eve ON eve.idEvento = tic.idEvento
-            INNER JOIN punto_venta pv ON pv.idPuntoVenta= caj.idPuntoVenta
-            INNER JOIN tipo_apuesta tapu ON tapu.idTipoApuesta = apu.idTipoApuesta
-            INNER JOIN tipo_pago tpago ON tpago.idTipoPago= tapu.idTipoPago"));
+        $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
+inner join evento evt on res.`idEvento`=evt.`idEvento`
+left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
+WHERE evt.IDJUEGO=1 and res.idtipopago=1
+order by evt.`fechaEvento` DESC
+LIMIT 20
+			"));
+        return $listar;
+    }
+
+             public static function TipoApuestaListar()
+    {
+        $listar = DB::select(DB::raw("
+      select * from tipo_apuesta tip_apu LEFT JOIN tipo_pago tip_pag on tip_pag.idTipopago= tip_apu.idTipoPago"));
+        return $listar;
+    }
+
+             public static function DineroDefaultListar()
+    {
+        $listar = DB::select(DB::raw("select * from dinero_default"));
         return $listar;
     }
 

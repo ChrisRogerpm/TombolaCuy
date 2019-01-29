@@ -14,7 +14,7 @@ class PuntoVenta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre'];
+    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre','cc_id'];
 
     public static function PuntoVentaListarJson()
     {

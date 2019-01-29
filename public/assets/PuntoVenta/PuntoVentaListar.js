@@ -5,6 +5,29 @@ $(document).ready(function () {
         var url = basePath + "PuntoVentaEditar/" + idPuntoVenta;
         window.location.replace(url);
     })
+    $(document).on('click', '#btnSincronizar', function () {
+        $.ajax({
+            type: 'POST',
+            url: basePath + 'SincronizarPuntoVenta',
+            data: {
+                '_token': $('input[name=_token]').val(),
+            },
+            beforeSend: function () {
+                $.LoadingOverlay("show");
+            },
+            complete: function () {
+                $.LoadingOverlay("hide");
+            },
+            success: function (response) {
+                var respuesta = response.respuesta;
+                if (respuesta === true) {
+                    toastr.success("Se Sincronizo Correctamente", "Mensaje Servidor");
+                } else {
+                    toastr.error(response.mensaje, "Mensaje Servidor");
+                }
+            }
+        });
+    });
 });
 
 function ListarPuntoVenta() {
@@ -14,8 +37,13 @@ function ListarPuntoVenta() {
         data: {
             '_token': $('input[name=_token]').val(),
         },
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
         success: function (response) {
-            debugger
             var resp = response.data;
             $("#table").DataTable({
                 "bDestroy": true,
@@ -28,9 +56,9 @@ function ListarPuntoVenta() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "nombre", title: "Punto de Venta"},
-                    {data: "razonSocial", title: "Empresa"},
-                    {data: "Ubigeo", title: "Ubigeo"},
+                    { data: "nombre", title: "Punto de Venta" },
+                    { data: "razonSocial", title: "Empresa" },
+                    { data: "Ubigeo", title: "Ubigeo" },
                     {
                         data: null, title: "",
                         "render": function (value) {

@@ -2,8 +2,8 @@ $(document).ready(function () {
     $(".select2").select2();
     var dateNow = new Date();
     $(".Fecha").datetimepicker({
-        pickTime: false,
-        format: 'YYYY/MM/DD',
+        // pickTime: false,
+        format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: dateNow,
     });
     $.when(llenarSelect(basePath + "PuntoVentaListarJson", {'_token': $("input[name='_token']").val()}, "cboTienda", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {

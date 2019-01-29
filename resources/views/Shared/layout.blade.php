@@ -848,11 +848,22 @@
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
                         <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">ruleta</span></a></li>
+                                        class="title">Venta</span></a></li>
 
                     </ul>
                 </li>
-                <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte HistorialGanadores</span></a></li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Reporte">
+                        <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Reporte Apuesta</span></a></li>
+                        <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Reporte Historial Ganadores</span></a></li>
+
+                    </ul>
+                </li>
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 

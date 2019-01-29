@@ -34,6 +34,7 @@ Route::post('PuntoVentaListarJson', 'PuntoVentaController@PuntoVentaListarJson')
 Route::post('PuntoVentaInsertarJson', 'PuntoVentaController@PuntoVentaInsertarJson');
 Route::post('PuntoVentaEditarJson', 'PuntoVentaController@PuntoVentaEditarJson');
 Route::post('UbigeoListarJson', 'UbigeoController@UbigeoListarJson');
+Route::post('SincronizarPuntoVenta','PuntoVentaController@SincronizarPuntoVentaAPI');
 #endregion
 
 #region [Jackpot]
@@ -48,6 +49,7 @@ Route::get('Index', 'VentaController@Index')->name('Venta.Index');
 Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
 Route::post('EventoDatosJson','VentaController@EventoDatosJson');
 Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
+Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
 
 
 #endregion

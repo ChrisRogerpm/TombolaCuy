@@ -200,7 +200,7 @@
 </div>
 
 
-                    <div class="row">
+                    <div class="row row_medio">
         <div class="columna_principalizquierda"  >
 
             <div class="row_pleno" >
@@ -220,52 +220,52 @@
                        <div class="" id="numeros_tabla">
                         <!--TABLA DE NUMEROS PRINCIPAL-->
                         <div class=" numeros_rect">
-                            <div data-tipo="numero" data-color="rojo" data-valor=3 class="rectangulo_rojo">3</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=6  class="rectangulo_negro">6</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=9  class="rectangulo_rojo">9</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=12  class="rectangulo_rojo">12</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=15 class="rectangulo_negro">15</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=18  class="rectangulo_rojo">18</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=21  class="rectangulo_rojo">21</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=24  class="rectangulo_negro">24</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=3 class="rectangulo_rojo">3</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=6  class="rectangulo_negro">6</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=9  class="rectangulo_rojo">9</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=12  class="rectangulo_rojo">12</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=15 class="rectangulo_negro">15</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=18  class="rectangulo_rojo">18</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=21  class="rectangulo_rojo">21</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=24  class="rectangulo_negro">24</div>
                         </div>
 
                         <div class=" numeros_rect">
-                            <div data-tipo="numero"  data-color="negro" data-valor=2 class="rectangulo_negro">2</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=5 class="rectangulo_rojo">5</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=8  class="rectangulo_negro">8</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=11 class="rectangulo_negro">11</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=14 class="rectangulo_rojo">14</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=17 class="rectangulo_negro">17</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=20 class="rectangulo_negro">20</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=23 class="rectangulo_rojo">23</div>
+                            <div data-idTipoPago=1  data-tipo="numero"  data-color="negro" data-valor=2 class="rectangulo_negro">2</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=5 class="rectangulo_rojo">5</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=8  class="rectangulo_negro">8</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=11 class="rectangulo_negro">11</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=14 class="rectangulo_rojo">14</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=17 class="rectangulo_negro">17</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=20 class="rectangulo_negro">20</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=23 class="rectangulo_rojo">23</div>
                         </div>
                         <div class=" numeros_rect">
-                            <div data-tipo="numero" data-color="rojo" data-valor=1  class="rectangulo_rojo">1</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=4 class="rectangulo_negro">4</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=7  class="rectangulo_rojo">7</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=10 class="rectangulo_negro">10</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=13 class="rectangulo_negro">13</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=16 class="rectangulo_rojo">16</div>
-                            <div data-tipo="numero" data-color="rojo" data-valor=19 class="rectangulo_rojo">19</div>
-                            <div data-tipo="numero" data-color="negro" data-valor=22 class="rectangulo_negro">22</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=1  class="rectangulo_rojo">1</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=4 class="rectangulo_negro">4</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=7  class="rectangulo_rojo">7</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=10 class="rectangulo_negro">10</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=13 class="rectangulo_negro">13</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=16 class="rectangulo_rojo">16</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="rojo" data-valor=19 class="rectangulo_rojo">19</div>
+                            <div data-idTipoPago=1 data-tipo="numero" data-color="negro" data-valor=22 class="rectangulo_negro">22</div>
                         </div>
 
                         <div class=" numeros_rango">
-                            <div data-tipo="rango" data-color="azul" data-valor="1-6" class="rectangulo_azul">1-6</div>
-                            <div data-tipo="rango" data-color="azul" data-valor="7-12" class="rectangulo_azul">7-12</div>
-                            <div data-tipo="rango" data-color="azul" data-valor="13-18" class="rectangulo_azul">13-18</div>
-                            <div data-tipo="rango" data-color="azul" data-valor="19-24" class="rectangulo_azul">19-24</div>
+                            <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="1-6" class="rectangulo_azul">1-6</div>
+                            <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="7-12" class="rectangulo_azul">7-12</div>
+                            <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="13-18" class="rectangulo_azul">13-18</div>
+                            <div data-idTipoPago=4  data-tipo="rango" data-color="azul" data-valor="19-24" class="rectangulo_azul">19-24</div>
 
                         </div>
 
                         <div class=" numeros_rango2">
-                            <div data-tipo="rango" data-color="azul" data-valor="1-12" class="rectangulo_azul">1-12</div>
-                            <div data-tipo="pares" data-color="azul" data-valor="PAR" class="rectangulo_azul">PAR</div>
-                            <div data-tipo="negros" data-color="negro" data-valor="NEGRO" class="rectangulo_negro"></div>
-                            <div data-tipo="rojos" data-color="rojo" data-valor="ROJO"  class="rectangulo_rojo"></div>
-                            <div data-tipo="impares" data-color="azul" data-valor="IMPAR" class="rectangulo_azul">IMPAR</div>
-                            <div data-tipo="rango" data-color="azul" data-valor="13-24" class="rectangulo_azul">13-24</div>
+                            <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="1-12" class="rectangulo_azul">1-12</div>
+                            <div data-idTipoPago=3 data-tipo="pares" data-color="azul" data-valor="PAR" class="rectangulo_azul">PAR</div>
+                            <div data-idTipoPago=2 data-tipo="negros" data-color="negro" data-valor="1" class="rectangulo_negro"></div>
+                            <div data-idTipoPago=2  data-tipo="rojos" data-color="rojo" data-valor="2"  class="rectangulo_rojo"></div>
+                            <div data-idTipoPago=3 data-tipo="impares" data-color="azul" data-valor="IMPAR" class="rectangulo_azul">IMPAR</div>
+                            <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="13-24" class="rectangulo_azul">13-24</div>
                         </div>
 
                         <!--  <div class="rowhistorial">
@@ -303,7 +303,7 @@
                 <div class="historialfila"> -->
                      <div class=" historial_numeros">
                                             <div class="rectangulo_rojo">1</div>
-                                            <div class="rectangulo_negro">4</div>
+                                           <!--  <div class="rectangulo_negro">4</div>
                                             <div class="rectangulo_verde">22</div>
                                                     <div class="rectangulo_rojo">1</div>
                                             <div class="rectangulo_negro">4</div>
@@ -320,7 +320,7 @@
                                                     <div class="rectangulo_rojo">1</div>
                                             <div class="rectangulo_negro">4</div>
                                             <div class="rectangulo_negro">4</div>
-                                          
+                                           -->
                                             
                      </div>    
                <!--  </div>
@@ -434,10 +434,10 @@
                 </table>
             </div><!--rowtablaeventos-->
             <div class="rowtableeventos_footer">
-                <div class="col-md-6  apuesta">
+                <div class="apuesta">
                                 <span class="rowtableeventos_footer_apuesta">APUESTA</span>
                 </div>
-                <div class="col-md-6 valorestotalmax">
+                <div class="valorestotalmax">
                    <div id="valor_total"> 
                     <span>TOTAL: 0.00 S/.</span>
                     </div>
