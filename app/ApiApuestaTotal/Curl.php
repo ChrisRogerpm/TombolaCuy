@@ -20,7 +20,7 @@ class Curl
 
 	public function post($data, $uri=""){
 		$ch = curl_init();
-
+ 
 		curl_setopt($ch, CURLOPT_URL, 'canhazip.com');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 

@@ -89,17 +89,7 @@
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <table id="table" class="table table-bordered table-striped" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>Tienda</th>
-                            <th>Apuestas</th>
-                            <th>Pagos</th>
-                            <th>Evento</th>
-                            <th>Nro Jugadores</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
                 </div>
             </div>
         </div>

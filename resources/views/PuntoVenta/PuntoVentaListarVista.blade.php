@@ -40,7 +40,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <button type="button" id="btnSincronizar" class="btn btn-success btn-sm col-md-12 col-xs-12">
-                                    <span class="icon fa fa-fw fa-feed mr-3"></span> SINCRONIZAR</button>
+                                    <span class="icon fa fa-fw fa-refresh mr-3"></span> SINCRONIZAR</button>
                             </div>
                         </div>
                     </div>
