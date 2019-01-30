@@ -27,6 +27,7 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     var resp = response.data;
+                    $("#PanelTabla").show();
                     $("#table").DataTable({
                         "bDestroy": true,
                         "bSort": true,
