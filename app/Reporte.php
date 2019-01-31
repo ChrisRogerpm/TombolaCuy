@@ -34,7 +34,7 @@ class Reporte extends Model
         JOIN apertura_caja ac1 ON ac1.idAperturaCaja = t1.idAperturaCaja
         JOIN caja c1 ON c1.idCaja = ac1.idCaja
         JOIN punto_venta pv1 ON pv1.idPuntoVenta = c1.idPuntoVenta
-        WHERE pv1.idPuntoVenta = pv.idPuntoVenta) Apuestas,
+        WHERE pv1.idPuntoVenta = pv.idPuntoVenta AND e1.idEvento = e.idEvento) Apuestas,
         (SELECT
         sum(ap2.montoAPagar) as Pagar
         from apuesta ap2
@@ -43,7 +43,7 @@ class Reporte extends Model
         JOIN apertura_caja ac2 ON ac2.idAperturaCaja = t2.idAperturaCaja
         JOIN caja c2 ON c2.idCaja = ac2.idCaja
         JOIN punto_venta pv2 ON pv2.idPuntoVenta = c2.idPuntoVenta
-        WHERE pv2.idPuntoVenta = pv.idPuntoVenta) Pagos,
+        WHERE pv2.idPuntoVenta = pv.idPuntoVenta AND e2.idEvento = e.idEvento) Pagos,
         (SELECT
         SUM(t3.idTicket) Jugadores
         from apuesta ap3
@@ -52,7 +52,7 @@ class Reporte extends Model
         JOIN apertura_caja ac3 ON ac3.idAperturaCaja = t3.idAperturaCaja
         JOIN caja c3 ON c3.idCaja = ac3.idCaja
         JOIN punto_venta pv3 ON pv3.idPuntoVenta = c3.idPuntoVenta
-        WHERE pv3.idPuntoVenta = pv.idPuntoVenta) Jugadores
+        WHERE pv3.idPuntoVenta = pv.idPuntoVenta AND e3.idEvento = e.idEvento) Jugadores
         FROM apuesta a
         JOIN ticket t ON t.idTicket = a.idTicket
         JOIN evento e ON e.idEvento = t.idEvento
@@ -61,7 +61,7 @@ class Reporte extends Model
         JOIN punto_venta pv ON pv.idPuntoVenta = c.idPuntoVenta
         where pv.idPuntoVenta in ($tiendas) and
         e.fechaEvento between '$fechaIni' and '$fechaFin'
-        GROUP BY pv.idPuntoVenta,e.nombre,pv.nombre"));
+        GROUP BY pv.idPuntoVenta,e.idEvento,pv.nombre,e.nombre"));
         return $lista;
 
     }

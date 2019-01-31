@@ -46,9 +46,9 @@
 
     <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
     <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{asset('../components/datatables/buttons.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
-
+    <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">    
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
@@ -919,6 +919,9 @@
     <script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
     <script src="{{asset('../assets/js/funciones.js')}}"></script>
     <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="{{asset('../js/moment.js')}}"></script>
 
     @stack('Js')

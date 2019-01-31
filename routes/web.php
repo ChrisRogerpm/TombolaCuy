@@ -135,6 +135,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
 #endregion
 
+    Route::post('ExportarExcel','ReporteController@ExportarExcel')->name('Exportar');
+
     Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
 
     Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');

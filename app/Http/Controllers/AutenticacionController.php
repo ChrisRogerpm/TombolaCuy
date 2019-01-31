@@ -28,9 +28,11 @@ class AutenticacionController extends Controller
         $respuesta = false;
         $mensaje_error = '';
         try {
-            $respuesta_api = User::ValidarTokenLogin($usuario, $password);
-            $http_code = $respuesta_api['http_code'];
-            $status = $respuesta_api['status'];
+            // $respuesta_api = User::ValidarTokenLogin($usuario, $password);
+
+            // $http_code = $respuesta_api['http_code'];
+            $http_code = 202;
+            //$status = $respuesta_api['status'];
 
             if ($http_code == 202) {
                 $validar = User::where('usuario', $usuario)->first();
@@ -52,6 +54,7 @@ class AutenticacionController extends Controller
                     $mensaje_error = 'Usuario/Contraseña no Coincide, Tienes ' . $intentos_fallidos . ' Intento(s) mas';
                 }
             }
+            
 
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
