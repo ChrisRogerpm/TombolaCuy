@@ -41,9 +41,13 @@
                     <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                <button class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel"><span
+                                {{-- <button class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel"><span
                                                     class="icon fa fa-fw fa-file-excel-o"></span> Excel
-                                        </button>
+                                        </button> --}}
+                                    <a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel" onclick="event.preventDefault(); document.getElementById('frmNuevo').submit();">
+                                            <span
+                                            class="icon fa fa-fw fa-file-excel-o"></span> Excel
+                                    </a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +60,7 @@
     <div class="col-xs-12 col-md-12">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form id="frmNuevo" autocomplete="off">
+            <form id="frmNuevo" autocomplete="off" action="{{route('Exportar')}}" method="POST">
                     {{csrf_field()}}
                     <div class="row">
                         <div class="col-md-4">
@@ -64,7 +68,7 @@
                                 <label for="">Fecha Inicio</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control input-sm Fecha" name="fechaInicio">
+                                    <input type="text" class="form-control input-sm Fecha" name="fechaInicio" required>
                                 </div>
                             </div>
                         </div>
@@ -73,14 +77,14 @@
                                 <label for="">Fecha Fin</label>
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                    <input type="text" class="form-control input-sm Fecha" name="fechaFin">
+                                    <input type="text" class="form-control input-sm Fecha" name="fechaFin" required>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Tiendas</label>
-                                <select class="form-control input-sm select2" name="tiendas" style="width: 100%;" id="cboTienda" multiple="multiple">
+                                <select class="form-control input-sm select2" required name="tiendas" style="width: 100%;" id="cboTienda" multiple="multiple">
                                         <option value="0">--Seleccione--</option>
                                     </select>
                             </div>

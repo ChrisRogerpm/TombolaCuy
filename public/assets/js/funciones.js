@@ -37,7 +37,6 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
             //$.LoadingOverlay("show");
         },
         success: function (response) {
-            debugger;
             var datos = response.data;
             var mensaje = response.mensaje;
             if (datos.length > 0) {

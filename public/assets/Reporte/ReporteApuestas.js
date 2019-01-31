@@ -39,11 +39,11 @@ $(document).ready(function () {
                         "bDeferRender": true,
                         data: resp,
                         columns: [
-                            {data: "Tienda", title: "Tienda"},
-                            {data: "Apuestas", title: "Apuestas"},
-                            {data: "Pagos", title: "Pagos"},
-                            {data: "Evento", title: "Evento"},
-                            {data: "Jugadores", title: "Jugadores"},
+                            { data: "Tienda", title: "Tienda" },
+                            { data: "Apuestas", title: "Apuestas" },
+                            { data: "Pagos", title: "Pagos" },
+                            { data: "Evento", title: "Evento" },
+                            { data: "Jugadores", title: "Jugadores" },
                         ],
                         "drawCallback": function (settings) {
                             // $('.btnEditar').tooltip({
@@ -57,49 +57,53 @@ $(document).ready(function () {
             });
         }
     });
+
+    // $(document).on('click', '#btnExcel', function () {
+
+    // });
 });
 
 
 $("#frmNuevo")
-.validate({
-    rules: {
-        fechaInicio:
-        {
-            required: true,
+    .validate({
+        rules: {
+            fechaInicio:
+            {
+                required: true,
 
-        }, fechaFin:
-        {
-            required: true,
+            }, fechaFin:
+            {
+                required: true,
 
-        }, tiendas:
-        {
-            required: true,
+            }, tiendas:
+            {
+                required: true,
 
+            }
+        },
+        messages: {
+            fechaInicio:
+            {
+                required: '',
+
+            }, fechaFin:
+            {
+                required: '',
+
+            }, tiendas:
+            {
+                required: '',
+
+            }
+        },
+
+
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                element.closest('.option-group').after(error);
+            }
+            else {
+                error.insertAfter(element);
+            }
         }
-    },
-    messages: {
-        fechaInicio:
-        {
-            required: '',
-
-        }, fechaFin:
-        {
-            required: '',
-
-        }, tiendas:
-        {
-            required: '',
-
-        }
-    },
-
-
-    errorPlacement: function (error, element) {
-        if (element.is(":radio") || element.is(":checkbox")) {
-            element.closest('.option-group').after(error);
-        }
-        else {
-            error.insertAfter(element);
-        }
-    }
-});
+    });
