@@ -88,13 +88,17 @@ class PuntoVentaController extends Controller
                     $validar = PuntoVenta::where('cc_id',$cc_id)->first();
                     if($validar == null){
                         $puntoventa = new PuntoVenta();
+                        $puntoventa->idEmpresa = 1;
                         $puntoventa->nombre = $Nombre;
                         $puntoventa->cc_id = $cc_id;
+                        $puntoventa->idUbigeo = 2304;
                         $puntoventa->save();
                     }else{
                         $puntoventa = PuntoVenta::findorfail($validar->idPuntoVenta);
+                        $puntoventa->idEmpresa = 1;
                         $puntoventa->nombre = $Nombre;
                         $puntoventa->cc_id = $cc_id;
+                        $puntoventa->idUbigeo = 2304;
                         $puntoventa->save();
                     }
                 }
