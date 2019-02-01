@@ -42,11 +42,17 @@ $(document).ready(function () {
     });
 
 
-    llenarSelect(basePath + "ConfiguracionJackpotListarJson", {}, "cboConfiguracionJackPot", "idConfiguracionJackpot", "nombre", "allOption", true);
+    
     $("#cboConfiguracionJackPot").select2('val', [0]);
     debugger
-    $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
-   
+
+    $.when($.ajax(funcionLlenar())).then(function () {
+
+        $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
+    
+    });
+    
+    
    
     
     //Punto de venta Tienda
@@ -76,12 +82,17 @@ $(document).ready(function () {
     $("#tab-eval a").click(function () {
         $(this).tab("show");
     })
-    $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
+    
    
     $(document).on("click", "#btnBuscar", function () {
         ListarJackPot();
     });
 });
+function funcionLlenar(){
+    llenarSelect(basePath + "ConfiguracionJackpotListarJson", {}, "cboConfiguracionJackPot", "idConfiguracionJackpot", "nombre", "allOption", true);
+}
+
+
 
 function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot) {
     //debugger;
