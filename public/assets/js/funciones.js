@@ -130,6 +130,6 @@ if ($("#fechaHoy").length) {
     //document.getElementById("fechaHoy").innerHTML = today;
     window.onload = show5;
 }
-
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
