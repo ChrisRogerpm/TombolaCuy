@@ -499,7 +499,7 @@
    </tbody> 
 
 </table> -->
-  <div class="ticket" id="divimpresion" style="width:100%;height:500px">
+  <div class="ticket" id="divimpresion" style="width:50%;height:500px">
             <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;"><div style="width:100%">apuestatotal.com</div></div>
             <div class="imagen" style="width:100%;text-align:center"><img src="http://tombolacuy.local:88/img/juegos/cuy.png" width="200" height="120"></div>
             <div class="datos" style="width:100%;text-align:center">
@@ -572,7 +572,7 @@
                 <img id="imagen_codigobarra"width="180" height="80">
                   </div>
 
-                  <div id="codigo_qr" style="float: left; width:50%;text-align:center"><img id="imagen_qrcode"  width="120" height="120"></div>
+                  <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
                 
             </div>
 
