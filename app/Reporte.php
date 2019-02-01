@@ -69,8 +69,46 @@ class Reporte extends Model
     public static function ReporteHistorialGanadoresListarJson(Request $request)
     {
         $tiendas = $request->input('tiendas');
-        $fechaIni = $request->input('fechaInicial');	        
-        $fechaFin = $request->input('fechaFinal');	      
+        $fechaIni = $request->input('fechaInicio');
+        $fechaFin = $request->input('fechaFin');    
+        $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        //$where ="where pv.idPuntoVenta in (".$tiendas.") and";
+        $where = ($tiendas[0]=="0") ? "" : "where pv.idPuntoVenta in (".$tiendas.")" ;
+        $listar = DB::select(DB::raw("SELECT 
+        caj.idPuntoVenta,
+        pv.nombre tienda,
+        eve.idEvento IdEvento,
+        eve.nombre evento, 
+        eve.fechaEvento fecha,
+        tic.idTicket total_jugadores,
+        tic.ganador total_ganadores,
+        tic.montoTotal monto_total_apostado,
+        apu.montoAPagar monto_total_pagado,
+        tic.nroTicketParticipante NR_ticket_ganador,
+        tpago.nombre tipo_de_apuesta,
+        tapu.nombre valor_de_apuesta,
+        tapu.rgb valor_apuesta_color_rgb
+        from ganador_evento gev
+        INNER JOIN apuesta apu on apu.idApuesta=gev.idApuesta
+        INNER JOIN ticket tic on tic.idTicket=apu.idTicket
+        INNER JOIN apertura_caja apc on apc.idAperturaCaja=tic.idAperturaCaja
+        INNER JOIN caja caj on caj.idCaja=apc.idCaja
+        INNER JOIN evento eve ON eve.idEvento = tic.idEvento
+        INNER JOIN punto_venta pv ON pv.idPuntoVenta= caj.idPuntoVenta
+        INNER JOIN tipo_apuesta tapu ON tapu.idTipoApuesta = apu.idTipoApuesta
+        INNER JOIN tipo_pago tpago ON tpago.idTipoPago= tapu.idTipoPago
+        $where
+        "));
+        return $listar;
+    }
+
+    public static function ReporteJackPotListarJson(Request $request)
+    {
+        $tiendas = $request->input('tiendas');
+        $jackPots = $request->input('jackPots');
+        $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+        $jackPots = is_array($jackPots) ? implode(",", $jackPots) : $jackPots;    
       
         $listar = DB::select(DB::raw("
         SELECT 
@@ -99,4 +137,23 @@ class Reporte extends Model
         "));
         return $listar;
     }
+
+    public static function ConfiguracionPozoSegunConfJackPot(Request $request)
+    {
+        $idConfigJackPot = $request->input('idConfiguracionJackpot');
+        
+        $listar = DB::select(DB::raw("SELECT 
+        j.idJackpot idJackPot,
+        j.nombre JACKPOT,
+        cj.idConfiguracionJackpot,
+        cj.nombre
+
+        FROM configuracion_jackpot cj
+        INNER JOIN jackpot j ON j.idConfiguracionJackpot = cj.idConfiguracionJackpot
+        WHERE cj.idConfiguracionJackpot=$idConfigJackPot
+        
+        "));
+        return $listar;
+    }
+
 }

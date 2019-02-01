@@ -71,4 +71,44 @@ class ReporteController extends Controller
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
 
     }
+
+    //REPORTE HISTORIAL DE JackPot
+    public function ReporteJackPotVista()
+    {
+        return view('Reportes.ReporteJackPotVista');
+    }
+
+    public function ReporteJackPotListarJson(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ReporteJackPotListarJson($request);
+
+            //$lista = DB::table('tipo_apuesta')->get();
+
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+
+    }
+
+    public function ConfiguracionPozoSegunConfJackPot(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ConfiguracionPozoSegunConfJackPot($request);
+
+            //$lista = DB::table('tipo_apuesta')->get();
+
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+
+    }
+
+
 }

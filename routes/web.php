@@ -142,6 +142,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
     Route::post('ReporteHistorialGanadoresListarJson', 'ReporteController@ReporteHistorialGanadoresListarJson');
 
+    Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');
+    Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
+    Route::post('ConfiguracionPozoSegunConfJackPot', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
+
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
