@@ -50,6 +50,7 @@ Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
 Route::post('EventoDatosJson','VentaController@EventoDatosJson');
 Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
 Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
+Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
 
 
 #endregion

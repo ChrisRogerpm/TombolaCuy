@@ -34,7 +34,7 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
             $("#" + select).attr("disabled", "disabled");
             //$.LoadingOverlay("show");
         },
-        success: function (response) {debugger;
+        success: function (response) {
             var datos = response.data;
             var mensaje = response.mensaje;
             if (datos.length > 0) {
@@ -120,7 +120,7 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
 
     if ($("#fechaHoy").length) {
         var today = moment().format('DD/MM/YYYY');
-        //document.getElementById("fechaHoy").innerHTML = today;
+        //Zdocument.getElementById("fechaHoy").innerHTML = today;
         window.onload = show5;
     }
    
