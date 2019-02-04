@@ -125,11 +125,13 @@ function show5() {
     setTimeout("show5()", 1000);
 }
 
+
+}
+
 if ($("#fechaHoy").length) {
     var today = moment().format('DD/MM/YYYY');
     //document.getElementById("fechaHoy").innerHTML = today;
     window.onload = show5;
-}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
