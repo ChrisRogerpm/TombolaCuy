@@ -342,7 +342,7 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
                         $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
                         $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
                         $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
-
+$("#divimpresion #datos_filas").empty()
                         $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
                             $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
                                     .append(
