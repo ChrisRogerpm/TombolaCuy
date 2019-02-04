@@ -35,11 +35,13 @@ $(document).ready(function () {
             $('#cboTienda').val(nuevo).trigger('change');
         }
     });
+
+    
     //cboTienda es idPunto de Venta
     $("#fechaInicio").val("01/01/2018");
     llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption",false);
     $("#cboTienda").select2('val', [0]);   
-
+    
     $(document).on("click", "#btnBuscar", function () {
         ListarHistorialGanadores();
     });
@@ -136,9 +138,47 @@ function ListarHistorialGanadores() {
        error: function (jqXHR, textStatus, errorThrown) {
        }
    });
-
-
-    
-
-    
 }
+$("#frmNuevo")
+    .validate({
+        rules: {
+            fechaInicio:
+            {
+                required: true,
+
+            }, fechaFin:
+            {
+                required: true,
+
+            }, tiendas:
+            {
+                required: true,
+
+            }
+        },
+        messages: {
+            fechaInicio:
+            {
+                required: '',
+
+            }, fechaFin:
+            {
+                required: '',
+
+            }, tiendas:
+            {
+                required: '',
+
+            }
+        },
+
+
+        errorPlacement: function (error, element) {
+            if (element.is(":radio") || element.is(":checkbox")) {
+                element.closest('.option-group').after(error);
+            }
+            else {
+                error.insertAfter(element);
+            }
+        }
+    });

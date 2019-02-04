@@ -7706,7 +7706,10 @@ table > tbody > tr > td.danger,
 }
 
 /*clases tabla*/
+.TOMBOLACUY{
+height:85vh;
 
+}
 .contenedor_tablaprincipal{
 
 	border:4px solid rgb(19, 71, 128);
@@ -7719,24 +7722,43 @@ table > tbody > tr > td.danger,
 .rowcabecera{
 	font-size:16px;
 	color:rgb(252,252,232);
+display:table;
+width:100%;
+	height:12%;
 	/*width:100%;*/
 }
-.rowcabecera_nombres div {float:left; border-right:1px solid white;padding:6px;
+.rowcabecera_nombres div { border-right:1px solid white;padding:6px;display:table-cell;vertical-align:middle;
 
 	;}
-.rowcabecera_nombres{
-	background-color:rgb(39,40,44);width:100%;display:table;font-weight: bold;
+
+.rowcabecera_nombres div:nth-last-child(1) {
+    border-right:0px;
 }
-.rowcabecera_datos div {float:left; border-right:1px solid white;padding:6px;}
+
+.rowcabecera_nombres{
+	background-color:rgb(39,40,44);width:100%;font-weight: bold;
+	display:table-row;height:50%;
+}
+.rowcabecera_datos div { border-right:1px solid white;padding:6px;
+display:table-cell;vertical-align:middle;height:50%;
+}
+
+.rowcabecera_datos div:nth-last-child(1) {
+    border-right:0px;
+}
+
+
+
 .rowcabecera_datos{
-	background-color:rgb(72,72,70);width:100%;display:table;
+	background-color:rgb(72,72,70);width:100%;display:table-row;height:50%;
 }
 
 
 .row_medio{
 	/*float:left;
 	width:100%;*/
-	height:72vh;
+	height:80%;
+	background-color:rgb(172, 168, 157);
 }
 
 
@@ -7769,7 +7791,7 @@ align-items:center;
 	width:33.33%;
 	/*padding-left:10px;*/
 	height:100%;
-	border:3px solid white;
+	border:3px solid rgb(172, 168, 157);
 	
 }
 
@@ -7936,7 +7958,7 @@ border:2px solid white;
 .historialtitulo{
 color:white;
 background-color:rgb(77, 88, 108);font-weight: bold;
-padding:5px 12px 5px 12px;
+padding:4px 12px 4px 12px;
 
 }
 .rowhistorial{
@@ -7988,38 +8010,52 @@ height:50%;
 	color:white;
 	font-weight: bold;
 	border-radius:5px;
-	font-size:4vh;
+	font-size:18px;
 	float:left;
 		display: flex;
     align-items: center;
     justify-content: center;
-    border-right:1px solid white;
-    border-left:1px solid white;
-    border-bottom:19px solid white;
+    border-right:1px solid rgb(172, 168, 157);
+    border-left:1px solid rgb(172, 168, 157);
+    border-bottom:19px solid rgb(172, 168, 157);
 }
 
 .rowconfiguracioneventosdiv{
 	margin-top:10px;
 	background:rgb(77, 88, 108);
+	display:table;
+	width:100%;
+	height:8%;
 }
-.rowconfiguracioneventosdiv div{
-width:19%;
-	height:7vh;
-	line-height:8vh;
-	margin:1px;
-	display:inline-block;
+/*.rowconfiguracioneventosdiv div*/
+.configuracioneventosdiv {
+	line-height:14px;
+	float:left;
 	vertical-align:middle;
 	text-align:center;
 	color:white;
 	font-weight: bold;
 	border-radius:2px;
-	font-size:3vh;
+	font-size:14px;
+
     background:rgb(137,157,198);
 	cursor:pointer;
-
+	border:1px solid black;
+width:20%;
 
 }
-
+.seleccionadoevento
+{
+/*border:2px solid black;*/
+font-size:3.3vh;
+opacity:0.7;
+}
+.eventos_fila_izq{
+	width:90%;float:left;
+}
+.eventos_fila_der{
+	width:10%;float:left;
+}
 
 .tituloconfiguracionevento{
 width:100%;
@@ -8133,6 +8169,7 @@ margin-bottom:1%;
 
 }
 .rowbotones div{
+	height:100%;
 width:22%;
 	/*height:7vh;*/
 	/*line-height:8vh;*/
@@ -8234,6 +8271,34 @@ cursor:pointer;
 
 }
 /*fin clases tabla*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*CLASES  TICKET IMPRIMIR*/
+.ticket{
+	width:300px;
+	display:table;
+	}
+
+
+	.ticket div {
+	width:100%;
+	display:table-row;
+	}
+/*FIN CLASES  TICKET IMPRIMIR*/
 /*--------------------------------------------------------------------------------------------------------------------
  * Responsive
  *--------------------------------------------------------------------------------------------------------------------*/

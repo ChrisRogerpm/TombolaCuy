@@ -95,6 +95,10 @@ function show5() {
     var minutes = Digital.getMinutes();
     var seconds = Digital.getSeconds();
 
+    if ($("#fechaHoy").length) {
+        var today = moment().format('DD/MM/YYYY');
+        //Zdocument.getElementById("fechaHoy").innerHTML = today;
+        window.onload = show5;
     var dn = "PM";
     if (hours < 12)
         dn = "AM";
@@ -121,11 +125,13 @@ function show5() {
     setTimeout("show5()", 1000);
 }
 
+
+}
+
 if ($("#fechaHoy").length) {
     var today = moment().format('DD/MM/YYYY');
     //document.getElementById("fechaHoy").innerHTML = today;
     window.onload = show5;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

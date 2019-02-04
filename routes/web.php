@@ -42,10 +42,15 @@ Route::middleware(['auth'])->group(function () {
 #endregion
 
 #region [Venta]
-    Route::get('Index', 'VentaController@Index')->name('Venta.Index');
-    Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
-    Route::post('EventoDatosJson', 'VentaController@EventoDatosJson');
-    Route::post('HistorialDatosJson', 'VentaController@HistorialDatosJson');
+Route::get('Index', 'VentaController@Index')->name('Venta.Index');
+
+Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+Route::post('EventoDatosJson','VentaController@EventoDatosJson');
+Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
+Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
+Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
+
+
 #endregion
 
 #region [ConfiguracionJackpot]
@@ -141,6 +146,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
     Route::post('ReporteHistorialGanadoresListarJson', 'ReporteController@ReporteHistorialGanadoresListarJson');
+
+    Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');
+    Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
+    Route::post('ConfiguracionPozoSegunConfJackPot', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
 
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');

@@ -847,8 +847,9 @@
                             <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Reporte Apuesta</span></a></li>
                             <li><a href="{{route('Reporte.HistorialGanadores')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">Reporte Historial Ganadores</span></a></li>
-
+                                        class="title">Historial Ganadores</span></a></li>
+                            <li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">JackPot</span></a></li>
                         </ul>
                     </li>
                 </ul>
