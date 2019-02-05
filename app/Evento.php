@@ -21,18 +21,21 @@ class Evento extends Model
     public static function EventoListar()
     {
        
-        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
+left join juego ju on ju.idJuego= ev.idJuego
 where ev.estadoEvento=1'));
         return $listar;
     }
        public static function EventoId($idEvento)
     {
        
-        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,
+        	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
+left join juego ju on ju.idJuego= ev.idJuego
 where ev.estadoEvento=1 and idEvento='.$idEvento));
         return $listar;
     }
