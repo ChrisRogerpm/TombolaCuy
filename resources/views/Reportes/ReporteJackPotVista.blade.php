@@ -9,8 +9,15 @@
     }
     .nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
     color: white;
-    
+
     }
+
+    .panel-body > .container {
+        width:100%;
+    }
+    /**/
+    
+    /**/
 </style>
 
 <div class="row">
@@ -70,7 +77,7 @@
                                 <label for="">Configuracion JackPot</label>
                                 <select multiple="multiple" id="cboConfiguracionJackPot" name="jackPots"
                                     class="form-control input-sm multiselect" style="width: 100%;">
-                                    <option value="0">Todos Css</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -85,7 +92,7 @@
                             </div>
                         </div>
 
-
+                    
                     </div>
                 </form>
 
