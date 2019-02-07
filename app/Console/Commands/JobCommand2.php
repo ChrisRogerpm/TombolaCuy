@@ -40,6 +40,7 @@ class JobCommand2 extends Command
      */
     public function handle()
     {
+        sleep(5);
         $ListaJuego = Juego::JuegoListarLapsoJson();
         foreach ($ListaJuego as $juego) {
             $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
