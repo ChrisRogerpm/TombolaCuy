@@ -158,8 +158,6 @@ LIMIT 20
                     $NumeroDias = $juego->lapsoProxEventoDia;
                     $fecha = now()->addDays($NumeroDias);
                     Evento::RegistrarEvento($juego, $fecha);
-                } else if ($juego->lapsoProxEventoDiaSemana > 0) {
-
                 } else if ($juego->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                     $fecha = now()->addMinutes($NumeroMinutos);
