@@ -41,48 +41,6 @@ class JobCommand2 extends Command
     public function handle()
     {
         sleep(5);
-        $ListaJuego = Juego::JuegoListarLapsoJson();
-        foreach ($ListaJuego as $juego) {
-            $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
-            if ($JuegoEvento != null) {
-                if (now() >= $JuegoEvento->fechaEvento) {
-                    $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
-                    if ($respuesta) {
-                        if ($juego->lapsoProxEventoHoras > 0) {
-                            $NumeroHoras = $juego->lapsoProxEventoHoras;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);
-                            Evento::RegistrarEvento($juego,$fecha);
-                        } else if ($juego->lapsoProxEventoDia > 0) {
-                            $NumeroDias = $juego->lapsoProxEventoDia;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addDays($NumeroDias);
-                            Evento::RegistrarEvento($juego,$fecha);
-                        } else if ($juego->lapsoProxEventoDiaSemana > 0) {
-
-                        } else if ($juego->lapsoProxEventoMinutos > 0) {
-                            $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addMinutes($NumeroMinutos);
-                            Evento::RegistrarEvento($juego,$fecha);
-                        }
-                    }
-                }
-            } else {
-                //crear evento desde 0
-                if ($juego->lapsoProxEventoHoras > 0) {
-                    $NumeroHoras = $juego->lapsoProxEventoHoras;
-                    $fecha = now()->addHours($NumeroHoras);
-                    Evento::RegistrarEvento($juego,$fecha);
-                } else if ($juego->lapsoProxEventoDia > 0) {
-                    $NumeroDias = $juego->lapsoProxEventoDia;
-                    $fecha = now()->addDays($NumeroDias);
-                    Evento::RegistrarEvento($juego,$fecha);
-                } else if ($juego->lapsoProxEventoDiaSemana > 0) {
-
-                } else if ($juego->lapsoProxEventoMinutos > 0) {
-                    $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                    $fecha = now()->addMinutes($NumeroMinutos);
-                    Evento::RegistrarEvento($juego,$fecha);
-                }
-            }
-        }
+        Evento::GenerarEventoJob();
     }
 }
