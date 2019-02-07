@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\ApiApuestaTotal\Curl;
+
+use App\ApiApuestaTotal\ValidarApi;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,23 +18,16 @@ class User extends Authenticatable
     public $timestamps = false;
 
     protected $fillable = [
-        'usuario', 'password','remember_token'
+        'usuario', 'password', 'remember_token'
     ];
 
     public static function ValidarTokenLogin($usuario, $password)
     {
-        $credenciales = [
-            'opt' => 'login',
-            'source' => 'tombolaCuy',
-            'usuario' => $usuario,
-            'password' => md5($password),
-        ];
-        //Token para la Api
-        $s3k_password = "j3KJ0sdfldsKMmll0965Kwrfdml540QN";
-        $curl = new Curl($s3k_password);
-        $respuesta_api = $curl->post($credenciales);
-
-        return $respuesta_api;
+        $validar_api = new ValidarApi();
+        $respuesta_api = $validar_api->ValidarLoginTokenApi($usuario, $password);
+        $respuesta_api = (string)$respuesta_api;
+        $respuesta = json_decode($respuesta_api, true);
+        return $respuesta;
     }
 
     public static function RegistrarUsuario($usuario, $password)
