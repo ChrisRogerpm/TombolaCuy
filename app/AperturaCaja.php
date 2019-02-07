@@ -47,7 +47,7 @@ class AperturaCaja extends Model
         $AperturaCaja->idTurno = $request->input('idTurno');
         $AperturaCaja->usuario = $request->input('usuario');
         $AperturaCaja->fechaOperacion = $request->input('fechaOperacion');
-        $AperturaCaja->fechaRegistro = Carbon::now();
+        //$AperturaCaja->fechaRegistro = Carbon::now(); //si es fecha de
         $AperturaCaja->save();
         return $AperturaCaja;
     }

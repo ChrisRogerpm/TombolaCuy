@@ -211,7 +211,11 @@
 
                                               <div class="" style="height:100%" id="columna_izq">
                                                     <div class="" style="height:65%">
-                                                        <div class="rectangulo_izquierda"></div>
+                                                        <div class="rectangulo_izquierda"
+                                                        data-idTipoPago="6"
+                                                        data-tipo="zero" data-color="verde" data-valor=0
+
+                                                        ></div>
                                                     </div>
                                                     <div class=""  style="height:35%">
                                                         <div class="rectangulo_izquierda2"></div>
@@ -338,81 +342,67 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                       <!--      <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                             <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                              <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                            <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                            <tr>
+                                        <tr>
                                                 <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                         
-                                          <tr>
-                                                <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                         
-                                          <tr>
-                                                <td>-</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                         
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr> -->
+                                      
                                          
                                         
                                             </tbody>
@@ -485,7 +475,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="overflow:auto">
 <!-- <table>
    <thead><tr><td colspan="3">ApuestaTotal.com</td></tr></thead>
    <tbody>
@@ -499,11 +489,12 @@
    </tbody> 
 
 </table> -->
-  <div class="ticket" id="divimpresion" style="width:50%;height:500px">
-            <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;"><div style="width:100%">apuestatotal.com</div></div>
-            <div class="imagen" style="width:100%;text-align:center"><img src="http://tombolacuy.local:88/img/juegos/cuy.png" width="200" height="120"></div>
+<div style="text-align:center">
+  <div class="ticket" id="divimpresion" style="width:50%;height:500px;display:inline-block;">
+            <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid"><div style="width:100%">apuestatotal.com</div></div>
+            <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img src="http://tombolacuy.local:88/img/juegos/cuy.png" width="200" height="120"></div>
             <div class="datos" style="width:100%;text-align:center">
-                <div style="width:100%;display:table">
+                <div style="width:100%;border-top:2px dotted;display:table">
                             <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
                             <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
 
@@ -528,21 +519,21 @@
                 </div>
 
 
-                <div style="width:100%;display:table" id="datos_filas">
+                <div style="width:100%;display:table;border-top:2px dotted" id="datos_filas">
              
    
 
                 </div>
 
-                <div style="width:100%;display:table" id="total_ticket">
+                <div style="width:100%;display:table;border-top:2px dotted" id="total_ticket">
                      
                         <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
                         <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
 
                 </div>
-                <div style="width:100%;display:table" id="">
+                <div style="width:100%;display:table;border-top:2px dotted" id="">
              
-                    <div style="width:50%;float:LEFT;text-align:left">Impreso En</div>
+                    <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
                     <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
 
                 </div>
@@ -553,8 +544,8 @@
                 </div>
 
 
-                 <div style="width:100%;display:table" id="">
-                    <div style="width:50%;float:LEFT;text-align:left">Premio Máximo a Pagar </div>
+                 <div style="width:100%;display:table;border-top:2px dotted" id="">
+                    <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
                     <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
 
                 </div>
@@ -580,7 +571,7 @@
 
 
         </div>
-
+</div><!--FIN DIV WRAPPER-->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>

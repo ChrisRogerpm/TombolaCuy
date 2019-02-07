@@ -132,6 +132,9 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             $("#row_datosevento #divisa").text(divisa);
             $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
 
+                $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
+        $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
+        $(".apuesta span").text("APUESTA "+divisa)
 
 ////////PROXIMO EN
            proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
@@ -170,6 +173,20 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 ////multiplicadores definir
 ///fin multiplicadores
 ////PLENO
+
+    var div_zero=$(".rectangulo_izquierda");
+    var valorzero=$(div_zero).text();
+    var colorzero="";var cuotazero="";
+     $(tipoapuesta).each(function(ii,ee){
+                    var valorapuesta=ee.valorapuesta;
+                    if(ee.idTipoPago==6 && valorapuesta.toString()=="0"){
+                        color=ee.rgb;
+                        cuota=ee.multiplicadorDefecto;
+                    }
+    });
+    $(div_zero).css("background-color",color);
+    $(div_zero).attr("data-cuota",cuota);
+
     $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
             var valor=$(e).text();
             var color="";var cuota="";
@@ -270,7 +287,7 @@ TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
 TICKET_IMPRIMIR.Id_Ticket=297101120;
 TICKET_IMPRIMIR.Id_Unidad=105432;
 TICKET_IMPRIMIR.Nro_Evento=eventoactual.IdEvento;
-TICKET_IMPRIMIR.Desc=eventoactual.Nombre;
+TICKET_IMPRIMIR.Desc=eventoactual.nombre;
 
 totales=sacar_totales_y_maximo();
 TICKET_IMPRIMIR.TotalTicket=totales.total;
@@ -325,7 +342,7 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
                         $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
                         $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
                         $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
-
+$("#divimpresion #datos_filas").empty()
                         $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
                             $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
                                     .append(
@@ -364,7 +381,11 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
                 $("#modal_imprimir").modal("show");
                     $("#btnimprimir").off("click").on("click",function(){
 
-                            Imprimir("divimpresion");
+
+                                setTimeout(function(){
+                                    Imprimir("divimpresion");
+                                },1000)
+
 
                     })
                     $("#btnimprimir").click()
@@ -566,6 +587,10 @@ $(document).ready(function () {
                 $(".nombre_tituloconfiguracionevento ").text($(this).data("nombre"));
                 $(".id_tituloconfiguracionevento ").text("#"+$(this).data("id"));
 
+    
+
+
+
 
                 EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segBloqueoAntesEvento"));
                 eventoactual={};
@@ -584,6 +609,11 @@ $(document).ready(function () {
 
     $("#div_configuracioneventos .eventos_fila_izq>div").eq(0).click();
 /////botones numeros
+    //boton 0
+    $(".rectangulo_izquierda").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+///fin boton 0
     $("#numeros_tabla [data-tipo='numero']").off().on("click",function(e){ 
             $(this).toggleClass("seleccionado") ;
         })
@@ -613,6 +643,8 @@ $(document).ready(function () {
             SUMAAPUESTAS=SUMAAPUESTAS+$(ee).data("valor");
         })
         $(".rowtableeventos_footer_apuesta").text("APUESTA "+SUMAAPUESTAS+" "+divisa);
+
+        
     })
 
 
@@ -631,7 +663,7 @@ $(document).ready(function () {
                 toastr.error("Error","Seleccione Apuesta")
                 return false;
             }
-            cantidadnumeros=$("#numeros_tabla .seleccionado").length;
+            cantidadnumeros=$("#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
             if(cantidadnumeros==0)
             {
                 toastr.error("Error","Seleccione Número")
@@ -648,7 +680,9 @@ $(document).ready(function () {
             array_apuestas_json=generar_json_apuestas();
             
             FILA_PARA_TABLA={};
-            $("#numeros_tabla .seleccionado").each(function(i,e){
+            $("#numeros_tabla .seleccionado , .rectangulo_izquierda.seleccionado")
+            // $("#numeros_tabla .seleccionado")
+            .each(function(i,e){
                array_apuestas_json=generar_json_apuestas();
                 valornumero=$(e).data("valor");
                 tiponumero=$(e).data("tipo");
