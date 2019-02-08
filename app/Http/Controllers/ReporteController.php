@@ -24,30 +24,6 @@ class ReporteController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
-
-    }
-    public function ExportarExcel(Request $request)
-    {
-        $tiendas = $request->input('tiendas');
-        $fechaIni = $request->input('fechaInicio');
-        $fechaFin = $request->input('fechaFin');
-        $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
-        // try {
-        // $data = Reporte::ReporteApuestaJson($request);
-            $result = array();
-            foreach ($data as $key => $value) {
-                $result[] = ['Tienda' => $value->Tienda, 'Evento' => $value->Evento, 'Apuestas' => $value->Apuestas, 'Pagos' => $value->Pagos, 'Jugadores' => $value->Jugadores];
-            }
-        //     Excel::create('ReporteApuesta', function ($excel) use ($result) {
-        //         $excel->sheet('Sheet 1', function ($sheet) use ($result) {
-        //             $sheet->fromArray($result);
-        //         });
-        //     })->export('xls');
-        // } catch (QueryException $ex) {
-
-        // }
-        // return back();
-        return (new ReporteApuestaExport($tiendas,$fechaIni,$fechaFin))->download('invoices.xlsx');
     }
 
     //REPORTE HISTORIAL DE GANADORES

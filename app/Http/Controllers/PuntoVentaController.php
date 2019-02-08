@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ApiApuestaTotal\Curl;
+use App\ApiApuestaTotal\ValidarApi;
 use App\PuntoVenta;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -65,49 +66,46 @@ class PuntoVentaController extends Controller
 
     public function SincronizarPuntoVentaAPI()
     {
-
         $respuesta = false;
         $mensaje_error = "";
-
         try {
-            $request = [
-                'opt' => 'data',
-                'source' => 'locales',
-            ];
-            $s3k_password = "j3KJ0sdfldsKMmll0965Kwrfdml540QN";
-            $curl = new Curl($s3k_password);
-
-            $data = $curl->post($request);
-            $data_result = $data['result'];
-
-            foreach ($data_result as $data) {
-                $cc_id = $data['cc_id'] == "" ? 0 : $data['cc_id'];
-                $Nombre = $data['nombre'];
-
-                if($cc_id != ""){
-                    $validar = PuntoVenta::where('cc_id',$cc_id)->first();
-                    if($validar == null){
-                        $puntoventa = new PuntoVenta();
-                        $puntoventa->idEmpresa = 1;
-                        $puntoventa->nombre = $Nombre;
-                        $puntoventa->cc_id = $cc_id;
-                        $puntoventa->idUbigeo = 2304;
-                        $puntoventa->save();
-                    }else{
-                        $puntoventa = PuntoVenta::findorfail($validar->idPuntoVenta);
-                        $puntoventa->idEmpresa = 1;
-                        $puntoventa->nombre = $Nombre;
-                        $puntoventa->cc_id = $cc_id;
-                        $puntoventa->idUbigeo = 2304;
-                        $puntoventa->save();
+            $validar_api = new ValidarApi();
+            $respuesta_api = $validar_api->ListaTiendasTokenApi();
+            $respuesta_api = (string)$respuesta_api;
+            $respuesta = json_decode($respuesta_api, true);
+            $http_code = $respuesta['http_code'];
+            if ($http_code == 200) {
+                foreach ($respuesta['result'] as $data) {
+                    $data_unit_ids = $data['unit_ids'];
+                    $unit_ids = "";
+                    $come = ",";
+                    foreach ($data_unit_ids as $unit_id) {
+                        $unit_ids .= $unit_id . $come;
+                    }
+                    if ($data['cc_id'] != "") {
+                        $validar = PuntoVenta::where('cc_id', $data['cc_id'])->first();
+                        if ($validar == null) {
+                            $puntoventa = new PuntoVenta();
+                            $puntoventa->nombre = $data['nombre'];
+                            $puntoventa->cc_id = $data['cc_id'];
+                            $puntoventa->unit_ids = $unit_ids;
+                            $puntoventa->save();
+                        } else {
+                            $puntoventa = PuntoVenta::findorfail($validar->idPuntoVenta);
+                            $puntoventa->nombre = $data['nombre'];
+                            $puntoventa->cc_id = $data['cc_id'];
+                            $puntoventa->unit_ids = $unit_ids;
+                            $puntoventa->save();
+                        }
                     }
                 }
+                $respuesta = true;
+            } else {
+                $mensaje_error = "El servicio de Sincronización no esta disponible en estos momentos";
             }
-            $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
 

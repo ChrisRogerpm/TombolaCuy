@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jackpot;
 use Illuminate\Http\Request;
 
 class JackpotController extends Controller

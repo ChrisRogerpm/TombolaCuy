@@ -14,14 +14,14 @@ class PuntoVenta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre','cc_id'];
+    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre','cc_id','unit_ids'];
 
     public static function PuntoVentaListarJson()
     {
         $listar = DB::table('punto_venta as pv')
             ->select('pv.*','e.razonSocial','u.Nombre as Ubigeo')
-            ->join('empresa as e','e.idEmpresa','pv.idEmpresa')
-            ->join('ubigeo as u','u.idUbigeo','pv.idUbigeo')
+            ->leftJoin('empresa as e','e.idEmpresa','pv.idEmpresa')
+            ->leftJoin('ubigeo as u','u.idUbigeo','pv.idUbigeo')
             ->get();
         return $listar;
     }

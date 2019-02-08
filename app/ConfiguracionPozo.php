@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
+
 class ConfiguracionPozo extends Model
 {
     protected $table = 'configuracion_pozo';

@@ -70,6 +70,24 @@ function ListarHistorialGanadores() {
         success: function (response) {
             
            $("#table").DataTable({
+            dom: 'Bfrtip',
+                    
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'Reporte Historial de Ganadores'
+                    
+                },
+                
+                {
+                    extend: 'pdfHtml5',
+                    title: 'Reporte Historial de Ganadores'
+                },
+                {
+                    extend: 'print',
+                    title: 'Reporte Historial de Ganadores'
+                }
+            ],
             "bDestroy": true,
             "bSort": true,
             "scrollCollapse": true,
@@ -82,17 +100,17 @@ function ListarHistorialGanadores() {
             
             columns: [
 
-            {data: "tienda", title: "tienda"},
-            {data: "evento", title: "evento"},
-            {data: "fecha", title: "fecha"},
-            {data: "total_jugadores", title: "total jugadores"},
-            {data: "total_ganadores", title: "total ganadores"},
-            {data: "monto_total_apostado", title: "monto total apostado"},
-            {data: "monto_total_pagado", title: "monto total pagado"},
-            {data: "NR_ticket_ganador", title: "NR ticket ganador"},
-            {data: "tipo_de_apuesta", title: "tipo de apuesta"},
+            {data: "tienda", title: "Tienda"},
+            {data: "evento", title: "Evento"},
+            {data: "fecha", title: "Fecha"},
+            {data: "total_jugadores", title: "Total jugadores"},
+            {data: "total_ganadores", title: "Total ganadores"},
+            {data: "monto_total_apostado", title: "Monto total apostado"},
+            {data: "monto_total_pagado", title: "Monto total pagado"},
+            {data: "NR_ticket_ganador", title: "Nº ticket ganador"},
+            {data: "tipo_de_apuesta", title: "Tipo de apuesta"},
 
-            {data: "valor_apuesta_color_rgb", title: "valor_apuesta_color_rgb"},
+            {data: "valor_apuesta_color_rgb", title: "Color"},
 
             
             {   

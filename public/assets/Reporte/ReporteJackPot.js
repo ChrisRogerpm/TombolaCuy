@@ -49,7 +49,7 @@ $(document).ready(function () {
     $.when($.ajax(funcionLlenar())).then(function () {
 
         $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
-        
+
     });
 
 
@@ -90,20 +90,20 @@ $(document).ready(function () {
 
 
     $(document).on("click", "#btnBuscar", function () {
-        
+
         buscarListarJackPot();
-        
+
     });
-    var unav=true;
+    var unav = true;
     $(document).on("click", ".tabClick", function (e) {
 
         var data = e.target;
         var valor = data.dataset.menu;
         var idcTabl = '#menu' + valor + ' .tablajack';
-        
+
         var tabla = document.querySelector(idcTabl);
         tabla = tabla.dataset.table;
-        var jack = '#jack'+tabla;
+        var jack = '#jack' + tabla;
         debugger
 
         //     $(jack).DataTable({
@@ -112,28 +112,28 @@ $(document).ready(function () {
         //        sort: false,
         //        scrollCollapse: true,
         //        scrollX: true,
-        
+
         //        paging: false,
         //        autoWidth: false,
         //        processing: false,
         //        deferRender: false,
-            
+
         //        bInfo : false,
         //        searching: false,
         //        paging: false,
-                
+
         //    });   
-     
+
         var idc = '#menu' + valor + ' .dataTables_scrollHeadInner .tablajack';
 
         debugger
         var tablaSeleccionada = document.querySelector(idc);
-        tablaSeleccionada.style.width='1150px';
+        tablaSeleccionada.style.width = '1150px';
         tablaSeleccionada.style.marginLeft = "0px";
-      
 
-        
-       
+
+
+
     });
     //width: 1724px; margin-left: 0px;
 });
@@ -197,10 +197,11 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             tabEval.innerHTML = '';
             tabContenido.innerHTML = ''
             data.map((obj, index) => {
+                debugger
                 var index = index + 1;
                 firstIndex = (index == 1) ? 'active' : '';
                 firstIndexTab = (index == 1) ? 'in active' : '';
-                html += `<li class="btn btn-primary  ${firstIndex}"><a class="tabClick" href="#menu${index}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
+                html += `<li class="${firstIndex}"><a class="tabClick" href="#menu${index}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
 
                 var idJack = obj.idJackPot;
                 //debugger;
@@ -219,43 +220,53 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                     tdPozoOculto = '';
 
                 var thTiendas = '';
-                var tdTiendas = '';
+                // var tdTiendas = '';
                 listaPososJackPot = [...return_first];
-                thTiendas = '<th style="font-weight: 600;color:black">Tiendas </th> ';
-                tdTiendas = '<td style="font-weight: 600;color:black"">Limites</td>';
+                // thTiendas = '<th style="font-weight: 600;color:black">Tiendas </th> ';
+                // tdTiendas = '<td style="font-weight: 600;color:steelblue"">Limites</td>';
 
                 var limites = ['Incremento', 'Límite Inferior', 'Límite Superior']
-                tiendas.map((obj, index) => {
+                // tiendas.map((obj, index) => {
 
-                    tdTiendas = tdTiendas + `<tr>
-                                        <td style="font-weight: 600;color:black">${obj.text} </td>
-                                        </tr>`;
-                });
-                tdPozo = limites.map(x => '<td style="font-weight: 600;color:black">' + x + '</td>').join('');
+                //     tdTiendas = tdTiendas + `<tr>
+                //                         <td style="font-weight: 600;color:black">${obj.text} </td>
+                //                         </tr>`;
+                // });
+                //thPozo = `<th>Tienda${index}<th>`;
+
+                tdPozo = limites.map(x => '<th style="font-weight: 600;color:black;text-align:center;">' + x + '</th>\n').join('');
+                tdPozo = tdPozo + limites.map(x => '<th style="font-weight: 600;color:steelblue;text-align:center;">' + x + ' Oculto</th>\n').join('');
                 tdPozo = tdPozo.repeat(listaPososJackPot.length);
+                
+                //thPozo = '<th rowspan="2">Tiendas<th>';
+
+                debugger
                 listaPososJackPot.map((obj, index) => {
-                    thPozo = thPozo + `<th colspan='3'>Pozo ${index+1} (${obj.idPozoJackpot})</th>`;
+                    thPozo = thPozo + `<th colspan='3'style="color:black;width:110px;text-align:center;">Pozo ${index+1} (${obj.idPozoJackpot})</th>\n
+                                        <th colspan='3' style="color:steelblue;width:110px;text-align:center">Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>\n`;
 
                     //tdPozo = tdPozo + `<td>Inicial</td>`;
                     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
                 });
+                
+                // tdPozoOculto = tdPozoOculto + limites.map(x => '<td style="font-weight: 600;color:blue">' + x + ' Oculto</td>').join('');
 
-                tdPozoOculto = tdPozoOculto + limites.map(x => '<td style="font-weight: 600;color:black">Oculto' + x + '</td>').join('');
+                // tdPozoOculto = tdPozoOculto.repeat(listaPososJackPot.length);
+                //tdPozo += tdPozoOculto;
+                // listaPososJackPot.map((obj, index) => {
+                //     thPozo = thPozo + `<th colspan='3'>Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>`;
 
-                tdPozoOculto = tdPozoOculto.repeat(listaPososJackPot.length);
-                tdPozo += tdPozoOculto;
-                listaPososJackPot.map((obj, index) => {
-                    thPozo = thPozo + `<th colspan='3'>Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>`;
-
-                    //tdPozo = tdPozo + `<td>Inicial</td>`;
-                    //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
-                });
+                //     //tdPozo = tdPozo + `<td>Inicial</td>`;
+                //     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
+                // });
                 var thp = '';
-                for (let j = 0; j < (listaPososJackPot.length * 6); j++) {
-                    thp = thp + `<th style="display:none;">f</th>`;
-                }
+                //thp = `<th style="display:none;">f</th>`;
+                // for (let j = 0; j < (listaPososJackPot.length * 6); j++) {
+                //     thp = thp + `<th style="display:none;">f</th>`;
+                // }
+                thp = tdPozo;
                 //debugger;
-                    
+                debugger;
                 htmlContenidoTabs += `
                 <div id="menu${index}" class="tab-pane fade ${firstIndexTab}">
                             <h6>JackPot: ${obj.idJackPot}</h6>
@@ -267,17 +278,19 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                                 <table data-table=${obj.idJackPot} style="width: 1150px; margin-left: 0px;" id="jack${obj.idJackPot}" class="tablajack table table-bordered table-stripeds">
                                     <thead>
                                         <tr>
+                                            <th rowspan="2">Tiendas<th>
+                                            
                                             ${thPozo}
+                                            
                                         </tr>
-                                            <tr>
-                                                ${thp}
-                                            </tr>
-                                    </thead>
-                                    <tbody>
+
                                         <tr>
                                             
-                                            ${tdPozo}
+                                            ${thp}
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                       
                                         
                                     </tbody>
                                 </table>
@@ -291,8 +304,8 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             });
 
 
-            debugger;
            
+
             tabEval.innerHTML += html;
             tabContenido.innerHTML += htmlContenidoTabs;
             //1ero debe dibujarse el doom y despues usar esta funcion
@@ -301,28 +314,29 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             })
 
             debugger
-            var tablaExi = document.getElementsByClassName('tablajack');
+            //var tablaExi = document.getElementsByClassName('tablajack');
 
-            if (tablaExi!=null) {
-                $('table.tablajack').DataTable({
-                    scrollY: '200px',
-                   destroy: false,
-                   sort: false,
-                   scrollCollapse: true,
-                   scrollX: true,
-            
-                   paging: false,
-                   autoWidth: false,
-                   processing: false,
-                   deferRender: false,
-                
-                   bInfo : false,
-                   searching: false,
-                   paging: false,
-                
-               });    
-            }
-            
+            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display","none");
+            debugger;
+            $('table.tablajack').DataTable({
+                scrollY: '200px',
+                destroy: true,
+                sort: true,
+                scrollCollapse: true,
+                scrollX: true,
+
+                paging: false,
+                autoWidth: false,
+                processing: false,
+                deferRender: false,
+
+                bInfo: false,
+                searching: false,
+                paging: false,
+
+            });
+
+           
         },
         error: function (jqXHR, textStatus, errorThrown) {}
     });
@@ -355,7 +369,7 @@ function ListarPozoJackPotSegunJackPotId(idJackpot) {
         async: false,
         success: function (response) {
             var resp = response;
-            //debugger;
+            debugger;
             var tabEval = document.getElementById('tab-eval');
 
             var tabContenido = document.getElementById('tabContenido');
@@ -393,7 +407,9 @@ function buscarListarJackPot() {
 
     //$('#subtituloTabsGeneral').html($("#cboConfiguracionJackPot").text);
     ConfiguracionPozoSegunConfJackPot(confJack[0], tiendas);
-    
+
+    //ListarHistorialGanadores();
+
 }
 
 function ListarHistorialGanadores() {
@@ -476,7 +492,7 @@ function ListarHistorialGanadores() {
     $("#table").DataTable({
         scrollY: '200px',
         destroy: true,
-        sort: false,
+        sort: true,
         scrollCollapse: true,
         scrollX: true,
 
@@ -489,14 +505,18 @@ function ListarHistorialGanadores() {
         searching: false,
         paging: false,
 
-
+        // columnDefs: [
+        //     { targets: [0, 1], visible: true},
+        //     { targets: '_all', visible: false }
+        // ],
         data: resp,
         columns: [
 
 
             {
                 data: "tienda",
-                title: "tienda"
+                title: "tienda",
+
             },
             {
                 data: "evento",
@@ -567,8 +587,32 @@ function ListarHistorialGanadores() {
 
                 }
             },
+        ],
+        createdRow: function (row, data, dataIndex) {
 
-        ]
+            debugger
+            // If name is "Ashton Cox"
+
+            // Add COLSPAN attribute
+            $('td:eq(1)', row).attr('colspan', 3);
+
+            // Center horizontally
+            $('td:eq(1)', row).attr('align', 'center');
+
+            // Hide required number of columns
+            // next to the cell with COLSPAN attribute
+            $('td:eq(2)', row).css('display', 'none');
+            $('td:eq(3)', row).css('display', 'none');
+
+            // Update cell data
+            this.api().cell($('td:eq(1)', row)).data('N/A');
+
+        },
+        rowCallback: function (row, data) {
+            var row = row;
+            var data = data;
+            debugger
+        }
     });
 
 
