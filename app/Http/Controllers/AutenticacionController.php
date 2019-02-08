@@ -24,20 +24,15 @@ class AutenticacionController extends Controller
     {
         $usuario = $request->input('usuario');
         $password = $request->input('password');
-
         $respuesta = false;
         $mensaje_error = '';
         try {
-            // $respuesta_api = User::ValidarTokenLogin($usuario, $password);
-
-            // $http_code = $respuesta_api['http_code'];
-            $http_code = 202;
-            //$status = $respuesta_api['status'];
-
+            $respuesta_api = User::ValidarTokenLogin($usuario, $password);
+            $http_code = $respuesta_api['http_code'];
             if ($http_code == 202) {
                 $validar = User::where('usuario', $usuario)->first();
                 if ($validar == null) {
-                    $credenciales = User::RegistrarUsuario($usuario, $password);
+                    User::RegistrarUsuario($usuario, $password);
                     if (Auth::attempt(['usuario' => $usuario, 'password' => $password])) {
                         $respuesta = true;
                     }
@@ -53,9 +48,11 @@ class AutenticacionController extends Controller
                 } else {
                     $mensaje_error = 'Usuario/Contraseña no Coincide, Tienes ' . $intentos_fallidos . ' Intento(s) mas';
                 }
+            }else if($http_code == 406){
+                $mensaje_error = 'Error al conectarse con credenciales correctas pero usuario o local no estar activado';
+            }else if($http_code == 500){
+                $mensaje_error = 'Errores al lado del servidor';
             }
-            
-
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
@@ -74,3 +71,4 @@ class AutenticacionController extends Controller
 
     }
 }
+

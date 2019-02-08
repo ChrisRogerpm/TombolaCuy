@@ -3,14 +3,41 @@
 @section('content')
 
 <style type="text/css">
-    .nav-tabs li a, li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
-        
-        color: white; 
-    }
-    .nav-tabs li.active a, .nav-tabs li.active a:hover, .nav-tabs li.active a:focus {
+.nav-tabs li a,
+li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+
     color: white;
-    
-    }
+}
+
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+    color: white;
+
+}
+
+.panel-body>.container {
+    width: 100%;
+}
+
+.dataTables_wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.tablajack {
+    width: 1150px;
+    margin-left: 0px;
+}
+.dataTables_wrapper{
+    margin-left:0;
+    margin-right:0;
+}
+/**/
+
+/**/
 </style>
 
 <div class="row">
@@ -68,9 +95,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="">Configuracion JackPot</label>
-                                <select multiple="multiple" id="cboConfiguracionJackPot" name="jackPots"
+                                <select id="cboConfiguracionJackPot" name="jackPots"
                                     class="form-control input-sm multiselect" style="width: 100%;">
-                                    <option value="0">Todos Css</option>
+
                                 </select>
                             </div>
                         </div>
@@ -98,20 +125,22 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <div class="container">
-                    <h3 id="subtituloTabsGeneral">Dynamic Tabs</h3>
+                    <h3 id="subtituloTabsGeneral"></h3>
                     <ul id="tab-eval" class="nav nav-tabs">
-                        
+
 
                     </ul>
 
                     <div class="tab-content" id="tabContenido">
-                        
+
                     </div>
 
                     <table id="table" class="table table-bordered table-striped" style="width:100%">
                     </table>
 
+
                 </div>
+
             </div>
         </div>
     </div>

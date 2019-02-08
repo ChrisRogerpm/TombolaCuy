@@ -156,4 +156,30 @@ class Reporte extends Model
         return $listar;
     }
 
+    public static function PozoJackPotSegunJackPotId(Request $request)
+    {
+        $idJackpot = $request->input('idJackpot');
+        
+        $listar = DB::select(DB::raw("SELECT
+        j.idJackpot,
+        j.nombre JackPot,
+        pj.idPozoJackpot,
+        pj.idJackpot,
+        pj.idTicketGanador,
+        pj.idMoneda,
+        pj.numeroPozo,
+        pj.montoBase,
+        pj.montoBaseOculto,
+        pj.incrementoJackpot,
+        pj.incrementoPozoOculto,
+        pj.limiteInferior,
+        pj.limiteSuperior,
+        pj.estado
+        FROM jackpot j
+        INNER JOIN pozo_jackpot pj ON pj.idJackpot= j.idJackpot
+        WHERE j.idJackpot=$idJackpot
+        "));
+        return $listar;
+    }
+
 }
