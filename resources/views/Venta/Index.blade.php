@@ -26,25 +26,7 @@
                 </div>
             </div>
         </div>
-     <!--    <div class="col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <a href="{{route('Jackpot.Insertar')}}"
-                                       class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
-                                                class="glyphicon glyphicon-file"></span> NUEVO</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
-   
 
  <div class="row">
         <div class="col-md-12">
@@ -57,8 +39,6 @@
                                     <div class="input-group-addon bg-primary text-white">TIENDA</div>
                                      <input type="text" class="form-control input-sm" id="tienda">
                                      <input type="hidden" class="form-control input-sm" id="idPuntoVenta">
-
-
                                 </div>
                             </div>
                         </div>
@@ -101,7 +81,6 @@
 
 
     <div class="row">
-
 
 <!--    <div class="col-md-12">
             <div class="panel panel-primary">
@@ -154,7 +133,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:80vh">
+                    <DIV class="TOMBOLACUY" style="height:83vh;margin-bottom:15px">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -266,8 +245,8 @@
                                                 <div class=" numeros_rango2">
                                                     <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="1-12" class="rectangulo_azul">1-12</div>
                                                     <div data-idTipoPago=3 data-tipo="pares" data-color="azul" data-valor="PAR" class="rectangulo_azul">PAR</div>
-                                                    <div data-idTipoPago=2 data-tipo="negros" data-color="negro" data-valor="1" class="rectangulo_negro"></div>
-                                                    <div data-idTipoPago=2  data-tipo="rojos" data-color="rojo" data-valor="2"  class="rectangulo_rojo"></div>
+                                                    <div data-idTipoPago=2 data-tipo="color" data-color="color1" data-valor="1" class="rectangulo_negro"></div>
+                                                    <div data-idTipoPago=2  data-tipo="color" data-color="color2" data-valor="2"  class="rectangulo_rojo"></div>
                                                     <div data-idTipoPago=3 data-tipo="impares" data-color="azul" data-valor="IMPAR" class="rectangulo_azul">IMPAR</div>
                                                     <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="13-24" class="rectangulo_azul">13-24</div>
                                                 </div>
@@ -294,43 +273,23 @@
 
 
                                     <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
-                                <!-- <div class="">
-                                    <div class="historialfila"> -->
-                                  <!--    <div class=" historial_numeros">
-                                                            <div class="rectangulo_rojo">1</div>
-                                                            <div class="rectangulo_negro">4</div>
-                                                            <div class="rectangulo_verde">22</div>
-                                     </div>  -->   
-                                     <!--    </div>
-                                    </div> -->
-                                    <!--  <div class="">
-                                        <div class="historialfila"> -->
-                                             <div class=" historial_numeros">
-                                                                    <div class="rectangulo_rojo">1</div>
-                                                                   <!--  <div class="rectangulo_negro">4</div>
-                                                                   -->
-                                                                    
-                                             </div>    
+                                     <div class=" historial_numeros">
+                                        <div class="rectangulo_rojo">1</div>
+                                     </div>    
                                        <!--  </div>
                                     </div> -->
-                                  
-
-
-
                                 </div>
                                 <div class="columna_principalderecha">
                              
                                     <div class="tituloconfiguracionevento">
 
-                                         <div class="izquierda">
+                                        <div class="izquierda">
                                             <span CLASS="nombre_tituloconfiguracionevento"></span>
                                         </div>
                                         <div class="derecha">
                                             <span class="id_tituloconfiguracionevento"></span>   
                                         </div>
                                     </div>
-
-
                                     <div class="rowtablaeventos">
                                         <table class="table table-condensed table-stripedVenta" id="tabla_eventos">
                                             <thead>
@@ -378,33 +337,7 @@
                                                 <td>&nbsp;</td>
                                                 <td>&nbsp;</td>
                                             </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr> -->
-                                      
-                                         
-                                        
+                                         -->
                                             </tbody>
                                         </table>
                                     </div><!--rowtablaeventos-->
@@ -430,18 +363,12 @@
 
                                       <div class="rowbotones" id="div_botones">
                                                <div class="rowbotonesdiv check icon icon-2x fa fa-check">
-                                                <!-- <i style="margin-top:8px"  class="icon icon-1_5x fa fa-check"></i> -->
                                                 </div> 
                                                    <div class="rowbotonesdiv cerrar icon icon-2x fa fa-close">
-                                                <!-- <i style="margin-top:8px"  class="icon icon-1_5x fa fa-close"></i> -->
-
                                                 </div> 
                                                 <div class="rowbotonesdiv barcode icon icon-2x fa fa-barcode">
-                                                     <!-- <i style="margin-top:8px"  class="icon icon-1_5x fa fa-barcode"></i> -->
-
                                                 </div> 
                                                 <div class="rowbotonesdiv print icon icon-2x fa fa-print">
-                                                    <!-- <i style="margin-top:8px"  class="icon icon-1_5x fa fa-print"></i> -->
                                                 </div> 
                                     </div><!--rowapuestas-->
                                 </div>
@@ -456,10 +383,6 @@
                             </div>
                         </div>
     </div><!--JUEGO TOMBOLACUY-->
-
-
-
-
 
 
 
@@ -497,7 +420,6 @@
                 <div style="width:100%;border-top:2px dotted;display:table">
                             <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
                             <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
-
                 </div>
                 <div style="width:100%;display:table">
                
@@ -515,18 +437,11 @@
              
                             <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
                             <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
-
                 </div>
-
-
                 <div style="width:100%;display:table;border-top:2px dotted" id="datos_filas">
-             
-   
-
                 </div>
 
                 <div style="width:100%;display:table;border-top:2px dotted" id="total_ticket">
-                     
                         <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
                         <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
 
@@ -580,8 +495,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 

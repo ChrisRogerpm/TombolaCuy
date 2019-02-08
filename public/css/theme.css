@@ -7720,7 +7720,8 @@ height:85vh;
 
 }
 .rowcabecera{
-	font-size:16px;
+	/*font-size:16px;*/
+	font-size:2.5vh;
 	color:rgb(252,252,232);
 display:table;
 width:100%;
@@ -7759,6 +7760,7 @@ display:table-cell;vertical-align:middle;height:50%;
 	width:100%;*/
 	height:80%;
 	background-color:rgb(172, 168, 157);
+border:7px solid rgb(172, 168, 157);
 }
 
 
@@ -7959,6 +7961,8 @@ border:2px solid white;
 color:white;
 background-color:rgb(77, 88, 108);font-weight: bold;
 padding:4px 12px 4px 12px;
+font-weight:2.3vh;
+font-size:2.5vh;
 
 }
 .rowhistorial{
@@ -8033,21 +8037,21 @@ height:50%;*/
 .rowconfiguracioneventosdiv{
 	margin-top:10px;
 	background:rgb(77, 88, 108);
-	display:table;
+	/*display:table;*/
 	width:100%;
 	height:8%;
 }
 /*.rowconfiguracioneventosdiv div*/
 .configuracioneventosdiv {
-	line-height:14px;
+	/*line-height:14px;*/
 	float:left;
 	vertical-align:middle;
 	text-align:center;
 	color:white;
 	font-weight: bold;
 	border-radius:2px;
-	font-size:14px;
-
+	font-size:3vh;
+height:100%;
     background:rgb(137,157,198);
 	cursor:pointer;
 	border:1px solid black;
@@ -8061,10 +8065,10 @@ font-size:3.3vh;
 opacity:0.7;
 }
 .eventos_fila_izq{
-	width:90%;float:left;
+	width:90%;float:left;height:100%;
 }
 .eventos_fila_der{
-	width:10%;float:left;
+	width:10%;float:left;height:100%;
 }
 
 .tituloconfiguracionevento{
@@ -8118,10 +8122,11 @@ text-align: center;
 	display:table;
 	color:white;
 	font-family:'Calibri';
-	font-size:14px;
-	padding-left:15px;
+	font-size:2.2vh ;
+	/*14px;*/
 	display:flex;
 	align-items:center;
+
 }
 .rowtableeventos_footer .apuesta{
 float:left;
@@ -8129,6 +8134,7 @@ width:60%;
 	display:flex;
 	align-items:center;
 height:100%;
+padding-left:4%;
 
 /*line-height:7vh;*/
 }
@@ -8191,7 +8197,7 @@ width:22%;
 	color:white;
 	font-weight: bold;
 	border-radius:2px;
-	font-size:3vh;
+	font-size:4vh !important;
     border-width:1px;
     border-color:white;
     border-style:solid;
@@ -8202,6 +8208,7 @@ width:22%;
 		 display: flex;
     align-items: center;
     justify-content: center;
+
 
 
 }
@@ -8282,13 +8289,13 @@ filter:	brightness(150%);
 }*/
 
 /*************/////////////
-.table-stripedVenta {
+table.table-stripedVenta {
 	margin-bottom:0px !important;
     width: 100%;
     border-spacing: 0;
-    border: 2px solid black;
+    border: 2px solid black;width:100%;
 }
-.table-stripedVenta thead{
+table.table-stripedVenta thead{
 	background-color:rgb(36,36,37);
 }
 table.table-stripedVenta th,
@@ -8316,6 +8323,7 @@ table.table-stripedVenta tr:after {
 }
 .table-stripedVenta thead>tr>th{
 	color:white;
+	border-bottom:0px !important;
 }
 table.table-stripedVenta tbody {
     height: 154px;
@@ -8355,6 +8363,11 @@ display:inline;
 background-color:red;
 line-height:13px;
 cursor:pointer;
+
+}
+.divcerrarfila i{
+
+display:inline;
 
 }
 /*fin clases tabla*/

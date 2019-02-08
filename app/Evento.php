@@ -87,7 +87,15 @@ LIMIT 20
              public static function TipoApuestaListar()
     {
         $listar = DB::select(DB::raw("
-      select * from tipo_apuesta tip_apu LEFT JOIN tipo_pago tip_pag on tip_pag.idTipopago= tip_apu.idTipoPago"));
+        select tip_apu.valorapuesta,
+ tip_apu.idTipoApuesta ,
+ tip_apu.nombre,
+ tip_apu.rgb, 
+ FLOOR(tip_pag.multiplicadorDefecto) as multiplicadorDefecto,
+  tip_pag.idTipoPago,
+ tip_pag.plenoMinimo,
+ tip_pag.plenoMaximo,tip_pag.intercalado
+  from tipo_apuesta tip_apu LEFT JOIN tipo_pago tip_pag on tip_pag.idTipopago= tip_apu.idTipoPago"));
         return $listar;
     }
 
