@@ -7723,13 +7723,18 @@ height:85vh;
 	/*font-size:16px;*/
 	font-size:2.5vh;
 	color:rgb(252,252,232);
-display:table;
+/*display:table;*/
 width:100%;
 	height:12%;
 	/*width:100%;*/
 }
-.rowcabecera_nombres div { border-right:1px solid white;padding:6px;display:table-cell;vertical-align:middle;
-
+.rowcabecera_nombres div { border-right:1px solid white;
+	/*padding:6px;*/
+	/*display:table-cell;*/
+	vertical-align:middle;float:left;
+	height:100%;
+	display:flex;align-items:center;
+	padding-left:1%;
 	;}
 
 .rowcabecera_nombres div:nth-last-child(1) {
@@ -7738,10 +7743,16 @@ width:100%;
 
 .rowcabecera_nombres{
 	background-color:rgb(39,40,44);width:100%;font-weight: bold;
-	display:table-row;height:50%;
+	/*display:table-row;*/
+	height:50%;
 }
-.rowcabecera_datos div { border-right:1px solid white;padding:6px;
-display:table-cell;vertical-align:middle;height:50%;
+.rowcabecera_datos div { border-right:1px solid white;
+	/*padding:6px;*/
+/*display:table-cell;*/
+;height:100%;
+float:left;
+	padding-left:1%;
+display:flex;align-items:center;
 }
 
 .rowcabecera_datos div:nth-last-child(1) {
@@ -7751,7 +7762,9 @@ display:table-cell;vertical-align:middle;height:50%;
 
 
 .rowcabecera_datos{
-	background-color:rgb(72,72,70);width:100%;display:table-row;height:50%;
+	background-color:rgb(72,72,70);width:100%;
+	/*display:table-row;*/
+	height:50%;
 }
 
 
@@ -8035,7 +8048,7 @@ height:50%;*/
 }
 
 .rowconfiguracioneventosdiv{
-	margin-top:10px;
+	/*margin-top:10px;*/
 	background:rgb(77, 88, 108);
 	/*display:table;*/
 	width:100%;
@@ -8050,7 +8063,8 @@ height:50%;*/
 	color:white;
 	font-weight: bold;
 	border-radius:2px;
-	font-size:3vh;
+	/*font-size:3vh;*/
+	font-size:2.3vh;
 height:100%;
     background:rgb(137,157,198);
 	cursor:pointer;

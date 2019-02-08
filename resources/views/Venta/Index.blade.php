@@ -133,7 +133,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:83vh;margin-bottom:15px">
+                    <DIV class="TOMBOLACUY" style="height:83vh;">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
