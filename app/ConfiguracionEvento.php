@@ -17,9 +17,9 @@ class ConfiguracionEvento extends Model
 
     public $timestamps = false;
 
-      public static function ConfiguracionEventoListar()
+    public static function ConfiguracionEventoListar()
     {
-       
+
         $listar = DB::select(DB::raw('select  * FROM Configuracion_Evento'));
         return $listar;
 
@@ -27,9 +27,9 @@ class ConfiguracionEvento extends Model
     }
 
 
-      public static function EventoListar()
+    public static function EventoListar()
     {
-       
+
         $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
@@ -38,7 +38,6 @@ where ev.estadoEvento=1'));
 
 
     }
-
 
 
 }

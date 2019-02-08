@@ -26,9 +26,7 @@ class Reporte extends Model
         $lista = DB::select(DB::raw("SELECT
         pv.nombre as Tienda,
         e.nombre as Evento,
-        (SELECT
-        sum(ap1.montoApostado) as apostado
-        from apuesta ap1
+        (SELECT sum(ap1.montoApostado) as apostado from apuesta ap1 
         JOIN ticket t1 ON t1.idTicket = ap1.idTicket
         JOIN evento e1 ON e1.idEvento = t1.idEvento
         JOIN apertura_caja ac1 ON ac1.idAperturaCaja = t1.idAperturaCaja

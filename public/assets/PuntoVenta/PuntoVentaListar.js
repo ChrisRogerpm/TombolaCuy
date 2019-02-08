@@ -58,8 +58,20 @@ function ListarPuntoVenta() {
                 data: resp,
                 columns: [
                     { data: "nombre", title: "Punto de Venta" },
-                    { data: "razonSocial", title: "Empresa" },
-                    { data: "Ubigeo", title: "Ubigeo" },
+                    {
+                        data: null, title: "Empresa",
+                        "render":function (value) {
+                            $razonSocial = value.razonSocial == null ? '--': value.razonSocial;
+                            return $razonSocial;
+                        }
+                    },
+                    {
+                        data: null, title: "Ubigeo",
+                        "render":function (value) {
+                            $Ubigeo = value.Ubigeo == null ? '--': value.Ubigeo;
+                            return $Ubigeo;
+                        }
+                    },
                     {
                         data: null, title: "",
                         "render": function (value) {
