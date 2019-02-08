@@ -3,19 +3,39 @@
 @section('content')
 
 <style type="text/css">
+ul#tab-eval {
+    height: 40px;
+}
+#tab-eval li {
+    /* height: 50px; */
+    background: #34495e;
+    /* width: fit-content; */
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#tab-eval li:hover {
+    
+    background: #293a4a;
+    
+}
+
+
 .nav-tabs li a,
 li.active a,
 .nav-tabs li.active a:hover,
 .nav-tabs li.active a:focus {
-
-    color: white;
+    color: white;border:none;
+    background: #34495e;
 }
 
 .nav-tabs li.active a,
 .nav-tabs li.active a:hover,
 .nav-tabs li.active a:focus {
-    color: white;
-
+    color: white;border:none;
+    background: #293a4a;
 }
 
 .panel-body>.container {
@@ -31,10 +51,12 @@ li.active a,
     width: 1150px;
     margin-left: 0px;
 }
-.dataTables_wrapper{
-    margin-left:0;
-    margin-right:0;
+
+.dataTables_wrapper {
+    margin-left: 0;
+    margin-right: 0;
 }
+
 /**/
 
 /**/

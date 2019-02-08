@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
-
+    <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}">
 
     <!-- /Styles -->
 
@@ -923,6 +923,14 @@
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="{{asset('../js/moment.js')}}"></script>
+
+    <script src="{{asset('../assets/js/exportar-excel/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/jszip.min.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/pdfmake.min.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/vfs_fonts.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('../assets/js/exportar-excel/buttons.print.min.js')}}"></script>
 
     @stack('Js')
 </body>
