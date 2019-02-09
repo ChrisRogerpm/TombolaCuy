@@ -4,6 +4,13 @@ $(window).resize(function () {
 }).trigger('resize')
 /////fin responsive tombolacuy
 function responsivetombola(){
+
+
+heighttbody=$(".rowtablaeventos").outerHeight()-$("#tabla_eventos thead tr").height()
+$("#tabla_eventos tbody").attr("style","height:"+heighttbody+"px")
+
+
+
     $(".responsive").each(function(i,e){
         var height = $(e).height();
         $(e).css({
