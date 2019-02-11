@@ -7711,25 +7711,26 @@ height:85vh;
 
 }
 .contenedor_tablaprincipal{
-
 	border:4px solid rgb(19, 71, 128);
-
 		height:58%;
 		width:100%;
-
-
 }
 .rowcabecera{
 	/*font-size:16px;*/
 	font-size:2.5vh;
 	color:rgb(252,252,232);
-display:table;
+/*display:table;*/
 width:100%;
 	height:12%;
 	/*width:100%;*/
 }
-.rowcabecera_nombres div { border-right:1px solid white;padding:6px;display:table-cell;vertical-align:middle;
-
+.rowcabecera_nombres div { border-right:1px solid white;
+	/*padding:6px;*/
+	/*display:table-cell;*/
+	vertical-align:middle;float:left;
+	height:100%;
+	display:flex;align-items:center;
+	padding-left:1%;
 	;}
 
 .rowcabecera_nombres div:nth-last-child(1) {
@@ -7738,10 +7739,16 @@ width:100%;
 
 .rowcabecera_nombres{
 	background-color:rgb(39,40,44);width:100%;font-weight: bold;
-	display:table-row;height:50%;
+	/*display:table-row;*/
+	height:50%;
 }
-.rowcabecera_datos div { border-right:1px solid white;padding:6px;
-display:table-cell;vertical-align:middle;height:50%;
+.rowcabecera_datos div { border-right:1px solid white;
+	/*padding:6px;*/
+/*display:table-cell;*/
+;height:100%;
+float:left;
+	padding-left:1%;
+display:flex;align-items:center;
 }
 
 .rowcabecera_datos div:nth-last-child(1) {
@@ -7751,7 +7758,9 @@ display:table-cell;vertical-align:middle;height:50%;
 
 
 .rowcabecera_datos{
-	background-color:rgb(72,72,70);width:100%;display:table-row;height:50%;
+	background-color:rgb(72,72,70);width:100%;
+	/*display:table-row;*/
+	height:50%;
 }
 
 
@@ -7766,7 +7775,8 @@ border:7px solid rgb(172, 168, 157);
 
 .row_pleno{
 width:100%;
-height:10%;padding-left:10px;
+height:10%;
+padding-left:2%;
 background-color:rgb(172, 168, 157);
 display:flex;
 align-items:center;
@@ -7781,6 +7791,7 @@ justify-content:center;
 	height:50%;
 width:30%;text-align:center;font-weight:bold;
 align-items:center;
+font-size:1.8vh;
 }
 
 .columna_principalizquierda{
@@ -8020,7 +8031,8 @@ height:50%;*/
 	color:white;
 	font-weight: bold;
 	border-radius:5px;
-	font-size:18px;
+	/*font-size:18px;*/
+	font-size:3vh;
 	float:left;
 		display: flex;
     align-items: center;
@@ -8035,7 +8047,7 @@ height:50%;*/
 }
 
 .rowconfiguracioneventosdiv{
-	margin-top:10px;
+	/*margin-top:10px;*/
 	background:rgb(77, 88, 108);
 	/*display:table;*/
 	width:100%;
@@ -8050,7 +8062,8 @@ height:50%;*/
 	color:white;
 	font-weight: bold;
 	border-radius:2px;
-	font-size:3vh;
+	/*font-size:3vh;*/
+	font-size:2.3vh;
 height:100%;
     background:rgb(137,157,198);
 	cursor:pointer;
@@ -8061,7 +8074,7 @@ width:20%;
 .seleccionadoevento
 {
 /*border:2px solid black;*/
-font-size:3.3vh;
+/*font-size:3.3vh;*/
 opacity:0.7;
 }
 .eventos_fila_izq{
@@ -8074,18 +8087,29 @@ opacity:0.7;
 .tituloconfiguracionevento{
 width:100%;
 background-color:rgb(172,168,157);
-display:table;	height:8%;
+	height:7%;
+	font-size:2vh;
 }
 
 .tituloconfiguracionevento  div.izquierda
 {
-	width:70%;float:left;padding:10px;
+	width:70%;
+	height:100%;
+	display:flex;
+	align-items:center;
+	float:left;
 	font-weight: bold;
+	padding-left:2%;
 }
 .tituloconfiguracionevento  div.derecha
 {
-	width:30%;float:left;padding:10px;
+	width:30%;float:left;
+height:100%;
+	display:flex;
+	align-items:center;
 	font-weight: bold;
+	padding-left:2%;
+
 }
 
 .nombre_tituloconfiguracionevento{
@@ -8102,7 +8126,7 @@ display:table;	height:8%;
 	width:100%;
 	height:45%;
 	/*font-size:13px;*/
-	font-size:2vh;
+	font-size:1.4vh;
 	/*overflow:auto;*/
 	/*background-image: url(../images/tablafondo.png) /*no-repeat center center*/*/
 }
@@ -8122,7 +8146,7 @@ text-align: center;
 	display:table;
 	color:white;
 	font-family:'Calibri';
-	font-size:2.2vh ;
+	font-size:2vh ;
 	/*14px;*/
 	display:flex;
 	align-items:center;
@@ -8182,7 +8206,7 @@ margin-bottom:1%;
 	width:100%;
     background-color:rgb(77,88,108);
     padding:5px;
-    height:12%;
+    height:13%;
 
 }
 .rowbotones div{
@@ -8339,9 +8363,9 @@ table.table-stripedVenta thead th {
 }
 
 table.table-stripedVenta thead tr th { 
-    height: 30px;
+    /*height: 30px;*/
     /*line-height: 30px;*/
-    line-height: 2vh;
+    /*line-height: 2vh;*/
     /*text-align: left;*/
 }
 

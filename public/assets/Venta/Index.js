@@ -4,6 +4,13 @@ $(window).resize(function () {
 }).trigger('resize')
 /////fin responsive tombolacuy
 function responsivetombola(){
+
+
+heighttbody=$(".rowtablaeventos").outerHeight()-$("#tabla_eventos thead tr").height()
+$("#tabla_eventos tbody").attr("style","height:"+heighttbody+"px")
+
+
+
     $(".responsive").each(function(i,e){
         var height = $(e).height();
         $(e).css({
@@ -12,15 +19,51 @@ function responsivetombola(){
         })
     })
 /////barra de eventos
-    $(".eventos_fila_izq>div").each(function(i,e){
-         var height = $(e).parent().parent().height();
-         $(e).css({
-             'line-height': height + 'px'
-         })
-     })
+    // $(".eventos_fila_izq>div").each(function(i,e){
+    //      var height = $(e).parent().parent().height();
+    //      $(e).css({
+    //          'line-height': height + 'px'
+    //      })
+    //  })
     ///fin barra de eventos
 
+////textoresponsive
+// $("#div_configuracioneventos .eventotextodiv").each(function(i,e){
+//     textoresponsive($(e))
+// })
+
+//fin textoresponmsive
 }
+
+
+
+  function textoresponsive(elemento) {
+  var el, elements, _i, _len, _results;
+  elements = $(elemento);
+  if (elements.length < 0) {
+    return;
+  }
+  _results = [];
+  for (_i = 0, _len = elements.length; _i < _len; _i++) {
+    el = elements[_i];
+    _results.push((function(el) {
+      var resizeText, _results1;
+      resizeText = function() {
+        var elNewFontSize;
+        elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
+        return $(el).css('font-size', elNewFontSize);
+      };
+      _results1 = [];
+      while (el.scrollHeight > el.offsetHeight) {
+        _results1.push(resizeText());
+      }
+       return _results1;
+    })(el));
+  }
+  return _results;
+
+
+};
 
 
 
@@ -97,9 +140,10 @@ function ListarVentaDatosJson() {
                                 //.text(e.nombre)  
 
                                 .append(
-                                        $("<div>").attr("style","width: 30%; height: 100%;display:inline-block")
+                                        $("<div>").attr("style","width: 30%; height: 100%;float:left;position:relative")
+                                        // $("<div>").attr("style","width: 30%; height: 100%;display:inline-block")
                                         .append(
-                                            $("<img>").attr("style","width:70%;height:80%").attr("src",basePath+"img/juegos/"+e.logo)
+                                            $("<img>").attr("style","width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;").attr("src",basePath+"img/juegos/"+e.logo)
                                             )
                                        //                  .attr("width",50)
                                        //                  .attr("height",40)
@@ -111,7 +155,8 @@ function ListarVentaDatosJson() {
                                        //                  )
                                     )  
                                  .append(
-                                        $("<div>").attr("style","width: 70%; height: 100%;display:inline-block").text(e.nombre)
+                                        // $("<div>").attr("style","width: 70%; height: 100%;display:inline-block").text(e.nombre).addClass("eventotextodiv")
+                                        $("<div>").attr("style","width: 70%; height: 100%;float:left;display:flex;align-items:center").text(e.nombre).addClass("eventotextodiv")
 
                                    // $("<span>")  .attr("style","vertical-align: middle;display: table-cell;")
                                    //              .text(e.nombre)
