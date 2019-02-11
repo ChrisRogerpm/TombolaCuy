@@ -102,4 +102,20 @@ class ReporteController extends Controller
 
     }
 
+    public function JackPotSegunidPozoJackPot(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::JackPotSegunidPozoJackPot($request);
+
+            //$lista = DB::table('tipo_apuesta')->get();
+
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+
+    }
+
 }
