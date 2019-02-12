@@ -161,7 +161,7 @@ Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
     Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
     Route::post('ConfiguracionPozoSegunConfJackPot', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
     Route::post('PozoJackPotSegunJackPotId', 'ReporteController@PozoJackPotSegunJackPotId');
-    Route::post('JackPotSegunidPozoJackPot', 'ReporteController@JackPotSegunidPozoJackPot');
+    Route::post('JackPotSegunidJackpot', 'ReporteController@JackPotSegunidJackpot');
     #endregion
     
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');

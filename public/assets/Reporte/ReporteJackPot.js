@@ -57,14 +57,37 @@ $(document).ready(function () {
 
     //Punto de venta Tienda
 
+    // $('#cboTienda option:selected').on('select2:select', function (e) {
+    //     var data = e.params.data;
+    //     //debugger
+    //     var valor = data.id;
+    //     if (valor == 0) {
+    //         $('#cboTienda').val([]).trigger('change');
+    //         $('#cboTienda').val(0).trigger('change');
+    //     } else {
+    //         var valores = $('#cboTienda').val();
+    //         var nuevo = [];
+    //         $.each(valores, function (index, value) {
+    //             if (value != 0) {
+    //                 nuevo.push(value);
+    //             }
+    //         })
+    //         $('#cboTienda').val(nuevo).trigger('change');
+
+    //         dataTienda.push(data);
+    //         //enviarTiendas(dataTienda);
+    //     }
+    // });
+
     $('#cboTienda').on('select2:select', function (e) {
+        debugger
         var data = e.params.data;
-        //debugger
         var valor = data.id;
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        } else {
+        }
+        else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -73,9 +96,6 @@ $(document).ready(function () {
                 }
             })
             $('#cboTienda').val(nuevo).trigger('change');
-
-            dataTienda.push(data);
-            //enviarTiendas(dataTienda);
         }
     });
 
@@ -150,14 +170,16 @@ function enviarTiendas(tiendas) {
 }
 
 var return_first;
+
 function callback(response) {
     return_first = response;
     //use return_first variable here
 }
 
-var return_JackPotSegunidPozoJackPot;
-function callbackJackPotSegunidPozoJackPot(response) {
-    return_JackPotSegunidPozoJackPot = response;
+var return_JackPotSegunidJackPot;
+
+function callbackJackPotSegunidJackPot(response) {
+    return_JackPotSegunidJackPot = response;
     //use return_first variable here
 }
 
@@ -244,80 +266,87 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                 tdPozo = limites.map(x => '<th style="font-weight: 600;color:black;text-align:center;">' + x + '</th>\n').join('');
                 tdPozo = tdPozo + limites.map(x => '<th style="font-weight: 600;color:steelblue;text-align:center;">' + x + ' Oculto</th>\n').join('');
                 tdPozo = tdPozo.repeat(listaPososJackPot.length);
-                
-                //thPozo = '<th rowspan="2">Tiendas<th>';
-                var listaJackPotSegunidPozoJackPot = [];
-                
 
-                var tdBody ='';
+                //thPozo = '<th rowspan="2">Tiendas<th>';
+                var listaJackPotSegunidJackPot = [];
+
+
+                var tdBody = '';
                 var trBody;
-                var bodyJackpot='';
+                var bodyJackpot = '';
                 debugger
                 listaPososJackPot.map((obj, index) => {
                     thPozo = thPozo + `<th colspan='3'style="color:black;width:110px;text-align:center;">Pozo ${index+1} (${obj.idPozoJackpot})</th>\n
                                         <th colspan='3' style="color:steelblue;width:110px;text-align:center">Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>\n`;
 
                     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
-                    
-                    JackPotSegunidPozoJackPot(obj.idPozoJackpot);
-                 
-                    listaJackPotSegunidPozoJackPot = [...listaJackPotSegunidPozoJackPot,...return_JackPotSegunidPozoJackPot];
-                    debugger
-                    //tdBody +=listaJackPotSegunidPozoJackPot.map(x => '<td style="color:black;text-align:center;">' + x.incrementoJackpot + '</td>\n').join('');
-                    for (let p = 0; p < listaJackPotSegunidPozoJackPot.length; p++) {
-                        var element = listaJackPotSegunidPozoJackPot[p];
-                        tdBody+=`<td> ${element.TIENDA}</td>
-                        <td> ${element.incrementoJackpot}</td>
-                        <td> ${element.limiteInferior}</td>
-                        <td> ${element.limiteSuperior}</td>
-                        <td> ${element.incrementoPozoOculto}</td>
-                        <td> ${element.limiteInferiorOculto}</td>
-                        <td> ${element.limiteSuperiorOculto}</td>`;
-                        trBody ='<tr>'+ tdBody + '</tr>';
-                        //debugger
-                    }
-                    
-                    //listaJackPotSegunidPozoJackPot=[];
-                    //bodyJackpot +=trBody+"\n";
-                    trBody='';
-                    tdBody='';
-                    //debugger
-                    
+
+
+
                 });
 
-                for (let jp = 0; jp < (listaPososJackPot.length*6)+1; jp++) {
-                    //var element = ;
-                  
-                    for (let p = 0; p < listaJackPotSegunidPozoJackPot.length; p++) {
-                        // var pozoId= listaPososJackPot[jp].idPozoJackpot;debugger
-                        // var element = listaJackPotSegunidPozoJackPot[p];
-                        // if (pozoId== element.idPozoJackpot) {
-                        //     tdBody+=`<td> ${element.TIENDA}</td>
-                        //     <td> ${element.incrementoJackpot}</td>
-                        //     <td> ${element.limiteInferior}</td>
-                        //     <td> ${element.limiteSuperior}</td>
-                        //     <td> ${element.incrementoPozoOculto}</td>
-                        //     <td> ${element.limiteInferiorOculto}</td>
-                        //     <td> ${element.limiteSuperiorOculto}</td>`;        
-                        // }
+                JackPotSegunidJackPot(obj.idJackPot);
+
+                listaJackPotSegunidJackPot = [...listaJackPotSegunidJackPot, ...return_JackPotSegunidJackPot];
+                debugger
+                //tdBody +=listaJackPotSegunidPozoJackPot.map(x => '<td style="color:black;text-align:center;">' + x.incrementoJackpot + '</td>\n').join('');
+                
+                for (let t = 0; t < tiendas.length; t++) {
+                    var idTienda = tiendas[t];
+                    
+                    var listaJacks= listaJackPotSegunidJackPot.filter(x=>x.idPuntoVenta==idTienda);
+                    var tiendaRepetida ='';
+                    for (let l = 0; l < listaJacks.length; l++) {
                         
-                       
+                        const element = listaJacks[l].TIENDA;
+                        tiendaRepetida=element;
                     }
+
+                        tdBody+=`<td>${tiendaRepetida}</td>`;
+                    for (let p = 0; p < listaJacks.length; p++) {
+                        var element = listaJacks[p];
+                        tdBody += `
+                            <td> ${element.incrementoJackpot}</td>
+                            <td> ${element.limiteInferior}</td>
+                            <td> ${element.limiteSuperior}</td>
+                            <td> ${element.incrementoPozoOculto}</td>
+                            <td> ${element.limiteInferiorOculto}</td>
+                            <td> ${element.limiteSuperiorOculto}</td>`;
+                        trBody = '<tr>' + tdBody + '</tr>';
+                        //debugger
+                    }
+                    trBody = (trBody != null)?trBody:'';
+                    bodyJackpot +=trBody+"\n";
+                    trBody = '';
+                    tdBody = '';
+
                     debugger
-                    trBody ='<tr>'+ tdBody + '</tr>';
                 }
-                // tdPozoOculto = tdPozoOculto + limites.map(x => '<td style="font-weight: 600;color:blue">' + x + ' Oculto</td>').join('');
+                //listaJackPotSegunidJackPot=[];
+                // for (let p = 0; p < listaJackPotSegunidJackPot.length; p++) {
+                //     var element = listaJackPotSegunidJackPot[p];
+                //     tdBody += `<td> ${element.TIENDA}</td>
+                //         <td> ${element.incrementoJackpot}</td>
+                //         <td> ${element.limiteInferior}</td>
+                //         <td> ${element.limiteSuperior}</td>
+                //         <td> ${element.incrementoPozoOculto}</td>
+                //         <td> ${element.limiteInferiorOculto}</td>
+                //         <td> ${element.limiteSuperiorOculto}</td>`;
+                //     trBody = '<tr>' + tdBody + '</tr>';
+                //     //debugger
+                // }
 
-                // tdPozoOculto = tdPozoOculto.repeat(listaPososJackPot.length);
-                //tdPozo += tdPozoOculto;
-                // listaPososJackPot.map((obj, index) => {
-                //     thPozo = thPozo + `<th colspan='3'>Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>`;
+                // //listaJackPotSegunidPozoJackPot=[];
+                // bodyJackpot +=trBody+"\n";
+                // trBody = '';
+                // tdBody = '';
+                // //debugger
 
-                //     //tdPozo = tdPozo + `<td>Inicial</td>`;
-                //     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
-                // });
+
+
+
                 var thp = '';
-               
+
                 thp = tdPozo;
                 //debugger;
                 debugger;
@@ -358,10 +387,11 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             });
 
 
-           
-
+            //listaJackPotSegunidJackPot = [];
+            tiendas=[];
             tabEval.innerHTML += html;
             tabContenido.innerHTML += htmlContenidoTabs;
+            bodyJackpot='';
             //1ero debe dibujarse el doom y despues usar esta funcion
             $("#tab-eval a").click(function () {
                 $(this).tab("show");
@@ -370,9 +400,20 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             debugger
             //var tablaExi = document.getElementsByClassName('tablajack');
 
-            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display","none");
+            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display", "none");
             debugger;
             $('table.tablajack').DataTable({
+                dom: 'Bfrtip',
+                    
+                buttons: [
+                    {
+                        extend: 'excel',
+                        title: 'Reporte JackPot'
+                        
+                    }
+                    
+                    
+                ],
                 scrollY: '200px',
                 destroy: true,
                 sort: true,
@@ -390,7 +431,7 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
 
             });
 
-           
+
         },
         error: function (jqXHR, textStatus, errorThrown) {}
     });
@@ -450,30 +491,39 @@ function ListaDeJacks() {
 
 
 function buscarListarJackPot() {
-    //debugger;
-
+    debugger;
+    var validar = $("#frmNuevo");
+    if (validar.valid()) {
     var cboTienda = $("#cboTienda").val();
     var cboConfiguracionJackPot = $("#cboConfiguracionJackPot").val();
     var url = basePath + "ReporteJackPotListarJson";
     var confJack = [...cboConfiguracionJackPot];
+    
+    // var TiendaArray = [];
+    // $("#cboTienda option:selected").each(function () {
+    //     if ($(this).val() !== "") {
+    //         TiendaArray.push({'id': $(this).val(), 'Tienda': $(this).text()})
+    //     }
+    // });
 
-    var tiendas = dataTienda;
+    var tiendas = cboTienda;
 
     //$('#subtituloTabsGeneral').html($("#cboConfiguracionJackPot").text);
     ConfiguracionPozoSegunConfJackPot(confJack[0], tiendas);
 
     //ListarHistorialGanadores();
+    }
 
 }
 
-function JackPotSegunidPozoJackPot(idPozoJackpot) {
+function JackPotSegunidJackPot(idJackpot) {
     debugger;
-    
+
     var lista = [];
-    var url = basePath + "JackPotSegunidPozoJackPot";
-    var idPozoJackpot = idPozoJackpot;
+    var url = basePath + "JackPotSegunidJackpot";
+    var idJackpot = idJackpot;
     var dataForm = {
-        idPozoJackpot: idPozoJackpot
+        idJackpot: idJackpot
     };
     //debugger
     // var obj = { name: "John", age: 30, city: "New York" };
@@ -494,11 +544,11 @@ function JackPotSegunidPozoJackPot(idPozoJackpot) {
         success: function (response) {
             var resp = response;
             debugger;
-         
+
             var data = [...resp.data];
             lista = data;
 
-            callbackJackPotSegunidPozoJackPot(lista);
+            callbackJackPotSegunidJackPot(lista);
         },
         error: function (jqXHR, textStatus, errorThrown) {}
     });
@@ -518,11 +568,11 @@ $("#frmNuevo")
         },
         messages: {
             jackPots: {
-                required: '',
+                required: 'Eliga una configuración',
 
             },
             tiendas: {
-                required: '',
+                required: 'Eliga una o mas tiendas',
 
             }
         },

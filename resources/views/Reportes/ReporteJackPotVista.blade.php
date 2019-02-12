@@ -21,7 +21,9 @@ ul#tab-eval {
     background: #293a4a;
     
 }
-
+.error{
+    color:#ef3a3a;
+}
 
 .nav-tabs li a,
 li.active a,
@@ -43,7 +45,7 @@ li.active a,
 }
 
 .dataTables_wrapper {
-    width: 1000px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -56,7 +58,10 @@ li.active a,
     margin-left: 0;
     margin-right: 0;
 }
+#tab-eval li.active{
+    border-bottom: 2px solid #659ce0;
 
+}
 /**/
 
 /**/

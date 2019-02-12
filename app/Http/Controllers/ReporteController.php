@@ -102,12 +102,12 @@ class ReporteController extends Controller
 
     }
 
-    public function JackPotSegunidPozoJackPot(Request $request)
+    public function JackPotSegunidJackpot(Request $request)
     {
         $lista = "";
         $mensaje_error = "";
         try {
-            $lista = Reporte::JackPotSegunidPozoJackPot($request);
+            $lista = Reporte::JackPotSegunidJackpot($request);
 
             //$lista = DB::table('tipo_apuesta')->get();
 
