@@ -553,9 +553,9 @@ $("#divimpresion #datos_filas").empty()
 
                     $("#modal_imprimir").modal("show");
                     $("#btnimprimir").off("click").on("click",function(){
-                                // setTimeout(function(){
-                                //     Imprimir("divimpresion");
-                                // },1000)
+                                setTimeout(function(){
+                                    Imprimir("divimpresion");
+                                },1000)
 
 
                                  setTimeout(function(){
