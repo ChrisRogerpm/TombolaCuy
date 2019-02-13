@@ -29,8 +29,8 @@ class Evento extends Model
 
     public static function EventoListar()
     {
-
-        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,
+        $listar = DB::select(DB::raw('
+select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
@@ -42,7 +42,7 @@ where ev.estadoEvento=1'));
     {
 
         $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,
-        	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,
+        	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AperturaCaja;
 use App\Evento;
+use App\Ticket;
+use App\Apuesta;
 
 use \Milon\Barcode\DNS1D;
 
@@ -22,6 +24,48 @@ class VentaController extends Controller
     public function Index()
     {
         return view('Venta.Index');
+    }
+
+
+    public function GuardarTicket(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try 
+        {
+            $datos=$request->datos;
+            $ticketobjeto=$datos["TicketObjeto"];
+            $apuestas=$datos["Apuestas"];
+            $ticketobjeto=$request->merge($ticketobjeto);
+            $data=Ticket::GuardarTicket($ticketobjeto);
+            $id_ticketinsertado=$data->idTicket;
+            foreach($apuestas as $apu){
+                $apu["idTicket"]=$id_ticketinsertado;
+                Apuesta::GuardarApuestas2($apu);
+            }
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+    }
+
+
+    public function BuscarTicket(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try 
+        {
+            $datos=$request->datos;
+            $tickets=Ticket::BuscarTicket($datos["idEvento"],$datos["idTicket"]);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+               return response()->json([
+            'tickets' => $tickets
+            ]);
     }
 
     public function VentaDatosJson()

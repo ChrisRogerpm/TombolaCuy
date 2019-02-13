@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('Index', 'VentaController@Index')->name('Venta.Index');
 
 Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+Route::post('GuardarTicket',  'VentaController@GuardarTicket');
+Route::post('BuscarTicket',  'VentaController@BuscarTicket');
 Route::post('EventoDatosJson','VentaController@EventoDatosJson');
 Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
 Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');

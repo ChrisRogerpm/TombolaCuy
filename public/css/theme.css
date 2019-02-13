@@ -8399,7 +8399,64 @@ display:inline;
 
 
 
+/*digitador*/
 
+.digitador{
+	width:100%;
+
+}
+.digitador .digito{
+	float:left;
+	width:30%;
+	height:45px;
+	background:rgb(77, 88, 108) ;
+	border:1px solid white; 
+	margin-bottom:5px;
+	margin-left:1%;
+	margin-top:3px;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	font-size:2.4vh;
+	cursor:pointer;
+color:white;
+
+}
+.digitador .borrar{
+	float:left;
+	width:30%;
+	height:45px;
+	background:rgb(77, 88, 108) ;
+	border:1px solid white; 
+	margin-bottom:5px;
+	margin-left:1%;
+	margin-top:3px;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	font-size:2.4vh;
+	cursor:pointer;
+
+color:white;
+}
+.digitador .buscar_div{
+	float:left;
+	width:30%;
+	height:45px;
+	background:rgb(77, 88, 108) ;
+	border:1px solid white; 
+	margin-bottom:5px;
+	margin-left:1%;
+	margin-top:3px;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	font-size:2.4vh;
+	cursor:pointer;
+
+color:white;
+}
+/*fin digitador*/
 
 
 
