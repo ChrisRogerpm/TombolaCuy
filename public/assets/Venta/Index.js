@@ -85,7 +85,7 @@ function BuscarTicket(ticketobjeto){
     })
 
 }
-function GuardarTicket(ticketobjeto){
+function GuardarTicket(ticketobjeto){/////GUARDATICKET EN TICKET Y APUESTAS , ABRE MODAL
     TicketObjeto={};
     TicketObjeto.idAperturaCaja=aperturacajadatos.idAperturaCaja;
     TicketObjeto.idEvento=eventoactual.IdEvento;
@@ -125,7 +125,13 @@ function GuardarTicket(ticketobjeto){
         },
 
         success: function (response) {
-            TICKET_IMPRIMIR={}
+            ticketdata=response.id_ticketinsertado;
+            idticket=ticketdata.idTicket;
+            $("#divimpresion #IDTique").text(idticket);
+            $("#modal_imprimir").modal("show");
+            Imprimir("divimpresion");
+
+            // TICKET_IMPRIMIR={}
 
             toastr.success("Ticket Guardado");
         },
@@ -468,7 +474,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
 
 ////ImprimirJson()  =>  al hacer click en boton PRINT;
-function ImprimirJson(){
+function ImprimirJson(idTicket){
 //////genera codigoqr y codigo de barras desde php
     TICKET_IMPRIMIR={};
     TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
@@ -554,11 +560,10 @@ function ImprimirJson(){
                 $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
                 $("#imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
 
-                $("#modal_imprimir").modal("show");
                 $("#btnimprimir").off("click").on("click",function(){
-                            setTimeout(function(){
-                                Imprimir("divimpresion");
-                            },1000)
+                            // setTimeout(function(){
+                            //     Imprimir("divimpresion");
+                            // },1000)
 
                              setTimeout(function(){
                                 GuardarTicket(TICKET_IMPRIMIR);
@@ -927,7 +932,7 @@ $(document).ready(function () {
 
                 }
                 else{
-                    toastr.error("Ya apostado "+valornumero,"Error");
+                    toastr.error("Ya ingresó  "+valornumero);
                 }
             })///fin numerotabla seleccionados
         $("#numeros_tabla .seleccionado").removeClass("seleccionado");

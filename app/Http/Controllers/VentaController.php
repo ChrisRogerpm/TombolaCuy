@@ -47,7 +47,8 @@ class VentaController extends Controller
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error,
+        return response()->json(['respuesta' => $respuesta,
+                                 'mensaje' => $mensaje_error,
                                  'id_ticketinsertado' => $data,
                                  'apuestas'=> $apuestas
                                 ]);
