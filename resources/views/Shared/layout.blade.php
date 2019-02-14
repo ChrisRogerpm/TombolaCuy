@@ -45,14 +45,18 @@
 
 
     <link rel="stylesheet" href="{{asset('../css/theme.css')}}">
-    <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{asset('../components/datatables/buttons.dataTables.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}"> -->
+    <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\DataTables-1.10.18\css -->
+    <link rel="stylesheet" href="{{asset('../assets/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css')}}"> />
+    <!-- <link rel="stylesheet" href="{{asset('../components/datatables/buttons.dataTables.min.css')}}"> -->
+    <link rel="stylesheet" href="{{asset('../assets/DataTables/Buttons-1.5.4/css/buttons.dataTables.min.css')}}"> />
+    
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('../components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">    
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
-    <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}"> -->
 
     <!-- /Styles -->
 
@@ -924,14 +928,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="{{asset('../js/moment.js')}}"></script>
 
-    <script src="{{asset('../assets/js/exportar-excel/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('../assets/js/exportar-excel/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('../assets/js/exportar-excel/jszip.min.js')}}"></script>
+    <!-- <script src="{{asset('../assets/js/exportar-excel/dataTables.buttons.min.js')}}"></script> -->
+    <script src="{{asset('../assets/DataTables/Buttons-1.5.4/js/dataTables.buttons.min.js')}}"></script>
+    <!-- <script src="{{asset('../assets/js/exportar-excel/buttons.flash.min.js')}}"></script> -->
+    <script src="{{asset('../assets/DataTables/Buttons-1.5.4/js/buttons.flash.min.js')}}"></script>
+    <!-- <script src="{{asset('../assets/js/exportar-excel/jszip.min.js')}}"></script> -->
+    <script src="{{asset('../assets/DataTables/JSZip-2.5.0/jszip.js')}}"></script>
     <script src="{{asset('../assets/js/exportar-excel/pdfmake.min.js')}}"></script>
     <script src="{{asset('../assets/js/exportar-excel/vfs_fonts.js')}}"></script>
-    <script src="{{asset('../assets/js/exportar-excel/buttons.html5.min.js')}}"></script>
+    <!-- <script src="{{asset('../assets/js/exportar-excel/buttons.html5.min.js')}}"></script> -->
+    <script src="{{asset('../assets/DataTables/Buttons-1.5.4/js/buttons.html5.js')}}"></script>
+    <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\Buttons-1.5.4\js\buttons.html5 -->
     <script src="{{asset('../assets/js/exportar-excel/buttons.print.min.js')}}"></script>
+    <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\JSZip-2.5.0
 
+    C:/xampp/htdocs/TombolaCuy/public/assets/js/exportar-excel -->
     @stack('Js')
 </body>
 

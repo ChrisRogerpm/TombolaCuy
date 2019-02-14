@@ -57,14 +57,37 @@ $(document).ready(function () {
 
     //Punto de venta Tienda
 
+    // $('#cboTienda option:selected').on('select2:select', function (e) {
+    //     var data = e.params.data;
+    //     //debugger
+    //     var valor = data.id;
+    //     if (valor == 0) {
+    //         $('#cboTienda').val([]).trigger('change');
+    //         $('#cboTienda').val(0).trigger('change');
+    //     } else {
+    //         var valores = $('#cboTienda').val();
+    //         var nuevo = [];
+    //         $.each(valores, function (index, value) {
+    //             if (value != 0) {
+    //                 nuevo.push(value);
+    //             }
+    //         })
+    //         $('#cboTienda').val(nuevo).trigger('change');
+
+    //         dataTienda.push(data);
+    //         //enviarTiendas(dataTienda);
+    //     }
+    // });
+
     $('#cboTienda').on('select2:select', function (e) {
+        debugger
         var data = e.params.data;
-        //debugger
         var valor = data.id;
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        } else {
+        }
+        else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -73,9 +96,6 @@ $(document).ready(function () {
                 }
             })
             $('#cboTienda').val(nuevo).trigger('change');
-
-            dataTienda.push(data);
-            //enviarTiendas(dataTienda);
         }
     });
 
@@ -148,12 +168,21 @@ var dataTienda = [];
 function enviarTiendas(tiendas) {
     dataTienda = tiendas;
 }
+
 var return_first;
 
 function callback(response) {
     return_first = response;
     //use return_first variable here
 }
+
+var return_JackPotSegunidJackPot;
+
+function callbackJackPotSegunidJackPot(response) {
+    return_JackPotSegunidJackPot = response;
+    //use return_first variable here
+}
+
 
 function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
     //debugger;
@@ -237,33 +266,87 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                 tdPozo = limites.map(x => '<th style="font-weight: 600;color:black;text-align:center;">' + x + '</th>\n').join('');
                 tdPozo = tdPozo + limites.map(x => '<th style="font-weight: 600;color:steelblue;text-align:center;">' + x + ' Oculto</th>\n').join('');
                 tdPozo = tdPozo.repeat(listaPososJackPot.length);
-                
-                //thPozo = '<th rowspan="2">Tiendas<th>';
 
+                //thPozo = '<th rowspan="2">Tiendas<th>';
+                var listaJackPotSegunidJackPot = [];
+
+
+                var tdBody = '';
+                var trBody;
+                var bodyJackpot = '';
                 debugger
                 listaPososJackPot.map((obj, index) => {
                     thPozo = thPozo + `<th colspan='3'style="color:black;width:110px;text-align:center;">Pozo ${index+1} (${obj.idPozoJackpot})</th>\n
                                         <th colspan='3' style="color:steelblue;width:110px;text-align:center">Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>\n`;
 
-                    //tdPozo = tdPozo + `<td>Inicial</td>`;
                     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
+
+
+
                 });
+
+                JackPotSegunidJackPot(obj.idJackPot);
+
+                listaJackPotSegunidJackPot = [...listaJackPotSegunidJackPot, ...return_JackPotSegunidJackPot];
+                debugger
+                //tdBody +=listaJackPotSegunidPozoJackPot.map(x => '<td style="color:black;text-align:center;">' + x.incrementoJackpot + '</td>\n').join('');
                 
-                // tdPozoOculto = tdPozoOculto + limites.map(x => '<td style="font-weight: 600;color:blue">' + x + ' Oculto</td>').join('');
+                for (let t = 0; t < tiendas.length; t++) {
+                    var idTienda = tiendas[t];
+                    
+                    var listaJacks= listaJackPotSegunidJackPot.filter(x=>x.idPuntoVenta==idTienda);
+                    var tiendaRepetida ='';
+                    for (let l = 0; l < listaJacks.length; l++) {
+                        
+                        const element = listaJacks[l].TIENDA;
+                        tiendaRepetida=element;
+                    }
 
-                // tdPozoOculto = tdPozoOculto.repeat(listaPososJackPot.length);
-                //tdPozo += tdPozoOculto;
-                // listaPososJackPot.map((obj, index) => {
-                //     thPozo = thPozo + `<th colspan='3'>Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>`;
+                        tdBody+=`<td>${tiendaRepetida}</td>`;
+                    for (let p = 0; p < listaJacks.length; p++) {
+                        var element = listaJacks[p];
+                        tdBody += `
+                            <td> ${element.incrementoJackpot}</td>
+                            <td> ${element.limiteInferior}</td>
+                            <td> ${element.limiteSuperior}</td>
+                            <td> ${element.incrementoPozoOculto}</td>
+                            <td> ${element.limiteInferiorOculto}</td>
+                            <td> ${element.limiteSuperiorOculto}</td>`;
+                        trBody = '<tr>' + tdBody + '</tr>';
+                        //debugger
+                    }
+                    trBody = (trBody != null)?trBody:'';
+                    bodyJackpot +=trBody+"\n";
+                    trBody = '';
+                    tdBody = '';
 
-                //     //tdPozo = tdPozo + `<td>Inicial</td>`;
-                //     //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
-                // });
-                var thp = '';
-                //thp = `<th style="display:none;">f</th>`;
-                // for (let j = 0; j < (listaPososJackPot.length * 6); j++) {
-                //     thp = thp + `<th style="display:none;">f</th>`;
+                    debugger
+                }
+                //listaJackPotSegunidJackPot=[];
+                // for (let p = 0; p < listaJackPotSegunidJackPot.length; p++) {
+                //     var element = listaJackPotSegunidJackPot[p];
+                //     tdBody += `<td> ${element.TIENDA}</td>
+                //         <td> ${element.incrementoJackpot}</td>
+                //         <td> ${element.limiteInferior}</td>
+                //         <td> ${element.limiteSuperior}</td>
+                //         <td> ${element.incrementoPozoOculto}</td>
+                //         <td> ${element.limiteInferiorOculto}</td>
+                //         <td> ${element.limiteSuperiorOculto}</td>`;
+                //     trBody = '<tr>' + tdBody + '</tr>';
+                //     //debugger
                 // }
+
+                // //listaJackPotSegunidPozoJackPot=[];
+                // bodyJackpot +=trBody+"\n";
+                // trBody = '';
+                // tdBody = '';
+                // //debugger
+
+
+
+
+                var thp = '';
+
                 thp = tdPozo;
                 //debugger;
                 debugger;
@@ -291,7 +374,7 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                                     </thead>
                                     <tbody>
                                        
-                                        
+                                        ${bodyJackpot}
                                     </tbody>
                                 </table>
                             </div>
@@ -304,10 +387,11 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             });
 
 
-           
-
+            //listaJackPotSegunidJackPot = [];
+            tiendas=[];
             tabEval.innerHTML += html;
             tabContenido.innerHTML += htmlContenidoTabs;
+            bodyJackpot='';
             //1ero debe dibujarse el doom y despues usar esta funcion
             $("#tab-eval a").click(function () {
                 $(this).tab("show");
@@ -316,9 +400,20 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
             debugger
             //var tablaExi = document.getElementsByClassName('tablajack');
 
-            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display","none");
+            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display", "none");
             debugger;
             $('table.tablajack').DataTable({
+                dom: 'Bfrtip',
+                    
+                buttons: [
+                    {
+                        extend: 'excel',
+                        title: 'Reporte JackPot'
+                        
+                    }
+                    
+                    
+                ],
                 scrollY: '200px',
                 destroy: true,
                 sort: true,
@@ -336,7 +431,7 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
 
             });
 
-           
+
         },
         error: function (jqXHR, textStatus, errorThrown) {}
     });
@@ -397,225 +492,66 @@ function ListaDeJacks() {
 
 function buscarListarJackPot() {
     debugger;
-
+    var validar = $("#frmNuevo");
+    if (validar.valid()) {
     var cboTienda = $("#cboTienda").val();
     var cboConfiguracionJackPot = $("#cboConfiguracionJackPot").val();
     var url = basePath + "ReporteJackPotListarJson";
     var confJack = [...cboConfiguracionJackPot];
+    
+    // var TiendaArray = [];
+    // $("#cboTienda option:selected").each(function () {
+    //     if ($(this).val() !== "") {
+    //         TiendaArray.push({'id': $(this).val(), 'Tienda': $(this).text()})
+    //     }
+    // });
 
-    var tiendas = dataTienda;
+    var tiendas = cboTienda;
 
     //$('#subtituloTabsGeneral').html($("#cboConfiguracionJackPot").text);
     ConfiguracionPozoSegunConfJackPot(confJack[0], tiendas);
 
     //ListarHistorialGanadores();
+    }
 
 }
 
-function ListarHistorialGanadores() {
+function JackPotSegunidJackPot(idJackpot) {
     debugger;
-    var fechaInicial = $("#fechaInicio").val();
-    var fechaFinal = $("#fechaFin").val();
 
-    var cboTienda = $("#cboTienda").val();
+    var lista = [];
+    var url = basePath + "JackPotSegunidJackpot";
+    var idJackpot = idJackpot;
+    var dataForm = {
+        idJackpot: idJackpot
+    };
+    //debugger
+    // var obj = { name: "John", age: 30, city: "New York" };
+    // var myJSON = JSON.stringify(obj);
 
-    var url = basePath + "ReporteHistorialGanadoresListarJson";
-    var dataForm = $('#frmNuevo').serializeFormJSON();
-
-    resp = [ // resp = [
-        {
-            tienda: "tienda 1",
-            evento: "evento 1",
-            fecha: "25/01/19 14:30", // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 14:30", 
-            total_jugadores: 55,
-            total_ganadores: 3, // total_jugadores: 55, total_ganadores: 3, 
-            monto_total_apostado: 3,
-            monto_total_pagado: 4, // monto_total_apostado: 3, monto_total_pagado: 4, 
-            NR_ticket_ganador: 32,
-            tipo_de_apuesta: "color",
-            valor_de_apuesta: "verde"
-        } // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "verde"}
-        , // ,
-        {
-            tienda: "tienda 1",
-            evento: "evento 1",
-            fecha: "25/01/19 15:30", // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:30", 
-            total_jugadores: 53,
-            total_ganadores: 3, // total_jugadores: 53, total_ganadores: 3, 
-            monto_total_apostado: 3,
-            monto_total_pagado: 4, // monto_total_apostado: 3, monto_total_pagado: 4, 
-            NR_ticket_ganador: 32,
-            tipo_de_apuesta: "color",
-            valor_de_apuesta: "rojo"
-        } // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "rojo"}
-        , // ,
-        {
-            tienda: "tienda 1",
-            evento: "evento 1",
-            fecha: "25/01/19 15:50", // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 15:50", 
-            total_jugadores: 53,
-            total_ganadores: 3, // total_jugadores: 53, total_ganadores: 3, 
-            monto_total_apostado: 3,
-            monto_total_pagado: 4, // monto_total_apostado: 3, monto_total_pagado: 4, 
-            NR_ticket_ganador: 32,
-            tipo_de_apuesta: "color",
-            valor_de_apuesta: "negro"
-        } // NR_ticket_ganador: 32, tipo_de_apuesta: "color", valor_de_apuesta: "negro"}
-        , // ,
-        {
-            tienda: "tienda 1",
-            evento: "evento 1",
-            fecha: "26/01/19 15:50", // {tienda: "tienda 1", evento: "evento 1", fecha: "26/01/19 15:50", 
-            total_jugadores: 53,
-            total_ganadores: 2, // total_jugadores: 53, total_ganadores: 2, 
-            monto_total_apostado: 3,
-            monto_total_pagado: 4, // monto_total_apostado: 3, monto_total_pagado: 4, 
-            NR_ticket_ganador: 32,
-            tipo_de_apuesta: "pleno",
-            valor_de_apuesta: "2"
-        } // NR_ticket_ganador: 32, tipo_de_apuesta: "pleno", valor_de_apuesta: "2"}
-        , // ,
-        {
-            tienda: "tienda 1",
-            evento: "evento 1",
-            fecha: "25/01/19 16:30", // {tienda: "tienda 1", evento: "evento 1", fecha: "25/01/19 16:30", 
-            total_jugadores: 53,
-            total_ganadores: 3, // total_jugadores: 53, total_ganadores: 3, 
-            monto_total_apostado: 3,
-            monto_total_pagado: 4, // monto_total_apostado: 3, monto_total_pagado: 4, 
-            NR_ticket_ganador: 32,
-            tipo_de_apuesta: "caja bloqueada",
-            valor_de_apuesta: "0"
-        } // NR_ticket_ganador: 32, tipo_de_apuesta: "caja bloqueada", valor_de_apuesta: "0"}
-    ];
-
-    $("#table").DataTable({
-        scrollY: '200px',
-        destroy: true,
-        sort: true,
-        scrollCollapse: true,
-        scrollX: true,
-
-        paging: true,
-        autoWidth: true,
-        processing: true,
-        deferRender: true,
-
-        bInfo: false,
-        searching: false,
-        paging: false,
-
-        // columnDefs: [
-        //     { targets: [0, 1], visible: true},
-        //     { targets: '_all', visible: false }
-        // ],
-        data: resp,
-        columns: [
-
-
-            {
-                data: "tienda",
-                title: "tienda",
-
-            },
-            {
-                data: "evento",
-                title: "evento"
-            },
-            {
-                data: "fecha",
-                title: "fecha"
-            },
-            {
-                data: "total_jugadores",
-                title: "total jugadores"
-            },
-            {
-                data: "total_ganadores",
-                title: "total ganadores"
-            },
-            {
-                data: "monto_total_apostado",
-                title: "monto total apostado"
-            },
-            {
-                data: "monto_total_pagado",
-                title: "monto total pagado"
-            },
-            {
-                data: "NR_ticket_ganador",
-                title: "NR ticket ganador"
-            },
-            {
-                data: "tipo_de_apuesta",
-                title: "tipo de apuesta"
-            },
-
-
-            {
-                data: "valor_de_apuesta",
-                title: "valor de apuesta",
-                "render": function (value, i, j) {
-
-                    var valorRetornar = j.valor_de_apuesta;
-                    var valor_de_apuesta = '';
-                    valor_de_apuesta = j.valor_de_apuesta;
-                    var tipo_de_apuesta = j.tipo_de_apuesta;
-                    if (tipo_de_apuesta == "pleno") {
-                        valorRetornar = `<div style='width:100%;text-align:center;''>${valor_de_apuesta} </div>`;
-                    }
-                    if (tipo_de_apuesta == "color") {
-                        if (valor_de_apuesta == "verde") {
-                            valorRetornar = 'darkGreen';
-                        }
-                        if (valor_de_apuesta == "rojo") {
-                            valorRetornar = 'DarkRed';
-                        }
-                        if (valor_de_apuesta == "negro") {
-                            valorRetornar = 'Black';
-                        }
-                        if (tipo_de_apuesta == "caja bloqueada") {
-                            valorRetornar = "CASA";
-                        }
-                        valorRetornar = `<div style='width:100%;color:white;text-align:center;background-color: ${valorRetornar};'> ${valor_de_apuesta}</div>`
-                    }
-                    if (tipo_de_apuesta == "caja bloqueada")
-                        valorRetornar = `<span  style="width: 100%;text-align: center" class="glyphicon glyphicon-home"></span>`;
-
-                    return valorRetornar;
-
-
-                }
-            },
-        ],
-        createdRow: function (row, data, dataIndex) {
-
-            debugger
-            // If name is "Ashton Cox"
-
-            // Add COLSPAN attribute
-            $('td:eq(1)', row).attr('colspan', 3);
-
-            // Center horizontally
-            $('td:eq(1)', row).attr('align', 'center');
-
-            // Hide required number of columns
-            // next to the cell with COLSPAN attribute
-            $('td:eq(2)', row).css('display', 'none');
-            $('td:eq(3)', row).css('display', 'none');
-
-            // Update cell data
-            this.api().cell($('td:eq(1)', row)).data('N/A');
-
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(dataForm),
+        beforeSend: function () {
+            $.LoadingOverlay("show");
         },
-        rowCallback: function (row, data) {
-            var row = row;
-            var data = data;
-            debugger
-        }
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
+        async: false,
+        success: function (response) {
+            var resp = response;
+            debugger;
+
+            var data = [...resp.data];
+            lista = data;
+
+            callbackJackPotSegunidJackPot(lista);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {}
     });
-
-
 }
 
 $("#frmNuevo")
@@ -632,11 +568,11 @@ $("#frmNuevo")
         },
         messages: {
             jackPots: {
-                required: '',
+                required: 'Eliga una configuración',
 
             },
             tiendas: {
-                required: '',
+                required: 'Eliga una o mas tiendas',
 
             }
         },

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AperturaCaja;
 use App\Evento;
+use App\Ticket;
+use App\Apuesta;
 
 use \Milon\Barcode\DNS1D;
 
@@ -24,9 +26,55 @@ class VentaController extends Controller
         return view('Venta.Index');
     }
 
+
+    public function GuardarTicket(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try 
+        {
+            $datos=$request->datos;
+            $ticketobjeto=$datos["TicketObjeto"];
+            $apuestas=$datos["Apuestas"];
+            $ticketobjeto=$request->merge($ticketobjeto);
+            $data=Ticket::GuardarTicket($ticketobjeto);
+            $id_ticketinsertado=$data->idTicket;
+            foreach($apuestas as $apu){
+                $apu["idTicket"]=$id_ticketinsertado;
+                Apuesta::GuardarApuestas($apu);
+            }
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta,
+                                 'mensaje' => $mensaje_error,
+                                 'id_ticketinsertado' => $data,
+                                 'apuestas'=> $apuestas
+                                ]);
+    }
+
+
+    public function BuscarTicket(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try 
+        {
+            $datos=$request->datos;
+            $tickets=Ticket::BuscarTicket($datos["idEvento"],$datos["idTicket"]);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+               return response()->json([
+            'tickets' => $tickets
+            ]);
+    }
+
     public function VentaDatosJson()
     {
-
+            $usuarionombre="BTD OSCAR AGUILAR";
         $usuario = 1;
         $lista = "";
         $mensaje_error = "";
@@ -39,6 +87,7 @@ class VentaController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json([
+            'usuario'=>$usuarionombre,
             'hora_servidor' => $hora_servidor,
             //'jugador' => $jugador,
             'aperturacajadatos' => $aperturacajadatos,
@@ -146,13 +195,7 @@ $image_qrcode = base64_encode($png);
 // );
 // $writer = new Writer($renderer);
 // $qr_image = base64_encode($writer->writeString($string));
-
-
 // $imagen_qrcode="<img src='data:image/png;base64, ".$codigo."'>";
-
-
-
-
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
@@ -161,7 +204,6 @@ $image_qrcode = base64_encode($png);
                                'codigo_barra_src'=>$imagen_barrahtml,
                                'qrcode_src'=> $image_qrcode,
                                   'mensaje' => "1"]);
-
     }
 
 }

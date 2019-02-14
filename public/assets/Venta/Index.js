@@ -4,6 +4,11 @@ $(window).resize(function () {
 }).trigger('resize')
 /////fin responsive tombolacuy
 function responsivetombola(){
+
+
+heighttbody=$(".rowtablaeventos").outerHeight()-$("#tabla_eventos thead tr").height()
+$("#tabla_eventos tbody").attr("style","height:"+heighttbody+"px")
+
     $(".responsive").each(function(i,e){
         var height = $(e).height();
         $(e).css({
@@ -12,35 +17,142 @@ function responsivetombola(){
         })
     })
 /////barra de eventos
-    $(".eventos_fila_izq>div").each(function(i,e){
-         var height = $(e).parent().parent().height();
-         $(e).css({
-             'line-height': height + 'px'
-         })
-     })
+    // $(".eventos_fila_izq>div").each(function(i,e){
+    //      var height = $(e).parent().parent().height();
+    //      $(e).css({
+    //          'line-height': height + 'px'
+    //      })
+    //  })
     ///fin barra de eventos
 
+////textoresponsive
+// $("#div_configuracioneventos .eventotextodiv").each(function(i,e){
+//     textoresponsive($(e))
+// })
+
+//fin textoresponmsive
 }
 
+function textoresponsive(elemento) {
+  var el, elements, _i, _len, _results;
+  elements = $(elemento);
+  if (elements.length < 0) {
+    return;
+  }
+  _results = [];
+  for (_i = 0, _len = elements.length; _i < _len; _i++) {
+    el = elements[_i];
+    _results.push((function(el) {
+      var resizeText, _results1;
+      resizeText = function() {
+        var elNewFontSize;
+        elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
+        return $(el).css('font-size', elNewFontSize);
+      };
+      _results1 = [];
+      while (el.scrollHeight > el.offsetHeight) {
+        _results1.push(resizeText());
+      }
+       return _results1;
+    })(el));
+  }
+  return _results;
+};
+
+function BuscarTicket(ticketobjeto){
+    $.ajax({
+        type: 'POST',
+        async:false,
+        url: basePath + 'BuscarTicket',
+         data: {
+            '_token': $('input[name=_token]').val(),
+            'datos':ticketobjeto
+        },
+        success: function (response) {
+            ticketsganadores=response.tickets;
+             ganadores="";
+             if(ticketsganadores.length>0){
+                    $(ticketsganadores).each(function(i,e){
+                         ganadores=ganadores+" "+e.idTipoApuesta;
+                    })
+                    toastr.success("Ticket "+ticketobjeto.idTicket+" \nApuestas Ganadoras:" +ganadores);
+             }
+             else{
+                toastr.error("No hay Apuestas Ganadoras en Ticket "+ticketobjeto.idTicket);
+             }
+           
+        },
+    })
+
+}
+function GuardarTicket(ticketobjeto){/////GUARDATICKET EN TICKET Y APUESTAS , ABRE MODAL
+    TicketObjeto={};
+    TicketObjeto.idAperturaCaja=aperturacajadatos.idAperturaCaja;
+    TicketObjeto.idEvento=eventoactual.IdEvento;
+    TicketObjeto.codigoQR=eventoactual.IdEvento;
+    TicketObjeto.nroTicketParticipante=eventoactual.IdEvento
+    TicketObjeto.ganador=0;
+    TicketObjeto.estadoTicket=1;
+
+    Apuestas=[];
+    $(ticketobjeto.apuestas).each(function(i,e){
+        ApuestaObjeto={}
+        ApuestaObjeto.idTicket=null;
+        ApuestaObjeto.idTipoApuesta=e.idtipoapuesta;
+        ApuestaObjeto.idTipoPago=e.idtipopago;
+        ApuestaObjeto.idMoneda=eventoactual.idMoneda;
+        ApuestaObjeto.montoApostado=e.apuesta;
+        ApuestaObjeto.montoAPagar=0;
+        ApuestaObjeto.ganador=0;
+
+        Apuestas.push(ApuestaObjeto);
+    })
+
+
+    datosobjeto={};
+    datosobjeto.TicketObjeto=TicketObjeto;
+    datosobjeto.Apuestas=Apuestas;
+    var totales_maximo=sacar_totales_y_maximo();
+    TicketObjeto.montoTotal=totales_maximo.total;
+
+    $.ajax({
+        type: 'POST',
+        async:false,
+        url: basePath + 'GuardarTicket',
+         data: {
+            '_token': $('input[name=_token]').val(),
+            'datos':datosobjeto
+        },
+
+        success: function (response) {
+            ticketdata=response.id_ticketinsertado;
+            idticket=ticketdata.idTicket;
+            $("#divimpresion #IDTique").text(idticket);
+            $("#modal_imprimir").modal("show");
+            Imprimir("divimpresion");
+
+            // TICKET_IMPRIMIR={}
+
+            toastr.success("Ticket Guardado");
+        },
+    })
+}
 
 
 function Imprimir(elem)
 {
     console.log("Imprimiendi")
-    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
-
+    var mywindow = window.open('', 'PRINT', 'height=800,width=600');
     // mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-    mywindow.document.write('</head><body >');
+    mywindow.document.write('</head><body>');
     //mywindow.document.write('<h1>' + document.title  + '</h1>');
     mywindow.document.write(document.getElementById(elem).innerHTML);
     mywindow.document.write('</body></html>');
 
     mywindow.document.close(); // necessary for IE >= 10
     mywindow.focus(); // necessary for IE >= 10*/
-
     mywindow.print();
     console.log("fin impresion")
-
     mywindow.close();
     return true;
 
@@ -56,6 +168,7 @@ function ListarVentaDatosJson() {
         tryCount : 0,
         retryLimit : 3,
         success: function (response) {
+            USUARIO=response.usuario;
             hora_servidor=response.hora_servidor;
             dinerodefault=response.dinerodefault;
             if(dinerodefault.length==0){
@@ -63,16 +176,15 @@ function ListarVentaDatosJson() {
                 return false;
             }
             ////apertura caja datos
-             resp = response.aperturacajadatos;
-             resp=resp[0];
-            if(resp.length==0){
+             aperturacajadatos = response.aperturacajadatos;
+             aperturacajadatos=aperturacajadatos[0];
+            if(aperturacajadatos.length==0){
                 toastr.error("No hay AperturaCaja Registrado","Error");
                 return false;
             }
              divdatos=$("#datoscaja");
-             $.each(resp,function(col,valor){
+             $.each(aperturacajadatos,function(col,valor){
                     $("#"+col,divdatos).val(valor).attr("readonly","readonly");
-
              })
             ////fin apertura caja datos
             ///conf_eventos
@@ -93,13 +205,15 @@ function ListarVentaDatosJson() {
                                 .data("apuestaMaxima",e.apuestaMaxima)
                                 .data("FechaEvento",e.FechaEvento)
                                 .data("segBloqueoAntesEvento",e.segBloqueoAntesEvento)
+                                .data("idMoneda",e.idMoneda)
 
                                 //.text(e.nombre)  
 
                                 .append(
-                                        $("<div>").attr("style","width: 30%; height: 100%;display:inline-block")
+                                        $("<div>").attr("style","width: 30%; height: 100%;float:left;position:relative")
+                                        // $("<div>").attr("style","width: 30%; height: 100%;display:inline-block")
                                         .append(
-                                            $("<img>").attr("style","width:70%;height:80%").attr("src",basePath+"img/juegos/"+e.logo)
+                                            $("<img>").attr("style","width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;").attr("src",basePath+"img/juegos/"+e.logo)
                                             )
                                        //                  .attr("width",50)
                                        //                  .attr("height",40)
@@ -111,7 +225,8 @@ function ListarVentaDatosJson() {
                                        //                  )
                                     )  
                                  .append(
-                                        $("<div>").attr("style","width: 70%; height: 100%;display:inline-block").text(e.nombre)
+                                        // $("<div>").attr("style","width: 70%; height: 100%;display:inline-block").text(e.nombre).addClass("eventotextodiv")
+                                        $("<div>").attr("style","width: 70%; height: 100%;float:left;display:flex;align-items:center").text(e.nombre).addClass("eventotextodiv")
 
                                    // $("<span>")  .attr("style","vertical-align: middle;display: table-cell;")
                                    //              .text(e.nombre)
@@ -242,31 +357,39 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
     $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
             var valor=$(e).text();
-            var color="";var cuota="";
+            var color="";
+            var cuota="";
+            var idtipoapuesta="";
+
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
                     if(ee.idTipoPago==1&&valorapuesta.toString()==valor.toString()){
                         color=ee.rgb;
                         cuota=ee.multiplicadorDefecto;
-                     
+                        idtipoapuesta=ee.idTipoApuesta;
                     }
             })  
             $(e).css("background-color",color);
             $(e).attr("data-cuota",cuota);
+            $(e).attr("data-idtipoapuesta",idtipoapuesta);
     })
 
    $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
             var valor=$(e).text();
             var color="";var cuota="";
+            var idtipoapuesta="";
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
                     if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
                         color=ee.rgb;
                         cuota=ee.multiplicadorDefecto;
+                        idtipoapuesta=ee.idTipoApuesta;
+
                     }
             })  
             $(e).css("background-color",color);
             $(e).attr("data-cuota",cuota);
+            $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
     })
 
@@ -302,14 +425,16 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     $(".numeros_rango div").each(function(i,e){
         var valor=$(e).text();
             var color="";var cuota="";
+            var idtipoapuesta="";
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
                     if(ee.idTipoPago==4 ){
                         cuota=ee.multiplicadorDefecto;
-                     
+                        idtipoapuesta=ee.idTipoApuesta;
                     }
             })  
             $(e).attr("data-cuota",cuota);
+            $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
     })
 
@@ -317,14 +442,17 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         var valor=$(e).text();
         var idtipopago=$(e).data("idtipopago")
             var color="";var cuota="";
+            var idtipoapuesta="";
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
                     if(idtipopago.toString()==(ee.idTipoPago).toString() ){
                         cuota=ee.multiplicadorDefecto;
-                     
+                        idtipoapuesta=ee.idTipoApuesta;
+
                     }
             })  
             $(e).attr("data-cuota",cuota);
+            $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
     })
         //FIN PLENO
@@ -344,28 +472,33 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     })
 }///FIN EventoDatosJson
 
-function ImprimirJson(){
-        TICKET_IMPRIMIR={};
-TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
-TICKET_IMPRIMIR.Id_Ticket=297101120;
-TICKET_IMPRIMIR.Id_Unidad=105432;
-TICKET_IMPRIMIR.Nro_Evento=eventoactual.IdEvento;
-TICKET_IMPRIMIR.Desc=eventoactual.nombre;
 
-totales=sacar_totales_y_maximo();
-TICKET_IMPRIMIR.TotalTicket=totales.total;
-TICKET_IMPRIMIR.ImpresoEn=new Date().toLocaleString();
-TICKET_IMPRIMIR.ImpresoPor="BTD ManuelLaguno"
+////ImprimirJson()  =>  al hacer click en boton PRINT;
+function ImprimirJson(idTicket){
+//////genera codigoqr y codigo de barras desde php
+    TICKET_IMPRIMIR={};
+    TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
+    TICKET_IMPRIMIR.Id_Ticket=0;
+    TICKET_IMPRIMIR.Id_Unidad=0;
+    TICKET_IMPRIMIR.Nro_Evento=eventoactual.IdEvento;
+    TICKET_IMPRIMIR.Desc=eventoactual.nombre;
 
-TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
-TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
-        apuestas=[];
+    totales=sacar_totales_y_maximo();
+    TICKET_IMPRIMIR.TotalTicket=totales.total;
+    TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:MM a");//new Date().toLocaleString();
+    TICKET_IMPRIMIR.ImpresoPor=USUARIO;
+
+    TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
+    TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
+    apuestas=[];
     $("#tabla_eventos tbody tr").each(function(i,e){
             fila_apuesta={};
             var tr=e;
             if($("td:eq(1)",tr).text()!=""){
-                tipo= $(tr).data("tipo")
-                valor= $(tr).data("valor")
+                tipo= $(tr).data("tipo");
+                idtipopago= $(tr).data("idtipopago");
+                idtipoapuesta= $(tr).data("idtipoapuesta");
+                valor= $(tr).data("valor");
                 evento=$("td:eq(0)",tr).text();
                 seleccion=$("td:eq(1)",tr).text();
                 cuota=$("td:eq(2)",tr).text();
@@ -373,70 +506,72 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
                 fila_apuesta.evento=evento;
                 fila_apuesta.descripcion=seleccion;
                 fila_apuesta.cuota=cuota;
+                fila_apuesta.idtipopago=idtipopago;
+                fila_apuesta.idtipoapuesta=idtipoapuesta;
                 fila_apuesta.apuesta=apuesta;
                 apuestas.push(fila_apuesta);
             }
     })
     TICKET_IMPRIMIR.apuestas=apuestas;
 
-            $.ajax({
-            type: 'POST',async:false,
-            url: basePath + 'ImprimirDatosJson',
-            data: {
-                'TICKET_IMPRIMIR': TICKET_IMPRIMIR,
-                '_token': $('input[name=_token]').val(),
+        $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'ImprimirDatosJson',
+        data: {
+            'TICKET_IMPRIMIR': TICKET_IMPRIMIR,
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+                codigo_barrahtml=response.codigo_barrahtml;
+                qrcode_src=response.qrcode_src;
+                codigo_barra_src=response.codigo_barra_src;
+                $("#divimpresion #IDTique").text(TICKET_IMPRIMIR.Id_Ticket)
+                $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
+                $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
+                $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
+                $("#divimpresion #datos_filas").empty()
+                $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
+                    $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
+                            .append(
+                            $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.evento)
+                                )
+                            .append(
+                            $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.descripcion)
+                                )
+
+                            .append(
+                            $("<div>").attr("style","width:25%;float:LEFT;text-align:left").text(e.cuota)
+                                )
+
+                              .append(
+                            $("<div>").attr("style","width:15%;float:LEFT;text-align:left").text(e.apuesta)
+                                )
+                    )
+                })
+                $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa)
+                $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:s"));
+                $("#divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
+                $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
+                $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
+
+
+                $("#divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
+                ///$("#codigo_barra").html(codigo_barrahtml);
+                $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
+                $("#imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
+
+                $("#btnimprimir").off("click").on("click",function(){
+                            // setTimeout(function(){
+                            //     Imprimir("divimpresion");
+                            // },1000)
+
+                             setTimeout(function(){
+                                GuardarTicket(TICKET_IMPRIMIR);
+                            },1000)
+                })
+                $("#btnimprimir").click()
             },
-            success: function (response) {
-                    codigo_barrahtml=response.codigo_barrahtml;
-                    qrcode_src=response.qrcode_src;
-                    codigo_barra_src=response.codigo_barra_src;
-
-                        $("#divimpresion #IDTique").text(TICKET_IMPRIMIR.Id_Ticket)
-                        $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
-                        $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
-                        $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
-$("#divimpresion #datos_filas").empty()
-                        $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
-                            $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
-                                    .append(
-                                    $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.evento)
-                                        )
-                                    .append(
-                                    $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.descripcion)
-                                        )
-
-                                    .append(
-                                    $("<div>").attr("style","width:25%;float:LEFT;text-align:left").text(e.cuota)
-                                        )
-
-                                      .append(
-                                    $("<div>").attr("style","width:15%;float:LEFT;text-align:left").text(e.apuesta)
-                                        )
-                            )
-                        })
-
-                        $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.total_ticket)
-                        $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:SS"));
-                        $("#divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
-                        $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
-                        $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
-
-
-                    $("#divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
-                    ///$("#codigo_barra").html(codigo_barrahtml);
-                    $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
-                    $("#imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
-
-
-                    $("#modal_imprimir").modal("show");
-                    $("#btnimprimir").off("click").on("click",function(){
-                                setTimeout(function(){
-                                    Imprimir("divimpresion");
-                                },1000)
-                    })
-                    $("#btnimprimir").click()
-            },
-        })
+        })///FIN AJAX
 }
 
 
@@ -613,7 +748,7 @@ function sacar_totales_y_maximo(){
 
 $(document).ready(function () {
 
-     ListarVentaDatosJson();
+     DATOSVENTAJSON=ListarVentaDatosJson();
 
     $("#div_configuracioneventos .configuracioneventosdiv").on("click",function(){
                 $("#div_configuracioneventos .configuracioneventosdiv").removeClass("seleccionadoevento");
@@ -636,9 +771,13 @@ $(document).ready(function () {
                 eventoactual.apuestaMinima=$(this).data("apuestaMinima");
                 eventoactual.apuestaMaxima=$(this).data("apuestaMaxima");
                 eventoactual.segBloqueoAntesEvento=$(this).data("segBloqueoAntesEvento");
+                eventoactual.idMoneda=$(this).data("idMoneda");
 
                 var imagensrc=$("img",this).attr("src");
                 eventoactual.Imagen=imagensrc;
+
+                $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png")
+                $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"))
 
 
     })
@@ -717,9 +856,11 @@ $(document).ready(function () {
                array_apuestas_json=generar_json_apuestas();
                 valornumero=$(e).data("valor");
                 tiponumero=$(e).data("tipo");
+                idTipoPago=$(e).data("idtipopago");
                 colornumero=$(e).data("color");
                 valornumero=$(e).data("valor");
                 idtipopago=$(e).data("idtipopago");
+                idtipoapuesta=$(e).data("idtipoapuesta");
                 if(idtipopago.toString()=="2"){
                     valornumero=colornumero;
                 }
@@ -750,6 +891,8 @@ $(document).ready(function () {
                                     .attr("data-tipo",tiponumero)
                                     .attr("data-color",colornumero)
                                     .attr("data-valor",valornumero)
+                                    .attr("data-idTipoPago",idTipoPago)
+                                    .attr("data-idtipoapuesta",idtipoapuesta)
                                     .append(
                                             $("<td>").text(FILA_PARA_TABLA.ID_EVENTO)
                                             )
@@ -789,7 +932,7 @@ $(document).ready(function () {
 
                 }
                 else{
-                    toastr.error("Ya apostado "+valornumero,"Error");
+                    toastr.error("Ya ingresó  "+valornumero);
                 }
             })///fin numerotabla seleccionados
         $("#numeros_tabla .seleccionado").removeClass("seleccionado");
@@ -815,6 +958,12 @@ $(document).ready(function () {
         }
         )*/
 
+           ///BOTON BUSCAR
+        $("#div_botones .barcode").on("click",function(){
+            $("#modal_buscar").modal("show");1  
+        })
+
+
         ///BOTON IMPRIMIR
         $("#div_botones .print").on("click",function(){
             if($("#tabla_eventos tbody tr").length=="0"){
@@ -825,7 +974,36 @@ $(document).ready(function () {
             }
         })
 
+        $('.digitador .digito').on('click',function(){
+             valor=$(this).text();
+             valortxt=$("#ticket_txt").val();
+            valortxt=valortxt+valor;
+            $("#ticket_txt").val(valortxt);
+        })
 
-responsivetombola()
+        $('.digitador .borrar').on('click',function(){
+            var valortxt=$("#ticket_txt").val();
+            valortxt=valortxt.substring(0,valortxt.length-1);
+            $("#ticket_txt").val(valortxt);
+        })
+        
+
+        $("#btn_buscar_ticket").on("click",function(e){
+            e.preventDefault(); 
+                objetobuscar={};
+                objetobuscar.idEvento=eventoactual.IdEvento;
+                objetobuscar.idTicket=$("#ticket_txt").val().trim();
+                // objetobuscar.idTipoApuesta=eventoactual.idTipoApuesta;
+                BuscarTicket(objetobuscar);
+                $("#ticket_txt").val("");
+            
+        })
+        $("#buscar_div").on("click",function(e){
+              e.preventDefault(); 
+                $("#btn_buscar_ticket").click();
+            
+        })
+
+        responsivetombola()
    
 });

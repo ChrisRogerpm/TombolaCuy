@@ -180,4 +180,53 @@ class Reporte extends Model
         return $listar;
     }
 
+    public static function JackPotSegunidJackpot(Request $request)
+    {
+        $idJackpot = $request->input('idJackpot');
+        
+
+        // SELECT j.idJackpot,
+        // j.nombre JackPot,
+        // pv.idPuntoVenta,
+      	// pv.nombre TIENDA,
+        //   pj.idPozoJackpot,    
+        //   pj.incrementoJackpot,      	
+        // pj.limiteInferior,
+        // pj.limiteSuperior,
+        // pj.incrementoPozoOculto,
+        // pj.limiteInferiorOculto,
+        // pj.limiteSuperiorOculto   
+        // FROM jackpot j
+        // INNER JOIN pozo_jackpot pj ON pj.idJackpot= j.idJackpot
+        // INNER JOIN jackpot_punto_venta jpv ON jpv.idJackpot = j.idJackpot
+        // INNER JOIN punto_venta pv ON pv.idPuntoVenta = jpv.idPuntoVenta
+        // WHERE pj.idPozoJackpot=$idPozoJackpot
+
+        $listar = DB::select(DB::raw("SELECT 
+            j.idJackpot,
+            j.nombre JackPot,
+            pv.idPuntoVenta,
+            pv.nombre TIENDA,
+            pj.idPozoJackpot,      
+            pj.incrementoJackpot,      	
+            pj.limiteInferior,
+            pj.limiteSuperior,
+            pj.incrementoPozoOculto,
+            pj.limiteInferiorOculto,
+            pj.limiteSuperiorOculto     
+            FROM jackpot j
+            
+            INNER JOIN pozo_jackpot pj ON pj.idJackpot= j.idJackpot
+            INNER JOIN jackpot_punto_venta jpv ON jpv.idJackpot = j.idJackpot
+            INNER JOIN punto_venta pv ON pv.idPuntoVenta = jpv.idPuntoVenta
+                WHERE j.idJackpot=$idJackpot;
+        "));
+        return $listar;
+
+
+        	
+			
+    }
+    
+
 }

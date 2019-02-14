@@ -43,7 +43,9 @@ $(document).ready(function () {
     });
 });
 
-function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
+function CargarDataTienda(Tabla, IdTienda) {
+    var tienda =IdTienda;
+    debugger
     var url = basePath + "ReporteApuestaJson";
     var dataForm = {
         fechaInicio: $("input[name='fechaInicio']").val(),

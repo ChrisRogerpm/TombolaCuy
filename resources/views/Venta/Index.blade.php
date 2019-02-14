@@ -133,7 +133,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:83vh;margin-bottom:15px">
+                    <DIV class="TOMBOLACUY" style="height:83vh;">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -389,105 +389,96 @@
 
 
 
-    <div class="modal" id="modal_imprimir" tabindex="-1" role="dialog">
+<div class="modal" id="modal_imprimir" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Impresión</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="overflow:auto">
-<!-- <table>
-   <thead><tr><td colspan="3">ApuestaTotal.com</td></tr></thead>
-   <tbody>
-       <tr class="imagen">
-<td colspan="3"><img height=80 width=80></td>
+        <div class="modal-header">
+            <h5 class="modal-title">Impresión</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" style="overflow:auto">
+             <div style="text-align:center">
+                <div id="divimpresion">
+                <div class="ticket" style="display:inline-block;font-size:11px">
+                    <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
+                        <img id="imagen_apuestatotal" width="180" height="80">
+                    </div></div>
+                    <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
+                    <div class="datos" style="width:100%;display:table;padding-top:4px">
+                        <div style="width:100%;border-top:2px dotted;display:table">
+                                    <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                                    <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
+                        </div>
+                        <div style="width:100%;display:table">
+                       
+                                    <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
+                                    <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
 
-       </tr>
-       <tr>
-        <td></td>
-        </tr>
-   </tbody> 
+                        </div>
+                        <div style="width:100%;display:table">
+                         
+                                    <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
+                                    <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
 
-</table> -->
-<div style="text-align:center">
-  <div class="ticket" id="divimpresion" style="width:50%;height:500px;display:inline-block;">
-            <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid"><div style="width:100%">apuestatotal.com</div></div>
-            <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img src="http://tombolacuy.local:88/img/juegos/cuy.png" width="200" height="120"></div>
-            <div class="datos" style="width:100%;text-align:center">
-                <div style="width:100%;border-top:2px dotted;display:table">
-                            <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
-                </div>
-                <div style="width:100%;display:table">
-               
-                            <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
+                        </div>
+                        <div style="width:100%;display:table">
+                     
+                                    <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
+                                    <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
+                        </div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
+                        </div>
 
-                </div>
-                <div style="width:100%;display:table">
-                 
-                            <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
+                                <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
+                                <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
 
-                </div>
-                <div style="width:100%;display:table">
-             
-                            <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
-                </div>
-                <div style="width:100%;display:table;border-top:2px dotted" id="datos_filas">
-                </div>
+                        </div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                     
+                            <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
 
-                <div style="width:100%;display:table;border-top:2px dotted" id="total_ticket">
-                        <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
-                        <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
+                        </div>
+                        <div style="width:100%;display:table;padding-bottom:4px;" id="">
+                            <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
 
-                </div>
-                <div style="width:100%;display:table;border-top:2px dotted" id="">
-             
-                    <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
-                    <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
-
-                </div>
-                <div style="width:100%;display:table" id="">
-                    <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
-                    <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
-
-                </div>
+                        </div>
 
 
-                 <div style="width:100%;display:table;border-top:2px dotted" id="">
-                    <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
-                    <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
+                         <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                            <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
 
-                </div>
-                 <div style="width:100%;display:table" id="">
-                    <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
-                    <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
+                        </div>
+                         <div style="width:100%;display:table" id="">
+                            <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
 
-                </div>
+                        </div>
 
 
-            </div>
-            <div class="footer" style="width:100%;text-align:center"></div>
-            <div class="codigoqr_barra" style="width:100%">
-                  <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
-                <img id="imagen_codigobarra"width="180" height="80">
-                  </div>
+                    </div>
+                    <div class="footer" style="width:100%;text-align:center"></div>
+                    <div class="codigoqr_barra" style="width:100%;margin-bottom:8px">
+                          <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
+                        <img id="imagen_codigobarra"width="180" height="80">
+                          </div>
 
-                  <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
-                
-            </div>
+                          <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
+                        
+                    </div>
 
                   
 
 
+                </div>
+            </div>
+             </div><!--FIN DIV WRAPPER-->
         </div>
-</div><!--FIN DIV WRAPPER-->
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -495,6 +486,62 @@
     </div>
   </div>
 </div>
+
+
+
+
+<div class="modal" id="modal_buscar" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">TICKET</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="overflow:auto">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <form class="form-inline">
+                                
+                                <div class="form-group">
+                                    <label for="inputPassword2" class="sr-only">Nro Ticket</label>
+                                    <input class="form-control" id="ticket_txt" placeholder="Ticket" type="text">
+                                </div>
+                                <button type="submit" class="btn btn-success" id="btn_buscar_ticket">Buscar</button>
+                            </form>
+                    </div>
+                </div>
+                 <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="digitador">
+                                <div class="digito">7</div>
+                                <div class="digito">8</div>
+                                <div class="digito">9</div>
+                                <div class="digito">4</div>
+                                <div class="digito">5</div>
+                                <div class="digito">6</div>
+                                <div class="digito">1</div>
+                                <div class="digito">2</div>
+                                <div class="digito">3</div>
+                                <div class="borrar">BORRAR</div>
+                                <div class="digito">0</div>
+                                <div class="buscar_div" id="buscar_div">BUSCAR</div>
+                        </div>
+                    </div>
+                </div>
+                 
+            </div><!--FIN DIV WRAPPER-->
+       
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>
+
 
 
 
