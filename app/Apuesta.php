@@ -22,9 +22,8 @@ class Apuesta extends Model
         return $listar;
     }
 
-    public static function GuardarApuestas2($request)
+    public static function GuardarApuestas($request)
     {
-        print_r($request);
           $Apuesta = new Apuesta();
         $Apuesta->idTicket = $request['idTicket'];
         $Apuesta->idTipoApuesta = $request['idTipoApuesta'];

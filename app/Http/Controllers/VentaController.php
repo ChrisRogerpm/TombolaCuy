@@ -41,13 +41,16 @@ class VentaController extends Controller
             $id_ticketinsertado=$data->idTicket;
             foreach($apuestas as $apu){
                 $apu["idTicket"]=$id_ticketinsertado;
-                Apuesta::GuardarApuestas2($apu);
+                Apuesta::GuardarApuestas($apu);
             }
             $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error,
+                                 'id_ticketinsertado' => $data,
+                                 'apuestas'=> $apuestas
+                                ]);
     }
 
 
@@ -70,7 +73,7 @@ class VentaController extends Controller
 
     public function VentaDatosJson()
     {
-
+            $usuarionombre="BTD OSCAR AGUILAR";
         $usuario = 1;
         $lista = "";
         $mensaje_error = "";
@@ -83,6 +86,7 @@ class VentaController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json([
+            'usuario'=>$usuarionombre,
             'hora_servidor' => $hora_servidor,
             //'jugador' => $jugador,
             'aperturacajadatos' => $aperturacajadatos,

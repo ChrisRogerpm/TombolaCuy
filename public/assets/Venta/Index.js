@@ -125,6 +125,8 @@ function GuardarTicket(ticketobjeto){
         },
 
         success: function (response) {
+            TICKET_IMPRIMIR={}
+
             toastr.success("Ticket Guardado");
         },
     })
@@ -134,9 +136,9 @@ function GuardarTicket(ticketobjeto){
 function Imprimir(elem)
 {
     console.log("Imprimiendi")
-    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    var mywindow = window.open('', 'PRINT', 'height=800,width=600');
     // mywindow.document.write('<html><head><title>' + document.title  + '</title>');
-    mywindow.document.write('</head><body >');
+    mywindow.document.write('</head><body>');
     //mywindow.document.write('<h1>' + document.title  + '</h1>');
     mywindow.document.write(document.getElementById(elem).innerHTML);
     mywindow.document.write('</body></html>');
@@ -160,6 +162,7 @@ function ListarVentaDatosJson() {
         tryCount : 0,
         retryLimit : 3,
         success: function (response) {
+            USUARIO=response.usuario;
             hora_servidor=response.hora_servidor;
             dinerodefault=response.dinerodefault;
             if(dinerodefault.length==0){
@@ -473,8 +476,8 @@ TICKET_IMPRIMIR.Desc=eventoactual.nombre;
 
 totales=sacar_totales_y_maximo();
 TICKET_IMPRIMIR.TotalTicket=totales.total;
-TICKET_IMPRIMIR.ImpresoEn=new Date().toLocaleString();
-TICKET_IMPRIMIR.ImpresoPor="BTD ManuelLaguno"
+TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:MM a");//new Date().toLocaleString();
+TICKET_IMPRIMIR.ImpresoPor=USUARIO;
 
 TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
 TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
@@ -518,7 +521,7 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
                         $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
                         $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
                         $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
-$("#divimpresion #datos_filas").empty()
+                        $("#divimpresion #datos_filas").empty()
                         $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
                             $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
                                     .append(
@@ -538,8 +541,8 @@ $("#divimpresion #datos_filas").empty()
                             )
                         })
 
-                        $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.total_ticket)
-                        $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:SS"));
+                        $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa)
+                        $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:s"));
                         $("#divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
                         $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
                         $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
@@ -769,6 +772,9 @@ $(document).ready(function () {
                 var imagensrc=$("img",this).attr("src");
                 eventoactual.Imagen=imagensrc;
 
+                $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png")
+                $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"))
+
 
     })
 
@@ -985,8 +991,7 @@ $(document).ready(function () {
                 objetobuscar.idTicket=$("#ticket_txt").val().trim();
                 // objetobuscar.idTipoApuesta=eventoactual.idTipoApuesta;
                 BuscarTicket(objetobuscar);
-
-$("#ticket_txt").val("");
+                $("#ticket_txt").val("");
             
         })
         $("#buscar_div").on("click",function(e){
