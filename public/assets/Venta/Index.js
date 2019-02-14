@@ -466,22 +466,25 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     })
 }///FIN EventoDatosJson
 
+
+////ImprimirJson()  =>  al hacer click en boton PRINT;
 function ImprimirJson(){
-        TICKET_IMPRIMIR={};
-TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
-TICKET_IMPRIMIR.Id_Ticket=297101120;
-TICKET_IMPRIMIR.Id_Unidad=105432;
-TICKET_IMPRIMIR.Nro_Evento=eventoactual.IdEvento;
-TICKET_IMPRIMIR.Desc=eventoactual.nombre;
+//////genera codigoqr y codigo de barras desde php
+    TICKET_IMPRIMIR={};
+    TICKET_IMPRIMIR.ImagenSrc=eventoactual.Imagen
+    TICKET_IMPRIMIR.Id_Ticket=0;
+    TICKET_IMPRIMIR.Id_Unidad=0;
+    TICKET_IMPRIMIR.Nro_Evento=eventoactual.IdEvento;
+    TICKET_IMPRIMIR.Desc=eventoactual.nombre;
 
-totales=sacar_totales_y_maximo();
-TICKET_IMPRIMIR.TotalTicket=totales.total;
-TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:MM a");//new Date().toLocaleString();
-TICKET_IMPRIMIR.ImpresoPor=USUARIO;
+    totales=sacar_totales_y_maximo();
+    TICKET_IMPRIMIR.TotalTicket=totales.total;
+    TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:MM a");//new Date().toLocaleString();
+    TICKET_IMPRIMIR.ImpresoPor=USUARIO;
 
-TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
-TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
-        apuestas=[];
+    TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
+    TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
+    apuestas=[];
     $("#tabla_eventos tbody tr").each(function(i,e){
             fila_apuesta={};
             var tr=e;
@@ -505,69 +508,65 @@ TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+d
     })
     TICKET_IMPRIMIR.apuestas=apuestas;
 
-            $.ajax({
-            type: 'POST',async:false,
-            url: basePath + 'ImprimirDatosJson',
-            data: {
-                'TICKET_IMPRIMIR': TICKET_IMPRIMIR,
-                '_token': $('input[name=_token]').val(),
+        $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'ImprimirDatosJson',
+        data: {
+            'TICKET_IMPRIMIR': TICKET_IMPRIMIR,
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+                codigo_barrahtml=response.codigo_barrahtml;
+                qrcode_src=response.qrcode_src;
+                codigo_barra_src=response.codigo_barra_src;
+                $("#divimpresion #IDTique").text(TICKET_IMPRIMIR.Id_Ticket)
+                $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
+                $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
+                $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
+                $("#divimpresion #datos_filas").empty()
+                $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
+                    $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
+                            .append(
+                            $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.evento)
+                                )
+                            .append(
+                            $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.descripcion)
+                                )
+
+                            .append(
+                            $("<div>").attr("style","width:25%;float:LEFT;text-align:left").text(e.cuota)
+                                )
+
+                              .append(
+                            $("<div>").attr("style","width:15%;float:LEFT;text-align:left").text(e.apuesta)
+                                )
+                    )
+                })
+                $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa)
+                $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:s"));
+                $("#divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
+                $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
+                $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
+
+
+                $("#divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
+                ///$("#codigo_barra").html(codigo_barrahtml);
+                $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
+                $("#imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
+
+                $("#modal_imprimir").modal("show");
+                $("#btnimprimir").off("click").on("click",function(){
+                            setTimeout(function(){
+                                Imprimir("divimpresion");
+                            },1000)
+
+                             setTimeout(function(){
+                                GuardarTicket(TICKET_IMPRIMIR);
+                            },1000)
+                })
+                $("#btnimprimir").click()
             },
-            success: function (response) {
-                    codigo_barrahtml=response.codigo_barrahtml;
-                    qrcode_src=response.qrcode_src;
-                    codigo_barra_src=response.codigo_barra_src;
-
-                        $("#divimpresion #IDTique").text(TICKET_IMPRIMIR.Id_Ticket)
-                        $("#divimpresion #IDUnidad").text(TICKET_IMPRIMIR.Id_Unidad)
-                        $("#divimpresion #NroEvento").text(TICKET_IMPRIMIR.Nro_Evento)
-                        $("#divimpresion #descripcion").text(TICKET_IMPRIMIR.Desc)
-                        $("#divimpresion #datos_filas").empty()
-                        $(TICKET_IMPRIMIR.apuestas).each(function(i,e){
-                            $("#divimpresion #datos_filas").append($("<div>").attr("style","width:100%;display:table")
-                                    .append(
-                                    $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.evento)
-                                        )
-                                    .append(
-                                    $("<div>").attr("style","width:30%;float:LEFT;text-align:left").text(e.descripcion)
-                                        )
-
-                                    .append(
-                                    $("<div>").attr("style","width:25%;float:LEFT;text-align:left").text(e.cuota)
-                                        )
-
-                                      .append(
-                                    $("<div>").attr("style","width:15%;float:LEFT;text-align:left").text(e.apuesta)
-                                        )
-                            )
-                        })
-
-                        $("#divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa)
-                        $("#divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:MM:s"));
-                        $("#divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
-                        $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
-                        $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
-
-
-                    $("#divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
-                    ///$("#codigo_barra").html(codigo_barrahtml);
-                    $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
-                    $("#imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
-
-
-                    $("#modal_imprimir").modal("show");
-                    $("#btnimprimir").off("click").on("click",function(){
-                                setTimeout(function(){
-                                    Imprimir("divimpresion");
-                                },1000)
-
-
-                                 setTimeout(function(){
-                                    GuardarTicket(TICKET_IMPRIMIR);
-                                },1000)
-                    })
-                    $("#btnimprimir").click()
-            },
-        })
+        })///FIN AJAX
 }
 
 

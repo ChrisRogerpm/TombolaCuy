@@ -194,13 +194,7 @@ $image_qrcode = base64_encode($png);
 // );
 // $writer = new Writer($renderer);
 // $qr_image = base64_encode($writer->writeString($string));
-
-
 // $imagen_qrcode="<img src='data:image/png;base64, ".$codigo."'>";
-
-
-
-
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
@@ -209,7 +203,6 @@ $image_qrcode = base64_encode($png);
                                'codigo_barra_src'=>$imagen_barrahtml,
                                'qrcode_src'=> $image_qrcode,
                                   'mensaje' => "1"]);
-
     }
 
 }
