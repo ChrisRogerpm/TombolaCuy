@@ -37,7 +37,7 @@ $(document).ready(function () {
                     .append('<div id="' + TiendasNombreId.split(' ').join('') + '" class="tab-pane fade ' + Active + '">' +
                         '<table id="table' + TiendasNombreId.split(' ').join('') + '" class="table table-bordered table-striped" style="width:100%"></table>\n' +
                         '</div>');
-                CargarDataTienda(TablaNombreTienda, IdTienda);
+                CargarDataTienda(TablaNombreTienda, IdTienda, NombreTienda);
             });
         }
     });
@@ -68,6 +68,13 @@ function CargarDataTienda(Tabla, IdTienda) {
             var resp = response.data;
             $("#PanelTabla").show();
             $("#" + Tabla).DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Reporte Apuestas - Tienda ' + NombreTienda
+                    }
+                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
