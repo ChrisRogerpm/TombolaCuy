@@ -141,6 +141,9 @@ LIMIT 20
                 if (now() >= $JuegoEvento->fechaEvento) {
                     $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
                     if ($respuesta) {
+                        $numero_random = rand(0, 24);
+                        TipoApuesta::TipoApuestaColor($numero_random, $JuegoEvento->idEvento);
+
                         if ($juego->lapsoProxEventoHoras > 0) {
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
                             $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);

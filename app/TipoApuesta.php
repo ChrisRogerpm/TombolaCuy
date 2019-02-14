@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class TipoApuesta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idTipoPago'.'valorapuesta','nombre', 'estado'];
+    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado'];
 
 
     public static function TipoApuestaListarJson()
@@ -25,7 +26,7 @@ class TipoApuesta extends Model
     public static function TipoApuestaInsertarJson(Request $request)
     {
         $TipoApuesta = new TipoApuesta();
-        
+
 
         $TipoApuesta->idTipoPago = $request->input('idTipoPago');
         $TipoApuesta->valorapuesta = $request->input('valorapuesta');
@@ -46,5 +47,25 @@ class TipoApuesta extends Model
         $TipoApuesta->estado = $request->input('estado');
         $TipoApuesta->save();
         return $TipoApuesta;
+    }
+
+    public static function TipoApuestaColor($NumeroGenerado, $idEvento)
+    {
+        $tipo_apuesta = DB::table('tipo_apuesta as t')
+            ->select('t.*', 'tp.multiplicadorDefecto')
+            ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+            ->where('t.valorapuesta', '=', $NumeroGenerado)
+            ->get();
+
+        foreach ($tipo_apuesta as $apuesta) {
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $apuesta->valorapuesta;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
     }
 }

@@ -2,16 +2,7 @@
 
 
 #region [Autenticacion]
-use App\ApiApuestaTotal\ValidarApi;
-
 Route::get('/', 'AutenticacionController@LoginVista')->name('/');
-//Route::get('/', function (){
-//    $validar_api = new ValidarApi();
-//    $respuesta_api = $validar_api->ListaTiendasTokenApi();
-//    $respuesta_api = (string)$respuesta_api;
-//    $respuesta = json_decode($respuesta_api, true);
-//    return $respuesta;
-//});
 Route::post('ValidarLoginJson', 'AutenticacionController@ValidarLoginJson');
 Route::post('CerrarSesion', 'AutenticacionController@CerrarSesionJson')->name('CerrarSesion');
 #endregion
@@ -51,13 +42,13 @@ Route::middleware(['auth'])->group(function () {
 #endregion
 
 #region [Venta]
-Route::get('Index', 'VentaController@Index')->name('Venta.Index');
+    Route::get('Index', 'VentaController@Index')->name('Venta.Index');
 
-Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
-Route::post('EventoDatosJson','VentaController@EventoDatosJson');
-Route::post('HistorialDatosJson','VentaController@HistorialDatosJson');
-Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
-Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
+    Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
+    Route::post('EventoDatosJson', 'VentaController@EventoDatosJson');
+    Route::post('HistorialDatosJson', 'VentaController@HistorialDatosJson');
+    Route::post('JackpotDatosJson', 'VentaController@JackpotDatosJson');
+    Route::post('ImprimirDatosJson', 'VentaController@ImprimirDatosJson');
 
 
 #endregion
@@ -149,7 +140,7 @@ Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
     Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
 #endregion
 
-    Route::post('ExportarExcel','ReporteController@ExportarExcel')->name('Exportar');
+    Route::post('ExportarExcel', 'ReporteController@ExportarExcel')->name('Exportar');
 
     Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
 
