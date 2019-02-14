@@ -211,25 +211,12 @@ function ListarVentaDatosJson() {
 
                                 .append(
                                         $("<div>").attr("style","width: 30%; height: 100%;float:left;position:relative")
-                                        // $("<div>").attr("style","width: 30%; height: 100%;display:inline-block")
                                         .append(
                                             $("<img>").attr("style","width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;").attr("src",basePath+"img/juegos/"+e.logo)
                                             )
-                                       //                  .attr("width",50)
-                                       //                  .attr("height",40)
-                                       // $("<span>")  .attr("style","vertical-align: middle;display: table-cell;")
-                                       //          .append(
-                                       //                  $("<img>").attr("src",basePath+"img/juegos/"+e.logo)
-                                       //                  .attr("width",50)
-                                       //                  .attr("height",40)
-                                       //                  )
                                     )  
                                  .append(
-                                        // $("<div>").attr("style","width: 70%; height: 100%;display:inline-block").text(e.nombre).addClass("eventotextodiv")
                                         $("<div>").attr("style","width: 70%; height: 100%;float:left;display:flex;align-items:center").text(e.nombre).addClass("eventotextodiv")
-
-                                   // $("<span>")  .attr("style","vertical-align: middle;display: table-cell;")
-                                   //              .text(e.nombre)
                                     )              
                                 );
                 })
@@ -448,7 +435,6 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                     if(idtipopago.toString()==(ee.idTipoPago).toString() ){
                         cuota=ee.multiplicadorDefecto;
                         idtipoapuesta=ee.idTipoApuesta;
-
                     }
             })  
             $(e).attr("data-cuota",cuota);
@@ -554,7 +540,6 @@ function ImprimirJson(idTicket){
                 $("#divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
                 $("#divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
 
-
                 $("#divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
                 ///$("#codigo_barra").html(codigo_barrahtml);
                 $("#imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
@@ -564,7 +549,6 @@ function ImprimirJson(idTicket){
                             // setTimeout(function(){
                             //     Imprimir("divimpresion");
                             // },1000)
-
                              setTimeout(function(){
                                 GuardarTicket(TICKET_IMPRIMIR);
                             },1000)
@@ -590,11 +574,7 @@ function HistorialJson() {
                   $(".historial_numeros").append(
                     $("<div>").text(e.valorGanador).css("background-color",e.color)
                 )
-
-
             })
-          
-
         },
     })
 }
@@ -613,7 +593,6 @@ function generar_json_apuestas(){
             filaapuesta.APUESTA=$("td:eq(3)",tr).text().trim();
             array_apuestas.push(filaapuesta)
         }
-        
     })
     return array_apuestas;
 }
@@ -635,7 +614,6 @@ function sacar_totales_y_maximo(){
             }
         }
     });
-
   
     if($(tr_maximo).data("tipo")=="numero"){  /////SI TR MAXIMO ES NUMERO, REVISAR SI HAY APUESTA EN RANGO,PAR,IMPAR,COLOR
 
@@ -663,7 +641,6 @@ function sacar_totales_y_maximo(){
                     maximo=maximo+(parseFloat($("td:eq(2)",trpar).text())*parseFloat($("td:eq(3)",trpar).text().trim()));
                 }
             }
-
              tr_impares=$("#tabla_eventos tbody tr[data-tipo='impares']");
             if(tr_impares.length){
                 valor_trmaximo=$(tr_maximo).data("valor");
@@ -682,7 +659,6 @@ function sacar_totales_y_maximo(){
                     maximo=maximo+(parseFloat($("td:eq(2)",trnegro).text())*parseFloat($("td:eq(3)",trnegro).text().trim()));
                 }
             }
-
             tr_rojos=$("#tabla_eventos tbody tr[data-tipo='rojos']");
             if(tr_rojos.length){
                 color_trmaximo=$(tr_maximo).data("color");
@@ -710,38 +686,32 @@ function sacar_totales_y_maximo(){
                 }
             })
     }
-/// FIN SI TRMAXIMO  ES RANGO
-
-/// SI TRMAXIMO  ES COLOR
-//     if($(tr_maximo).data("tipo")=="negros"){  /////SI TR MAXIMO ES RANGO,  REVISAR SI HAY APUESTA EN ALGUN NUMERO DEL RANGO
-//             tr_negros=$("#tabla_eventos tbody tr[data-tipo='negros']");
-//             if(tr_negros.length){
-//                 color_trmaximo=$(tr_maximo).data("color");
-//                 var trnegro=tr_negros;
-//                 if(color_trmaximo.toUpperCase()==(trnegro.data("valor")).toUpperCase()){///es negro
-//                     maximo=maximo+(parseFloat($("td:eq(2)",trnegro).text())*parseFloat($("td:eq(3)",trnegro).text().trim()));
-//                 }
-//             }
-//             tr_numeros=$("#tabla_eventos tbody tr[data-tipo='numero']");
-//             $(tr_numeros).each(function(iii,eee){
-//                 var trnum=eee;
-//                 var valornumero=$(eee).data("valor");
-//                 if(valornumero>=rangoinicio && valornumero<=rangofin){ ////numero fila esta en rango 
-//                     maximo=maximo+(parseFloat($("td:eq(2)",trnum).text())*parseFloat($("td:eq(3)",trnum).text().trim()));
-//                 }
-//             })
-//     }
-// /// FIN SI TRMAXIMO  ES COLOR
-
-  
+    /// FIN SI TRMAXIMO  ES RANGO
+    /// SI TRMAXIMO  ES COLOR
+    //     if($(tr_maximo).data("tipo")=="negros"){  /////SI TR MAXIMO ES RANGO,  REVISAR SI HAY APUESTA EN ALGUN NUMERO DEL RANGO
+    //             tr_negros=$("#tabla_eventos tbody tr[data-tipo='negros']");
+    //             if(tr_negros.length){
+    //                 color_trmaximo=$(tr_maximo).data("color");
+    //                 var trnegro=tr_negros;
+    //                 if(color_trmaximo.toUpperCase()==(trnegro.data("valor")).toUpperCase()){///es negro
+    //                     maximo=maximo+(parseFloat($("td:eq(2)",trnegro).text())*parseFloat($("td:eq(3)",trnegro).text().trim()));
+    //                 }
+    //             }
+    //             tr_numeros=$("#tabla_eventos tbody tr[data-tipo='numero']");
+    //             $(tr_numeros).each(function(iii,eee){
+    //                 var trnum=eee;
+    //                 var valornumero=$(eee).data("valor");
+    //                 if(valornumero>=rangoinicio && valornumero<=rangofin){ ////numero fila esta en rango 
+    //                     maximo=maximo+(parseFloat($("td:eq(2)",trnum).text())*parseFloat($("td:eq(3)",trnum).text().trim()));
+    //                 }
+    //             })
+    //     }
+    // /// FIN SI TRMAXIMO  ES COLOR
     datos={}
     datos.total=total;
     datos.maximo=maximo;
     return datos;
-}
-
-
-
+}  ///FIN sacar_totales_y_maximo();
 
 
 
@@ -778,8 +748,6 @@ $(document).ready(function () {
 
                 $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png")
                 $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"))
-
-
     })
 
     $("#div_configuracioneventos .eventos_fila_izq>div").eq(0).click();
@@ -793,30 +761,30 @@ $(document).ready(function () {
             $(this).toggleClass("seleccionado") ;
         })
 /////finbotones numeros
-            $("#numeros_tabla [data-tipo='rango']").off().on("click",function(e){ 
-                $(this).toggleClass("seleccionado") ;
-            })
-            $("#numeros_tabla [data-tipo='pares']").off().on("click",function(e){ 
-                $(this).toggleClass("seleccionado") ;
-            })
-            $("#numeros_tabla [data-tipo='impares']").off().on("click",function(e){ 
-                $(this).toggleClass("seleccionado") ;
-            })
-            $("#numeros_tabla [data-tipo='color']").off().on("click",function(e){ 
-                $(this).toggleClass("seleccionado") ;
-            })
-            $("#numeros_tabla [data-tipo='color']").off().on("click",function(e){ 
-               $(this).toggleClass("seleccionado") ;
-            })
-    
-           $("#div_apuestas [data-tipo='apuesta']").off().on("click",function(e){ 
-                    $(this).toggleClass("seleccionadoapuesta") ;
-                    var SUMAAPUESTAS=0;
-                    $("#div_apuestas .seleccionadoapuesta").each(function(ii,ee){
-                    SUMAAPUESTAS=SUMAAPUESTAS+$(ee).data("valor");
-                    })
-                    $(".rowtableeventos_footer_apuesta").text("APUESTA "+SUMAAPUESTAS+" "+divisa);
-            })
+        $("#numeros_tabla [data-tipo='rango']").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+        $("#numeros_tabla [data-tipo='pares']").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+        $("#numeros_tabla [data-tipo='impares']").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+        $("#numeros_tabla [data-tipo='color']").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+        $("#numeros_tabla [data-tipo='color']").off().on("click",function(e){ 
+           $(this).toggleClass("seleccionado") ;
+        })
+
+       $("#div_apuestas [data-tipo='apuesta']").off().on("click",function(e){ 
+                $(this).toggleClass("seleccionadoapuesta") ;
+                var SUMAAPUESTAS=0;
+                $("#div_apuestas .seleccionadoapuesta").each(function(ii,ee){
+                SUMAAPUESTAS=SUMAAPUESTAS+$(ee).data("valor");
+                })
+                $(".rowtableeventos_footer_apuesta").text("APUESTA "+SUMAAPUESTAS+" "+divisa);
+        })
 
     /////BOTONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS  DINERODEFAULT
 
@@ -839,7 +807,6 @@ $(document).ready(function () {
                 toastr.error("Error","Seleccione Número")
                 return false;
             }
-            
     //        apuesta_fila=parseFloat(SUMAAPUESTAS/cantidadnumeros).toFixed(2);
             apuesta_fila=parseFloat(SUMAAPUESTAS).toFixed(2);
 
@@ -938,8 +905,6 @@ $(document).ready(function () {
         $("#numeros_tabla .seleccionado").removeClass("seleccionado");
 
     })////FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN on click boton check
-    
-
 
         ///BOTON CERRAR  -- BORRAR
         $("#div_botones .cerrar").on("click",function(){
@@ -962,7 +927,6 @@ $(document).ready(function () {
         $("#div_botones .barcode").on("click",function(){
             $("#modal_buscar").modal("show");1  
         })
-
 
         ///BOTON IMPRIMIR
         $("#div_botones .print").on("click",function(){
@@ -1003,7 +967,5 @@ $(document).ready(function () {
                 $("#btn_buscar_ticket").click();
             
         })
-
         responsivetombola()
-   
 });
