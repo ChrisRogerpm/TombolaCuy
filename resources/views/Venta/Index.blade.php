@@ -401,84 +401,81 @@
         <div class="modal-body" style="overflow:auto">
              <div style="text-align:center">
                 <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
-                <div class="ticket" style="display:inline-block;font-size:9pt;width:80mm;padding:8mm">
-                    <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
-                        <img id="imagen_apuestatotal" width="180" height="80">
-                    </div></div>
-                    <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
-                    <div class="datos" style="width:100%;display:table;padding-top:4px">
-                        <div style="width:100%;border-top:2px dotted;display:table">
-                                    <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
-                                    <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
-                        </div>
-                        <div style="width:100%;display:table">
-                       
-                                    <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
-                                    <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
+                    <div class="ticket" style="display:inline-block;font-size:9pt;width:80mm;padding:8mm">
+                        <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
+                            <img id="imagen_apuestatotal" width="180" height="80">
+                        </div></div>
+                        <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
+                        <div class="datos" style="width:100%;display:table;padding-top:4px">
+                            <div style="width:100%;border-top:2px dotted;display:table">
+                                        <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                                        <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
+                            </div>
+                            <div style="width:100%;display:table">
+                           
+                                        <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
+                                        <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
 
-                        </div>
-                        <div style="width:100%;display:table">
+                            </div>
+                            <div style="width:100%;display:table">
+                             
+                                        <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
+                                        <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
+
+                            </div>
+                            <div style="width:100%;display:table">
                          
-                                    <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
-                                    <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
+                                        <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
+                                        <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
+                            </div>
+                            <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
+                            </div>
+
+                            <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
+                                    <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
+                                    <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
+
+                            </div>
+                            <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                         
+                                <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
+                                <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
+
+                            </div>
+                            <div style="width:100%;display:table;padding-bottom:4px;" id="">
+                                <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
+                                <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
+
+                            </div>
+
+
+                             <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                                <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
+                                <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
+
+                            </div>
+                             <div style="width:100%;display:table" id="">
+                                <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
+                                <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
+
+                            </div>
+
 
                         </div>
-                        <div style="width:100%;display:table">
-                     
-                                    <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
-                                    <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
+                        <div class="footer" style="width:100%;text-align:center"></div>
+                        <div class="codigoqr_barra" style="width:100%;margin-bottom:8px;display:table">
+                              <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
+                            <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
+                            <img id="imagen_codigobarra"width="114" height="80">
+                              </div>
+
+                              <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
+                            
                         </div>
-                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
-                        </div>
-
-                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
-                                <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
-                                <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
-
-                        </div>
-                        <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
-                     
-                            <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
-
-                        </div>
-                        <div style="width:100%;display:table;padding-bottom:4px;" id="">
-                            <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
-
-                        </div>
-
-
-                         <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
-                            <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
-
-                        </div>
-                         <div style="width:100%;display:table" id="">
-                            <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
-                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
-
-                        </div>
-
 
                     </div>
-                    <div class="footer" style="width:100%;text-align:center"></div>
-                    <div class="codigoqr_barra" style="width:100%;margin-bottom:8px;display:table">
-                          <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
-                        <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
-                        <img id="imagen_codigobarra"width="114" height="80">
-                          </div>
-
-                          <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
-                        
-                    </div>
-
-                  
-
-
                 </div>
-            </div>
-             </div><!--FIN DIV WRAPPER-->
+            </div><!--FIN DIV WRAPPER-->
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
