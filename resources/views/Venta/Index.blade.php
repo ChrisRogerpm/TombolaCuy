@@ -400,7 +400,7 @@
         </div>
         <div class="modal-body" style="overflow:auto">
              <div style="text-align:center">
-                <div id="divimpresion">
+                <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
                 <div class="ticket" style="display:inline-block;font-size:9pt;width:80mm;padding:8mm">
                     <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
                         <img id="imagen_apuestatotal" width="180" height="80">
