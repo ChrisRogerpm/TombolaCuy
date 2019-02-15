@@ -401,7 +401,7 @@
         <div class="modal-body" style="overflow:auto">
              <div style="text-align:center">
                 <div id="divimpresion">
-                <div class="ticket" style="display:inline-block;font-size:11px">
+                <div class="ticket" style="display:inline-block;font-size:9pt;width:80mm;padding:8mm">
                     <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
                         <img id="imagen_apuestatotal" width="180" height="80">
                     </div></div>
@@ -463,9 +463,10 @@
 
                     </div>
                     <div class="footer" style="width:100%;text-align:center"></div>
-                    <div class="codigoqr_barra" style="width:100%;margin-bottom:8px">
+                    <div class="codigoqr_barra" style="width:100%;margin-bottom:8px;display:table">
                           <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
-                        <img id="imagen_codigobarra"width="180" height="80">
+                        <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
+                        <img id="imagen_codigobarra"width="114" height="80">
                           </div>
 
                           <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>

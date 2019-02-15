@@ -8463,7 +8463,16 @@ color:white;
 
 
 
-
+div.top-shadow:before {
+	display: block;
+	top: 0px;
+	clip: rect(-40px auto 0 auto);
+}
+div.bottom-shadow:after {
+	display: block;
+	bottom: 0px;
+	clip: rect(20px auto 40px auto);
+}
 
 
 

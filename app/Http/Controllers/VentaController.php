@@ -172,7 +172,9 @@ class VentaController extends Controller
               $d = new DNS1D();//echo asset('public/img/barcodes/');                
          $d->setStorPath( asset('public/img/barcodes/'));
       $codigo_barrahtml= $d->getBarcodeHTML($Ticket_Imprimir["Nro_Evento"], "EAN13",1,11);
-        $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "EAN13",3,33);
+        // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "EAN13",3,33);
+        // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "C39E+",1,100);
+        $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "C128C",2,80);
 // $codigo_barra=DNS1D::getBarcodePNG("4", "C39+",3,33,array(1,1,1));
 //echo DNS1D::getBarcodeHTML("4445645656", "PHARMA2T");
 

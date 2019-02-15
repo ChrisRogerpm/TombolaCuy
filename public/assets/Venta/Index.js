@@ -141,8 +141,10 @@ function GuardarTicket(ticketobjeto){/////GUARDATICKET EN TICKET Y APUESTAS , AB
 
 function Imprimir(elem)
 {
+
+    //////CONFIGURAR NAVEGADOR   MARGENES =>  NINGUNO
     console.log("Imprimiendi")
-    var mywindow = window.open('', 'PRINT', 'height=800,width=600');
+    var mywindow = window.open('', 'PRINT', 'height=800,width=700');
     // mywindow.document.write('<html><head><title>' + document.title  + '</title>');
     mywindow.document.write('</head><body>');
     //mywindow.document.write('<h1>' + document.title  + '</h1>');
@@ -471,7 +473,7 @@ function ImprimirJson(idTicket){
 
     totales=sacar_totales_y_maximo();
     TICKET_IMPRIMIR.TotalTicket=totales.total;
-    TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:MM a");//new Date().toLocaleString();
+    TICKET_IMPRIMIR.ImpresoEn=moment(new Date()).format("DD-MM-YYYY HH:mm a");//new Date().toLocaleString();
     TICKET_IMPRIMIR.ImpresoPor=USUARIO;
 
     TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
@@ -489,7 +491,7 @@ function ImprimirJson(idTicket){
                 seleccion=$("td:eq(1)",tr).text();
                 cuota=$("td:eq(2)",tr).text();
                 apuesta=$("td:eq(3)",tr).text();
-                fila_apuesta.evento=evento;
+                fila_apuesta.evento=eventoactual.IdEvento;//evento;
                 fila_apuesta.descripcion=seleccion;
                 fila_apuesta.cuota=cuota;
                 fila_apuesta.idtipopago=idtipopago;
