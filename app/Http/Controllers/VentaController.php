@@ -167,14 +167,16 @@ class VentaController extends Controller
        public function ImprimirDatosJson(Request $request){
         $mensaje_error = "";
             $Ticket_Imprimir= $request->input("TICKET_IMPRIMIR");
-;
+// ;print_r($Ticket_Imprimir["Id_Ticket"]);print_r(" aca ");
+// ;print_r($Ticket_Imprimir["Nro_Evento"]);
         try {
               $d = new DNS1D();//echo asset('public/img/barcodes/');                
          $d->setStorPath( asset('public/img/barcodes/'));
-      $codigo_barrahtml= $d->getBarcodeHTML($Ticket_Imprimir["Nro_Evento"], "EAN13",1,11);
+         $CODIGO=sprintf('%09d', $Ticket_Imprimir["Id_Ticket"]);
+       $codigo_barrahtml= $d->getBarcodeHTML($CODIGO, "EAN13",1,11);
         // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "EAN13",3,33);
         // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "C39E+",1,100);
-        $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "C128C",2,80);
+        $imagen_barrahtml=DNS1D::getBarcodePNG($CODIGO, "C128",2,80);
 // $codigo_barra=DNS1D::getBarcodePNG("4", "C39+",3,33,array(1,1,1));
 //echo DNS1D::getBarcodeHTML("4445645656", "PHARMA2T");
 
@@ -187,7 +189,7 @@ class VentaController extends Controller
  //                        ->size(500)->errorCorrection('H')
  //                         ->generate('Welcome to kerneldev.com!'));
 
- $png = QrCode::format('png')->size(512)->generate($Ticket_Imprimir["Nro_Evento"]);
+  $png = QrCode::format('png')->size(512)->generate($CODIGO);
 $image_qrcode = base64_encode($png);
 
 // QrCode::margin(50)->generate('My First QR code');

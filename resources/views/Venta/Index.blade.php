@@ -1,5 +1,7 @@
 @extends('Shared.layout')
 
+
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -14,7 +16,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Venta Caja
+                                                    Venta Caja  
                                                 </h6>
                                             </div>
                                         </div>
@@ -463,7 +465,7 @@
 
                         </div>
                         <div class="footer" style="width:100%;text-align:center"></div>
-                        <div class="codigoqr_barra" style="width:100%;margin-bottom:8px;display:table">
+                        <div class="codigoqr_barra" style="width:100%;margin-bottom:8mm;display:table">
                               <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
                             <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
                             <img id="imagen_codigobarra"width="114" height="80">
