@@ -115,7 +115,7 @@ LIMIT 20
 
     public static function DineroDefaultListar()
     {
-        $listar = DB::select(DB::raw("select * from dinero_default"));
+        $listar = DB::select(DB::raw("select * from dinero_default where estado =1"));
         return $listar;
     }
 
