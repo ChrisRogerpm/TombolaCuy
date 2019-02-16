@@ -6,7 +6,7 @@ use App\AperturaCaja;
 use App\Evento;
 use App\Ticket;
 use App\Apuesta;
-
+use Auth;
 use \Milon\Barcode\DNS1D;
 
  use BaconQrCode\Renderer\ImageRenderer;
@@ -74,8 +74,8 @@ class VentaController extends Controller
 
     public function VentaDatosJson()
     {
-            $usuarionombre="BTD OSCAR AGUILAR";
-        $usuario = 1;
+            $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuario = Auth::user()->idUsuario;
         $lista = "";
         $mensaje_error = "";
         try {
