@@ -889,6 +889,11 @@ $(document).ready(function () {
             $("#numeros_tabla .seleccionado , .rectangulo_izquierda.seleccionado")
             // $("#numeros_tabla .seleccionado")
             .each(function(i,e){
+////
+                // $(e).addClass("apostado")
+                 //$(e).off("click")
+////
+
                array_apuestas_json=generar_json_apuestas();
                 valornumero=$(e).data("valor");
                 tiponumero=$(e).data("tipo");
@@ -902,7 +907,7 @@ $(document).ready(function () {
                 }
                 cuota=$(e).data("cuota");
                 apostado=false;
-                console.log(array_apuestas_json);
+                //console.log(array_apuestas_json);
 
                 $(array_apuestas_json).each(function(ii,ee){
                     if((ee.SELECCION).toString()==valornumero.toString()){
@@ -946,6 +951,12 @@ $(document).ready(function () {
                          $(".divcerrarfila").off("click").on("click",function(){
 
                                 $(this).closest("tr").remove();
+
+                                // $("div[data-valor='"+$("td:eq(1)",$(this).closest("tr")).text()+"']").on("click",function(){ $(this).toggleClass("seleccionado") ;}) 
+                                // $("div[data-valor='"+$("td:eq(1)",$(this).closest("tr")).text()+"']").removeClass("apostado")
+
+
+
                                 var totales_maximo=sacar_totales_y_maximo();
                                 $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
                                 $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
@@ -982,6 +993,10 @@ $(document).ready(function () {
             var totales_maximo=sacar_totales_y_maximo();
             $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
             $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
+
+        // $("#numeros_tabla .apostado").removeClass("apostado");
+
+
         })
         /*    $("#tabla_eventos").DataTable(
         {

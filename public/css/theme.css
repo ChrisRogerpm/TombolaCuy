@@ -8266,6 +8266,10 @@ color:orange !important;
 
 }
 
+.apostado{
+	cursor:not-allowed !important;
+}
+
 .seleccionadoapuesta {
 	border-style:solid !important;
 	border-width:2px !important;

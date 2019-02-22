@@ -193,7 +193,7 @@ class VentaController extends Controller
         try {
             $d = new DNS1D();//echo asset('public/img/barcodes/');                
             $d->setStorPath( asset('public/img/barcodes/'));
-            $CODIGO=sprintf('%018d', $Ticket_Imprimir["Id_Ticket"]);
+            $CODIGO=sprintf('%015d', $Ticket_Imprimir["Id_Ticket"]);
             $imagen_barrahtml=DNS1D::getBarcodePNG($CODIGO, "C128",2,80);
             $png = QrCode::format('png')->size(512)->generate($CODIGO);
             $image_qrcode = base64_encode($png);
