@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Array_;
 
 class Reporte extends Model
 {
@@ -20,8 +22,8 @@ class Reporte extends Model
     public static function ReporteApuestaJson(Request $request)
     {
         $tiendas = $request->input('tiendas');
-        $fechaIni = $request->input('fechaInicio');
-        $fechaFin = $request->input('fechaFin');
+        $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
+        $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
         $lista = DB::select(DB::raw("SELECT
         pv.nombre as Tienda,
@@ -67,12 +69,12 @@ class Reporte extends Model
     public static function ReporteHistorialGanadoresListarJson(Request $request)
     {
         $tiendas = $request->input('tiendas');
-        $fechaIni = $request->input('fechaInicio');
-        $fechaFin = $request->input('fechaFin');    
+        $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
+        $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
         //$where ="where pv.idPuntoVenta in (".$tiendas.") and";
-        $where = ($tiendas[0]=="0") ? "" : "where pv.idPuntoVenta in (".$tiendas.")" ;
+        $where = ($tiendas[0] == "0") ? "" : "where pv.idPuntoVenta in (" . $tiendas . ")";
         $listar = DB::select(DB::raw("SELECT 
         caj.idPuntoVenta,
         pv.nombre tienda,
@@ -106,8 +108,8 @@ class Reporte extends Model
         $tiendas = $request->input('tiendas');
         $jackPots = $request->input('jackPots');
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
-        $jackPots = is_array($jackPots) ? implode(",", $jackPots) : $jackPots;    
-      
+        $jackPots = is_array($jackPots) ? implode(",", $jackPots) : $jackPots;
+
         $listar = DB::select(DB::raw("
         SELECT 
         caj.idPuntoVenta,
@@ -139,7 +141,7 @@ class Reporte extends Model
     public static function ConfiguracionPozoSegunConfJackPot(Request $request)
     {
         $idConfigJackPot = $request->input('idConfiguracionJackpot');
-        
+
         $listar = DB::select(DB::raw("SELECT 
         j.idJackpot idJackPot,
         j.nombre JACKPOT,
@@ -157,7 +159,7 @@ class Reporte extends Model
     public static function PozoJackPotSegunJackPotId(Request $request)
     {
         $idJackpot = $request->input('idJackpot');
-        
+
         $listar = DB::select(DB::raw("SELECT
         j.idJackpot,
         j.nombre JackPot,
@@ -183,12 +185,12 @@ class Reporte extends Model
     public static function JackPotSegunidJackpot(Request $request)
     {
         $idJackpot = $request->input('idJackpot');
-        
+
 
         // SELECT j.idJackpot,
         // j.nombre JackPot,
         // pv.idPuntoVenta,
-      	// pv.nombre TIENDA,
+        // pv.nombre TIENDA,
         //   pj.idPozoJackpot,    
         //   pj.incrementoJackpot,      	
         // pj.limiteInferior,
@@ -224,9 +226,89 @@ class Reporte extends Model
         return $listar;
 
 
-        	
-			
     }
-    
+
+    public static function ReporteVenta(Request $request)
+    {
+        $fecha_ini = Carbon::parse($request->input('fechaInicio'))->startOfDay();
+        $fecha_fin = Carbon::parse($request->input('fechaFin'))->endOfDay();
+
+        $listar = DB::table('evento as e')
+            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
+            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
+            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
+            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+            ->get();
+
+        return $listar;
+    }
+
+    public static function ValorGanadorEvento($idEvento)
+    {
+        $valorGanador = DB::table('resultado_evento as re')
+            ->select('re.valorGanador')
+            ->where('re.idEvento', $idEvento)
+            ->groupBy('re.valorGanador')
+            ->get();
+        if (count($valorGanador) > 0) {
+            return (int)$valorGanador[0]->valorGanador;
+        } else {
+            return '&&';
+        }
+    }
+
+    public static function DescripcionResultadoEvento($idEvento)
+    {
+        $descripcion = DB::table('resultado_evento as re')
+            ->select('ta.descripcion')
+            ->join('tipo_apuesta as ta', 'ta.idTipoApuesta', 're.idTipoApuesta')
+            ->join('tipo_pago as tp', 'tp.idTipoPago', 're.idTipoPago')
+            ->where('re.idEvento', $idEvento)
+            ->get();
+        if (count($descripcion) > 0) {
+            $resultado = "";
+            foreach ($descripcion as $d) {
+                $resultado .= $d->descripcion . ' / ';
+            }
+            return $resultado;
+        } else {
+            return '&&';
+        }
+    }
+
+    public static function ReporteVentaJuego(Request $request)
+    {
+        $fecha_ini = $request->input('fechaInicio');
+        $fecha_fin = $request->input('fechaFin');
+        $IdJuego = $request->input('IdJuego');
+        $valor_array = array();
+        if ($fecha_ini == "" && $fecha_fin == "") {
+            $listar = DB::table('evento as e')
+                ->select('e.idEvento', 'e.fechaEvento')
+                ->where('e.idJuego', $IdJuego)
+                ->orderBy('e.idEvento', 'DESC')
+                ->get();
+            foreach ($listar as $l) {
+
+                $valor = self::ValorGanadorEvento($l->idEvento);
+                $descripcion = self::DescripcionResultadoEvento($l->idEvento);
+                $valor_array [] = ['idEvento' => $l->idEvento, 'fechaEvento' => $l->fechaEvento, 'ValorGanador' => $valor, 'Descripcion' => $descripcion];
+            }
+        } else {
+            $listar = DB::table('evento as e')
+                ->select('e.idEvento', 'e.fechaEvento')
+                ->where('e.idJuego', $IdJuego)
+                ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+                ->orderBy('e.idEvento', 'DESC')
+                ->get();
+            foreach ($listar as $l) {
+                $valor = self::ValorGanadorEvento($l->idEvento);
+                $descripcion = self::DescripcionResultadoEvento($l->idEvento);
+                $valor_array [] = ['idEvento' => $l->idEvento, 'fechaEvento' => $l->fechaEvento, 'ValorGanador' => $valor, 'Descripcion' => $descripcion];
+            }
+        }
+        return $valor_array;
+    }
+
 
 }

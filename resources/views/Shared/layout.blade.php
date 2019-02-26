@@ -854,6 +854,10 @@
                                         class="title">Historial Ganadores</span></a></li>
                             <li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">JackPot</span></a></li>
+                            <li><a href="{{route('Reporte.Venta')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                            class="title">Reporte Venta</span></a></li>
+                            <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                            class="title">Reporte Venta Juego</span></a></li>
                         </ul>
                     </li>
                 </ul>

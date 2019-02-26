@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Evento;
 use App\Exports\ReporteApuestaExport;
+use App\Juego;
 use App\Reporte;
+use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -12,6 +15,17 @@ class ReporteController extends Controller
     public function ReporteApuestaVista()
     {
         return view('Reportes.ReporteApuestasVista');
+    }
+
+    public function ReporteVentaVista()
+    {
+        return view('Reportes.ReporteVentasVista');
+    }
+
+    public function ReporteVentaJuegoVista()
+    {
+        $juegos = Juego::JuegoListarLapsoJson();
+        return view('Reportes.ReporteVentaJuegoVista', compact('juegos'));
     }
 
     public function ReporteApuestaJson(Request $request)
@@ -116,6 +130,34 @@ class ReporteController extends Controller
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
 
+    }
+
+    public function ReporteVentaJson(Request $request)
+    {
+        $lista = "";
+        $respuesta = false;
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ReporteVenta($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function ReporteVentaJuegoJson(Request $request)
+    {
+        $lista = "";
+        $respuesta = false;
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ReporteVentaJuego($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
 }

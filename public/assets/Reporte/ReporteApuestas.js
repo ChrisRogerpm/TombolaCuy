@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
 });
 
-function CargarDataTienda(Tabla, IdTienda) {
+function CargarDataTienda(Tabla, IdTienda,NombreTienda) {
     var tienda =IdTienda;
     debugger
     var url = basePath + "ReporteApuestaJson";

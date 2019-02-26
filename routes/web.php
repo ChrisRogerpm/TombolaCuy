@@ -140,6 +140,10 @@ Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
 
 #region [Reporte]
     Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
+    Route::get('ReporteVentaVista','ReporteController@ReporteVentaVista')->name('Reporte.Venta');
+    Route::get('ReporteVentaJuegoVista','ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
+    Route::post('ReporteVentaJson','ReporteController@ReporteVentaJson');
+    Route::post('ReporteVentaJuego','ReporteController@ReporteVentaJuegoJson');
 #endregion
 
     Route::post('ExportarExcel', 'ReporteController@ExportarExcel')->name('Exportar');
@@ -155,6 +159,10 @@ Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
     Route::post('ConfiguracionPozoSegunConfJackPot', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
     Route::post('PozoJackPotSegunJackPotId', 'ReporteController@PozoJackPotSegunJackPotId');
     Route::post('JackPotSegunidJackpot', 'ReporteController@JackPotSegunidJackpot');
+    #endregion
+
+    #region [Excel]
+    Route::post('GenerarExcel','HomeController@GenerarExcel');
     #endregion
     
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
