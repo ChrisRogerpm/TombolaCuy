@@ -6,6 +6,7 @@ use App\AperturaCaja;
 use App\Evento;
 use App\Ticket;
 use App\Apuesta;
+use App\GanadorEvento;
 use Auth;
 use \Milon\Barcode\DNS1D;
 
@@ -25,7 +26,6 @@ class VentaController extends Controller
     {
         return view('Venta.Index');
     }
-
 
     public function GuardarTicket(Request $request)
     {
@@ -62,19 +62,47 @@ class VentaController extends Controller
         try 
         {
             $datos=$request->datos;
-            $tickets=Ticket::BuscarTicket($datos["idEvento"],$datos["idTicket"]);
+            $idticket = ltrim($datos["idTicket"], '0');
+            $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);
+            $tickets=Ticket::BuscarGanadoresTicket($idticket);
             $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
                return response()->json([
-            'tickets' => $tickets
-            ]);
+                    'apuestas_ticket'=> $apuestas_ticket,
+                    'ticketbuscado'=>$idticket,
+                    'tickets' => $tickets
+                    ]);
+    }
+
+////guardar en ganador_evento y  cambia col estado de ticket a 2
+  public function GuardarGanadorEvento(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try 
+        {
+            $apuestas=$request->apuestas;
+            $idTicket=$request->idTicket;
+            foreach($apuestas as $apu){
+            $apuestaobjeto=$request->merge($apu);
+
+                $ganadorevento=GanadorEvento::GuardarGanadorEvento($apuestaobjeto);
+            }
+            Ticket::TicketPagarEstado($idTicket);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+               return response()->json([
+                    'respuesta' => $respuesta
+                    ]);
     }
 
     public function VentaDatosJson()
     {
-            $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
         $usuario = Auth::user()->idUsuario;
         $lista = "";
         $mensaje_error = "";
@@ -89,7 +117,6 @@ class VentaController extends Controller
         return response()->json([
             'usuario'=>$usuarionombre,
             'hora_servidor' => $hora_servidor,
-            //'jugador' => $jugador,
             'aperturacajadatos' => $aperturacajadatos,
             'eventos' => $eventos,
             'dinerodefault' => $dinerodefault,
@@ -117,7 +144,6 @@ class VentaController extends Controller
         }
         return response()->json([
             'eventodatos' => $eventodatos,
-
             'hora_servidor' => $hora_servidor,
             'jugador' => $jugador->cantidadganadores,
             'divisa' => $divisa->simbolo,
@@ -146,7 +172,6 @@ class VentaController extends Controller
             'jackpots' => $jackpots,
             'jackpotsuma' => $jackpotsuma->sumajackpots,
             'mensaje' => $mensaje_error]);
-
     }
 
     public function HistorialDatosJson()
@@ -160,54 +185,27 @@ class VentaController extends Controller
         return response()->json([
             'historial' => $historial,
             'mensaje' => $mensaje_error]);
-
     }
 
-
-       public function ImprimirDatosJson(Request $request){
+    public function ImprimirDatosJson(Request $request){
         $mensaje_error = "";
-            $Ticket_Imprimir= $request->input("TICKET_IMPRIMIR");
-// ;print_r($Ticket_Imprimir["Id_Ticket"]);print_r(" aca ");
-// ;print_r($Ticket_Imprimir["Nro_Evento"]);
+        $Ticket_Imprimir= $request->input("TICKET_IMPRIMIR");
         try {
-              $d = new DNS1D();//echo asset('public/img/barcodes/');                
-         $d->setStorPath( asset('public/img/barcodes/'));
-         $CODIGO=sprintf('%09d', $Ticket_Imprimir["Id_Ticket"]);
-       $codigo_barrahtml= $d->getBarcodeHTML($CODIGO, "EAN13",1,11);
-        // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "EAN13",3,33);
-        // $imagen_barrahtml=DNS1D::getBarcodePNG($Ticket_Imprimir["Nro_Evento"], "C39E+",1,100);
-        $imagen_barrahtml=DNS1D::getBarcodePNG($CODIGO, "C128",2,80);
-// $codigo_barra=DNS1D::getBarcodePNG("4", "C39+",3,33,array(1,1,1));
-//echo DNS1D::getBarcodeHTML("4445645656", "PHARMA2T");
+            $d = new DNS1D();//echo asset('public/img/barcodes/');                
+            $d->setStorPath( asset('public/img/barcodes/'));
+            $CODIGO=sprintf('%015d', $Ticket_Imprimir["Id_Ticket"]);
+            $imagen_barrahtml=DNS1D::getBarcodePNG($CODIGO, "C128",2,80);
+            $png = QrCode::format('png')->size(512)->generate($CODIGO);
+            $image_qrcode = base64_encode($png);
 
-
-//     QRcode::png($formData, $codesDir.$codeFile, $_POST['ecc'], $_POST['size']);
-
-// echo '<img class="img-thumbnail" src="'.$codesDir.$codeFile.'" />';
-
- // $codigo=base64_encode(QrCode::format('png')->merge('ss.png', 0.3, true)
- //                        ->size(500)->errorCorrection('H')
- //                         ->generate('Welcome to kerneldev.com!'));
-
-  $png = QrCode::format('png')->size(512)->generate($CODIGO);
-$image_qrcode = base64_encode($png);
-
-// QrCode::margin(50)->generate('My First QR code');
-// $renderer = new ImageRenderer(
-//     new RendererStyle(200),
-//     new ImagickImageBackEnd()
-// );
-// $writer = new Writer($renderer);
-// $qr_image = base64_encode($writer->writeString($string));
-// $imagen_qrcode="<img src='data:image/png;base64, ".$codigo."'>";
         } catch (QueryException $ex) {
-            $mensaje_error = $ex->errorInfo;
+        $mensaje_error = $ex->errorInfo;
         }
         return response()->json([
-                               'codigo_barrahtml'=> $codigo_barrahtml,
-                               'codigo_barra_src'=>$imagen_barrahtml,
-                               'qrcode_src'=> $image_qrcode,
-                                  'mensaje' => "1"]);
+                           // 'codigo_barrahtml'=> $codigo_barrahtml,
+                           'codigo_barra_src'=>$imagen_barrahtml,
+                           'qrcode_src'=> $image_qrcode,
+                              'mensaje' => "1"]);
     }
 
 }
