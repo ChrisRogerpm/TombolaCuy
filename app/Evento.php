@@ -143,7 +143,6 @@ LIMIT 20
                     if ($respuesta) {
                         $numero_random = rand(0, 24);
                         TipoApuesta::TipoApuestaColor($numero_random, $JuegoEvento->idEvento);
-
                         if ($juego->lapsoProxEventoHoras > 0) {
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
                             $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);
@@ -178,5 +177,24 @@ LIMIT 20
         }
     }
 
+    public static function EventoActual($IdJuego)
+    {
+        $resultado = DB::table('evento as e')
+            ->join('juego as j', 'j.idJuego', 'e.idJuego')
+            ->where('e.idJuego', $IdJuego)
+            ->where('estadoEvento', 1)
+            ->first();
+        return $resultado;
+    }
+
+    public static function UltimoEventoTerminado($IdJuego)
+    {
+        $resultado = DB::table('evento as e')
+            ->where('e.idJuego',$IdJuego)
+            ->where('e.estadoEvento',2)
+            ->orderBy('e.idEvento','DESC')
+            ->first();
+        return $resultado;
+    }
 
 }

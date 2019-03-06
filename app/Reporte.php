@@ -286,6 +286,7 @@ class Reporte extends Model
             $listar = DB::table('evento as e')
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
+                ->where('estadoEvento',2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
@@ -299,6 +300,7 @@ class Reporte extends Model
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
                 ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+                ->where('estadoEvento',2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
