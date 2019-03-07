@@ -130,6 +130,7 @@ LIMIT 20
         $evento->idMoneda = $juego->idMoneda;
         $evento->estadoEvento = 1;
         $evento->save();
+        return $evento;
     }
 
     public static function GenerarEventoJob()
@@ -141,38 +142,42 @@ LIMIT 20
                 if (now() >= $JuegoEvento->fechaEvento) {
                     $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
                     if ($respuesta) {
-                        $numero_random = rand(0, 24);
-                        TipoApuesta::TipoApuestaColor($numero_random, $JuegoEvento->idEvento);
+                        $Evento_creado = "";
                         if ($juego->lapsoProxEventoHoras > 0) {
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
                             $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                         } else if ($juego->lapsoProxEventoDia > 0) {
                             $NumeroDias = $juego->lapsoProxEventoDia;
                             $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addDays($NumeroDias);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                         } else if ($juego->lapsoProxEventoMinutos > 0) {
                             $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                             $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addMinutes($NumeroMinutos);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                         }
+                        $numero_random = rand(0, 24);
+                        TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
                     }
                 }
             } else {
                 //crear evento desde 0
+                $Evento_creado = "";
                 if ($juego->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $juego->lapsoProxEventoHoras;
                     $fecha = now()->addHours($NumeroHoras);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                 } else if ($juego->lapsoProxEventoDia > 0) {
                     $NumeroDias = $juego->lapsoProxEventoDia;
                     $fecha = now()->addDays($NumeroDias);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                 } else if ($juego->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                     $fecha = now()->addMinutes($NumeroMinutos);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
                 }
+                $numero_random = rand(0, 24);
+                TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
             }
         }
     }
@@ -186,15 +191,4 @@ LIMIT 20
             ->first();
         return $resultado;
     }
-
-    public static function UltimoEventoTerminado($IdJuego)
-    {
-        $resultado = DB::table('evento as e')
-            ->where('e.idJuego',$IdJuego)
-            ->where('e.estadoEvento',2)
-            ->orderBy('e.idEvento','DESC')
-            ->first();
-        return $resultado;
-    }
-
 }

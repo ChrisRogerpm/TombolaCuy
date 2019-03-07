@@ -13,28 +13,29 @@ class ResultadoEvento extends Model
 
     public $timestamps = false;
 
-    public static function ValorGanadorEvento($IdEvento)
+    public static function ValorGanadorEvento($idEvento)
     {
-
         $resultado = DB::table('resultado_evento')
             ->select('valorGanador')
-            ->where('idEvento',$IdEvento)
+            ->where('idEvento', $idEvento)
             ->groupBy('valorGanador')
             ->first();
         return $resultado;
     }
 
-    public static function UltimosResultadosEvento($IdJuego)
+    public static function ResultadosEvento($IdJuego)
     {
-        $ultimo_evento = Evento::UltimoEventoTerminado($IdJuego);
-        $idvalor = $ultimo_evento->idEvento;
-        $valor_ganador = ResultadoEvento::ValorGanadorEvento($idvalor);
+        $maximo_evento = DB::select(DB::raw("SELECT MAX(et.idEvento) Maximo
+        FROM evento et WHERE et.idJuego = $IdJuego"));
+
         $resultado = DB::table('resultado_evento as re')
-            ->join('evento as e', 'e.idEvento', 're.idEvento')
-            ->where('e.idJuego', $IdJuego)
-            ->where('re.valorGanador', $valor_ganador->valorGanador)
+            ->join('evento as e','e.idEvento','re.idEvento')
+            ->where('e.idJuego',$IdJuego)
+            ->where('re.estado',1)
+            ->whereBetween('re.idTipoPago',array(1,6))
+            ->where('e.idEvento','<',$maximo_evento[0]->Maximo)
+            ->orderBy('re.idEvento','DESC')
             ->take(20)
-            ->orderBy('re.idResultadosEvento', 'DESC')
             ->get();
         return $resultado;
     }

@@ -12,14 +12,13 @@ class ApiController extends Controller
 {
     public function EventoFecha(Request $request)
     {
-//        $IdJuego = $request->input('IdJuego');
-        $IdJuego = 2;
+        $IdJuego = $request->input('IdJuego');
         $evento_actual = Evento::EventoActual($IdJuego);
-        $resultado_evento = ResultadoEvento::UltimosResultadosEvento($IdJuego);
-
+        $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
         if ($evento_actual == null) {
             return response()->json('null');
         } else {
+            $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
             $fecha_actual = $evento_actual->fechaEvento;
             $fecha_evento_proximo = '';
             if ($evento_actual->lapsoProxEventoHoras > 0) {
@@ -36,6 +35,7 @@ class ApiController extends Controller
                 'fecha_evento_actual' => $fecha_actual,
                 'fecha_evento_proximo' => $fecha_evento_proximo->toDateTimeString(),
                 'fecha_animacion' => $fecha_evento_proximo->subSeconds($evento_actual->segBloqueoAntesEvento)->toDateTimeString(),
+                'evento_valor_ganador' => $ganador->valorGanador,
                 'resultado_evento' => $resultado_evento
             ]);
         }
