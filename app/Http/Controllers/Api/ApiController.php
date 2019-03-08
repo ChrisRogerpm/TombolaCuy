@@ -12,8 +12,7 @@ class ApiController extends Controller
 {
     public function EventoFecha(Request $request)
     {
-//        $IdJuego = $request->input('IdJuego');
-        $IdJuego = 2;
+        $IdJuego = $request->input('IdJuego');
         $evento_actual = Evento::EventoActual($IdJuego);
         $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
         if ($evento_actual == null) {
