@@ -6,7 +6,7 @@ $(document).ready(function() {
             debugger
             consultarEvento(1);               
         }
-    }, 1000);
+    }, 3000);
 
     
 });
@@ -194,7 +194,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 0.4;	
@@ -213,7 +213,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 1.9;	
@@ -232,7 +232,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 0.6;	
@@ -252,7 +252,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 2.7;	
@@ -271,7 +271,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -0.8;	
@@ -290,7 +290,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 0.35;	
@@ -309,7 +309,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -1.15;	
@@ -328,7 +328,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -0.1;	
@@ -347,7 +347,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 1.5;	
@@ -366,7 +366,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -0.5;	
@@ -386,7 +386,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 0.85;	
@@ -405,7 +405,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -2.65;	
@@ -424,7 +424,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -1.9;	
@@ -443,7 +443,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -2.1;	
@@ -462,7 +462,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                                                 
+                        }, 2000);                                                 
                     }
                     else{
                         model.rotation.y = 3;	
@@ -481,7 +481,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 1;	
@@ -500,7 +500,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -2.4;	
@@ -519,7 +519,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -1.6;	
@@ -539,7 +539,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 2.7;	
@@ -558,7 +558,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -1.3;	
@@ -577,7 +577,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 2.1;	
@@ -596,7 +596,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = 1.3;	
@@ -615,7 +615,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock();
                             iniciado=false; 
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -0.3;	
@@ -634,7 +634,7 @@ function animate() {
                             model.position.z =0;	
                             clock = new THREE.Clock(); 
                             iniciado=false;
-                        }, 4000);                   	                                               
+                        }, 2000);                   	                                               
                     }
                     else{
                         model.rotation.y = -0.9;	
