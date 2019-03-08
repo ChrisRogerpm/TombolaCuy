@@ -170,4 +170,5 @@ Route::post('GuardarGanadorEvento','VentaController@GuardarGanadorEvento');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
 
+    Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');    
 });
