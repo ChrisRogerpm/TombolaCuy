@@ -67,7 +67,6 @@ function init() {
         modelCaja.traverse( function ( object ) {											
             if(object instanceof THREE.Mesh) {
                 object.castShadow = true;                 
-                console.log(object.name);
                 if(object.name!="Box006" && object.name!="Box007"){
                     object.position.y=0;              
                 };                 
@@ -122,7 +121,7 @@ function init() {
     renderer.shadowMap.enabled = true;
     container.appendChild( renderer.domElement );				
 }									
-function animate() {               	
+function animate() {         	                	
     $("#ImgContainer").hide();							
     id=requestAnimationFrame( animate );	    
     if (loaded) {								     
@@ -141,9 +140,10 @@ function animate() {
             }																
         }	
         else{		
+            console.clear()
+            console.log(clock.getElapsedTime());
             switch(ganador) {							
-                case 0:
-                    console.log(ganador);				                   
+                case 0:                    			                   
                     if(model.position.z < -3.5){                            
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -151,7 +151,8 @@ function animate() {
                         model.position.x =0;		
                         model.position.y =0;		
                         model.position.z =0;	
-                        clock = new THREE.Clock();  
+                        clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -161,7 +162,6 @@ function animate() {
                     }
                     break;
                 case 1:  
-                    console.log(ganador);				
                     if(model.position.z > 4.5){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -170,6 +170,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                   	                                               
                     }
                     else{
@@ -179,7 +180,6 @@ function animate() {
                     }
                     break;
                 case 2:     
-                    console.log(ganador);                                															
                     if(model.position.z < -1.38){                             
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -188,6 +188,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -197,7 +198,6 @@ function animate() {
                     }
                     break;
                 case 3: 
-                    console.log(ganador);
                     if(model.position.z > 3.6){                            
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -206,6 +206,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -215,7 +216,6 @@ function animate() {
                     }
                     break;                
                 case 4:
-                    console.log(ganador);
                     if(model.position.z < -2.98){
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -224,6 +224,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -233,7 +234,6 @@ function animate() {
                     }
                     break;
                 case 5:
-                    console.log(ganador);
                     if(model.position.z >3.7){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -242,6 +242,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -251,7 +252,6 @@ function animate() {
                     }
                     break;
                 case 6:
-                    console.log(ganador);
                     if(model.position.z > 4.2){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -260,6 +260,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -269,7 +270,6 @@ function animate() {
                     }
                     break;
                 case 7:
-                    console.log(ganador);
                     if(model.position.z > 1.9){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -278,6 +278,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -287,7 +288,6 @@ function animate() {
                     }
                     break;
                 case 8:
-                    console.log(ganador);
                     if(model.position.z > 4.6){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -296,6 +296,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                   	                                               
                     }
                     else{
@@ -305,7 +306,6 @@ function animate() {
                     }
                     break;
                 case 9:              
-                    console.log(ganador);
                     if(model.position.z < -0.37){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -314,6 +314,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -323,7 +324,6 @@ function animate() {
                     }
                     break;
                 case 10:
-                    console.log(ganador);
                     if(model.position.z > 4.3){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -332,6 +332,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -341,7 +342,6 @@ function animate() {
                     }
                     break;
                 case 11:   
-                    console.log(ganador);
                     if(model.position.z > 2.7){
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -350,6 +350,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -359,7 +360,6 @@ function animate() {
                     }
                     break;
                 case 12:   
-                    console.log(ganador);                 															
                     if(model.position.z < -3.4){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -368,6 +368,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -377,7 +378,6 @@ function animate() {
                     }
                     break;
                 case 13:   
-                    console.log(ganador);                															
                     if(model.position.z < -1.15){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -386,6 +386,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -395,7 +396,6 @@ function animate() {
                     }
                     break;
                 case 14:        
-                    console.log(ganador);           															
                     if(model.position.z < -2.1){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -404,6 +404,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -413,7 +414,6 @@ function animate() {
                     }
                     break;
                 case 15:    
-                    console.log(ganador);                   
                     if(model.position.z < -3.6){   
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -422,6 +422,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                                                
                     }
                     else{
@@ -431,7 +432,6 @@ function animate() {
                     }
                     break;
                 case 16:     
-                    console.log(ganador);   
                     if(model.position.z > 1.8){
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -440,6 +440,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -449,7 +450,6 @@ function animate() {
                     }
                     break;
                 case 17:
-                    console.log(ganador);
                     if(model.position.z < -2.8){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -458,6 +458,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                   	                                               
                     }
                     else{
@@ -467,7 +468,6 @@ function animate() {
                     }
                     break;                
                 case 18:
-                    console.log(ganador);
                     if(model.position.z < -0.145){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -475,7 +475,9 @@ function animate() {
                         model.position.x =0;		
                         model.position.y =0;	                            	
                         model.position.z =0;	
+                        //console.log(clock.getElapsedTime());                        
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -485,7 +487,6 @@ function animate() {
                     }
                     break;
                 case 19:    
-                    console.log(ganador);               															
                     if(model.position.z < -3.4){
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -494,6 +495,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -503,7 +505,6 @@ function animate() {
                     }
                     break;
                 case 20:
-                    console.log(ganador);
                     if(model.position.z > 0.87){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -512,6 +513,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -521,7 +523,6 @@ function animate() {
                     }
                     break;
                 case 21:   
-                    console.log(ganador);                             														
                     if(model.position.z < -2.27){                         
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -530,6 +531,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
                     }
                     else{
@@ -539,7 +541,6 @@ function animate() {
                     }
                     break;
                 case 22:   
-                    console.log(ganador);
                     if(model.position.z > 0.765){                             
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -548,6 +549,7 @@ function animate() {
                         model.position.y =0;		
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                	                                               
                     }
                     else{
@@ -557,7 +559,6 @@ function animate() {
                     }
                     break;
                 case 23:
-                    console.log(ganador);
                     if(model.position.z >4.5){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -566,6 +567,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock();
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                   	                                               
                     }
                     else{
@@ -575,7 +577,6 @@ function animate() {
                     }
                     break;
                 case 24:
-                    console.log(ganador);
                     if(model.position.z > 2.85){    
                         cancelAnimationFrame( id );
                         $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
@@ -584,6 +585,7 @@ function animate() {
                         model.position.y =0;	                            	
                         model.position.z =0;	
                         clock = new THREE.Clock(); 
+                        clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                  	                                               
                     }
                     else{
@@ -602,8 +604,7 @@ function animate() {
 function iniciar(numeorGanador){    
     ganador=parseInt(numeorGanador);
     //ganador=Math.floor((Math.random() * 24));
-    console.log(ganador);
-    $("#ImgContainer").hide();    
+    $("#ImgContainer").hide();        
     animate();    
 }
 function consultarEvento(IdJuego){
@@ -618,8 +619,7 @@ function consultarEvento(IdJuego){
         complete: function () {                     
         },
         success: function (response) {                     
-            iniciado=true;
-            debugger
+            iniciado=true;            
             iniciar(response.evento_valor_ganador);                    
             //setTimeout(function(){ iniciado=false; }, 10000);   
         },
