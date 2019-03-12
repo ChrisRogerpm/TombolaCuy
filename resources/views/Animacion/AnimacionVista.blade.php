@@ -44,7 +44,6 @@
 		<div id="container"></div>		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
-		<script src="https://cdn.jsdelivr.net/momentjs/2.10.6/moment-with-locales.min.js"></script>	
 			
 		
         <script src="{{asset('../assets/js/three.js')}}"></script>
