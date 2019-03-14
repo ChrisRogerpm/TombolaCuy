@@ -37,11 +37,93 @@
 				background-position: center;
 				background-repeat: no-repeat;
 			}
+			#container{
+				z-index:10;
+			}
+			#contenedorEstadistica{
+				z-index:1000;
+				position:absolute;
+				top:0;
+				right:0;
+				background-color:green;
+				height:100vh;
+				width:20vw;
+			}
+			#cajaInteriror{
+				position: absolute;
+				height:90%;
+				width:95%;
+				margin: auto;			
+				overflow: auto;
+				top: 5vh; left: 0; bottom: 0; right: 0;
+				border: solid black;
+			}
+			#tableEstadistica{				
+				width:90%;
+				margin:auto;
+			}
+			table {
+				border-collapse: collapse;
+			}
+			table, th, td {
+				border: 3px solid;
+			}
+			.cajaRoja{
+				background-color:red;
+			}
+			.cajaNegra{
+				background-color:white;
+				color:black;			
+			}
 		</style>
 	</head>
 	<body>
 		<div id="ImgContainer"></div>
 		<div id="container"></div>		
+		<div id="contenedorEstadistica">
+			<h1>Estadisticas</h1>	
+			<div id="cajaInteriror">
+				<h2>Numeros (ultimos 120 Eventos)</h2>	
+				<table id="tableEstadistica">
+					<tr>
+						<th class="cajaRoja">1</th><th>3</th> <th class="cajaNegra">13</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">2</th><th>3</th> <th class="cajaRoja">14</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">3</th><th>3</th> <th class="cajaNegra">15</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">4</th><th>3</th> <th class="cajaRoja">16</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">5</th><th>3</th> <th class="cajaNegra">17</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">6</th><th>3</th> <th class="cajaRoja">18</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">7</th><th>3</th> <th class="cajaRoja">19</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">8</th><th>3</th> <th class="cajaNegra">20</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">9</th><th>3</th> <th class="cajaRoja">21</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">10</th><th>3</th> <th class="cajaNegra">22</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">11</th><th>3</th> <th class="cajaRoja">23</th><th>2</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">12</th><th>3</th> <th class="cajaNegra">24</th><th>2</th>
+					</tr>
+				</table>
+			</div>			
+		</div>		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 			

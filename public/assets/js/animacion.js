@@ -13,7 +13,7 @@ if ( WEBGL.isWebGLAvailable() === false ) {
     document.body.appendChild( WEBGL.getWebGLErrorMessage() );
 }
 var scene, renderer, camera, stats;
-var model,modelCuyDudando,modelCaja, skeleton, mixer,mixerCaja, clock;
+var model,modelCuyDudando,modelChoque,modelCaja, skeleton, mixer,mixerCaja, clock;
 var crossFadeControls = [];
 var idleAction, walkAction, runAction;
 var idleWeight, walkWeight, runWeight;
@@ -24,6 +24,8 @@ var loaded=false;
 var i=0;
 var ganador=0;
 var controls;
+var posicionZ=0;         	                	
+
 init();
 function init() {
     var container = document.getElementById( 'container' );
@@ -31,6 +33,7 @@ function init() {
     camera.position.set( 0, 10, 0);    
     clock = new THREE.Clock();
     clockCuyDudando = new THREE.Clock();
+    clockCuyChoque = new THREE.Clock();    
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xa0a0a0 );
     scene.fog = new THREE.Fog( 0xa0a0a0, 10, 50 );
@@ -112,7 +115,25 @@ function init() {
         mixerCuyDudando.clipAction( animations[0] ).play();
         loaded = true;	        
     } );    
-   			
+    // CUY CHOQUE				
+    var loaderCuyChoque = new THREE.GLTFLoader();
+    loaderCuyChoque.load( 'images/cuyChoqueGLB.glb', function ( gltf ) {
+        modelCuyChoque = gltf.scenes[0];																				
+        modelCuyChoque.traverse( function ( objectCuyChoque ) {											
+            if(objectCuyChoque instanceof THREE.Mesh) {
+                objectCuyChoque.castShadow = true
+            }
+        } );	
+        modelCuyChoque.scale.set(0.5,0.5,0.5);	
+        model.position.set(0,0,0.05);													
+        scene.add( modelCuyChoque );						
+        skeleton = new THREE.SkeletonHelper( model );					
+        var animations = gltf.animations;												
+        mixerCuyChoque = new THREE.AnimationMixer( modelCuyChoque );
+        mixerCuyChoque.clipAction( animations[0] ).play();
+        loaded = true;	        
+    } );        
+    
     renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -121,7 +142,7 @@ function init() {
     renderer.shadowMap.enabled = true;
     container.appendChild( renderer.domElement );				
 }									
-function animate() {         	                	
+function animate() {
     $("#ImgContainer").hide();							
     id=requestAnimationFrame( animate );	    
     if (loaded) {								     
@@ -132,6 +153,7 @@ function animate() {
             if(clock.getElapsedTime()<=3){
                 modelCuyDudando.visible = true;
                 model.visible = false;
+                modelCuyChoque.visible = false;
             }
             else{
                 modelCuyDudando.visible = false;
@@ -139,26 +161,40 @@ function animate() {
                 model.rotation.y += 0.1;	                	
             }																
         }	
-        else{		
-            console.clear()
-            console.log(clock.getElapsedTime());
+        else{		            
             switch(ganador) {							
-                case 0:                    			                   
-                    if(model.position.z < -3.5){                            
-                        cancelAnimationFrame( id );
-                        $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x =0;		
-                        model.position.y =0;		
-                        model.position.z =0;	
-                        clock = new THREE.Clock(); 
-                        clockCuyDudando = new THREE.Clock(); 
-                        iniciado=false;                  	                                               
+                case 0:         
+                    // model.visible = false; 
+                    // modelCuyChoque.visible=true; 
+                    // mixerCuyChoque.update(clockCuyChoque.getDelta());            			                   
+                    if(model.position.z < -2.5){
+                        if(model.position.z < -3.5){
+                            cancelAnimationFrame( id );
+                            $("#ImgContainer").css("background-image","url('images/imgCuyCargando.jpg')");
+                            $("#ImgContainer").show();
+                            model.position.x =0;		
+                            model.position.y =0;		
+                            model.position.z =0;	
+                            clock = new THREE.Clock(); 
+                            clockCuyDudando = new THREE.Clock(); 
+                            iniciado=false;  
+                        }  
+                        else{
+                            model.position.z -=0.01;					
+                            model.visible = false; 
+                            modelCuyChoque.rotation.y =3.3 ;		
+                            modelCuyChoque.position.x =model.position.x ;		
+                            modelCuyChoque.position.y =model.position.y ;		
+                            modelCuyChoque.position.z =posicionZ;
+                            modelCuyChoque.visible=true; 
+                            mixerCuyChoque.update(clockCuyChoque.getDelta());  
+                        }                                                                                          	                                               
                     }
                     else{
                         model.rotation.y = 3.3;	
                         model.position.z -=0.01;					
                         model.position.x -=0.0027;
+                        posicionZ=model.position.z;
                     }
                     break;
                 case 1:  
@@ -474,8 +510,7 @@ function animate() {
                         $("#ImgContainer").show();
                         model.position.x =0;		
                         model.position.y =0;	                            	
-                        model.position.z =0;	
-                        //console.log(clock.getElapsedTime());                        
+                        model.position.z =0;	                                                
                         clock = new THREE.Clock(); 
                         clockCuyDudando = new THREE.Clock(); 
                         iniciado=false;                 	                                               
@@ -602,7 +637,8 @@ function animate() {
     }								
 }					
 function iniciar(numeorGanador){    
-    ganador=parseInt(numeorGanador);
+    //ganador=parseInt(numeorGanador);
+    ganador=parseInt(0);
     //ganador=Math.floor((Math.random() * 24));
     $("#ImgContainer").hide();        
     animate();    
