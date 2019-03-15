@@ -22,7 +22,9 @@ class Evento extends Model
         'apuestaMaxima',
         'fechaEventoReprogramacion',
         'idMoneda',
-        'estadoEvento'
+        'estadoEvento',
+        'estadoAnimacion',
+        'tokenAnimacion'
     ];
 
     public $timestamps = false;
@@ -129,6 +131,8 @@ LIMIT 20
         $evento->apuestaMaxima = $juego->apuestaMaxima;
         $evento->idMoneda = $juego->idMoneda;
         $evento->estadoEvento = 1;
+        $evento->estadoAnimacion = 0;
+        $evento->tokenAnimacion = '';
         $evento->save();
         return $evento;
     }
@@ -190,5 +194,51 @@ LIMIT 20
             ->where('estadoEvento', 1)
             ->first();
         return $resultado;
+    }
+
+    public static function CambiarEstadoAnimacionEvento($IdEvento,$token_animacion)
+    {
+
+        $resultado = false;
+        $respuesta = DB::table('evento')
+            ->where('idEvento',$IdEvento)
+            ->where('tokenAnimacion',$token_animacion)
+            ->first();
+
+        if($respuesta != null){
+            try {
+                $evento = Evento::findorfail($IdEvento);
+                $evento->estadoAnimacion = 1;
+                $evento->save();
+                $resultado = true;
+            } catch (QueryException $ex) {
+            }
+        }
+
+
+        return $resultado;
+    }
+
+    public static function EventoTokenAnimacion(string $token_generado, $idEvento)
+    {
+        $evento = "";
+        try{
+            $evento = Evento::findorfail($idEvento);
+            $evento->tokenAnimacion = $token_generado;
+            $evento->save();
+        }catch (QueryException $ex){
+        }
+
+        return $evento;
+    }
+
+    public static function ValidarTokenAnimacion($idEvento)
+    {
+        $token = "";
+        $evento = Evento::findorfail($idEvento);
+        if ($evento->tokenAnimacion != "") {
+            $token = $evento->tokenAnimacion;
+        }
+        return $token;
     }
 }
