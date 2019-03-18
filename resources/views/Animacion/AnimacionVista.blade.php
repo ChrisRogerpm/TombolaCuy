@@ -45,20 +45,41 @@
 				position:absolute;
 				top:0;
 				right:0;
-				background-color:green;
+				background-color:#13502e;
+				height:100vh;
+				width:20vw;
+			}
+			#pagosHistorial{
+				z-index:1000;
+				position:absolute;
+				top:0;
+				left:0;
+				background-color:#13502e;
 				height:100vh;
 				width:20vw;
 			}
 			#cajaInteriror{
 				position: absolute;
-				height:90%;
-				width:95%;
-				margin: auto;			
+				bottom:0px;				
+				height:48%;
+				width:100%;
+				margin: auto;		
+				background-color:#303e5a;
 				overflow: auto;
-				top: 5vh; left: 0; bottom: 0; right: 0;
-				border: solid black;
+				/* top: 5vh; left: 0; bottom: 0; right: 0; */
+				border: solid white;
 			}
-			#tableEstadistica{				
+			#cajaInterirorIzquierda{
+				position: absolute;
+				bottom:0px;				
+				height:70%;
+				width:98%;
+				margin: auto;		
+				background-color:#303e5a;
+				overflow: auto;
+				border: solid white;
+			}
+			table{				
 				width:90%;
 				margin:auto;
 			}
@@ -66,14 +87,30 @@
 				border-collapse: collapse;
 			}
 			table, th, td {
-				border: 3px solid;
+				border: 2px solid white;				
+			}
+			tr{
+				height: 3vh;
 			}
 			.cajaRoja{
-				background-color:red;
+				background-color:#DC2525;
+				width:20%;
 			}
 			.cajaNegra{
-				background-color:white;
+				background-color:#C3C3C3;
 				color:black;			
+				width:20%;
+			}
+			.caja{							
+				width:50%;
+			}
+			.caja1{							
+				background-color:#C3C3C3;
+				width:50%;
+			}
+			.caja2{							
+				background-color:#DC2525;
+				width:50%;
 			}
 		</style>
 	</head>
@@ -81,6 +118,7 @@
 		<div id="ImgContainer"></div>
 		<div id="container"></div>		
 		<div id="contenedorEstadistica">
+			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:90%;margin-top: 5vh;">
 			<h1>Estadisticas</h1>	
 			<div id="cajaInteriror">
 				<h2>Numeros (ultimos 120 Eventos)</h2>	
@@ -121,9 +159,78 @@
 					<tr>
 						<th class="cajaRoja">12</th><th>3</th> <th class="cajaNegra">24</th><th>2</th>
 					</tr>
+					<tr>
+						<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th colspan="2">2</th>
+					</tr>
 				</table>
 			</div>			
-		</div>		
+		</div>	
+		<div id="pagosHistorial">
+			<img src="images/imgCuyInicio.jpg" alt="apuesta total" style="width:90%;margin-top: 2vh;">			
+			<div id="cajaInterirorIzquierda">
+				<h2>Pagos</h2>	
+				<table id="">
+					<tr>
+						<th rowspan="3" >Color</th><th class="cajaRoja">2</th>
+					</tr>
+					<tr>
+						<th class="cajaNegra">2</th> 
+					</tr>
+					<tr>
+						<th style="background-color:#3C8A39;width:50%" >24</th>
+					</tr>
+					<tr>
+						<th >1/2 Docena</th><th>2</th>
+					</tr>
+					<tr>
+						<th>Par / Impar</th><th>2</th>
+					</tr>
+					<tr>
+						<th>Número</th><th>24</th>
+					</tr>					
+				</table>
+				<br />
+				<h2>Historial</h2>	
+				<table id="">
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">1</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">2</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">3</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">4</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja2">5</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja2">6</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">7</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja2">8</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">9</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja2">10</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja1">11</th>
+					</tr>
+					<tr>
+						<th class="caja">#123wqw1</th><th class="caja2">12</th>
+					</tr>					
+				</table>
+			</div>			
+		</div>	
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 			
