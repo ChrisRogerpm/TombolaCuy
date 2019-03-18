@@ -214,8 +214,6 @@ LIMIT 20
             } catch (QueryException $ex) {
             }
         }
-
-
         return $resultado;
     }
 
