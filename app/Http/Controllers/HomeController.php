@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Funciones;
+use App\Juego;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
