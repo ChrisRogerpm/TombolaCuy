@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ResultadoEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ResultadoEvento.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +68,7 @@
           <entry key="js" value="30" />
           <entry key="json" value="2" />
           <entry key="lock" value="1" />
-          <entry key="php" value="341" />
+          <entry key="php" value="343" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
@@ -79,7 +80,7 @@
           <entry key="Image" value="2" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="30" />
-          <entry key="PHP" value="315" />
+          <entry key="PHP" value="317" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="RNG Compact" value="1" />
         </counts>
@@ -88,7 +89,7 @@
         <counts>
           <entry key="env" value="42" />
           <entry key="js" value="3331" />
-          <entry key="php" value="15412" />
+          <entry key="php" value="15460" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -98,7 +99,7 @@
           <entry key="Blade" value="1314" />
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="3330" />
-          <entry key="PHP" value="14089" />
+          <entry key="PHP" value="14137" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SQL" value="9" />
         </counts>
@@ -118,8 +119,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="80" column="81" selection-start-line="80" selection-start-column="81" selection-end-line="80" selection-end-column="81" />
+            <state relative-caret-position="40">
+              <caret line="18" column="54" lean-forward="true" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/ResultadoEvento.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -213,14 +223,14 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReporteController.php" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" />
         <option value="$PROJECT_DIR$/app/Reporte.php" />
-        <option value="$PROJECT_DIR$/app/ResultadoEvento.php" />
         <option value="$PROJECT_DIR$/app/Ubigeo.php" />
         <option value="$PROJECT_DIR$/app/Evento.php" />
         <option value="$PROJECT_DIR$/public/assets/js/animacion.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/TipoApuesta.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" />
+        <option value="$PROJECT_DIR$/app/ResultadoEvento.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       </list>
     </option>
   </component>
@@ -495,7 +505,7 @@
       <workItem from="1552666772462" duration="13190000" />
       <workItem from="1552914814711" duration="10742000" />
       <workItem from="1552946405365" duration="1419000" />
-      <workItem from="1553005572499" duration="8759000" />
+      <workItem from="1553005572499" duration="9676000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -536,7 +546,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="262847000" />
+    <option name="totallyTimeSpent" value="263764000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,6 +582,28 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.2602118" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.22401172" />
+      <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
+      <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
+      <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978038" weight="0.392555" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32864675" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49853587" weight="0.3282572" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5014641" side_tool="true" weight="0.3282572" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49707174" weight="0.37732658" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.2602118" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -753,13 +785,6 @@
         <state relative-caret-position="-210" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/ResultadoEvento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Ticket.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-675" />
@@ -904,16 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="15" selection-end-column="69" />
-          <folding>
-            <element signature="e#41#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -928,10 +943,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#41#59#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ResultadoEvento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="80" column="81" selection-start-line="80" selection-start-column="81" selection-end-line="80" selection-end-column="81" />
+        <state relative-caret-position="40">
+          <caret line="18" column="54" lean-forward="true" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
         </state>
       </provider>
     </entry>

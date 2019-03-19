@@ -32,7 +32,7 @@ class ResultadoEvento extends Model
             ->join('evento as e','e.idEvento','re.idEvento')
             ->where('e.idJuego',$IdJuego)
             ->where('re.estado',1)
-            ->whereBetween('re.idTipoPago',array(1,6))
+            ->whereIn('re.idTipoPago',array(1,6))
             ->where('e.idEvento','<',$maximo_evento[0]->Maximo)
             ->orderBy('re.idEvento','DESC')
             ->take(20)
