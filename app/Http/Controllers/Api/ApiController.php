@@ -71,13 +71,14 @@ class ApiController extends Controller
                         } else {
                             $eventoToken = Evento::EventoTokenAnimacion($token_generado, $evento_actual->idEvento);
                             return response()->json([
+                                'token_animacion' => $eventoToken->tokenAnimacion,
+                                'mensaje_token' => 'Esperando respuesta de token',
+                                'estado_animacion' => $estado_animacion,
                                 'fecha_evento_actual' => $fecha_actual,
                                 'fecha_evento_proximo' => $fecha_evento_prox,
                                 'fecha_animacion' => $fecha_animacion,
                                 'evento_id_actual' => $evento_actual->idEvento,
                                 'evento_valor_ganador' => $ganador->valorGanador,
-                                'estado_animacion' => $estado_animacion,
-                                'token_animacion' => $eventoToken->tokenAnimacion,
                                 'resultado_evento' => $resultado_evento,
                                 'estadistica' => $estadistica
                             ]);
