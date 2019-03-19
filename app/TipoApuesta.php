@@ -68,4 +68,33 @@ class TipoApuesta extends Model
             $resultado->save();
         }
     }
+
+    public static function EstadisticaUltimosTipoApuesta()
+    {
+        $resultado = DB::table('resultado_evento as re')
+            ->select('re.idEvento', 're.valorGanador')
+            ->groupBy('re.idEvento', 're.valorGanador')
+            ->orderBy('re.idEvento', 'DESC')
+            ->take(120)
+            ->get();
+        $lista_valorapuesta = DB::table('tipo_apuesta as ta')
+            ->select('ta.valorapuesta')
+            ->whereIn('ta.idTipoPago', [1, 6])
+            ->orderBy('ta.valorapuesta')
+            ->get();
+        $lista = [];
+        foreach ($lista_valorapuesta as $va) {
+            $lista_sub = [];
+            foreach ($resultado as $r) {
+                $lista_sub [] = $r->valorGanador;
+            }
+            $valores = array_count_values($lista_sub);
+            $lista[] = [
+                'TipoValorApuesta' => $va->valorapuesta,
+                'Repetidos' => array_key_exists($va->valorapuesta, $valores) == false ? 0 : $valores[$va->valorapuesta]
+            ];
+        }
+        return $lista;
+
+    }
 }

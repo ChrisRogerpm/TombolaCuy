@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Evento;
 use App\ResultadoEvento;
+use App\TipoApuesta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,6 +22,7 @@ class ApiController extends Controller
                 return response()->json(['mensaje' => 'No se ha encontrado evento alguno']);
             } else {
                 $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
+                $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
                 $fecha_actual = $evento_actual->fechaEvento;
                 $fecha_evento_proximo = new Carbon();
                 if ($evento_actual->lapsoProxEventoHoras > 0) {
@@ -63,7 +65,8 @@ class ApiController extends Controller
                                 'fecha_animacion' => $fecha_animacion,
                                 'evento_id_actual' => $evento_actual->idEvento,
                                 'evento_valor_ganador' => $ganador->valorGanador,
-                                'resultado_evento' => $resultado_evento
+                                'resultado_evento' => $resultado_evento,
+                                'estadistica' => $estadistica
                             ]);
                         } else {
                             $eventoToken = Evento::EventoTokenAnimacion($token_generado, $evento_actual->idEvento);
@@ -75,7 +78,8 @@ class ApiController extends Controller
                                 'evento_valor_ganador' => $ganador->valorGanador,
                                 'estado_animacion' => $estado_animacion,
                                 'token_animacion' => $eventoToken->tokenAnimacion,
-                                'resultado_evento' => $resultado_evento
+                                'resultado_evento' => $resultado_evento,
+                                'estadistica' => $estadistica
                             ]);
                         }
                     } else {
