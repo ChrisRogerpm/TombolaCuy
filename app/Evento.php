@@ -41,7 +41,7 @@ where ev.estadoEvento=1'));
     public static function EventoId($idEvento)
     {
 
-        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento, ju.logo as logo,
         	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
@@ -93,7 +93,7 @@ inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE evt.IDJUEGO=1 and res.idtipopago=1
 order by evt.`fechaEvento` DESC
-LIMIT 20
+LIMIT 18
 			"));
         return $listar;
     }

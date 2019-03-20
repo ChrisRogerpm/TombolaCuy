@@ -393,11 +393,20 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             $(".apuesta span").text("APUESTA "+divisa)
 
 ////////PROXIMO EN
-           proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
+            fechaFinEvento=eventodatos.fechaFinEvento;
+
+           //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
+           proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
             var minutos=proxima_fecha.diff(ahora,'minutes');
-            var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-            var timer2 = minutos+":01";//"5:01";
+            var segundos=proxima_fecha.diff(ahora,'seconds');//0
+            //var timer2 = minutos+":01";//"5:01";
+            var timer2 = minutos+":"+segundos;//"5:01";
+
+console.log("Fechafinevento= "+fechaFinEvento);
+           console.log("ACTUAL="+hora_servidor+" ; PROXIMAMAMAMA fecha en : "+eventodatos.fechaFinEvento  +"   contador en = "+timer2);
+
+
             if(typeof interval!="undefined"){
                 clearInterval(interval);$('.countdown').html("00:00")
             }
@@ -951,12 +960,8 @@ $(document).ready(function () {
                          $(".divcerrarfila").off("click").on("click",function(){
 
                                 $(this).closest("tr").remove();
-
                                 // $("div[data-valor='"+$("td:eq(1)",$(this).closest("tr")).text()+"']").on("click",function(){ $(this).toggleClass("seleccionado") ;}) 
                                 // $("div[data-valor='"+$("td:eq(1)",$(this).closest("tr")).text()+"']").removeClass("apostado")
-
-
-
                                 var totales_maximo=sacar_totales_y_maximo();
                                 $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
                                 $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
