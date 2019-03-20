@@ -229,6 +229,8 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
 
             toastr.success("Ticket Guardado");
             actualizarJugador();
+            $(".rowbotonesdiv.cerrar").click()  ///vaciar apuestas tabla
+
 
         },
     })
@@ -649,6 +651,9 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
                             //     GuardarTicket(TICKET_IMPRIMIR);
                             // },1000)
                 })
+
+
+
                 setTimeout(function(){
                     $("#btnimprimir").click()
                 },1000)

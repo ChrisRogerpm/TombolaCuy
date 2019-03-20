@@ -55,7 +55,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function CantidadGanadorEventoListar($idEvento)
     {
-        $listar = DB::select(DB::raw("select  COUNT(*)  as cantidadganadores FROM ticket WHERE IDEVENTO =" . $idEvento));
+        $listar = DB::select(DB::raw("select  COUNT(*)  as cantidadganadores FROM ticket WHERE idEvento =" . $idEvento));
         return $listar;
     }
 
