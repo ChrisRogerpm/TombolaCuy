@@ -27,7 +27,7 @@ function ListarCaja() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "PuntoVenta", title: "PuntoVenta"},
+                    {data: "PuntoVenta", title: "Punto de Venta"},
                     {data: "nombre", title: "Nombre"},
                     {
                         data:"estado",title:"Estado",
