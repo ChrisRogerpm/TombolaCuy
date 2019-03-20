@@ -18,6 +18,7 @@ class Evento extends Model
         'idJuego',
         'nombre',
         'fechaEvento',
+        'fechaFinEvento',
         'apuestaMinima',
         'apuestaMaxima',
         'fechaEventoReprogramacion',
@@ -126,7 +127,8 @@ LIMIT 20
         $evento = new Evento();
         $evento->idJuego = $juego->idJuego;
         $evento->nombre = $juego->nombre;
-        $evento->fechaEvento = $fechaEvento;
+        $evento->fechaEvento = now();
+        $evento->fechaFinEvento = $fechaEvento;
         $evento->apuestaMinima = $juego->apuestaMinima;
         $evento->apuestaMaxima = $juego->apuestaMaxima;
         $evento->idMoneda = $juego->idMoneda;
