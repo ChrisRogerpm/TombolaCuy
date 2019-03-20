@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Evento;
 use App\Funciones;
-use App\Juego;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -12,8 +10,7 @@ class HomeController extends Controller
 {
     public function DashboardVista()
     {
-        $listar_juegos = Juego::JuegoListarLapsoJson();
-        return view('Home.DashboardVista', compact('listar_juegos'));
+        return view('Home.DashboardVista');
     }
 
     public function GenerarExcel(Request $request)

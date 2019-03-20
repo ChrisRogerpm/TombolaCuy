@@ -114,89 +114,89 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <!-- Buttons -->
-                    <li>
+                    {{--<li>--}}
 
-                        <!-- Search Form -->
-                        <form class="navbar-search-form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Type search here...">
-                            </div>
-                        </form>
-                        <!-- /Search Form -->
+                        {{--<!-- Search Form -->--}}
+                        {{--<form class="navbar-search-form">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<input type="text" class="form-control" placeholder="Type search here...">--}}
+                            {{--</div>--}}
+                        {{--</form>--}}
+                        {{--<!-- /Search Form -->--}}
 
-                        <a href="#" class="navbar-search-toggle hidden-xs">
-                        <i class="icon icon-inline fa fa-search"></i> <span
-                                class="hidden-sm hidden-md hidden-lg">Search</span>
-                    </a>
-                    </li>
-                    <li class="dropdown">
+                        {{--<a href="#" class="navbar-search-toggle hidden-xs">--}}
+                        {{--<i class="icon icon-inline fa fa-search"></i> <span--}}
+                                {{--class="hidden-sm hidden-md hidden-lg">Search</span>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--<li class="dropdown">--}}
 
-                        <a href="#" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">
-                        <i class="icon icon-inline fa fa-envelope-open-o"></i>
-                        <span class="hidden-sm hidden-md hidden-lg">Notifications</span>
-                        <span class="badge badge-danger badge-notification">7</span>
-                    </a>
+                        {{--<a href="#" class="dropdown-toggle no-caret nav-notification" data-toggle="dropdown">--}}
+                        {{--<i class="icon icon-inline fa fa-envelope-open-o"></i>--}}
+                        {{--<span class="hidden-sm hidden-md hidden-lg">Notifications</span>--}}
+                        {{--<span class="badge badge-danger badge-notification">7</span>--}}
+                    {{--</a>--}}
 
-                        <ul class="dropdown-menu dropdown-menu-right navbar-notifications-dropdown">
+                        {{--<ul class="dropdown-menu dropdown-menu-right navbar-notifications-dropdown">--}}
 
-                            <li class="title">New Messages</li>
+                            {{--<li class="title">New Messages</li>--}}
 
-                            <li>
-                                <a href="#" class="notification">
-                                    <div class="avatar avatar-lg image">
-                                        <img src="images/avatar-lori-harrison.jpg" alt="Lori Harrison">
-                                    </div>
-                                    <div class="user-name">Lori Harrison</div>
-                                    <p class="text">
-                                        It is a long established fact that a reader will be distracted by the readable content
-                                    </p>
-                                    <div class="date">today 08:27 PM</div>
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#" class="notification">--}}
+                                    {{--<div class="avatar avatar-lg image">--}}
+                                        {{--<img src="images/avatar-lori-harrison.jpg" alt="Lori Harrison">--}}
+                                    {{--</div>--}}
+                                    {{--<div class="user-name">Lori Harrison</div>--}}
+                                    {{--<p class="text">--}}
+                                        {{--It is a long established fact that a reader will be distracted by the readable content--}}
+                                    {{--</p>--}}
+                                    {{--<div class="date">today 08:27 PM</div>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
 
-                            <li>
-                                <a href="#" class="notification">
-                                <span class="notification-status text-warning"><i
-                                            class="icon fa fa-exclamation-triangle"></i></span>
-                                <div class="avatar avatar-lg image">
-                                    <img src="images/avatar-phillip-cole.jpg" alt="Phillip Cole">
-                                </div>
-                                <div class="user-name">Phillip Cole</div>
-                                <p class="text">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content
-                                </p>
-                                <div class="date">today 08:27 PM</div>
-                            </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#" class="notification">--}}
+                                {{--<span class="notification-status text-warning"><i--}}
+                                            {{--class="icon fa fa-exclamation-triangle"></i></span>--}}
+                                {{--<div class="avatar avatar-lg image">--}}
+                                    {{--<img src="images/avatar-phillip-cole.jpg" alt="Phillip Cole">--}}
+                                {{--</div>--}}
+                                {{--<div class="user-name">Phillip Cole</div>--}}
+                                {{--<p class="text">--}}
+                                    {{--It is a long established fact that a reader will be distracted by the readable--}}
+                                    {{--content--}}
+                                {{--</p>--}}
+                                {{--<div class="date">today 08:27 PM</div>--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
 
-                            <li>
-                                <a href="#" class="notification">
-                                    <div class="avatar avatar-lg image">
-                                        <img src="images/avatar-ann-james.jpg" alt="Ann James">
-                                    </div>
-                                    <div class="user-name">Ann James</div>
-                                    <p class="text">
-                                        It is a long established fact that a reader will be distracted by the readable content
-                                    </p>
-                                    <div class="date">today 08:27 PM</div>
-                                </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#" class="notification">--}}
+                                    {{--<div class="avatar avatar-lg image">--}}
+                                        {{--<img src="images/avatar-ann-james.jpg" alt="Ann James">--}}
+                                    {{--</div>--}}
+                                    {{--<div class="user-name">Ann James</div>--}}
+                                    {{--<p class="text">--}}
+                                        {{--It is a long established fact that a reader will be distracted by the readable content--}}
+                                    {{--</p>--}}
+                                    {{--<div class="date">today 08:27 PM</div>--}}
+                                {{--</a>--}}
+                            {{--</li>--}}
 
 
-                            <li>
-                                <a href="#" class="btn btn-default btn-block btn-no-border">See All Messages</a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#" class="btn btn-default btn-block btn-no-border">See All Messages</a>--}}
+                            {{--</li>--}}
 
-                        </ul>
+                        {{--</ul>--}}
 
-                    </li>
+                    {{--</li>--}}
 
-                    <li>
-                        <a href="#" class="sidebar-toggle" data-sidebar=".sidebar-users">
-                        <i class="icon icon-inline fa fa-comments-o"></i> <span class="hidden-sm hidden-md hidden-lg">Users</span>
-                    </a>
-                    </li>
+                    {{--<li>--}}
+                        {{--<a href="#" class="sidebar-toggle" data-sidebar=".sidebar-users">--}}
+                        {{--<i class="icon icon-inline fa fa-comments-o"></i> <span class="hidden-sm hidden-md hidden-lg">Users</span>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
                     <!-- /Buttons -->
 
                     <!-- Profile -->
@@ -214,24 +214,24 @@
                         <!-- Profile dropdown menu -->
                         <ul class="dropdown-menu dropdown-menu-right">
 
-                            <li>
-                                <a href="#"><i class="icon icon-inline fa fa-address-card-o"></i> Profile</a>
-                            </li>
-                            <li>
-                                <a href="#" class="has-badge">
-                                <i class="icon icon-inline fa fa-envelope-o"></i> Inbox
-                                <span class="badge badge-notification badge-danger">3</span>
-                            </a>
-                            </li>
-                            <li><a href="#"><i class="icon icon-inline fa fa-tasks"></i> Tasks</a></li>
-                            <li>
-                                <a href="#" class="has-badge">
-                                <i class="icon icon-inline fa fa-calendar"></i> Calendar
-                                <span class="badge badge-notification badge-primary">5</span>
-                            </a>
-                            </li>
+                            {{--<li>--}}
+                                {{--<a href="#"><i class="icon icon-inline fa fa-address-card-o"></i> Profile</a>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                                {{--<a href="#" class="has-badge">--}}
+                                {{--<i class="icon icon-inline fa fa-envelope-o"></i> Inbox--}}
+                                {{--<span class="badge badge-notification badge-danger">3</span>--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#"><i class="icon icon-inline fa fa-tasks"></i> Tasks</a></li>--}}
+                            {{--<li>--}}
+                                {{--<a href="#" class="has-badge">--}}
+                                {{--<i class="icon icon-inline fa fa-calendar"></i> Calendar--}}
+                                {{--<span class="badge badge-notification badge-primary">5</span>--}}
+                            {{--</a>--}}
+                            {{--</li>--}}
 
-                            <li class="divider"></li>
+                            {{--<li class="divider"></li>--}}
                             <li><a href="#" id="btnCerrarSesion" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="icon icon-inline fa fa-sign-out"></i> Cerrar Sesión</a></li>
                             <form id="logout-form" action="{{ route('CerrarSesion') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
@@ -303,7 +303,7 @@
                             </td>
                             <td>
                                 <!-- User Info -->
-                                <a href="#" class="name">Benjamin Jacobs</a>
+                                <a href="#" class="name">Bienvenido</a>
                                 <div class="post">Director</div>
                                 <!-- /User Info -->
                             </td>
@@ -363,7 +363,7 @@
                             </td>
                             <td>
                                 <!-- User Info -->
-                                <a href="#" class="name">Louis Hawkins</a>
+                                <a href="#" class="name">Bienvenido</a>
                                 <div class="post">Marketing Director</div>
                                 <!-- /User Info -->
                             </td>
@@ -747,8 +747,8 @@
 
                     <!-- User Information -->
                     <div class="user-info">
-                        <div class="name">Louis Hawkins</div>
-                        <div class="post">Director</div>
+                        <div class="name">Bienvenido</div>
+                        <div class="post">{{Auth::user()->usuario}}</div>
                     </div>
                     <!-- /User Information -->
 
@@ -804,30 +804,30 @@
                     <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Cliente</span></a></li>
 
-                    <li class="sub">
-                        <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>
-                    </a>
-                        <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                            <li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span class="title">Progresivo</span></a></li>
-                            <li><a href="{{route('Progresivo.Insertar')}}"><i
-                                        class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a>
-                            </li>
-                            <li><a href="{{route('Progresivo.Configuracion')}}"><i
-                                        class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a>
-                            </li>
-                        </ul>
-                    </li>
+                    {{--<li class="sub">--}}
+                        {{--<a href="#" class="sub-toggle">--}}
+                        {{--<i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>--}}
+                    {{--</a>--}}
+                        {{--<ul class="sub-menu collapse" data-menu-title="Progresivo">--}}
+                            {{--<li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
+                                {{--<span class="title">Progresivo</span></a></li>--}}
+                            {{--<li><a href="{{route('Progresivo.Insertar')}}"><i--}}
+                                        {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="{{route('Progresivo.Configuracion')}}"><i--}}
+                                        {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     <li class="sub">
                         <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Jackpot</span>
                     </a>
                         <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                            <li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span class="title">Jackpot</span></a></li>
-                            <li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span class="title">Registro Jackpot</span></a></li>
+                            {{--<li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
+                                {{--<span class="title">Jackpot</span></a></li>--}}
+                            {{--<li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
+                                {{--<span class="title">Registro Jackpot</span></a></li>--}}
                             <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                             </li>
