@@ -175,15 +175,15 @@ LIMIT 20
                 if ($juego->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $juego->lapsoProxEventoHoras;
                     $fecha = now()->addHours($NumeroHoras);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 } else if ($juego->lapsoProxEventoDia > 0) {
                     $NumeroDias = $juego->lapsoProxEventoDia;
                     $fecha = now()->addDays($NumeroDias);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 } else if ($juego->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                     $fecha = now()->addMinutes($NumeroMinutos);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 }
                 $numero_random = rand(0, 24);
                 TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
