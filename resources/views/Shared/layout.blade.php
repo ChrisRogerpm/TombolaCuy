@@ -839,7 +839,7 @@
                     </a>
                         <ul class="sub-menu collapse" data-menu-title="Progresivo">
                             <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">ruleta</span></a></li>
+                                        class="title">Venta</span></a></li>
 
                         </ul>
                     </li>
