@@ -418,9 +418,11 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
            proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
             var minutos=proxima_fecha.diff(ahora,'minutes');
-            var segundos=proxima_fecha.diff(ahora,'seconds');//0
-            var timer2 = minutos+":01";//"5:01";
-            //var timer2 = minutos+":"+segundos;//"5:01";
+            //var segundos=proxima_fecha.diff(ahora,'seconds');//0
+
+            var segundos= proxima_fecha.diff(ahora.add(minutos,"minutes"),"seconds");
+            //var timer2 = minutos+":01";//"5:01";
+            var timer2 = minutos+":"+segundos;//"5:01";
 
 console.log("Fechafinevento= "+fechaFinEvento);
            console.log("ACTUAL="+hora_servidor+" ; PROXIMAMAMAMA fecha en : "+eventodatos.fechaFinEvento  +"   contador en = "+timer2);
