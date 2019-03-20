@@ -3,18 +3,16 @@
 namespace App\Console\Commands;
 
 use App\Evento;
-use App\Juego;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class JobCommand4 extends Command
+class JobCommand11 extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:name4';
+    protected $signature = 'command:name11';
 
     /**
      * The console command description.
