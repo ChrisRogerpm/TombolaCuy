@@ -27,8 +27,8 @@ function ListarDineroDefault() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "idDineroDefault", title: "idDineroDefault"},
-                    {data: "monto", title: "monto"},
+                    {data: "idDineroDefault", title: "Id"},
+                    {data: "monto", title: "Monto"},
                     {
                         data:"estado",title:"Estado",
                         "render":function (value) {

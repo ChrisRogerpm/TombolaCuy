@@ -481,7 +481,7 @@
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary"  id="btnCerrar_mod" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

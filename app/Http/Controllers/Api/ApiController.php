@@ -23,7 +23,8 @@ class ApiController extends Controller
             } else {
                 $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
                 $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
-                $fecha_actual = $evento_actual->fechaEvento;
+                $fecha_ini_actual = $evento_actual->fechaEvento;
+                $fecha_fin_actual = $evento_actual->fechaFinEvento;
                 $fecha_evento_proximo = new Carbon();
                 if ($evento_actual->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $evento_actual->lapsoProxEventoHoras;
@@ -36,9 +37,7 @@ class ApiController extends Controller
                     $fecha_evento_proximo = Carbon::parse($evento_actual->fechaEvento)->addMinutes($NumeroMinutos);
                 }
                 $fecha_evento_prox = $fecha_evento_proximo->toDateTimeString();
-                $fecha_animacion = $fecha_evento_proximo->subSeconds($evento_actual->segBloqueoAntesEvento)->toDateTimeString();
-//                $fecha_animacion = "2019-03-18 07:58:00";
-//                $fecha_evento_prox = "2019-03-18 19:58:00";
+                $fecha_animacion = Carbon::parse($fecha_evento_proximo)->subSeconds($evento_actual->segBloqueoAntesEvento)->toDateTimeString();
                 $estado_animacion = false;
                 if (now() > $fecha_animacion && now() < $fecha_evento_prox) {
                     $estado_animacion = true;
@@ -60,7 +59,8 @@ class ApiController extends Controller
                                 'token_animacion' => $token,
                                 'mensaje_token' => 'Esperando respuesta de token',
                                 'estado_animacion' => $estado_animacion,
-                                'fecha_evento_actual' => $fecha_actual,
+                                'fecha_evento_ini_actual' => $fecha_ini_actual,
+                                'fecha_evento_fin_actual' => $fecha_fin_actual,
                                 'fecha_evento_proximo' => $fecha_evento_prox,
                                 'fecha_animacion' => $fecha_animacion,
                                 'evento_id_actual' => $evento_actual->idEvento,
@@ -74,7 +74,8 @@ class ApiController extends Controller
                                 'token_animacion' => $eventoToken->tokenAnimacion,
                                 'mensaje_token' => 'Esperando respuesta de token',
                                 'estado_animacion' => $estado_animacion,
-                                'fecha_evento_actual' => $fecha_actual,
+                                'fecha_evento_ini_actual' => $fecha_ini_actual,
+                                'fecha_evento_fin_actual' => $fecha_fin_actual,
                                 'fecha_evento_proximo' => $fecha_evento_prox,
                                 'fecha_animacion' => $fecha_animacion,
                                 'evento_id_actual' => $evento_actual->idEvento,

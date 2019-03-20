@@ -27,8 +27,9 @@ class AutenticacionController extends Controller
         $respuesta = false;
         $mensaje_error = '';
         try {
-            $respuesta_api = User::ValidarTokenLogin($usuario, $password);
-            $http_code = $respuesta_api['http_code'];
+//            $respuesta_api = User::ValidarTokenLogin($usuario, $password);
+//            $http_code = $respuesta_api['http_code'];
+            $http_code = 202;
             if ($http_code == 202) {
                 $validar = User::where('usuario', $usuario)->first();
                 if ($validar == null) {

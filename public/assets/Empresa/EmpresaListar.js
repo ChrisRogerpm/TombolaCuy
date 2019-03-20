@@ -27,10 +27,10 @@ function ListarEmpresa() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "razonSocial", title: "Razon Social"},
+                    {data: "razonSocial", title: "Razón Social"},
                     {data: "ruc", title: "RUC"},
-                    {data: "direccion", title: "Direccion"},
-                    {data: "telefono", title: "Telefono"},
+                    {data: "direccion", title: "Dirección"},
+                    {data: "telefono", title: "Teléfono"},
                     {
                         data: null, title: "",
                         "render": function (value) {
