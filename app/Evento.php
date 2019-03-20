@@ -18,11 +18,14 @@ class Evento extends Model
         'idJuego',
         'nombre',
         'fechaEvento',
+        'fechaFinEvento',
         'apuestaMinima',
         'apuestaMaxima',
         'fechaEventoReprogramacion',
         'idMoneda',
-        'estadoEvento'
+        'estadoEvento',
+        'estadoAnimacion',
+        'tokenAnimacion'
     ];
 
     public $timestamps = false;
@@ -129,17 +132,21 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaEvento)
+    public static function RegistrarEvento($juego, $fechaEventoFin,$fechaIni)
     {
         $evento = new Evento();
         $evento->idJuego = $juego->idJuego;
         $evento->nombre = $juego->nombre;
-        $evento->fechaEvento = $fechaEvento;
+        $evento->fechaEvento = $fechaIni;
+        $evento->fechaFinEvento = $fechaEventoFin;
         $evento->apuestaMinima = $juego->apuestaMinima;
         $evento->apuestaMaxima = $juego->apuestaMaxima;
         $evento->idMoneda = $juego->idMoneda;
         $evento->estadoEvento = 1;
+        $evento->estadoAnimacion = 0;
+        $evento->tokenAnimacion = '';
         $evento->save();
+        return $evento;
     }
 
     public static function GenerarEventoJob()
@@ -148,45 +155,103 @@ LIMIT 18
         foreach ($ListaJuego as $juego) {
             $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
             if ($JuegoEvento != null) {
-                if (now() >= $JuegoEvento->fechaEvento) {
+                if (now() >= $JuegoEvento->fechaFinEvento) {
                     $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
                     if ($respuesta) {
-                        $numero_random = rand(0, 24);
-                        TipoApuesta::TipoApuestaColor($numero_random, $JuegoEvento->idEvento);
-
+                        $Evento_creado = "";
                         if ($juego->lapsoProxEventoHoras > 0) {
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addHours($NumeroHoras);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         } else if ($juego->lapsoProxEventoDia > 0) {
                             $NumeroDias = $juego->lapsoProxEventoDia;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addDays($NumeroDias);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addDays($NumeroDias);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         } else if ($juego->lapsoProxEventoMinutos > 0) {
                             $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addMinutes($NumeroMinutos);
-                            Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         }
+                        $numero_random = rand(0, 24);
+                        TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
                     }
                 }
             } else {
                 //crear evento desde 0
+                $Evento_creado = "";
                 if ($juego->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $juego->lapsoProxEventoHoras;
                     $fecha = now()->addHours($NumeroHoras);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 } else if ($juego->lapsoProxEventoDia > 0) {
                     $NumeroDias = $juego->lapsoProxEventoDia;
                     $fecha = now()->addDays($NumeroDias);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 } else if ($juego->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                     $fecha = now()->addMinutes($NumeroMinutos);
-                    Evento::RegistrarEvento($juego, $fecha);
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
                 }
+                $numero_random = rand(0, 24);
+                TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
             }
         }
     }
 
+    public static function EventoActual($IdJuego)
+    {
+        $resultado = DB::table('evento as e')
+            ->join('juego as j', 'j.idJuego', 'e.idJuego')
+            ->where('e.idJuego', $IdJuego)
+            ->where('estadoEvento', 1)
+            ->first();
+        return $resultado;
+    }
 
+    public static function CambiarEstadoAnimacionEvento($IdEvento,$token_animacion)
+    {
+
+        $resultado = false;
+        $respuesta = DB::table('evento')
+            ->where('idEvento',$IdEvento)
+            ->where('tokenAnimacion',$token_animacion)
+            ->first();
+
+        if($respuesta != null){
+            try {
+                $evento = Evento::findorfail($IdEvento);
+                $evento->estadoAnimacion = 1;
+                $evento->save();
+                $resultado = true;
+            } catch (QueryException $ex) {
+            }
+        }
+        return $resultado;
+    }
+
+    public static function EventoTokenAnimacion(string $token_generado, $idEvento)
+    {
+        $evento = "";
+        try{
+            $evento = Evento::findorfail($idEvento);
+            $evento->tokenAnimacion = $token_generado;
+            $evento->save();
+        }catch (QueryException $ex){
+        }
+
+        return $evento;
+    }
+
+    public static function ValidarTokenAnimacion($idEvento)
+    {
+        $token = "";
+        $evento = Evento::findorfail($idEvento);
+        if ($evento->tokenAnimacion != "") {
+            $token = $evento->tokenAnimacion;
+        }
+        return $token;
+    }
 }

@@ -40,7 +40,7 @@ class JobCommand5 extends Command
      */
     public function handle()
     {
-        sleep(5);
+        sleep(3);
         Evento::GenerarEventoJob();
     }
 }

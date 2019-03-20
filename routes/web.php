@@ -142,6 +142,10 @@ Route::post('JugadorDatosJson', 'VentaController@JugadorDatosJson');
 
 #region [Reporte]
     Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
+    Route::get('ReporteVentaVista','ReporteController@ReporteVentaVista')->name('Reporte.Venta');
+    Route::get('ReporteVentaJuegoVista','ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
+    Route::post('ReporteVentaJson','ReporteController@ReporteVentaJson');
+    Route::post('ReporteVentaJuego','ReporteController@ReporteVentaJuegoJson');
 #endregion
 
     Route::post('ExportarExcel', 'ReporteController@ExportarExcel')->name('Exportar');
@@ -158,9 +162,14 @@ Route::post('JugadorDatosJson', 'VentaController@JugadorDatosJson');
     Route::post('PozoJackPotSegunJackPotId', 'ReporteController@PozoJackPotSegunJackPotId');
     Route::post('JackPotSegunidJackpot', 'ReporteController@JackPotSegunidJackpot');
     #endregion
+
+    #region [Excel]
+    Route::post('GenerarExcel','HomeController@GenerarExcel');
+    #endregion
     
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
 
+    Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');    
 });
