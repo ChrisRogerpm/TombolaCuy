@@ -279,11 +279,12 @@ function ListarVentaDatosJson() {
             }
             ////apertura caja datos
              aperturacajadatos = response.aperturacajadatos;
-             aperturacajadatos=aperturacajadatos[0];
             if(aperturacajadatos.length==0){
-                toastr.error("No hay AperturaCaja Registrado","Error");
+                toastr.error("No hay Apertura Caja Registrado","Error");
                 return false;
             }
+             aperturacajadatos=aperturacajadatos[0];
+            
              divdatos=$("#datoscaja");
              $.each(aperturacajadatos,function(col,valor){
                     $("#"+col,divdatos).val(valor).attr("readonly","readonly");
@@ -417,7 +418,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             fechaFinEvento=eventodatos.fechaFinEvento;
 
            //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
-           proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
+            proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
             var minutos=proxima_fecha.diff(ahora,'minutes');
             //var segundos=proxima_fecha.diff(ahora,'seconds');//0
@@ -426,8 +427,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             //var timer2 = minutos+":01";//"5:01";
             var timer2 = minutos+":"+segundos;//"5:01";
 
-console.log("Fechafinevento= "+fechaFinEvento);
-           console.log("ACTUAL="+hora_servidor+" ; PROXIMAMAMAMA fecha en : "+eventodatos.fechaFinEvento  +"   contador en = "+timer2);
+           console.log("FechaActual="+hora_servidor+" ;fechaFinEvento en : "+eventodatos.fechaFinEvento  +"   contador en = "+timer2);
 
 
             if(typeof interval!="undefined"){
