@@ -122,13 +122,13 @@ LIMIT 20
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaEvento)
+    public static function RegistrarEvento($juego, $fechaEventoFin,$fechaIni)
     {
         $evento = new Evento();
         $evento->idJuego = $juego->idJuego;
         $evento->nombre = $juego->nombre;
-        $evento->fechaEvento = now();
-        $evento->fechaFinEvento = $fechaEvento;
+        $evento->fechaEvento = $fechaIni;
+        $evento->fechaFinEvento = $fechaEventoFin;
         $evento->apuestaMinima = $juego->apuestaMinima;
         $evento->apuestaMaxima = $juego->apuestaMaxima;
         $evento->idMoneda = $juego->idMoneda;
@@ -145,22 +145,25 @@ LIMIT 20
         foreach ($ListaJuego as $juego) {
             $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
             if ($JuegoEvento != null) {
-                if (now() >= $JuegoEvento->fechaEvento) {
+                if (now() >= $JuegoEvento->fechaFinEvento) {
                     $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
                     if ($respuesta) {
                         $Evento_creado = "";
                         if ($juego->lapsoProxEventoHoras > 0) {
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addHours($NumeroHoras);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addHours($NumeroHoras);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         } else if ($juego->lapsoProxEventoDia > 0) {
                             $NumeroDias = $juego->lapsoProxEventoDia;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addDays($NumeroDias);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addDays($NumeroDias);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         } else if ($juego->lapsoProxEventoMinutos > 0) {
                             $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                            $fecha = Carbon::parse($JuegoEvento->fechaEvento)->addMinutes($NumeroMinutos);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fecha);
+                            $fechaIni = $JuegoEvento->fechaFinEvento;
+                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
                         }
                         $numero_random = rand(0, 24);
                         TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
