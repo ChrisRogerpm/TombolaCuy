@@ -662,9 +662,35 @@ function consultarEvento(IdJuego) {
         },
         complete: function () {
         },
-        success: function (response) {
-            iniciado = true;
-            iniciar(response.evento_valor_ganador);
+        success: function (response) {                                    
+            if(response.token_animacion != undefined){                
+                $.each(response.estadistica, function( key, value ) {                    
+                    $("#"+value.TipoValorApuesta).text(value.Repetidos);
+                });
+                var strUltimos12="";
+                var clase="caja1";
+                $.each(response.resultado_evento, function( key, value ) {  
+                    if(key<12){                        
+                        switch (value.valorGanador) {
+                            case '1':case '1':case '1':case '1':case '4':case '3':
+                                clase="caja1";
+                              break;
+                            case '2':
+                                clase="caja2";
+                              break;                            
+                            default:
+                                clase="caja1";
+                        }
+                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
+                    }                                                          
+                });
+                $("#tablaUltimos").html(strUltimos12);
+                iniciado = true;
+                iniciar(response.evento_valor_ganador);
+            }  
+            else{
+                
+            }            
             //setTimeout(function(){ iniciado=false; }, 10000);   
         },
         error: function (jqXHR, textStatus, errorThrown) {

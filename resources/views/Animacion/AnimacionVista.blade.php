@@ -124,43 +124,43 @@
 				<h2>Numeros (ultimos 120 Eventos)</h2>	
 				<table id="tableEstadistica">
 					<tr>
-						<th class="cajaRoja">1</th><th>3</th> <th class="cajaNegra">13</th><th>2</th>
+						<th class="cajaRoja">1</th><th id="1">0</th> <th class="cajaNegra">13</th><th id="13">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">2</th><th>3</th> <th class="cajaRoja">14</th><th>2</th>
+						<th class="cajaNegra">2</th><th id="2">0</th> <th class="cajaRoja">14</th><th id="14">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">3</th><th>3</th> <th class="cajaNegra">15</th><th>2</th>
+						<th class="cajaRoja">3</th><th id="3">0</th> <th class="cajaNegra">15</th><th id="15">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">4</th><th>3</th> <th class="cajaRoja">16</th><th>2</th>
+						<th class="cajaNegra">4</th><th id="4">0</th> <th class="cajaRoja">16</th><th id="16">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">5</th><th>3</th> <th class="cajaNegra">17</th><th>2</th>
+						<th class="cajaRoja">5</th><th id="5">0</th> <th class="cajaNegra">17</th><th id="17">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">6</th><th>3</th> <th class="cajaRoja">18</th><th>2</th>
+						<th class="cajaNegra">6</th><th id="6">0</th> <th class="cajaRoja">18</th><th id="18">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">7</th><th>3</th> <th class="cajaRoja">19</th><th>2</th>
+						<th class="cajaRoja">7</th><th id="7">0</th> <th class="cajaRoja">19</th><th id="19">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">8</th><th>3</th> <th class="cajaNegra">20</th><th>2</th>
+						<th class="cajaNegra">8</th><th id="8">0</th> <th class="cajaNegra">20</th><th id="20">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">9</th><th>3</th> <th class="cajaRoja">21</th><th>2</th>
+						<th class="cajaRoja">9</th><th id="9">0</th> <th class="cajaRoja">21</th><th id="21">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">10</th><th>3</th> <th class="cajaNegra">22</th><th>2</th>
+						<th class="cajaNegra">10</th><th id="10">0</th> <th class="cajaNegra">22</th><th id="22">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">11</th><th>3</th> <th class="cajaRoja">23</th><th>2</th>
+						<th class="cajaNegra">11</th><th id="11">0</th> <th class="cajaRoja">23</th><th id="23">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">12</th><th>3</th> <th class="cajaNegra">24</th><th>2</th>
+						<th class="cajaRoja">12</th><th id="12">0</th> <th class="cajaNegra">24</th><th id="24">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th colspan="2">2</th>
+						<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th id="0" colspan="2">0</th>
 					</tr>
 				</table>
 			</div>			
@@ -191,7 +191,7 @@
 				</table>
 				<br />
 				<h2>Historial</h2>	
-				<table id="">
+				<table id="tablaUltimos">
 					<tr>
 						<th class="caja">#123wqw1</th><th class="caja1">1</th>
 					</tr>
