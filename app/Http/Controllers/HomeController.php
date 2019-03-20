@@ -12,9 +12,8 @@ class HomeController extends Controller
 {
     public function DashboardVista()
     {
-//        $listar_juegos = Juego::JuegoListarLapsoJson();
-//        return view('Home.DashboardVista', compact('listar_juegos'));
-        return Evento::GenerarEventoJob();
+        $listar_juegos = Juego::JuegoListarLapsoJson();
+        return view('Home.DashboardVista', compact('listar_juegos'));
     }
 
     public function GenerarExcel(Request $request)
