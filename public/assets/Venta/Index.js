@@ -228,6 +228,8 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
             // TICKET_IMPRIMIR={}
 
             toastr.success("Ticket Guardado");
+            actualizarJugador();
+
         },
     })
 }
@@ -349,6 +351,23 @@ function ListarVentaDatosJson() {
     })
 }
 
+
+function actualizarJugador(){
+        $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'JugadorDatosJson',
+        data: { 
+            'idEventoActual': eventoactual.IdEvento,
+            '_token': $('input[name=_token]').val()
+        },
+        success: function (response) {
+            aver=response;
+            $("#row_datosevento #jugador").text(response.jugadores.cantidadganadores);
+        },
+    })
+}
+
+
 function JackpotDatosJson(puntoventa){
         $.ajax({
         type: 'POST',async:false,
@@ -400,8 +419,8 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
             var minutos=proxima_fecha.diff(ahora,'minutes');
             var segundos=proxima_fecha.diff(ahora,'seconds');//0
-            //var timer2 = minutos+":01";//"5:01";
-            var timer2 = minutos+":"+segundos;//"5:01";
+            var timer2 = minutos+":01";//"5:01";
+            //var timer2 = minutos+":"+segundos;//"5:01";
 
 console.log("Fechafinevento= "+fechaFinEvento);
            console.log("ACTUAL="+hora_servidor+" ; PROXIMAMAMAMA fecha en : "+eventodatos.fechaFinEvento  +"   contador en = "+timer2);
@@ -470,7 +489,7 @@ console.log("Fechafinevento= "+fechaFinEvento);
             $(e).attr("data-idtipoapuesta",idtipoapuesta);
     })
 
-   $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
+    $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
             var valor=$(e).text();
             var color="";var cuota="";
             var idtipoapuesta="";
@@ -557,9 +576,9 @@ console.log("Fechafinevento= "+fechaFinEvento);
         intervalojackpot=setInterval(function(){
             JackpotDatosJson();
         },14000)
-        HistorialJson();
+        //HistorialJson(eventoactual.IdEvento);
         intervalohistorial=setInterval(function(){
-            HistorialJson();
+            HistorialJson(eventoactual.IdEvento);
         },14000)
         ///fin jackpot
 
@@ -638,11 +657,12 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
 
 
 
-function HistorialJson() {
+function HistorialJson(idEventoac) {
     $.ajax({
         type: 'POST',async:false,
         url: basePath + 'HistorialDatosJson',
         data: {
+            'idEvento': idEventoac,
             '_token': $('input[name=_token]').val(),
         },
         success: function (response) {
@@ -829,6 +849,11 @@ $(document).ready(function () {
     })
 
     $("#div_configuracioneventos .eventos_fila_izq>div").eq(0).click();
+
+        HistorialJson(eventoactual.IdEvento);
+
+
+
 /////botones numeros  SELECCIONADO CLASE
     //boton 0
     $(".rectangulo_izquierda").off().on("click",function(e){ 

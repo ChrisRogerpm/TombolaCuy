@@ -53,6 +53,7 @@ Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
 Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
 Route::post('GuardarGanadorEvento','VentaController@GuardarGanadorEvento');
 
+Route::post('JugadorDatosJson', 'VentaController@JugadorDatosJson');
 
 #endregion
 
