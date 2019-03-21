@@ -157,7 +157,7 @@ $(document).ready(function () {
                         {
                             data: "perfil_id", title: "Perfil", "bSortable": false,
                             "render": function (o, q, t) {
-                                var usuarioid = t.id;
+                                var usuarioid = t.idUsuario;
                                 var select = "";
                                 select += "<select data-id='" + usuarioid + "' class='form-control selectPerfil' style='width:100%;'>";
                                 if (o == 0) {
