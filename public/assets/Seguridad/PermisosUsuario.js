@@ -172,18 +172,8 @@ $(document).ready(function () {
                                 select += "</select>";
                                 return select;
                             }
-                        },
-                        {data: "id", title: "","bSortable": false,
-                            "render": function (o) {
-                                return '<button type="button" class="btn btn-sm btn-warning btnmodalPermisos" data-id="'+o+'"><i class="icon_info_alt"></i></button>';
-                            }
-                        },
-                    ],
-                    "drawCallback": function (settings) {
-                        $('.btnmodalPermisos').tooltip({
-                            title: "Permisos"
-                        });
-                    }
+                        }
+                    ]
                 });
             },
             error: function (jqXHR, textStatus, errorThrown) {

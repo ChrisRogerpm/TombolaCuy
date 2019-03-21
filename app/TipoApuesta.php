@@ -67,7 +67,135 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
+
+        if ($NumeroGenerado % 2 == 0) {
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 101)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        } else {
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 102)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (1 >= $NumeroGenerado && 6 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 103)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (7 >= $NumeroGenerado && 12 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 104)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (13 >= $NumeroGenerado && 18 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 105)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (19 >= $NumeroGenerado && 24 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 106)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (1 >= $NumeroGenerado && 12 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 107)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if (13 >= $NumeroGenerado && 24 <= $NumeroGenerado) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 108)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
     }
+
+
 
     public static function EstadisticaUltimosTipoApuesta()
     {
