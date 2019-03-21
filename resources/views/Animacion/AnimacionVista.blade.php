@@ -192,42 +192,42 @@
 				<br />
 				<h2>Historial</h2>	
 				<table id="tablaUltimos">
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">1</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">2</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">3</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">4</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja2">5</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja2">6</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">7</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja2">8</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">9</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja2">10</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja1">11</th>
-					</tr>
-					<tr>
-						<th class="caja">#123wqw1</th><th class="caja2">12</th>
-					</tr>					
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">1</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">2</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">3</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">4</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja2">5</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja2">6</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">7</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja2">8</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">9</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja2">10</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja1">11</th>--}}
+					{{--</tr>--}}
+					{{--<tr>--}}
+						{{--<th class="caja">#123wqw1</th><th class="caja2">12</th>--}}
+					{{--</tr>					--}}
 				</table>
 			</div>			
 		</div>	
