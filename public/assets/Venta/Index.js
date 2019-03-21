@@ -4,34 +4,75 @@ $(window).resize(function () {
 }).trigger('resize')
 /////fin responsive tombolacuy
 function responsivetombola(){
+    heighttbody=$(".rowtablaeventos").outerHeight()-$("#tabla_eventos thead tr").height()
+    $("#tabla_eventos tbody").attr("style","height:"+heighttbody+"px")
 
-
-heighttbody=$(".rowtablaeventos").outerHeight()-$("#tabla_eventos thead tr").height()
-$("#tabla_eventos tbody").attr("style","height:"+heighttbody+"px")
-
-    $(".responsive").each(function(i,e){
-        var height = $(e).height();
-        $(e).css({
-            'font-size': (height/2) + 'px',
-            'line-height': height + 'px'
+        $(".responsive").each(function(i,e){
+            var height = $(e).height();
+            $(e).css({
+                'font-size': (height/2) + 'px',
+                'line-height': height + 'px'
+            })
         })
-    })
-/////barra de eventos
-    // $(".eventos_fila_izq>div").each(function(i,e){
-    //      var height = $(e).parent().parent().height();
-    //      $(e).css({
-    //          'line-height': height + 'px'
-    //      })
-    //  })
-    ///fin barra de eventos
+    /////barra de eventos
+        // $(".eventos_fila_izq>div").each(function(i,e){
+        //      var height = $(e).parent().parent().height();
+        //      $(e).css({
+        //          'line-height': height + 'px'
+        //      })
+        //  })
+        ///fin barra de eventos
 
-////textoresponsive
-// $("#div_configuracioneventos .eventotextodiv").each(function(i,e){
-//     textoresponsive($(e))
-// })
+    ////textoresponsive
+    // $("#div_configuracioneventos .eventotextodiv").each(function(i,e){
+    //     textoresponsive($(e))
+    // })
 
-//fin textoresponmsive
+    //fin textoresponmsive
 }
+
+
+///////HORA SERVER
+// function hora_reloj(fechahora_servidor) {
+//     if (!document.layers && !document.all && !document.getElementById)
+//         return;
+//     var Digital = new Date();
+//     var hours = Digital.getHours();
+//     var minutes = Digital.getMinutes();
+//     var seconds = Digital.getSeconds();
+//     if ($("#fechaHoy2").length) {
+//         var today = moment(fechahora_servidor).format('DD/MM/YYYY');
+//         window.onload = hora_reloj(fechahora_servidor);
+//     var dn = "PM";
+//     if (hours < 12)
+//         dn = "AM";
+//     if (hours > 12)
+//         hours = hours - 12;
+//     if (hours == 0)
+//         hours = 12;
+
+//     if (minutes <= 9)
+//         minutes = "0" + minutes;
+//     if (seconds <= 9)
+//         seconds = "0" + seconds;
+//     myclock = "<b>" + hours + ":" + minutes + ":"
+//         + seconds + " " + dn + "</b>";
+//     if (document.layers) {
+//         document.layers.liveclock.document.write(myclock);
+//         document.layers.liveclock.document.close();
+//     }
+//     else if (document.all)
+//         liveclock.innerHTML = myclock;
+//     else if (document.getElementById)
+//         document.getElementById("liveclock").innerHTML = myclock;
+//     setTimeout(hora_reloj(fechahora_servidor), 1000);
+//     }
+// }
+//  if ($("#fechaHoy2").length) {
+//      var today = moment().format('DD/MM/YYYY');
+//      window.onload = hora_reloj(fechahora_servidor);
+//  }
+//FIN HORA SERVER
 
 function textoresponsive(elemento) {
   var el, elements, _i, _len, _results;
@@ -73,6 +114,8 @@ function BuscarTicket(ticketobjeto){
 
             ticketbuscado=response.ticketbuscado;
             ticketsganadores=response.tickets;
+            resultados_evento=response.resultados_evento;
+            
              ganadores="";
              if(ticketsganadores.length>0){
 
@@ -272,6 +315,9 @@ function ListarVentaDatosJson() {
         success: function (response) {
             USUARIO=response.usuario;
             hora_servidor=response.hora_servidor;
+
+
+
             dinerodefault=response.dinerodefault;
             if(dinerodefault.length==0){
                 toastr.error("No hay DineroDefault Registrados","Error");
@@ -284,7 +330,7 @@ function ListarVentaDatosJson() {
                 return false;
             }
              aperturacajadatos=aperturacajadatos[0];
-            
+
              divdatos=$("#datoscaja");
              $.each(aperturacajadatos,function(col,valor){
                     $("#"+col,divdatos).val(valor).attr("readonly","readonly");
@@ -416,7 +462,6 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
 ////////PROXIMO EN
             fechaFinEvento=eventodatos.fechaFinEvento;
-
            //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
             proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
@@ -547,7 +592,9 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             var idtipoapuesta="";
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
-                    if(ee.idTipoPago==4 ){
+                    var nombreapuesta=ee.nombre;
+
+                    if(ee.idTipoPago==4 && nombreapuesta.toString()==$(e).data("valor") ){
                         cuota=ee.multiplicadorDefecto;
                         idtipoapuesta=ee.idTipoApuesta;
                     }
@@ -557,14 +604,15 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
     })
 
-       $(".numeros_rango2 div").each(function(i,e){
+    $(".numeros_rango2 div:not('.rectangulo_negro'):not('.rectangulo_rojo')").each(function(i,e){
         var valor=$(e).text();
         var idtipopago=$(e).data("idtipopago")
             var color="";var cuota="";
             var idtipoapuesta="";
             $(tipoapuesta).each(function(ii,ee){
                     var valorapuesta=ee.valorapuesta;
-                    if(idtipopago.toString()==(ee.idTipoPago).toString() ){
+                    var nombreapuesta=ee.nombre;
+                    if(idtipopago.toString()==(ee.idTipoPago).toString() && nombreapuesta.toString()==$(e).data("valor") ){
                         cuota=ee.multiplicadorDefecto;
                         idtipoapuesta=ee.idTipoApuesta;
                     }
@@ -848,6 +896,10 @@ $(document).ready(function () {
                 eventoactual.segBloqueoAntesEvento=$(this).data("segBloqueoAntesEvento");
                 eventoactual.idMoneda=$(this).data("idMoneda");
 
+
+        HistorialJson(eventoactual.IdEvento);
+
+
                 var imagensrc=$("img",this).attr("src");
                 eventoactual.Imagen=imagensrc;
 
@@ -857,7 +909,7 @@ $(document).ready(function () {
 
     $("#div_configuracioneventos .eventos_fila_izq>div").eq(0).click();
 
-        HistorialJson(eventoactual.IdEvento);
+        //HistorialJson(eventoactual.IdEvento);
 
 
 

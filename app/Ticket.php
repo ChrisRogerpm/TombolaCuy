@@ -105,14 +105,28 @@ class Ticket extends Model
     }
 
 
-        public static function BuscarApuestasIdTicket($idTicket)
+    public static function BuscarApuestasIdTicket($idTicket)
     {
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
         $listar = DB::select(DB::raw('
-                                select  tipoapuesta.idTipoApuesta, tipoapuesta.valorapuesta, tipopago.nombre from apuesta 
+                               
+                                 select  tick.idEvento,tipoapuesta.idTipoApuesta, tipoapuesta.valorapuesta, tipopago.nombre from apuesta 
                                 left join tipo_apuesta tipoapuesta on  tipoapuesta.idTipoApuesta=apuesta.idTipoApuesta 
                                 left join tipo_pago tipopago on tipopago.idTipoPago = tipoapuesta.idTipoPago
-                                where idTicket='.$idTicket.'
+                                left join ticket tick on tick.idTicket=apuesta.idTicket
+                                where apuesta.idTicket='.$idTicket.'
+                                '));
+        return $listar;
+    }
+
+
+    public static function ResultadosEvento($idEvento)
+    {
+/////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
+        $listar = DB::select(DB::raw('
+                                SELECT *
+                            FROM resultado_evento where idEvento='.$idEvento.'
+                            
                                 '));
         return $listar;
     }
