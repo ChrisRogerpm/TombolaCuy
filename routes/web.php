@@ -118,8 +118,10 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
     Route::get('ReporteVentaVista', 'ReporteController@ReporteVentaVista')->name('Reporte.Venta');
     Route::get('ReporteVentaJuegoVista', 'ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
+    Route::get('ReporteCierraVentaVista','ReporteController@ReporteCierraVentaVista')->name('Reporte.CierreCaja');
     Route::post('ReporteVentaJson', 'ReporteController@ReporteVentaJson');
     Route::post('ReporteVentaJuego', 'ReporteController@ReporteVentaJuegoJson');
+
 #endregion
 
     Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
@@ -137,6 +139,8 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 });
 Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
 Route::post('ReporteHistorialGanadoresListarJson', 'ReporteController@ReporteHistorialGanadoresListarJson');
+Route::post('ReporteCierreCajaFk','ReporteController@ReporteCierreCajaFk');
+
 Route::post('ConfiguracionJackpotListarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
 Route::post('ConfiguracionPozoListarJson', 'ConfiguracionPozoController@ConfiguracionPozoListarJson');
 Route::post('CajaListarJson', 'CajaController@CajaListarJson');

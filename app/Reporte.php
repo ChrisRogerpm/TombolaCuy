@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -25,43 +26,25 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
-        $lista = DB::select(DB::raw("SELECT
-        pv.nombre as Tienda,
-        e.nombre as Evento,
-        (SELECT sum(ap1.montoApostado) as apostado from apuesta ap1 
-        JOIN ticket t1 ON t1.idTicket = ap1.idTicket
-        JOIN evento e1 ON e1.idEvento = t1.idEvento
-        JOIN apertura_caja ac1 ON ac1.idAperturaCaja = t1.idAperturaCaja
-        JOIN caja c1 ON c1.idCaja = ac1.idCaja
-        JOIN punto_venta pv1 ON pv1.idPuntoVenta = c1.idPuntoVenta
-        WHERE pv1.idPuntoVenta = pv.idPuntoVenta AND e1.idEvento = e.idEvento) Apuestas,
-        (SELECT
-        sum(ap2.montoAPagar) as Pagar
-        from apuesta ap2
-        JOIN ticket t2 ON t2.idTicket = ap2.idTicket
-        JOIN evento e2 ON e2.idEvento = t2.idEvento
-        JOIN apertura_caja ac2 ON ac2.idAperturaCaja = t2.idAperturaCaja
-        JOIN caja c2 ON c2.idCaja = ac2.idCaja
-        JOIN punto_venta pv2 ON pv2.idPuntoVenta = c2.idPuntoVenta
-        WHERE pv2.idPuntoVenta = pv.idPuntoVenta AND e2.idEvento = e.idEvento) Pagos,
-        (SELECT
-        SUM(t3.idTicket) Jugadores
-        from apuesta ap3
-        JOIN ticket t3 ON t3.idTicket = ap3.idTicket
-        JOIN evento e3 ON e3.idEvento = t3.idEvento
-        JOIN apertura_caja ac3 ON ac3.idAperturaCaja = t3.idAperturaCaja
-        JOIN caja c3 ON c3.idCaja = ac3.idCaja
-        JOIN punto_venta pv3 ON pv3.idPuntoVenta = c3.idPuntoVenta
-        WHERE pv3.idPuntoVenta = pv.idPuntoVenta AND e3.idEvento = e.idEvento) Jugadores
-        FROM apuesta a
-        JOIN ticket t ON t.idTicket = a.idTicket
-        JOIN evento e ON e.idEvento = t.idEvento
-        JOIN apertura_caja ac ON ac.idAperturaCaja = t.idAperturaCaja
-        JOIN caja c ON c.idCaja = ac.idCaja
-        JOIN punto_venta pv ON pv.idPuntoVenta = c.idPuntoVenta
-        where pv.idPuntoVenta in ($tiendas) and
-        e.fechaEvento between '$fechaIni' and '$fechaFin'
-        GROUP BY pv.idPuntoVenta,e.idEvento,pv.nombre,e.nombre"));
+        $lista = DB::select(DB::raw("
+        
+        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
+        IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        inner join apuesta a on a.idApuesta=ge.idApuesta
+        inner join ticket ti on ti.idTicket=a.idTicket
+        where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
+        e.nombre Evento,count(t.idticket) Jugadores
+        from apertura_caja ac
+        inner join caja c on c.idCaja=ac.idCaja
+        inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+        inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
+        inner join evento e on e.idevento=t.idevento 
+        where  ac.estado!=0
+        and c.idPuntoVenta in ($tiendas)
+        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
+        
+        group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
+        "));
         return $lista;
 
     }
@@ -286,7 +269,7 @@ class Reporte extends Model
             $listar = DB::table('evento as e')
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
-                ->where('estadoEvento',2)
+                ->where('estadoEvento', 2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
@@ -300,7 +283,7 @@ class Reporte extends Model
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
                 ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-                ->where('estadoEvento',2)
+                ->where('estadoEvento', 2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
@@ -310,6 +293,23 @@ class Reporte extends Model
             }
         }
         return $valor_array;
+    }
+
+    public static function ReporteCierreCaja()
+    {
+        $IdUsuario = Auth::user()->idUsuario;
+        $resultado = DB::select(DB::raw("select ac.idAperturaCaja,idTurno,c.nombre caja,p.nombre puntoventa,ac.fechaOperacion,
+         IFNULL(( select sum(t.montototal) from ticket t
+         where t.idaperturacaja=ac.idaperturacaja),0) Venta,
+         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+         inner join apuesta a on a.idApuesta=ge.idApuesta
+         inner join ticket t on t.idTicket=a.idTicket
+         where t.idAperturaCaja= ac.idaperturacaja),0) Pagado
+           from apertura_caja ac
+         inner join caja c on c.idCaja=ac.idCaja
+         inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+         where usuario=$IdUsuario and ac.estado=1"));
+        return $resultado;
     }
 
 

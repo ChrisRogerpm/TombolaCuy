@@ -12,8 +12,8 @@ class HomeController extends Controller
 {
     public function DashboardVista()
     {
-        return view('Home.DashboardVista');
-//        return Evento::GenerarEventoJob();
+//        return view('Home.DashboardVista');
+        return Evento::GenerarEventoJob();
     }
 
     public function GenerarExcel(Request $request)

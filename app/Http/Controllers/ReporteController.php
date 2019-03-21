@@ -28,6 +28,11 @@ class ReporteController extends Controller
         return view('Reportes.ReporteVentaJuegoVista', compact('juegos'));
     }
 
+    public function ReporteCierraVentaVista()
+    {
+        return view('Reportes.ReporteCierreCaja');
+    }
+
     public function ReporteApuestaJson(Request $request)
     {
         $lista = "";
@@ -52,9 +57,7 @@ class ReporteController extends Controller
         $mensaje_error = "";
         try {
             $lista = Reporte::ReporteHistorialGanadoresListarJson($request);
-
             //$lista = DB::table('tipo_apuesta')->get();
-
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
@@ -158,6 +161,18 @@ class ReporteController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function ReporteCierreCajaFk()
+    {
+        $data = "";
+        $mensaje = "";
+        try {
+            $data = Reporte::ReporteCierreCaja();
+        } catch (QueryException $ex) {
+            $mensaje = $ex->errorInfo;
+        }
+        return response()->json(['data' => $data, 'mensaje' => $mensaje]);
     }
 
 }

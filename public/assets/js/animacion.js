@@ -1,4 +1,5 @@
 iniciado = false;
+token="";
 $(document).ready(function () {
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
     setInterval(function () {
@@ -183,6 +184,8 @@ function animate() {
                             model.position.z = 0;
                             clock = new THREE.Clock();
                             clockCuyDudando = new THREE.Clock();
+                            CerrarEvento(1,token);
+                            token = "";
                             iniciado = false;
                         }
                         else {
@@ -213,6 +216,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -231,6 +236,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -249,6 +256,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -267,6 +276,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -285,6 +296,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -303,6 +316,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -321,6 +336,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -339,6 +356,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -357,6 +376,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -375,6 +396,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -393,6 +416,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -411,6 +436,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -429,6 +456,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -447,6 +476,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -465,6 +496,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -483,6 +516,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -501,6 +536,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -519,6 +556,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -537,6 +576,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -555,6 +596,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -573,6 +616,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -591,6 +636,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -609,6 +656,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -627,6 +676,8 @@ function animate() {
                         model.position.z = 0;
                         clock = new THREE.Clock();
                         clockCuyDudando = new THREE.Clock();
+                        CerrarEvento(1,token);
+                        token = "";
                         iniciado = false;
                     }
                     else {
@@ -663,7 +714,9 @@ function consultarEvento(IdJuego) {
         complete: function () {
         },
         success: function (response) {
+            console.log(response);
             if(response.token_animacion != undefined){
+                token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
                 });
@@ -692,6 +745,28 @@ function consultarEvento(IdJuego) {
 
             }
             //setTimeout(function(){ iniciado=false; }, 10000);   
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
+function CerrarEvento(IdJuego,token_animacion) {
+    var url = document.location.origin + "/" + "api/DataEventoResultadoEvento";
+    debugger
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({IdJuego: IdJuego,token:token_animacion}),
+        beforeSend: function () {
+        },
+        complete: function () {
+        },
+        success: function (response) {  
+            debugger
+            console.log(response);
+            alert("muerto");    0                                           
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
