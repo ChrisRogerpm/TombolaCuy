@@ -3,7 +3,7 @@ $(document).ready(function () {
     var dateNow = new Date();
     $(".hasDatepicker").datetimepicker({
         pickTime: false,
-        format: 'DD/MM/YYYY',
+        format: 'YYYY/MM/DD',
         defaultDate: dateNow,
         maxDate: dateNow
     });
