@@ -81,7 +81,9 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Usuario</label>
-                                    <input type="text" class="form-control input-sm" name="usuario" value="{{$AperturaCaja->usuario}}">
+                                    <!-- <input type="hidden" class="form-control input-sm" name="usuario" value="{{$AperturaCaja->usuario}}" readonly> -->
+                                    <input type="hidden" class="form-control input-sm" name="usuario" value="{{$AperturaCaja->usuario}}" readonly>
+                                    <input type="text" class="form-control input-sm" name="usuarionombre" value="{{$AperturaCaja->usuarionombre}}" readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">

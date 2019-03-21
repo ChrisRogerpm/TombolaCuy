@@ -68,6 +68,10 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('AperturaCajaEditar/{idAperturaCaja}', 'AperturaCajaController@AperturaCajaEditarVista')->name('AperturaCaja.Editar');
     Route::post('AperturaCajaInsertarJson', 'AperturaCajaController@AperturaCajaInsertarJson');
     Route::post('AperturaCajaEditarJson', 'AperturaCajaController@AperturaCajaEditarJson');
+    Route::post('AperturaRevisarJson', 'AperturaCajaController@AperturaRevisarJson');
+
+
+
 #endregion
 
 #region [Turno]
@@ -161,3 +165,5 @@ Route::post('ListdoPermisosPerfil', 'SeguridadController@PermisoPerfilListarJson
 Route::get('Seguridad', 'SeguridadController@PermisosUsuarioVista')->name('Seguridad.PermisosUsuario');
 Route::post('DataAuditoriaRegistroFk', 'SeguridadController@DataAuditoriaJson');
 Route::post('AperturaCajaCerrarFk','AperturaCajaController@AperturaCajaCerrarFk');
+
+Route::post('AperturaCajaListarActivaFK', 'AperturaCajaController@AperturaCajaListarActiva');

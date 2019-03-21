@@ -25,13 +25,25 @@ class AperturaCaja extends Model
     }
 
 
+   public static function AperturaCajaDatos($idaperutaracaja)
+    {
+       
+        $listar = DB::select(DB::raw("select ape.* , usu.usuario as usuarionombre
+            from apertura_caja  ape
+            left join users usu on usu.idUsuario=ape.usuario
+            where ape.idAperturaCaja =".$idaperutaracaja." "));
+        return $listar;
+
+    }
+
+
 
     public static function AperturaCajaInsertarJson(Request $request)
     {
         $AperturaCaja = new AperturaCaja();
         $AperturaCaja->idCaja = $request->input('idCaja');
         $AperturaCaja->idTurno = $request->input('idTurno');
-        $AperturaCaja->usuario = $request->input('usuario');
+        $AperturaCaja->usuario = $request->input('idUsuario');
         $AperturaCaja->fechaOperacion = Carbon::parse($request->input('fechaOperacion'));
         $AperturaCaja->fechaRegistro = Carbon::now();
         $AperturaCaja->estado = 1;

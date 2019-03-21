@@ -15,12 +15,14 @@ class AperturaCajaController extends Controller
 
     public function AperturaCajaInsertarVista()
     {
+    
         return view('AperturaCaja.AperturaCajaInsertarVista');
     }
 
     public function AperturaCajaEditarVista($idAperturaCaja)
     {
-        $AperturaCaja = AperturaCaja::findorfail($idAperturaCaja);
+        $AperturaCajaant = AperturaCaja::findorfail($idAperturaCaja);
+        $AperturaCaja = AperturaCaja::AperturaCajaDatos($idAperturaCaja)[0];
         return view('AperturaCaja.AperturaCajaEditarVista', compact('AperturaCaja'));
     }
 
@@ -35,6 +37,24 @@ class AperturaCajaController extends Controller
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
+
+
+
+      public function AperturaCajaListarActiva(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+
+        try {
+            $lista = AperturaCaja::AperturaCajaListarActiva($request->idUsuario);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+
+    
 
     public function AperturaCajaInsertarJson(Request $request)
     {

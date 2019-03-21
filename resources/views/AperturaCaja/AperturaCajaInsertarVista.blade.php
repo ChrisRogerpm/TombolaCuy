@@ -78,7 +78,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Usuario</label>
-                                    <input type="text" class="form-control input-sm" name="usuario">
+                                    <input type="hidden" name="idUsuario" id="idUsuario" value="{{Auth::user()->idUsuario}}">
+                                    <input type="text" class="form-control input-sm" name="usuario" readonly  id="usuario" value="{{Auth::user()->usuario}}">
                                 </div>
                             </div>
                             <div class="col-md-4">
