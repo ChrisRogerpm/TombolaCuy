@@ -3,9 +3,13 @@ $(document).ready(function () {
     $(document).on('click', '#btnCierreCaja', function () {
         var idAperturacaja = $("#idAperturaCaja").val();
         if (idAperturacaja !== "") {
+            var dataForm = {
+                'idAperturaCaja': idAperturacaja
+            }
             $.ajax({
                 type: 'POST',
-                url: basePath + "",
+                url: basePath + "AperturaCajaCerrarFk",
+                data: dataForm,
                 success: function (response) {
                     var respuesta = response.respuesta;
                     if (respuesta) {
@@ -31,15 +35,16 @@ function MostrarDataCierreCaja() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
+            debugger
             var data = response.data;
 
             if (data.length > 0) {
                 $("#btnCierreCaja").attr('disabled', false);
+                $("#idAperturaCaja").val(data[0].idAperturaCaja);
             } else {
                 $("#btnCierreCaja").attr('disabled', true);
             }
 
-            $("#idAperturaCaja").val(data[0].idAperturaCaja);
             $("#table").DataTable({
                 dom: 'Bfrtip',
                 buttons: [
