@@ -443,9 +443,11 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
            //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
             proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
-            var minutos=proxima_fecha.diff(ahora,'minutes');
-            var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-            var timer2 = minutos+":01";//"5:01";
+             minutos=proxima_fecha.diff(ahora,'minutes');
+             segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
+            //var segundos=0;//proxima_fecha.diff(ahora,'seconds');
+            //var timer2 = minutos+":01";//"5:01";
+            var timer2 = minutos+":"+segundos;
             if(typeof interval!="undefined"){
                 clearInterval(interval);$('.countdown').html("00:00")
             }

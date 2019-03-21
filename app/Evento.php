@@ -44,8 +44,8 @@ where ev.estadoEvento=1'));
     public static function EventoId($idEvento)
     {
 
-        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento,ju.logo as logo,
-        	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
+        $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento, ju.logo as logo,
+            ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
@@ -55,13 +55,24 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function CantidadGanadorEventoListar($idEvento)
     {
-        $listar = DB::select(DB::raw("select  COUNT(*)  as cantidadganadores FROM ticket WHERE IDEVENTO =" . $idEvento));
+        $listar = DB::select(DB::raw("select  COUNT(*)  as cantidadganadores FROM ticket WHERE idEvento =" . $idEvento));
         return $listar;
     }
 
     public static function SimboloEvento($idEvento)
     {
         $listar = DB::select(DB::raw("select mon.simbolo as simbolo  FROM evento ev left join moneda mon on mon.idMoneda=ev.idMoneda WHERE IDEVENTO =" . $idEvento));
+        return $listar;
+    }
+
+       public static function JugadorDatosJson($idEvento)
+    {
+        $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
+            INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
+            INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
+            INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
+            WHERE JPV.idPuntoVenta=1
+            "));
         return $listar;
     }
 
@@ -96,7 +107,7 @@ inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE evt.IDJUEGO=1 and res.idtipopago=1
 order by evt.`fechaEvento` DESC
-LIMIT 20
+LIMIT 18
 			"));
         return $listar;
     }
