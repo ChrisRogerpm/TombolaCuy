@@ -8,6 +8,7 @@ $(document).ready(function () {
 });
 
 function ListarDineroDefault() {
+    //un cambio
     $.ajax({
         type: 'POST',
         url: basePath + 'DineroDefaultListarJson',
