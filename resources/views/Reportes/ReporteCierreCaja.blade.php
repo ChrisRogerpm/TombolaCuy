@@ -1,5 +1,4 @@
 @extends('Shared.layout')
-
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -13,8 +12,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
-                                                    <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Registro de DineroDefault
+                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Cierre de Caja
                                                 </h6>
                                             </div>
                                         </div>
@@ -33,19 +31,9 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <button type="button" id="btnGuardar"
-                                            class="btn btn-primary btn-sm col-md-12 col-xs-12">
-                                        <span class="glyphicon glyphicon-file"></span> GUARDAR
+                                    <button class="btn btn-danger btn-sm col-md-12 col-xs-12" id="btnCierreCaja"><span
+                                                class="glyphicon glyphicon-folder-close m-r-10"></span> Cierre de Caja
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <a href="{{route('DineroDefault.Listar')}}"
-                                       class="btn btn-success btn-sm col-md-12 col-xs-12"><span
-                                                class="fa fa-arrow-circle-left"></span> VOLVER</a>
                                 </div>
                             </div>
                         </div>
@@ -58,25 +46,13 @@
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-
-                    <form id="frmNuevo" autocomplete="off">
-                        {{csrf_field()}}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>monto</label>
-                                    <input type="text" class="form-control" name="monto">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
+                    <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
                 </div>
             </div>
         </div>
     </div>
-@stop
 
-@push('Js')
-    <script src="{{asset('../assets/DineroDefault/DineroDefaultInsertar.js')}}"></script>
+
+@stop @push('Js')
+    <script src="{{asset('assets/Reporte/ReporteCierreCaja.js')}}"></script>
 @endpush

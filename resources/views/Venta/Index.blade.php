@@ -237,20 +237,20 @@
                                                 </div>
 
                                                 <div class=" numeros_rango">
-                                                    <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="1-6" class="rectangulo_azul">1-6</div>
-                                                    <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="7-12" class="rectangulo_azul">7-12</div>
-                                                    <div data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="13-18" class="rectangulo_azul">13-18</div>
-                                                    <div data-idTipoPago=4  data-tipo="rango" data-color="azul" data-valor="19-24" class="rectangulo_azul">19-24</div>
+                                                    <div  data-idTipoApuesta=103 data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="1-6" class="rectangulo_azul">1-6</div>
+                                                    <div  data-idTipoApuesta=104 data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="7-12" class="rectangulo_azul">7-12</div>
+                                                    <div  data-idTipoApuesta=105 data-idTipoPago=4 data-tipo="rango" data-color="azul" data-valor="13-18" class="rectangulo_azul">13-18</div>
+                                                    <div  data-idTipoApuesta=106 data-idTipoPago=4  data-tipo="rango" data-color="azul" data-valor="19-24" class="rectangulo_azul">19-24</div>
 
                                                 </div>
 
                                                 <div class=" numeros_rango2">
-                                                    <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="1-12" class="rectangulo_azul">1-12</div>
-                                                    <div data-idTipoPago=3 data-tipo="pares" data-color="azul" data-valor="PAR" class="rectangulo_azul">PAR</div>
+                                                    <div data-idTipoApuesta=107 data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="1-12" class="rectangulo_azul">1-12</div>
+                                                    <div  data-idTipoApuesta=101 data-idTipoPago=3 data-tipo="pares" data-color="azul" data-valor="PAR" class="rectangulo_azul">PAR</div>
                                                     <div data-idTipoPago=2 data-tipo="color" data-color="color1" data-valor="1" class="rectangulo_negro"></div>
                                                     <div data-idTipoPago=2  data-tipo="color" data-color="color2" data-valor="2"  class="rectangulo_rojo"></div>
-                                                    <div data-idTipoPago=3 data-tipo="impares" data-color="azul" data-valor="IMPAR" class="rectangulo_azul">IMPAR</div>
-                                                    <div data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="13-24" class="rectangulo_azul">13-24</div>
+                                                    <div  data-idTipoApuesta=102 data-idTipoPago=3 data-tipo="impares" data-color="azul" data-valor="IMPAR" class="rectangulo_azul">IMPAR</div>
+                                                    <div  data-idTipoApuesta=108 data-idTipoPago=5 data-tipo="rango" data-color="azul" data-valor="13-24" class="rectangulo_azul">13-24</div>
                                                 </div>
 
                                                 <!--  <div class="rowhistorial">
@@ -276,7 +276,7 @@
 
                                     <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
                                      <div class=" historial_numeros">
-                                        <div class="rectangulo_rojo">1</div>
+                                        <!-- <div class="rectangulo_rojo">1</div> -->
                                      </div>    
                                        <!--  </div>
                                     </div> -->
@@ -481,7 +481,7 @@
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
-        <button type="button" class="btn btn-secondary"  id="btnCerrar_mod" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

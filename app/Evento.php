@@ -45,7 +45,7 @@ where ev.estadoEvento=1'));
     {
 
         $listar = DB::select(DB::raw('select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento, ju.logo as logo,
-        	ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
+            ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
@@ -65,7 +65,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
         return $listar;
     }
 
-    public static function JugadorDatosJson($idEvento)
+       public static function JugadorDatosJson($idEvento)
     {
         $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
             INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
@@ -75,6 +75,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
             "));
         return $listar;
     }
+
     public static function JackPotEvento($idEvento)
     {
         $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
@@ -100,14 +101,13 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function HistorialEvento($ideventoactual)
     {
-
         $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=".$ideventoactual." 
 order by evt.`fechaEvento` DESC
 LIMIT 18
-			"));
+            "));
         return $listar;
     }
 

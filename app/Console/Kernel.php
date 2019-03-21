@@ -34,6 +34,17 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\JobCommand18',
         'App\Console\Commands\JobCommand19',
         'App\Console\Commands\JobCommand20',
+        'App\Console\Commands\JobCommand21',
+        'App\Console\Commands\JobCommand22',
+        'App\Console\Commands\JobCommand23',
+        'App\Console\Commands\JobCommand24',
+        'App\Console\Commands\JobCommand25',
+        'App\Console\Commands\JobCommand26',
+        'App\Console\Commands\JobCommand27',
+        'App\Console\Commands\JobCommand28',
+        'App\Console\Commands\JobCommand29',
+        'App\Console\Commands\JobCommand30',
+
     ];
 
     /**
@@ -65,6 +76,17 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:name18')->everyMinute();
         $schedule->command('command:name19')->everyMinute();
         $schedule->command('command:name20')->everyMinute();
+
+        $schedule->command('command:name21')->everyMinute();
+        $schedule->command('command:name22')->everyMinute();
+        $schedule->command('command:name23')->everyMinute();
+        $schedule->command('command:name24')->everyMinute();
+        $schedule->command('command:name25')->everyMinute();
+        $schedule->command('command:name26')->everyMinute();
+        $schedule->command('command:name27')->everyMinute();
+        $schedule->command('command:name28')->everyMinute();
+        $schedule->command('command:name29')->everyMinute();
+        $schedule->command('command:name30')->everyMinute();
 
     }
 

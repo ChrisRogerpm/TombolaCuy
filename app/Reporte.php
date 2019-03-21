@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -286,7 +287,7 @@ class Reporte extends Model
             $listar = DB::table('evento as e')
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
-                ->where('estadoEvento',2)
+                ->where('estadoEvento', 2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
@@ -300,7 +301,7 @@ class Reporte extends Model
                 ->select('e.idEvento', 'e.fechaEvento')
                 ->where('e.idJuego', $IdJuego)
                 ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-                ->where('estadoEvento',2)
+                ->where('estadoEvento', 2)
                 ->orderBy('e.idEvento', 'DESC')
                 ->get();
             foreach ($listar as $l) {
@@ -310,6 +311,23 @@ class Reporte extends Model
             }
         }
         return $valor_array;
+    }
+
+    public static function ReporteCierreCaja()
+    {
+        $IdUsuario = Auth::user()->idUsuario;
+        $resultado = DB::select(DB::raw("select ac.idAperturaCaja,idTurno,c.nombre caja,p.nombre puntoventa,ac.fechaOperacion,
+         IFNULL(( select sum(t.montototal) from ticket t
+         where t.idaperturacaja=ac.idaperturacaja),0) Venta,
+         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+         inner join apuesta a on a.idApuesta=ge.idApuesta
+         inner join ticket t on t.idTicket=a.idTicket
+         where t.idAperturaCaja= ac.idaperturacaja),0) Pagado
+           from apertura_caja ac
+         inner join caja c on c.idCaja=ac.idCaja
+         inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+         where usuario=$IdUsuario and ac.estado=1"));
+        return $resultado;
     }
 
 

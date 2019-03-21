@@ -63,16 +63,24 @@ class VentaController extends Controller
         {
             $datos=$request->datos;
             $idticket = ltrim($datos["idTicket"], '0');
-            $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);
+           // $idEvento = $datos["idEvento"];
+            $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);  ////Apuestas
+            $idEvento=$apuestas_ticket[0]->idEvento;
+            $resultados_evento=Ticket::ResultadosEvento($idEvento);
+
             $tickets=Ticket::BuscarGanadoresTicket($idticket);
+            //$tickets=Ticket::BuscarGanadoresTicketidEvento($idEvento,$idticket);
+
+
             $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
                return response()->json([
-                    'apuestas_ticket'=> $apuestas_ticket,
+                    'apuestas_ticket'=> $apuestas_ticket, ////apuestas del ticket
+                    'resultados_evento'=>$resultados_evento,
                     'ticketbuscado'=>$idticket,
-                    'tickets' => $tickets
+                    'tickets' => $tickets   ////apuestas ganadoras 
                     ]);
     }
 
@@ -154,24 +162,6 @@ class VentaController extends Controller
             'mensaje' => $mensaje_error]);
 
     }
-
-
- public function JugadorDatosJson(Request $request)
-    {
-        $mensaje_error = "";
-        $idEvento = $request->input("idEventoActual");
-
-        try {
-            $jugadores = Evento::CantidadGanadorEventoListar($idEvento)[0];
-        } catch (QueryException $ex) {
-            $mensaje_error = $ex->errorInfo;
-        }
-        return response()->json([
-            'jugadores' => $jugadores,
-            'mensaje' => $mensaje_error]);
-    }
-
-
 
     public function JackpotDatosJson(Request $request)
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Usuario;
 use Auth;
 use Hash;
 use Illuminate\Database\QueryException;
@@ -31,9 +32,9 @@ class AutenticacionController extends Controller
 //            $http_code = $respuesta_api['http_code'];
             $http_code = 202;
             if ($http_code == 202) {
-                $validar = User::where('usuario', $usuario)->first();
+                $validar = Usuario::where('usuario', $usuario)->first();
                 if ($validar == null) {
-                    User::RegistrarUsuario($usuario, $password);
+                    Usuario::RegistrarUsuario($usuario, $password);
                     if (Auth::attempt(['usuario' => $usuario, 'password' => $password])) {
                         $respuesta = true;
                     }
