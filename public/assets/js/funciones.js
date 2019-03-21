@@ -86,10 +86,7 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
 
 
 //////////////////////////////////////////////////////////////  hora
-function show5() {
-    if (!document.layers && !document.all && !document.getElementById)
-        return;
-
+function actualizar_hora() {
     var Digital = new Date();
     var hours = Digital.getHours();
     var minutes = Digital.getMinutes();
@@ -97,41 +94,27 @@ function show5() {
 
     if ($("#fechaHoy").length) {
         var today = moment().format('DD/MM/YYYY');
-        //Zdocument.getElementById("fechaHoy").innerHTML = today;
-        window.onload = show5;
-    var dn = "PM";
-    if (hours < 12)
-        dn = "AM";
-    if (hours > 12)
-        hours = hours - 12;
-    if (hours == 0)
-        hours = 12;
-
-    if (minutes <= 9)
-        minutes = "0" + minutes;
-    if (seconds <= 9)
-        seconds = "0" + seconds;
-    //change font size here to your desire
-    myclock = "<b>" + hours + ":" + minutes + ":"
-        + seconds + " " + dn + "</b>";
-    if (document.layers) {
-        document.layers.liveclock.document.write(myclock);
-        document.layers.liveclock.document.close();
-    }
-    else if (document.all)
-        liveclock.innerHTML = myclock;
-    else if (document.getElementById)
+        window.onload = actualizar_hora;
+        var dn = "PM";
+        if (hours < 12)
+            dn = "AM";
+        if (hours > 12)
+            hours = hours - 12;
+        if (hours == 0)
+            hours = 12;
+        if (minutes <= 9)
+            minutes = "0" + minutes;
+        if (seconds <= 9)
+            seconds = "0" + seconds;
+        //change font size here to your desire
+        myclock = "<b>" + hours + ":" + minutes + ":" + seconds + " " + dn + "</b>";
         document.getElementById("liveclock").innerHTML = myclock;
-    setTimeout("show5()", 1000);
+        setTimeout(actualizar_hora(), 1000);
+    }
 }
-
-
-}
-
 if ($("#fechaHoy").length) {
     var today = moment().format('DD/MM/YYYY');
-    //document.getElementById("fechaHoy").innerHTML = today;
-    window.onload = show5;
+    window.onload = actualizar_hora;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
