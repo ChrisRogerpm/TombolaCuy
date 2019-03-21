@@ -8,6 +8,7 @@ $(document).ready(function () {
 });
 
 function ListarDineroDefault() {
+    //un cambio
     $.ajax({
         type: 'POST',
         url: basePath + 'DineroDefaultListarJson',
@@ -27,8 +28,8 @@ function ListarDineroDefault() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "idDineroDefault", title: "Id"},
-                    {data: "monto", title: "Monto"},
+                    {data: "idDineroDefault", title: "idDineroDefault"},
+                    {data: "monto", title: "monto"},
                     {
                         data:"estado",title:"Estado",
                         "render":function (value) {

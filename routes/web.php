@@ -2,7 +2,7 @@
 
 
 #region [Autenticacion]
-Route::get('/', 'AutenticacionController@LoginVista')->name('/');
+Route::get('/', 'AutenticacionController@LoginVista')->name('Login');
 Route::post('ValidarLoginJson', 'AutenticacionController@ValidarLoginJson');
 Route::post('CerrarSesion', 'AutenticacionController@CerrarSesionJson')->name('CerrarSesion');
 #endregion
@@ -53,7 +53,6 @@ Route::post('JackpotDatosJson','VentaController@JackpotDatosJson');
 Route::post('ImprimirDatosJson','VentaController@ImprimirDatosJson');
 Route::post('GuardarGanadorEvento','VentaController@GuardarGanadorEvento');
 
-Route::post('JugadorDatosJson', 'VentaController@JugadorDatosJson');
 
 #endregion
 
@@ -171,5 +170,14 @@ Route::post('JugadorDatosJson', 'VentaController@JugadorDatosJson');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
 
-    Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');    
+    Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');
+    Route::get('Seguridad','SeguridadController@PermisosUsuarioVista')->name('Seguridad.PermisosUsuario');
+
+
+    Route::post('/CambiarPerfilUsuario', 'SeguridadController@ActualizarPerfilUsuario');
+    Route::post('/PermisoPerfilCheck', 'SeguridadController@PermisoPerfilJson');
+    Route::get('/BarridoPermisos', 'SeguridadController@BarridoPermisos');
+    Route::post('/ListdoPermisosPerfil', 'SeguridadController@PermisoPerfilListarJson');
+    Route::post('/ListdoUsuariosSelect', 'SeguridadController@UsuarioListarJson');
+
 });

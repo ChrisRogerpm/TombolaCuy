@@ -860,6 +860,8 @@
                                             class="title">Reporte Venta Juego</span></a></li>
                         </ul>
                     </li>
+                    <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                    class="title">Seguridad</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 

@@ -30,7 +30,7 @@ function ListarAperturaCaja() {
                     {data: "Caja", title: "Caja"},
                     {data: "Turno", title: "Turno"},
                     {data: "usuario", title: "Usuario"},
-                    {data: "fechaOperacion", title: "Fecha Operación"},
+                    {data: "fechaOperacion", title: "Fecha Operacion"},
                     {
                         data: null, title: "",
                         "render": function (value) {

@@ -644,8 +644,8 @@ function animate() {
 }
 
 function iniciar(numeorGanador) {
-    ganador=parseInt(numeorGanador);
-    //ganador = parseInt(0);
+    //ganador=parseInt(numeorGanador);
+    ganador = parseInt(0);
     //ganador=Math.floor((Math.random() * 24));
     $("#ImgContainer").hide();
     animate();
@@ -662,8 +662,7 @@ function consultarEvento(IdJuego) {
         },
         complete: function () {
         },
-        success: function (response) {  
-            console.log(response);                                 
+        success: function (response) {                                    
             if(response.token_animacion != undefined){                
                 $.each(response.estadistica, function( key, value ) {                    
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
@@ -673,14 +672,14 @@ function consultarEvento(IdJuego) {
                 $.each(response.resultado_evento, function( key, value ) {  
                     if(key<12){                        
                         switch (value.valorGanador) {
-                            case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
+                            case '1':case '1':case '1':case '1':case '4':case '3':
                                 clase="caja1";
                               break;
-                            case '15':case '4':case '2':case '22':case '11':case '6':case '8':case '10':case '24':case '20':case '13':case '17':
+                            case '2':
                                 clase="caja2";
                               break;                            
                             default:
-                                clase="caja0";
+                                clase="caja1";
                         }
                         strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
                     }                                                          
