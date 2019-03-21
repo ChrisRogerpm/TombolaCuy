@@ -155,24 +155,6 @@ class VentaController extends Controller
 
     }
 
-
- public function JugadorDatosJson(Request $request)
-    {
-        $mensaje_error = "";
-        $idEvento = $request->input("idEventoActual");
-
-        try {
-            $jugadores = Evento::CantidadGanadorEventoListar($idEvento)[0];
-        } catch (QueryException $ex) {
-            $mensaje_error = $ex->errorInfo;
-        }
-        return response()->json([
-            'jugadores' => $jugadores,
-            'mensaje' => $mensaje_error]);
-    }
-
-
-
     public function JackpotDatosJson(Request $request)
     {
         $mensaje_error = "";
@@ -192,13 +174,11 @@ class VentaController extends Controller
             'mensaje' => $mensaje_error]);
     }
 
-    public function HistorialDatosJson(Request $request)
+    public function HistorialDatosJson()
     {
         $mensaje_error = "";
-        $idEvento = $request->input("idEvento");
-
         try {
-            $historial = Evento::HistorialEvento($idEvento);
+            $historial = Evento::HistorialEvento();
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }

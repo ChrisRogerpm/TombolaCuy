@@ -786,22 +786,22 @@
                 <!-- SIDEBAR NAVIGATION -->
 
                 <ul class="nav-sidebar">
-                    <li><a href="{{route('Dashboard')}}"><i class="icon icon-inline fa fa-home"></i> <span
+                    <li><a href="{{route('Dashboard')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                             class="title">Inicio</span></a></li>
-                    <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-money"></i> <span
+                    <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                     class="title">DineroDefault</span></a></li>
 
-                    <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-building"></i> <span
+                    <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Empresa</span></a></li>
-                    <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-inbox"></i> <span
+                    <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Punto Venta</span></a></li>
-                    <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-shopping-cart"></i> <span
+                    <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Caja</span></a></li>
-                    <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-calendar"></i> <span
+                    <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Turno</span></a></li>
                     <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Apertura Caja</span></a></li>
-                    <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-users"></i> <span
+                    <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Cliente</span></a></li>
 
                     {{--<li class="sub">--}}
@@ -821,7 +821,7 @@
                     {{--</li>--}}
                     <li class="sub">
                         <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Jackpot</span>
                     </a>
                         <ul class="sub-menu collapse" data-menu-title="Progresivo">
                             {{--<li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
@@ -835,17 +835,17 @@
                     </li>
                     <li class="sub">
                         <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Venta</span>
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Venta</span>
                     </a>
                         <ul class="sub-menu collapse" data-menu-title="Progresivo">
                             <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">Venta</span></a></li>
+                                        class="title">ruleta</span></a></li>
 
                         </ul>
                     </li>
                     <li class="sub">
                         <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-line-chart"></i> <span class="title">Reporte</span>
+                        <i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Reporte</span>
                     </a>
                         <ul class="sub-menu collapse" data-menu-title="Reporte">
                             <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
@@ -860,6 +860,9 @@
                                             class="title">Reporte Venta Juego</span></a></li>
                         </ul>
                     </li>
+
+                    <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                    class="title">Seguridad</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 
