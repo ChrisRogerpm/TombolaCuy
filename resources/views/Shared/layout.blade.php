@@ -858,6 +858,8 @@
                                             class="title">Reporte Venta</span></a></li>
                             <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                             class="title">Reporte Venta Juego</span></a></li>
+                            <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                            class="title">Reporte Cierre Caja</span></a></li>
                         </ul>
                     </li>
                     <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span

@@ -48,7 +48,6 @@ $(document).ready(function () {
 });
 
 function ListarHistorialGanadores() {
-    debugger;
     var fechaInicial = $("#fechaInicio").val();
     var fechaFinal = $("#fechaFin").val();
     

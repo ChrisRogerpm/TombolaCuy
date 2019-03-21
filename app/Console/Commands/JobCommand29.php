@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Evento;
 use Illuminate\Console\Command;
 
-class JobCommand20 extends Command
+class JobCommand29 extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:name20';
+    protected $signature = 'command:name29';
 
     /**
      * The console command description.
