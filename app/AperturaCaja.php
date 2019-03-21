@@ -62,7 +62,7 @@ class AperturaCaja extends Model
             from apertura_caja  ape
             left join turno tur on tur.idTurno=ape.idTurno
             left join caja caj on caj.idCaja=ape.idCaja
-            left join punto_venta as puntodeventa on puntodeventa.idPuntoVenta=caj.idCaja
+            left join punto_venta as puntodeventa on puntodeventa.idPuntoVenta=caj.idPuntoVenta
             where ape.usuario =".$usuario." and ape.estado=1"));
         return $listar;
 

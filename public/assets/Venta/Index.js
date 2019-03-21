@@ -448,6 +448,8 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             //var segundos=0;//proxima_fecha.diff(ahora,'seconds');
             //var timer2 = minutos+":01";//"5:01";
             var timer2 = minutos+":"+segundos;
+            console.log(fechaFinEvento + " "+ hora_servidor+  "  - "+timer2 );
+
             if(typeof interval!="undefined"){
                 clearInterval(interval);$('.countdown').html("00:00")
             }
