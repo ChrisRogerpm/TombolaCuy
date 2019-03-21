@@ -91,4 +91,11 @@ class PermisosPerfil extends Model
             ->get();
         return $listar;
     }
+
+    public static function PermisoPerfilIDEliminar($id)
+    {
+        DB::table('permisos_perfil')->where('permiso_id',$id)->delete();
+        $respuesta=true;
+        return $respuesta;
+    }
 }

@@ -6,6 +6,7 @@ use App\Auditoria;
 use App\Permisos;
 use App\PermisosPerfil;
 use App\Usuario;
+use Auth;
 use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -100,21 +101,46 @@ class SeguridadController extends Controller
         $respuesta = true;
         $mensaje_error = "Transaccion Realizada Correctamente.";
         try {
-            $eliminar = Permisos::PermisosLimpiar();
+            //$eliminar = TblPermisos::PermisosLimpiar();
             $routeCollection = Route::getRoutes();
 
+            $permisos_route_array = [];
             foreach ($routeCollection as $value) {
-                if ($value->uri() != "BarridoPermisos" || $value->uri() != "ValidarLoginJson" || $value->uri() != "Login" || $value->uri() != "ListdoUsuariosSelect" || $value->uri() != "DataAuditoriaRegistro" || $value->uri() != "DataEventoResultadoEvento") {
-                    DB::table('permisos')->insertGetId(
-                        [
-                            'fecha_registro' => date('Y-m-d H:i:s'),
-                            'nombre' => $value->uri(),
-                            'controller' => $value->getActionName(),
-                            'method' => $value->methods()[0],
-                            'estado' => 1,
-                        ]
-                    );
+                array_push($permisos_route_array, $value->uri());
+            }
+            $permisos_route_array_BD = [];
+            $listapermisos = Permisos::PermisoListarJson();
+            foreach ($listapermisos as $value) {
+                $nombrePermiso_DB = $value->nombre;
+                $position = in_array($nombrePermiso_DB, $permisos_route_array);
+                if (!$position) {
+                    $eliminar_permiso_perfil = PermisosPerfil::PermisoPerfilIDEliminar($value->id);
+                    $eliminar_permiso = Permisos::PermisosEliminar($value->id);
+                } else {
+                    array_push($permisos_route_array_BD, $nombrePermiso_DB);
                 }
+            }
+
+            foreach ($routeCollection as $value) {
+                $position = in_array($value->uri(), $permisos_route_array_BD);
+                if (!$position) {
+                    //echo $position;
+                    $uri_entrante = $value->uri();
+//                    if ($value->uri() !== "BarridoPermisos" || $value->uri() !== 'ValidarLoginJson' || $value->uri() !== "Login" || $value->uri() !== "ListdoUsuariosSelect" || $value->uri() !== "DataAuditoriaRegistro") {
+                    $validar = strpos($uri_entrante, 'Fk');
+                    if (!$validar) {
+                        DB::table('permisos')->insertGetId(
+                            [
+                                'fecha_registro' => date('Y-m-d H:i:s'),
+                                'nombre' => $value->uri(),
+                                'controller' => $value->getActionName(),
+                                'method' => $value->methods()[0],
+                                'estado' => 1,
+                            ]
+                        );
+                    }
+                }
+
             }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
@@ -126,20 +152,15 @@ class SeguridadController extends Controller
     {
         $respuesta = true;
         $mensaje_error = "No Tiene Permiso";
-
         try {
-            //session()->flush();
-            $usuarioID = session()->get('usuarioID');
-            $perfilID = session()->get('perfilID');
-            //dd($usuarioID);
+            $usuarioID = Auth::user()->idUsuario;
+            $perfilID = Auth::user()->perfil_id;
             $currentRoute = Route::current()->uri();
             $permisoNombre = Permisos::PermisoNombre($currentRoute);
-            //echo var_dump($permisoNombre->id);exit();
             $permisoID = 0;
             if (!is_null($permisoNombre)) {
                 $permisoID = $permisoNombre->id;
             }
-            //echo print_r($request->all(), true);exit();
             if ($permisoID > 0) {
                 $insertar_Auditoria = DB::table('auditoria')->insertGetId(
                     [
@@ -156,7 +177,6 @@ class SeguridadController extends Controller
                 if (count($lista) > 0) {
                     $respuesta = true;
                 } else {
-                    //echo $respuesta;exit();
                     $respuesta = false;
                 }
             } else {
@@ -178,7 +198,6 @@ class SeguridadController extends Controller
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 }

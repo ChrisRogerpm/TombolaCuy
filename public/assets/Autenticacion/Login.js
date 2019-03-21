@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(document).on('click','#btnEntrar',function(){
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "ValidarLoginJson";
+            var url = basePath + "ValidarLoginJsonFk";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
                 url: url,

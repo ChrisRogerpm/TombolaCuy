@@ -87,4 +87,11 @@ class Permisos extends Model
         $respuesta=true;
         return $respuesta;
     }
+
+    public static function PermisosEliminar($id)
+    {
+        DB::table('permisos')->where('id',$id)->delete();
+        $respuesta=true;
+        return $respuesta;
+    }
 }

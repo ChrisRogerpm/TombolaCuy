@@ -64,7 +64,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnBarrido', function () {
 
         $.ajax({
-            url: basePath + 'BarridoPermisos',
+            url: basePath + 'BarridoPermisosFk',
             data: {},
             type: "GET",
             beforeSend: function () {
@@ -129,7 +129,7 @@ $(document).ready(function () {
     function tabletUsuario() {
         // body...
         $.ajax({
-            url: basePath + 'ListdoUsuariosSelect',
+            url: basePath + 'ListdoUsuariosSelectFk',
             data: {},
             type: "POST",
             beforeSend: function () {
@@ -172,18 +172,8 @@ $(document).ready(function () {
                                 select += "</select>";
                                 return select;
                             }
-                        },
-                        {data: "id", title: "","bSortable": false,
-                            "render": function (o) {
-                                return '<button type="button" class="btn btn-sm btn-warning btnmodalPermisos" data-id="'+o+'"><i class="icon_info_alt"></i></button>';
-                            }
-                        },
-                    ],
-                    "drawCallback": function (settings) {
-                        $('.btnmodalPermisos').tooltip({
-                            title: "Permisos"
-                        });
-                    }
+                        }
+                    ]
                 });
             },
             error: function (jqXHR, textStatus, errorThrown) {
