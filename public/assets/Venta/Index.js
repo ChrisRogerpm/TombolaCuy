@@ -271,6 +271,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
             // TICKET_IMPRIMIR={}
 
             toastr.success("Ticket Guardado");
+            $("#div_botones .cerrar").click();
         },
     })
 }
@@ -603,9 +604,11 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         intervalojackpot=setInterval(function(){
             JackpotDatosJson();
         },14000)
-        HistorialJson();
+        //HistorialJson(eventoactual.IdEvento);
+        
         intervalohistorial=setInterval(function(){
-            HistorialJson();
+        HistorialJson(eventoactual.IdEvento);
+
         },14000)
         ///fin jackpot
 
@@ -684,11 +687,12 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
 
 
 
-function HistorialJson() {
+function HistorialJson(idev) {
     $.ajax({
         type: 'POST',async:false,
         url: basePath + 'HistorialDatosJson',
         data: {
+            'idEvento':idev,
             '_token': $('input[name=_token]').val(),
         },
         success: function (response) {
