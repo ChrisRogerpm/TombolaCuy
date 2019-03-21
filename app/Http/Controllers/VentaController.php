@@ -94,8 +94,7 @@ class VentaController extends Controller
             $apuestas=$request->apuestas;
             $idTicket=$request->idTicket;
             foreach($apuestas as $apu){
-            $apuestaobjeto=$request->merge($apu);
-
+                $apuestaobjeto=$request->merge($apu);
                 $ganadorevento=GanadorEvento::GuardarGanadorEvento($apuestaobjeto);
             }
             Ticket::TicketPagarEstado($idTicket);

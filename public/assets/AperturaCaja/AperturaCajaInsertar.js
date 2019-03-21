@@ -17,30 +17,56 @@ $(document).ready(function () {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
             var url = basePath + "AperturaCajaInsertarJson";
+
             var dataForm = $('#frmNuevo').serializeFormJSON();
-            $.ajax({
-                url: url,
+            idUsuario=dataForm.idUsuario;
+              $.ajax({
+                url: basePath+"AperturaCajaListarActivaFK",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify(dataForm),
-                beforeSend: function () {
-                    $.LoadingOverlay("show");
-                },
-                complete: function () {
-                    $.LoadingOverlay("hide");
-                },
+                data: JSON.stringify({
+                    '_token': $("input[name='_token']").val(),
+                    "idUsuario":idUsuario}),
                 success: function (response) {
-                    var respuesta = response.respuesta;
-                    if (respuesta === true) {
-                        toastr.success("Se Registro Correctamente", "Mensaje Servidor");
-                        $("#frmNuevo")[0].reset();
+                    var cajas =response.data.length;
+                    if (cajas ==0) {
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(dataForm),
+                            beforeSend: function () {
+                                $.LoadingOverlay("show");
+                            },
+                            complete: function () {
+                                $.LoadingOverlay("hide");
+                            },
+                            success: function (response) {
+                                var respuesta = response.respuesta;
+                                if (respuesta === true) {
+                                    toastr.success("Se Registró Correctamente", "Mensaje Servidor");
+                                    $("#frmNuevo")[0].reset();
+                                    $("#cboCaja").val('').trigger('change');
+                                    $("#cboTurno").val('').trigger('change');
+                                } else {
+                                    toastr.error(response.mensaje, "Mensaje Servidor");
+                                }
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                            }
+                        });
+
+
                     } else {
-                        toastr.error(response.mensaje, "Mensaje Servidor");
+                        toastr.error("Usuario Ya tiene caja registrada", "Mensaje Servidor");
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                 }
             });
+
+
+            
         }
     });
 });
