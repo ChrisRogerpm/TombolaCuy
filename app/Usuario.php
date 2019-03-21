@@ -43,7 +43,8 @@ class Usuario extends Authenticatable
 
     public static function ActualizarPerfilJson(Request $request)
     {
-        DB::table('tbl_usuarios')->where('id', '=', $request->txtUsuarioID)->update(['perfil_id' => $request->txtPerfilID]);
+        DB::table('users')->where('idUsuario', '=', $request->txtUsuarioID)
+            ->update(['perfil_id' => $request->txtPerfilID]);
         $respuesta = true;
         return $respuesta;
     }

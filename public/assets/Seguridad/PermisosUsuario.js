@@ -64,7 +64,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnBarrido', function () {
 
         $.ajax({
-            url: basePath + 'BarridoPermisos',
+            url: basePath + 'BarridoPermisosFk',
             data: {},
             type: "GET",
             beforeSend: function () {
@@ -129,7 +129,7 @@ $(document).ready(function () {
     function tabletUsuario() {
         // body...
         $.ajax({
-            url: basePath + 'ListdoUsuariosSelect',
+            url: basePath + 'ListdoUsuariosSelectFk',
             data: {},
             type: "POST",
             beforeSend: function () {
