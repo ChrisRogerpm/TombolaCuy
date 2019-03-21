@@ -64,7 +64,7 @@ function CargarDataTienda(Tabla, IdTienda,NombreTienda) {
         complete: function () {
             $.LoadingOverlay("hide");
         },
-        success: function (response) {
+        success: function (response) {debugger;
             var resp = response.data;
             $("#PanelTabla").show();
             $("#" + Tabla).DataTable({
@@ -85,11 +85,13 @@ function CargarDataTienda(Tabla, IdTienda,NombreTienda) {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
+                    
                     {data: "Tienda", title: "Tienda"},
-                    {data: "Apuestas", title: "Apuestas"},
+                    {data: "apuestas", title: "Apuestas"},
                     {data: "Pagos", title: "Pagos"},
                     {data: "Evento", title: "Evento"},
                     {data: "Jugadores", title: "Jugadores"},
+                    {data: "fechaoperacion", title: "Fecha de Operacion"},
                 ]
             });
         },
