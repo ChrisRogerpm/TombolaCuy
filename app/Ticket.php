@@ -8,7 +8,7 @@ use DB;
 
 class Ticket extends Model
 {
-    protected $table = 'Ticket';
+    protected $table = 'ticket';
 
     protected $primaryKey = 'idTicket';
 
