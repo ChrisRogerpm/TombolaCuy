@@ -160,3 +160,4 @@ Route::get('BarridoPermisosFk', 'SeguridadController@BarridoPermisos');
 Route::post('ListdoPermisosPerfil', 'SeguridadController@PermisoPerfilListarJson');
 Route::get('Seguridad', 'SeguridadController@PermisosUsuarioVista')->name('Seguridad.PermisosUsuario');
 Route::post('DataAuditoriaRegistroFk', 'SeguridadController@DataAuditoriaJson');
+Route::post('AperturaCajaCerrarFk','AperturaCajaController@AperturaCajaCerrarFk');

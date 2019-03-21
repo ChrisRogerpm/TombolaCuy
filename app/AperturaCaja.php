@@ -69,5 +69,13 @@ class AperturaCaja extends Model
 
     }
 
+    public static function AperturaCajaCerrarJson(Request $request)
+    {
+        $idAperturaCaja = $request->input('idAperturaCaja');
+        $apertura = AperturaCaja::findorfail($idAperturaCaja);
+        $apertura->estado = 2;
+        $apertura->save();
+    }
+
 
 }

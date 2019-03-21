@@ -45,6 +45,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-12">
             <div class="panel panel-primary">
+                <input type="hidden" id="idAperturaCaja">
                 <div class="panel-body">
                     <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
                 </div>

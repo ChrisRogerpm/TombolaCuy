@@ -1,21 +1,25 @@
 $(document).ready(function () {
     MostrarDataCierreCaja();
+    $(document).on('click', '#btnCierreCaja', function () {
+        var idAperturacaja = $("#idAperturaCaja").val();
+        if (idAperturacaja !== "") {
+            $.ajax({
+                type: 'POST',
+                url: basePath + "",
+                success: function (response) {
+                    var respuesta = response.respuesta;
+                    if (respuesta) {
+                        toastr.success('Se ha cerrado la caja exitosamente');
+                    } else {
+                        toastr.warning(response.mensaje, '');
+                    }
+                }
+            })
+        }
+    });
 });
 
 function MostrarDataCierreCaja() {
-    // $.ajax({
-    //     type: 'POST',
-    //     url: basePath + "ReporteCierreCajaFk",
-    //     success: function (response) {
-    //         var data = response.data[0];
-    //         console.log(data);
-    //         $("#Caja").val(data.caja);
-    //         $("#PuntoVenta").val(data.caja);
-    //         $("#Venta").val(data.Venta);
-    //         $("#Pago").val(data.Pagado);
-    //         $("#Total").val(parseFloat(data.Venta) - parseFloat(data.Pagado));
-    //     }
-    // });
     var url = basePath + "ReporteCierreCajaFk";
     $.ajax({
         url: url,
@@ -27,10 +31,17 @@ function MostrarDataCierreCaja() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
+            var data = response.data;
 
+            if (data.length > 0) {
+                $("#btnCierreCaja").attr('disabled', false);
+            } else {
+                $("#btnCierreCaja").attr('disabled', true);
+            }
+
+            $("#idAperturaCaja").val(data[0].idAperturaCaja);
             $("#table").DataTable({
                 dom: 'Bfrtip',
-
                 buttons: [
                     {
                         extend: 'excelHtml5',
@@ -45,7 +56,7 @@ function MostrarDataCierreCaja() {
                 "autoWidth": false,
                 "bProcessing": true,
                 "bDeferRender": true,
-                data: response.data,
+                data: data,
 
                 columns: [
                     {data: "caja", title: "Caja"},

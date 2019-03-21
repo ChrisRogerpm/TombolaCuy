@@ -61,4 +61,17 @@ class AperturaCajaController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
+
+    public function AperturaCajaCerrarFk(Request $request)
+    {
+        $respuesta = false;
+        $mensaje_error = "";
+        try {
+            AperturaCaja::AperturaCajaCerrarJson($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+    }
 }

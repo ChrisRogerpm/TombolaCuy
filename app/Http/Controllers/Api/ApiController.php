@@ -14,7 +14,6 @@ class ApiController extends Controller
     public function EventoFecha(Request $request)
     {
         $IdJuego = $request->input('IdJuego');
-        $token_animacion = $request->input('token');
         $evento_actual = Evento::EventoActual($IdJuego);
         $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
         if ($resultado_evento != null) {
@@ -45,14 +44,6 @@ class ApiController extends Controller
                 if ($estado_animacion) {
                     if ($evento_actual->estadoAnimacion == 0) {
                         $token_generado = str_random(8);
-                        if ($token_animacion != null) {
-                            $respuestaValorToken = Evento::CambiarEstadoAnimacionEvento($evento_actual->idEvento, $token_animacion);
-                            if ($respuestaValorToken) {
-                                return response()->json(['mensaje' => 'El estado de animación del evento actual esta activado', 'estado' => true]);
-                            } else {
-                                return response()->json(['mensaje' => 'El estado de animación del evento actual ha surgido un error', 'estado' => false]);
-                            }
-                        }
                         $token = Evento::ValidarTokenAnimacion($evento_actual->idEvento);
                         if (!empty($token)) {
                             return response()->json([
@@ -93,6 +84,21 @@ class ApiController extends Controller
             }
         } else {
             return response()->json(['mensaje' => 'El juego ingresado no existe']);
+        }
+    }
+
+    public function ConfirmacionToken(Request $request){
+
+        $IdJuego = $request->input('IdJuego');
+        $token_animacion = $request->input('token');
+        $evento_actual = Evento::EventoActual($IdJuego);
+        if ($token_animacion != null) {
+            $respuestaValorToken = Evento::CambiarEstadoAnimacionEvento($evento_actual->idEvento, $token_animacion);
+            if ($respuestaValorToken) {
+                return response()->json(['mensaje' => 'Se ha cambiado el estado de animacion', 'estado' => true]);
+            } else {
+                return response()->json(['mensaje' => 'Se ha ingresado un token diferente', 'estado' => false]);
+            }
         }
     }
 }
