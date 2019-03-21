@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/TipoApuesta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TipoApuesta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Seguridad/PermisosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Seguridad/PermisosUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/animacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/animacion.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,10 +68,10 @@
           <entry key="gitignore" value="2" />
           <entry key="html" value="2" />
           <entry key="jpg" value="2" />
-          <entry key="js" value="40" />
+          <entry key="js" value="41" />
           <entry key="json" value="2" />
           <entry key="lock" value="1" />
-          <entry key="php" value="451" />
+          <entry key="php" value="456" />
           <entry key="rnc" value="1" />
         </counts>
       </usages-collector>
@@ -85,8 +83,8 @@
           <entry key="HTML" value="2" />
           <entry key="Image" value="3" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="40" />
-          <entry key="PHP" value="416" />
+          <entry key="JavaScript" value="41" />
+          <entry key="PHP" value="421" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="RNG Compact" value="1" />
         </counts>
@@ -95,7 +93,7 @@
         <counts>
           <entry key="env" value="42" />
           <entry key="js" value="3475" />
-          <entry key="php" value="16667" />
+          <entry key="php" value="16702" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -105,7 +103,7 @@
           <entry key="Blade" value="1442" />
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="3474" />
-          <entry key="PHP" value="15216" />
+          <entry key="PHP" value="15251" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="SQL" value="9" />
         </counts>
@@ -125,17 +123,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Evento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="168" column="49" selection-start-line="168" selection-start-column="49" selection-end-line="168" selection-end-column="49" />
+            <state relative-caret-position="515">
+              <caret line="168" selection-start-line="168" selection-end-line="168" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+              <folding>
+                <element signature="e#40#55#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/TipoApuesta.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="189" column="55" lean-forward="true" selection-start-line="189" selection-start-column="55" selection-end-line="189" selection-end-column="55" />
+            <state relative-caret-position="2120">
+              <caret line="180" column="17" lean-forward="true" selection-start-line="180" selection-start-column="17" selection-end-line="180" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/Autenticacion/Login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -236,18 +264,18 @@
         <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Seguridad/PermisoUsuario.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/app/Usuario.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/PermisosM.php" />
         <option value="$PROJECT_DIR$/app/PermisosPerfil.php" />
         <option value="$PROJECT_DIR$/app/Permisos.php" />
-        <option value="$PROJECT_DIR$/public/assets/Autenticacion/Login.js" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SeguridadController.php" />
         <option value="$PROJECT_DIR$/public/assets/Seguridad/PermisosUsuario.js" />
         <option value="$PROJECT_DIR$/public/assets/js/animacion.js" />
+        <option value="$PROJECT_DIR$/public/assets/Autenticacion/Login.js" />
         <option value="$PROJECT_DIR$/app/TipoApuesta.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
       </list>
     </option>
   </component>
@@ -422,7 +450,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="animacion&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/animacion.js&#10;loginjs&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Autenticacion/Login.js&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;SeguridadCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/SeguridadController.php&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;layou&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;api&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/api.php&#10;animacion.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/animacion.js&#10;env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;funciones&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;OrbitControls.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/OrbitControls.js&#10;evento&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php&#10;ConfiguracionJackpotInsertar.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;Evento&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php&#10;Resultado&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/ResultadoEvento.php&#10;layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;ReporteCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/ReporteController.php&#10;we&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;reporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;Eve&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php" />
+    <property name="SearchEverywhereHistoryKey" value="login&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Autenticacion/Login.js&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;animacion&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/animacion.js&#10;loginjs&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Autenticacion/Login.js&#10;SeguridadCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/SeguridadController.php&#10;layou&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;api&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/api.php&#10;animacion.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/animacion.js&#10;env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;funciones&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;OrbitControls.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/OrbitControls.js&#10;evento&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php&#10;ConfiguracionJackpotInsertar.js&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;Evento&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php&#10;Resultado&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/ResultadoEvento.php&#10;layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;ReporteCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/ReporteController.php&#10;we&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;reporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;Eve&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Evento.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ImportProject" />
@@ -511,7 +539,7 @@
       <workItem from="1552946405365" duration="1419000" />
       <workItem from="1553005572499" duration="13172000" />
       <workItem from="1553107438792" duration="13499000" />
-      <workItem from="1553173681461" duration="10825000" />
+      <workItem from="1553173681461" duration="12656000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -552,7 +580,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291584000" />
+    <option name="totallyTimeSpent" value="293415000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -567,14 +595,14 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.24304539" />
+      <window_info content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.24304539" />
       <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978038" weight="0.392555" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978038" weight="0.32656515" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32864675" />
@@ -658,13 +686,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand12.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand13.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -840,13 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -873,20 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/AliasLoader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/composer/ClassLoader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="323" selection-start-line="323" selection-end-line="323" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -901,13 +901,6 @@
           <folding>
             <element signature="e#23#30#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Autenticacion/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -988,24 +981,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/AliasLoader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="156" column="56" selection-start-line="156" selection-start-column="56" selection-end-line="156" selection-end-column="56" />
+        <state relative-caret-position="155">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Evento.php">
+    <entry file="file://$PROJECT_DIR$/vendor/composer/ClassLoader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="168" column="49" selection-start-line="168" selection-start-column="49" selection-end-line="168" selection-end-column="49" />
+        <state relative-caret-position="195">
+          <caret line="323" selection-start-line="323" selection-end-line="323" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="1514" selection-start-line="1514" selection-end-line="1514" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Autenticacion/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/TipoApuesta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="189" column="55" lean-forward="true" selection-start-line="189" selection-start-column="55" selection-end-line="189" selection-end-column="55" />
+        <state relative-caret-position="2120">
+          <caret line="180" column="17" lean-forward="true" selection-start-line="180" selection-start-column="17" selection-end-line="180" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Evento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="168" selection-start-line="168" selection-end-line="168" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

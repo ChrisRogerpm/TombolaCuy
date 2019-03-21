@@ -97,7 +97,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (1 >= $NumeroGenerado && 6 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 1 && $NumeroGenerado <= 6) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
@@ -113,7 +113,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (7 >= $NumeroGenerado && 12 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 7 && $NumeroGenerado <= 12) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
@@ -129,7 +129,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (13 >= $NumeroGenerado && 18 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 13 && $NumeroGenerado <= 18) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
@@ -145,7 +145,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (19 >= $NumeroGenerado && 24 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 19 && $NumeroGenerado <= 24) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
@@ -161,7 +161,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (1 >= $NumeroGenerado && 12 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 1 && $NumeroGenerado <= 12) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
@@ -177,7 +177,7 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-        if (13 >= $NumeroGenerado && 24 <= $NumeroGenerado) {
+        if ($NumeroGenerado >= 13 && $NumeroGenerado <= 24) {
             //1-6
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
