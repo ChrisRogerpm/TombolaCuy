@@ -483,6 +483,9 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                       $('.countdown').html(minutes + ':' + seconds);
                       timer2 = minutes + ':' + seconds;
             }, 1000)
+
+
+
 ////////FIN PROXIMO EN
 
 ////multiplicadores definir
