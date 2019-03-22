@@ -98,10 +98,7 @@ function ReporteVentaJson(url, dataForm) {
                         }, class: 'text-center'
                     },
                     {
-                        data: null, title: 'Ganado',
-                        "render": function (value) {
-                            return '--';
-                        }, class: 'text-center'
+                        data: "Ganado", title: 'Ganado', class: 'text-center'
                     },
                     {
                         data: null, title: "",
