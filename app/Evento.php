@@ -149,8 +149,10 @@ LIMIT 18
         return $evento;
     }
 
+    //public static function
     public static function GenerarEventoJob()
     {
+
         $ListaJuego = Juego::JuegoListarLapsoJson();
         foreach ($ListaJuego as $juego) {
             $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
