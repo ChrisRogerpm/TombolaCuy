@@ -1,5 +1,6 @@
 iniciado = false;
 token="";
+anguloRotacion=0;
 $(document).ready(function () {
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
     setInterval(function () {
@@ -161,19 +162,29 @@ function animate() {
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
         model.visible = true;
-        if (clock.getElapsedTime() <= 5) {
-            if (clock.getElapsedTime() <= 3) {
+        if (clock.getElapsedTime() <= 8) {
+            if (clock.getElapsedTime() <= 3) {                                
                 modelCuyDudando.visible = true;
                 model.visible = false;
                 modelCuyChoque.visible = false;
             }
             else {
-                modelCuyDudando.visible = false;
-                model.visible = true;
-                model.rotation.y += 0.1;
+                if(model.rotation.y < anguloRotacion){
+                    //console.log(model.rotation.y,clock.getElapsedTime());
+                    modelCuyDudando.visible = false;
+                    model.visible = true;
+                    model.rotation.y += 0.05;
+                }
+                else{
+                    modelCuyDudando.visible = true;
+                    modelCuyDudando.rotation.y = model.rotation.y;
+                    model.visible = false;
+                    modelCuyChoque.visible = false;
+                }                
             }
         }
         else {
+            modelCuyDudando.visible = false;
             switch (ganador) {
                 case 0:
                     // model.visible = false; 
@@ -189,6 +200,7 @@ function animate() {
                             model.position.z = 0;
                             clock = new THREE.Clock();
                             clockCuyDudando = new THREE.Clock();
+                            clockCuyChoque=new THREE.Clock();
                             CerrarEvento(1,token);
                             token = "";
                             iniciado = false;
@@ -205,7 +217,7 @@ function animate() {
                         }
                     }
                     else {
-                        model.rotation.y = 3.3;
+                        //model.rotation.y = 3.3;
                         model.position.z -= 0.01;
                         model.position.x -= 0.0027;
                         posicionZ = model.position.z;
@@ -214,7 +226,7 @@ function animate() {
                 case 1:
                     if (model.position.z > 4.5) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/1.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -225,8 +237,8 @@ function animate() {
                         token = "";
                         iniciado = false;
                     }
-                    else {
-                        model.rotation.y = 0.4;
+                    else {                                
+                        //model.rotation.y = 0.4;                        
                         model.position.z += 0.01;
                         model.position.x += 0.002;
                     }
@@ -234,7 +246,7 @@ function animate() {
                 case 2:
                     if (model.position.z < -1.38) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/2.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -246,7 +258,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 1.9;
+                        //model.rotation.y = 1.9;
                         model.position.z -= 0.009;
                         model.position.x += 0.023;
                     }
@@ -254,7 +266,7 @@ function animate() {
                 case 3:
                     if (model.position.z > 3.6) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/3.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -266,7 +278,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 0.6;
+                        //model.rotation.y = 0.6;
                         model.position.z += 0.019;
                         model.position.x += 0.0145;
                     }
@@ -274,7 +286,7 @@ function animate() {
                 case 4:
                     if (model.position.z < -2.98) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/4.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -286,7 +298,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 2.7;
+                        //model.rotation.y = 2.7;
                         model.position.z -= 0.011;
                         model.position.x += 0.008;
                     }
@@ -294,7 +306,7 @@ function animate() {
                 case 5:
                     if (model.position.z > 3.7) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/5.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -306,7 +318,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -0.8;
+                        //model.rotation.y = -0.8;
                         model.position.z += 0.01;
                         model.position.x -= 0.008;
                     }
@@ -314,7 +326,7 @@ function animate() {
                 case 6:
                     if (model.position.z > 4.2) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/6.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -326,7 +338,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 0.35;
+                        //model.rotation.y = 0.35;
                         model.position.z += 0.01;
                         model.position.x += 0.0045;
                     }
@@ -334,7 +346,7 @@ function animate() {
                 case 7:
                     if (model.position.z > 1.9) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/7.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -346,7 +358,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -1.15;
+                        //model.rotation.y = -1.15;
                         model.position.z += 0.005;
                         model.position.x -= 0.011;
                     }
@@ -354,7 +366,7 @@ function animate() {
                 case 8:
                     if (model.position.z > 4.6) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/8.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -366,7 +378,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -0.1;
+                        //model.rotation.y = -0.1;
                         model.position.z += 0.01;
                         //model.position.x +=0.002;
                     }
@@ -374,7 +386,7 @@ function animate() {
                 case 9:
                     if (model.position.z < -0.37) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/9.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -386,7 +398,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 1.5;
+                        //model.rotation.y = 1.5;
                         model.position.z -= 0.003;
                         model.position.x += 0.028;
                     }
@@ -394,7 +406,7 @@ function animate() {
                 case 10:
                     if (model.position.z > 4.3) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/10.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -406,7 +418,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -0.5;
+                       // model.rotation.y = -0.5;
                         model.position.z += 0.01;
                         model.position.x -= 0.0048;
                     }
@@ -414,7 +426,7 @@ function animate() {
                 case 11:
                     if (model.position.z > 2.7) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/11.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -426,7 +438,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 0.85;
+                        //model.rotation.y = 0.85;
                         model.position.z += 0.011;
                         model.position.x += 0.0145;
                     }
@@ -434,7 +446,7 @@ function animate() {
                 case 12:
                     if (model.position.z < -3.4) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/12.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -446,7 +458,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -2.65;
+                        //model.rotation.y = -2.65;
                         model.position.z -= 0.008;
                         model.position.x -= 0.0045;
                     }
@@ -454,7 +466,7 @@ function animate() {
                 case 13:
                     if (model.position.z < -1.15) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/13.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -466,7 +478,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -1.9;
+                        //model.rotation.y = -1.9;
                         model.position.z -= 0.0053;
                         model.position.x -= 0.018;
                     }
@@ -474,7 +486,7 @@ function animate() {
                 case 14:
                     if (model.position.z < -2.1) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/14.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -486,7 +498,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -2.1;
+                        //model.rotation.y = -2.1;
                         model.position.z -= 0.006;
                         model.position.x -= 0.01;
                     }
@@ -506,7 +518,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 3;
+                        //model.rotation.y = 3;
                         model.position.z -= 0.01;
                         model.position.x += 0.0005;
                     }
@@ -526,7 +538,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 1;
+                       // model.rotation.y = 1;
                         model.position.z += 0.0065;
                         model.position.x += 0.0145;
                     }
@@ -546,7 +558,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -2.4;
+                        //model.rotation.y = -2.4;
                         model.position.z -= 0.01;
                         model.position.x -= 0.01;
                     }
@@ -566,7 +578,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -1.6;
+                        //model.rotation.y = -1.6;
                         model.position.z -= 0.0008;
                         model.position.x -= 0.018;
                     }
@@ -586,7 +598,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 2.7;
+                        //model.rotation.y = 2.7;
                         model.position.z -= 0.011;
                         model.position.x += 0.0038;
                     }
@@ -606,7 +618,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -1.3;
+                        //model.rotation.y = -1.3;
                         model.position.z += 0.0028;
                         model.position.x -= 0.015;
                     }
@@ -626,7 +638,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 2.1;
+                        //model.rotation.y = 2.1;
                         model.position.z -= 0.011;
                         model.position.x += 0.0145;
                     }
@@ -646,7 +658,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = 1.3;
+                        //model.rotation.y = 1.3;
                         model.position.z += 0.0025;
                         model.position.x += 0.0145;
                     }
@@ -666,7 +678,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -0.3;
+                        //model.rotation.y = -0.3;
                         model.position.z += 0.01;
                         model.position.x -= 0.0023;
                     }
@@ -686,7 +698,7 @@ function animate() {
                         iniciado = false;
                     }
                     else {
-                        model.rotation.y = -0.9;
+                        //model.rotation.y = -0.9;
                         model.position.z += 0.01;
                         model.position.x -= 0.013;
                     }
@@ -699,15 +711,47 @@ function animate() {
     }
 }
 
-function iniciar(numeorGanador) {
+function iniciar(numeorGanador) {  
+      
     ganador=parseInt(numeorGanador);
     // ganador = parseInt(0);
     //ganador=Math.floor((Math.random() * 24));
+    if(ganador==1){anguloRotacion=6.5;}
+    if(ganador==8){anguloRotacion=6.2;}
+    if(ganador==23){anguloRotacion=6;}    
+    if(ganador==10){anguloRotacion=5.7;}    
+    if(ganador==5){anguloRotacion=5.5;}    
+    if(ganador==24){anguloRotacion=5.25;}    
+    if(ganador==7){anguloRotacion=5.1;}    
+    if(ganador==20){anguloRotacion=4.9;}    
+    if(ganador==18){anguloRotacion=4.69;}    
+    if(ganador==13){anguloRotacion=4.5;}    
+    if(ganador==14){anguloRotacion=4.3;}    
+    if(ganador==17){anguloRotacion=3.9;}    
+    if(ganador==12){anguloRotacion=3.7;}    
+    if(ganador==0){anguloRotacion=3.3;}    
+    if(ganador==15){anguloRotacion=3.0;}    
+    if(ganador==19){anguloRotacion=2.7;}    
+    if(ganador==4){anguloRotacion=2.4;}    
+    if(ganador==21){anguloRotacion=2.1;}    
+    if(ganador==2){anguloRotacion=1.8;}    
+    if(ganador==9){anguloRotacion=1.5;}    
+    if(ganador==22){anguloRotacion=1.3;}    
+    if(ganador==16){anguloRotacion=7.2;}    
+    if(ganador==11){anguloRotacion=7.0;}    
+    if(ganador==3){anguloRotacion=6.7;}    
+    if(ganador==6){anguloRotacion=6.6;}    
     $("#ImgContainer").hide();
+    // clock = new THREE.Clock();
+    // clockCuyDudando = new THREE.Clock();
+    // clockCuyChoque = new THREE.Clock();
+    model.rotation.y=0;
+    modelCuyDudando.rotation.y=0;
+    
     animate();
 }
 
-function consultarEvento(IdJuego) {
+function consultarEvento(IdJuego) {    
     var url = document.location.origin + "/" + "api/DataEventoResultadoEvento";
     $.ajax({
         url: url,
@@ -720,7 +764,7 @@ function consultarEvento(IdJuego) {
         },
         success: function (response) {
             console.log(response);
-            if(response.token_animacion != undefined){
+            if(response.token_animacion != undefined){                
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
