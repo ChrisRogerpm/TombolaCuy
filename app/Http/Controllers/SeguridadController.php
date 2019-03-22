@@ -66,7 +66,6 @@ class SeguridadController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
-
     public function ActualizarPerfilUsuario(Request $request)
     {
         $lista = "";

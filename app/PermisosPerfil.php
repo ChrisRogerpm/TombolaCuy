@@ -22,7 +22,9 @@ class PermisosPerfil extends Model
     ];
 
     protected $fillable = [
-
+        'perfil_id',
+        'permiso_id',
+        'estado'
     ];
 
     public static function PermisoPerfilListarJson(Request $request)
@@ -36,7 +38,7 @@ class PermisosPerfil extends Model
                 'tbl.fecha_registro'
             )
             ->where('tbl.perfil_id', $request->txtPerfilID)
-            ->where('estado',1)
+            ->where('estado', 1)
             ->get();
         return $listar;
     }
@@ -53,29 +55,32 @@ class PermisosPerfil extends Model
             )
             ->where('tbl.permiso_id', $request->txtPermisoID)
             ->where('tbl.perfil_id', $request->txtPerfilID)
-            ->where('estado',1)
+            ->where('estado', 1)
             ->get();
         return $listar;
     }
+
     public static function PermisoPerfilInsertarJson(Request $request)
     {
-        $idPermisoPerfilInsertado = DB::table('permisos_perfil')->insertGetId([
-            'fecha_registro' => date('Y-m-d H:i:s'),
-            'perfil_id' => $request->txtPerfilID,
-            'permiso_id' => $request->txtPermisoID,
-            'estado' => 1
-        ]);
-        return $idPermisoPerfilInsertado;
+        $perfil = $request->input('txtPerfilID');
+        $permiso  = $request->input('txtPermisoID');
+        $idPermisoPerfilInsertado = new PermisosPerfil();
+        $idPermisoPerfilInsertado->fecha_registro = now();
+        $idPermisoPerfilInsertado->perfil_id = $perfil;
+        $idPermisoPerfilInsertado->permiso_id = $permiso;
+        $idPermisoPerfilInsertado->estado = 1;
+        $idPermisoPerfilInsertado->save();
+        return $idPermisoPerfilInsertado->id;
     }
 
     public static function PermisoPerfilActualizarJson(Request $request)
     {
-        DB::table('permisos_perfil')->where('permiso_id', '=',$request->txtPermisoID)->where('perfil_id', '=',$request->txtPerfilID)->delete();
-        $respuesta=true;
+        DB::table('permisos_perfil')->where('permiso_id', '=', $request->txtPermisoID)->where('perfil_id', '=', $request->txtPerfilID)->delete();
+        $respuesta = true;
         return $respuesta;
     }
 
-    public static function PermisoIDPerfilIDBuscarJson($permisoID,$perfilID)
+    public static function PermisoIDPerfilIDBuscarJson($permisoID, $perfilID)
     {
         $listar = DB::table('permisos_perfil as tbl')
             ->select(
@@ -87,15 +92,15 @@ class PermisosPerfil extends Model
             )
             ->where('tbl.permiso_id', $permisoID)
             ->where('tbl.perfil_id', $perfilID)
-            ->where('estado',1)
+            ->where('estado', 1)
             ->get();
         return $listar;
     }
 
     public static function PermisoPerfilIDEliminar($id)
     {
-        DB::table('permisos_perfil')->where('permiso_id',$id)->delete();
-        $respuesta=true;
+        DB::table('permisos_perfil')->where('permiso_id', $id)->delete();
+        $respuesta = true;
         return $respuesta;
     }
 }

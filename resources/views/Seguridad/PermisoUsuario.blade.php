@@ -40,7 +40,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12">
-                            <table id="table" class="table table-bordered table-striped table-condensed" style="width:100%"></table>
+                            <table id="table" class="table table-bordered table-striped table-condensed"
+                                   style="width:100%"></table>
                         </div>
                     </div>
 
@@ -49,7 +50,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalAuditoria" tabindex="-1" role="dialog" aria-labelledby="default-modal-label" aria-hidden="true">
+    <div class="modal fade" id="modalAuditoria" tabindex="-1" role="dialog" aria-labelledby="default-modal-label"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" data-border-top="multi">
                 <div class="modal-header">
@@ -57,14 +59,18 @@
                     <h4 class="modal-title" id="default-modal-label">Permisos</h4>
                 </div>
                 <div class="modal-body" id="bodyModal">
-                    <table class="table table-condensed table-striped table-bordered" style="display: none;">
-                        <thead><tr><th colspan="3">Menu</th></tr></thead>
-                        <tbody ><tr><td style="width: 80%">Nombre Menu</td><td style="width: 20%"><input type="checkbox" name="chkmenu_1"></td></tr></tbody>
-                    </table>
-                    <table class="table table-condensed table-striped table-bordered">
-                        <thead><tr><th colspan="3">Permisos</th></tr><tr><th>Nombre</th><th>Metodo</th><th></th></tr></thead>
-                        <tbody id="tbodyPermisos"></tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="icheck-inline" style="margin-top: 5px;">
+                                    Seleccionar Todos <input type="checkbox" id="CheckTodos" data-checkbox="icheckbox_square-blue">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-condensed table-striped table-bordered" id="tablePermisos"></table>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -77,6 +83,6 @@
 
 @push('Js')
     <script src="{{asset('components/lodash/lodash.min.js')}}"></script>
-    <script src="{{asset('assets/Seguridad/PermisosUsuario.js')}}" ></script>
+    <script src="{{asset('assets/Seguridad/PermisosUsuario.js')}}"></script>
 @endpush
 

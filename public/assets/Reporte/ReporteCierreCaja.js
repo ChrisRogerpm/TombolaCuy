@@ -1,11 +1,18 @@
 $(document).ready(function () {
     MostrarDataCierreCaja();
     $(document).on('click', '#btnCierreCaja', function () {
+        $("#ModalConfirmacion").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    });
+
+    $(document).on('click','#btnConfirmar',function () {
         var idAperturacaja = $("#idAperturaCaja").val();
         if (idAperturacaja !== "") {
             var dataForm = {
                 'idAperturaCaja': idAperturacaja
-            }
+            };
             $.ajax({
                 type: 'POST',
                 url: basePath + "AperturaCajaCerrarFk",
@@ -14,13 +21,15 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta) {
                         toastr.success('Se ha cerrado la caja exitosamente');
+                        $("#ModalConfirmacion").modal("hide");
+                        MostrarDataCierreCaja();
                     } else {
                         toastr.warning(response.mensaje, '');
                     }
                 }
             })
         }
-    });
+    })
 });
 
 function MostrarDataCierreCaja() {
@@ -35,7 +44,6 @@ function MostrarDataCierreCaja() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
-            debugger
             var data = response.data;
 
             if (data.length > 0) {
