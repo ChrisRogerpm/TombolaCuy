@@ -1,4 +1,9 @@
 ///  RESPONSIVE TOMBOLACUY  
+
+IPSERVIDOR_WEBSOCKETS="192.168.1.60";
+PUERTO_WEBSOCKETS="9000";
+
+
 $(window).resize(function () {
     responsivetombola();
 }).trigger('resize')
@@ -271,7 +276,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
             // TICKET_IMPRIMIR={}
 
             toastr.success("Ticket Guardado");
-            JugadoresJson(eventoactual.idEvento);///actualizar JUGADOR 
+            JugadoresJson(eventoactual.IdEvento);///actualizar JUGADOR 
 
             $("#div_botones .cerrar").click();
         },
@@ -494,7 +499,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
 
             //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
-            connectarWebSockets("192.168.1.60","9000");  ///en archivo ClaseWebSockets.js
+            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
             
             setTimeout(function(){
                 intervalohora=setInterval(function(){pedir_hora_server()},1000);

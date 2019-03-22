@@ -16,7 +16,7 @@ function init(host,port){
 
   host="ws://"+host+":"+port;
   url=host;
-  console.log("Connecting to "+host+" url:"+url);
+  console.log("CONECTANDO A "+host+" url:"+url);
       log('trying WebSocket - : '+url);
   try{
     socket = new WebSocket(host);
@@ -37,6 +37,9 @@ function init(host,port){
            if(segundos<10){segundos="0"+segundos;}
            $("#proximo_en").text(minutos+":"+segundos);
 
+          if(parseInt(minutos)<0 ){
+             $("#proximo_en").text("--");
+          }
            // ///////segundos bloqueo
                       segantesdebloque=eventoactual.segBloqueoAntesEvento;
                       if(minutos==0 && segundos==segantesdebloque){
@@ -51,16 +54,20 @@ function init(host,port){
                       }
                       if(minutos==0 && segundos==1){
                         setTimeout(function(){
-                      $.LoadingOverlay("hide");
-                        location.reload(true)
-
+                          $.LoadingOverlay("hide");
+                          location.reload(true)
                         },2000)
                       }
             //fin segundos bloqueo
 
 
 	 };
-    socket.onclose   = function(msg){ log("Disconnected - status "+this.readyState); };
+    socket.onclose   = function(msg){ 
+                                    log("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
+                                     };
+                                     setTimeout(function(){
+                                      connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
+                                     },2000)
   }
   catch(ex){ log(ex); }
   $("msg").focus();
