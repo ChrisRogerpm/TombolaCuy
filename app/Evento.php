@@ -76,24 +76,24 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
         return $listar;
     }
 
-    public static function JackPotEvento($idEvento)
+    public static function JackPotEvento($idPuntoVenta)
     {
         $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
 			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
 			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
 			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
-			WHERE JPV.idPuntoVenta=1
+			WHERE JPV.idPuntoVenta=".$idPuntoVenta."
 			"));
         return $listar;
     }
 
-    public static function JackPotSumaEvento($idEvento)
+    public static function JackPotSumaEvento($idPuntoVenta)
     {
-        $listar = DB::select(DB::raw("select  sum(POL.montoActual) as sumajackpots FROM pozo_online POL
+        $listar = DB::select(DB::raw("select   IFNULL(sum(POL.montoActual),0) as sumajackpots FROM pozo_online POL
 			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
 			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
 			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
-			WHERE JPV.idPuntoVenta=1
+			WHERE JPV.idPuntoVenta=".$idPuntoVenta."
 			"));
         return $listar;
     }
