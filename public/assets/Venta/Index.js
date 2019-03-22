@@ -608,9 +608,9 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         //FIN PLENO
 
         ////jackpot
-        JackpotDatosJson();
+        JackpotDatosJson($("#idPuntoVenta").val());
         intervalojackpot=setInterval(function(){
-            JackpotDatosJson();
+            JackpotDatosJson($("#idPuntoVenta").val());
         },14000)
         //HistorialJson(eventoactual.IdEvento);
         
