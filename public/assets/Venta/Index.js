@@ -271,6 +271,8 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
             // TICKET_IMPRIMIR={}
 
             toastr.success("Ticket Guardado");
+            JugadoresJson(eventoactual.idEvento);///actualizar JUGADOR 
+
             $("#div_botones .cerrar").click();
         },
     })
@@ -452,44 +454,56 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             if(minutos<0)
             console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
 
-            if(typeof interval!="undefined"){
-                clearInterval(interval);$('.countdown').html("00:00")
-            }
-            interval = setInterval(function() {
-                      var timer = timer2.split(':');
-                      var minutes = parseInt(timer[0], 10);
-                      var seconds = parseInt(timer[1], 10);
-                      --seconds;
-                      minutes = (seconds < 0) ? --minutes : minutes;
-                      if (minutes < 0) clearInterval(interval);
-                      seconds = (seconds < 0) ? 59 : seconds;
-                      seconds = (seconds < 10) ? '0' + seconds : seconds;
-///////segundos bloqueo
-                      if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
-                         $.LoadingOverlay("show");
-                      }
-                      else{
-                         segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
-                        if(segundostotales==SEGBLOQUEOANTESEVENTO){
-                            $.LoadingOverlay("show");
-                        }
+//             if(typeof interval!="undefined"){
+//                 clearInterval(interval);$('.countdown').html("00:00")
+//             }
+//             interval = setInterval(function() {
+//                       var timer = timer2.split(':');
+//                       var minutes = parseInt(timer[0], 10);
+//                       var seconds = parseInt(timer[1], 10);
+//                       --seconds;
+//                       minutes = (seconds < 0) ? --minutes : minutes;
+//                       if (minutes < 0) clearInterval(interval);
+//                       seconds = (seconds < 0) ? 59 : seconds;
+//                       seconds = (seconds < 10) ? '0' + seconds : seconds;
+// ///////segundos bloqueo
+//                       if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
+//                          $.LoadingOverlay("show");
+//                       }
+//                       else{
+//                          segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
+//                         if(segundostotales==SEGBLOQUEOANTESEVENTO){
+//                             $.LoadingOverlay("show");
+//                         }
 
-                      }
-                      if(minutes==0 && seconds==1){
-                        $.LoadingOverlay("hide");
-                          location.reload(true)
-                      }
-//fin segundos bloqueo
-                if(minutes<0){
-                    $('.countdown').html('--');
-                    timer2 = minutes + ':' + seconds;
-                }else{
-                    $('.countdown').html(minutes + ':' + seconds);
-                    timer2 = minutes + ':' + seconds;
-                }
+//                       }
+//                       if(minutes==0 && seconds==1){
+//                         $.LoadingOverlay("hide");
+//                           location.reload(true)
+//                       }
+// //fin segundos bloqueo
+//                 if(minutes<0){
+//                     $('.countdown').html('--');
+//                     timer2 = minutes + ':' + seconds;
+//                 }else{
+//                     $('.countdown').html(minutes + ':' + seconds);
+//                     timer2 = minutes + ':' + seconds;
+//                 }
 
-            }, 1000)
+//             }, 1000)
+
+
+            //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
+            connectarWebSockets("192.168.1.60","9000");  ///en archivo ClaseWebSockets.js
+            
+            setTimeout(function(){
+                intervalohora=setInterval(function(){pedir_hora_server()},1000);
+            },800)
+            ///////////////////////////////////////////////////////////////
+
+
 ////////FIN PROXIMO EN
+
 
 ////multiplicadores definir
 ///fin multiplicadores
@@ -717,6 +731,21 @@ function HistorialJson(idev) {
                     $("<div>").text(e.valorGanador).css("background-color",e.color)
                 )
             })
+        },
+    })
+}
+
+function JugadoresJson(idev) {
+    $.ajax({
+        type: 'POST',async:false,
+        url: basePath + 'JugadoresDatosJson',
+        data: {
+            'idEvento':idev,
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+            
+            $("#row_datosevento #jugador").text(response.jugador.cantidadganadores)
         },
     })
 }

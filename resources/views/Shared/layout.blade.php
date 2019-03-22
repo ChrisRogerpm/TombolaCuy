@@ -948,6 +948,10 @@
     <script src="{{asset('../assets/DataTables/Buttons-1.5.4/js/buttons.html5.js')}}"></script>
     <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\Buttons-1.5.4\js\buttons.html5 -->
     <script src="{{asset('../assets/js/exportar-excel/buttons.print.min.js')}}"></script>
+
+
+
+ 
     <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\JSZip-2.5.0
 
     C:/xampp/htdocs/TombolaCuy/public/assets/js/exportar-excel -->
