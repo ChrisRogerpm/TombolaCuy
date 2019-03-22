@@ -33,7 +33,7 @@
 			#ImgContainer{
 				width: 100vw;
     			height: 100vh;  
-				background-image: url("imgCuyInicio.jpg");  
+				background-image: url("images/imgCuyInicio.jpg");  
 				background-position: center;
 				background-repeat: no-repeat;
 			}
@@ -110,6 +110,10 @@
 			}
 			.caja2{							
 				background-color:#DC2525;
+				width:50%;
+			}
+			.caja0{							
+				background-color:#3C8A39;
 				width:50%;
 			}
 		</style>
