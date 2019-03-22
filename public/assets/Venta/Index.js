@@ -466,7 +466,14 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                       seconds = (seconds < 10) ? '0' + seconds : seconds;
 ///////segundos bloqueo
                       if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
-                        $.LoadingOverlay("show");
+                         $.LoadingOverlay("show");
+                      }
+                      else{
+                         segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
+                        if(segundostotales==SEGBLOQUEOANTESEVENTO){
+                            $.LoadingOverlay("show");
+                        }
+
                       }
                       if(minutes==0 && seconds==1){
                         $.LoadingOverlay("hide");
@@ -1028,8 +1035,12 @@ $(document).ready(function () {
 
 
                                 var totales_maximo=sacar_totales_y_maximo();
+
+                                $(".apuesta .rowtableeventos_footer_apuesta").text();
+
                                 $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
                                 $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
+
                          })
                     }
                     else{
