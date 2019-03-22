@@ -89,7 +89,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function JackPotSumaEvento($idEvento)
     {
-        $listar = DB::select(DB::raw("select  sum(POL.montoActual) as sumajackpots FROM pozo_online POL
+        $listar = DB::select(DB::raw("select   IFNULL(sum(POL.montoActual),0) as sumajackpots FROM pozo_online POL
 			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
 			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
 			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
