@@ -56,29 +56,32 @@ class Reporte extends Model
         $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
-         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
+          ,sum(t.montoTotal) apuestas
+         ,IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
-         e.nombre Evento,count(t.idticket) Jugadores,
-         IFNULL(( select count(ti.idTicket) from ganador_evento ge
+         where ti.idAperturaCaja= ac.idaperturacaja),0) Pagos
+        ,
+         e.idEVento Evento  ,count(t.idticket) Jugadores
+         ,  IFNULL(( select count(ti.idTicket) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) totalganadores,
-         re.valorGanador ganador, tia.rgb color, tip.nombre TipoApuesta
-         from apertura_caja ac
+         where ti.idAperturaCaja= ac.idaperturacaja),0) totalganadores 
+         ,re.valorGanador ganador   , tia.rgb color, tip.nombre TipoApuesta  
+           from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-         inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
-         inner join evento e on e.idevento=t.idevento 
-         inner join resultado_evento re on re.idevento=e.idevento and re.idTipoApuesta in (1,6)
-         inner join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta
-          inner join tipo_pago tip on tip.idTipoPago=tia.idTipoPago 
+         left join ticket t on  t.idaperturacaja=ac.idaperturacaja        
+         left join evento e on e.idevento=t.idevento          
+         left join resultado_evento re on re.idevento=e.idevento and re.idTipoPago in (1,6)
+          left join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta  and re.idTipoPago in (1,6)
+           left join tipo_pago tip on tip.idTipoPago=tia.idTipoPago  
           where  ac.estado!=0
-         and ac.fechaoperacion between $fechaIni and $fechaFin
-         and c.idPuntoVenta IN($tiendas)
-         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
+         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
+         and c.idPuntoVenta in ($tiendas)       
+       
+       group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
 
         return $listar;
     }
@@ -213,12 +216,24 @@ class Reporte extends Model
         $fecha_ini = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fecha_fin = Carbon::parse($request->input('fechaFin'))->endOfDay();
 
-        $listar = DB::table('evento as e')
-            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
-            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
-            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
-            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-            ->get();
+//        $listar = DB::table('evento as e')
+//            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
+//            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
+//            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
+//            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+//            ->get();
+
+        $listar = DB::select(DB::raw("SELECT e.idEvento, e.fechaEvento AS Fecha, e.idEvento AS Evento, j.nombre AS Juego, m.codlso as Moneda,
+         e.estadoEvento,ifnull(sum(t.montoTotal),0) - ifnull(sum(ge.montoAPagar),0) Ganado
+        FROM evento e
+        inner JOIN juego as j on j.idJuego = e.idJuego
+        inner JOIN moneda AS m on m.idMoneda = e.idMoneda
+        left join ticket t on t.idEvento=e.idevento 
+        left join apuesta a on a.idTicket=t.idticket
+        left join  ganador_evento ge on ge.idApuesta=a.idApuesta
+        where e.fechaEvento between '$fecha_ini' and '$fecha_fin'
+        group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
+        order by e.idevento desc"));
 
         return $listar;
     }

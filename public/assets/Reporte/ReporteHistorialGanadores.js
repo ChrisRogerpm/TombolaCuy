@@ -15,7 +15,7 @@ $(document).ready(function () {
             id: '', // the value of the option
             text: '--Seleccione--'
         }
-    });    
+    });
 
     $('#cboTienda').on('select2:select', function (e) {
         var data = e.params.data;
@@ -36,12 +36,12 @@ $(document).ready(function () {
         }
     });
 
-    
+
     //cboTienda es idPunto de Venta
     $("#fechaInicio").val("01/01/2018");
-    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption",false);
-    $("#cboTienda").select2('val', [0]);   
-    
+    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    $("#cboTienda").select2('val', [0]);
+
     $(document).on("click", "#btnBuscar", function () {
         ListarHistorialGanadores();
     });
@@ -50,9 +50,9 @@ $(document).ready(function () {
 function ListarHistorialGanadores() {
     var fechaInicial = $("#fechaInicio").val();
     var fechaFinal = $("#fechaFin").val();
-    
+
     var cboTienda = $("#cboTienda").val();
-    
+
     var url = basePath + "ReporteHistorialGanadoresListarJson";
     var dataForm = $('#frmNuevo').serializeFormJSON();
     $.ajax({
@@ -67,126 +67,93 @@ function ListarHistorialGanadores() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
-            
-           $("#table").DataTable({
-            dom: 'Bfrtip',
-                    
-            buttons: [
-                {
-                    extend: 'excelHtml5',
-                    title: 'Reporte Historial de Ganadores'
-                    
-                },
-                
-                {
-                    extend: 'pdfHtml5',
-                    title: 'Reporte Historial de Ganadores'
-                },
-                {
-                    extend: 'print',
-                    title: 'Reporte Historial de Ganadores'
-                }
-            ],
-            "bDestroy": true,
-            "bSort": true,
-            "scrollCollapse": true,
-            "scrollX": false,
-            "paging": true,
-            "autoWidth": false,
-            "bProcessing": true,
-            "bDeferRender": true,
-            data: response.data,
-            
-            columns: [
 
-            {data: "tienda", title: "Tienda"},
-            {data: "evento", title: "Evento"},
-            {data: "fecha", title: "Fecha"},
-            {data: "total_jugadores", title: "Total jugadores"},
-            {data: "total_ganadores", title: "Total ganadores"},
-            {data: "monto_total_apostado", title: "Monto total apostado"},
-            {data: "monto_total_pagado", title: "Monto total pagado"},
-            {data: "NR_ticket_ganador", title: "Nº ticket ganador"},
-            {data: "tipo_de_apuesta", title: "Tipo de apuesta"},
+            $("#table").DataTable({
+                dom: 'Bfrtip',
 
-            {data: "valor_apuesta_color_rgb", title: "Color"},
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Reporte Historial de Ganadores'
 
-            
-            {   
-                data: "valor_de_apuesta", 
-                title: "valor de apuesta",
-                "render": function (value, i, j) {
+                    },
 
-                    var valorRetornar = j.valor_de_apuesta;
-                    var valor_de_apuesta = '';
-                    valor_de_apuesta = j.valor_de_apuesta;
-                    var tipo_de_apuesta = j.tipo_de_apuesta;
-                    if (tipo_de_apuesta=="pleno") {
-                        valorRetornar=`<div style='width:100%;text-align:center;''>${valor_de_apuesta} </div>`;
+                    {
+                        extend: 'pdfHtml5',
+                        title: 'Reporte Historial de Ganadores'
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Reporte Historial de Ganadores'
                     }
-                    if (tipo_de_apuesta=="color") {
-                        if (valor_de_apuesta=="verde") {
-                            valorRetornar='darkGreen';
+                ],
+                "bDestroy": true,
+                "bSort": true,
+                "scrollCollapse": true,
+                "scrollX": false,
+                "paging": true,
+                "autoWidth": false,
+                "bProcessing": true,
+                "bDeferRender": true,
+                data: response.data,
+
+                columns: [
+
+                    {data: "tienda", title: "Tienda"},
+                    {data: "Evento", title: "Evento"},
+                    {data: "fechaoperacion", title: "Fecha"},
+                    {data: "Jugadores", title: "Total jugadores"},
+                    {data: "totalganadores", title: "Total ganadores"},
+                    {data: "apuestas", title: "Monto total apostado"},
+                    {data: "Pagos", title: "Monto total pagado"},
+                    {data: "ganador", title: "Pleno"},
+                    {data: "TipoApuesta", title: "Tipo de apuesta"},
+                    {
+                        data: "color", title: "Color",
+                        "render": function (value) {
+                            return '<span class="badge" style="padding-top: 7px;padding-bottom: 7px; background-color: ' + value + '"> * </span>';
                         }
-                        if (valor_de_apuesta=="rojo") {
-                            valorRetornar='DarkRed';
-                        }
-                        if (valor_de_apuesta=="negro") {
-                            valorRetornar='Black';
-                        }
-                        if (tipo_de_apuesta=="caja bloqueada") {
-                            valorRetornar = "CASA";
-                        }
-                        valorRetornar = `<div style='width:100%;color:white;text-align:center;background-color: ${valorRetornar};'> ${valor_de_apuesta}</div>`            
-                    }
-                    if (tipo_de_apuesta=="caja bloqueada") 
-                        valorRetornar = `<span  style="width: 100%;text-align: center" class="glyphicon glyphicon-home"></span>`;            
+                    },
+                ],
 
-                    return valorRetornar;
-
-
-                }
-            },
-
-            ],
-
-        });
-       },
-       error: function (jqXHR, textStatus, errorThrown) {
-       }
-   });
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
 }
+
 $("#frmNuevo")
     .validate({
         rules: {
             fechaInicio:
-            {
-                required: true,
+                {
+                    required: true,
 
-            }, fechaFin:
-            {
-                required: true,
+                }, fechaFin:
+                {
+                    required: true,
 
-            }, tiendas:
-            {
-                required: true,
+                }, tiendas:
+                {
+                    required: true,
 
-            }
+                }
         },
         messages: {
             fechaInicio:
-            {
-                required: '',
+                {
+                    required: '',
 
-            }, fechaFin:
-            {
-                required: '',
+                }, fechaFin:
+                {
+                    required: '',
 
-            }, tiendas:
-            {
-                required: '',
+                }, tiendas:
+                {
+                    required: '',
 
-            }
+                }
         },
 
 

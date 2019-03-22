@@ -44,6 +44,10 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::post('JackpotDatosJson', 'VentaController@JackpotDatosJson');
     Route::post('ImprimirDatosJson', 'VentaController@ImprimirDatosJson');
     Route::post('GuardarGanadorEvento', 'VentaController@GuardarGanadorEvento');
+
+    Route::post('JugadoresDatosJson', 'VentaController@JugadoresDatosJson');
+
+    
 #endregion
 
 #region [ConfiguracionJackpot]

@@ -205,7 +205,7 @@
                         <!-- Profile avatar -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <div class="profile-avatar circle">
-                                <img src="images/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
+                                <img src="{{asset('images/userdefault.jpg')}}">
                             </div>
                             <span class="user-name">{{Auth::user()->usuario}}</span>
                         </a>
@@ -740,7 +740,7 @@
                     <!-- Profile Avatar -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="avatar avatar-lg">
-                            <img src="images/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
+                            <img src="{{asset('images/userdefault.jpg')}}">
                         </div>
                     </a>
                     <!-- /Profile Avatar -->
@@ -948,6 +948,10 @@
     <script src="{{asset('../assets/DataTables/Buttons-1.5.4/js/buttons.html5.js')}}"></script>
     <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\Buttons-1.5.4\js\buttons.html5 -->
     <script src="{{asset('../assets/js/exportar-excel/buttons.print.min.js')}}"></script>
+
+
+
+ 
     <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\JSZip-2.5.0
 
     C:/xampp/htdocs/TombolaCuy/public/assets/js/exportar-excel -->

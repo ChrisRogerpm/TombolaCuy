@@ -29,12 +29,13 @@ class ResultadoEvento extends Model
         FROM evento et WHERE et.idJuego = $IdJuego"));
 
         $resultado = DB::table('resultado_evento as re')
-            ->join('evento as e','e.idEvento','re.idEvento')
-            ->where('e.idJuego',$IdJuego)
-            ->where('re.estado',1)
-            ->whereIn('re.idTipoPago',array(1,6))
-            ->where('e.idEvento','<',$maximo_evento[0]->Maximo)
-            ->orderBy('re.idEvento','DESC')
+            ->select('e.idEvento', 're.valorGanador')
+            ->join('evento as e', 'e.idEvento', 're.idEvento')
+            ->where('e.idJuego', $IdJuego)
+            ->where('re.estado', 1)
+            ->whereIn('re.idTipoPago', array(1, 6))
+            ->where('e.idEvento', '<', $maximo_evento[0]->Maximo)
+            ->orderBy('re.idEvento', 'DESC')
             ->take(20)
             ->get();
         return $resultado;

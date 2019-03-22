@@ -98,23 +98,14 @@ function ReporteVentaJson(url, dataForm) {
                         }, class: 'text-center'
                     },
                     {
-                        data: null, title: 'Ganado',
-                        "render": function (value) {
-                            return '--';
-                        }, class: 'text-center'
+                        data: "Ganado", title: 'Ganado', class: 'text-center'
                     },
-                    {
-                        data: null, title: 'JP Win',
-                        "render": function (value) {
-                            return '--';
-                        }, class: 'text-center'
-                    },
-                    {
-                        data: null, title: "",
-                        "render": function (value) {
-                            return '<button type="button" class="btn btn-success btn-sm btnVer" data-moneda="' + value.Moneda + '" data-id="' + value.idEvento + '" data-fecha="' + value.Fecha + '" data-juego="' + value.Juego + '"><i class="fa fa-eye m-r-20"></i> Ver</button>'
-                        }, class: "text-center"
-                    }
+                    // {
+                    //     data: null, title: "",
+                    //     "render": function (value) {
+                    //         return '<button type="button" class="btn btn-success btn-sm btnVer" data-moneda="' + value.Moneda + '" data-id="' + value.idEvento + '" data-fecha="' + value.Fecha + '" data-juego="' + value.Juego + '"><i class="fa fa-eye m-r-20"></i> Ver</button>'
+                    //     }, class: "text-center"
+                    // }
                 ],
                 "drawCallback": function (settings) {
                     $('.btnVer').tooltip({
