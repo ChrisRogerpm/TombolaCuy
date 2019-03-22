@@ -196,6 +196,21 @@ class VentaController extends Controller
             'mensaje' => $mensaje_error]);
     }
 
+        public function JugadoresDatosJson(Request $request)
+    {
+        $mensaje_error = "";
+        $idEvento = $request->input("idEvento");
+
+        try {
+            $jugador = Evento::CantidadGanadorEventoListar($idEvento)[0];
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json([
+            'jugador' => $jugador,
+            'mensaje' => $mensaje_error]);
+    }
+
     public function ImprimirDatosJson(Request $request){
         $mensaje_error = "";
         $Ticket_Imprimir= $request->input("TICKET_IMPRIMIR");

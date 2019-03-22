@@ -31,6 +31,34 @@ function init(host,port){
            var segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
            log("Server>: "+msg.data + " Próximo en:" +minutos+":"+segundos);
 
+           var horaserv=moment(msg.data, "YYYY-MM-DD HH:mm:ss a").format("hh:mm:ss a");
+           $("#liveclock").text(horaserv);
+            if(segundos< 0) { segundos=59; }
+           if(segundos<10){segundos="0"+segundos;}
+           $("#proximo_en").text(minutos+":"+segundos);
+
+           // ///////segundos bloqueo
+                      segantesdebloque=eventoactual.segBloqueoAntesEvento;
+                      if(minutos==0 && segundos==segantesdebloque){
+                         $.LoadingOverlay("show");
+                      }
+                      else{
+                         segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
+                        if(segundostotales==segantesdebloque){
+                            $.LoadingOverlay("show");
+                        }
+
+                      }
+                      if(minutos==0 && segundos==1){
+                        setTimeout(function(){
+                      $.LoadingOverlay("hide");
+                        location.reload(true)
+
+                        },2000)
+                      }
+            //fin segundos bloqueo
+
+
 	 };
     socket.onclose   = function(msg){ log("Disconnected - status "+this.readyState); };
   }

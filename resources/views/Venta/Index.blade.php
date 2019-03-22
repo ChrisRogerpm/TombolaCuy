@@ -160,7 +160,7 @@
                                 <div class=" rowcabecera_datos" id="row_datosevento">
                                         <div style="width:20%" class="">
 
-                                            <span id="fechaHoy"></span><span id="liveclock">-</span>
+                                            <span id="fechaCaja"></span><span id="liveclock">-</span>
                                         </div>
 
                                         <div style="width:15%" class="">
