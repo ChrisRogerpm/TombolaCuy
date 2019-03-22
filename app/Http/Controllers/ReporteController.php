@@ -57,12 +57,10 @@ class ReporteController extends Controller
         $mensaje_error = "";
         try {
             $lista = Reporte::ReporteHistorialGanadoresListarJson($request);
-            //$lista = DB::table('tipo_apuesta')->get();
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
-
     }
 
     //REPORTE HISTORIAL DE JackPot

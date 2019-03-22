@@ -801,8 +801,8 @@
                                 class="title">Turno</span></a></li>
                     <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Apertura Caja</span></a></li>
-                    <li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-users"></i> <span
-                                class="title">Cliente</span></a></li>
+                    {{--<li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-users"></i> <span--}}
+                                {{--class="title">Cliente</span></a></li>--}}
 
                     {{--<li class="sub">--}}
                         {{--<a href="#" class="sub-toggle">--}}

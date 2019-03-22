@@ -52,37 +52,34 @@ class Reporte extends Model
     public static function ReporteHistorialGanadoresListarJson(Request $request)
     {
         $tiendas = $request->input('tiendas');
-        $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
-        $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
+        $fechaIni = Carbon::parse($request->input('fechaInicio'))->toDateString();
+        $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        //$where ="where pv.idPuntoVenta in (".$tiendas.") and";
-        $where = ($tiendas[0] == "0") ? "" : "where pv.idPuntoVenta in (" . $tiendas . ")";
-        $listar = DB::select(DB::raw("SELECT 
-        caj.idPuntoVenta,
-        pv.nombre tienda,
-        eve.idEvento IdEvento,
-        eve.nombre evento, 
-        eve.fechaEvento fecha,
-        tic.idTicket total_jugadores,
-        tic.ganador total_ganadores,
-        tic.montoTotal monto_total_apostado,
-        apu.montoAPagar monto_total_pagado,
-        tic.nroTicketParticipante NR_ticket_ganador,
-        tpago.nombre tipo_de_apuesta,
-        tapu.nombre valor_de_apuesta,
-        tapu.rgb valor_apuesta_color_rgb
-        from ganador_evento gev
-        INNER JOIN apuesta apu on apu.idApuesta=gev.idApuesta
-        INNER JOIN ticket tic on tic.idTicket=apu.idTicket
-        INNER JOIN apertura_caja apc on apc.idAperturaCaja=tic.idAperturaCaja
-        INNER JOIN caja caj on caj.idCaja=apc.idCaja
-        INNER JOIN evento eve ON eve.idEvento = tic.idEvento
-        INNER JOIN punto_venta pv ON pv.idPuntoVenta= caj.idPuntoVenta
-        INNER JOIN tipo_apuesta tapu ON tapu.idTipoApuesta = apu.idTipoApuesta
-        INNER JOIN tipo_pago tpago ON tpago.idTipoPago= tapu.idTipoPago
-        $where
-        "));
+        $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
+         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+         inner join apuesta a on a.idApuesta=ge.idApuesta
+         inner join ticket ti on ti.idTicket=a.idTicket
+         where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
+         e.nombre Evento,count(t.idticket) Jugadores,
+         IFNULL(( select count(ti.idTicket) from ganador_evento ge
+         inner join apuesta a on a.idApuesta=ge.idApuesta
+         inner join ticket ti on ti.idTicket=a.idTicket
+         where t.idAperturaCaja= ac.idaperturacaja),0) totalganadores,
+         re.valorGanador ganador, tia.rgb color, tip.nombre TipoApuesta
+         from apertura_caja ac
+         inner join caja c on c.idCaja=ac.idCaja
+         inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+         inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
+         inner join evento e on e.idevento=t.idevento 
+         inner join resultado_evento re on re.idevento=e.idevento and re.idTipoApuesta in (1,6)
+         inner join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta
+          inner join tipo_pago tip on tip.idTipoPago=tia.idTipoPago 
+          where  ac.estado!=0
+         and ac.fechaoperacion between $fechaIni and $fechaFin
+         and c.idPuntoVenta IN($tiendas)
+         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
+
         return $listar;
     }
 
