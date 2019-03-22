@@ -65,7 +65,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
         return $listar;
     }
 
-       public static function JugadorDatosJson($idEvento)
+    public static function JugadorDatosJson($idEvento)
     {
         $listar = DB::select(DB::raw("select  POL.montoActual FROM pozo_online POL
             INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
@@ -82,7 +82,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
 			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
 			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
-			WHERE JPV.idPuntoVenta=".$idPuntoVenta."
+			WHERE JPV.idPuntoVenta=" . $idPuntoVenta . "
 			"));
         return $listar;
     }
@@ -93,7 +93,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 			INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
 			INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
 			INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
-			WHERE JPV.idPuntoVenta=".$idPuntoVenta."
+			WHERE JPV.idPuntoVenta=" . $idPuntoVenta . "
 			"));
         return $listar;
     }
@@ -104,7 +104,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
         $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
-WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=".$ideventoactual." 
+WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=" . $ideventoactual . " 
 order by evt.`fechaEvento` DESC
 LIMIT 18
             "));
@@ -132,7 +132,7 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaEventoFin,$fechaIni)
+    public static function RegistrarEvento($juego, $fechaEventoFin, $fechaIni)
     {
         $evento = new Evento();
         $evento->idJuego = $juego->idJuego;
@@ -163,17 +163,17 @@ LIMIT 18
                             $NumeroHoras = $juego->lapsoProxEventoHoras;
                             $fechaIni = $JuegoEvento->fechaFinEvento;
                             $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addHours($NumeroHoras);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
                         } else if ($juego->lapsoProxEventoDia > 0) {
                             $NumeroDias = $juego->lapsoProxEventoDia;
                             $fechaIni = $JuegoEvento->fechaFinEvento;
                             $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addDays($NumeroDias);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
                         } else if ($juego->lapsoProxEventoMinutos > 0) {
                             $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                             $fechaIni = $JuegoEvento->fechaFinEvento;
                             $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin,$fechaIni);
+                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
                         }
                         $numero_random = rand(0, 24);
                         TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
@@ -185,15 +185,15 @@ LIMIT 18
                 if ($juego->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $juego->lapsoProxEventoHoras;
                     $fecha = now()->addHours($NumeroHoras);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha, now());
                 } else if ($juego->lapsoProxEventoDia > 0) {
                     $NumeroDias = $juego->lapsoProxEventoDia;
                     $fecha = now()->addDays($NumeroDias);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha, now());
                 } else if ($juego->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                     $fecha = now()->addMinutes($NumeroMinutos);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha,now());
+                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha, now());
                 }
                 $numero_random = rand(0, 24);
                 TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
@@ -211,16 +211,16 @@ LIMIT 18
         return $resultado;
     }
 
-    public static function CambiarEstadoAnimacionEvento($IdEvento,$token_animacion)
+    public static function CambiarEstadoAnimacionEvento($IdEvento, $token_animacion)
     {
 
         $resultado = false;
         $respuesta = DB::table('evento')
-            ->where('idEvento',$IdEvento)
-            ->where('tokenAnimacion',$token_animacion)
+            ->where('idEvento', $IdEvento)
+            ->where('tokenAnimacion', $token_animacion)
             ->first();
 
-        if($respuesta != null){
+        if ($respuesta != null) {
             try {
                 $evento = Evento::findorfail($IdEvento);
                 $evento->estadoAnimacion = 1;
@@ -235,11 +235,11 @@ LIMIT 18
     public static function EventoTokenAnimacion(string $token_generado, $idEvento)
     {
         $evento = "";
-        try{
+        try {
             $evento = Evento::findorfail($idEvento);
             $evento->tokenAnimacion = $token_generado;
             $evento->save();
-        }catch (QueryException $ex){
+        } catch (QueryException $ex) {
         }
 
         return $evento;
@@ -253,5 +253,16 @@ LIMIT 18
             $token = $evento->tokenAnimacion;
         }
         return $token;
+    }
+
+    public static function HistorialEventoApi($ideventoactual)
+    {
+        $listar = DB::select(DB::raw("select  evt.idEvento,res.valorGanador FROM  resultado_evento res
+        inner join evento evt on res.idEvento=evt.idEvento
+        left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
+        WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=" . $ideventoactual . " 
+        order by evt.`fechaEvento` DESC
+        LIMIT 20"));
+        return $listar;
     }
 }

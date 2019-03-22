@@ -15,7 +15,7 @@ class ApiController extends Controller
     {
         $IdJuego = $request->input('IdJuego');
         $evento_actual = Evento::EventoActual($IdJuego);
-        $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
+        $resultado_evento = Evento::HistorialEventoApi($IdJuego);
         if ($resultado_evento != null) {
             if ($evento_actual == null) {
                 return response()->json(['mensaje' => 'No se ha encontrado evento alguno']);
