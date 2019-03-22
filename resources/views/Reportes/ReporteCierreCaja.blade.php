@@ -64,7 +64,6 @@
                     <h4 class="text-center">¿Esta seguro de cerrar caja?</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     <button type="button" class="btn btn-primary" id="btnConfirmar">Confirmar</button>
                 </div>
             </div>

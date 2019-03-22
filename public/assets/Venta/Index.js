@@ -473,8 +473,14 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                           location.reload(true)
                       }
 //fin segundos bloqueo
-                      $('.countdown').html(minutes + ':' + seconds);
-                      timer2 = minutes + ':' + seconds;
+                if(minutes<0){
+                    $('.countdown').html('--');
+                    timer2 = minutes + ':' + seconds;
+                }else{
+                    $('.countdown').html(minutes + ':' + seconds);
+                    timer2 = minutes + ':' + seconds;
+                }
+
             }, 1000)
 ////////FIN PROXIMO EN
 

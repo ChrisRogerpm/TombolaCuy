@@ -56,29 +56,32 @@ class Reporte extends Model
         $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
-         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
+          ,sum(t.montoTotal) apuestas
+         ,IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
-         e.nombre Evento,count(t.idticket) Jugadores,
-         IFNULL(( select count(ti.idTicket) from ganador_evento ge
+         where ti.idAperturaCaja= ac.idaperturacaja),0) Pagos
+        ,
+         e.idEVento Evento  ,count(t.idticket) Jugadores
+         ,  IFNULL(( select count(ti.idTicket) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) totalganadores,
-         re.valorGanador ganador, tia.rgb color, tip.nombre TipoApuesta
-         from apertura_caja ac
+         where ti.idAperturaCaja= ac.idaperturacaja),0) totalganadores 
+         ,re.valorGanador ganador   , tia.rgb color, tip.nombre TipoApuesta  
+           from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-         inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
-         inner join evento e on e.idevento=t.idevento 
-         inner join resultado_evento re on re.idevento=e.idevento and re.idTipoApuesta in (1,6)
-         inner join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta
-          inner join tipo_pago tip on tip.idTipoPago=tia.idTipoPago 
+         left join ticket t on  t.idaperturacaja=ac.idaperturacaja        
+         left join evento e on e.idevento=t.idevento          
+         left join resultado_evento re on re.idevento=e.idevento and re.idTipoPago in (1,6)
+          left join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta  and re.idTipoPago in (1,6)
+           left join tipo_pago tip on tip.idTipoPago=tia.idTipoPago  
           where  ac.estado!=0
-         and ac.fechaoperacion between $fechaIni and $fechaFin
-         and c.idPuntoVenta IN($tiendas)
-         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
+         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
+         and c.idPuntoVenta in ($tiendas)       
+       
+       group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
 
         return $listar;
     }

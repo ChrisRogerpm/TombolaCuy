@@ -123,9 +123,6 @@ class ReporteController extends Controller
         $mensaje_error = "";
         try {
             $lista = Reporte::JackPotSegunidJackpot($request);
-
-            //$lista = DB::table('tipo_apuesta')->get();
-
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }

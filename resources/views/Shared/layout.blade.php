@@ -205,7 +205,7 @@
                         <!-- Profile avatar -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <div class="profile-avatar circle">
-                                <img src="images/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
+                                <img src="{{asset('images/userdefault.jpg')}}">
                             </div>
                             <span class="user-name">{{Auth::user()->usuario}}</span>
                         </a>
@@ -740,7 +740,7 @@
                     <!-- Profile Avatar -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <div class="avatar avatar-lg">
-                            <img src="images/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
+                            <img src="{{asset('images/userdefault.jpg')}}">
                         </div>
                     </a>
                     <!-- /Profile Avatar -->

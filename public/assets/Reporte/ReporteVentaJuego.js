@@ -45,13 +45,13 @@ function ReporteVentaJson(url, dataForm) {
             var resp = response.data;
             $("#PanelTabla").show();
             $("#table_panel").DataTable({
-                // dom: 'Bfrtip',
-                // buttons: [
-                //     {
-                //         extend: 'excelHtml5',
-                //         title: 'Reporte Ventas',
-                //     }
-                // ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Reporte Ventas',
+                    }
+                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
