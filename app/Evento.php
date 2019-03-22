@@ -254,15 +254,4 @@ LIMIT 18
         }
         return $token;
     }
-
-    public static function HistorialEventoApi($ideventoactual)
-    {
-        $listar = DB::select(DB::raw("select  evt.idEvento,res.valorGanador FROM  resultado_evento res
-        inner join evento evt on res.idEvento=evt.idEvento
-        left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
-        WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=" . $ideventoactual . " 
-        order by evt.`fechaEvento` DESC
-        LIMIT 20"));
-        return $listar;
-    }
 }
