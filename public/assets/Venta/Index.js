@@ -1069,11 +1069,17 @@ $(document).ready(function () {
 
         ///BOTON CERRAR  -- BORRAR
         $("#div_botones .cerrar").on("click",function(){
-            idtabla="tabla_eventos";
-            $("tbody","#"+idtabla).empty();
-            var totales_maximo=sacar_totales_y_maximo();
-            $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
-            $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
+            if($("#tabla_eventos tbody tr").length=="0"){
+                toastr.error("No hay Apuestas");
+            }else{
+                idtabla="tabla_eventos";
+                $("tbody","#"+idtabla).empty();
+                var totales_maximo=sacar_totales_y_maximo();
+                $(".valorestotalmax #valor_total span").text("TOTAL: "+parseFloat(totales_maximo.total).toFixed(2)+" "+divisa);
+                $(".valorestotalmax #valor_maximo span").text("MAX: "+parseFloat(totales_maximo.maximo).toFixed(2)+" "+divisa);
+
+            }
+    
 
         // $("#numeros_tabla .apostado").removeClass("apostado");
 
@@ -1090,7 +1096,7 @@ $(document).ready(function () {
 
            ///BOTON BUSCAR
         $("#div_botones .barcode").on("click",function(){
-            $("#modal_buscar").modal("show");1  
+             $("#modal_buscar").modal("show"); 
         })
 
         ///BOTON IMPRIMIR
