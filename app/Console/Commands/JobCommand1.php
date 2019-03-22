@@ -40,9 +40,6 @@ class JobCommand1 extends Command
      */
     public function handle()
     {
-        for ($i = 0; $i < 59; $i++) {
-            Evento::GenerarEventoJob();
-            sleep(1);
-        }
+        Evento::GenerarEventoJob();
     }
 }
