@@ -313,8 +313,6 @@ function ListarVentaDatosJson() {
             USUARIO=response.usuario;
             hora_servidor=response.hora_servidor;
 
-
-
             dinerodefault=response.dinerodefault;
             if(dinerodefault.length==0){
                 toastr.error("No hay DineroDefault Registrados","Error");
@@ -322,18 +320,18 @@ function ListarVentaDatosJson() {
             }
             ////apertura caja datos
              aperturacajadatos = response.aperturacajadatos;
-             aperturacajadatos=aperturacajadatos[0];
             if(aperturacajadatos.length==0){
                 toastr.error("No hay AperturaCaja Registrado","Error");
                 return false;
             }
+             aperturacajadatos=aperturacajadatos[0];
+
              divdatos=$("#datoscaja");
              $.each(aperturacajadatos,function(col,valor){
                     $("#"+col,divdatos).val(valor).attr("readonly","readonly");
              })
             ////fin apertura caja datos
             ///conf_eventos
-            eventos=response.eventos;
             eventos=response.eventos;
 
              if(eventos.length==0){
@@ -349,6 +347,7 @@ function ListarVentaDatosJson() {
                                 .data("apuestaMinima",e.apuestaMinima)
                                 .data("apuestaMaxima",e.apuestaMaxima)
                                 .data("FechaEvento",e.FechaEvento)
+                                .data("fechaFinEvento",e.fechaFinEvento)
                                 .data("segBloqueoAntesEvento",e.segBloqueoAntesEvento)
                                 .data("idMoneda",e.idMoneda)
 
@@ -450,6 +449,8 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             //var timer2 = minutos+":01";//"5:01";
             var timer2 = minutos+":"+segundos;
             console.log(fechaFinEvento + " "+ hora_servidor+  "  - "+timer2 );
+            if(minutos<0)
+            console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
 
             if(typeof interval!="undefined"){
                 clearInterval(interval);$('.countdown').html("00:00")
@@ -864,6 +865,7 @@ $(document).ready(function () {
                 EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segBloqueoAntesEvento"));
                 eventoactual={};
                 eventoactual.FechaEvento=$(this).data("FechaEvento");
+                eventoactual.fechaFinEvento=$(this).data("fechaFinEvento");
                 eventoactual.nombre=$(this).data("nombre");
                 eventoactual.IdEvento=$(this).data("id");
                 eventoactual.apuestaMinima=$(this).data("apuestaMinima");
@@ -872,7 +874,7 @@ $(document).ready(function () {
                 eventoactual.idMoneda=$(this).data("idMoneda");
 
 
-        HistorialJson(eventoactual.IdEvento);
+                HistorialJson(eventoactual.IdEvento);
 
 
                 var imagensrc=$("img",this).attr("src");
