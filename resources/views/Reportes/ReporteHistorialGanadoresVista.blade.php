@@ -77,7 +77,6 @@
                             <div class="form-group">
                                 <label for="">Tiendas</label>
                                 <select multiple="multiple" id="cboTienda" name="tiendas" class="form-control input-sm multiselect" style="width: 100%;">
-                                    
                                 </select>
                             </div>
                         </div>
@@ -104,5 +103,5 @@
 @stop
 
 @push('Js')
-<script src="{{asset('../assets/Reporte/ReporteHistorialGanadores.js')}}"></script>
+<script src="{{asset('assets/Reporte/ReporteHistorialGanadores.js')}}"></script>
 @endpush
