@@ -216,12 +216,24 @@ class Reporte extends Model
         $fecha_ini = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fecha_fin = Carbon::parse($request->input('fechaFin'))->endOfDay();
 
-        $listar = DB::table('evento as e')
-            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
-            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
-            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
-            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-            ->get();
+//        $listar = DB::table('evento as e')
+//            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
+//            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
+//            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
+//            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+//            ->get();
+
+        $listar = DB::select(DB::raw("SELECT e.idEvento, e.fechaEvento AS Fecha, e.idEvento AS Evento, j.nombre AS Juego, m.codlso as Moneda,
+         e.estadoEvento,ifnull(sum(t.montoTotal),0) - ifnull(sum(ge.montoAPagar),0) Ganado
+        FROM evento e
+        inner JOIN juego as j on j.idJuego = e.idJuego
+        inner JOIN moneda AS m on m.idMoneda = e.idMoneda
+        left join ticket t on t.idEvento=e.idevento 
+        left join apuesta a on a.idTicket=t.idticket
+        left join  ganador_evento ge on ge.idApuesta=a.idApuesta
+        where e.fechaEvento between '$fecha_ini' and '$fecha_fin'
+        group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
+        order by e.idevento desc"));
 
         return $listar;
     }

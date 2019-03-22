@@ -19,4 +19,4 @@ use Illuminate\Http\Request;
 
 Route::post('DataEventoResultadoEvento','Api\ApiController@EventoFecha');
 Route::post('ConfirmacionToken','Api\ApiController@ConfirmacionToken');
-Route::post('ResultadosEventoHistorial','Api\ApiController@ResultadosEventoHistorial');
+Route::post('DataEventoResultadoEventoFk','Api\ApiController@EventoFecha_outValidate');

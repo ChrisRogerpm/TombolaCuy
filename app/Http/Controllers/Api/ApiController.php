@@ -117,45 +117,41 @@ class ApiController extends Controller
                 if (now() > $fecha_animacion && now() < $fecha_evento_prox) {
                     $estado_animacion = true;
                 }
-                if ($estado_animacion) {
-                    if ($evento_actual->estadoAnimacion == 0) {
-                        $token_generado = str_random(8);
-                        $token = Evento::ValidarTokenAnimacion($evento_actual->idEvento);
-                        if (!empty($token)) {
-                            return response()->json([
-                                'token_animacion' => $token,
-                                'mensaje_token' => 'Esperando respuesta de token',
-                                'estado_animacion' => $estado_animacion,
-                                'fecha_evento_ini_actual' => $fecha_ini_actual,
-                                'fecha_evento_fin_actual' => $fecha_fin_actual,
-                                'fecha_evento_proximo' => $fecha_evento_prox,
-                                'fecha_animacion' => $fecha_animacion,
-                                'evento_id_actual' => $evento_actual->idEvento,
-                                'evento_valor_ganador' => $ganador->valorGanador,
-                                'resultado_evento' => $resultado_evento,
-                                'estadistica' => $estadistica
-                            ]);
-                        } else {
-                            $eventoToken = Evento::EventoTokenAnimacion($token_generado, $evento_actual->idEvento);
-                            return response()->json([
-                                'token_animacion' => $eventoToken->tokenAnimacion,
-                                'mensaje_token' => 'Esperando respuesta de token',
-                                'estado_animacion' => $estado_animacion,
-                                'fecha_evento_ini_actual' => $fecha_ini_actual,
-                                'fecha_evento_fin_actual' => $fecha_fin_actual,
-                                'fecha_evento_proximo' => $fecha_evento_prox,
-                                'fecha_animacion' => $fecha_animacion,
-                                'evento_id_actual' => $evento_actual->idEvento,
-                                'evento_valor_ganador' => $ganador->valorGanador,
-                                'resultado_evento' => $resultado_evento,
-                                'estadistica' => $estadistica
-                            ]);
-                        }
+                if ($evento_actual->estadoAnimacion == 0) {
+                    $token_generado = str_random(8);
+                    $token = Evento::ValidarTokenAnimacion($evento_actual->idEvento);
+                    if (!empty($token)) {
+                        return response()->json([
+                            'token_animacion' => $token,
+                            'mensaje_token' => 'Esperando respuesta de token',
+                            'estado_animacion' => $estado_animacion,
+                            'fecha_evento_ini_actual' => $fecha_ini_actual,
+                            'fecha_evento_fin_actual' => $fecha_fin_actual,
+                            'fecha_evento_proximo' => $fecha_evento_prox,
+                            'fecha_animacion' => $fecha_animacion,
+                            'evento_id_actual' => $evento_actual->idEvento,
+                            'evento_valor_ganador' => $ganador->valorGanador,
+                            'resultado_evento' => $resultado_evento,
+                            'estadistica' => $estadistica
+                        ]);
                     } else {
-                        return response()->json(['mensaje' => 'El estado de animación del evento actual esta activado', 'estado_animacion' => false]);
+                        $eventoToken = Evento::EventoTokenAnimacion($token_generado, $evento_actual->idEvento);
+                        return response()->json([
+                            'token_animacion' => $eventoToken->tokenAnimacion,
+                            'mensaje_token' => 'Esperando respuesta de token',
+                            'estado_animacion' => $estado_animacion,
+                            'fecha_evento_ini_actual' => $fecha_ini_actual,
+                            'fecha_evento_fin_actual' => $fecha_fin_actual,
+                            'fecha_evento_proximo' => $fecha_evento_prox,
+                            'fecha_animacion' => $fecha_animacion,
+                            'evento_id_actual' => $evento_actual->idEvento,
+                            'evento_valor_ganador' => $ganador->valorGanador,
+                            'resultado_evento' => $resultado_evento,
+                            'estadistica' => $estadistica
+                        ]);
                     }
                 } else {
-                    return response()->json(['mensaje' => 'No se encuentra en el tiempo de rango de Animación']);
+                    return response()->json(['mensaje' => 'El estado de animación del evento actual esta activado', 'estado_animacion' => false]);
                 }
             }
         } else {
