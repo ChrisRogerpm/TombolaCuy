@@ -20,7 +20,7 @@ function init(host,port){
       log('trying WebSocket - : '+url);
   try{
     socket = new WebSocket(host);
-    log('WebSocket - status '+socket.readyState);
+    //log('WebSocket - status '+socket.readyState);
     socket.onopen    = function(msg){ log("Welcome - status "+this.readyState); };
     socket.onmessage = function(msg){ 
 	       //console.log("Ws-data"+msg);

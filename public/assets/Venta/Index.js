@@ -459,51 +459,51 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             if(minutos<0)
             console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
 
-//             if(typeof interval!="undefined"){
-//                 clearInterval(interval);$('.countdown').html("00:00")
-//             }
-//             interval = setInterval(function() {
-//                       var timer = timer2.split(':');
-//                       var minutes = parseInt(timer[0], 10);
-//                       var seconds = parseInt(timer[1], 10);
-//                       --seconds;
-//                       minutes = (seconds < 0) ? --minutes : minutes;
-//                       if (minutes < 0) clearInterval(interval);
-//                       seconds = (seconds < 0) ? 59 : seconds;
-//                       seconds = (seconds < 10) ? '0' + seconds : seconds;
-// ///////segundos bloqueo
-//                       if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
-//                          $.LoadingOverlay("show");
-//                       }
-//                       else{
-//                          segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
-//                         if(segundostotales==SEGBLOQUEOANTESEVENTO){
-//                             $.LoadingOverlay("show");
-//                         }
+            if(typeof interval!="undefined"){
+                clearInterval(interval);$('.countdown').html("00:00")
+            }
+            interval = setInterval(function() {
+                      var timer = timer2.split(':');
+                      var minutes = parseInt(timer[0], 10);
+                      var seconds = parseInt(timer[1], 10);
+                      --seconds;
+                      minutes = (seconds < 0) ? --minutes : minutes;
+                      if (minutes < 0) clearInterval(interval);
+                      seconds = (seconds < 0) ? 59 : seconds;
+                      seconds = (seconds < 10) ? '0' + seconds : seconds;
+///////segundos bloqueo
+                      if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
+                         $.LoadingOverlay("show");
+                      }
+                      else{
+                         segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
+                        if(segundostotales==SEGBLOQUEOANTESEVENTO){
+                            $.LoadingOverlay("show");
+                        }
 
-//                       }
-//                       if(minutes==0 && seconds==1){
-//                         $.LoadingOverlay("hide");
-//                           location.reload(true)
-//                       }
-// //fin segundos bloqueo
-//                 if(minutes<0){
-//                     $('.countdown').html('--');
-//                     timer2 = minutes + ':' + seconds;
-//                 }else{
-//                     $('.countdown').html(minutes + ':' + seconds);
-//                     timer2 = minutes + ':' + seconds;
-//                 }
+                      }
+                      if(minutes==0 && seconds==1){
+                        $.LoadingOverlay("hide");
+                          location.reload(true)
+                      }
+//fin segundos bloqueo
+                if(minutes<0){
+                    $('.countdown').html('--');
+                    timer2 = minutes + ':' + seconds;
+                }else{
+                    $('.countdown').html(minutes + ':' + seconds);
+                    timer2 = minutes + ':' + seconds;
+                }
 
-//             }, 1000)
+            }, 1000)
 
 
             //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
-            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            // connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
             
-            setTimeout(function(){
-                intervalohora=setInterval(function(){pedir_hora_server()},1000);
-            },800)
+            // setTimeout(function(){
+            //     intervalohora=setInterval(function(){pedir_hora_server()},1000);
+            // },800)
             ///////////////////////////////////////////////////////////////
 
 
