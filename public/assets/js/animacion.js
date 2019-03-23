@@ -3,6 +3,7 @@ token="";
 anguloRotacion=0;
 $(document).ready(function () {
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
+    CargarEstadistica(1);
     setInterval(function () {
         if (iniciado == false) {
             consultarEvento(1);
@@ -814,6 +815,52 @@ function CerrarEvento(IdJuego,token_animacion) {
         success: function (response) {  
             console.log(response);
             //alert("muerto");                                               
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+function CargarEstadistica(IdJuego) {    
+    var url = document.location.origin + "/" + "api/DataEventoResultadoEventoFk";
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({IdJuego: IdJuego}),
+        beforeSend: function () {
+        },
+        complete: function () {
+        },
+        success: function (response) {            
+            console.log(response);
+            if(response.token_animacion != undefined){                
+                token=response.token_animacion;                
+                $.each(response.estadistica, function( key, value ) {
+                    $("#"+value.TipoValorApuesta).text(value.Repetidos);
+                });
+                var strUltimos12="";
+                var clase="caja1";
+                $.each(response.resultado_evento, function( key, value ) {
+                    if(key<12){
+                        switch (value.valorGanador) {
+                            case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
+                                clase="caja2";
+                              break;
+                            case '15':case '4':case '2':case '22':case '11':case '6':case '8':case '10':case '24':case '20':case '13':case '17':
+                                clase="caja1";
+                              break;                            
+                            default:
+                                clase="caja0";
+                        }
+                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
+                    }
+                });
+                $("#tablaUltimos").html(strUltimos12);
+            }
+            else{
+
+            }
+            //setTimeout(function(){ iniciado=false; }, 10000);   
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
