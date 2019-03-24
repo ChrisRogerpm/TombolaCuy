@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Funciones,App\Evento;
+use App\Funciones;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -10,8 +10,7 @@ class HomeController extends Controller
 {
     public function DashboardVista()
     {
-        //return view('Home.DashboardVista');
-        Evento::GenerarEventoJob();
+        return view('Home.DashboardVista');
     }
 
     public function GenerarExcel(Request $request)
