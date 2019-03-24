@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Evento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Evento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Venta/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Venta/Index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,65 +34,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Evento.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="343" column="17" lean-forward="true" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
-              <folding>
-                <element signature="e#290#566#0#PHP" />
-                <element signature="e#606#1066#0#PHP" />
-                <element signature="e#668#1035#0#PHP" />
-                <element signature="e#679#1034#1#PHP" />
-                <element signature="e#1072#1577#0#PHP" />
-                <element signature="e#1140#1546#0#PHP" />
-                <element signature="e#1151#1545#1#PHP" />
-                <element signature="e#1583#1802#0#PHP" />
-                <element signature="e#1808#2057#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding>
-                <element signature="e#40#55#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand1.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand2.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -101,10 +44,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+        <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand1.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="141" column="91" selection-start-line="141" selection-start-column="91" selection-end-line="141" selection-end-column="91" />
+            <state relative-caret-position="532">
+              <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="638" column="12" selection-start-line="638" selection-start-column="12" selection-end-line="638" selection-end-column="12" />
+              <caret line="644" column="12" selection-start-line="644" selection-start-column="12" selection-end-line="644" selection-end-column="12" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,7 +77,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ReporteVentaVista</find>
       <find>ReporteVenta</find>
       <find>ReporteVentaJson</find>
       <find>AperturaCajaCerrarFk</find>
@@ -151,6 +106,7 @@
       <find>iniciado</find>
       <find>CerrarEvento</find>
       <find>Animaci</find>
+      <find>JackpotDatosJson</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -197,7 +153,6 @@
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteHistorialGanadoresVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" />
         <option value="$PROJECT_DIR$/resources/views/Venta/Index.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/Venta/Index.js" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/ResultadoEvento.php" />
         <option value="$PROJECT_DIR$/app/Reporte.php" />
@@ -219,6 +174,7 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" />
         <option value="$PROJECT_DIR$/app/Evento.php" />
+        <option value="$PROJECT_DIR$/public/assets/Venta/Index.js" />
       </list>
     </option>
   </component>
@@ -354,6 +310,13 @@
               <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Console" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Console" type="462c0819:PsiDirectoryNode" />
+              <item name="Commands" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
@@ -542,7 +505,7 @@
       <workItem from="1553389974103" duration="362000" />
       <workItem from="1553391599931" duration="692000" />
       <workItem from="1553406353474" duration="4917000" />
-      <workItem from="1553435570958" duration="4047000" />
+      <workItem from="1553435570958" duration="4866000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -590,7 +553,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366390000" />
+    <option name="totallyTimeSpent" value="367209000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -605,7 +568,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.22441365" />
+      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.22441365" />
       <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
@@ -720,13 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="706" column="43" selection-start-line="706" selection-start-column="25" selection-end-line="706" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -1019,24 +975,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="343" column="17" lean-forward="true" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
+        <state relative-caret-position="301">
+          <caret line="348" column="13" selection-start-line="348" selection-start-column="13" selection-end-line="348" selection-end-column="13" />
           <folding>
             <element signature="e#290#566#0#PHP" />
             <element signature="e#606#1066#0#PHP" />
@@ -1047,6 +989,31 @@
             <element signature="e#1151#1545#1#PHP" />
             <element signature="e#1583#1802#0#PHP" />
             <element signature="e#1808#2057#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Console/Commands/JobCommand1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="638" column="12" selection-start-line="638" selection-start-column="12" selection-end-line="638" selection-end-column="12" />
+          <caret line="644" column="12" selection-start-line="644" selection-start-column="12" selection-end-line="644" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

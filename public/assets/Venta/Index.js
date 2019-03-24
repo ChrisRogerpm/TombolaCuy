@@ -636,13 +636,13 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         JackpotDatosJson($("#idPuntoVenta").val());
         intervalojackpot=setInterval(function(){
             JackpotDatosJson($("#idPuntoVenta").val());
-        },14000)
+        },16000)
         //HistorialJson(eventoactual.IdEvento);
         
         intervalohistorial=setInterval(function(){
         HistorialJson(eventoactual.IdEvento);
 
-        },14000)
+        },16000)
         ///fin jackpot
 
         },///FIN SUCCESS
