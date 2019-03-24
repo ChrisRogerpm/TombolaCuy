@@ -108,14 +108,14 @@ class Ticket extends Model
     public static function BuscarApuestasIdTicket($idTicket)
     {
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
-        $listar = DB::select(DB::raw('
+        $listar = DB::select(DB::raw("
                                
                                  select  tick.idEvento,tipoapuesta.idTipoApuesta, tipoapuesta.valorapuesta, tipopago.nombre from apuesta 
                                 left join tipo_apuesta tipoapuesta on  tipoapuesta.idTipoApuesta=apuesta.idTipoApuesta 
                                 left join tipo_pago tipopago on tipopago.idTipoPago = tipoapuesta.idTipoPago
                                 left join ticket tick on tick.idTicket=apuesta.idTicket
-                                where apuesta.idTicket='.$idTicket.'
-                                '));
+                                where apuesta.idTicket='".$idTicket."'
+                                "));
         return $listar;
     }
 
