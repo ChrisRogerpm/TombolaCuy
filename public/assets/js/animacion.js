@@ -2,10 +2,15 @@ iniciado = false;
 token="";
 anguloRotacion=0;
 $(document).ready(function () {
+    var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
     CargarEstadistica(1);
     setInterval(function () {
+        if(i==10){
+            location.reload();
+        }
         if (iniciado == false) {
+            i=i+1;
             consultarEvento(1);
         }
     }, 1000);
@@ -194,7 +199,7 @@ function animate() {
                     if (model.position.z < -2.5) {
                         if (model.position.z < -3.5) {
                             cancelAnimationFrame(id);
-                            $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                            $("#ImgContainer").css("background-image", "url('images/0.jpg')");
                             $("#ImgContainer").show();
                             model.position.x = 0;
                             model.position.y = 0;
@@ -507,7 +512,7 @@ function animate() {
                 case 15:
                     if (model.position.z < -3.6) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/15.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -527,7 +532,7 @@ function animate() {
                 case 16:
                     if (model.position.z > 1.8) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/16.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -547,7 +552,7 @@ function animate() {
                 case 17:
                     if (model.position.z < -2.8) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/17.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -567,7 +572,7 @@ function animate() {
                 case 18:
                     if (model.position.z < -0.145) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/18.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -587,7 +592,7 @@ function animate() {
                 case 19:
                     if (model.position.z < -3.4) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/19.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -607,7 +612,7 @@ function animate() {
                 case 20:
                     if (model.position.z > 0.87) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/20.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -627,7 +632,7 @@ function animate() {
                 case 21:
                     if (model.position.z < -2.27) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/21.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -647,7 +652,7 @@ function animate() {
                 case 22:
                     if (model.position.z > 0.765) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/22.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -667,7 +672,7 @@ function animate() {
                 case 23:
                     if (model.position.z > 4.5) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/23.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -687,7 +692,7 @@ function animate() {
                 case 24:
                     if (model.position.z > 2.85) {
                         cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/imgCuyCargando.jpg')");
+                        $("#ImgContainer").css("background-image", "url('images/24.jpg')");
                         $("#ImgContainer").show();
                         model.position.x = 0;
                         model.position.y = 0;
@@ -746,7 +751,9 @@ function iniciar(numeorGanador) {
     // clock = new THREE.Clock();
     // clockCuyDudando = new THREE.Clock();
     // clockCuyChoque = new THREE.Clock();
-    model.rotation.y=0;
+    if(model!=undefined){
+        model.rotation.y=0;
+    }
     modelCuyDudando.rotation.y=0;
     
     animate();
