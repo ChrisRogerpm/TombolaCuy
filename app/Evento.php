@@ -334,7 +334,7 @@ LIMIT 18
 
         foreach ($ListaEventosDia as $li) {
 
-            if($li->fechaEvento == now()){
+            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
                 $val = Evento::findorfail($li->idEvento);
                 if ($val->estadoEvento == 0) {
                     $val->estadoEvento = 1;
@@ -342,7 +342,7 @@ LIMIT 18
                     $numero_random = rand(0, 24);
                     TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
                 }
-            }else if($li->fechaFinEvento == now()){
+            } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
                 $evento = Evento::findorfail($li->idEvento);
                 $evento->estadoEvento = 2;
                 $evento->save();
