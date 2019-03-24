@@ -331,16 +331,17 @@ LIMIT 18
         $ListaEventosDia = DB::table('evento as e')
             ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
             ->get();
-        $JuegoEvento = Evento::EventoEjecucionUnico();
-        if($JuegoEvento != null){
-            if($JuegoEvento->fechaFinEvento == now()){
-                $evento = Evento::findorfail($JuegoEvento->idEvento);
-                $evento->estadoEvento = 2;
-                $evento->save();
-            }
-        }else{
-            foreach ($ListaEventosDia as $li) {
-                if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+
+        foreach ($ListaEventosDia as $li) {
+            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+                $JuegoEvento = Evento::EventoEjecucionUnico();
+                if ($JuegoEvento != null) {
+                    if ($JuegoEvento->fechaFinEvento == now()) {
+                        $evento = Evento::findorfail($JuegoEvento->idEvento);
+                        $evento->estadoEvento = 2;
+                        $evento->save();
+                    }
+                } else {
                     $val = Evento::findorfail($li->idEvento);
                     if ($val->estadoEvento == 0) {
                         $val->estadoEvento = 1;
@@ -351,11 +352,13 @@ LIMIT 18
                 }
             }
         }
+
     }
 
-    public static function CerrarEventoJuego($IdJuego)
+    public
+    static function CerrarEventoJuego($IdJuego)
     {
-        $UltimoEvento = Evento::where('idJuego',$IdJuego)->first();
+        $UltimoEvento = Evento::where('idJuego', $IdJuego)->first();
         $resultado = Evento::findorfail($UltimoEvento->idEvento);
         $resultado->estadoEvento = 2;
         $resultado->save();
