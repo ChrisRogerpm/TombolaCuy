@@ -754,7 +754,9 @@ function iniciar(numeorGanador) {
     if(model!=undefined){
         model.rotation.y=0;
     }
-    modelCuyDudando.rotation.y=0;
+    if(modelCuyDudando!=undefined){
+        modelCuyDudando.rotation.y=0;
+    }
     
     animate();
 }
