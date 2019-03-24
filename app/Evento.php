@@ -333,24 +333,39 @@ LIMIT 18
             ->get();
 
         foreach ($ListaEventosDia as $li) {
-            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
-                $JuegoEvento = Evento::EventoEjecucionUnico();
-                if ($JuegoEvento != null) {
-                    if ($JuegoEvento->fechaFinEvento == now()) {
-                        $evento = Evento::findorfail($JuegoEvento->idEvento);
-                        $evento->estadoEvento = 2;
-                        $evento->save();
-                    }
-                } else {
-                    $val = Evento::findorfail($li->idEvento);
-                    if ($val->estadoEvento == 0) {
-                        $val->estadoEvento = 1;
-                        $val->save();
-                        $numero_random = rand(0, 24);
-                        TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
-                    }
+
+            if($li->fechaEvento < now()){
+                $val = Evento::findorfail($li->idEvento);
+                if ($val->estadoEvento == 0) {
+                    $val->estadoEvento = 1;
+                    $val->save();
+                    $numero_random = rand(0, 24);
+                    TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
                 }
+            }else if($li->fechaFinEvento >= now()){
+                $evento = Evento::findorfail($li->idEvento);
+                $evento->estadoEvento = 2;
+                $evento->save();
             }
+
+//            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+//                $JuegoEvento = Evento::EventoEjecucionUnico();
+//                if ($JuegoEvento != null) {
+//                    if ($JuegoEvento->fechaFinEvento == now()) {
+//                        $evento = Evento::findorfail($JuegoEvento->idEvento);
+//                        $evento->estadoEvento = 2;
+//                        $evento->save();
+//                    }
+//                } else {
+//                    $val = Evento::findorfail($li->idEvento);
+//                    if ($val->estadoEvento == 0) {
+//                        $val->estadoEvento = 1;
+//                        $val->save();
+//                        $numero_random = rand(0, 24);
+//                        TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+//                    }
+//                }
+//            }
         }
 
     }
