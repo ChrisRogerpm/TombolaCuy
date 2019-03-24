@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Evento;
 use App\Funciones;
-use App\TipoApuesta;
-use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
