@@ -495,7 +495,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                     timer2 = minutes + ':' + seconds;
                 }
 
-            }, 1000)
+            }, 2000)
 
 
             //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
