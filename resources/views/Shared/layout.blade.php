@@ -864,6 +864,8 @@
                     </li>
                     <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                     class="title">Seguridad</span></a></li>
+                    <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                    class="title">Configuración Evento</span></a></li>
                 </ul>
                 <!-- /SIDEBAR NAVIGATION -->
 

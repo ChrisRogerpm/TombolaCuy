@@ -17,7 +17,6 @@ class Juego extends Model
         'logo',
         'lapsoProxEventoHoras',
         'lapsoProxEventoDia',
-        'lapsoProxEventoDiaSemana',
         'lapsoProxEventoMinutos',
         'apuestaMinima',
         'apuestaMaxima',
@@ -41,7 +40,6 @@ class Juego extends Model
             ->where('idJuego', $idJuego)
             ->where('estadoEvento', 1)
             ->first();
-
         return $evento;
     }
 
