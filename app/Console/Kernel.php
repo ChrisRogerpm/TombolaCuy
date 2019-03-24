@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         'App\Console\Commands\JobCommand1',
-//        'App\Console\Commands\JobCommand2',
+        'App\Console\Commands\JobCommand2',
 //        'App\Console\Commands\JobCommand3',
 //        'App\Console\Commands\JobCommand4',
 //        'App\Console\Commands\JobCommand5',
@@ -56,7 +56,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('command:name1')->everyMinute();
-//        $schedule->command('command:name2')->everyMinute();
+        $schedule->command('command:name2')->dailyAt('09:24');
 //        $schedule->command('command:name3')->everyMinute();
 //        $schedule->command('command:name4')->everyMinute();
 //        $schedule->command('command:name5')->everyMinute();
