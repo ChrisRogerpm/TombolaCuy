@@ -331,11 +331,9 @@ LIMIT 18
         $ListaEventosDia = DB::table('evento as e')
             ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
             ->get();
-
         $JuegoEvento = Evento::EventoEjecucionUnico();
-
         if($JuegoEvento != null){
-            if($JuegoEvento->fechaFinEvento = now()){
+            if($JuegoEvento->fechaFinEvento == now()){
                 $evento = Evento::findorfail($JuegoEvento->idEvento);
                 $evento->estadoEvento = 2;
                 $evento->save();
