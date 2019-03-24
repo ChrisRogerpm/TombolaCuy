@@ -482,7 +482,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                         }
 
                       }
-                      if(minutes==0 && seconds==1){
+                      if(minutes==0 && seconds==0){
                         $.LoadingOverlay("hide");
                           location.reload(true)
                       }
@@ -636,13 +636,13 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         JackpotDatosJson($("#idPuntoVenta").val());
         intervalojackpot=setInterval(function(){
             JackpotDatosJson($("#idPuntoVenta").val());
-        },16000)
+        },14000)
         //HistorialJson(eventoactual.IdEvento);
         
         intervalohistorial=setInterval(function(){
         HistorialJson(eventoactual.IdEvento);
 
-        },16000)
+        },14000)
         ///fin jackpot
 
         },///FIN SUCCESS

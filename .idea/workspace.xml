@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Evento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Evento.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/Venta/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Venta/Index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,9 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="638" column="12" selection-start-line="638" selection-start-column="12" selection-end-line="638" selection-end-column="12" />
-              <caret line="644" column="12" selection-start-line="644" selection-start-column="12" selection-end-line="644" selection-end-column="12" />
+            <state relative-caret-position="502">
+              <caret line="486" column="47" lean-forward="true" selection-start-line="486" selection-start-column="47" selection-end-line="486" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
               </folding>
@@ -77,7 +74,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ReporteVenta</find>
       <find>ReporteVentaJson</find>
       <find>AperturaCajaCerrarFk</find>
       <find>Historia</find>
@@ -107,6 +103,7 @@
       <find>CerrarEvento</find>
       <find>Animaci</find>
       <find>JackpotDatosJson</find>
+      <find>if(minutes==0 &amp;&amp; seconds==1){</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -505,7 +502,7 @@
       <workItem from="1553389974103" duration="362000" />
       <workItem from="1553391599931" duration="692000" />
       <workItem from="1553406353474" duration="4917000" />
-      <workItem from="1553435570958" duration="4866000" />
+      <workItem from="1553435570958" duration="5094000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -553,7 +550,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367209000" />
+    <option name="totallyTimeSpent" value="367437000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1009,9 +1006,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="638" column="12" selection-start-line="638" selection-start-column="12" selection-end-line="638" selection-end-column="12" />
-          <caret line="644" column="12" selection-start-line="644" selection-start-column="12" selection-end-line="644" selection-end-column="12" />
+        <state relative-caret-position="502">
+          <caret line="486" column="47" lean-forward="true" selection-start-line="486" selection-start-column="47" selection-end-line="486" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
           </folding>
