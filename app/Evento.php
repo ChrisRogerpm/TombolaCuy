@@ -264,7 +264,7 @@ LIMIT 18
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
-        }else{
+        } else {
             $fecha_inicio = today()->startOfDay()->toDateTimeString();
             $fecha_fin = today()->endOfDay()->toDateTimeString();
         }
@@ -309,29 +309,57 @@ LIMIT 18
         }
     }
 
-    public static function GenerarResultadoEvento_CambiarEstadoEvento(){
+    public static function EventoEjecucionUnico()
+    {
+        $evento = DB::table('evento')
+            ->where('estadoEvento', 1)
+            ->first();
+        return $evento;
+    }
+
+    public static function GenerarResultadoEvento_CambiarEstadoEvento()
+    {
         $Configuracion = DB::table('configuracion_generar_evento')
             ->first();
         if ($Configuracion != null) {
             $fechaIni = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fechaFin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
-        }else{
+        } else {
             $fechaIni = today()->startOfDay()->toDateTimeString();
             $fechaFin = today()->endOfDay()->toDateTimeString();
         }
         $ListaEventosDia = DB::table('evento as e')
             ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
             ->get();
-        foreach ($ListaEventosDia as $li) {
-            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
-                $val = Evento::findorfail($li->idEvento);
-                if ($val->estadoEvento == 0) {
-                    $val->estadoEvento = 1;
-                    $val->save();
-                    $numero_random = rand(0, 24);
-                    TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+
+        $JuegoEvento = Evento::EventoEjecucionUnico();
+
+        if($JuegoEvento != null){
+            if($JuegoEvento->fechaFinEvento = now()){
+                $evento = Evento::findorfail($JuegoEvento->idEvento);
+                $evento->estadoEvento = 2;
+                $evento->save();
+            }
+        }else{
+            foreach ($ListaEventosDia as $li) {
+                if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+                    $val = Evento::findorfail($li->idEvento);
+                    if ($val->estadoEvento == 0) {
+                        $val->estadoEvento = 1;
+                        $val->save();
+                        $numero_random = rand(0, 24);
+                        TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+                    }
                 }
             }
         }
+    }
+
+    public static function CerrarEventoJuego($IdJuego)
+    {
+        $UltimoEvento = Evento::where('idJuego',$IdJuego)->first();
+        $resultado = Evento::findorfail($UltimoEvento->idEvento);
+        $resultado->estadoEvento = 2;
+        $resultado->save();
     }
 }
