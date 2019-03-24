@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/JobCommand2.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/JobCommand2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +33,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="58" column="59" selection-start-line="58" selection-start-column="59" selection-end-line="58" selection-end-column="59" />
+            <state relative-caret-position="26">
+              <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+              <folding>
+                <element signature="e#40#55#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,6 +72,27 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1092">
+              <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+              <folding>
+                <element signature="e#237#5010#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="141" column="91" selection-start-line="141" selection-start-column="91" selection-end-line="141" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -73,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ReporteHistorialGanadores</find>
       <find>ReporteVentaVista</find>
       <find>ReporteVenta</find>
       <find>ReporteVentaJson</find>
@@ -103,6 +134,7 @@
       <find>consultarEvento</find>
       <find>iniciado</find>
       <find>CerrarEvento</find>
+      <find>Animaci</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -153,7 +185,6 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/ResultadoEvento.php" />
         <option value="$PROJECT_DIR$/app/Reporte.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
@@ -163,7 +194,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ConfiguracionEventoController.php" />
         <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/ConfiguracionEvento/ConfiguracionEventoVista.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/public/assets/ConfiguracionEvento/Configuracion.js" />
         <option value="$PROJECT_DIR$/app/Juego.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
@@ -171,6 +201,8 @@
         <option value="$PROJECT_DIR$/app/Console/Commands/JobCommand1.php" />
         <option value="$PROJECT_DIR$/app/Console/Commands/JobCommand2.php" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -494,7 +526,7 @@
       <workItem from="1553389974103" duration="362000" />
       <workItem from="1553391599931" duration="692000" />
       <workItem from="1553406353474" duration="4917000" />
-      <workItem from="1553435570958" duration="1830000" />
+      <workItem from="1553435570958" duration="2550000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -542,7 +574,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364173000" />
+    <option name="totallyTimeSpent" value="364893000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,7 +604,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49853587" weight="0.3265306" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5036603" side_tool="true" weight="0.3282572" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49633968" visible="true" weight="0.32993197" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49633968" weight="0.32993197" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -868,13 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1431">
-          <caret line="136" column="14" lean-forward="true" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Empresa/EmpresaListarVista.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1508">
@@ -933,16 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
-          <folding>
-            <element signature="e#237#5010#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/animacion.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21736">
@@ -954,16 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="489">
           <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1002,8 +1007,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="58" column="59" selection-start-line="58" selection-start-column="59" selection-end-line="58" selection-end-column="59" />
+        <state relative-caret-position="26">
+          <caret line="47" column="6" lean-forward="true" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1092">
+          <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
+          <folding>
+            <element signature="e#237#5010#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="141" column="91" selection-start-line="141" selection-start-column="91" selection-end-line="141" selection-end-column="91" />
         </state>
       </provider>
     </entry>

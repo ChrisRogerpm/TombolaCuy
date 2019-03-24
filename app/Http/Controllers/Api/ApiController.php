@@ -104,9 +104,6 @@ class ApiController extends Controller
                 if ($evento_actual->lapsoProxEventoHoras > 0) {
                     $NumeroHoras = $evento_actual->lapsoProxEventoHoras;
                     $fecha_evento_proximo = Carbon::parse($evento_actual->fechaEvento)->addHours($NumeroHoras);
-                } else if ($evento_actual->lapsoProxEventoDia > 0) {
-                    $NumeroDias = $evento_actual->lapsoProxEventoDia;
-                    $fecha_evento_proximo = Carbon::parse($evento_actual->fechaEvento)->addDays($NumeroDias);
                 } else if ($evento_actual->lapsoProxEventoMinutos > 0) {
                     $NumeroMinutos = $evento_actual->lapsoProxEventoMinutos;
                     $fecha_evento_proximo = Carbon::parse($evento_actual->fechaEvento)->addMinutes($NumeroMinutos);
