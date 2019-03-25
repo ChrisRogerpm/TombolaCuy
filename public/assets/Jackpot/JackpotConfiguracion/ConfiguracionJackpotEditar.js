@@ -99,13 +99,14 @@ function LlenarConfigurazionPozo() {
         var validar = true;
 
 
-        if (numeroPozo === "" ||  incrementoJackpot === "" || incrementoPozoOculto === "" || limiteInferior === "" || limiteSuperior === "" ||
+        if (numeroPozo === "" || incrementoJackpot === "" || incrementoPozoOculto === "" || limiteInferior === "" || limiteSuperior === "" ||
             limiteSuperiorOculto === "" || limiteInferiorOculto === "") {
             validar = false;
             toastr.warning('Todo los campos de la tabla deben ser llenados', 'Mensaje Servidor');
             pozo = [];
             return false;
         }
+
         if (incrementoJackpot > 5 || incrementoJackpot < 1) {
             validar = false;
             toastr.warning('El rango Incr. Jackpot es de 1-5 - Jackpot ', 'Mensaje Servidor');
