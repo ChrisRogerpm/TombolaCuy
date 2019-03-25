@@ -102,13 +102,6 @@
     </div>
 
 
-
-
-
-
-
-
-
 @stop @push('Js')
     <script src="{{asset('../assets/Reporte/ReporteApuestas.js')}}"></script>
 

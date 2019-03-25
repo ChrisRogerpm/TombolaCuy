@@ -26,8 +26,10 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $condicional = $tiendas == 0 ? "" : "and c.idPuntoVenta in ($tiendas)";
+
         $lista = DB::select(DB::raw("
-        
         select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
@@ -40,7 +42,7 @@ class Reporte extends Model
         inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
         inner join evento e on e.idevento=t.idevento 
         where  ac.estado!=0
-        and c.idPuntoVenta in ($tiendas)
+        $condicional
         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
         
         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
@@ -55,6 +57,8 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->toDateString();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $condicional = $tiendas == 0 ? "" : "and c.idPuntoVenta in ($tiendas)";
 
         $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
           ,sum(t.montoTotal) apuestas
@@ -78,8 +82,7 @@ class Reporte extends Model
           left join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta  and re.idTipoPago in (1,6)
            left join tipo_pago tip on tip.idTipoPago=tia.idTipoPago  
           where  ac.estado!=0
-         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
-         and c.idPuntoVenta in ($tiendas)       
+         and ac.fechaoperacion between '$fechaIni' and '$fechaFin' $condicional
        group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
 
         return $listar;
@@ -333,13 +336,16 @@ class Reporte extends Model
 
         $condicional = $tiendas == 0 ? "" : "and pv.idPuntoVenta in ($tiendas)";
 
-        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'  from ticket ti
+        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
+        , (select GROUP_CONCAT(ta.valorapuesta SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
+        on ta.idtipoapuesta=apu.idtipoapuesta
+        where apu.idticket=ti.idticket) valores 
+        from ticket ti
         inner join evento e on e.idEvento=ti.idevento
         inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
         inner join caja ca on ca.idcaja=ac.idcaja
         inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
         where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
-        //where ti.fe between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)
         return $resultado;
     }
 
