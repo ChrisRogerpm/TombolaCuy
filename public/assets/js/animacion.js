@@ -1,6 +1,7 @@
 iniciado = false;
 token="";
 anguloRotacion=0;
+i=0;
 $(document).ready(function () {
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
@@ -10,7 +11,6 @@ $(document).ready(function () {
             location.reload();
         }
         if (iniciado == false) {
-            i=i+1;
             consultarEvento(1);
         }
     }, 1000);
@@ -162,6 +162,7 @@ function init() {
 }
 
 function animate() {
+    console.log(model.position);
     $("#ImgContainer").hide();
     id = requestAnimationFrame(animate);
     if (loaded) {
@@ -774,7 +775,8 @@ function consultarEvento(IdJuego) {
         },
         success: function (response) {
             console.log(response);
-            if(response.token_animacion != undefined){                
+            if(response.token_animacion != undefined){       
+                i=i+1;
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
