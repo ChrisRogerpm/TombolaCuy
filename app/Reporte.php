@@ -337,7 +337,7 @@ class Reporte extends Model
         $condicional = $tiendas == 0 ? "" : "and pv.idPuntoVenta in ($tiendas)";
 
         $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
-        , (select GROUP_CONCAT(ta.valorapuesta SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
+        , (select GROUP_CONCAT(ta.descripcion SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
         on ta.idtipoapuesta=apu.idtipoapuesta
         where apu.idticket=ti.idticket) valores 
         from ticket ti

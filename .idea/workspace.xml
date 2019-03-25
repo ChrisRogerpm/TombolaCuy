@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reporte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,14 +51,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="js" value="170" />
-          <entry key="php" value="550" />
+          <entry key="php" value="561" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Blade" value="48" />
           <entry key="JavaScript" value="170" />
-          <entry key="PHP" value="491" />
+          <entry key="PHP" value="502" />
           <entry key="SQL" value="11" />
         </counts>
       </usages-collector>
@@ -75,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Reporte.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="82" column="69" lean-forward="true" selection-start-line="82" selection-start-column="69" selection-end-line="82" selection-end-column="69" />
+            <state relative-caret-position="225">
+              <caret line="339" column="45" selection-start-line="339" selection-start-column="45" selection-end-line="339" selection-end-column="45" />
               <folding>
                 <element signature="e#23#32#0#PHP" expanded="true" />
               </folding>
@@ -574,7 +571,7 @@
       <workItem from="1553406353474" duration="4917000" />
       <workItem from="1553435570958" duration="8904000" />
       <workItem from="1553465558877" duration="2504000" />
-      <workItem from="1553519859538" duration="5512000" />
+      <workItem from="1553519859538" duration="6118000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -622,7 +619,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="379263000" />
+    <option name="totallyTimeSpent" value="379869000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1070,8 +1067,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Reporte.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="82" column="69" lean-forward="true" selection-start-line="82" selection-start-column="69" selection-end-line="82" selection-end-column="69" />
+        <state relative-caret-position="225">
+          <caret line="339" column="45" selection-start-line="339" selection-start-column="45" selection-end-line="339" selection-end-column="45" />
           <folding>
             <element signature="e#23#32#0#PHP" expanded="true" />
           </folding>
