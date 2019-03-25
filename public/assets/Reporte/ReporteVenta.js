@@ -64,6 +64,7 @@ function ReporteVentaJson(url, dataForm) {
                 "autoWidth": false,
                 "bProcessing": true,
                 "bDeferRender": true,
+                "order": [[ 1, "desc" ]],
                 data: resp,
                 columns: [
                     {data: "Fecha", title: "Fecha", class: 'text-center'},
@@ -72,7 +73,7 @@ function ReporteVentaJson(url, dataForm) {
                     {
                         data: null, title: 'Tipo Apta',
                         "render": function (value) {
-                            return '--';
+                            return 'Pleno';
                         }, class: 'text-center'
                     },
                     {data: "Moneda", title: "Moneda", class: 'text-center'},

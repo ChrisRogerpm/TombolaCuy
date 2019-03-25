@@ -80,7 +80,6 @@ class Reporte extends Model
           where  ac.estado!=0
          and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
          and c.idPuntoVenta in ($tiendas)       
-       
        group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
 
         return $listar;
