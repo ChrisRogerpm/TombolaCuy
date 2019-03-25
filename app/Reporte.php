@@ -67,7 +67,7 @@ class Reporte extends Model
          ,  IFNULL(( select count(ti.idTicket) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where ti.idAperturaCaja= ac.idaperturacaja),0) totalganadores 
+         where ti.idAperturaCaja= ac.idaperturacaja and ti.idEvento=e.idEvento),0) totalganadores
          ,re.valorGanador ganador   , tia.rgb color, tip.nombre TipoApuesta  
            from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
