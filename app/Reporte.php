@@ -323,5 +323,25 @@ class Reporte extends Model
         return $resultado;
     }
 
+    public static function ReporteHistorialTicket(Request $request)
+    {
+
+        $fecha_ini = $request->input('fechaInicio');
+        $fecha_fin = $request->input('fechaFin');
+        $tiendas = $request->input('tiendas');
+        $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $condicional = $tiendas == 0 ? "" : "and pv.idPuntoVenta in ($tiendas)";
+
+        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'  from ticket ti
+        inner join evento e on e.idEvento=ti.idevento
+        inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
+        inner join caja ca on ca.idcaja=ac.idcaja
+        inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
+        where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
+        //where ti.fe between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)
+        return $resultado;
+    }
+
 
 }
