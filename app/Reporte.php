@@ -61,7 +61,7 @@ class Reporte extends Model
          ,IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where ti.idAperturaCaja= ac.idaperturacaja),0) Pagos
+         where ti.idAperturaCaja= ac.idaperturacaja and ti.idEvento=e.idEvento ),0) Pagos
         ,
          e.idEVento Evento  ,count(t.idticket) Jugadores
          ,  IFNULL(( select count(ti.idTicket) from ganador_evento ge
@@ -231,7 +231,7 @@ class Reporte extends Model
         left join ticket t on t.idEvento=e.idevento 
         left join apuesta a on a.idTicket=t.idticket
         left join  ganador_evento ge on ge.idApuesta=a.idApuesta
-        where e.fechaEvento between '$fecha_ini' and '$fecha_fin'
+        where e.fechaEvento between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)
         group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
         order by e.idevento desc"));
 
