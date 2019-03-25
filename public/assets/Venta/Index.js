@@ -484,8 +484,12 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 
                     }
                     if(minutes==0 && seconds==0){
-                        $.LoadingOverlay("hide");
-                        location.reload(true)
+                        setTimeout(function(){
+                                $.LoadingOverlay("hide");
+                                location.reload(true);
+
+                        },1500)
+                        
                     }
 //fin segundos bloqueo
                     if(minutes<0){
