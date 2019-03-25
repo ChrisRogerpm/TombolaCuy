@@ -349,5 +349,25 @@ class Reporte extends Model
         return $resultado;
     }
 
+    public static function ReporteAuditoriaListarJson(Request $request)
+    {
+        $listar = DB::select(DB::raw("SELECT tbl.id,
+                 tbl.fecha_registro,
+                 tbl.usuario_id,
+                 tbl.permiso,
+                 usu.usuario,
+                 tbl.controller,
+                 tbl.method,
+                 tbl.descripcion,
+                 tbl.data
+                FROM auditoria tbl
+                JOIN users usu ON usu.idUsuario = tbl.usuario_id
+                WHERE tbl.usuario_id = $request->UsuarioId AND tbl.fecha_registro BETWEEN '$request->txtFechaInicio' AND '$request->txtFechaFin' 
+                ORDER BY tbl.id desc
+                "));
+
+        return $listar;
+    }
+
 
 }

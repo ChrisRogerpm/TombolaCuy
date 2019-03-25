@@ -38,6 +38,11 @@ class ReporteController extends Controller
         return view('Reportes.ReporteHistorialTickets');
     }
 
+    public function ReporteAuditoriaVista()
+    {
+        return view('Seguridad.Auditoria');
+    }
+
     public function ReporteApuestaJson(Request $request)
     {
         $lista = "";
@@ -187,6 +192,19 @@ class ReporteController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function ReporteAuditoriaJson(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Reporte::ReporteAuditoriaListarJson($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
 }

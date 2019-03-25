@@ -889,17 +889,28 @@
                         <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Reporte Cierre Caja</span></a></li>
-                        <li><a href="{{route('Reporte.HistorialTicket')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
+                        <li><a href="{{route('Reporte.HistorialTicket')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Reporte Historial Ticket</span></a></li>
+                    </ul>
+                </li>
+                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                                class="title">Configuración Evento</span></a></li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Seguridad</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Permisos</span></a></li>
+
+                        <li><a href="{{route('Auditoria')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Auditoria</span></a></li>
 
                     </ul>
                 </li>
-                <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-mail-forward"></i>
-                        <span
-                                class="title">Seguridad</span></a></li>
-                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
-                                class="title">Configuración Evento</span></a></li>
+
             </ul>
             <!-- /SIDEBAR NAVIGATION -->
 
