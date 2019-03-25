@@ -5,7 +5,7 @@
 <head>
 
     <!-- Page title -->
-    <title>CasperoBoard - Responsive HTML Backend Template</title>
+    <title>Tombola Cuy</title>
     <!-- /Page title -->
 
     <!-- Meta -->

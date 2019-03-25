@@ -48,10 +48,8 @@
 <!-- <link rel="stylesheet" href="{{asset('../components/datatables/jquery.dataTables.min.css')}}"> -->
     <!-- C:\xampp\htdocs\TombolaCuy\public\assets\DataTables\DataTables-1.10.18\css -->
     <link rel="stylesheet" href="{{asset('../assets/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css')}}">
-    />
 <!-- <link rel="stylesheet" href="{{asset('../components/datatables/buttons.dataTables.min.css')}}"> -->
     <link rel="stylesheet" href="{{asset('../assets/DataTables/Buttons-1.5.4/css/buttons.dataTables.min.css')}}">
-    />
 
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
     <link rel="stylesheet"
