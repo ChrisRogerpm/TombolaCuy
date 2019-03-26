@@ -1,14 +1,26 @@
 $(document).ready(function () {
-    $(".select2").select2();
+    // $(".select2").select2();
     var dateNow = new Date();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: dateNow,
     });
-    $.when(llenarSelect(basePath + "PuntoVentaListarJson", {'_token': $("input[name='_token']").val()}, "cboTienda", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {
-        $("#cboTienda").find('option').get(0).remove();
-        $("#cboTienda").select2();
+
+
+    // $.when(llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {'_token': $("input[name='_token']").val()}, "cboTienda", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {
+    //     $("#cboTienda").select2();
+    // });
+    $('.multiselect').select2({
+        tags: false, allowClear: true, buttonWidth: '100%',
+        width: '100%',
+        placeholder: {
+            id: '', // the value of the option
+            text: '--Seleccione--'
+        }
     });
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    $("#cboTienda").select2('val', [0]);
+
     $(document).on('click', '#btnBuscar', function () {
         var validar = $("#frmNuevo");
         if (validar.valid()) {

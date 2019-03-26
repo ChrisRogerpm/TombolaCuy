@@ -27,7 +27,13 @@ class Reporte extends Model
         $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        $condicional = $tiendas == 0 ? "" : "and c.idPuntoVenta in ($tiendas)";
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",",$data);
+        $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
         $lista = DB::select(DB::raw("
         select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
@@ -58,7 +64,14 @@ class Reporte extends Model
         $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        $condicional = $tiendas == 0 ? "" : "and c.idPuntoVenta in ($tiendas)";
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",",$data);
+
+        $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
         $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
           ,sum(t.montoTotal) apuestas
@@ -334,7 +347,14 @@ class Reporte extends Model
         $tiendas = $request->input('tiendas');
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
 
-        $condicional = $tiendas == 0 ? "" : "and pv.idPuntoVenta in ($tiendas)";
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",",$data);
+
+        $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
 
         $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
         , (select GROUP_CONCAT(ta.descripcion SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu

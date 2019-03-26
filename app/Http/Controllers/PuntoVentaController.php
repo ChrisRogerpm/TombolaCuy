@@ -38,6 +38,18 @@ class PuntoVentaController extends Controller
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
+    public function PuntoVentaListarUsuarioJson()
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = PuntoVenta::PuntoVentaListarUsuarioJson();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
     public function PuntoVentaInsertarJson(Request $request)
     {
         $respuesta = false;

@@ -186,3 +186,5 @@ Route::get('Seguridad', 'SeguridadController@PermisosUsuarioVista')->name('Segur
 Route::post('DataAuditoriaRegistroFk', 'SeguridadController@DataAuditoriaJson');
 Route::post('AperturaCajaCerrarFk', 'AperturaCajaController@AperturaCajaCerrarFk');
 Route::post('AperturaCajaListarActivaFK', 'AperturaCajaController@AperturaCajaListarActiva');
+
+Route::post('PuntoVentaListarUsuarioJson','PuntoVentaController@PuntoVentaListarUsuarioJson');

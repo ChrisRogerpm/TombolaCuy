@@ -85,6 +85,14 @@
             <!-- /Collapse button -->
 
             <!-- Brand -->
+            <a href="#" class="navbar-brand navbar-brand-cover">
+                <div class="navbar-brand-big">
+                    <img src="images/logo-big.png" alt="CasperoBoard">
+                </div>
+                <div class="navbar-brand-small">
+                    <img src="images/logo-small.png" alt="CasperoBoard">
+                </div>
+            </a>
             <!-- /Brand -->
 
         </div>

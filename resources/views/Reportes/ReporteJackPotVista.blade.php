@@ -174,5 +174,5 @@ li.active a,
     @stop
 
     @push('Js')
-    <script src="{{asset('../assets/Reporte/ReporteJackPot.js')}}"></script>
+    <script src="{{asset('assets/Reporte/ReporteJackPot.js')}}"></script>
     @endpush

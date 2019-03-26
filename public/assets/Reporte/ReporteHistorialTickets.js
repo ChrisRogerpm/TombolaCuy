@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 
 
-    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
 
 });

@@ -84,7 +84,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
-                                    <select class="form-control input-sm select2" required name="tiendas"
+                                    <select class="form-control input-sm multiselect" required name="tiendas"
                                             style="width: 100%;" id="cboTienda" multiple="multiple">
                                         <option value="0">--Seleccione--</option>
                                     </select>
