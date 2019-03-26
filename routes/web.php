@@ -139,10 +139,18 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
+
+    Route::get('UsuarioPuntoVenta','UsuarioPuntoVentaController@UsuarioPuntoVentaListarVista')->name('UsuarioPuntoVenta.Listar');
+    Route::get('UsuarioPuntoVentaEditar/{idUsuarioPuntoVenta}','UsuarioPuntoVentaController@UsuarioPuntoVentaEditarVista')->name('UsuarioPuntoVenta.Editar');
 });
 
 Route::get('Auditoria','ReporteController@ReporteAuditoriaVista')->name('Auditoria');
 Route::post('ReporteAuditoriaJson','ReporteController@ReporteAuditoriaJson');
+Route::post('UsuarioPuntoVentaListarJson','UsuarioPuntoVentaController@UsuarioPuntoVentaListarJson');
+Route::post('UsuarioPuntoVentaListaObtener','UsuarioPuntoVentaController@UsuarioPuntoVentaListaObtener');
+
+Route::post('AgregarPuntoVentaUsuarioJson','UsuarioPuntoVentaController@AgregarPuntoVentaUsuarioJson');
+Route::post('QuitarPuntoVentaUsuarioJson','UsuarioPuntoVentaController@QuitarPuntoVentaUsuarioJson');
 
 Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');
 Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
