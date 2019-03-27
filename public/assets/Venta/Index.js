@@ -1,7 +1,7 @@
 ///  RESPONSIVE TOMBOLACUY  
 
-IPSERVIDOR_WEBSOCKETS="192.168.1.60";
-PUERTO_WEBSOCKETS="9000";
+IPSERVIDOR_WEBSOCKETS="35.237.208.5";
+PUERTO_WEBSOCKETS="50051";
 
 
 $(window).resize(function () {
@@ -404,7 +404,7 @@ function ListarVentaDatosJson() {
 
 function JackpotDatosJson(puntoventa){
         $.ajax({
-        type: 'POST',async:false,
+        type: 'POST',
         url: basePath + 'JackpotDatosJson',
         data: {
             'idPuntoVenta': puntoventa,
@@ -445,72 +445,72 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
             $(".apuesta span").text("APUESTA "+divisa)
 
-////////PROXIMO EN
-            fechaFinEvento=eventodatos.fechaFinEvento;
-           //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
-            proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
-            ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
-             minutos=proxima_fecha.diff(ahora,'minutes');
-             segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
-            //var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-            //var timer2 = minutos+":01";//"5:01";
-            var timer2 = minutos+":"+segundos;
-            console.log(fechaFinEvento + " "+ hora_servidor+  "  - "+timer2 );
-            if(minutos<0)
-            console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
+// ////////PROXIMO EN
+//             fechaFinEvento=eventodatos.fechaFinEvento;
+//            //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
+//             proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
+//             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
+//              minutos=proxima_fecha.diff(ahora,'minutes');
+//              segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
+//             //var segundos=0;//proxima_fecha.diff(ahora,'seconds');
+//             //var timer2 = minutos+":01";//"5:01";
+//             var timer2 = minutos+":"+segundos;
+//             console.log(fechaFinEvento + " "+ hora_servidor+  "  - "+timer2 );
+//             if(minutos<0)
+//             console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
 
-            if(typeof interval!="undefined"){
-                clearInterval(interval);$('.countdown').html("00:00")
-            }
-            setTimeout(function(){
-                interval = setInterval(function() {
-                    var timer = timer2.split(':');
-                    var minutes = parseInt(timer[0], 10);
-                    var seconds = parseInt(timer[1], 10);
-                    --seconds;
-                    minutes = (seconds < 0) ? --minutes : minutes;
-                    if (minutes < 0) clearInterval(interval);
-                    seconds = (seconds < 0) ? 59 : seconds;
-                    seconds = (seconds < 10) ? '0' + seconds : seconds;
-///////segundos bloqueo
-                    if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
-                        $.LoadingOverlay("show");
-                    }
-                    else{
-                        segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
-                        if(segundostotales==SEGBLOQUEOANTESEVENTO){
-                            $.LoadingOverlay("show");
-                        }
+//             if(typeof interval!="undefined"){
+//                 clearInterval(interval);$('.countdown').html("00:00")
+//             }
+//             setTimeout(function(){
+//                 interval = setInterval(function() {
+//                     var timer = timer2.split(':');
+//                     var minutes = parseInt(timer[0], 10);
+//                     var seconds = parseInt(timer[1], 10);
+//                     --seconds;
+//                     minutes = (seconds < 0) ? --minutes : minutes;
+//                     if (minutes < 0) clearInterval(interval);
+//                     seconds = (seconds < 0) ? 59 : seconds;
+//                     seconds = (seconds < 10) ? '0' + seconds : seconds;
+// ///////segundos bloqueo
+//                     if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
+//                         $.LoadingOverlay("show");
+//                     }
+//                     else{
+//                         segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
+//                         if(segundostotales==SEGBLOQUEOANTESEVENTO){
+//                             $.LoadingOverlay("show");
+//                         }
 
-                    }
-                    if(minutes==0 && seconds==0){
-                        setTimeout(function(){
-                                $.LoadingOverlay("hide");
-                                location.reload(true);
+//                     }
+//                     if(minutes==0 && seconds==0){
+//                         setTimeout(function(){
+//                                 $.LoadingOverlay("hide");
+//                                 location.reload(true);
 
-                        },1500)
+//                         },1500)
                         
-                    }
-//fin segundos bloqueo
-                    if(minutes<0){
-                        $('.countdown').html('--');
-                        timer2 = minutes + ':' + seconds;
-                    }else{
-                        $('.countdown').html(minutes + ':' + seconds);
-                        timer2 = minutes + ':' + seconds;
-                    }
+//                     }
+// //fin segundos bloqueo
+//                     if(minutes<0){
+//                         $('.countdown').html('--');
+//                         timer2 = minutes + ':' + seconds;
+//                     }else{
+//                         $('.countdown').html(minutes + ':' + seconds);
+//                         timer2 = minutes + ':' + seconds;
+//                     }
 
-                }, 1000)
-            }, 1000);
+//                 }, 1000)
+//             }, 1000);
 
 
 
             //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
-            // connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
             
-            // setTimeout(function(){
-            //     intervalohora=setInterval(function(){pedir_hora_server()},1000);
-            // },800)
+            setTimeout(function(){
+                intervalohora=setInterval(function(){pedir_hora_server()},1000);
+            },800)
             ///////////////////////////////////////////////////////////////
 
 
@@ -729,7 +729,7 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
 
 function HistorialJson(idev) {
     $.ajax({
-        type: 'POST',async:false,
+        type: 'POST',
         url: basePath + 'HistorialDatosJson',
         data: {
             'idEvento':idev,
@@ -900,6 +900,14 @@ function sacar_totales_y_maximo(){
 
 
 $(document).ready(function () {
+
+////activar reloj sin websockets
+//     if ($("#fechaHoy").length) {
+//     var today = moment().format('DD/MM/YYYY');
+//     //document.getElementById("fechaHoy").innerHTML = today;
+//     window.onload = show5;
+// }
+///reloj sin websockets
 
      DATOSVENTAJSON=ListarVentaDatosJson();
 

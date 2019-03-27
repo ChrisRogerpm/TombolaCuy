@@ -8,7 +8,6 @@ function connectarWebSockets(ipservidor,puerto)
 {
   host=ipservidor;
   port=puerto;
-  console.log("Connecting to "+host+":"+port);
    init(host,port);
 }
 
@@ -16,12 +15,11 @@ function init(host,port){
 
   host="ws://"+host+":"+port;
   url=host;
-  console.log("CONECTANDO A "+host+" url:"+url);
-      log('trying WebSocket - : '+url);
+  console.info("CONECTANDO A "+host);
   try{
     socket = new WebSocket(host);
     //log('WebSocket - status '+socket.readyState);
-    socket.onopen    = function(msg){ log("Welcome - status "+this.readyState); };
+    socket.onopen    = function(msg){ log("Conectado "+this.readyState); };
     socket.onmessage = function(msg){ 
 	       //console.log("Ws-data"+msg);
 
@@ -63,10 +61,10 @@ function init(host,port){
 
 	 };
     socket.onclose   = function(msg){ 
-                                    log("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
+                                    logwarn("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
                                      };
                                      setTimeout(function(){
-                                      connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
+                                        connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
                                      },2000)
   }
   catch(ex){ log(ex); }
@@ -112,6 +110,15 @@ function quit(){
 function log(msg){ 
   //$("log").innerHTML+="<br>"+msg; 
   console.info(msg);
+  }
+
+  function logwarn(msg){ 
+  //$("log").innerHTML+="<br>"+msg; 
+  console.warn(msg);
+  }
+    function logerror(msg){ 
+  //$("log").innerHTML+="<br>"+msg; 
+  console.error(msg);
   }
   
 //function onkey(event){ if(event.keyCode==13){ send(); } }
