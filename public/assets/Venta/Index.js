@@ -109,7 +109,7 @@ function BuscarTicket(ticketobjeto){
     $.ajax({
         type: 'POST',
         async:false,
-        url: basePath + 'BuscarTicket',
+        url: basePath + 'BuscarTicketFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':ticketobjeto
@@ -208,7 +208,7 @@ function GuardarGanadorEvento(apuestas_ganadoras,idTicket){/////GuardarGanadorEv
  $.ajax({
         type: 'POST',
         async:false,
-        url: basePath + 'GuardarGanadorEvento',
+        url: basePath + 'GuardarGanadorEventoFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'apuestas':apuestas_ganadoras,
@@ -257,7 +257,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     $.ajax({
         type: 'POST',
         async:false,
-        url: basePath + 'GuardarTicket',
+        url: basePath + 'GuardarTicketFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':datosobjeto
@@ -310,7 +310,7 @@ function Imprimir(elem)
 function ListarVentaDatosJson() {
     $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'VentaDatosJson',
+        url: basePath + 'VentaDatosJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },
@@ -405,7 +405,7 @@ function ListarVentaDatosJson() {
 function JackpotDatosJson(puntoventa){
         $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'JackpotDatosJson',
+        url: basePath + 'JackpotDatosJsonFk',
         data: {
             'idPuntoVenta': puntoventa,
             '_token': $('input[name=_token]').val(),
@@ -422,7 +422,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     SEGBLOQUEOANTESEVENTO=segundosantesbloqueo;
     $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'EventoDatosJson',
+        url: basePath + 'EventoDatosJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
             'idEvento': idEvento,
@@ -664,7 +664,7 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
         ticketobjeto_imprimir.Id_Ticket=idTicket;
         $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'ImprimirDatosJson',
+        url: basePath + 'ImprimirDatosJsonFk',
         data: {
             'TICKET_IMPRIMIR': ticketobjeto_imprimir,
             '_token': $('input[name=_token]').val(),
@@ -730,7 +730,7 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
 function HistorialJson(idev) {
     $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'HistorialDatosJson',
+        url: basePath + 'HistorialDatosJsonFk',
         data: {
             'idEvento':idev,
             '_token': $('input[name=_token]').val(),
@@ -750,7 +750,7 @@ function HistorialJson(idev) {
 function JugadoresJson(idev) {
     $.ajax({
         type: 'POST',async:false,
-        url: basePath + 'JugadoresDatosJson',
+        url: basePath + 'JugadoresDatosJsonFk',
         data: {
             'idEvento':idev,
             '_token': $('input[name=_token]').val(),

@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    $.when(llenarSelect(basePath + "CajaListarJson", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "nombre", "")).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "CajaPuntoVentaUsuarioJsonFk", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "NombreCaja", "")).then(function (response, textStatus) {
         $("#cboCaja").select2();
     });
 
-    $.when(llenarSelect(basePath + "TurnoListarJson", {'_token': $("input[name='_token']").val()}, "cboTurno", "idTurno", "nombre", "")).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "TurnoListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboTurno", "idTurno", "nombre", "")).then(function (response, textStatus) {
         $("#cboTurno").select2();
     });
     var dateNow = new Date();
@@ -21,7 +21,7 @@ $(document).ready(function () {
             var dataForm = $('#frmNuevo').serializeFormJSON();
             idUsuario=dataForm.idUsuario;
               $.ajax({
-                url: basePath+"AperturaCajaListarActivaFK",
+                url: basePath+"AperturaCajaListarActivaFk",
                 type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify({

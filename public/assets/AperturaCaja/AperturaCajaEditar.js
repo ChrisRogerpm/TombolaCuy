@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $.when(llenarSelect(basePath + "CajaListarJson", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "nombre", parseInt($("#txtidCaja").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "CajaPuntoVentaUsuarioJson", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "NombreCaja", parseInt($("#txtidCaja").val()))).then(function (response, textStatus) {
         $("#cboCaja").select2();
     });
 

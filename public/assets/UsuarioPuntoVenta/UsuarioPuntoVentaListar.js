@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarUsuarioPuntoVenta() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'UsuarioPuntoVentaListarJson',
+        url: basePath + 'UsuarioPuntoVentaListarJsonFk',
         beforeSend: function () {
             $.LoadingOverlay("show");
         },

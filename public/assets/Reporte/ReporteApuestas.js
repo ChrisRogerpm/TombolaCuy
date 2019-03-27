@@ -6,10 +6,6 @@ $(document).ready(function () {
         defaultDate: dateNow,
     });
 
-
-    // $.when(llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {'_token': $("input[name='_token']").val()}, "cboTienda", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {
-    //     $("#cboTienda").select2();
-    // });
     $('.multiselect').select2({
         tags: false, allowClear: true, buttonWidth: '100%',
         width: '100%',
@@ -18,7 +14,7 @@ $(document).ready(function () {
             text: '--Seleccione--'
         }
     });
-    llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
 
     $(document).on('click', '#btnBuscar', function () {
@@ -58,7 +54,7 @@ $(document).ready(function () {
 function CargarDataTienda(Tabla, IdTienda,NombreTienda) {
     var tienda =IdTienda;
     debugger
-    var url = basePath + "ReporteApuestaJson";
+    var url = basePath + "ReporteApuestaJsonFk";
     var dataForm = {
         fechaInicio: $("input[name='fechaInicio']").val(),
         fechaFin: $("input[name='fechaFin']").val(),

@@ -21,7 +21,7 @@ function AgregarPuntoVenta(IdPuntoVenta, IdUsuario) {
     };
     $.ajax({
         type: 'POST',
-        url: basePath + 'AgregarPuntoVentaUsuarioJson',
+        url: basePath + 'AgregarPuntoVentaUsuarioJsonFk',
         data: dataForm,
         beforeSend: function () {
             $.LoadingOverlay("show");
@@ -47,7 +47,7 @@ function QuitarPuntoVenta(IdPuntoVenta, IdUsuario) {
     };
     $.ajax({
         type: 'POST',
-        url: basePath + 'QuitarPuntoVentaUsuarioJson',
+        url: basePath + 'QuitarPuntoVentaUsuarioJsonFk',
         data: dataForm,
         beforeSend: function () {
             $.LoadingOverlay("show");
@@ -70,7 +70,7 @@ function ListarPuntoVenta() {
     var idUsuario = $("#IdUsuario").val();
     $.ajax({
         type: 'POST',
-        url: basePath + 'UsuarioPuntoVentaListaObtener',
+        url: basePath + 'UsuarioPuntoVentaListaObtenerFk',
         data: {
             'idUsuario': idUsuario
         },

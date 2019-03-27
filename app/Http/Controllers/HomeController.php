@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Funciones;
-use App\PuntoVenta;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 

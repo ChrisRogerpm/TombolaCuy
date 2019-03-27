@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.when(llenarSelect(basePath + "PuntoVentaListarJson", {'_token': $("input[name='_token']").val()}, "cboPuntVenta", "idPuntoVenta", "nombre",parseInt($("#txtidPuntoVenta").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "PuntoVentaListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboPuntVenta", "idPuntoVenta", "nombre",parseInt($("#txtidPuntoVenta").val()))).then(function (response, textStatus) {
         $("#cboPuntVenta").select2();
     });
     $('#btnGuardar').on('click', function (e) {

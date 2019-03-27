@@ -6,7 +6,7 @@ $(document).ready(function () {
         defaultDate: dateNow,
     });
     $(document).on('click', '#btnBuscar', function () {
-        var url = basePath + "ReporteVentaJson";
+        var url = basePath + "ReporteVentaJsonFk";
         var dataForm = {
             fechaInicio: $("input[name='fechaInicio']").val(),
             fechaFin: $("input[name='fechaFin']").val(),

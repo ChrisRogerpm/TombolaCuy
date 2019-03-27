@@ -17,8 +17,8 @@ class Caja extends Model
     public static function CajaListarJson()
     {
         $listar = DB::table('caja as c')
-            ->select('c.idCaja','pv.nombre as PuntoVenta','c.nombre','c.estado')
-            ->join('punto_venta as pv','pv.idPuntoVenta','c.idPuntoVenta')
+            ->select('c.idCaja', 'pv.nombre as PuntoVenta', 'c.nombre', 'c.estado')
+            ->join('punto_venta as pv', 'pv.idPuntoVenta', 'c.idPuntoVenta')
             ->get();
         return $listar;
     }
@@ -43,5 +43,22 @@ class Caja extends Model
         $Caja->estado = $request->input('estado');
         $Caja->save();
         return $Caja;
+    }
+
+    public static function CajaPuntoVentaUsuario()
+    {
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",",$data);
+
+        $resultado = DB::select(DB::raw("SELECT c.idCaja,CONCAT(c.nombre,' - ',p.nombre) NombreCaja
+        FROM caja c
+        JOIN punto_venta p ON p.idPuntoVenta = c.idPuntoVenta
+        WHERE c.idPuntoVenta IN ($data)"));
+        return $resultado;
+
     }
 }

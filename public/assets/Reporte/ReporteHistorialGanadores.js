@@ -53,7 +53,7 @@ function ListarHistorialGanadores() {
 
     var cboTienda = $("#cboTienda").val();
 
-    var url = basePath + "ReporteHistorialGanadoresListarJson";
+    var url = basePath + "ReporteHistorialGanadoresListarJsonFk";
     var dataForm = $('#frmNuevo').serializeFormJSON();
     $.ajax({
         url: url,

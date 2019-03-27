@@ -186,7 +186,7 @@ function callbackJackPotSegunidJackPot(response) {
 
 function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
     //;
-    var url = basePath + "ConfiguracionPozoSegunConfJackPot";
+    var url = basePath + "ConfiguracionPozoSegunConfJackPotFk";
     var ConfiguracionJackpot = [...idConfiguracionJackpot];
     var idConfiguracionJackpot = ConfiguracionJackpot[0];
 
@@ -441,7 +441,7 @@ var listajackPots = [];
 
 function ListarPozoJackPotSegunJackPotId(idJackpot) {
     var lista = [];
-    var url = basePath + "PozoJackPotSegunJackPotId";
+    var url = basePath + "PozoJackPotSegunJackPotIdFk";
     var idJackpot = idJackpot;
     var dataForm = {
         idJackpot: idJackpot
@@ -520,7 +520,7 @@ function JackPotSegunidJackPot(idJackpot) {
     ;
 
     var lista = [];
-    var url = basePath + "JackPotSegunidJackpot";
+    var url = basePath + "JackPotSegunidJackpotFk";
     var idJackpot = idJackpot;
     var dataForm = {
         idJackpot: idJackpot

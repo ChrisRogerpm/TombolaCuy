@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarCliente() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'ClienteListarJson',
+        url: basePath + 'ClienteListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

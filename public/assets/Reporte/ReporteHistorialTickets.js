@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnBuscar', function () {
-        var url = basePath + "ReporteHistorialTicketJson";
+        var url = basePath + "ReporteHistorialTicketJsonFk";
         var dataForm = $('#frmNuevo').serializeFormJSON();
         ReporteHistorialTicket(url, dataForm);
     });
