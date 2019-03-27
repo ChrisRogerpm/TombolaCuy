@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarTipoPago() {debugger;
     $.ajax({
         type: 'POST',
-        url: basePath + 'TipoPagoListarJson',
+        url: basePath + 'TipoPagoListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

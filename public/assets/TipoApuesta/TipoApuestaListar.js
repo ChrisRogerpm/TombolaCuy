@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarTipoApuesta() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'TipoApuestaListarJson',
+        url: basePath + 'TipoApuestaListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

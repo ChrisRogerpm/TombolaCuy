@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Funciones;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class HomeController extends Controller
 {

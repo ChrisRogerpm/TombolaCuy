@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,14 +15,28 @@ class PuntoVenta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre','cc_id','unit_ids'];
+    public $fillable = ['idEmpresa', 'idUbigeo', 'nombre', 'cc_id', 'unit_ids'];
 
     public static function PuntoVentaListarJson()
     {
         $listar = DB::table('punto_venta as pv')
-            ->select('pv.*','e.razonSocial','u.Nombre as Ubigeo')
-            ->leftJoin('empresa as e','e.idEmpresa','pv.idEmpresa')
-            ->leftJoin('ubigeo as u','u.idUbigeo','pv.idUbigeo')
+            ->select('pv.*', 'e.razonSocial', 'u.Nombre as Ubigeo')
+            ->leftJoin('empresa as e', 'e.idEmpresa', 'pv.idEmpresa')
+            ->leftJoin('ubigeo as u', 'u.idUbigeo', 'pv.idUbigeo')
+            ->get();
+        return $listar;
+    }
+
+    public static function PuntoVentaListarUsuarioJson()
+    {
+        $IdUsuario = Auth::user()->idUsuario;
+        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)->get();
+        $data = [];
+        foreach ($lista_punto_venta_usuario as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $listar = DB::table('punto_venta as pv')
+            ->whereIn('pv.idPuntoVenta', $data)
             ->get();
         return $listar;
     }

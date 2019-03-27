@@ -33,9 +33,10 @@ class Usuario extends Authenticatable
 
     public static function RegistrarUsuario($usuario, $password)
     {
-        $user = new User();
+        $user = new Usuario();
         $user->usuario = $usuario;
         $user->password = bcrypt($password);
+        $user->perfil_id = 0;
         $user->fecha_registro = now();
         $user->save();
         return $user;

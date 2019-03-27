@@ -6,7 +6,7 @@ $(document).ready(function () {
     $(document).on('click', '.btnJuego', function (e) {
         e.preventDefault();
         var IdJuego = $(this).data("id");
-        var url = basePath + "ReporteVentaJuego";
+        var url = basePath + "ReporteVentaJuegoFk";
         var dataForm = {
             IdJuego: IdJuego,
             _token: $("input[name='_token']").val()
@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnBuscar', function () {
-        var url = basePath + "ReporteVentaJuego";
+        var url = basePath + "ReporteVentaJuegoFk";
         var dataForm = $('#frmNuevo').serializeFormJSON();
         ReporteVentaJson(url, dataForm);
     });

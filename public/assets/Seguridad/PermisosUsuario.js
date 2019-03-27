@@ -5,7 +5,7 @@ $(document).ready(function () {
         var perfil_id = $(this).val();
         var usuarioid = $(this).data("id");
         $.ajax({
-            url: basePath + 'CambiarPerfilUsuario',
+            url: basePath + 'CambiarPerfilUsuarioFk',
             data: {
                 txtPerfilID: perfil_id, txtUsuarioID: usuarioid
             },
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
 function GestionarPermisos(IdPermiso, IdPerfil) {
     $.ajax({
-        url: basePath + 'PermisoPerfilCheck',
+        url: basePath + 'PermisoPerfilCheckFk',
         data: {
             'txtPerfilID': IdPerfil, 'txtPermisoID': IdPermiso
         },
@@ -161,7 +161,7 @@ function tabletUsuario() {
 
 function ListarPermisosPerfil(id) {
     $.ajax({
-        url: basePath + 'ListdoPermisosPerfil',
+        url: basePath + 'ListdoPermisosPerfilFk',
         data: {
             txtPerfilID: id
         },

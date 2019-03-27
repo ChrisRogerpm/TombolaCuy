@@ -11,19 +11,19 @@
                 <div class="panel-body">
 
                     <div class="image mb text-center">
-                        <img src="images/logo-big-dark.png" alt="CasperoBoard">
+                        <img src="{{asset('images/logo.png')}}">
                     </div>
 
                     <form id="frmNuevo">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="login">Usuario</label>
-                            <input type="text" class="form-control input-sm" placeholder="Ingrese su Usuario" name="usuario" value="test.cajero1">
+                            <input type="text" id="txtusuario" class="form-control input-sm" placeholder="Ingrese su Usuario" name="usuario" value="test.cajero1">
                         </div>
 
                         <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control input-sm" placeholder="Ingrese su Contraseña" name="password" value="cajero.test">
+                            <input type="password" id="txtpassword" class="form-control input-sm" placeholder="Ingrese su Contraseña" name="password" value="cajero.test">
                         </div>
 
                         <div class="form-group pull-right">
@@ -40,7 +40,7 @@
 
             <!-- Copyright -->
             <p class="text-muted text-center">
-                &copy; Copyright 2017 <strong>Valery Timofeev</strong> | All Rights Reserved
+                &copy; Copyright {{now()->year}} <strong>Tombola Cuy</strong> | Todos los derechos reservados
             </p>
             <!-- /Copyright -->
 
@@ -49,5 +49,5 @@
 @endsection
 
 @push('js')
-    <script src="assets/Autenticacion/Login.js"></script>
+    <script src="{{asset('assets/Autenticacion/Login.js')}}"></script>
 @endpush

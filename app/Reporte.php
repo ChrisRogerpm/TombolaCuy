@@ -26,8 +26,16 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",", $data);
+        $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
+
         $lista = DB::select(DB::raw("
-        
         select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
@@ -40,7 +48,7 @@ class Reporte extends Model
         inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
         inner join evento e on e.idevento=t.idevento 
         where  ac.estado!=0
-        and c.idPuntoVenta in ($tiendas)
+        $condicional
         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
         
         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
@@ -55,6 +63,15 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->toDateString();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->toDateString();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",", $data);
+
+        $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
         $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
           ,sum(t.montoTotal) apuestas
@@ -78,8 +95,7 @@ class Reporte extends Model
           left join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta  and re.idTipoPago in (1,6)
            left join tipo_pago tip on tip.idTipoPago=tia.idTipoPago  
           where  ac.estado!=0
-         and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
-         and c.idPuntoVenta in ($tiendas)       
+         and ac.fechaoperacion between '$fechaIni' and '$fechaFin' $condicional
        group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
 
         return $listar;
@@ -234,7 +250,42 @@ class Reporte extends Model
         group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
         order by e.idevento desc"));
 
-        return $listar;
+        $data = [];
+
+        foreach ($listar as $l) {
+            $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
+            $data [] = [
+                'idEvento' => $l->idEvento,
+                'Fecha' => $l->Fecha,
+                'TipoApuesta' => 'Pleno',
+                'Evento' => $l->Evento,
+                'Juego' => $l->Juego,
+                'Moneda' => $l->Moneda,
+                'estadoEvento' => $estadoEventoNombre,
+                'Ganado' => $l->Ganado,
+            ];
+        }
+
+        return $data;
+    }
+
+    public static function EstadoEventoNombre($estadoEvento)
+    {
+        $respuesta = "";
+        if ($estadoEvento === 0) {
+            $respuesta = "Anulado";
+        } else if ($estadoEvento === 1) {
+            $respuesta = "Ejecucion";
+        } else if ($estadoEvento === 2) {
+            $respuesta = "Terminado";
+        } else if ($estadoEvento === 3) {
+            $respuesta = "PendPago";
+        } else if ($estadoEvento === 4) {
+            $respuesta = "Pagado";
+        } else if ($estadoEvento === 5) {
+            $respuesta = "Suspendido";
+        }
+        return $respuesta;
     }
 
     public static function ValorGanadorEvento($idEvento)
@@ -321,6 +372,56 @@ class Reporte extends Model
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
          where usuario=$IdUsuario and ac.estado=1"));
         return $resultado;
+    }
+
+    public static function ReporteHistorialTicket(Request $request)
+    {
+
+        $fecha_ini = $request->input('fechaInicio');
+        $fecha_fin = $request->input('fechaFin');
+        $tiendas = $request->input('tiendas');
+        $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
+
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",", $data);
+
+        $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
+
+        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
+        , (select GROUP_CONCAT(ta.descripcion SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
+        on ta.idtipoapuesta=apu.idtipoapuesta
+        where apu.idticket=ti.idticket) valores 
+        from ticket ti
+        inner join evento e on e.idEvento=ti.idevento
+        inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
+        inner join caja ca on ca.idcaja=ac.idcaja
+        inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
+        where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
+        return $resultado;
+    }
+
+    public static function ReporteAuditoriaListarJson(Request $request)
+    {
+        $listar = DB::select(DB::raw("SELECT tbl.id,
+                 tbl.fecha_registro,
+                 tbl.usuario_id,
+                 tbl.permiso,
+                 usu.usuario,
+                 tbl.controller,
+                 tbl.method,
+                 tbl.descripcion,
+                 tbl.data
+                FROM auditoria tbl
+                JOIN users usu ON usu.idUsuario = tbl.usuario_id
+                WHERE tbl.usuario_id = $request->UsuarioId AND tbl.fecha_registro BETWEEN '$request->txtFechaInicio' AND '$request->txtFechaFin' 
+                ORDER BY tbl.id desc
+                "));
+
+        return $listar;
     }
 
 

@@ -6,7 +6,7 @@ $(document).ready(function () {
         defaultDate: dateNow,
     });
     $(document).on('click', '#btnBuscar', function () {
-        var url = basePath + "ReporteVentaJson";
+        var url = basePath + "ReporteVentaJsonFk";
         var dataForm = {
             fechaInicio: $("input[name='fechaInicio']").val(),
             fechaFin: $("input[name='fechaFin']").val(),
@@ -14,7 +14,6 @@ $(document).ready(function () {
         };
         ReporteVentaJson(url, dataForm);
     });
-
     $(document).on('click', '.btnVer', function () {
         $("#ModalVer").modal();
         var Fecha = $(this).data("fecha");
@@ -27,8 +26,22 @@ $(document).ready(function () {
         $("#ValorTipoJugada").html("").html(Juego);
         $("#ValorGanado").html("").html(parseFloat(Ganada).toFixed(2) + " " + Moneda)
     });
-
+    $(document).on('click', '#btnExcel', function () {
+        GenerarExcel("table_panel", "Reporte de Ventas")
+    });
 });
+
+function GananciaTotal() {
+    var table = $('#table_panel').DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var total = 0;
+    $.each(data, function (key, value) {
+        total += value.Ganado;
+    });
+    return total;
+}
 
 function ReporteVentaJson(url, dataForm) {
     $.ajax({
@@ -43,19 +56,10 @@ function ReporteVentaJson(url, dataForm) {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
+            debugger
             var resp = response.data;
             $("#PanelTabla").show();
             $("#table_panel").DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Ventas',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                        }
-                    }
-                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
@@ -64,56 +68,27 @@ function ReporteVentaJson(url, dataForm) {
                 "autoWidth": false,
                 "bProcessing": true,
                 "bDeferRender": true,
-                "order": [[ 1, "desc" ]],
+                "order": [[1, "desc"]],
                 data: resp,
                 columns: [
                     {data: "Fecha", title: "Fecha", class: 'text-center'},
                     {data: "Evento", title: "Evento", class: 'text-center'},
                     {data: "Juego", title: "Juego", class: 'text-center'},
-                    {
-                        data: null, title: 'Tipo Apta',
-                        "render": function (value) {
-                            return 'Pleno';
-                        }, class: 'text-center'
-                    },
+                    {data: "TipoApuesta", title: 'Tipo Apta', class: 'text-center'},
                     {data: "Moneda", title: "Moneda", class: 'text-center'},
-                    {
-                        data: null, title: "Estado",
-                        "render": function (value) {
-                            var estado = "";
-                            if (value.estadoEvento === 0) {
-                                estado = "Anulado";
-                            }
-                            else if (value.estadoEvento === 1) {
-                                estado = "Ejecucion";
-                            } else if (value.estadoEvento === 2) {
-                                estado = "Terminado";
-                            } else if (value.estadoEvento === 3) {
-                                estado = "PendPago";
-                            } else if (value.estadoEvento === 4) {
-                                estado = "Pagado";
-                            } else if (value.estadoEvento === 5) {
-                                estado = "Suspendido";
-                            }
-                            return estado;
-                        }, class: 'text-center'
-                    },
-                    {
-                        data: "Ganado", title: 'Ganado', class: 'text-center'
-                    },
-                    // {
-                    //     data: null, title: "",
-                    //     "render": function (value) {
-                    //         return '<button type="button" class="btn btn-success btn-sm btnVer" data-moneda="' + value.Moneda + '" data-id="' + value.idEvento + '" data-fecha="' + value.Fecha + '" data-juego="' + value.Juego + '"><i class="fa fa-eye m-r-20"></i> Ver</button>'
-                    //     }, class: "text-center"
-                    // }
+                    {data: "estadoEvento", title: "Estado", class: 'text-center'},
+                    {data: "Ganado", title: 'Ganado', class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
-                    $('.btnVer').tooltip({
-                        title: "Ver"
-                    });
                 }
             });
+
+            $(".container-btnExcel").html("").append('<button class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel"><span\n' +
+                '                                                class="glyphicon glyphicon-export"></span> Excel\n' +
+                '                                    </button>');
+            var total = GananciaTotal();
+            $("#TotalGanancia").html(total);
+
         }
     })
 }

@@ -58,7 +58,7 @@ $(document).ready(function () {
     $(document).on('ifChecked', '#table input:checkbox', function (event) {
         var idConfiguracionPozo = $(this).data("id");
         var estado = "1";
-        var url = basePath + "CambiarEstadoConfiguracionPozoJson";
+        var url = basePath + "CambiarEstadoConfiguracionPozoJsonFk";
         var dataForm = {
             '_token': $("input[name='_token']").val(),
             'idConfiguracionPozo': idConfiguracionPozo,
@@ -70,7 +70,7 @@ $(document).ready(function () {
     $(document).on('ifUnchecked', '#table input:checkbox', function (event) {
         var idConfiguracionPozo = $(this).data("id");
         var estado = "0";
-        var url = basePath + "CambiarEstadoConfiguracionPozoJson";
+        var url = basePath + "CambiarEstadoConfiguracionPozoJsonFk";
         var dataForm = {
             '_token': $("input[name='_token']").val(),
             'idConfiguracionPozo': idConfiguracionPozo,
@@ -212,7 +212,7 @@ function CargarSuperjackpot() {
 
 function CargarConfiguracionPozo() {
     var idConfiguracionJackpot = $("input[name='idConfiguracionJackpot']").val();
-    var url = basePath + "ConfiguracionPozoListarJson";
+    var url = basePath + "ConfiguracionPozoListarJsonFk";
     var dataForm = {
         '_token': $("input[name='_token']").val(),
         'idConfiguracionJackpot': idConfiguracionJackpot
@@ -265,7 +265,7 @@ function EliminarConfiguracionPozo(idConfiguracionPozo) {
         '_token': $("input[name='_token']").val(),
         'idConfiguracionPozo': idConfiguracionPozo
     };
-    var url = basePath + "ConfiguracionPozoEliminarJson";
+    var url = basePath + "ConfiguracionPozoEliminarJsonFk";
     $.ajax({
         url: url,
         type: "POST",

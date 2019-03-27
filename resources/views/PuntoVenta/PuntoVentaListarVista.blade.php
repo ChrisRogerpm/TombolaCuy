@@ -56,7 +56,6 @@
                 <table id="table" class="table table-bordered table-striped" style="width:100%"></table>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -64,7 +63,7 @@
 
 
 @stop @push('Js')
-<script src="{{asset('../assets/PuntoVenta/PuntoVentaListar.js')}}"></script>
+<script src="{{asset('assets/PuntoVenta/PuntoVentaListar.js')}}"></script>
 
 
 

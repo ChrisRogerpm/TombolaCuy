@@ -5,7 +5,7 @@
 <head>
 
     <!-- Page title -->
-    <title>CasperoBoard - Responsive HTML Backend Template</title>
+    <title>Tombola Cuy</title>
     <!-- /Page title -->
 
     <!-- Meta -->
@@ -27,7 +27,7 @@
     <!-- /OpenGraph meta -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
     <!-- /Favicon -->
 
     <!-- AppleTouch Icons -->

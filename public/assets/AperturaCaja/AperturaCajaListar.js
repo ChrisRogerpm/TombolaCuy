@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarAperturaCaja() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'AperturaCajaListarJson',
+        url: basePath + 'AperturaCajaListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

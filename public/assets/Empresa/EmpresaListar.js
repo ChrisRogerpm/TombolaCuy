@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarEmpresa() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'EmpresaListarJson',
+        url: basePath + 'EmpresaListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

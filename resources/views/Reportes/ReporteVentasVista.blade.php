@@ -37,6 +37,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 container-btnExcel">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,7 +87,19 @@
                  style="padding-top:10px; padding-left:10px;padding-right:10px;display: none"
                  id="PanelTabla">
                 <div class="panel-body">
-                    <table class="table table-bordered border-1" id="table_panel"></table>
+                    <table class="table table-bordered border-1" id="table_panel">
+                        <tfoot style="background-color: #CCCCCC">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>Total</th>
+                            <th id="TotalGanancia">0</th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
