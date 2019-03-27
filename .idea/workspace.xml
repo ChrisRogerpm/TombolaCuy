@@ -3,37 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Caja.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Caja.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CajaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CajaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaInsertar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaInsertar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Caja/CajaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Caja/CajaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Caja/CajaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Caja/CajaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Cliente/ClienteListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Cliente/ClienteListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/DineroDefault/DineroDefaultListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/DineroDefault/DineroDefaultListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Empresa/EmpresaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaInsertar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Seguridad/Auditoria.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Seguridad/Auditoria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Seguridad/PermisosUsuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Seguridad/PermisosUsuario.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/TipoApuesta/TipoApuestaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/TipoApuesta/TipoApuestaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/TipoPago/TipoPagoListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/TipoPago/TipoPagoListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Venta/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Venta/Index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +44,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="3" />
-          <entry key="js" value="87" />
+          <entry key="js" value="90" />
           <entry key="php" value="133" />
         </counts>
       </usages-collector>
@@ -80,14 +52,14 @@
         <counts>
           <entry key=".env file" value="3" />
           <entry key="Blade" value="38" />
-          <entry key="JavaScript" value="87" />
+          <entry key="JavaScript" value="90" />
           <entry key="PHP" value="95" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="7" />
-          <entry key="js" value="1105" />
+          <entry key="js" value="1112" />
           <entry key="php" value="4020" />
         </counts>
       </usages-collector>
@@ -95,7 +67,7 @@
         <counts>
           <entry key=".env file" value="7" />
           <entry key="Blade" value="518" />
-          <entry key="JavaScript" value="1105" />
+          <entry key="JavaScript" value="1112" />
           <entry key="PHP" value="3489" />
           <entry key="SQL" value="13" />
         </counts>
@@ -107,20 +79,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-59">
-              <caret line="168" column="40" lean-forward="true" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
+            <state relative-caret-position="300">
+              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+              <folding>
+                <element signature="e#546#1081#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1020">
-              <caret line="372" column="55" selection-start-line="372" selection-start-column="55" selection-end-line="372" selection-end-column="55" />
+            <state relative-caret-position="405">
+              <caret line="42" column="58" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -156,7 +131,6 @@
       <find>TipoPagoListarJson</find>
       <find>AperturaCajaListarActivaFK</find>
       <find>AperturaCajaCerrarFk</find>
-      <find>PuntoVentaListarUsuarioJson</find>
       <find>PermisoPerfilCheck</find>
       <find>CambiarPerfilUsuario</find>
       <find>CambiarEstadoConfiguracionPozoJson</find>
@@ -167,6 +141,7 @@
       <find>PuntoVentaListarJson</find>
       <find>EmpresaListarJson</find>
       <find>ListdoPermisosPerfil</find>
+      <find>PuntoVentaListarUsuarioJson</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -215,14 +190,11 @@
         <option value="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" />
         <option value="$PROJECT_DIR$/public/assets/Venta/Index.js" />
-        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" />
-        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js" />
         <option value="$PROJECT_DIR$/public/assets/Seguridad/Auditoria.js" />
         <option value="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js" />
         <option value="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js" />
-        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" />
         <option value="$PROJECT_DIR$/public/assets/Caja/CajaListar.js" />
         <option value="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaListar.js" />
         <option value="$PROJECT_DIR$/public/assets/DineroDefault/DineroDefaultListar.js" />
@@ -240,6 +212,9 @@
         <option value="$PROJECT_DIR$/public/assets/TipoApuesta/TipoApuestaListar.js" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js" />
+        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js" />
+        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" />
+        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" />
       </list>
     </option>
   </component>
@@ -472,7 +447,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;Caja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaInsertar.js&#10;AperturaCAja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/AperturaCaja/AperturaCajaInsertar.js&#10;CajaLis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaListar.js&#10;ReporteHistorialGanadores&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;ReporteJackPot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;UsuarioPuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js&#10;UsuarioPuntoVentaListar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js&#10;auditoria&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;ReporteApuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;ReporteVentaJuego&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVentaJuego.js&#10;ReporteVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVenta.js&#10;ReporteHistorialTicket&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;CajaListarJson&#9;null&#9;null&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;cAjac&#9;null&#9;null&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;Caja.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Caja.php&#10;ReporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteAp&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;HistorialT&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;ReporteJack&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;reportehis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;homecon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;puntoventaCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/PuntoVentaController.php&#10;lay&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;PuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php&#10;env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;login&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Autenticacion/Login.blade.php&#10;audit&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;auditori&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Seguridad/Auditoria.blade.php&#10;auditor&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;aute&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/AutenticacionController.php&#10;func&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;ReporteApuestas&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;apuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteHistorialGanadores#&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteHistorialGanadoresVista.blade.php&#10;ReporteContr&#9;null&#9;null&#10;reporte.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;ConfiguracionJackpotEd&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js&#10;ConfiguracionJackpotInsertar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js&#10;ConfiguracionJac&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/ConfiguracionJackpot/ConfiguracionJackpotInsertarVista.blade.php&#10;VentaVis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteVentasVista.blade.php&#10;appser&#9;null&#9;null&#10;api&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/api.php&#10;animaci&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/animacion.js&#10;Index&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Venta/Index.js" />
+    <property name="SearchEverywhereHistoryKey" value="Historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;Historia&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;Jackpot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;Caja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaInsertar.js&#10;AperturaCAja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/AperturaCaja/AperturaCajaInsertar.js&#10;CajaLis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaListar.js&#10;ReporteHistorialGanadores&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;ReporteJackPot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;UsuarioPuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js&#10;UsuarioPuntoVentaListar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js&#10;auditoria&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;ReporteApuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;ReporteVentaJuego&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVentaJuego.js&#10;ReporteVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVenta.js&#10;ReporteHistorialTicket&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;CajaListarJson&#9;null&#9;null&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;cAjac&#9;null&#9;null&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;Caja.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Caja.php&#10;ReporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteAp&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;HistorialT&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;ReporteJack&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;reportehis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;homecon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;puntoventaCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/PuntoVentaController.php&#10;lay&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;PuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php&#10;env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;login&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Autenticacion/Login.blade.php&#10;audit&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;auditori&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Seguridad/Auditoria.blade.php&#10;auditor&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;aute&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/AutenticacionController.php&#10;func&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;ReporteApuestas&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;apuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteHistorialGanadores#&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteHistorialGanadoresVista.blade.php&#10;ReporteContr&#9;null&#9;null&#10;reporte.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;ConfiguracionJackpotEd&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js&#10;ConfiguracionJackpotInsertar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js&#10;ConfiguracionJac&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/ConfiguracionJackpot/ConfiguracionJackpotInsertarVista.blade.php&#10;VentaVis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteVentasVista.blade.php&#10;appser&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SistemaVentas" />
@@ -579,7 +554,7 @@
       <workItem from="1553465558877" duration="2504000" />
       <workItem from="1553519859538" duration="21939000" />
       <workItem from="1553611902783" duration="22578000" />
-      <workItem from="1553691996384" duration="1873000" />
+      <workItem from="1553691996384" duration="2537000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -627,7 +602,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="420141000" />
+    <option name="totallyTimeSpent" value="420805000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -877,13 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -930,31 +898,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="49" column="54" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="498" column="50" selection-start-line="498" selection-start-column="50" selection-end-line="498" selection-end-column="50" />
-          <folding>
-            <element signature="e#132#249#0" />
-            <element signature="e#283#504#0" />
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="55" column="63" selection-start-line="55" selection-start-column="63" selection-end-line="55" selection-end-column="63" />
-          <folding>
-            <element signature="e#546#1081#0" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1101,8 +1044,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59">
+        <state relative-caret-position="-45">
           <caret line="168" column="40" lean-forward="true" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="103" column="58" selection-start-line="103" selection-start-column="58" selection-end-line="103" selection-end-column="58" />
+          <folding>
+            <element signature="e#132#249#0" />
+            <element signature="e#283#504#0" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+          <folding>
+            <element signature="e#546#1081#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="42" column="58" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
         </state>
       </provider>
     </entry>

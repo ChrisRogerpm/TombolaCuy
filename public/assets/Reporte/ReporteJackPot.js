@@ -101,7 +101,7 @@ $(document).ready(function () {
 
 
     //cboTienda es idPunto de Venta 
-    llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
     //dinamico
     $("#tab-eval a").click(function () {

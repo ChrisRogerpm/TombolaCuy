@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     //cboTienda es idPunto de Venta
     $("#fechaInicio").val("01/01/2018");
-    llenarSelect(basePath + "PuntoVentaListarUsuarioJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
 
     $(document).on("click", "#btnBuscar", function () {
