@@ -15,7 +15,7 @@ class AperturaCajaController extends Controller
 
     public function AperturaCajaInsertarVista()
     {
-    
+
         return view('AperturaCaja.AperturaCajaInsertarVista');
     }
 
@@ -38,9 +38,7 @@ class AperturaCajaController extends Controller
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
-
-
-      public function AperturaCajaListarActiva(Request $request)
+    public function AperturaCajaListarActiva(Request $request)
     {
         $lista = "";
         $mensaje_error = "";
@@ -52,9 +50,6 @@ class AperturaCajaController extends Controller
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
-
-
-    
 
     public function AperturaCajaInsertarJson(Request $request)
     {

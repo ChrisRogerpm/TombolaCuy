@@ -26,7 +26,8 @@
     <!-- /OpenGraph meta -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/xampp.ico">
+    {{--<link rel="shortcut icon" href="../images/xampp.ico">--}}
+    <link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
     <!-- /Favicon -->
 
     <!-- AppleTouch Icons -->
@@ -85,14 +86,24 @@
             <!-- /Collapse button -->
 
             <!-- Brand -->
+            {{--<a href="#" class="navbar-brand navbar-brand-cover">--}}
+                {{--<div class="navbar-brand-big">--}}
+                    {{--<img src="{{asset('images/logo.png')}}" alt="CasperoBoard">--}}
+                {{--</div>--}}
+                {{--<div class="navbar-brand-small">--}}
+                    {{--<img src="{{asset('images/logoat.jpg')}}" alt="CasperoBoard">--}}
+                {{--</div>--}}
+            {{--</a>--}}
+
             <a href="#" class="navbar-brand navbar-brand-cover">
-                <div class="navbar-brand-big">
-                    <img src="images/logo-big.png" alt="CasperoBoard">
+                <div class="navbar-brand-big" style="text-align: center;width: 100%;">
+                    <img src="{{url('../images/logo.png')}}" alt="logo apuesta total" style="height: 40px;padding-top:5px;">
                 </div>
                 <div class="navbar-brand-small">
-                    <img src="images/logo-small.png" alt="CasperoBoard">
+                    <img src="{{url('../images/logoat.jpg')}}" alt="logo apuesa total" style="height: 49px;">
                 </div>
             </a>
+
             <!-- /Brand -->
 
         </div>
@@ -333,33 +344,11 @@
                                 class="title">Turno</span></a></li>
                 <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
                                 class="title">Apertura Caja</span></a></li>
-                {{--<li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-users"></i> <span--}}
-                {{--class="title">Cliente</span></a></li>--}}
-
-                {{--<li class="sub">--}}
-                {{--<a href="#" class="sub-toggle">--}}
-                {{--<i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu collapse" data-menu-title="Progresivo">--}}
-                {{--<li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                {{--<span class="title">Progresivo</span></a></li>--}}
-                {{--<li><a href="{{route('Progresivo.Insertar')}}"><i--}}
-                {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a>--}}
-                {{--</li>--}}
-                {{--<li><a href="{{route('Progresivo.Configuracion')}}"><i--}}
-                {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        {{--<li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                        {{--<span class="title">Jackpot</span></a></li>--}}
-                        {{--<li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                        {{--<span class="title">Registro Jackpot</span></a></li>--}}
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                         </li>
@@ -371,7 +360,7 @@
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
                         <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">Venta</span></a></li>
+                                        class="title">Caja Venta</span></a></li>
 
                     </ul>
                 </li>
@@ -433,16 +422,16 @@
                 <i class="icon icon-inline fa fa-angle-right"></i>
             </a>
 
-            <div class="btn-group-wrapper">
-                <div class="btn-group btn-group-justified" role="group">
-                    <a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>
-                    <a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i
-                                class="icon icon-inline fa fa-lock"></i></a>
-                    <a href="#" class="btn btn-dark" role="button"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                class="icon icon-inline fa fa-sign-out"></i></a>
-                </div>
-            </div>
+            {{--<div class="btn-group-wrapper">--}}
+                {{--<div class="btn-group btn-group-justified" role="group">--}}
+                    {{--<a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>--}}
+                    {{--<a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i--}}
+                                {{--class="icon icon-inline fa fa-lock"></i></a>--}}
+                    {{--<a href="#" class="btn btn-dark" role="button"--}}
+                       {{--onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i--}}
+                                {{--class="icon icon-inline fa fa-sign-out"></i></a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
         </div>
         <!-- /Bottom Bar -->

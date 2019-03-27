@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
+      <change afterPath="$PROJECT_DIR$/public/images/Logotipo-Horizontal-2258x662.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/logoat.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Funciones.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Funciones.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AperturaCajaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AperturaCajaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Reporte.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Reporte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/funciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/funciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Animacion/AnimacionVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Animacion/AnimacionVista.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Autenticacion/Login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Autenticacion/Login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Shared/layout_autenticacion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Shared/layout_autenticacion.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,42 +47,46 @@
     <session id="-1498953092">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.22" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="env" value="3" />
-          <entry key="js" value="90" />
-          <entry key="php" value="135" />
+          <entry key="env" value="4" />
+          <entry key="jpg" value="1" />
+          <entry key="js" value="97" />
+          <entry key="php" value="165" />
+          <entry key="png" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key=".env file" value="3" />
-          <entry key="Blade" value="40" />
-          <entry key="JavaScript" value="90" />
-          <entry key="PHP" value="95" />
+          <entry key=".env file" value="4" />
+          <entry key="Blade" value="50" />
+          <entry key="Image" value="4" />
+          <entry key="JavaScript" value="97" />
+          <entry key="PHP" value="115" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="env" value="7" />
-          <entry key="js" value="1112" />
-          <entry key="php" value="4032" />
+          <entry key="env" value="20" />
+          <entry key="js" value="1714" />
+          <entry key="php" value="4852" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key=".env file" value="7" />
-          <entry key="Blade" value="530" />
-          <entry key="JavaScript" value="1112" />
-          <entry key="PHP" value="3489" />
+          <entry key=".env file" value="20" />
+          <entry key="Blade" value="730" />
+          <entry key="JavaScript" value="1714" />
+          <entry key="PHP" value="4109" />
           <entry key="SQL" value="13" />
         </counts>
       </usages-collector>
@@ -79,18 +98,69 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="384" column="54" selection-start-line="384" selection-start-column="54" selection-end-line="384" selection-end-column="54" />
+            <state relative-caret-position="166">
+              <caret line="100" column="32" lean-forward="true" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+              <folding>
+                <element signature="e#1993#3631#0#HTML" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/Venta/Index.blade.php">
+        <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2835" />
+            <state relative-caret-position="375">
+              <caret line="88" column="37" selection-start-line="88" selection-start-column="37" selection-end-line="88" selection-end-column="37" />
+              <folding>
+                <element signature="e#1757#3164#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/js/funciones.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="88" selection-end-column="26" />
+              <folding>
+                <element signature="n#!!block;n#llenarSelect#0" />
+                <element signature="n#!!block;n#show5#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Reporte.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="55">
+              <caret line="278" column="41" selection-start-line="278" selection-start-column="41" selection-end-line="278" selection-end-column="41" />
+              <folding>
+                <element signature="e#23#32#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReporteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -106,14 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ReporteApuestaJson</find>
-      <find>ConfiguracionPozoSegunConfJackPot</find>
-      <find>PozoJackPotSegunJackPotId</find>
-      <find>&quot;PozoJackPotSegunJackPotId&quot;</find>
-      <find>&quot;JackPotSegunidJackpot&quot;</find>
-      <find>ReporteAuditoriaJson</find>
-      <find>UsuarioPuntoVentaListarJson</find>
-      <find>UsuarioPuntoVentaListaObtener</find>
       <find>ReporteJackPotListarJson</find>
       <find>ReporteHistorialGanadoresListarJson</find>
       <find>ConfiguracionPozoListarJson</find>
@@ -136,6 +198,14 @@
       <find>EmpresaListarJson</find>
       <find>ListdoPermisosPerfil</find>
       <find>PuntoVentaListarUsuarioJson</find>
+      <find>S/.</find>
+      <find>S/</find>
+      <find>btn-group btn-group-justified</find>
+      <find>funciones</find>
+      <find>GenerarExcel</find>
+      <find>get_columnacambios</find>
+      <find>ReporteVentaJsonFk</find>
+      <find>idEvento</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -158,15 +228,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Console/Commands/JobCommand1.php" />
-        <option value="$PROJECT_DIR$/app/Usuario.php" />
-        <option value="$PROJECT_DIR$/resources/views/Seguridad/Auditoria.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Shared/layout_autenticacion.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Autenticacion/Login.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/Autenticacion/Login.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UsuarioPuntoVenta.php" />
         <option value="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaInsertar.js" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/UsuarioPuntoVenta/UsuarioPuntoVentaListarVista.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/UsuarioPuntoVenta/UsuarioPuntoVentaEditarVista.blade.php" />
@@ -175,15 +238,12 @@
         <option value="$PROJECT_DIR$/app/PuntoVenta.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PuntoVentaController.php" />
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php" />
-        <option value="$PROJECT_DIR$/app/Reporte.php" />
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteJackPotVista.blade.php" />
         <option value="$PROJECT_DIR$/app/Caja.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CajaController.php" />
         <option value="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" />
         <option value="$PROJECT_DIR$/public/assets/Venta/Index.js" />
-        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" />
         <option value="$PROJECT_DIR$/public/assets/Seguridad/Auditoria.js" />
         <option value="$PROJECT_DIR$/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js" />
@@ -203,12 +263,22 @@
         <option value="$PROJECT_DIR$/public/assets/PuntoVenta/PuntoVentaListar.js" />
         <option value="$PROJECT_DIR$/public/assets/Cliente/ClienteListar.js" />
         <option value="$PROJECT_DIR$/public/assets/TipoApuesta/TipoApuestaListar.js" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialGanadores.js" />
         <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteHistorialTickets.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/resources/views/Autenticacion/Login.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Shared/layout_autenticacion.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/Shared/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Animacion/AnimacionVista.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/app/Funciones.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/funciones.js" />
+        <option value="$PROJECT_DIR$/app/Reporte.php" />
+        <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js" />
       </list>
     </option>
   </component>
@@ -346,6 +416,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,52 +453,14 @@
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="AperturaCaja" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="Reporte" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="Venta" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="Index&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Venta/Index.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;Historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;Historia&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;Jackpot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;Caja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaInsertar.js&#10;AperturaCAja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/AperturaCaja/AperturaCajaInsertar.js&#10;CajaLis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaListar.js&#10;ReporteHistorialGanadores&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;ReporteJackPot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;UsuarioPuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js&#10;UsuarioPuntoVentaListar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js&#10;auditoria&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;ReporteApuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;ReporteVentaJuego&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVentaJuego.js&#10;ReporteVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVenta.js&#10;ReporteHistorialTicket&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;CajaListarJson&#9;null&#9;null&#10;web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;cAjac&#9;null&#9;null&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;Caja.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Caja.php&#10;ReporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteAp&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;HistorialT&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;ReporteJack&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;reportehis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;homecon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;puntoventaCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/PuntoVentaController.php&#10;lay&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;PuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php&#10;env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;login&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Autenticacion/Login.blade.php&#10;audit&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;auditori&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Seguridad/Auditoria.blade.php&#10;auditor&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;aute&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/AutenticacionController.php&#10;func&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;ReporteApuestas&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;apuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteHistorialGanadores#&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteHistorialGanadoresVista.blade.php&#10;ReporteContr&#9;null&#9;null&#10;reporte.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;ConfiguracionJackpotEd&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotEditar.js&#10;ConfiguracionJackpotInsertar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js&#10;ConfiguracionJac&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/ConfiguracionJackpot/ConfiguracionJackpotInsertarVista.blade.php&#10;VentaVis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteVentasVista.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="web&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/routes/web.php&#10;home&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;func&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;ReporteVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteVentasVista.blade.php&#10;Reporteventa&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVenta.js&#10;layout&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;funci&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/js/funciones.js&#10;animacionV&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Animacion/AnimacionVista.blade.php&#10;login&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Autenticacion/Login.blade.php&#10;layo&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;.env&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/.env&#10;env&#9;null&#9;null&#10;Index&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Venta/Index.js&#10;Historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;Historia&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;Jackpot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;Caja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaInsertar.js&#10;AperturaCAja&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/AperturaCaja/AperturaCajaInsertar.js&#10;CajaLis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Caja/CajaListar.js&#10;ReporteHistorialGanadores&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;ReporteJackPot&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;UsuarioPuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaEditar.js&#10;UsuarioPuntoVentaListar&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/UsuarioPuntoVenta/UsuarioPuntoVentaListar.js&#10;auditoria&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;ReporteApuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;ReporteVentaJuego&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteVentaJuego.js&#10;ReporteHistorialTicket&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;CajaListarJson&#9;null&#9;null&#10;cAjac&#9;null&#9;null&#10;Caja.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Caja.php&#10;ReporteApues&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteAp&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;historial&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;HistorialT&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialTickets.js&#10;ReporteJack&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteJackPot.js&#10;reportehis&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteHistorialGanadores.js&#10;homecon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/HomeController.php&#10;puntoventaCon&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/PuntoVentaController.php&#10;lay&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Shared/layout.blade.php&#10;PuntoVenta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/PuntoVenta/PuntoVentaListarVista.blade.php&#10;audit&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;auditori&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Seguridad/Auditoria.blade.php&#10;auditor&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Seguridad/Auditoria.js&#10;Reporte&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php&#10;aute&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Http/Controllers/AutenticacionController.php&#10;ReporteApuestas&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/public/assets/Reporte/ReporteApuestas.js&#10;apuesta&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteApuestasVista.blade.php&#10;ReporteHistorialGanadores#&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/resources/views/Reportes/ReporteHistorialGanadoresVista.blade.php&#10;ReporteContr&#9;null&#9;null&#10;reporte.php&#9;FILE&#9;file://C:/xampp/htdocs/TombolaCuy/app/Reporte.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SistemaVentas" />
@@ -535,7 +568,8 @@
       <workItem from="1553519859538" duration="21939000" />
       <workItem from="1553611902783" duration="22578000" />
       <workItem from="1553691996384" duration="3156000" />
-      <workItem from="1553695993454" duration="652000" />
+      <workItem from="1553695993454" duration="2830000" />
+      <workItem from="1553704082950" duration="14069000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -583,7 +617,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422076000" />
+    <option name="totallyTimeSpent" value="438323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,14 +632,14 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.24011713" />
+      <window_info content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.22254759" />
       <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978038" weight="0.32318106" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4978038" weight="0.41285956" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32864675" />
@@ -678,167 +712,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/UsuarioPuntoVenta/UsuarioPuntoVentaEditarVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-615">
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsuarioPuntoVentaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="72" column="25" lean-forward="true" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="721" selection-start-line="721" selection-end-line="721" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="153" selection-start-line="153" selection-end-line="153" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PuntoVentaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Reportes/ReporteApuestasVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="86" column="84" selection-start-line="86" selection-start-column="84" selection-end-line="86" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/PuntoVenta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/UsuarioPuntoVenta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Reporte.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="35" column="14" lean-forward="true" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-          <folding>
-            <element signature="e#23#32#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Reportes/ReporteJackPotVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="176" column="53" selection-start-line="176" selection-start-column="53" selection-end-line="176" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CajaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Caja.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AperturaCaja.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="141" selection-start-line="2" selection-start-column="141" selection-end-line="2" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaInsertarVista.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="103" column="62" lean-forward="true" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AperturaCajaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="752" column="45" selection-start-line="752" selection-start-column="45" selection-end-line="752" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/VentaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReporteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="97" column="20" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -923,10 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -941,10 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="267" column="57" selection-start-line="267" selection-start-column="57" selection-end-line="267" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -997,31 +866,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="168" column="40" lean-forward="true" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteJackPot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="103" column="58" selection-start-line="103" selection-start-column="58" selection-end-line="103" selection-end-column="58" />
-          <folding>
-            <element signature="e#132#249#0" />
-            <element signature="e#283#504#0" />
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1029,9 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
-          <folding>
-            <element signature="e#546#1081#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1042,16 +887,187 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/assets/Venta/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="384" column="54" selection-start-line="384" selection-start-column="54" selection-end-line="384" selection-end-column="54" />
+        <state relative-caret-position="255">
+          <caret line="365" column="199" selection-start-line="365" selection-start-column="197" selection-end-line="365" selection-end-column="199" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Venta/Index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2835" />
+        <state relative-caret-position="330">
+          <caret line="659" column="47" selection-start-line="659" selection-start-column="42" selection-end-line="659" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Venta/Index.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/Reportes/ReporteVentaJuegoVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Console/EnvironmentCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/Logotipo-Horizontal-2258x662.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/logoat.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout_autenticacion.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Animacion/AnimacionVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="72" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" />
+            <element signature="n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Autenticacion/Login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Shared/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="477" column="44" selection-start-line="477" selection-start-column="35" selection-end-line="477" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Caja/CajaInsertar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="15" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="31" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding>
+            <element signature="e#40#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Funciones.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          <folding>
+            <element signature="e#112#140#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="139" column="62" selection-start-line="139" selection-start-column="62" selection-end-line="139" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReporteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Reporte.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="278" column="41" selection-start-line="278" selection-start-column="41" selection-end-line="278" selection-end-column="41" />
+          <folding>
+            <element signature="e#23#32#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/funciones.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="88" selection-end-column="26" />
+          <folding>
+            <element signature="n#!!block;n#llenarSelect#0" />
+            <element signature="n#!!block;n#show5#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="100" column="32" lean-forward="true" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+          <folding>
+            <element signature="e#1993#3631#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVenta.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="88" column="37" selection-start-line="88" selection-start-column="37" selection-end-line="88" selection-end-column="37" />
+          <folding>
+            <element signature="e#1757#3164#0" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>
