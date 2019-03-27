@@ -382,7 +382,7 @@
                     <ul class="sub-menu collapse" data-menu-title="Reporte">
                         <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Apuesta</span></a></li>
+                                        class="title">Apuesta</span></a></li>
                         <li><a href="{{route('Reporte.HistorialGanadores')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Historial Ganadores</span></a></li>
@@ -391,17 +391,17 @@
                                         class="title">JackPot</span></a></li>
                         <li><a href="{{route('Reporte.Venta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Venta</span></a></li>
+                                        class="title">Ventas</span></a></li>
                         <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Venta Juego</span></a></li>
+                                        class="title">Ventas Juego</span></a></li>
                         <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Cierre Caja</span></a></li>
+                                        class="title">Cierre Caja</span></a></li>
                         <li><a href="{{route('Reporte.HistorialTicket')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Historial Ticket</span></a></li>
+                                        class="title">Historial Ticket</span></a></li>
                     </ul>
                 </li>
                 <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
