@@ -34,8 +34,9 @@ class Funciones
             $header = array_keys($data[0]);
             $columns = ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
             $ultima_fila = "";
+            $sheet->setTitle($nombre_archivo);
             for ($i = 0; $i < count($header); $i++) {
-                $sheet->setCellValue($columns[$i] . '3', $header[$i])->getColumnDimension($columns[$i])->setAutoSize(true);
+                $sheet->setCellValue($columns[$i] . '3', ucwords($header[$i]))->getColumnDimension($columns[$i])->setAutoSize(true);
                 $valor = $columns[$i] . '3';
                 $sheet->getStyle($valor)->applyFromArray($styleArray);
                 $sheet->getStyle($valor)->getAlignment()->setHorizontal('center');
@@ -60,7 +61,7 @@ class Funciones
             $sheet->getStyle('B2')->getFill()
                 ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
                 ->getStartColor()->setARGB('BFBFBF');
-            $archivo = "assets/" . $nombre_archivo . '_' . time() . '.xlsx';
+            $archivo = "Reportes/" . $nombre_archivo . '_' . time() . '.xlsx';
             $writer = new Xlsx($spreadsheet);
             $writer->save($archivo);
         } catch (QueryException $ex) {

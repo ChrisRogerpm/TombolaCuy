@@ -26,7 +26,6 @@ class Reporte extends Model
         $fechaIni = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fechaFin = Carbon::parse($request->input('fechaFin'))->endOfDay();
         $tiendas = is_array($tiendas) ? implode(",", $tiendas) : $tiendas;
-
         $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
         $data = [];
         foreach ($puntoventa as $l) {
@@ -34,7 +33,6 @@ class Reporte extends Model
         }
         $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
-
         $lista = DB::select(DB::raw("
         select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
@@ -49,11 +47,23 @@ class Reporte extends Model
         inner join evento e on e.idevento=t.idevento 
         where  ac.estado!=0
         $condicional
-        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'
-        
+        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'        
         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
         "));
-        return $lista;
+        $data = [];
+        foreach ($lista as $l) {
+            $turno = Turno::TurnoObtenerId($l->Turno);
+            $data [] = [
+                'Tienda' => $l->Tienda,
+                'fechaoperacion' => $l->fechaoperacion,
+                'Turno' => ucwords($turno),
+                'apuestas' => $l->apuestas,
+                'Pagos' => $l->Pagos,
+                'Evento' => $l->Evento,
+                'Jugadores' => $l->Jugadores,
+            ];
+        }
+        return $data;
 
     }
 
@@ -97,8 +107,24 @@ class Reporte extends Model
           where  ac.estado!=0
          and ac.fechaoperacion between '$fechaIni' and '$fechaFin' $condicional
        group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
-
-        return $listar;
+        $data = [];
+        foreach ($listar as $l) {
+            $turno = Turno::TurnoObtenerId($l->Turno);
+            $data [] = [
+                'tienda' => $l->tienda,
+                'fechaoperacion' => $l->fechaoperacion,
+                'Turno' => ucwords($turno),
+                'apuestas' => $l->apuestas,
+                'Pagos' => $l->Pagos,
+                'Evento' => $l->Evento,
+                'Jugadores' => $l->Jugadores,
+                'totalganadores' => $l->totalganadores,
+                'ganador' => $l->ganador,
+                'color' => $l->color,
+                'TipoApuesta' => $l->TipoApuesta,
+            ];
+        }
+        return $data;
     }
 
     public static function ReporteJackPotListarJson(Request $request)
@@ -255,7 +281,7 @@ class Reporte extends Model
         foreach ($listar as $l) {
             $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
             $data [] = [
-                'idEvento' => $l->idEvento,
+//                'idEvento' => $l->idEvento,
                 'Fecha' => $l->Fecha,
                 'TipoApuesta' => 'Pleno',
                 'Evento' => $l->Evento,

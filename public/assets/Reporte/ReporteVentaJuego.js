@@ -6,6 +6,7 @@ $(document).ready(function () {
     $(document).on('click', '.btnJuego', function (e) {
         e.preventDefault();
         var IdJuego = $(this).data("id");
+        var NombreJuego = $(this).data("nombre");
         var url = basePath + "ReporteVentaJuegoFk";
         var dataForm = {
             IdJuego: IdJuego,
@@ -13,23 +14,26 @@ $(document).ready(function () {
         };
         $("#txtIdJuego").val(IdJuego);
         $(".Fecha").val("");
-        ReporteVentaJson(url, dataForm);
+        $("#txtNombreTabla").val(NombreJuego);
+        ReporteVentaJson(url, dataForm, NombreJuego);
         $("#btnBuscar").attr('disabled', false);
     });
 
     $(document).on('click', '#btnBuscar', function () {
         var url = basePath + "ReporteVentaJuegoFk";
         var dataForm = $('#frmNuevo').serializeFormJSON();
-        ReporteVentaJson(url, dataForm);
+        var NombreJuego = $("#txtNombreTabla").val();
+        ReporteVentaJson(url, dataForm, NombreJuego);
     });
 
-    $(document).on('click','#btnExcel',function () {
-
+    $(document).on('click', '#btnExcel', function () {
+        var NombreJuego = $(this).data("nombre");
+        GenerarExcel(NombreJuego, "Reporte de " + NombreJuego);
     });
 
 });
 
-function ReporteVentaJson(url, dataForm) {
+function ReporteVentaJson(url, dataForm, NombreJuego) {
     $.ajax({
         type: 'POST',
         url: url,
@@ -42,16 +46,14 @@ function ReporteVentaJson(url, dataForm) {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
+            $(".container-tabla").html("").append('<table class="table table-bordered border-1" id="' + NombreJuego + '"></table>');
+            $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" data-nombre="' + NombreJuego + '" id="btnExcel">\n' +
+                '                                        <span class="icon fa fa-fw fa-file-excel-o"></span> Excel\n' +
+                '                                    </a>');
+
             var resp = response.data;
             $("#PanelTabla").show();
-            $("#table_panel").DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Ventas',
-                    }
-                ],
+            $("#" + NombreJuego).DataTable({
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,

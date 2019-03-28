@@ -40,4 +40,14 @@ class Turno extends Model
         $Turno->save();
         return $Turno;
     }
+
+    public static function TurnoObtenerId($IdTurno)
+    {
+        $resultado = Turno::findorfail($IdTurno);
+        if ($resultado != null) {
+            return $resultado->nombre;
+        } else {
+            return 'No existe';
+        }
+    }
 }
