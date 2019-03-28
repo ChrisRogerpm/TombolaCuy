@@ -24,4 +24,15 @@ class HomeController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
+
+    public function GenerarArchivoExcelJackpot(Request $request){
+        $respuesta = "";
+        $mensaje_error = "";
+        try {
+            $respuesta = Funciones::GenerarArchivoExcelJackpot($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+    }
 }

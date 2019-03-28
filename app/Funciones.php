@@ -70,5 +70,84 @@ class Funciones
 
         return $archivo;
     }
+
+    public static function GenerarArchivoExcelJackpot(Request $request)
+    {
+
+        $data = $request->input('table_data');
+        $nombre_archivo = $request->input('NombreArchivo');
+
+        try {
+            $styleArray = [
+                'borders' => [
+                    'outline' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => '000000'],
+                    ],
+                ],
+            ];
+
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $columns = ['B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+            $ultima_fila = "";
+
+            $sheet->setTitle($nombre_archivo);
+
+            $sheet->mergeCells('B2:H2')->setCellValue('B2', $nombre_archivo);
+            $sheet->getStyle('B2:H2')->applyFromArray($styleArray);
+            $sheet->getStyle('B2')->getAlignment()->setHorizontal('center');
+            $sheet->getStyle('B2')->getFill()
+                ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('BFBFBF');
+
+            $sheet->mergeCells('B3:E3')->setCellValue('B3', 'POZO');
+            $sheet->getStyle('B3:E3')->applyFromArray($styleArray);
+            $sheet->getStyle('B3')->getAlignment()->setHorizontal('center');
+            $sheet->getStyle('B3')->getFill()
+                ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('CDEAF6');
+
+            $sheet->mergeCells('F3:H3')->setCellValue('F3', 'POZO OCULTO');
+            $sheet->getStyle('F3:H3')->applyFromArray($styleArray);
+            $sheet->getStyle('F3')->getAlignment()->setHorizontal('center');
+            $sheet->getStyle('F3')->getFill()
+                ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                ->getStartColor()->setARGB('B5E0F2');
+
+            $header = ["Tiendas", "Incremento", 'Limite Inferior', 'Limite Superior', 'Incremento Oculto', 'Limite Inferior Oculto', 'Limite Superior Oculto'];
+            $fila = 5;
+
+            for ($i = 0; $i < count($header); $i++) {
+                $sheet->setCellValue($columns[$i] . '4', ucwords($header[$i]))->getColumnDimension($columns[$i])->setAutoSize(true);
+                $valor = $columns[$i] . '4';
+                $sheet->getStyle($valor)->applyFromArray($styleArray);
+                $sheet->getStyle($valor)->getAlignment()->setHorizontal('center');
+                $sheet->getStyle($valor)->getFill()
+                    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                    ->getStartColor()->setARGB('BFBFBF');
+            }
+
+            for ($x = 0; $x < count($data); $x++) {
+                for ($i = 0; $i < count($columns); $i++) {
+                    $sheet->setCellValue($columns[$i] . $fila, $data[$x][$i]);
+                    $valor = $columns[$i] . $fila;
+                    $sheet->getStyle($valor)->applyFromArray($styleArray);
+                    $sheet->getStyle($valor)->getAlignment()->setHorizontal('center');
+                }
+                $fila++;
+            }
+
+
+            $archivo = "Reportes/" . $nombre_archivo . '_' . time() . '.xlsx';
+            $writer = new Xlsx($spreadsheet);
+            $writer->save($archivo);
+        } catch (QueryException $ex) {
+            $ex->errorInfo();
+        }
+
+        return $archivo;
+    }
 }
 
