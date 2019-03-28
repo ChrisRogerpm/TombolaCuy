@@ -175,6 +175,7 @@ class Reporte extends Model
         FROM configuracion_jackpot cj
         INNER JOIN jackpot j ON j.idConfiguracionJackpot = cj.idConfiguracionJackpot
         WHERE cj.idConfiguracionJackpot=$idConfigJackPot
+        AND j.estadoJackpot=1
         
         "));
         return $listar;

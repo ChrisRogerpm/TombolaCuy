@@ -3,7 +3,6 @@
 @section('body-class')
     sidebar-style loaded
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -86,58 +85,11 @@
 
     <div class="row">
 
-<!--    <div class="col-md-12">
-            <div class="panel panel-primary">
 
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-2">
-                            HORA
-                        </div>
-
-                        <div class="col-xs-12 col-md-2">
-                        PRÓXIMO EN
-                        </div>
-                        <div class="col-xs-12 col-md-2">
-                        JUGADOR
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                        DIVISA
-                        </div>
-                          <div class="col-xs-12 col-md-1">
-                        JACKPOT
-                        </div>
-                    </div>
-
-                      <div class="row" id="row_datosevento">
-                        <div class="col-xs-12 col-md-2">
-                            <span id="fechaHoy"></span><span id="liveclock"></span>
-                        </div>
-
-                        <div class="col-xs-12 col-md-2">
-                            <span id="proximo_en" class="countdown"></span>
-                        </div>
-                        <div class="col-xs-12 col-md-2">
-                            <span id="jugador" ></span>
-
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                            <span id="divisa" ></span>
-
-                        </div>
-                         <div class="col-xs-12 col-md-1">
-                            <span id="jackpotsuma" ></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-    </div>
- -->
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:83vh;">
+                    <DIV class="TOMBOLACUY" style="height:83vh;display:none">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -305,43 +257,6 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                       <!--      <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                         -->
                                             </tbody>
                                         </table>
                                     </div><!--rowtablaeventos-->

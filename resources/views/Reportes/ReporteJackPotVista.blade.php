@@ -62,6 +62,9 @@ li.active a,
     border-bottom: 2px solid #659ce0;
 
 }
+.ocultar{
+    display: none;
+}
 /**/
 
 /**/
