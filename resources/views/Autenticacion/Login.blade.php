@@ -11,7 +11,7 @@
                 <div class="panel-body">
 
                     <div class="image mb text-center">
-                        <img src="images/logo-big-dark.png" alt="CasperoBoard">
+                        <img src="{{asset('images/logo.png')}}">
                     </div>
 
                     <form id="frmNuevo">

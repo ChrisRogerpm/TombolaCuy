@@ -32,7 +32,7 @@ class Reporte extends Model
         foreach ($puntoventa as $l) {
             $data [] = $l->idPuntoVenta;
         }
-        $data = implode(",",$data);
+        $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
         $lista = DB::select(DB::raw("
@@ -69,7 +69,7 @@ class Reporte extends Model
         foreach ($puntoventa as $l) {
             $data [] = $l->idPuntoVenta;
         }
-        $data = implode(",",$data);
+        $data = implode(",", $data);
 
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
@@ -251,7 +251,42 @@ class Reporte extends Model
         group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
         order by e.idevento desc"));
 
-        return $listar;
+        $data = [];
+
+        foreach ($listar as $l) {
+            $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
+            $data [] = [
+                'idEvento' => $l->idEvento,
+                'Fecha' => $l->Fecha,
+                'TipoApuesta' => 'Pleno',
+                'Evento' => $l->Evento,
+                'Juego' => $l->Juego,
+                'Moneda' => $l->Moneda,
+                'estadoEvento' => $estadoEventoNombre,
+                'Ganado' => $l->Ganado,
+            ];
+        }
+
+        return $data;
+    }
+
+    public static function EstadoEventoNombre($estadoEvento)
+    {
+        $respuesta = "";
+        if ($estadoEvento === 0) {
+            $respuesta = "Anulado";
+        } else if ($estadoEvento === 1) {
+            $respuesta = "Ejecucion";
+        } else if ($estadoEvento === 2) {
+            $respuesta = "Terminado";
+        } else if ($estadoEvento === 3) {
+            $respuesta = "PendPago";
+        } else if ($estadoEvento === 4) {
+            $respuesta = "Pagado";
+        } else if ($estadoEvento === 5) {
+            $respuesta = "Suspendido";
+        }
+        return $respuesta;
     }
 
     public static function ValorGanadorEvento($idEvento)
@@ -353,7 +388,7 @@ class Reporte extends Model
         foreach ($puntoventa as $l) {
             $data [] = $l->idPuntoVenta;
         }
-        $data = implode(",",$data);
+        $data = implode(",", $data);
 
         $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
 

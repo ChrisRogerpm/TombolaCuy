@@ -120,6 +120,9 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 
     Route::get('Auditoria', 'ReporteController@ReporteAuditoriaVista')->name('Auditoria');
 });
+/*GenerarExcel*/
+
+Route::post('GenerarExcelFk','HomeController@GenerarExcel');
 
 /*Ventana Caja*/
 Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
