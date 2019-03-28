@@ -195,7 +195,7 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
     var idConfiguracionJackpot = ConfiguracionJackpot[0];
 
 
-
+    
     if (tiendas[0] == "0") {
         var valAllOptions = $("#cboTienda option").map(function () {
             return this.value;
