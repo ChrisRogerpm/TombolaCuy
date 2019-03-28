@@ -66,7 +66,9 @@ li.active a,
     display: none;
 }
 /**/
-
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border:none;
+}
 /**/
 </style>
 
@@ -165,9 +167,7 @@ li.active a,
 
                     </div>
 
-                    <table id="table" class="table table-bordered table-striped" style="width:100%">
-                    </table>
-
+                   
 
                 </div>
 
