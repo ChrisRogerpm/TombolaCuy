@@ -6,37 +6,34 @@ var path=null;
 
 function iniciarContador(duration, display) {
     var timer = duration, minutos, segundos;
-    setInterval(function () {
+    if(typeof intervalo_contador!="undefined"){
+      clearInterval(intervalo_contador) 
+    }
+    intervalo_contador=setInterval(function () {
         minutos = parseInt(timer / 60, 10);
         segundos = parseInt(timer % 60, 10);
 
         minutos = minutos < 10 ? "0" + minutos : minutos;
         segundos = segundos < 10 ? "0" + segundos : segundos;
-
         display.text(minutos + ":" + segundos);
-
-
        // ///////segundos bloqueo
-                    segantesdebloque=eventoactual.segBloqueoAntesEvento;
-                    if(minutos==0 && segundos==segantesdebloque){
-                       $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
-                    }
-                    else{
-                       segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
-                      if(segundostotales==segantesdebloque){
-                         $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
-
-                      }
-
-                    }
-                    if(minutos==0 && segundos==1){
-                      setTimeout(function(){
-                        $.LoadingOverlay("hide");
-                        location.reload(true)
-                      },2000)
-                    }
+        segantesdebloque=eventoactual.segBloqueoAntesEvento;
+        if(minutos==0 && segundos==segantesdebloque){
+           $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+        }
+        else{
+           segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
+          if(segundostotales==segantesdebloque){
+             $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+          }
+        }
+        if(minutos==0 && segundos==1){
+          setTimeout(function(){
+            $.LoadingOverlay("hide");
+            location.reload(true)
+          },2000)
+        }
           //fin segundos bloqueo
-
         if (--timer < 0) {
             timer = duration;
         }

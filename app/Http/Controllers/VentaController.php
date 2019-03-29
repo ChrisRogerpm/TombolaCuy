@@ -14,7 +14,6 @@ use \Milon\Barcode\DNS1D;
  use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
  use BaconQrCode\Renderer\RendererStyle\RendererStyle;
  use BaconQrCode\Writer;
-
  use SimpleSoftwareIO\QrCode\Facades\QrCode;
 //use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -24,7 +23,25 @@ class VentaController extends Controller
 {
     public function Index()
     {
-        return view('Venta.Index');
+        $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuario = Auth::user()->idUsuario;
+        try {
+            $hora_servidor = date('Y-m-d H:i:s');
+            $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
+            if(count($aperturacajadatos)>0){
+                $aperturacajadatos=$aperturacajadatos[0];
+            }
+            $eventos = Evento::EventoListar();
+            $dinerodefault = Evento::DineroDefaultListar();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        };
+     
+
+        // return view('Venta.Index', compact($objeto));
+        return view('Venta.Index', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault"));
+        // return view('Venta.Index');
+
     }
 
     public function GuardarTicket(Request $request)
@@ -149,6 +166,9 @@ class VentaController extends Controller
             $tipoapuesta = Evento::TipoApuestaListar();
             $dinerodefault = Evento::DineroDefaultListar();
 
+
+            
+
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
@@ -183,7 +203,26 @@ class VentaController extends Controller
             'jackpotsuma' => $jackpotsuma->sumajackpots,
             'mensaje' => $mensaje_error]);
     }
-
+    public function HistorialJackpotDatosJson(Request $request)
+    {
+        $mensaje_error = "";
+        $idEvento = $request->input("idEvento");
+        $idPuntoVenta = $request->input("idPuntoVenta");
+        try {
+            $hora_servidor = date('Y-m-d H:i:s');
+            $jackpots = Evento::JackPotEvento($idPuntoVenta);
+            $jackpotsuma = Evento::JackPotSumaEvento($idPuntoVenta)[0];
+            $historial = Evento::HistorialEvento($idEvento);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json([
+            'hora_servidor' => $hora_servidor,
+            'jackpots' => $jackpots,
+            'jackpotsuma' => $jackpotsuma->sumajackpots,
+            'historial' => $historial,
+            'mensaje' => $mensaje_error]);
+    }
     public function HistorialDatosJson(Request $request)
     {
         $mensaje_error = "";

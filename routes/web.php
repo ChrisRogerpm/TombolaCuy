@@ -130,6 +130,7 @@ Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
 Route::post('GuardarTicketFk', 'VentaController@GuardarTicket');
 Route::post('BuscarTicketFk', 'VentaController@BuscarTicket');
 Route::post('EventoDatosJsonFk', 'VentaController@EventoDatosJson');
+Route::post('HistorialJackpotDatosJsonFk', 'VentaController@HistorialJackpotDatosJson');
 Route::post('HistorialDatosJsonFk', 'VentaController@HistorialDatosJson');
 Route::post('JackpotDatosJsonFk', 'VentaController@JackpotDatosJson');
 Route::post('ImprimirDatosJsonFk', 'VentaController@ImprimirDatosJson');
