@@ -4,9 +4,74 @@ var host= null;
 var port=null;
 var path=null;
 
+function iniciarContador(duration, display) {
+    var timer = duration, minutos, segundos;
+    setInterval(function () {
+        minutos = parseInt(timer / 60, 10);
+        segundos = parseInt(timer % 60, 10);
+
+        minutos = minutos < 10 ? "0" + minutos : minutos;
+        segundos = segundos < 10 ? "0" + segundos : segundos;
+
+        display.text(minutos + ":" + segundos);
+
+
+       // ///////segundos bloqueo
+                    segantesdebloque=eventoactual.segBloqueoAntesEvento;
+                    if(minutos==0 && segundos==segantesdebloque){
+                       $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+                    }
+                    else{
+                       segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
+                      if(segundostotales==segantesdebloque){
+                         $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+
+                      }
+
+                    }
+                    if(minutos==0 && segundos==1){
+                      setTimeout(function(){
+                        $.LoadingOverlay("hide");
+                        location.reload(true)
+                      },2000)
+                    }
+          //fin segundos bloqueo
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+
+// var fiveMinutes = 60 * 5,
+//     display = $('#time');
+// startTimer(fiveMinutes, display);
+
+
+ // timeMiliSecond = new Date(serverTime).getTime();
+ // callRepeatedly() {
+ //    setTimeout(() => {
+ //         timeMiliSecond = timeMiliSecond+1000;         
+ //         serverTime=moment(newDate(timeMiliSecond)).format('MM-DD-YYYY HH:mm:ss');
+ //         this.callRepeatedly();
+ //      }, 1000)  
+ //  }
+
+
+
+function hora(){
+setInterval(function(){
+       // time=ServerDate();
+      $("#liveclock").text(ServerDate().getHours()+":"+ServerDate().getMinutes()+":"+ServerDate().getSeconds())
+},1000)
+  
+}
+
+
+
 function connectarWebSockets(ipservidor,puerto)
 {
-  console.error("conectarwebsockets");  
   host=ipservidor;
   port=puerto;
    init(host,port);
@@ -31,11 +96,12 @@ function init(host,port){
 
      };
     socket.onmessage = function(msg){ 
+      aaaaa=msg;
            var proxima_fecha=moment(eventoactual.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
            var ahora=moment(msg.data, "YYYY-MM-DD HH:mm:ss a");
            var minutos=proxima_fecha.diff(ahora,'minutes');
            var segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
-           log("Server>: "+msg.data + " Próximo en:" +minutos+":"+segundos);
+           log("Servidor>: "+msg.data + " Próximo en:" +minutos+":"+segundos);
 
            var horaserv=moment(msg.data, "YYYY-MM-DD HH:mm:ss a").format("hh:mm:ss a");
            $("#liveclock").text(horaserv);
