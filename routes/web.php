@@ -123,6 +123,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 /*GenerarExcel*/
 
 Route::post('GenerarExcelFk','HomeController@GenerarExcel');
+Route::post('GenerarArchivoExcelJackpotFk','HomeController@GenerarArchivoExcelJackpot');
 
 /*Ventana Caja*/
 Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');

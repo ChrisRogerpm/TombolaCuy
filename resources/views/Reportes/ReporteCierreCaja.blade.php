@@ -1,4 +1,9 @@
 @extends('Shared.layout')
+
+@section('body-class')
+    sidebar-style loaded
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-6">
