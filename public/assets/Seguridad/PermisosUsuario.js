@@ -31,23 +31,17 @@ $(document).ready(function () {
         var IdPerfil = $(this).data('perfil');
         var IdPermiso = $(this).data('permiso');
         GestionarPermisos(IdPermiso, IdPerfil);
-        ListarPermisosPerfil(IdPerfil);
     });
     $(document).on('ifUnchecked', '#tablePermisos input:checkbox', function () {
         var IdPermiso = $(this).data('permiso');
         var IdPerfil = $(this).data('perfil');
         GestionarPermisos(IdPermiso, IdPerfil);
-        ListarPermisosPerfil(IdPerfil);
     });
 
     $(document).on('ifChecked', '#CheckTodos', function () {
         var IdPerfil = $("#txtPerfil").val();
         var url = basePath + "AgregarTodoPermisosJsonFk";
-        var dataForm = {
-            'perfil_id': IdPerfil
-        };
-        AgregarTodoPermisos(url, dataForm);
-        ListarPermisosPerfil(IdPerfil);
+        AgregarTodoPermisos(url, IdPerfil);
     });
 
     $(document).on('ifUnchecked', '#CheckTodos', function () {
@@ -57,7 +51,6 @@ $(document).ready(function () {
             'perfil_id': IdPerfil
         };
         QuitarTodoPermisos(url, dataForm);
-        ListarPermisosPerfil(IdPerfil);
     });
 
     $(document).on('click', '#btnBarrido', function () {
@@ -111,6 +104,7 @@ function GestionarPermisos(IdPermiso, IdPerfil) {
         success: function (response) {
             if (response.respuesta == true) {
                 toastr.success(response.mensaje, "Mensaje Servidor");
+                ListarPermisosPerfil(IdPerfil);
             } else {
                 toastr.error(response.mensaje, "Mensaje Servidor");
             }
@@ -200,6 +194,7 @@ function ListarPermisosPerfil(id) {
             var permisoID = [];
             var permisosTotal = response.data[0].length;
             var permisosPerfilTotal = response.data[1].length;
+            var permisosPerfil = response.data[1];
             var checked = "";
             if (permisosPerfilTotal === permisosTotal) {
                 checked = "checked";
@@ -233,7 +228,8 @@ function ListarPermisosPerfil(id) {
                         data: null, title: "",
                         "render": function (value) {
                             var select = "";
-                            if (jQuery.inArray(value.id, permisoID) >= 0) {
+                            var validar = permisosPerfil.includes(value.id);
+                            if(validar){
                                 select = "checked";
                             }
                             return '<div class="icheck-inline" style="margin-top: 5px;"><input type="checkbox" data-todos="2" data-permiso="' + value.id + '" data-perfil="' + id + '" name="chkpermiso_1" ' + select + ' data-checkbox="icheckbox_square-blue"></div>';
@@ -256,14 +252,24 @@ function ListarPermisosPerfil(id) {
     });
 }
 
-function AgregarTodoPermisos(url, dataForm) {
+function AgregarTodoPermisos(url, IdPerfil) {
+    var dataForm = {
+        'perfil_id': IdPerfil
+    };
     $.ajax({
         type: 'POST',
         url: url,
         data: dataForm,
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
         success: function (response) {
             var respuesta = response.respuesta;
             if (respuesta) {
+                ListarPermisosPerfil(IdPerfil);
                 toastr.success('Se ah agregado todo los permisos', 'Mensaje Servidor');
             } else {
                 toastr.warning(response.mensaje, 'Mensaje Servidor');
@@ -272,14 +278,24 @@ function AgregarTodoPermisos(url, dataForm) {
     })
 }
 
-function QuitarTodoPermisos(url, dataForm) {
+function QuitarTodoPermisos(url, IdPerfil) {
+    var dataForm = {
+        'perfil_id': IdPerfil
+    };
     $.ajax({
         type: 'POST',
         url: url,
         data: dataForm,
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
         success: function (response) {
             var respuesta = response.respuesta;
             if (respuesta) {
+                ListarPermisosPerfil(IdPerfil);
                 toastr.success('Se ah quitado todo los permisos', 'Mensaje Servidor');
             } else {
                 toastr.warning(response.mensaje, 'Mensaje Servidor');

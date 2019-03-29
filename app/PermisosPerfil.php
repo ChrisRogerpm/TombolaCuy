@@ -40,7 +40,13 @@ class PermisosPerfil extends Model
             ->where('tbl.perfil_id', $request->txtPerfilID)
             ->where('estado', 1)
             ->get();
-        return $listar;
+
+        $data = [];
+        foreach ($listar as $l){
+            $data[] = $l->permiso_id;
+        }
+
+        return $data;
     }
 
     public static function PermisoIDPerfilIDListarJson(Request $request)
