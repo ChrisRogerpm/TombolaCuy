@@ -27,7 +27,7 @@
     <!-- /OpenGraph meta -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
     <!-- /Favicon -->
 
     <!-- AppleTouch Icons -->

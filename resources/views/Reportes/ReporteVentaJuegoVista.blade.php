@@ -1,4 +1,9 @@
 @extends('Shared.layout')
+
+@section('body-class')
+    sidebar-style loaded
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -39,50 +44,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12" id="container-excel"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{--<div class="row">--}}
-    {{--<div class="col-xs-12 col-md-12">--}}
-    {{--<div class="panel panel-primary">--}}
-    {{--<div class="panel-body">--}}
-    {{--<form id="frmNuevo" autocomplete="off" action="{{route('Exportar')}}" method="POST">--}}
-    {{--{{csrf_field()}}--}}
-    {{--<div class="row">--}}
-    {{--<div class="col-md-4">--}}
-    {{--<div class="form-group">--}}
-    {{--<label for="">Fecha Inicio</label>--}}
-    {{--<div class="input-group">--}}
-    {{--<div class="input-group-addon"><i class="fa fa-calendar"></i></div>--}}
-    {{--<input type="text" class="form-control input-sm Fecha" name="fechaInicio"--}}
-    {{--required>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="col-md-4">--}}
-    {{--<div class="form-group">--}}
-    {{--<label for="">Fecha Fin</label>--}}
-    {{--<div class="input-group">--}}
-    {{--<div class="input-group-addon"><i class="fa fa-calendar"></i></div>--}}
-    {{--<input type="text" class="form-control input-sm Fecha" name="fechaFin" required>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</form>--}}
-
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
     <div class="row">
         <div class="col-md-3">
             <div class="panel panel-primary widget-panel widget-categories">
                 <div class="list-group list-categories">
                     @foreach($juegos as $j)
-                        <a href="#" class="list-group-item category btnJuego" data-id="{{$j->idJuego}}">
+                        <a href="#" class="list-group-item category btnJuego" data-id="{{$j->idJuego}}" data-nombre="{{$j->nombre}}">
                             <i class="icon-theme icon-primary fa fa-gamepad"></i>{{$j->nombre}}<span
                                     class="small subtitle">{{$j->nombre}}</span>
                         </a>
@@ -95,6 +72,7 @@
             <div class="panel panel-primary"
                  style="padding-top:10px; padding-left:10px;padding-right:10px;display: none" id="PanelTabla">
                 <div class="col-md-12">
+                    <input type="hidden" id="txtNombreTabla">
                     <form id="frmNuevo" autocomplete="off">
                         {{csrf_field()}}
                         <div class="row">
@@ -121,9 +99,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-bordered border-1" id="table_panel"></table>
-                </div>
+                <div class="panel-body container-tabla"></div>
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ function ListarDineroDefault() {
     //un cambio
     $.ajax({
         type: 'POST',
-        url: basePath + 'DineroDefaultListarJson',
+        url: basePath + 'DineroDefaultListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

@@ -1,104 +1,125 @@
 $(document).ready(function () {
-    $(".select2").select2();
+    // $(".select2").select2();
     var dateNow = new Date();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: dateNow,
     });
-    $.when(llenarSelect(basePath + "PuntoVentaListarJson", {'_token': $("input[name='_token']").val()}, "cboTienda", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {
-        $("#cboTienda").find('option').get(0).remove();
-        $("#cboTienda").select2();
+
+    $('.multiselect').select2({
+        tags: false, allowClear: true, buttonWidth: '100%',
+        width: '100%',
+        placeholder: {
+            id: '', // the value of the option
+            text: '--Seleccione--'
+        }
     });
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    $("#cboTienda").select2('val', [0]);
+
+    $(document).on('click', '#btnExcel', function () {
+        GenerarExcel("table", "Reporte de Apuestas");
+    });
+
     $(document).on('click', '#btnBuscar', function () {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var TiendaArray = [];
-            $("#cboTienda option:selected").each(function () {
-                if ($(this).val() !== "") {
-                    TiendaArray.push({'Id': $(this).val(), 'Tienda': $(this).text()})
+            var url = basePath + "ReporteApuestaJsonFk";
+            var dataForm = $('#frmNuevo').serializeFormJSON();
+            $("#ContenedorTabla").html("").append('<table id="table" class="table table-bordered table-striped" style="width:100%"></table>');
+            $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
+                '                                        <span class="icon fa fa-fw fa-file-excel-o"></span> Excel\n' +
+                '                                    </a>');
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(dataForm),
+                beforeSend: function () {
+                    $.LoadingOverlay("show");
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide");
+                },
+                success: function (response) {
+                    var resp = response.data;
+                    $("#PanelTabla").show();
+                    $("#table").DataTable({
+                        "bDestroy": true,
+                        "bSort": true,
+                        "scrollCollapse": true,
+                        "scrollX": false,
+                        "paging": true,
+                        "autoWidth": false,
+                        "bProcessing": true,
+                        "bDeferRender": true,
+                        data: resp,
+                        columns: [
+                            {data: "Tienda", title: "Tienda", class: "text-center"},
+                            {data: "Turno", title: "Turno", class: "text-center"},
+                            {data: "apuestas", title: "Apuestas", class: "text-center"},
+                            {data: "Pagos", title: "Pagos", class: "text-center"},
+                            {data: "Evento", title: "Evento", class: "text-center"},
+                            {data: "Jugadores", title: "Jugadores", class: "text-center"},
+                            {data: "fechaoperacion", title: "Fecha de Operacion", class: "text-center"},
+                        ]
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
                 }
-            });
-            $("#ContenedorTabla").html("").append('<div class="panel panel-primary" id="PanelTabla"><div class="panel-body">\n' +
-                '<table class="table" id="table_panel"><thead><tr></tr></thead></table>\n' +
-                '<div class="tab-content"></div>\n' +
-                '</div>\n' +
-                '</div>');
-            $("#PanelTabla #table_panel thead tr").html("");
-            $("#PanelTabla .tab-content").html("");
-            $.each(TiendaArray, function (key, value) {
-                var Active = key === 0 ? 'in active' : '';
-                var IdTienda = value.Id;
-                var NombreTienda = value.Tienda;
-                var TiendasNombreId = NombreTienda + IdTienda;
-                var TablaNombreTienda = "table" + TiendasNombreId.split(' ').join('');
-                $("#PanelTabla #table_panel thead tr")
-                    .append('<th class="text-center btn btn-primary" data-toggle="pill" href="#' + TiendasNombreId.split(' ').join('') + '" style="margin-right:2px; color:white;">' + NombreTienda + '</th>');
-                $("#PanelTabla .tab-content")
-                    .append('<div id="' + TiendasNombreId.split(' ').join('') + '" class="tab-pane fade ' + Active + '">' +
-                        '<table id="table' + TiendasNombreId.split(' ').join('') + '" class="table table-bordered table-striped" style="width:100%"></table>\n' +
-                        '</div>');
-                CargarDataTienda(TablaNombreTienda, IdTienda, NombreTienda);
             });
         }
     });
 });
 
-function CargarDataTienda(Tabla, IdTienda,NombreTienda) {
-    var tienda =IdTienda;
-    debugger
-    var url = basePath + "ReporteApuestaJson";
-    var dataForm = {
-        fechaInicio: $("input[name='fechaInicio']").val(),
-        fechaFin: $("input[name='fechaFin']").val(),
-        tiendas: IdTienda,
-        _token: $("input[name='_token']").val()
-    };
-    $.ajax({
-        url: url,
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(dataForm),
-        beforeSend: function () {
-            $.LoadingOverlay("show");
-        },
-        complete: function () {
-            $.LoadingOverlay("hide");
-        },
-        success: function (response) {debugger;
-            var resp = response.data;
-            $("#PanelTabla").show();
-            $("#" + Tabla).DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Apuestas - Tienda ' + NombreTienda
-                    }
-                ],
-                "bDestroy": true,
-                "bSort": true,
-                "scrollCollapse": true,
-                "scrollX": false,
-                "paging": true,
-                "autoWidth": false,
-                "bProcessing": true,
-                "bDeferRender": true,
-                data: resp,
-                columns: [
-                    
-                    {data: "Tienda", title: "Tienda"},
-                    {data: "apuestas", title: "Apuestas"},
-                    {data: "Pagos", title: "Pagos"},
-                    {data: "Evento", title: "Evento"},
-                    {data: "Jugadores", title: "Jugadores"},
-                    {data: "fechaoperacion", title: "Fecha de Operacion"},
-                ]
-            });
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-    });
-}
+// function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
+//     var tienda = IdTienda;
+//     var url = basePath + "ReporteApuestaJsonFk";
+//     var dataForm = {
+//         fechaInicio: $("input[name='fechaInicio']").val(),
+//         fechaFin: $("input[name='fechaFin']").val(),
+//         tiendas: IdTienda,
+//         _token: $("input[name='_token']").val()
+//     };
+//     $.ajax({
+//         url: url,
+//         type: "POST",
+//         contentType: "application/json",
+//         data: JSON.stringify(dataForm),
+//         beforeSend: function () {
+//             $.LoadingOverlay("show");
+//         },
+//         complete: function () {
+//             $.LoadingOverlay("hide");
+//         },
+//         success: function (response) {
+//             var resp = response.data;
+//             $("#PanelTabla").show();
+//             $("#" + Tabla).DataTable({
+//                 "bDestroy": true,
+//                 "bSort": true,
+//                 "scrollCollapse": true,
+//                 "scrollX": false,
+//                 "paging": true,
+//                 "autoWidth": false,
+//                 "bProcessing": true,
+//                 "bDeferRender": true,
+//                 data: resp,
+//                 columns: [
+//
+//                     {data: "Tienda", title: "Tienda"},
+//                     {data: "apuestas", title: "Apuestas"},
+//                     {data: "Pagos", title: "Pagos"},
+//                     {data: "Evento", title: "Evento"},
+//                     {data: "Jugadores", title: "Jugadores"},
+//                     {data: "fechaoperacion", title: "Fecha de Operacion"},
+//                 ]
+//             });
+//         },
+//         error: function (jqXHR, textStatus, errorThrown) {
+//         }
+//     });
+// }
 
 $("#frmNuevo")
     .validate({

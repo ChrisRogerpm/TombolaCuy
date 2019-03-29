@@ -58,19 +58,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="default-modal-label">Permisos</h4>
                 </div>
-                <div class="modal-body" id="bodyModal">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="icheck-inline" style="margin-top: 5px;">
-                                    Seleccionar Todos <input type="checkbox" id="CheckTodos" data-checkbox="icheckbox_square-blue">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <table class="table table-condensed table-striped table-bordered" id="tablePermisos"></table>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    <div class="row" id="container-todos"></div>
+                    <div class="row" id="bodyModal"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

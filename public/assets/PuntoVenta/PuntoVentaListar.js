@@ -8,7 +8,7 @@ $(document).ready(function () {
     $(document).on('click', '#btnSincronizar', function () {
         $.ajax({
             type: 'POST',
-            url: basePath + 'SincronizarPuntoVenta',
+            url: basePath + 'SincronizarPuntoVentaFk',
             data: {
                 '_token': $('input[name=_token]').val(),
             },
@@ -34,7 +34,7 @@ $(document).ready(function () {
 function ListarPuntoVenta() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'PuntoVentaListarJson',
+        url: basePath + 'PuntoVentaListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },

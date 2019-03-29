@@ -1,4 +1,9 @@
 @extends('Shared.layout')
+
+@section('body-class')
+    sidebar-style loaded
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -39,17 +44,11 @@
                                 </div>
                             </div>
                         </div>
-                        {{--
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel" onclick="event.preventDefault(); document.getElementById('frmNuevo').submit();">
-                                                <span
-                                                class="icon fa fa-fw fa-file-excel-o"></span> Excel
-                                        </a>
-                                </div>
+                                <div class="col-md-12 col-sm-12" id="container-excel"></div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +83,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
-                                    <select class="form-control input-sm select2" required name="tiendas"
+                                    <select class="form-control input-sm multiselect" required name="tiendas"
                                             style="width: 100%;" id="cboTienda" multiple="multiple">
                                         <option value="0">--Seleccione--</option>
                                     </select>
@@ -98,19 +97,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12" id="ContenedorTabla"></div>
+        <div class="col-md-12">
+            <div class="panel panel-primary" id="PanelTabla" style="display:none;">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12" id="ContenedorTabla"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
 @stop @push('Js')
-    <script src="{{asset('../assets/Reporte/ReporteApuestas.js')}}"></script>
-
-
-
-
-
-
-
-
-
+    <script src="{{asset('assets/Reporte/ReporteApuestas.js')}}"></script>
 @endpush

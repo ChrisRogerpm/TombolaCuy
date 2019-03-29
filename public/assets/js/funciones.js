@@ -82,8 +82,79 @@ function llenarSelect(url, data, select, dataId, dataValor, selectVal) {
 }
 
 
+function GenerarExcel(idTabla, NombreArchivo) {
+    var table = $('#' + idTabla).DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var dataForm = {
+        'table_data': data,
+        '_token': $('input[name=_token]').val(),
+        'NombreArchivo': NombreArchivo
+    };
+    if (data.length > 0){
+        $.ajax({
+            url: basePath + "GenerarExcelFk",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(dataForm),
+            beforeSend: function () {
+                $.LoadingOverlay("show");
+            },
+            complete: function () {
+                $.LoadingOverlay("hide");
+            },
+            success: function (response) {
+                var respuesta = response.respuesta;
+                if (respuesta === "") {
+                    toast.warning(respuesta, 'Mensaje Servidor');
+                } else {
+                    var url = basePath + respuesta;
+                    window.location.href = url;
+                }
+            }
+        });
+    } else{
+        toastr.warning('No hay registros en la tabla','Mensaje Servidor');
+    }
+}
 
-
+function GenerarExcelJackpot(idTabla, NombreArchivo) {
+    var table = $('#' + idTabla).DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var dataForm = {
+        'table_data': data,
+        '_token': $('input[name=_token]').val(),
+        'NombreArchivo': NombreArchivo
+    };
+    if (data.length > 0){
+        $.ajax({
+            url: basePath + "GenerarArchivoExcelJackpotFk",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(dataForm),
+            beforeSend: function () {
+                $.LoadingOverlay("show");
+            },
+            complete: function () {
+                $.LoadingOverlay("hide");
+            },
+            success: function (response) {
+                var respuesta = response.respuesta;
+                if (respuesta === "") {
+                    toast.warning(respuesta, 'Mensaje Servidor');
+                } else {
+                    var url = basePath + respuesta;
+                    window.location.href = url;
+                }
+            }
+        });
+    } else{
+        toastr.warning('No hay registros en la tabla','Mensaje Servidor');
+    }
+}
 
 //////////////////////////////////////////////////////////////  hora
 //////////////////////////////////////////////////////////////  hora
@@ -129,11 +200,11 @@ function show5() {
 
 }
 
-if ($("#fechaHoy").length) {
-    var today = moment().format('DD/MM/YYYY');
-    //document.getElementById("fechaHoy").innerHTML = today;
-    window.onload = show5;
-}
+// if ($("#fechaHoy").length) {
+//     var today = moment().format('DD/MM/YYYY');
+//     //document.getElementById("fechaHoy").innerHTML = today;
+//     window.onload = show5;
+// }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 

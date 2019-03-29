@@ -35,19 +35,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 #endregion
 
 #region [Venta]
-    Route::get('Index', 'VentaController@Index')->name('Venta.Index');
-    Route::post('VentaDatosJson', 'VentaController@VentaDatosJson');
-    Route::post('GuardarTicket', 'VentaController@GuardarTicket');
-    Route::post('BuscarTicket', 'VentaController@BuscarTicket');
-    Route::post('EventoDatosJson', 'VentaController@EventoDatosJson');
-    Route::post('HistorialDatosJson', 'VentaController@HistorialDatosJson');
-    Route::post('JackpotDatosJson', 'VentaController@JackpotDatosJson');
-    Route::post('ImprimirDatosJson', 'VentaController@ImprimirDatosJson');
-    Route::post('GuardarGanadorEvento', 'VentaController@GuardarGanadorEvento');
-
-    Route::post('JugadoresDatosJson', 'VentaController@JugadoresDatosJson');
-
-
+    Route::get('VentanaCaja', 'VentaController@Index')->name('Venta.Index');
 #endregion
 
 #region [ConfiguracionJackpot]
@@ -73,8 +61,6 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::post('AperturaCajaInsertarJson', 'AperturaCajaController@AperturaCajaInsertarJson');
     Route::post('AperturaCajaEditarJson', 'AperturaCajaController@AperturaCajaEditarJson');
     Route::post('AperturaRevisarJson', 'AperturaCajaController@AperturaRevisarJson');
-
-
 #endregion
 
 #region [Turno]
@@ -122,59 +108,103 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('ReporteVentaVista', 'ReporteController@ReporteVentaVista')->name('Reporte.Venta');
     Route::get('ReporteVentaJuegoVista', 'ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
     Route::get('ReporteCierraVentaVista', 'ReporteController@ReporteCierraVentaVista')->name('Reporte.CierreCaja');
-    Route::get('ReporteHistorialTicketVista','ReporteController@ReporteHistorialTicketVista')->name('Reporte.HistorialTicket');
-    Route::post('ReporteHistorialTicketJson','ReporteController@ReporteHistorialTicketJson');
-    Route::post('ReporteVentaJson', 'ReporteController@ReporteVentaJson');
-    Route::post('ReporteVentaJuego', 'ReporteController@ReporteVentaJuegoJson');
-#endregion
-
-    Route::post('ReporteApuestaJson', 'ReporteController@ReporteApuestaJson');
+    Route::get('ReporteHistorialTicketVista', 'ReporteController@ReporteHistorialTicketVista')->name('Reporte.HistorialTicket');
     Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
-    #region [Reporte JackPot]
     Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');
-    Route::post('ConfiguracionPozoSegunConfJackPot', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
-    Route::post('PozoJackPotSegunJackPotId', 'ReporteController@PozoJackPotSegunJackPotId');
-    Route::post('JackPotSegunidJackpot', 'ReporteController@JackPotSegunidJackpot');
-    #endregion
+#endregion
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
     Route::get('ProgresivoConfiguracion', 'ProgresivoController@ProgresivoConfiguracionVista')->name('Progresivo.Configuracion');
+    Route::get('UsuarioPuntoVenta', 'UsuarioPuntoVentaController@UsuarioPuntoVentaListarVista')->name('UsuarioPuntoVenta.Listar');
+    Route::get('UsuarioPuntoVentaEditar/{idUsuarioPuntoVenta}', 'UsuarioPuntoVentaController@UsuarioPuntoVentaEditarVista')->name('UsuarioPuntoVenta.Editar');
+
+    Route::get('Auditoria', 'ReporteController@ReporteAuditoriaVista')->name('Auditoria');
 });
+/*GenerarExcel*/
 
-Route::get('Auditoria','ReporteController@ReporteAuditoriaVista')->name('Auditoria');
-Route::post('ReporteAuditoriaJson','ReporteController@ReporteAuditoriaJson');
+Route::post('GenerarExcelFk','HomeController@GenerarExcel');
+Route::post('GenerarArchivoExcelJackpotFk','HomeController@GenerarArchivoExcelJackpot');
 
+/*Ventana Caja*/
+Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
+Route::post('GuardarTicketFk', 'VentaController@GuardarTicket');
+Route::post('BuscarTicketFk', 'VentaController@BuscarTicket');
+Route::post('EventoDatosJsonFk', 'VentaController@EventoDatosJson');
+Route::post('HistorialJackpotDatosJsonFk', 'VentaController@HistorialJackpotDatosJson');
+Route::post('HistorialDatosJsonFk', 'VentaController@HistorialDatosJson');
+Route::post('JackpotDatosJsonFk', 'VentaController@JackpotDatosJson');
+Route::post('ImprimirDatosJsonFk', 'VentaController@ImprimirDatosJson');
+Route::post('GuardarGanadorEventoFk', 'VentaController@GuardarGanadorEvento');
+Route::post('JugadoresDatosJsonFk', 'VentaController@JugadoresDatosJson');
+
+/*Reportes*/
+Route::post('ReporteHistorialTicketJsonFk', 'ReporteController@ReporteHistorialTicketJson');
+Route::post('ReporteVentaJsonFk', 'ReporteController@ReporteVentaJson');
+Route::post('ReporteVentaJuegoFk', 'ReporteController@ReporteVentaJuegoJson');
+Route::post('ReporteApuestaJsonFk', 'ReporteController@ReporteApuestaJson');
+
+/*ConfiguracionJackpot*/
+Route::post('ConfiguracionPozoSegunConfJackPotFk', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
+Route::post('PozoJackPotSegunJackPotIdFk', 'ReporteController@PozoJackPotSegunJackPotId');
+Route::post('JackPotSegunidJackpotFk', 'ReporteController@JackPotSegunidJackpot');
+
+/*Auditoria*/
+Route::post('ReporteAuditoriaJsonFk', 'ReporteController@ReporteAuditoriaJson');
+
+/*Usuario Punto Venta*/
+Route::post('UsuarioPuntoVentaListarJsonFk', 'UsuarioPuntoVentaController@UsuarioPuntoVentaListarJson');
+Route::post('UsuarioPuntoVentaListaObtenerFk', 'UsuarioPuntoVentaController@UsuarioPuntoVentaListaObtener');
+Route::post('AgregarPuntoVentaUsuarioJsonFk', 'UsuarioPuntoVentaController@AgregarPuntoVentaUsuarioJson');
+Route::post('QuitarPuntoVentaUsuarioJsonFk', 'UsuarioPuntoVentaController@QuitarPuntoVentaUsuarioJson');
+
+/*Animacion*/
 Route::get('AnimacionVista', 'AnimacionController@AnimacionVista')->name('AnimacionVista');
+
 Route::post('ReporteJackPotListarJson', 'ReporteController@ReporteJackPotListarJson');
-Route::post('ReporteHistorialGanadoresListarJson', 'ReporteController@ReporteHistorialGanadoresListarJson');
+Route::post('ConfiguracionJackpotListarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
+
+
+Route::post('ReporteHistorialGanadoresListarJsonFk', 'ReporteController@ReporteHistorialGanadoresListarJson');
 Route::post('ReporteCierreCajaFk', 'ReporteController@ReporteCierreCajaFk');
 
 Route::get('ConfiguracionEventoFk', 'ConfiguracionEventoController@ConfiguracionEventoVista')->name('ConfiguracionEvento');
-Route::post('ConfiguracionEventoJsonFk','ConfiguracionEventoController@ConfiguracionEventoInsertarJson');
-Route::post('ConfiguracionEventoMostrarFk','ConfiguracionEventoController@ConfiguracionEventoMostrar');
 
-Route::post('ConfiguracionJackpotListarJson', 'ConfiguracionJackpotController@ConfiguracionJackpotListarJson');
-Route::post('ConfiguracionPozoListarJson', 'ConfiguracionPozoController@ConfiguracionPozoListarJson');
-Route::post('CajaListarJson', 'CajaController@CajaListarJson');
-Route::post('AperturaCajaListarJson', 'AperturaCajaController@AperturaCajaListarJson');
-Route::post('TurnoListarJson', 'TurnoController@TurnoListarJson');
-Route::post('DineroDefaultListarJson', 'DineroDefaultController@DineroDefaultListarJson');
-Route::post('TipoPagoListarJson', 'TipoPagoController@TipoPagoListarJson');
-Route::post('EmpresaListarJson', 'EmpresaController@EmpresaListarJson');
-Route::post('PuntoVentaListarJson', 'PuntoVentaController@PuntoVentaListarJson');
-Route::post('UbigeoListarJson', 'UbigeoController@UbigeoListarJson');
-Route::post('TipoApuestaListarJson', 'TipoApuestaController@TipoApuestaListarJson');
-Route::post('ClienteListarJson', 'ClienteController@ClienteListarJson');
-Route::post('SincronizarPuntoVenta', 'PuntoVentaController@SincronizarPuntoVentaAPI');
-Route::post('ConfiguracionPozoEliminarJson', 'ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
-Route::post('CambiarEstadoConfiguracionPozoJson', 'ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
+/*Configuracion Evento*/
+Route::post('ConfiguracionEventoJsonFk', 'ConfiguracionEventoController@ConfiguracionEventoInsertarJson');
+Route::post('ConfiguracionEventoMostrarFk', 'ConfiguracionEventoController@ConfiguracionEventoMostrar');
+
+
+Route::post('ConfiguracionPozoListarJsonFk', 'ConfiguracionPozoController@ConfiguracionPozoListarJson');
+
+/*Caja*/
+Route::post('CajaListarJsonFk', 'CajaController@CajaListarJson');
+Route::post('CajaPuntoVentaUsuarioJsonFk', 'CajaController@CajaPuntoVentaUsuarioJson');
+Route::post('AperturaCajaListarJsonFk', 'AperturaCajaController@AperturaCajaListarJson');
+Route::post('TurnoListarJsonFk', 'TurnoController@TurnoListarJson');
+
+Route::post('DineroDefaultListarJsonFk', 'DineroDefaultController@DineroDefaultListarJson');
+Route::post('TipoPagoListarJsonFk', 'TipoPagoController@TipoPagoListarJson');
+Route::post('EmpresaListarJsonFk', 'EmpresaController@EmpresaListarJson');
+Route::post('PuntoVentaListarJsonFk', 'PuntoVentaController@PuntoVentaListarJson');
+Route::post('UbigeoListarJsonFk', 'UbigeoController@UbigeoListarJson');
+Route::post('TipoApuestaListarJsonFk', 'TipoApuestaController@TipoApuestaListarJson');
+Route::post('ClienteListarJsonFk', 'ClienteController@ClienteListarJson');
+Route::post('SincronizarPuntoVentaFk', 'PuntoVentaController@SincronizarPuntoVentaAPI');
+Route::post('ConfiguracionPozoEliminarJsonFk', 'ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
+Route::post('CambiarEstadoConfiguracionPozoJsonFk', 'ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
 
 Route::post('ListdoUsuariosSelectFk', 'SeguridadController@UsuarioListarJson');
-Route::post('CambiarPerfilUsuario', 'SeguridadController@ActualizarPerfilUsuario');
-Route::post('PermisoPerfilCheck', 'SeguridadController@PermisoPerfilJson');
+Route::post('CambiarPerfilUsuarioFk', 'SeguridadController@ActualizarPerfilUsuario');
+Route::post('PermisoPerfilCheckFk', 'SeguridadController@PermisoPerfilJson');
 Route::get('BarridoPermisosFk', 'SeguridadController@BarridoPermisos');
-Route::post('ListdoPermisosPerfil', 'SeguridadController@PermisoPerfilListarJson');
+Route::post('ListdoPermisosPerfilFk', 'SeguridadController@PermisoPerfilListarJson');
 Route::get('Seguridad', 'SeguridadController@PermisosUsuarioVista')->name('Seguridad.PermisosUsuario');
 Route::post('DataAuditoriaRegistroFk', 'SeguridadController@DataAuditoriaJson');
 Route::post('AperturaCajaCerrarFk', 'AperturaCajaController@AperturaCajaCerrarFk');
-Route::post('AperturaCajaListarActivaFK', 'AperturaCajaController@AperturaCajaListarActiva');
+Route::post('AperturaCajaListarActivaFk', 'AperturaCajaController@AperturaCajaListarActiva');
+
+Route::post('PuntoVentaListarUsuarioJsonFk', 'PuntoVentaController@PuntoVentaListarUsuarioJson');
+
+/*Seguridad*/
+Route::post('AgregarTodoPermisosJsonFk','SeguridadController@AgregarTodoPermisosJson');
+Route::post('QuitarTodoPermisosJsonFk','SeguridadController@QuitarTodoPermisosJson');

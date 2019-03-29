@@ -1,5 +1,10 @@
 @extends('Shared.layout')
 
+@section('body-class')
+    sidebar-style loaded
+@stop
+
+
 @section('content')
 
 <style type="text/css">
@@ -101,8 +106,12 @@ li.active a,
                             <div class="col-md-12 col-sm-12">
                                 <a id="btnBuscar" href="#" class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
                                         class="glyphicon glyphicon-search"></span> Buscar</a>
-
-
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 container-btnExcel">
                             </div>
                         </div>
                     </div>
@@ -115,6 +124,8 @@ li.active a,
     <div class="col-xs-12 col-md-12">
         <div class="panel panel-primary">
             <div class="panel-body">
+                <input type="hidden" id="txtIdJackpot">
+                <input type="hidden" id="txtNombreJackpot">
                 <form id="frmNuevo" autocomplete="off">
                     {{csrf_field()}}
                     <div class="row">
@@ -174,5 +185,5 @@ li.active a,
     @stop
 
     @push('Js')
-    <script src="{{asset('../assets/Reporte/ReporteJackPot.js')}}"></script>
+    <script src="{{asset('assets/Reporte/ReporteJackPot.js')}}"></script>
     @endpush

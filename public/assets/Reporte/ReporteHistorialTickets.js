@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnBuscar', function () {
-        var url = basePath + "ReporteHistorialTicketJson";
+        var url = basePath + "ReporteHistorialTicketJsonFk";
         var dataForm = $('#frmNuevo').serializeFormJSON();
         ReporteHistorialTicket(url, dataForm);
     });
@@ -40,8 +40,12 @@ $(document).ready(function () {
     });
 
 
-    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
+
+    $(document).on('click', '#btnExcel', function () {
+        GenerarExcel("table_panel", "Reporte Historial Tickets");
+    });
 
 });
 
@@ -58,19 +62,13 @@ function ReporteHistorialTicket(url, dataForm) {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
+            $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
+                '                                        <span class="icon fa fa-fw fa-file-excel-o"></span> Excel\n' +
+                '                                    </a>');
+
             var resp = response.data;
             $("#PanelTabla").show();
             $("#table_panel").DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Historial Ticket',
-                        // exportOptions: {
-                        //     columns: [0, 1, 2, 3, 4, 5, 6, 7]
-                        // }
-                    }
-                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,

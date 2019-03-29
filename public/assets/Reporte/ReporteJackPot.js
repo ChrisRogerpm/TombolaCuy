@@ -19,75 +19,21 @@ $(document).ready(function () {
         }
     });
 
-    //cboConfiguracionJackPot
-    // $('#cboConfiguracionJackPot').on('select2:select', function (e) {
-    //     var data = e.params.data;
-    //     var valor = data.id;
-    //     //debugger
-    //     if (valor == 0) {
-    //         $('#cboConfiguracionJackPot').val([]).trigger('change');
-    //         $('#cboConfiguracionJackPot').val(0).trigger('change');
-    //     } else {
-    //         var valores = $('#cboConfiguracionJackPot').val();
-    //         var nuevo = [];
-    //         $.each(valores, function (index, value) {
-    //             if (value != 0) {
-    //                 nuevo.push(value);
-    //             }
-    //         })
-    //         $('#cboConfiguracionJackPot').val(nuevo).trigger('change');
-    //     }
-
-    //     $('#subtituloTabsGeneral').html(data.text);
-    //     //ConfiguracionPozoSegunConfJackPot(valor);
-    // });
-
-
-
-    $("#cboConfiguracionJackPot").select2('val', [0]);
-
     $.when($.ajax(funcionLlenar())).then(function () {
 
-        $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
-
+        $("#cboConfiguracionJackPot option[value='0']").remove();
     });
-
-
-
 
     //Punto de venta Tienda
 
-    // $('#cboTienda option:selected').on('select2:select', function (e) {
-    //     var data = e.params.data;
-    //     //debugger
-    //     var valor = data.id;
-    //     if (valor == 0) {
-    //         $('#cboTienda').val([]).trigger('change');
-    //         $('#cboTienda').val(0).trigger('change');
-    //     } else {
-    //         var valores = $('#cboTienda').val();
-    //         var nuevo = [];
-    //         $.each(valores, function (index, value) {
-    //             if (value != 0) {
-    //                 nuevo.push(value);
-    //             }
-    //         })
-    //         $('#cboTienda').val(nuevo).trigger('change');
-
-    //         dataTienda.push(data);
-    //         //enviarTiendas(dataTienda);
-    //     }
-    // });
-
     $('#cboTienda').on('select2:select', function (e) {
-        debugger
+
         var data = e.params.data;
         var valor = data.id;
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        }
-        else {
+        } else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -99,23 +45,25 @@ $(document).ready(function () {
         }
     });
 
-
     //cboTienda es idPunto de Venta 
-    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
     //dinamico
     $("#tab-eval a").click(function () {
         $(this).tab("show");
     })
 
-
     $(document).on("click", "#btnBuscar", function () {
 
         buscarListarJackPot();
-
     });
     var unav = true;
     $(document).on("click", ".tabClick", function (e) {
+        var IdJackpot = $(this).data('id');
+        $("#txtIdJackpot").val(IdJackpot);
+
+        var NombreJackpot = $(this).data('nombre');
+        $("#txtNombreJackpot").val(NombreJackpot);
 
         var data = e.target;
         var valor = data.dataset.menu;
@@ -124,43 +72,20 @@ $(document).ready(function () {
         var tabla = document.querySelector(idcTabl);
         tabla = tabla.dataset.table;
         var jack = '#jack' + tabla;
-        debugger
-
-        //     $(jack).DataTable({
-        //         scrollY: '200px',
-        //        destroy: false,
-        //        sort: false,
-        //        scrollCollapse: true,
-        //        scrollX: true,
-
-        //        paging: false,
-        //        autoWidth: false,
-        //        processing: false,
-        //        deferRender: false,
-
-        //        bInfo : false,
-        //        searching: false,
-        //        paging: false,
-
-        //    });   
 
         var idc = '#menu' + valor + ' .dataTables_scrollHeadInner .tablajack';
 
-        debugger
+
         var tablaSeleccionada = document.querySelector(idc);
         tablaSeleccionada.style.width = '1150px';
         tablaSeleccionada.style.marginLeft = "0px";
-
-
-
-
     });
-    //width: 1724px; margin-left: 0px;
 });
 
 
 function funcionLlenar() {
     llenarSelect(basePath + "ConfiguracionJackpotListarJson", {}, "cboConfiguracionJackPot", "idConfiguracionJackpot", "nombre", "allOption", true);
+    $("#cboConfiguracionJackPot").select2('val', [0]);
 }
 
 var dataTienda = [];
@@ -170,34 +95,42 @@ function enviarTiendas(tiendas) {
 }
 
 var return_first;
-
 function callback(response) {
     return_first = response;
     //use return_first variable here
 }
 
 var return_JackPotSegunidJackPot;
-
 function callbackJackPotSegunidJackPot(response) {
     return_JackPotSegunidJackPot = response;
     //use return_first variable here
 }
 
-
 function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
-    //debugger;
-    var url = basePath + "ConfiguracionPozoSegunConfJackPot";
+    //;
+    var url = basePath + "ConfiguracionPozoSegunConfJackPotFk";
     var ConfiguracionJackpot = [...idConfiguracionJackpot];
     var idConfiguracionJackpot = ConfiguracionJackpot[0];
 
-    var tiendas = [...tiendas];
+    if (tiendas[0] == "0") {
+        var valAllOptions = $("#cboTienda option").map(function () {
+            return this.value;
+        }).get();
 
-    //debugger
+        var valTiendas = [];
+        for (let i = 2; i < valAllOptions.length; i++) {
+            valTiendas.push(valAllOptions[i]);
+        }
+    } else {
+        valTiendas = [...tiendas];
+
+    }
+
+    var tiendas = valTiendas;
+    debugger
     var dataForm = {
         idConfiguracionJackpot: idConfiguracionJackpot
     };
-    // var obj = { name: "John", age: 30, city: "New York" };
-    // var myJSON = JSON.stringify(obj);
 
     $.ajax({
         url: url,
@@ -205,250 +138,238 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
         contentType: "application/json",
         data: JSON.stringify(dataForm),
         beforeSend: function () {
-            //$.LoadingOverlay("show");
+            $.LoadingOverlay("show");
         },
         complete: function () {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
 
+
             var resp = response;
+            console.log(resp);
             listajackPots = [];
-            //debugger;
+            //
             var tabEval = document.getElementById('tab-eval');
 
-            var tabContenido = document.getElementById('tabContenido');
+            if ([...resp.data].length == 0) {
+                tabEval.innerHTML = `<div class="alert alert-warning" role="alert">
+                                    <strong>No Hay Jackpots </strong> 
+                                    para Configuración Jackpot elegido.
+                                </div>`;
+            } else {
 
-            var data = [...resp.data];
-            var html = '';
-            var htmlContenidoTabs = '';
-            var firstIndex, firstIndexTab;
-            tabEval.innerHTML = '';
-            tabContenido.innerHTML = ''
-            data.map((obj, index) => {
-                debugger
-                var index = index + 1;
-                firstIndex = (index == 1) ? 'active' : '';
-                firstIndexTab = (index == 1) ? 'in active' : '';
-                html += `<li class="${firstIndex}"><a class="tabClick" href="#menu${index}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
+                $(".container-btnExcel").html("").append('<button class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel"><span\n' +
+                    '                                                class="glyphicon glyphicon-export"></span> Excel\n' +
+                    '                                    </button>');
 
-                var idJack = obj.idJackPot;
-                //debugger;
+                var tabContenido = document.getElementById('tabContenido');
 
-                listajackPots.push(obj.idJackPot);
-                //jackPostt(listajackPots);
-                ListarPozoJackPotSegunJackPotId(obj.idJackPot);
-
-                // $.when($.ajax(ListarPozoJackPotSegunJackPotId(obj.idJackPot))).then(function () {
-
-                //    //codigo se ejecuta despues de que el metodo termine
-                // });
-                var listaPososJackPot = [];
-                var thPozo = '';
-                var tdPozo = '',
-                    tdPozoOculto = '';
-
-                var thTiendas = '';
-                // var tdTiendas = '';
-                listaPososJackPot = [...return_first];
-                // thTiendas = '<th style="font-weight: 600;color:black">Tiendas </th> ';
-                // tdTiendas = '<td style="font-weight: 600;color:steelblue"">Limites</td>';
-
-                var limites = ['Incremento', 'Límite Inferior', 'Límite Superior']
-                // tiendas.map((obj, index) => {
-
-                //     tdTiendas = tdTiendas + `<tr>
-                //                         <td style="font-weight: 600;color:black">${obj.text} </td>
-                //                         </tr>`;
-                // });
-                //thPozo = `<th>Tienda${index}<th>`;
-
-                tdPozo = limites.map(x => '<th style="font-weight: 600;color:black;text-align:center;">' + x + '</th>\n').join('');
-                tdPozo = tdPozo + limites.map(x => '<th style="font-weight: 600;color:steelblue;text-align:center;">' + x + ' Oculto</th>\n').join('');
-                tdPozo = tdPozo.repeat(listaPososJackPot.length);
-
-                //thPozo = '<th rowspan="2">Tiendas<th>';
-                var listaJackPotSegunidJackPot = [];
+                var data = [...resp.data];
+                var html = '';
+                var htmlContenidoTabs = '';
+                var firstIndex, firstIndexTab;
+                tabEval.innerHTML = '';
+                tabContenido.innerHTML = ''
+                data.map((obj, index) => {
+                    var index = index + 1;
+                    firstIndex = (index == 1) ? 'active' : '';
+                    firstIndexTab = (index == 1) ? 'in active' : '';
 
 
-                var tdBody = '';
-                var trBody;
-                var bodyJackpot = '';
-                debugger
-                listaPososJackPot.map((obj, index) => {
-                    thPozo = thPozo + `<th colspan='3'style="color:black;width:110px;text-align:center;">Pozo ${index+1} (${obj.idPozoJackpot})</th>\n
-                                        <th colspan='3' style="color:steelblue;width:110px;text-align:center">Pozo Oculto ${index+1} (${obj.idPozoJackpot})</th>\n`;
-
-                    //tdPozo = limites.map(x=>'<td>'+x+'</td>').join('');
-
-
-
-                });
-
-                JackPotSegunidJackPot(obj.idJackPot);
-
-                listaJackPotSegunidJackPot = [...listaJackPotSegunidJackPot, ...return_JackPotSegunidJackPot];
-                debugger
-                //tdBody +=listaJackPotSegunidPozoJackPot.map(x => '<td style="color:black;text-align:center;">' + x.incrementoJackpot + '</td>\n').join('');
-                
-                for (let t = 0; t < tiendas.length; t++) {
-                    var idTienda = tiendas[t];
-                    
-                    var listaJacks= listaJackPotSegunidJackPot.filter(x=>x.idPuntoVenta==idTienda);
-                    var tiendaRepetida ='';
-                    for (let l = 0; l < listaJacks.length; l++) {
-                        
-                        const element = listaJacks[l].TIENDA;
-                        tiendaRepetida=element;
+                    if (index === 1) {
+                        $("#txtNombreJackpot").val(obj.JACKPOT);
+                        $("#txtIdJackpot").val(obj.idJackPot);
                     }
 
-                        tdBody+=`<td>${tiendaRepetida}</td>`;
-                    for (let p = 0; p < listaJacks.length; p++) {
-                        var element = listaJacks[p];
-                        tdBody += `
+                    html += `<li class="${firstIndex}" style="margin-right:5px;"><a class="tabClick" data-nombre="${obj.JACKPOT}" href="#menu${index}" data-id="${obj.idJackPot}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
+
+                    var idJack = obj.idJackPot;
+
+                    listajackPots.push(obj.idJackPot);
+
+                    ListarPozoJackPotSegunJackPotId(obj.idJackPot);
+
+
+                    var listaPososJackPot = [];
+                    var thPozo = '';
+                    var tdPozo = '',
+                        tdPozoOculto = '';
+
+                    var thTiendas = '';
+
+                    listaPososJackPot = [...return_first];
+
+                    if (listaPososJackPot.length == 0) {
+                        tabEval.innerHTML = `<div class="alert alert-warning" role="alert">
+                                                <strong>No Hay Pozos </strong> 
+                                                para el Jackpot.
+                                            </div>`;
+                    } else {
+
+
+
+                        var limites = ['Incremento', 'Límite Inferior', 'Límite Superior']
+
+                        tdPozo = limites.map(x => '<th style="font-weight: 600;color:black;text-align:center;">' + x + '</th>\n').join('');
+                        tdPozo = tdPozo + limites.map(x => '<th style="font-weight: 600;color:steelblue;text-align:center;">' + x + ' Oculto</th>\n').join('');
+                        tdPozo = tdPozo.repeat(listaPososJackPot.length);
+
+
+                        var listaJackPotSegunidJackPot = [];
+
+
+                        var tdBody = '';
+                        var trBody;
+                        var bodyJackpot = '';
+
+                        listaPososJackPot.map((obj, index) => {
+                            thPozo = thPozo + `<th colspan='3'style="color:black;width:110px;text-align:center;">Pozo ${index + 1} (${obj.idPozoJackpot})</th>\n
+                                        <th colspan='3' style="color:steelblue;width:110px;text-align:center">Pozo Oculto ${index + 1} (${obj.idPozoJackpot})</th>\n`;
+
+                        });
+
+                        JackPotSegunidJackPot(obj.idJackPot);
+
+                        listaJackPotSegunidJackPot = [...listaJackPotSegunidJackPot, ...return_JackPotSegunidJackPot];
+
+                        debugger
+                        for (let t = 0; t < tiendas.length; t++) {
+                            var idTienda = tiendas[t];
+
+                            var listaJacks = listaJackPotSegunidJackPot.filter(x => x.idPuntoVenta == idTienda);
+                            var tiendaRepetida = '';
+                            for (let l = 0; l < listaJacks.length; l++) {
+
+                                const element = listaJacks[l].TIENDA;
+                                tiendaRepetida = element;
+                            }
+
+                            tdBody += `<td>${tiendaRepetida}</td>`;
+                            for (let p = 0; p < listaJacks.length; p++) {
+                                var element = listaJacks[p];
+                                tdBody += `
                             <td> ${element.incrementoJackpot}</td>
                             <td> ${element.limiteInferior}</td>
                             <td> ${element.limiteSuperior}</td>
                             <td> ${element.incrementoPozoOculto}</td>
                             <td> ${element.limiteInferiorOculto}</td>
                             <td> ${element.limiteSuperiorOculto}</td>`;
-                        trBody = '<tr>' + tdBody + '</tr>';
-                        //debugger
+                                trBody = '<tr>' + tdBody + '</tr>';
+                                //
+                            }
+                            trBody = (trBody != null) ? trBody : '';
+                            bodyJackpot += trBody + "\n";
+                            trBody = '';
+                            tdBody = '';
+
+
+                        }
+
+                        var thp = '';
+
+                        thp = tdPozo;
+
+                        ; debugger
+                        var listaTabla = '';
+                        if (listaPososJackPot.length == 0) {
+                            listaTabla = `
+                                        <div class="alert alert-warning" role="alert">
+                                                 <strong>No Hay Pozos </strong> 
+                                                 para el Jackpot.
+                                             </div>`;
+                        } else {
+                            listaTabla = `<div id="divtable${obj.idJackPot}" style="display:flex;padding:0;" class="panel-body">
+                                                    
+                                                
+                                        <table data-table=${obj.idJackPot} style="width: 1150px; margin-left: 0px;" id="jack${obj.idJackPot}" class="tablajack table table-bordered table-stripeds">
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2">Tiendas<th>
+                                                    
+                                                    ${thPozo}
+                                                    
+                                                </tr>
+
+                                                <tr>
+                                                    
+                                                    ${thp}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            
+                                                ${bodyJackpot}
+                                            </tbody>
+                                        </table>
+                                        </div>`;
+                        }
+                        htmlContenidoTabs += `
+                        <div id="menu${index}" class="tab-pane fade ${firstIndexTab}">
+                                    <h6>JackPot: ${obj.idJackPot}</h6>
+                                    <p>JackPot: ${obj.JACKPOT}</p>
+                                    
+                                    ${listaTabla}
+                        </div>
+                
+                
+                        `;
+
                     }
-                    trBody = (trBody != null)?trBody:'';
-                    bodyJackpot +=trBody+"\n";
-                    trBody = '';
-                    tdBody = '';
+                });
 
-                    debugger
-                }
-                //listaJackPotSegunidJackPot=[];
-                // for (let p = 0; p < listaJackPotSegunidJackPot.length; p++) {
-                //     var element = listaJackPotSegunidJackPot[p];
-                //     tdBody += `<td> ${element.TIENDA}</td>
-                //         <td> ${element.incrementoJackpot}</td>
-                //         <td> ${element.limiteInferior}</td>
-                //         <td> ${element.limiteSuperior}</td>
-                //         <td> ${element.incrementoPozoOculto}</td>
-                //         <td> ${element.limiteInferiorOculto}</td>
-                //         <td> ${element.limiteSuperiorOculto}</td>`;
-                //     trBody = '<tr>' + tdBody + '</tr>';
-                //     //debugger
-                // }
-
-                // //listaJackPotSegunidPozoJackPot=[];
-                // bodyJackpot +=trBody+"\n";
-                // trBody = '';
-                // tdBody = '';
-                // //debugger
+                tiendas = [];
+                tabEval.innerHTML += html;
+                tabContenido.innerHTML += htmlContenidoTabs;
+                bodyJackpot = '';
+                //1ero debe dibujarse el doom y despues usar esta funcion
+                $("#tab-eval a").click(function () {
+                    $(this).tab("show");
+                })
 
 
+                $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display", "none");;
 
-
-                var thp = '';
-
-                thp = tdPozo;
-                //debugger;
-                debugger;
-                htmlContenidoTabs += `
-                <div id="menu${index}" class="tab-pane fade ${firstIndexTab}">
-                            <h6>JackPot: ${obj.idJackPot}</h6>
-                            <p>JackPot: ${obj.JACKPOT}</p>
-                            
-                            <div id="divtable${obj.idJackPot}" style="display:flex;padding:0;" class="panel-body">
-                                
-                               
-                                <table data-table=${obj.idJackPot} style="width: 1150px; margin-left: 0px;" id="jack${obj.idJackPot}" class="tablajack table table-bordered table-stripeds">
-                                    <thead>
-                                        <tr>
-                                            <th rowspan="2">Tiendas<th>
-                                            
-                                            ${thPozo}
-                                            
-                                        </tr>
-
-                                        <tr>
-                                            
-                                            ${thp}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                        ${bodyJackpot}
-                                    </tbody>
-                                </table>
-                            </div>
-                </div>
-                
-                
-                `;
-
-
-            });
-
-
-            //listaJackPotSegunidJackPot = [];
-            tiendas=[];
-            tabEval.innerHTML += html;
-            tabContenido.innerHTML += htmlContenidoTabs;
-            bodyJackpot='';
-            //1ero debe dibujarse el doom y despues usar esta funcion
-            $("#tab-eval a").click(function () {
-                $(this).tab("show");
-            })
-
-            debugger
-            //var tablaExi = document.getElementsByClassName('tablajack');
-
-            $("table.tablajack thead tr:nth-child(1) th:nth-child(2)").css("display", "none");
-            debugger;
-            $('table.tablajack').DataTable({
-                dom: 'Bfrtip',
-                    
-                buttons: [
-                    {
+                $('table.tablajack').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [{
                         extend: 'excel',
                         title: 'Reporte JackPot'
-                        
                     }
-                    
-                    
-                ],
-                scrollY: '200px',
-                destroy: true,
-                sort: true,
-                scrollCollapse: true,
-                scrollX: true,
+                    ],
+                    scrollY: '200px',
+                    destroy: true,
+                    sort: true,
+                    scrollCollapse: true,
+                    scrollX: true,
 
-                paging: false,
-                autoWidth: false,
-                processing: false,
-                deferRender: false,
+                    paging: false,
+                    autoWidth: false,
+                    processing: false,
+                    deferRender: false,
 
-                bInfo: false,
-                searching: false,
-                paging: false,
+                    bInfo: false,
+                    searching: false,
+                    paging: false,
 
-            });
-
-
+                });
+            }
         },
-        error: function (jqXHR, textStatus, errorThrown) {}
+        error: function (jqXHR, textStatus, errorThrown) { 
+            
+        }
     });
 
 }
+
 var listajackPots = [];
 
 function ListarPozoJackPotSegunJackPotId(idJackpot) {
     var lista = [];
-    var url = basePath + "PozoJackPotSegunJackPotId";
+    var url = basePath + "PozoJackPotSegunJackPotIdFk";
     var idJackpot = idJackpot;
     var dataForm = {
         idJackpot: idJackpot
     };
-    //debugger
-    // var obj = { name: "John", age: 30, city: "New York" };
-    // var myJSON = JSON.stringify(obj);
 
     $.ajax({
         url: url,
@@ -464,7 +385,7 @@ function ListarPozoJackPotSegunJackPotId(idJackpot) {
         async: false,
         success: function (response) {
             var resp = response;
-            debugger;
+
             var tabEval = document.getElementById('tab-eval');
 
             var tabContenido = document.getElementById('tabContenido');
@@ -474,14 +395,15 @@ function ListarPozoJackPotSegunJackPotId(idJackpot) {
 
             callback(lista);
         },
-        error: function (jqXHR, textStatus, errorThrown) {}
+        error: function (jqXHR, textStatus, errorThrown) { }
     });
 }
+
 var lista = [];
 
 function ListaDeJacks() {
     var list = [...li];
-    debugger;
+    ;
     $.when($.ajax(funcionLlenar())).then(function () {
 
         $('#cboConfiguracionJackPot').append('<option value="x" >Ninguno</option>');
@@ -491,43 +413,44 @@ function ListaDeJacks() {
 
 
 function buscarListarJackPot() {
-    debugger;
+    ;
     var validar = $("#frmNuevo");
     if (validar.valid()) {
-    var cboTienda = $("#cboTienda").val();
-    var cboConfiguracionJackPot = $("#cboConfiguracionJackPot").val();
-    var url = basePath + "ReporteJackPotListarJson";
-    var confJack = [...cboConfiguracionJackPot];
-    
-    // var TiendaArray = [];
-    // $("#cboTienda option:selected").each(function () {
-    //     if ($(this).val() !== "") {
-    //         TiendaArray.push({'id': $(this).val(), 'Tienda': $(this).text()})
-    //     }
-    // });
+        var cboTienda = $("#cboTienda").val();
+        var cboConfiguracionJackPot = $("#cboConfiguracionJackPot").val();
+        var url = basePath + "ReporteJackPotListarJson";
+        var confJack = [...cboConfiguracionJackPot];
 
-    var tiendas = cboTienda;
+        var tabContenido = document.getElementById("tabContenido");
+        if (tabContenido != undefined || tabContenido != null) {
+            tabContenido.innerHTML = ""; //limpiar Tab    
+        }
 
-    //$('#subtituloTabsGeneral').html($("#cboConfiguracionJackPot").text);
-    ConfiguracionPozoSegunConfJackPot(confJack[0], tiendas);
+        // var TiendaArray = [];
+        // $("#cboTienda option:selected").each(function () {
+        //     if ($(this).val() !== "") {
+        //         TiendaArray.push({'id': $(this).val(), 'Tienda': $(this).text()})
+        //     }
+        // });
+        var tiendas = cboTienda;
 
-    //ListarHistorialGanadores();
+        debugger
+
+        ConfiguracionPozoSegunConfJackPot(confJack[0], tiendas);
+
     }
 
 }
 
 function JackPotSegunidJackPot(idJackpot) {
-    debugger;
+    ;
 
     var lista = [];
-    var url = basePath + "JackPotSegunidJackpot";
+    var url = basePath + "JackPotSegunidJackpotFk";
     var idJackpot = idJackpot;
     var dataForm = {
         idJackpot: idJackpot
     };
-    //debugger
-    // var obj = { name: "John", age: 30, city: "New York" };
-    // var myJSON = JSON.stringify(obj);
 
     $.ajax({
         url: url,
@@ -543,14 +466,14 @@ function JackPotSegunidJackPot(idJackpot) {
         async: false,
         success: function (response) {
             var resp = response;
-            debugger;
+            ;
 
             var data = [...resp.data];
             lista = data;
 
             callbackJackPotSegunidJackPot(lista);
         },
-        error: function (jqXHR, textStatus, errorThrown) {}
+        error: function (jqXHR, textStatus, errorThrown) { }
     });
 }
 
@@ -563,7 +486,6 @@ $("#frmNuevo")
             },
             tiendas: {
                 required: true,
-
             }
         },
         messages: {
@@ -573,7 +495,6 @@ $("#frmNuevo")
             },
             tiendas: {
                 required: 'Eliga una o mas tiendas',
-
             }
         },
 

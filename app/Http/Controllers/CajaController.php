@@ -36,6 +36,18 @@ class CajaController extends Controller
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
+    public function CajaPuntoVentaUsuarioJson()
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = Caja::CajaPuntoVentaUsuario();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
     public function CajaInsertarJson(Request $request)
     {
         $respuesta = false;

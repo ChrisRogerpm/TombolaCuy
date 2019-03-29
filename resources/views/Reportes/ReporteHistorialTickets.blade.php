@@ -1,4 +1,9 @@
 @extends('Shared.layout')
+
+@section('body-class')
+    sidebar-style loaded
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -35,6 +40,11 @@
                                                 class="glyphicon glyphicon-search"></span> Buscar
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12" id="container-excel"></div>
                             </div>
                         </div>
                     </div>

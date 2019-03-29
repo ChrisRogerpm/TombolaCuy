@@ -16,7 +16,7 @@ $(document).ready(function () {
         if($usuario != ""){
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $.ajax({
-                url: basePath + 'ReporteAuditoriaJson',
+                url: basePath + 'ReporteAuditoriaJsonFk',
                 data: dataForm,
                 type: "POST",
                 beforeSend: function () {

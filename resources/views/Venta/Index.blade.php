@@ -3,7 +3,6 @@
 @section('body-class')
     sidebar-style loaded
 @stop
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +17,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Venta Caja  
+                                                    Venta Caja    
                                                 </h6>
                                             </div>
                                         </div>
@@ -41,8 +40,10 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">TIENDA</div>
-                                     <input type="text" class="form-control input-sm" id="tienda">
-                                     <input type="hidden" class="form-control input-sm" id="idPuntoVenta">
+                                     <input type="text" class="form-control input-sm" id="tienda"  value="{{ $aperturacajadatos->tienda }}" readonly>
+                                     <input type="hidden" class="form-control input-sm" id="idPuntoVenta" value="{{ $aperturacajadatos->idPuntoVenta }}" >
+                                     <input type="hidden" class="form-control input-sm" id="idAperturaCaja" value="{{ $aperturacajadatos->idAperturaCaja }}" >
+                                     <input type="hidden" class="form-control input-sm" id="cc_id" value="{{ $aperturacajadatos->cc_id }}" >
                                 </div>
                             </div>
                         </div>
@@ -50,7 +51,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">CAJA</div>
-                                   <input type="text" class="form-control input-sm" id="caja">
+                                   <input type="text" class="form-control input-sm" id="caja" value="{{ $aperturacajadatos->caja }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +63,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">FECHA</div>
-                                    <input type="text" class="form-control input-sm" id="fechaOperacion">
+                                    <input type="text" class="form-control input-sm" id="fechaOperacion"  value="{{ $aperturacajadatos->fechaOperacion }}"  readonly>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon bg-primary text-white">TURNO</div>
-                                    <input type="text" class="form-control input-sm" id="turno">
+                                    <input type="text" class="form-control input-sm" id="turno" value="{{ $aperturacajadatos->turno }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -86,58 +87,11 @@
 
     <div class="row">
 
-<!--    <div class="col-md-12">
-            <div class="panel panel-primary">
 
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-2">
-                            HORA
-                        </div>
-
-                        <div class="col-xs-12 col-md-2">
-                        PRÓXIMO EN
-                        </div>
-                        <div class="col-xs-12 col-md-2">
-                        JUGADOR
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                        DIVISA
-                        </div>
-                          <div class="col-xs-12 col-md-1">
-                        JACKPOT
-                        </div>
-                    </div>
-
-                      <div class="row" id="row_datosevento">
-                        <div class="col-xs-12 col-md-2">
-                            <span id="fechaHoy"></span><span id="liveclock"></span>
-                        </div>
-
-                        <div class="col-xs-12 col-md-2">
-                            <span id="proximo_en" class="countdown"></span>
-                        </div>
-                        <div class="col-xs-12 col-md-2">
-                            <span id="jugador" ></span>
-
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                            <span id="divisa" ></span>
-
-                        </div>
-                         <div class="col-xs-12 col-md-1">
-                            <span id="jackpotsuma" ></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-    </div>
- -->
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:83vh;">
+                    <DIV class="TOMBOLACUY" style="height:83vh;display:none">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -162,11 +116,13 @@
                                 <div class=" rowcabecera_datos" id="row_datosevento">
                                         <div style="width:20%" class="">
 
-                                            <span id="fechaHoy"></span><span id="liveclock">-</span>
+                                            <!-- <span id="fechaHoy"></span><span id="liveclock"></span> -->
+                                            <span id="fechaServidor"></span>
                                         </div>
 
                                         <div style="width:15%" class="">
-                                            <span id="proximo_en" class="countdown">-</span>
+                                            <!-- <span id="proximo_en" class="countdown">-</span> |  -->
+                                            <span id="proximo_en2" class="countdown">-</span>
                                         </div>
                                         <div style="width:15%" class="">
                                             <span id="jugador" >-</span>
@@ -305,43 +261,6 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                       <!--      <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                        <tr>
-                                                <td>-</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                         -->
                                             </tbody>
                                         </table>
                                     </div><!--rowtablaeventos-->
@@ -361,6 +280,16 @@
 
 
                                     <div class="rowapuestas" id="div_apuestas">
+                                         @foreach($dinerodefault as $apuesta) 
+                                         <div class="rowapuestasdiv" 
+                                            data-valor="{{$apuesta->monto}}"
+                                            data-tipo="apuesta"
+                                            >
+                                             {{$apuesta->monto}}
+                                         </div>
+                                        @endforeach
+
+
                                            <!--      <div class="rowapuestasdiv">
                                                 </div> -->
                                     </div><!--rowapuestas-->
@@ -381,7 +310,27 @@
 
                         <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
                          
-                            <div class="eventos_fila_izq">
+                                <div class="eventos_fila_izq">
+                                        @foreach($eventos as $evento) 
+
+                                            <div class="configuracioneventosdiv" 
+                                                    data-id="{{ $evento->idEvento }}"
+                                                    data-nombre="{{ $evento->nombre }}"
+                                                    data-apuestaMinima="{{ $evento->apuestaMinima }}"
+                                                    data-apuestaMaxima="{{ $evento->apuestaMaxima }}"
+                                                    data-FechaEvento="{{ $evento->FechaEvento }}"
+                                                    data-fechaFinEvento="{{ $evento->fechaFinEvento }}"
+                                                    data-segBloqueoAntesEvento="{{ $evento->segBloqueoAntesEvento }}"
+                                                    data-idMoneda="{{ $evento->idMoneda }}"
+                                                    > 
+                                                    <div style="width: 30%; height: 100%;float:left;position:relative">
+                                                        <img style="width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;" src="img/juegos/{{$evento->logo}}">
+                                                    </div>
+                                                    <div class="eventotextodiv" style="width: 70%; height: 100%;float:left;display:flex;align-items:center">{{$evento->nombre}}
+                                                    </div>
+                                            </div>
+                                        @endforeach
+
                             </div>
                               <div class="eventos_fila_der">
                             </div>
@@ -407,7 +356,7 @@
                 <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
                     <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
                         <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
-                            <img id="imagen_apuestatotal" width="180" height="80">
+                            <img id="imagen_apuestatotal" width="180" height="80" src="{{asset('img/logo.png')}}">
                         </div></div>
                         <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
                         <div class="datos" style="width:100%;display:table;padding-top:4px">
@@ -657,7 +606,11 @@
 @stop
 
 @push('Js')
+ <script src="{{asset('../assets/Venta/ServerDate.js')}}"></script>
+
+    <script src="{{asset('../assets/Venta/FuncionesCaja.js')}}"></script>
     <script src="{{asset('../assets/Venta/Index.js')}}"></script>
+
  <script src="{{asset('../assets/Venta/ClaseWebSockets.js')}}"></script>
 
 @endpush

@@ -26,7 +26,8 @@
     <!-- /OpenGraph meta -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/xampp.ico">
+    {{--<link rel="shortcut icon" href="../images/xampp.ico">--}}
+    <link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
     <!-- /Favicon -->
 
     <!-- AppleTouch Icons -->
@@ -85,14 +86,24 @@
             <!-- /Collapse button -->
 
             <!-- Brand -->
+            {{--<a href="#" class="navbar-brand navbar-brand-cover">--}}
+                {{--<div class="navbar-brand-big">--}}
+                    {{--<img src="{{asset('images/logo.png')}}" alt="CasperoBoard">--}}
+                {{--</div>--}}
+                {{--<div class="navbar-brand-small">--}}
+                    {{--<img src="{{asset('images/logoat.jpg')}}" alt="CasperoBoard">--}}
+                {{--</div>--}}
+            {{--</a>--}}
+
             <a href="#" class="navbar-brand navbar-brand-cover">
-                <div class="navbar-brand-big">
-                    <img src="images/logo-big.png" alt="CasperoBoard">
+                <div class="navbar-brand-big" style="text-align: center;width: 100%;">
+                    <img src="{{url('../images/logo.png')}}" alt="logo apuesta total" style="height: 40px;padding-top:5px;">
                 </div>
                 <div class="navbar-brand-small">
-                    <img src="images/logo-small.png" alt="CasperoBoard">
+                    <img src="{{url('../images/logoat.jpg')}}" alt="logo apuesa total" style="height: 49px;">
                 </div>
             </a>
+
             <!-- /Brand -->
 
         </div>
@@ -257,495 +268,6 @@
     </div>
 </nav>
 <!-- /NAVIGATION: Top Menu -->
-
-<!-- FIXED COLLAPSED SIDEBAR: Users -->
-<div class="sidebar-fixed sidebar-users">
-
-    <!-- PANEL: Users -->
-    <div class="panel panel-users">
-
-        <!-- Panel heading -->
-        <div class="panel-heading">
-
-            <!-- Panel Title -->
-            <div class="panel-title">Users List</div>
-            <!-- /Panel Title -->
-
-            <!-- Panel Controls -->
-            <div class="panel-controls">
-                <ul class="panel-buttons">
-                    <li><a href="#" class="btn-panel-control icon fa fa-search"></a></li>
-                    <li><a href="#" class="btn-panel-control icon fa fa-plus"></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="btn-panel-control icon fa fa-fw fa-circle-thin dropdown-toggle"
-                           data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="true"></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"><i class="icon fa fa-user-plus"></i> Create User</a></li>
-                            <li><a href="#"><i class="icon fa fa-user"></i> HR-Panel</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /Panel Controls -->
-
-        </div>
-        <!-- /Panel Heading -->
-
-        <!-- Panel Body -->
-        <div class="panel-body users">
-            <div class="custom-scroll" style="height: 100%">
-
-                <!-- TABLE: Users -->
-                <table class="table table-responsive users-table">
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-benjamin-jacobs.jpg" alt="Benjamin Jacobs">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Bienvenido</a>
-                            <div class="post">Director</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-deborah-young.jpg" alt="Deborah Young">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Deborah Young</a>
-                            <div class="post">Animation Designer</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-louis-hawkins.jpg" alt="Louis Hawkins">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Bienvenido</a>
-                            <div class="post">Marketing Director</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-ashley-warren.jpg" alt="Ashley Warren">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Ashley Warren</a>
-                            <div class="post">Account Manager</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-christopher-tucker.jpg" alt="Christopher Tucker">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Christopher Tucker</a>
-                            <div class="post">Director</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-lori-harrison.jpg" alt="Lori Harrison">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Lori Harrison</a>
-                            <div class="post">Animation Designer</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-phillip-cole.jpg" alt="Phillip Cole">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Phillip Cole</a>
-                            <div class="post">Marketing Director</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-ann-james.jpg" alt="Ann James">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Ann James</a>
-                            <div class="post">Account Manager</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-tyler-brewer.jpg" alt="Tyler Brewer">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Tyler Brewer</a>
-                            <div class="post">Account Manager</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-eric-martinez.jpg" alt="Eric Martinez">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Eric Martinez</a>
-                            <div class="post">Account Manager</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-karen-garcia.jpg" alt="Karen Garcia">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Karen Garcia</a>
-                            <div class="post">Animation Designer</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-susan-estrada.jpg" alt="Susan Estrada">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Susan Estrada</a>
-                            <div class="post">Animation Designer</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-joshua-ward.jpg" alt="Joshua Ward">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Joshua Ward</a>
-                            <div class="post">Animation Designer</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                    <!-- ROW: User -->
-                    <tr class="user">
-                        <td class="user-avatar">
-                            <!-- User Avatar -->
-                            <div class="avatar image">
-                                <img src="images/avatar-louis-mendoza.jpg" alt="Louis Mendoza">
-                            </div>
-                            <!-- /User Avatar -->
-                        </td>
-                        <td>
-                            <!-- User Info -->
-                            <a href="#" class="name">Louis Mendoza</a>
-                            <div class="post">Account Manager</div>
-                            <!-- /User Info -->
-                        </td>
-                        <td>
-                            <!-- User Buttons -->
-                            <ul class="inline-icons">
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-facebook fa fa-facebook"></a>
-                                </li>
-                                <li><a href="#" class="icon-theme icon-theme-xs icon-brand-twitter fa fa-twitter"></a>
-                                </li>
-                                <li><a href="#"
-                                       class="icon-theme icon-theme-xs icon-brand-googleplus fa fa-google-plus"></a>
-                                </li>
-                            </ul>
-                            <!-- /User Buttons -->
-                        </td>
-                    </tr>
-                    <!-- /ROW: User -->
-
-                </table>
-                <!-- /TABLE: Users -->
-
-            </div>
-        </div>
-        <!-- /Panel Body -->
-
-    </div>
-    <!-- PANEL: /Users -->
-
-</div>
-<!-- /FIXED COLLAPSED SIDEBAR: Users -->
-
 <!-- MAIN CONTAINER -->
 <main class="main-container">
 
@@ -820,35 +342,13 @@
                                 class="title">Caja</span></a></li>
                 <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-calendar"></i> <span
                                 class="title">Turno</span></a></li>
-                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
-                {{--<li><a href="{{route('Cliente.Listar')}}"><i class="icon icon-inline fa fa-users"></i> <span--}}
-                {{--class="title">Cliente</span></a></li>--}}
-
-                {{--<li class="sub">--}}
-                {{--<a href="#" class="sub-toggle">--}}
-                {{--<i class="icon icon-inline fa fa-mail-forward"></i> <span class="title">Progresivo</span>--}}
-                {{--</a>--}}
-                {{--<ul class="sub-menu collapse" data-menu-title="Progresivo">--}}
-                {{--<li><a href="{{route('Progresivo.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                {{--<span class="title">Progresivo</span></a></li>--}}
-                {{--<li><a href="{{route('Progresivo.Insertar')}}"><i--}}
-                {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Registro Progresivo</span></a>--}}
-                {{--</li>--}}
-                {{--<li><a href="{{route('Progresivo.Configuracion')}}"><i--}}
-                {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Progresivo</span></a>--}}
-                {{--</li>--}}
-                {{--</ul>--}}
-                {{--</li>--}}
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        {{--<li><a href="{{route('Jackpot.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                        {{--<span class="title">Jackpot</span></a></li>--}}
-                        {{--<li><a href="{{route('Jackpot.Insertar')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
-                        {{--<span class="title">Registro Jackpot</span></a></li>--}}
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                         </li>
@@ -856,11 +356,11 @@
                 </li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Venta</span>
+                        <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
                         <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
-                                        class="title">Venta</span></a></li>
+                                        class="title">Caja Venta</span></a></li>
 
                     </ul>
                 </li>
@@ -871,7 +371,7 @@
                     <ul class="sub-menu collapse" data-menu-title="Reporte">
                         <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Apuesta</span></a></li>
+                                        class="title">Apuesta</span></a></li>
                         <li><a href="{{route('Reporte.HistorialGanadores')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Historial Ganadores</span></a></li>
@@ -880,32 +380,32 @@
                                         class="title">JackPot</span></a></li>
                         <li><a href="{{route('Reporte.Venta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Venta</span></a></li>
+                                        class="title">Ventas</span></a></li>
                         <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Venta Juego</span></a></li>
+                                        class="title">Ventas Juego</span></a></li>
                         <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Cierre Caja</span></a></li>
+                                        class="title">Cierre Caja</span></a></li>
                         <li><a href="{{route('Reporte.HistorialTicket')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Reporte Historial Ticket</span></a></li>
+                                        class="title">Historial Ticket</span></a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-cog"></i> <span
                                 class="title">Configuración Evento</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Seguridad</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                        <li><a href="{{route('UsuarioPuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Usuario Punto Venta</span></a></li>
                         <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Permisos</span></a></li>
-
                         <li><a href="{{route('Auditoria')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Auditoria</span></a></li>
-
                     </ul>
                 </li>
 
@@ -922,16 +422,16 @@
                 <i class="icon icon-inline fa fa-angle-right"></i>
             </a>
 
-            <div class="btn-group-wrapper">
-                <div class="btn-group btn-group-justified" role="group">
-                    <a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>
-                    <a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i
-                                class="icon icon-inline fa fa-lock"></i></a>
-                    <a href="#" class="btn btn-dark" role="button"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                class="icon icon-inline fa fa-sign-out"></i></a>
-                </div>
-            </div>
+            {{--<div class="btn-group-wrapper">--}}
+                {{--<div class="btn-group btn-group-justified" role="group">--}}
+                    {{--<a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>--}}
+                    {{--<a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i--}}
+                                {{--class="icon icon-inline fa fa-lock"></i></a>--}}
+                    {{--<a href="#" class="btn btn-dark" role="button"--}}
+                       {{--onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i--}}
+                                {{--class="icon icon-inline fa fa-sign-out"></i></a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
         </div>
         <!-- /Bottom Bar -->
@@ -977,9 +477,7 @@
 <script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
 <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+
 <script src="{{asset('../js/moment.js')}}"></script>
 
 <!-- <script src="{{asset('../assets/js/exportar-excel/dataTables.buttons.min.js')}}"></script> -->

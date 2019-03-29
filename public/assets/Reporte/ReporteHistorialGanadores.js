@@ -36,10 +36,14 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on('click', '#btnExcel', function () {
+        GenerarExcel("table", "Reporte de Historial Ganadores");
+    });
+
 
     //cboTienda es idPunto de Venta
     $("#fechaInicio").val("01/01/2018");
-    llenarSelect(basePath + "PuntoVentaListarJson", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
 
     $(document).on("click", "#btnBuscar", function () {
@@ -53,7 +57,7 @@ function ListarHistorialGanadores() {
 
     var cboTienda = $("#cboTienda").val();
 
-    var url = basePath + "ReporteHistorialGanadoresListarJson";
+    var url = basePath + "ReporteHistorialGanadoresListarJsonFk";
     var dataForm = $('#frmNuevo').serializeFormJSON();
     $.ajax({
         url: url,
@@ -67,26 +71,11 @@ function ListarHistorialGanadores() {
             $.LoadingOverlay("hide");
         },
         success: function (response) {
-
+            $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
+                '                                        <span class="icon fa fa-fw fa-file-excel-o"></span> Excel\n' +
+                '                                    </a>');
+            $("#container-tabla").show();
             $("#table").DataTable({
-                dom: 'Bfrtip',
-
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Historial de Ganadores'
-
-                    },
-
-                    {
-                        extend: 'pdfHtml5',
-                        title: 'Reporte Historial de Ganadores'
-                    },
-                    {
-                        extend: 'print',
-                        title: 'Reporte Historial de Ganadores'
-                    }
-                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
@@ -98,21 +87,21 @@ function ListarHistorialGanadores() {
                 data: response.data,
 
                 columns: [
-
-                    {data: "tienda", title: "Tienda"},
-                    {data: "Evento", title: "Evento"},
-                    {data: "fechaoperacion", title: "Fecha"},
-                    {data: "Jugadores", title: "Total jugadores"},
-                    {data: "totalganadores", title: "Total ganadores"},
-                    {data: "apuestas", title: "Monto total apostado"},
-                    {data: "Pagos", title: "Monto total pagado"},
-                    {data: "ganador", title: "Pleno"},
-                    {data: "TipoApuesta", title: "Tipo de apuesta"},
+                    {data: "tienda", title: "Tienda", class: "text-center"},
+                    {data: "Turno", title: "Turno", class: "text-center"},
+                    {data: "Evento", title: "Evento", class: "text-center"},
+                    {data: "fechaoperacion", title: "Fecha", class: "text-center"},
+                    {data: "Jugadores", title: "Total jugadores", class: "text-center"},
+                    {data: "totalganadores", title: "Total ganadores", class: "text-center"},
+                    {data: "apuestas", title: "Monto total apostado", class: "text-center"},
+                    {data: "Pagos", title: "Monto total pagado", class: "text-center"},
+                    {data: "ganador", title: "Pleno", class: "text-center"},
+                    {data: "TipoApuesta", title: "Tipo de apuesta", class: "text-center"},
                     {
                         data: "color", title: "Color",
                         "render": function (value) {
-                            return '<span class="badge" style="padding-top: 7px;padding-bottom: 7px; background-color: ' + value + '"> * </span>';
-                        }
+                            return '<span class="badge" style="padding-top: 10px;padding-bottom: 5px;background-color: ' + value + ';"> * </span>';
+                        }, class: "text-center"
                     },
                 ],
 
