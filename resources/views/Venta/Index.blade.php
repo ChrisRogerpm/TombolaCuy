@@ -356,7 +356,7 @@
                 <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
                     <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
                         <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
-                            <img id="imagen_apuestatotal" width="180" height="80">
+                            <img id="imagen_apuestatotal" width="180" height="80" src="{{asset('img/logo.png')}}">
                         </div></div>
                         <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
                         <div class="datos" style="width:100%;display:table;padding-top:4px">
@@ -607,7 +607,7 @@
 
 @push('Js')
  <script src="{{asset('../assets/Venta/ServerDate.js')}}"></script>
- 
+
     <script src="{{asset('../assets/Venta/FuncionesCaja.js')}}"></script>
     <script src="{{asset('../assets/Venta/Index.js')}}"></script>
 

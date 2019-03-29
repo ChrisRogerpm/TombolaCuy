@@ -198,7 +198,7 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     SEGBLOQUEOANTESEVENTO=segundosantesbloqueo;
     $.ajax({
         type: 'POST',
-        async:false,
+       // async:false,
         
         url: basePath + 'EventoDatosJsonFk',
         data: {
@@ -425,23 +425,49 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         },14000)
 
 
-            eventoactual={};
-                eventoactual.FechaEvento=$(this).data("fechaevento");
-                eventoactual.fechaFinEvento=$(this).data("fechafinevento");
-                eventoactual.nombre=$(this).data("nombre");
-                eventoactual.IdEvento=$(this).data("id");
-                eventoactual.apuestaMinima=$(this).data("apuestaminima");
-                eventoactual.apuestaMaxima=$(this).data("apuestamaxima");
-                eventoactual.segBloqueoAntesEvento=$(this).data("segbloqueoantesevento");
-                eventoactual.idMoneda=$(this).data("idmoneda");
-                var imagensrc=$("img",this).attr("src");
-                eventoactual.Imagen=imagensrc;
-                $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png");
-                $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"));
+            // eventoactual={};
+            //     eventoactual.FechaEvento=$(this).data("fechaevento");
+            //     eventoactual.fechaFinEvento=$(this).data("fechafinevento");
+            //     eventoactual.nombre=$(this).data("nombre");
+            //     eventoactual.IdEvento=$(this).data("id");
+            //     eventoactual.apuestaMinima=$(this).data("apuestaminima");
+            //     eventoactual.apuestaMaxima=$(this).data("apuestamaxima");
+            //     eventoactual.segBloqueoAntesEvento=$(this).data("segbloqueoantesevento");
+            //     eventoactual.idMoneda=$(this).data("idmoneda");
+            //     var imagensrc=$("img",this).attr("src");
+            //     eventoactual.Imagen=imagensrc;
+            //     $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png");
+            //     $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"));
 
-                 horaserv=ServerDate();horaserv= new Date(horaserv);
+            //      horaserv=ServerDate();horaserv= new Date(horaserv);
+            //     reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+            //     $(".TOMBOLACUY").show();
+
+
+
+                eventoactual={};
+                eventoactual.FechaEvento=eventodatos.FechaEvento;
+                eventoactual.fechaFinEvento=eventodatos.fechaFinEvento;
+                eventoactual.nombre=eventodatos.nombre;
+                eventoactual.IdEvento=eventodatos.idEvento;
+                eventoactual.apuestaMinima=eventodatos.apuestaMinima;
+                eventoactual.apuestaMaxima=eventodatos.apuestaMaxima;
+                eventoactual.segBloqueoAntesEvento=eventodatos.segBloqueoAntesEvento;
+                eventoactual.idMoneda=eventodatos.idMoneda;
+                eventoactual.Imagen="img/juegos/"+eventodatos.logo;
+                $("#modal_imprimir #imagen_eventoactual").attr("src",eventodatos.logo);
+
+setTimeout(function(){
+
+   horaserv=ServerDate();horaserv= new Date(horaserv);
                 reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+                $(".TOMBOLACUY").css("cursor","");
                 $(".TOMBOLACUY").show();
+    
+},500)
+
+
+              
 
 
         ///fin jackpot

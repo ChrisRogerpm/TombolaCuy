@@ -36,25 +36,25 @@ $(document).ready(function () {
                 //, inicia reloj y contador
                 //, carga imagenes de logo de evento
                 //, muestra  .TOMBOLACUY
-                eventoactual={};
-                eventoactual.FechaEvento=$(this).data("fechaevento");
-                eventoactual.fechaFinEvento=$(this).data("fechafinevento");
-                eventoactual.nombre=$(this).data("nombre");
-                eventoactual.IdEvento=$(this).data("id");
-                eventoactual.apuestaMinima=$(this).data("apuestaminima");
-                eventoactual.apuestaMaxima=$(this).data("apuestamaxima");
-                eventoactual.segBloqueoAntesEvento=$(this).data("segbloqueoantesevento");
-                eventoactual.idMoneda=$(this).data("idmoneda");
-                var imagensrc=$("img",this).attr("src");
-                eventoactual.Imagen=imagensrc;
-                $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png");
-                $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"));
+        //         eventoactual={};
+        //         eventoactual.FechaEvento=$(this).data("fechaevento");
+        //         eventoactual.fechaFinEvento=$(this).data("fechafinevento");
+        //         eventoactual.nombre=$(this).data("nombre");
+        //         eventoactual.IdEvento=$(this).data("id");
+        //         eventoactual.apuestaMinima=$(this).data("apuestaminima");
+        //         eventoactual.apuestaMaxima=$(this).data("apuestamaxima");
+        //         eventoactual.segBloqueoAntesEvento=$(this).data("segbloqueoantesevento");
+        //         eventoactual.idMoneda=$(this).data("idmoneda");
+        //         var imagensrc=$("img",this).attr("src");
+        //         eventoactual.Imagen=imagensrc;
+        //         // $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png");
+        //         $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"));
 
-                 horaserv=ServerDate();horaserv= new Date(horaserv);
-                reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
-        $(".TOMBOLACUY").css("cursor","");
+        //          horaserv=ServerDate();horaserv= new Date(horaserv);
+        //         reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+        // $(".TOMBOLACUY").css("cursor","");
 
-                $(".TOMBOLACUY").show();
+        //         $(".TOMBOLACUY").show();
 
     })
     //// FIN  Onclick eventos
