@@ -2,10 +2,14 @@ iniciado = false;
 token="";
 anguloRotacion=0;
 i=0;
+x=0;
+puntos=[{x:3,y:0},{x:-3,y:0},{x:0,y:3},{x:0,y:-3}];
 $(document).ready(function () {
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
     CargarEstadistica(1);
+    $("#ImgContainer").hide();
+
     setInterval(function () {
         if(i==10){
             location.reload();
@@ -64,6 +68,10 @@ function init() {
     dirLight.shadow.camera.far = 40;
     scene.add(dirLight);
 
+
+    var axesHelper = new THREE.AxesHelper( 5,5,5 );
+    scene.add( axesHelper );
+
     // controls = new THREE.OrbitControls(camera);
     // controls.autoRotate = true;
     // controls.autoRotateSpeed = 10;
@@ -104,7 +112,7 @@ function init() {
                 }
             });
             model.scale.set(0.5, 0.5, 0.5);
-            model.position.set(0, 0, 0.05);
+            model.position.set(0, 0, 0);
             scene.add(model);
             //model.position.z=2;
             skeleton = new THREE.SkeletonHelper(model);
@@ -123,7 +131,7 @@ function init() {
                 }
             });
             modelCuyDudando.scale.set(0.5, 0.5, 0.5);
-            model.position.set(0, 0, 0.05);
+            model.position.set(0, 0, 0);
             scene.add(modelCuyDudando);
             skeleton = new THREE.SkeletonHelper(model);
             var animations = gltf.animations;
@@ -141,7 +149,7 @@ function init() {
                 }
             });
             modelCuyChoque.scale.set(0.5, 0.5, 0.5);
-            model.position.set(0, 0, 0.05);
+            model.position.set(0, 0, 0);
             scene.add(modelCuyChoque);
             skeleton = new THREE.SkeletonHelper(model);
             var animations = gltf.animations;
@@ -161,559 +169,559 @@ function init() {
     container.appendChild(renderer.domElement);
 }
 
-function animate() {
-    console.log(model.position);
+function animate1() {
+    //console.log(model.position);
     $("#ImgContainer").hide();
     id = requestAnimationFrame(animate);
     if (loaded) {
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
         model.visible = true;
-        if (clock.getElapsedTime() <= 8) {
-            if (clock.getElapsedTime() <= 3) {                                
-                modelCuyDudando.visible = true;
-                model.visible = false;
-                modelCuyChoque.visible = false;
-            }
-            else {
-                if(model.rotation.y < anguloRotacion){
-                    //console.log(model.rotation.y,clock.getElapsedTime());
-                    modelCuyDudando.visible = false;
-                    model.visible = true;
-                    model.rotation.y += 0.05;
-                }
-                else{
-                    modelCuyDudando.visible = true;
-                    modelCuyDudando.rotation.y = model.rotation.y;
-                    model.visible = false;
-                    modelCuyChoque.visible = false;
-                }                
-            }
-        }
-        else {
-            modelCuyDudando.visible = false;
-            switch (ganador) {
-                case 0:
-                    // model.visible = false; 
-                    // modelCuyChoque.visible=true; 
-                    // mixerCuyChoque.update(clockCuyChoque.getDelta());            			                   
-                    if (model.position.z < -2.5) {
-                        if (model.position.z < -3.5) {
-                            cancelAnimationFrame(id);
-                            $("#ImgContainer").css("background-image", "url('images/0.jpg')");
-                            $("#ImgContainer").show();
-                            model.position.x = 0;
-                            model.position.y = 0;
-                            model.position.z = 0;
-                            clock = new THREE.Clock();
-                            clockCuyDudando = new THREE.Clock();
-                            clockCuyChoque=new THREE.Clock();
-                            CerrarEvento(1,token);
-                            token = "";
-                            iniciado = false;
-                        }
-                        else {
-                            model.position.z -= 0.01;
-                            model.visible = false;
-                            modelCuyChoque.rotation.y = 3.3;
-                            modelCuyChoque.position.x = model.position.x;
-                            modelCuyChoque.position.y = model.position.y;
-                            modelCuyChoque.position.z = posicionZ;
-                            modelCuyChoque.visible = true;
-                            mixerCuyChoque.update(clockCuyChoque.getDelta());
-                        }
-                    }
-                    else {
-                        //model.rotation.y = 3.3;
-                        model.position.z -= 0.01;
-                        model.position.x -= 0.0027;
-                        posicionZ = model.position.z;
-                    }
-                    break;
-                case 1:
-                    if (model.position.z > 4.5) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/1.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {                                
-                        //model.rotation.y = 0.4;                        
-                        model.position.z += 0.01;
-                        model.position.x += 0.002;
-                    }
-                    break;
-                case 2:
-                    if (model.position.z < -1.38) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/2.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 1.9;
-                        model.position.z -= 0.009;
-                        model.position.x += 0.023;
-                    }
-                    break;
-                case 3:
-                    if (model.position.z > 3.6) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/3.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 0.6;
-                        model.position.z += 0.019;
-                        model.position.x += 0.0145;
-                    }
-                    break;
-                case 4:
-                    if (model.position.z < -2.98) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/4.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 2.7;
-                        model.position.z -= 0.011;
-                        model.position.x += 0.008;
-                    }
-                    break;
-                case 5:
-                    if (model.position.z > 3.7) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/5.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -0.8;
-                        model.position.z += 0.01;
-                        model.position.x -= 0.008;
-                    }
-                    break;
-                case 6:
-                    if (model.position.z > 4.2) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/6.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 0.35;
-                        model.position.z += 0.01;
-                        model.position.x += 0.0045;
-                    }
-                    break;
-                case 7:
-                    if (model.position.z > 1.9) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/7.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -1.15;
-                        model.position.z += 0.005;
-                        model.position.x -= 0.011;
-                    }
-                    break;
-                case 8:
-                    if (model.position.z > 4.6) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/8.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -0.1;
-                        model.position.z += 0.01;
-                        //model.position.x +=0.002;
-                    }
-                    break;
-                case 9:
-                    if (model.position.z < -0.37) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/9.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 1.5;
-                        model.position.z -= 0.003;
-                        model.position.x += 0.028;
-                    }
-                    break;
-                case 10:
-                    if (model.position.z > 4.3) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/10.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                       // model.rotation.y = -0.5;
-                        model.position.z += 0.01;
-                        model.position.x -= 0.0048;
-                    }
-                    break;
-                case 11:
-                    if (model.position.z > 2.7) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/11.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 0.85;
-                        model.position.z += 0.011;
-                        model.position.x += 0.0145;
-                    }
-                    break;
-                case 12:
-                    if (model.position.z < -3.4) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/12.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -2.65;
-                        model.position.z -= 0.008;
-                        model.position.x -= 0.0045;
-                    }
-                    break;
-                case 13:
-                    if (model.position.z < -1.15) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/13.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -1.9;
-                        model.position.z -= 0.0053;
-                        model.position.x -= 0.018;
-                    }
-                    break;
-                case 14:
-                    if (model.position.z < -2.1) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/14.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -2.1;
-                        model.position.z -= 0.006;
-                        model.position.x -= 0.01;
-                    }
-                    break;
-                case 15:
-                    if (model.position.z < -3.6) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/15.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 3;
-                        model.position.z -= 0.01;
-                        model.position.x += 0.0005;
-                    }
-                    break;
-                case 16:
-                    if (model.position.z > 1.8) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/16.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                       // model.rotation.y = 1;
-                        model.position.z += 0.0065;
-                        model.position.x += 0.0145;
-                    }
-                    break;
-                case 17:
-                    if (model.position.z < -2.8) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/17.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -2.4;
-                        model.position.z -= 0.01;
-                        model.position.x -= 0.01;
-                    }
-                    break;
-                case 18:
-                    if (model.position.z < -0.145) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/18.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -1.6;
-                        model.position.z -= 0.0008;
-                        model.position.x -= 0.018;
-                    }
-                    break;
-                case 19:
-                    if (model.position.z < -3.4) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/19.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 2.7;
-                        model.position.z -= 0.011;
-                        model.position.x += 0.0038;
-                    }
-                    break;
-                case 20:
-                    if (model.position.z > 0.87) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/20.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -1.3;
-                        model.position.z += 0.0028;
-                        model.position.x -= 0.015;
-                    }
-                    break;
-                case 21:
-                    if (model.position.z < -2.27) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/21.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 2.1;
-                        model.position.z -= 0.011;
-                        model.position.x += 0.0145;
-                    }
-                    break;
-                case 22:
-                    if (model.position.z > 0.765) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/22.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = 1.3;
-                        model.position.z += 0.0025;
-                        model.position.x += 0.0145;
-                    }
-                    break;
-                case 23:
-                    if (model.position.z > 4.5) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/23.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -0.3;
-                        model.position.z += 0.01;
-                        model.position.x -= 0.0023;
-                    }
-                    break;
-                case 24:
-                    if (model.position.z > 2.85) {
-                        cancelAnimationFrame(id);
-                        $("#ImgContainer").css("background-image", "url('images/24.jpg')");
-                        $("#ImgContainer").show();
-                        model.position.x = 0;
-                        model.position.y = 0;
-                        model.position.z = 0;
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        CerrarEvento(1,token);
-                        token = "";
-                        iniciado = false;
-                    }
-                    else {
-                        //model.rotation.y = -0.9;
-                        model.position.z += 0.01;
-                        model.position.x -= 0.013;
-                    }
-                    break;
-                default:
-                // code block
-            }
-        }
+        // if (clock.getElapsedTime() <= 8) {
+        //     if (clock.getElapsedTime() <= 3) {                                
+        //         modelCuyDudando.visible = true;
+        //         model.visible = false;
+        //         modelCuyChoque.visible = false;
+        //     }
+        //     else {
+        //         if(model.rotation.y < anguloRotacion){
+        //             //console.log(model.rotation.y,clock.getElapsedTime());
+        //             modelCuyDudando.visible = false;
+        //             model.visible = true;
+        //             model.rotation.y += 0.05;
+        //         }
+        //         else{
+        //             modelCuyDudando.visible = true;
+        //             modelCuyDudando.rotation.y = model.rotation.y;
+        //             model.visible = false;
+        //             modelCuyChoque.visible = false;
+        //         }                
+        //     }
+        // }
+        // else {
+        //     modelCuyDudando.visible = false;
+        //     switch (ganador) {
+        //         case 0:
+        //             // model.visible = false; 
+        //             // modelCuyChoque.visible=true; 
+        //             // mixerCuyChoque.update(clockCuyChoque.getDelta());            			                   
+        //             if (model.position.z < -2.5) {
+        //                 if (model.position.z < -3.5) {
+        //                     cancelAnimationFrame(id);
+        //                     $("#ImgContainer").css("background-image", "url('images/0.jpg')");
+        //                     $("#ImgContainer").show();
+        //                     model.position.x = 0;
+        //                     model.position.y = 0;
+        //                     model.position.z = 0;
+        //                     clock = new THREE.Clock();
+        //                     clockCuyDudando = new THREE.Clock();
+        //                     clockCuyChoque=new THREE.Clock();
+        //                     CerrarEvento(1,token);
+        //                     token = "";
+        //                     iniciado = false;
+        //                 }
+        //                 else {
+        //                     model.position.z -= 0.01;
+        //                     model.visible = false;
+        //                     modelCuyChoque.rotation.y = 3.3;
+        //                     modelCuyChoque.position.x = model.position.x;
+        //                     modelCuyChoque.position.y = model.position.y;
+        //                     modelCuyChoque.position.z = posicionZ;
+        //                     modelCuyChoque.visible = true;
+        //                     mixerCuyChoque.update(clockCuyChoque.getDelta());
+        //                 }
+        //             }
+        //             else {
+        //                 //model.rotation.y = 3.3;
+        //                 model.position.z -= 0.01;
+        //                 model.position.x -= 0.0027;
+        //                 posicionZ = model.position.z;
+        //             }
+        //             break;
+        //         case 1:
+        //             if (model.position.z > 4.5) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/1.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {                                
+        //                 //model.rotation.y = 0.4;                        
+        //                 model.position.z += 0.01;
+        //                 model.position.x += 0.002;
+        //             }
+        //             break;
+        //         case 2:
+        //             if (model.position.z < -1.38) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/2.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 1.9;
+        //                 model.position.z -= 0.009;
+        //                 model.position.x += 0.023;
+        //             }
+        //             break;
+        //         case 3:
+        //             if (model.position.z > 3.6) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/3.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 0.6;
+        //                 model.position.z += 0.019;
+        //                 model.position.x += 0.0145;
+        //             }
+        //             break;
+        //         case 4:
+        //             if (model.position.z < -2.98) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/4.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 2.7;
+        //                 model.position.z -= 0.011;
+        //                 model.position.x += 0.008;
+        //             }
+        //             break;
+        //         case 5:
+        //             if (model.position.z > 3.7) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/5.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -0.8;
+        //                 model.position.z += 0.01;
+        //                 model.position.x -= 0.008;
+        //             }
+        //             break;
+        //         case 6:
+        //             if (model.position.z > 4.2) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/6.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 0.35;
+        //                 model.position.z += 0.01;
+        //                 model.position.x += 0.0045;
+        //             }
+        //             break;
+        //         case 7:
+        //             if (model.position.z > 1.9) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/7.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -1.15;
+        //                 model.position.z += 0.005;
+        //                 model.position.x -= 0.011;
+        //             }
+        //             break;
+        //         case 8:
+        //             if (model.position.z > 4.6) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/8.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -0.1;
+        //                 model.position.z += 0.01;
+        //                 //model.position.x +=0.002;
+        //             }
+        //             break;
+        //         case 9:
+        //             if (model.position.z < -0.37) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/9.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 1.5;
+        //                 model.position.z -= 0.003;
+        //                 model.position.x += 0.028;
+        //             }
+        //             break;
+        //         case 10:
+        //             if (model.position.z > 4.3) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/10.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                // model.rotation.y = -0.5;
+        //                 model.position.z += 0.01;
+        //                 model.position.x -= 0.0048;
+        //             }
+        //             break;
+        //         case 11:
+        //             if (model.position.z > 2.7) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/11.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 0.85;
+        //                 model.position.z += 0.011;
+        //                 model.position.x += 0.0145;
+        //             }
+        //             break;
+        //         case 12:
+        //             if (model.position.z < -3.4) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/12.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -2.65;
+        //                 model.position.z -= 0.008;
+        //                 model.position.x -= 0.0045;
+        //             }
+        //             break;
+        //         case 13:
+        //             if (model.position.z < -1.15) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/13.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -1.9;
+        //                 model.position.z -= 0.0053;
+        //                 model.position.x -= 0.018;
+        //             }
+        //             break;
+        //         case 14:
+        //             if (model.position.z < -2.1) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/14.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -2.1;
+        //                 model.position.z -= 0.006;
+        //                 model.position.x -= 0.01;
+        //             }
+        //             break;
+        //         case 15:
+        //             if (model.position.z < -3.6) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/15.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 3;
+        //                 model.position.z -= 0.01;
+        //                 model.position.x += 0.0005;
+        //             }
+        //             break;
+        //         case 16:
+        //             if (model.position.z > 1.8) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/16.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                // model.rotation.y = 1;
+        //                 model.position.z += 0.0065;
+        //                 model.position.x += 0.0145;
+        //             }
+        //             break;
+        //         case 17:
+        //             if (model.position.z < -2.8) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/17.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -2.4;
+        //                 model.position.z -= 0.01;
+        //                 model.position.x -= 0.01;
+        //             }
+        //             break;
+        //         case 18:
+        //             if (model.position.z < -0.145) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/18.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -1.6;
+        //                 model.position.z -= 0.0008;
+        //                 model.position.x -= 0.018;
+        //             }
+        //             break;
+        //         case 19:
+        //             if (model.position.z < -3.4) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/19.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 2.7;
+        //                 model.position.z -= 0.011;
+        //                 model.position.x += 0.0038;
+        //             }
+        //             break;
+        //         case 20:
+        //             if (model.position.z > 0.87) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/20.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -1.3;
+        //                 model.position.z += 0.0028;
+        //                 model.position.x -= 0.015;
+        //             }
+        //             break;
+        //         case 21:
+        //             if (model.position.z < -2.27) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/21.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 2.1;
+        //                 model.position.z -= 0.011;
+        //                 model.position.x += 0.0145;
+        //             }
+        //             break;
+        //         case 22:
+        //             if (model.position.z > 0.765) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/22.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = 1.3;
+        //                 model.position.z += 0.0025;
+        //                 model.position.x += 0.0145;
+        //             }
+        //             break;
+        //         case 23:
+        //             if (model.position.z > 4.5) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/23.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -0.3;
+        //                 model.position.z += 0.01;
+        //                 model.position.x -= 0.0023;
+        //             }
+        //             break;
+        //         case 24:
+        //             if (model.position.z > 2.85) {
+        //                 cancelAnimationFrame(id);
+        //                 $("#ImgContainer").css("background-image", "url('images/24.jpg')");
+        //                 $("#ImgContainer").show();
+        //                 model.position.x = 0;
+        //                 model.position.y = 0;
+        //                 model.position.z = 0;
+        //                 clock = new THREE.Clock();
+        //                 clockCuyDudando = new THREE.Clock();
+        //                 CerrarEvento(1,token);
+        //                 token = "";
+        //                 iniciado = false;
+        //             }
+        //             else {
+        //                 //model.rotation.y = -0.9;
+        //                 model.position.z += 0.01;
+        //                 model.position.x -= 0.013;
+        //             }
+        //             break;
+        //         default:
+        //         // code block
+        //     }
+        // }
         renderer.render(scene, camera);
     }
 }
@@ -774,7 +782,7 @@ function consultarEvento(IdJuego) {
         complete: function () {
         },
         success: function (response) {
-            console.log(response);
+            //console.log(response);
             if(response.token_animacion != undefined){       
                 i=i+1;
                 token=response.token_animacion;                
@@ -824,7 +832,7 @@ function CerrarEvento(IdJuego,token_animacion) {
         complete: function () {
         },
         success: function (response) {  
-            console.log(response);
+            //console.log(response);
             //alert("muerto");                                               
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -843,7 +851,7 @@ function CargarEstadistica(IdJuego) {
         complete: function () {
         },
         success: function (response) {            
-            console.log(response);
+            //console.log(response);
             if(response.token_animacion != undefined){                
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
@@ -876,4 +884,36 @@ function CargarEstadistica(IdJuego) {
         error: function (jqXHR, textStatus, errorThrown) {
         }
     });
+}
+
+function animate() {
+    $("#ImgContainer").hide();
+    id = requestAnimationFrame(animate);
+    if (loaded) {        
+        mixer.update(clock.getDelta());
+        mixerCuyDudando.update(clockCuyDudando.getDelta());
+        model.visible = true;        
+        modelCuyDudando.visible = false;        
+        modelCuyChoque.visible = false;
+
+        pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+              
+        caminar(0,0,puntos[0].x,puntos[0].y);
+        
+        console.log(model.position.x,model.position.z);  
+        renderer.render(scene, camera);
+    }
+}
+function caminar(x0,y0,x1,y1){
+    
+    m=(y1-y0)/(x1-x0)
+    y=m*(x-x0)+y0;
+    if(x1>0){
+        x=x+0.1;
+    }
+    else{
+        x=x-0.1;
+    }
+    model.position.x=x;
+    model.position.z=y;
 }
