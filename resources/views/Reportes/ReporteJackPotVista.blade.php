@@ -1,5 +1,10 @@
 @extends('Shared.layout')
 
+@section('body-class')
+    sidebar-style loaded
+@stop
+
+
 @section('content')
 
 <style type="text/css">

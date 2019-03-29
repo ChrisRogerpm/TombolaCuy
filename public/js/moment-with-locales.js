@@ -838,7 +838,7 @@ addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
 // LOCALES
 
 var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
-var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
+var defaultLocaleMonths = 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_');
 function localeMonths (m, format) {
     if (!m) {
         return this._months;

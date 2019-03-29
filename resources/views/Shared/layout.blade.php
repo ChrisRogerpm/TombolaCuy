@@ -393,7 +393,7 @@
                                         class="title">Historial Ticket</span></a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-cog"></i> <span
                                 class="title">Configuración Evento</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">

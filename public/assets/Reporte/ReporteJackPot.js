@@ -272,7 +272,7 @@ function ConfiguracionPozoSegunConfJackPot(idConfiguracionJackpot, tiendas) {
                         $("#txtIdJackpot").val(obj.idJackPot);
                     }
 
-                    html += `<li class="${firstIndex}"><a class="tabClick" data-nombre="${obj.JACKPOT}" href="#menu${index}" data-id="${obj.idJackPot}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
+                    html += `<li class="${firstIndex}" style="margin-right:5px;"><a class="tabClick" data-nombre="${obj.JACKPOT}" href="#menu${index}" data-id="${obj.idJackPot}" data-menu=${index}>${obj.JACKPOT}</a></li>`;
 
                     var idJack = obj.idJackPot;
                     //;
