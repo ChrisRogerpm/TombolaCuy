@@ -67,13 +67,8 @@ li.active a,
     border-bottom: 2px solid #659ce0;
 
 }
-.ocultar{
-    display: none;
-}
 /**/
-.dataTables_wrapper.no-footer .dataTables_scrollBody {
-    border:none;
-}
+
 /**/
 </style>
 
@@ -178,7 +173,9 @@ li.active a,
 
                     </div>
 
-                   
+                    <table id="table" class="table table-bordered table-striped" style="width:100%">
+                    </table>
+
 
                 </div>
 

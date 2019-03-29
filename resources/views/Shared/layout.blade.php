@@ -477,9 +477,7 @@
 <script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
 <script src="{{asset('../assets/js/funciones.js')}}"></script>
 <script src="{{asset('../components/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+
 <script src="{{asset('../js/moment.js')}}"></script>
 
 <!-- <script src="{{asset('../assets/js/exportar-excel/dataTables.buttons.min.js')}}"></script> -->
