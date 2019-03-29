@@ -203,3 +203,7 @@ Route::post('AperturaCajaCerrarFk', 'AperturaCajaController@AperturaCajaCerrarFk
 Route::post('AperturaCajaListarActivaFk', 'AperturaCajaController@AperturaCajaListarActiva');
 
 Route::post('PuntoVentaListarUsuarioJsonFk', 'PuntoVentaController@PuntoVentaListarUsuarioJson');
+
+/*Seguridad*/
+Route::post('AgregarTodoPermisosJsonFk','SeguridadController@AgregarTodoPermisosJson');
+Route::post('QuitarTodoPermisosJsonFk','SeguridadController@QuitarTodoPermisosJson');

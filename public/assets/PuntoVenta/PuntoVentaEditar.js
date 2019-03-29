@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $.when(llenarSelect(basePath + "EmpresaListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboEmpresa", "idEmpresa", "razonSocial", parseInt($("#txtEmpresa").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "EmpresaListarJsonFk", {}, "cboEmpresa", "idEmpresa", "razonSocial", parseInt($("#txtEmpresa").val()))).then(function (response, textStatus) {
         $("#cboEmpresa").select2();
     });
-    $.when(llenarSelect(basePath + "UbigeoListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboUbigeo", "idUbigeo", "Nombre", parseInt($("#txtUbigeo").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "UbigeoListarJsonFk", {}, "cboUbigeo", "id", "nombre", $("#txtUbigeo").val())).then(function (response, textStatus) {
         $("#cboUbigeo").select2();
     });
 

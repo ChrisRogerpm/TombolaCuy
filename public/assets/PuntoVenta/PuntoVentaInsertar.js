@@ -4,7 +4,7 @@ $(document).ready(function () {
         $("#cboEmpresa").select2();
     });
 
-    $.when(llenarSelect(basePath + "UbigeoListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboUbigeo", "idUbigeo", "Nombre","")).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "UbigeoListarJsonFk", {}, "cboUbigeo", "id", "nombre", $("#txtUbigeo").val())).then(function (response, textStatus) {
         $("#cboUbigeo").select2();
     });
 

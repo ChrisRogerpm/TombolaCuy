@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ApiApuestaTotal\ValidarApi;
 use App\Funciones;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -25,7 +26,8 @@ class HomeController extends Controller
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
 
-    public function GenerarArchivoExcelJackpot(Request $request){
+    public function GenerarArchivoExcelJackpot(Request $request)
+    {
         $respuesta = "";
         $mensaje_error = "";
         try {

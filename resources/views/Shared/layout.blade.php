@@ -342,7 +342,7 @@
                                 class="title">Caja</span></a></li>
                 <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-calendar"></i> <span
                                 class="title">Turno</span></a></li>
-                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-mail-forward"></i> <span
+                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
@@ -356,7 +356,7 @@
                 </li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Venta</span>
+                        <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
                         <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span

@@ -5,6 +5,28 @@ $(document).ready(function () {
         format: 'YYYY/MM/DD',
         defaultDate: dateNow,
     });
+    $('#cboZona').select2();
+
+    $('#cboZona').on('select2:select', function (e) {
+        var data = e.params.data;
+        var valor = data.id;
+        if (valor == 0) {
+            $('#cboZona').val([]).trigger('change');
+            $('#cboZona').val(0).trigger('change');
+        }
+        else {
+            var valores = $('#cboZona').val();
+            var nuevo = [];
+            $.each(valores, function (index, value) {
+                if (value != 0) {
+                    nuevo.push(value);
+                }
+            })
+            $('#cboZona').val(nuevo).trigger('change');
+        }
+    });
+
+
     $(document).on('click', '#btnBuscar', function () {
         var url = basePath + "ReporteVentaJsonFk";
         var dataForm = {

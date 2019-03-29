@@ -62,4 +62,24 @@ class ValidarApi
         return $response;
     }
 
+    public function consultarLocal($unitId)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.apuestatotal.com/v2/locales/' . $unitId);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        $headers = array();
+        $headers[] = 'Accept: application/json';
+        //$headers[] = 'Authorization: Bearer '.$accessToken;
+        $headers[] = 'Authorization: Bearer ' . $this->api_key;
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
+        }
+        $response = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+        return $response;
+    }
+
 }

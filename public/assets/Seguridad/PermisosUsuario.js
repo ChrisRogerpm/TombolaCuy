@@ -17,7 +17,6 @@ $(document).ready(function () {
                 $.LoadingOverlay("hide");
             },
             success: function (response) {
-                console.log(response);
                 if (response.respuesta == true) {
                     toastr.success(response.mensaje, "Mensaje Servidor");
                 } else {
@@ -32,12 +31,35 @@ $(document).ready(function () {
         var IdPerfil = $(this).data('perfil');
         var IdPermiso = $(this).data('permiso');
         GestionarPermisos(IdPermiso, IdPerfil);
+        ListarPermisosPerfil(IdPerfil);
     });
     $(document).on('ifUnchecked', '#tablePermisos input:checkbox', function () {
         var IdPermiso = $(this).data('permiso');
         var IdPerfil = $(this).data('perfil');
         GestionarPermisos(IdPermiso, IdPerfil);
+        ListarPermisosPerfil(IdPerfil);
     });
+
+    $(document).on('ifChecked', '#CheckTodos', function () {
+        var IdPerfil = $("#txtPerfil").val();
+        var url = basePath + "AgregarTodoPermisosJsonFk";
+        var dataForm = {
+            'perfil_id': IdPerfil
+        };
+        AgregarTodoPermisos(url, dataForm);
+        ListarPermisosPerfil(IdPerfil);
+    });
+
+    $(document).on('ifUnchecked', '#CheckTodos', function () {
+        var IdPerfil = $("#txtPerfil").val();
+        var url = basePath + "QuitarTodoPermisosJsonFk";
+        var dataForm = {
+            'perfil_id': IdPerfil
+        };
+        QuitarTodoPermisos(url, dataForm);
+        ListarPermisosPerfil(IdPerfil);
+    });
+
     $(document).on('click', '#btnBarrido', function () {
 
         $.ajax({
@@ -51,7 +73,6 @@ $(document).ready(function () {
                 $.LoadingOverlay("hide");
             },
             success: function (response) {
-                console.log(response);
                 if (response.respuesta == true) {
                     toastr.success(response.mensaje, "Mensaje Servidor");
                 } else {
@@ -71,11 +92,7 @@ $(document).ready(function () {
             ListarPermisosPerfil(id);
         }
     });
-    $(".icheck-inline").iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-red',
-        increaseArea: '25%'
-    });
+
 });
 
 function GestionarPermisos(IdPermiso, IdPerfil) {
@@ -92,7 +109,6 @@ function GestionarPermisos(IdPermiso, IdPerfil) {
         //     $.LoadingOverlay("hide");
         // },
         success: function (response) {
-            console.log(response);
             if (response.respuesta == true) {
                 toastr.success(response.mensaje, "Mensaje Servidor");
             } else {
@@ -151,7 +167,10 @@ function tabletUsuario() {
                             return select;
                         }
                     }
-                ]
+                ],
+                "drawCallback": function (settings) {
+                    $(".selectPerfil").select2();
+                }
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -171,21 +190,32 @@ function ListarPermisosPerfil(id) {
         },
         complete: function () {
             $.LoadingOverlay("hide");
+            $(".icheck-inline").iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-red',
+                increaseArea: '25%'
+            });
         },
         success: function (response) {
             var permisoID = [];
+            var permisosTotal = response.data[0].length;
+            var permisosPerfilTotal = response.data[1].length;
+            var checked = "";
+            if (permisosPerfilTotal === permisosTotal) {
+                checked = "checked";
+            }
 
             $.each(response.data[1], function (s, val_) {
                 permisoID.push(val_.permiso_id);
             });
-            console.log(permisoID);
-            $("#bodyModal").html("").append('<div class="row">\n' +
-                '                        <div class="col-md-12">\n' +
-                '                            <table class="table table-condensed table-striped table-bordered" id="tablePermisos"></table>\n' +
-                '                        </div>\n' +
-                '                    </div>');
-
-
+            $("#container-todos").html("").append('<div class="col-md-12">\n' +
+                '                            <div class="form-group">\n' +
+                '                                <div class="icheck-inline" style="margin-top: 5px;">\n' +
+                '                                    Seleccionar Todos <input type="checkbox" id="CheckTodos" ' + checked + ' data-checkbox="icheckbox_square-blue">\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                        </div>');
+            $("#bodyModal").html("").append('<div class="col-md-12"><table class="table table-condensed table-striped table-bordered" id="tablePermisos"></table></div>');
             $("#tablePermisos").DataTable({
                 "bDestroy": true,
                 "bSort": true,
@@ -198,11 +228,10 @@ function ListarPermisosPerfil(id) {
                 data: response.data[0],
                 columns: [
                     {data: "nombre", title: "Nombre"},
-                    {data: "method", title: "Metodo"},
+                    {data: "controller", title: "Menu"},
                     {
                         data: null, title: "",
                         "render": function (value) {
-
                             var select = "";
                             if (jQuery.inArray(value.id, permisoID) >= 0) {
                                 select = "checked";
@@ -226,6 +255,40 @@ function ListarPermisosPerfil(id) {
         }
     });
 }
+
+function AgregarTodoPermisos(url, dataForm) {
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: dataForm,
+        success: function (response) {
+            var respuesta = response.respuesta;
+            if (respuesta) {
+                toastr.success('Se ah agregado todo los permisos', 'Mensaje Servidor');
+            } else {
+                toastr.warning(response.mensaje, 'Mensaje Servidor');
+            }
+        }
+    })
+}
+
+function QuitarTodoPermisos(url, dataForm) {
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: dataForm,
+        success: function (response) {
+            var respuesta = response.respuesta;
+            if (respuesta) {
+                toastr.success('Se ah quitado todo los permisos', 'Mensaje Servidor');
+            } else {
+                toastr.warning(response.mensaje, 'Mensaje Servidor');
+            }
+        }
+    })
+}
+
+
 
 
 
