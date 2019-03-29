@@ -79,6 +79,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Zona Comercial</label>
+                                    <select multiple="multiple" id="cboZona" name="zonas"
+                                            class="form-control input-sm multiselect" style="width: 100%;">
+                                        <option value="0">Todos</option>
+                                        <option value="1">Zona Comercial 1</option>
+                                        <option value="2">Zona Comercial 2</option>
+                                        <option value="3">Zona Comercial 3</option>
+                                        <option value="4">Zona Comercial 4</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </form>
 

@@ -18,6 +18,7 @@ class SeguridadController extends Controller
     {
         return view('Seguridad.PermisoUsuario');
     }
+
     public function PermisoPerfilListarJson(Request $request)
     {
         $lista = "";
@@ -30,6 +31,7 @@ class SeguridadController extends Controller
         }
         return response()->json(['data' => [$lista_Permisos, $lista_Perfil], 'mensaje' => $mensaje_error]);
     }
+
     public function PermisoListarJson(Request $request)
     {
         $lista = "";
@@ -41,6 +43,7 @@ class SeguridadController extends Controller
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
+
     public function PermisoPerfilJson(Request $request)
     {
         $lista = "";
@@ -63,6 +66,7 @@ class SeguridadController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
+
     public function ActualizarPerfilUsuario(Request $request)
     {
         $lista = "";
@@ -77,6 +81,7 @@ class SeguridadController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
+
     public function DataAuditoriaJson(Request $request)
     {
         $lista = "";
@@ -89,6 +94,7 @@ class SeguridadController extends Controller
 
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
+
     public function BarridoPermisos()
     {
         $respuesta = true;
@@ -140,6 +146,7 @@ class SeguridadController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
     }
+
     public function BuscarPermiso(Request $request)
     {
         $respuesta = true;
@@ -180,6 +187,7 @@ class SeguridadController extends Controller
         }
         return $respuesta;
     }
+
     public function UsuarioListarJson()
     {
         $lista = "";
@@ -190,5 +198,31 @@ class SeguridadController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function AgregarTodoPermisosJson(Request $request)
+    {
+        $respuesta =false;
+        $mensaje = "";
+        try{
+            Permisos::AgregarPermisosTodos($request);
+            $respuesta = true;
+        }catch (QueryException $ex){
+            $mensaje =$ex->errorInfo;
+        }
+        return response()->json(['respuesta'=>$respuesta,'mensaje'=>$mensaje]);
+    }
+
+    public function QuitarTodoPermisosJson(Request $request)
+    {
+        $respuesta =false;
+        $mensaje = "";
+        try{
+            Permisos::QuitarPermisosTodos($request);
+            $respuesta = true;
+        }catch (QueryException $ex){
+            $mensaje =$ex->errorInfo;
+        }
+        return response()->json(['respuesta'=>$respuesta,'mensaje'=>$mensaje]);
     }
 }

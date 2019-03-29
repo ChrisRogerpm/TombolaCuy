@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ApiApuestaTotal\Curl;
 use App\ApiApuestaTotal\ValidarApi;
 use App\PuntoVenta;
+use App\Ubigeo;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -91,22 +92,30 @@ class PuntoVentaController extends Controller
                     $data_unit_ids = $data['unit_ids'];
                     $unit_ids = "";
                     $come = ",";
+                    $ultimo_unit_id = "";
                     foreach ($data_unit_ids as $unit_id) {
                         $unit_ids .= $unit_id . $come;
+                        $ultimo_unit_id = $unit_id;
                     }
+                    $idUbigeo = Ubigeo::ObtenerDepartamento($ultimo_unit_id);
+                    $idZonaComercial = Ubigeo::ObtenerZonaComercial($idUbigeo);
                     if ($data['cc_id'] != "") {
                         $validar = PuntoVenta::where('cc_id', $data['cc_id'])->first();
                         if ($validar == null) {
                             $puntoventa = new PuntoVenta();
                             $puntoventa->nombre = $data['nombre'];
                             $puntoventa->cc_id = $data['cc_id'];
+                            $puntoventa->idUbigeo = $idUbigeo;
                             $puntoventa->unit_ids = $unit_ids;
+                            $puntoventa->ZonaComercial = $idZonaComercial;
                             $puntoventa->save();
                         } else {
                             $puntoventa = PuntoVenta::findorfail($validar->idPuntoVenta);
                             $puntoventa->nombre = $data['nombre'];
                             $puntoventa->cc_id = $data['cc_id'];
+                            $puntoventa->idUbigeo = $idUbigeo;
                             $puntoventa->unit_ids = $unit_ids;
+                            $puntoventa->ZonaComercial = $idZonaComercial;
                             $puntoventa->save();
                         }
                     }
