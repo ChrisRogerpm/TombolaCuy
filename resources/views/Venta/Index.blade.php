@@ -572,6 +572,8 @@
 @stop
 
 @push('Js')
+ <!-- <script src="{{asset('../assets/Venta/ServerDate.js')}}"></script> -->
+
     <script src="{{asset('../assets/Venta/Index.js')}}"></script>
  <script src="{{asset('../assets/Venta/ClaseWebSockets.js')}}"></script>
 
