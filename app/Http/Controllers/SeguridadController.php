@@ -110,11 +110,11 @@ class SeguridadController extends Controller
             $permisos_route_array_BD = [];
             $listapermisos = Permisos::PermisoListarJson();
             foreach ($listapermisos as $value) {
-                $nombrePermiso_DB = $value->nombre;
+                $nombrePermiso_DB = $value['nombre'];
                 $position = in_array($nombrePermiso_DB, $permisos_route_array);
                 if (!$position) {
-                    $eliminar_permiso_perfil = PermisosPerfil::PermisoPerfilIDEliminar($value->id);
-                    $eliminar_permiso = Permisos::PermisosEliminar($value->id);
+                    $eliminar_permiso_perfil = PermisosPerfil::PermisoPerfilIDEliminar($value['id']);
+                    $eliminar_permiso = Permisos::PermisosEliminar($value['id']);
                 } else {
                     array_push($permisos_route_array_BD, $nombrePermiso_DB);
                 }
