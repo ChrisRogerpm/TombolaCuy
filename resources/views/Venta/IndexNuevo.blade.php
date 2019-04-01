@@ -115,12 +115,13 @@
 
                                 <div class=" rowcabecera_datos" id="row_datosevento">
                                         <div style="width:20%;display:block" class="" >
-<div style="display:flex;width:100%">
-                                            <div id="fechaServidor" style="display:flex;width:50%;border:0" ></div>
-                                            <div id="progreso" style="padding: 0;display:block;float:right;width: 40%;margin:auto;height:65%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
+
+                                            <!-- <span id="fechaHoy"></span><span id="liveclock"></span> -->
+                                            <span id="fechaServidor" ></span>
+                                            <div id="progreso" style="padding: 0;display:block;float:right;width: 50%;margin:auto;height:75%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
 
                                                 <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: #4CAF50;"></div>
-</div>
+
                                             </div>
                                         </div>
 

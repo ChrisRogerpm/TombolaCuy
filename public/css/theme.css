@@ -7980,6 +7980,15 @@ float:left;
 display:flex;align-items:center;
 }
 
+.rowcabecera_datos div:eq(1) { border-right:1px solid white;
+  /*padding:6px;*/
+/*display:table-cell;*/
+;height:100%;
+float:left;
+  padding-left:1%;
+/*display:flex;align-items:center;*/
+}
+
 .rowcabecera_datos div:nth-last-child(1) {
     border-right:0px;
 }

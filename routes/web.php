@@ -36,6 +36,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 
 #region [Venta]
     Route::get('VentanaCaja', 'VentaController@Index')->name('Venta.Index');
+    Route::get('VentanaCaja2', 'VentaController@IndexNuevo')->name('Venta.IndexNuevo');
 #endregion
 
 #region [ConfiguracionJackpot]
@@ -126,6 +127,7 @@ Route::post('GenerarExcelFk','HomeController@GenerarExcel');
 Route::post('GenerarArchivoExcelJackpotFk','HomeController@GenerarArchivoExcelJackpot');
 
 /*Ventana Caja*/
+Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
 Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
 Route::post('GuardarTicketFk', 'VentaController@GuardarTicket');
 Route::post('BuscarTicketFk', 'VentaController@BuscarTicket');

@@ -21,7 +21,152 @@ use Illuminate\Http\Request;
 
 class VentaController extends Controller
 {
-    public function Index()
+
+
+        public function Index()
+    {
+        $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuario = Auth::user()->idUsuario;
+        try {
+            $hora_servidor = date('Y-m-d H:i:s');
+            $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
+            $tipoapuesta = Evento::TipoApuestaListar();
+
+            $divzero=null;
+            $primerafila=array();
+            $segundafila=array();
+            $tercerafila=array();
+            $cuartafila=array();
+            $quintafila=array();
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [100])){
+                        $divzero=$apuesta;
+                }
+            }
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [3,6,9,12,15,18,21,24])){
+                        array_push($primerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [2,5,8,11,14,17,20,23])){
+                        array_push($segundafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [1,4,7,10,13,16,19,22])){
+                        array_push($tercerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [103,104,105,106])){
+                        array_push($cuartafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [107,101,25,26,102,108])){
+                        array_push($quintafila, $apuesta);
+                }
+            }
+        
+            if(count($aperturacajadatos)>0){
+                $aperturacajadatos=$aperturacajadatos[0];
+            }
+            $eventos = Evento::EventoListar();
+            $dinerodefault = Evento::DineroDefaultListar();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        };
+        return view('Venta.Index', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+            "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila"));
+    }
+
+
+    public function IndexNuevo()
+    {
+        $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuario = Auth::user()->idUsuario;
+        try {
+            $hora_servidor = date('Y-m-d H:i:s');
+            $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
+            $tipoapuesta = Evento::TipoApuestaListar();
+
+            $divzero=null;
+            $primerafila=array();
+            $segundafila=array();
+            $tercerafila=array();
+            $cuartafila=array();
+            $quintafila=array();
+            $sextafila=array();
+            $coloresfila=array();
+            $rangosfila=array();
+            $par_imparfila=array();
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [39])){
+                        $divzero=$apuesta;
+                }
+            }
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [1,2,3,4,5,6])){
+                        array_push($primerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [7,8,9,10,11,12])){
+                        array_push($segundafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [13,14,15,16,17,18])){
+                        array_push($tercerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [19,20,21,22,23,24])){
+                        array_push($cuartafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [25,26,27,28,29,30])){
+                        array_push($quintafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [31,32,33,34,35,36])){
+                        array_push($sextafila, $apuesta);
+                }
+            }
+
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [37,38,39])){
+                        array_push($coloresfila, $apuesta);
+                }
+            }
+
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [40,41,42])){
+                        array_push($rangosfila, $apuesta);
+                }
+            }
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [43,44])){
+                        array_push($par_imparfila, $apuesta);
+                }
+            }
+            if(count($aperturacajadatos)>0){
+                $aperturacajadatos=$aperturacajadatos[0];
+            }
+            $eventos = Evento::EventoListar();
+            $dinerodefault = Evento::DineroDefaultListar();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        };
+        return view('Venta.Index', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+            "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila","rangosfila","par_imparfila"));
+    }
+
+
+    public function IndexAnterior()
     {
         $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
         $usuario = Auth::user()->idUsuario;
@@ -36,13 +181,9 @@ class VentaController extends Controller
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         };
-     
-
-        // return view('Venta.Index', compact($objeto));
-        return view('Venta.Index', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault"));
-        // return view('Venta.Index');
-
+        return view('Venta.IndexAnte', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault"));
     }
+
 
     public function GuardarTicket(Request $request)
     {

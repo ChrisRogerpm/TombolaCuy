@@ -64,12 +64,42 @@ $(document).ready(function () {
         //HistorialJson(eventoactual.IdEvento);
         eventos_botones(); ////botones 1-22, rangos, colores ,  botones apuestas(1,2,4,5,10,20,50,100)  , botones check, x, buscar,imprimir
         eventos_botones_modalbuscar(); ///botones del modal buscar=>  1-9 , buscar
+
+        //mover_barra();
     // $(".TOMBOLACUY").show();
         // responsivetombola();
         // $(window).resize(function () {
         //         responsivetombola();
         //     }).trigger('resize');
 });////fin document funciton
+
+
+function mover_barra(){
+        $("#barra_loading").css("width","100%")
+            width=100;
+            if(typeof intervalo_barra!="undefined"){
+            clearInterval(intervalo_barra)
+            }
+            intervalo_barra=setInterval(function(){
+              
+            $("#barra_loading").css("width",width+"%")
+            width=width-10;
+            },1000)
+}
+
+// function mover_barra() {
+//   var elem = document.getElementById("barra_loading");   
+//   var width = 1;
+//   var id = setInterval(frame, 10);
+//   function frame() {
+//     if (width >= 100) {
+//       clearInterval(id);
+//     } else {
+//       width++; 
+//       elem.style.width = width + '%'; 
+//     }
+//   }
+// }
 
 
 

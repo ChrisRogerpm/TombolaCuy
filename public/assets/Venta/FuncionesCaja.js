@@ -299,58 +299,58 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
 ////PLENO
 
 
-    var div_zero=$(".rectangulo_izquierda");
-    var valorzero=$(div_zero).text();
-    var colorzero="";var cuotazero="";
-     $(tipoapuesta).each(function(ii,ee){
-                    var valorapuesta=ee.valorapuesta;
-                    if(ee.idTipoPago==6 && valorapuesta.toString()=="0"){
-                        color=ee.rgb;
-                        cuota=ee.multiplicadorDefecto;
-                    }
-    });
-    $(div_zero).css("background-color",color);
-    $(div_zero).attr("data-cuota",cuota);
-    $(div_zero).attr("data-idtipoapuesta",100);
+    // var div_zero=$(".rectangulo_izquierda");
+    // var valorzero=$(div_zero).text();
+    // var colorzero="";var cuotazero="";
+    //  $(tipoapuesta).each(function(ii,ee){
+    //                 var valorapuesta=ee.valorapuesta;
+    //                 if(ee.idTipoPago==6 && valorapuesta.toString()=="0"){
+    //                     color=ee.rgb;
+    //                     cuota=ee.multiplicadorDefecto;
+    //                 }
+    // });
+    // $(div_zero).css("background-color",color);
+    // $(div_zero).attr("data-cuota",cuota);
+    // $(div_zero).attr("data-idtipoapuesta",100);
 
 
-    $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
-            var valor=$(e).text();
-            var color="";
-            var cuota="";
-            var idtipoapuesta="";
+   //  $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
+   //          var valor=$(e).text();
+   //          var color="";
+   //          var cuota="";
+   //          var idtipoapuesta="";
 
-            $(tipoapuesta).each(function(ii,ee){
-                    var valorapuesta=ee.valorapuesta;
-                    if(ee.idTipoPago==1&&valorapuesta.toString()==valor.toString()){
-                        color=ee.rgb;
-                        cuota=ee.multiplicadorDefecto;
-                        idtipoapuesta=ee.idTipoApuesta;
-                    }
-            })  
-            $(e).css("background-color",color);
-            $(e).attr("data-cuota",cuota);
-            $(e).attr("data-idtipoapuesta",idtipoapuesta);
-    })
+   //          $(tipoapuesta).each(function(ii,ee){
+   //                  var valorapuesta=ee.valorapuesta;
+   //                  if(ee.idTipoPago==1&&valorapuesta.toString()==valor.toString()){
+   //                      color=ee.rgb;
+   //                      cuota=ee.multiplicadorDefecto;
+   //                      idtipoapuesta=ee.idTipoApuesta;
+   //                  }
+   //          })  
+   //          $(e).css("background-color",color);
+   //          $(e).attr("data-cuota",cuota);
+   //          $(e).attr("data-idtipoapuesta",idtipoapuesta);
+   //  })
 
-   $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
-            var valor=$(e).text();
-            var color="";var cuota="";
-            var idtipoapuesta="";
-            $(tipoapuesta).each(function(ii,ee){
-                    var valorapuesta=ee.valorapuesta;
-                    if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
-                        color=ee.rgb;
-                        cuota=ee.multiplicadorDefecto;
-                        idtipoapuesta=ee.idTipoApuesta;
+   // $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
+   //          var valor=$(e).text();
+   //          var color="";var cuota="";
+   //          var idtipoapuesta="";
+   //          $(tipoapuesta).each(function(ii,ee){
+   //                  var valorapuesta=ee.valorapuesta;
+   //                  if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
+   //                      color=ee.rgb;
+   //                      cuota=ee.multiplicadorDefecto;
+   //                      idtipoapuesta=ee.idTipoApuesta;
 
-                    }
-            })  
-            $(e).css("background-color",color);
-            $(e).attr("data-cuota",cuota);
-            $(e).attr("data-idtipoapuesta",idtipoapuesta);
+   //                  }
+   //          })  
+   //          $(e).css("background-color",color);
+   //          $(e).attr("data-cuota",cuota);
+   //          $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
-    })
+   //  })
     // $(".numeros_rango2 [data-tipo='rojos']").each(function(i,e){
     //         var valor=$(e).text();
     //         var color="";var cuota="";
@@ -380,41 +380,41 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     //         $(e).attr("data-cuota",cuota);
     // })
 
-    $(".numeros_rango div").each(function(i,e){
-        var valor=$(e).text();
-            var color="";var cuota="";
-            var idtipoapuesta="";
-            $(tipoapuesta).each(function(ii,ee){
-                    var valorapuesta=ee.valorapuesta;
-                    var nombreapuesta=ee.nombre;
+    // $(".numeros_rango div").each(function(i,e){
+    //     var valor=$(e).text();
+    //         var color="";var cuota="";
+    //         var idtipoapuesta="";
+    //         $(tipoapuesta).each(function(ii,ee){
+    //                 var valorapuesta=ee.valorapuesta;
+    //                 var nombreapuesta=ee.nombre;
 
-                    if(ee.idTipoPago==4 && nombreapuesta.toString()==$(e).data("valor") ){
-                        cuota=ee.multiplicadorDefecto;
-                        idtipoapuesta=ee.idTipoApuesta;
-                    }
-            })  
-            $(e).attr("data-cuota",cuota);
-            $(e).attr("data-idtipoapuesta",idtipoapuesta);
+    //                 if(ee.idTipoPago==4 && nombreapuesta.toString()==$(e).data("valor") ){
+    //                     cuota=ee.multiplicadorDefecto;
+    //                     idtipoapuesta=ee.idTipoApuesta;
+    //                 }
+    //         })  
+    //         $(e).attr("data-cuota",cuota);
+    //         $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
-    })
+    // })
 
-    $(".numeros_rango2 div:not('.rectangulo_negro'):not('.rectangulo_rojo')").each(function(i,e){
-        var valor=$(e).text();
-        var idtipopago=$(e).data("idtipopago")
-            var color="";var cuota="";
-            var idtipoapuesta="";
-            $(tipoapuesta).each(function(ii,ee){
-                    var valorapuesta=ee.valorapuesta;
-                    var nombreapuesta=ee.nombre;
-                    if(idtipopago.toString()==(ee.idTipoPago).toString() && nombreapuesta.toString()==$(e).data("valor") ){
-                        cuota=ee.multiplicadorDefecto;
-                        idtipoapuesta=ee.idTipoApuesta;
-                    }
-            })  
-            $(e).attr("data-cuota",cuota);
-            $(e).attr("data-idtipoapuesta",idtipoapuesta);
+    // $(".numeros_rango2 div:not('.rectangulo_negro'):not('.rectangulo_rojo')").each(function(i,e){
+    //     var valor=$(e).text();
+    //     var idtipopago=$(e).data("idtipopago")
+    //         var color="";var cuota="";
+    //         var idtipoapuesta="";
+    //         $(tipoapuesta).each(function(ii,ee){
+    //                 var valorapuesta=ee.valorapuesta;
+    //                 var nombreapuesta=ee.nombre;
+    //                 if(idtipopago.toString()==(ee.idTipoPago).toString() && nombreapuesta.toString()==$(e).data("valor") ){
+    //                     cuota=ee.multiplicadorDefecto;
+    //                     idtipoapuesta=ee.idTipoApuesta;
+    //                 }
+    //         })  
+    //         $(e).attr("data-cuota",cuota);
+    //         $(e).attr("data-idtipoapuesta",idtipoapuesta);
 
-    })
+    // })
         //FIN PLENO
 
         ////jackpot
@@ -423,8 +423,6 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
         intervaloihistorialjackpot=setInterval(function(){
              HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
         },14000)
-
-
             // eventoactual={};
             //     eventoactual.FechaEvento=$(this).data("fechaevento");
             //     eventoactual.fechaFinEvento=$(this).data("fechafinevento");
@@ -442,9 +440,6 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             //      horaserv=ServerDate();horaserv= new Date(horaserv);
             //     reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
             //     $(".TOMBOLACUY").show();
-
-
-
                 eventoactual={};
                 eventoactual.FechaEvento=eventodatos.FechaEvento;
                 eventoactual.fechaFinEvento=eventodatos.fechaFinEvento;
@@ -456,15 +451,12 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                 eventoactual.idMoneda=eventodatos.idMoneda;
                 eventoactual.Imagen="img/juegos/"+eventodatos.logo;
                 $("#modal_imprimir #imagen_eventoactual").attr("src",eventodatos.logo);
-
-setTimeout(function(){
-
-   horaserv=ServerDate();horaserv= new Date(horaserv);
-                reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
-                $(".TOMBOLACUY").css("cursor","");
-                $(".TOMBOLACUY").show();
-    
-},500)
+                    setTimeout(function(){
+                       horaserv=ServerDate();horaserv= new Date(horaserv);
+                                    reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+                                    $(".TOMBOLACUY").css("cursor","");
+                                    $(".TOMBOLACUY").show();
+                    },500)
 
 
               
@@ -491,6 +483,50 @@ function responsivetombola(){
         })
 }
 
+function iniciarContador(duration, display) {
+    tiempototal=duration;
+    var timer = duration, minutos, segundos;
+    if(typeof intervalo_contador!="undefined"){
+      clearInterval(intervalo_contador) 
+    }
+    intervalo_contador=setInterval(function () {
+        minutos = parseInt(timer / 60, 10);
+        segundos = parseInt(timer % 60, 10);
+
+        minutos = minutos < 10 ? "0" + minutos : minutos;
+        segundos = segundos < 10 ? "0" + segundos : segundos;
+        display.text(minutos + ":" + segundos);
+
+        ///termometro
+//         porcentaje= duration-((100*timer)/duration);
+         porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
+         console.warn("porcn=" + porcentaje);
+         $("#barra_loading").css("width",porcentaje+"%")
+        //
+       // ///////segundos bloqueo
+        segantesdebloque=eventoactual.segBloqueoAntesEvento;
+        if(minutos==0 && segundos==segantesdebloque){
+           $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+        }
+        else{
+           segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
+          if(segundostotales==segantesdebloque){
+             $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+          }
+        }
+        if(minutos==0 && segundos==1){
+          setTimeout(function(){
+            $.LoadingOverlay("hide");
+            location.reload(true)
+          },2000)
+        }
+          //fin segundos bloqueo
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
 
 function reloj_servidor(horaserv,fechaFinEvento,segundosantesbloqueo){
  // horaserv=ServerDate();horaserv= new Date(horaserv);
@@ -498,7 +534,8 @@ function reloj_servidor(horaserv,fechaFinEvento,segundosantesbloqueo){
     ahora=moment(horaserv);
     segundos=proxima_fecha.diff(ahora,'seconds');
     if(segundos>0){
-        iniciarContador(segundos, $("#proximo_en2")) 
+        iniciarContador(segundos, $("#proximo_en2")) ;
+
     }
     console.log("proximo_en2 ="+segundos);
     console.log(horaserv)
@@ -729,6 +766,7 @@ function eventos_botones(){
            $(this).toggleClass("seleccionado") ;
         })
 
+    //////botones apuesta  1 2 5  10 50 100
        $("#div_apuestas [data-tipo='apuesta']").off().on("click",function(e){ 
                 $(this).toggleClass("seleccionadoapuesta") ;
                 var SUMAAPUESTAS=0;
