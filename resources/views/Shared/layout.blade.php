@@ -363,7 +363,7 @@
                         <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Caja Venta</span></a></li>
 
                     </ul>
