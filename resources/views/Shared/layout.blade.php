@@ -58,6 +58,10 @@
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
+
+
+
+    
 <!-- <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}"> -->
 
     <!-- /Styles -->

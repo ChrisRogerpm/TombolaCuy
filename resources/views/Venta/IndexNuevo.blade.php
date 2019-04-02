@@ -4,6 +4,8 @@
     sidebar-style loaded
 @stop
 @section('content')
+       <?php if($error==""){?>
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -91,14 +93,14 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:83vh;display:none">
+                    <DIV class="TOMBOLACUY" style="height:110vh;display:none">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
                                                 <div style="width:20%" class="">
                                                     HORA
                                                 </div>
-
+  
                                                 <div style="width:15%"class="">
                                                 PRÓXIMO EN
                                                 </div>
@@ -113,15 +115,15 @@
                                                 </div>
                                  </div>
 
-                                <div class=" rowcabecera_datos" id="row_datosevento">
+                                            <div class=" rowcabecera_datos" id="row_datosevento">
                                         <div style="width:20%;display:block" class="" >
+                                                <div style="display:flex;width:100%">
+                                                    <div id="fechaServidor" style="display:flex;width:50%;border:0" ></div>
+                                                    <div id="progreso" style="padding: 0;display:block;float:right;width: 40%;margin:auto;height:45%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0; border-radius:5px 0px 0px 5px">
+                                                        <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: green;
 
-                                            <!-- <span id="fechaHoy"></span><span id="liveclock"></span> -->
-                                            <span id="fechaServidor" ></span>
-                                            <div id="progreso" style="padding: 0;display:block;float:right;width: 50%;margin:auto;height:75%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
-
-                                                <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: #4CAF50;"></div>
-
+                                                        "></div>
+                                                    </div>
                                             </div>
                                         </div>
 
@@ -146,31 +148,19 @@
 
                         <div class=" row_medio">
                                 <div class="columna_principalizquierda"  >
-
+<div  class="tabla_pleno">
                                     <div class="row_pleno" >
                                         <div class="div_pleno">PLENO</div>
                                     </div>
-                                    <div class="contenedor_tablaprincipal" >
+                                    <div class="contenedor_tablaprincipal2"  style="height:90%">
 
 
-                                              <div class="" style="height:100%" id="columna_izq">
-                                                    <div class="" style="height:65%">
-                                                        <div class="rectangulo_izquierda"
-                                                        data-idTipoPago="6"
-                                                        data-tipo="zero" data-color="verde" data-valor=0
-                                                        style="background-color:{{$divzero->rgb}}"
-                                                        data-cuota="{{$divzero->multiplicadorDefecto}}"
-                                                        data-idTipoApuesta="{{$divzero->idTipoApuesta}}"
-
-                                                        ></div>
-                                                    </div>
-                                                    <div class=""  style="height:35%">
-                                                        <div class="rectangulo_izquierda2"></div>
-                                                    </div>
-                                              </div>
-                                               <div class="" id="numeros_tabla">
+                                            
+                                               <div class="" id="numeros_tabla2">
                                                 <!--TABLA DE NUMEROS PRINCIPAL-->
-                                                <div class=" numeros_rect">
+                                                    <div class=" margen_numeros">
+                                                    </div>
+                                                <div class=" numeros_rect2">
                                                          @foreach($primerafila as $div) 
                                                                    <div 
                                                                     data-idTipoPago="{{$div->idTipoPago}}" 
@@ -183,8 +173,9 @@
                                                                     >{{$div->valorapuesta}}</div>
                                                             @endforeach
                                                 </div>
-
-                                                <div class=" numeros_rect">
+                                                  <div class=" margen_bottom_numeros"></div>
+                                                <div class=" margen_numeros"></div>
+                                                <div class=" numeros_rect2">
                                                  
                                                    @foreach($segundafila as $div) 
                                                        <div 
@@ -199,7 +190,10 @@
                                                      @endforeach
 
                                                 </div>
-                                                <div class=" numeros_rect">
+
+                                                  <div class=" margen_bottom_numeros"></div>
+                                                <div class=" margen_numeros"></div>
+                                                <div class=" numeros_rect2">
                                                             
                                                     @foreach($tercerafila as $div) 
                                                            <div 
@@ -214,51 +208,59 @@
                                                      @endforeach
                                                 </div>
 
-                                                <div class=" numeros_rango">
-
-                                                      @foreach($cuartafila as $div) 
-                                                       <div 
+                                                       <div class=" margen_bottom_numeros"></div>
+                                                <div class=" margen_numeros"></div>
+                                                   <div class=" numeros_rect2">
+                                                            
+                                                    @foreach($cuartafila as $div) 
+                                                           <div 
                                                          data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                                        data-idTipoPago="{{$div->idTipoPago}}" 
-                                                        style="background-color:{{$div->rgb}}" 
-                                                        data-tipo="rango" 
-                                                        data-color="{{$div->rgb}}"
-                                                        data-valor={{$div->nombre}} 
-                                                        data-cuota={{$div->multiplicadorDefecto}} 
-                                                        >{{$div->nombre}}</div>
+                                                            data-idTipoPago="{{$div->idTipoPago}}" 
+                                                            style="background-color:{{$div->rgb}}" 
+                                                            data-tipo="numero" 
+                                                            data-color="{{$div->rgb}}"
+                                                            data-valor={{$div->valorapuesta}} 
+                                                            data-cuota={{$div->multiplicadorDefecto}} 
+                                                            >{{$div->valorapuesta}}</div>
                                                      @endforeach
-
-                                 
-
                                                 </div>
-
-                                                <div class=" numeros_rango2">
-
-                                                     @foreach($quintafila as $div) 
-                                                       <div 
+                                                        <div class=" margen_bottom_numeros"></div>
+                                                <div class=" margen_numeros"></div>
+                                                   <div class=" numeros_rect2">
+                                                            
+                                                    @foreach($quintafila as $div) 
+                                                           <div 
                                                          data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                                        data-idTipoPago="{{$div->idTipoPago}}" 
-                                                        style="background-color:{{$div->rgb}}" 
-                                                        <?php if($div->idTipoApuesta==107 || $div->idTipoApuesta==108){$tipo="rango";}
-                                                                else if($div->idTipoApuesta==101 ){$tipo="pares";}
-                                                                else if($div->idTipoApuesta==102 ){$tipo="impares";}
-                                                                else if($div->idTipoApuesta==25 || $div->idTipoApuesta==26 ){$tipo="color";}
-                                                        ?>
-                                                        data-tipo="{{$tipo}}" 
-
-                                                        <?php if($tipo=="color"){
-                                                            $datacolor=$div->nombre;}else{
-                                                                $datacolor=$div->rgb;
-                                                            }
-                                                        ?>
-
-                                                        data-color="{{$datacolor}}"
-                                                        data-valor={{$div->nombre}} 
-                                                        data-cuota={{$div->multiplicadorDefecto}} 
-                                                        >{{$div->nombre}}</div>
+                                                            data-idTipoPago="{{$div->idTipoPago}}" 
+                                                            style="background-color:{{$div->rgb}}" 
+                                                            data-tipo="numero" 
+                                                            data-color="{{$div->rgb}}"
+                                                            data-valor={{$div->valorapuesta}} 
+                                                            data-cuota={{$div->multiplicadorDefecto}} 
+                                                            >{{$div->valorapuesta}}</div>
                                                      @endforeach
-                                                            }
                                                 </div>
+                                                        <div class=" margen_bottom_numeros"></div>
+                                                <div class=" margen_numeros"></div>
+                                                   <div class=" numeros_rect2">
+                                                            
+                                                    @foreach($sextafila as $div) 
+                                                           <div 
+                                                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                                            data-idTipoPago="{{$div->idTipoPago}}" 
+                                                            style="background-color:{{$div->rgb}}" 
+                                                            data-tipo="numero" 
+                                                            data-color="{{$div->rgb}}"
+                                                            data-valor={{$div->valorapuesta}} 
+                                                            data-cuota={{$div->multiplicadorDefecto}} 
+                                                            >{{$div->valorapuesta}}</div>
+                                                     @endforeach
+                                                </div>
+                                                        <div class=" margen_bottom_numeros"></div>
+
+
+
+                                               
 
                                                 <!--  <div class="rowhistorial">
                                        <div class="historial">HISTORIAL</div>
@@ -267,26 +269,108 @@
                                             </div><!--div col 10-->
 
 
-                                            <div class="" style="height:100%" id="columna_der">
-                                                    <div class="" style="height:65%">
-                                                        <div class="rectangulo_derecha"></div>
-                                                    </div>
-                                                    <div class=""  style="height:35%">
-                                                        <div class="rectangulo_derecha2"></div>
-                                                    </div>
-                                              </div>
                                               
                                               <!-- <div class="col-xs-12 col-md-1"></div> -->
                                     </div><!--contenedor_tablaprincipal-->
+                                        </div><!--FIN TABLA PLENO-->
+
+                            <DIV class="tabla_apuestas_adicionales" >
+                                <div class="apuestas_adicionales">
+                                    <div class=" apuestasadicionales_titulo" >
+                                        <div class="apuestasadicionales_titulo_div">APUESTAS ADICIONALES</div>
+                                    </div>
+                                     <div class="apuestasadicionalescontenedor" >
+                                        <div class="apuestacondicional_fila">
+
+                                         <div class="apuestacondicional_fila_nombre">COLORES</div>
+
+                                             <div class="apuestacondicional_fila_datos">
+                                                     @foreach($coloresfila as $div) 
+                                                     <div 
+                                                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                                        data-idTipoPago="{{$div->idTipoPago}}" 
+                                                        style="background-color:{{$div->rgb}}" 
+                                                      
+                                                        data-tipo="color" 
+
+                                                        <?php 
+                                                            $datacolor=$div->nombre;
+                                                        ?>
+                                                        data-color="{{$datacolor}}"
+                                                        data-valor={{$div->nombre}} 
+                                                        data-cuota={{$div->multiplicadorDefecto}} 
+                                                        >{{$div->nombre}}</div>
+                                                     @endforeach
+                                             </div>      
 
 
-                                    <div class=" rowhistorial"><div class="historialtitulo">HISTORIAL</div></div>
-                                     <div class=" historial_numeros">
+                                        </div>
+                                        <div class="apuestacondicional_fila">
+                                                 <div class="apuestacondicional_fila_nombre">RANGOS</div>
+                                                 <div class="apuestacondicional_fila_datos">
+                                                         @foreach($rangosfila as $div) 
+                                                         <div 
+                                                             data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                                            data-idTipoPago="{{$div->idTipoPago}}" 
+                                                            style="background-color:{{$div->rgb}}" 
+                                                            data-tipo="rango" 
+                                                            <?php
+                                                                $datacolor=$div->rgb;
+                                                            ?>
+                                                            data-color="{{$datacolor}}"
+                                                            data-valor={{$div->nombre}} 
+                                                            data-cuota={{$div->multiplicadorDefecto}} 
+                                                            >{{$div->nombre}}
+                                                        </div>
+                                                         @endforeach
+                                                 </div>      
+
+
+                                        </div>
+                                        <div class="apuestacondicional_fila">
+                                            
+                                                 <div class="apuestacondicional_fila_nombre">PAR/IMPAR</div>
+
+                                                 <div class="apuestacondicional_fila_datos">
+                                                         @foreach($par_imparfila as $div) 
+                                                         <div 
+                                                             data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                                            data-idTipoPago="{{$div->idTipoPago}}" 
+                                                            style="background-color:{{$div->rgb}}" 
+                                                            data-tipo="par_impar" 
+
+                                                        <?php
+                                                                    $datacolor=$div->rgb;
+                                                                
+                                                            ?>
+                                                            data-color="{{$datacolor}}"
+                                                            data-valor={{$div->nombre}} 
+                                                            data-cuota={{$div->multiplicadorDefecto}} 
+                                                            >{{$div->nombre}}</div>
+                                                         @endforeach
+                                                 </div>     
+                                        </div>
                                         <!-- <div class="rectangulo_rojo">1</div> -->
                                      </div>    
                                        <!--  </div>
                                     </div> -->
-                                </div>
+                                </div><!--fin div rowhisto hisotrila numeros-->
+
+                               
+                            </DIV>
+
+
+                            <div class="tabla_historial">
+                                    <div class=" tabla_historial_titulo" ><div class="tabla_historial_titulo_div">HISTORIAL</div></div>
+                                     <div class=" historial_numeros" style="height:80%">
+                                        <!-- <div class="rectangulo_rojo">1</div> -->
+                                     </div>    
+                                       <!--  </div>
+                                    </div> -->
+                            </div><!--fin div rowhisto hisotrila numeros-->
+
+
+                                </div><!-- columna principal_izqueirda -->
                                 <div class="columna_principalderecha">
                              
                                     <div class="tituloconfiguracionevento">
@@ -312,6 +396,9 @@
                                             </tbody>
                                         </table>
                                     </div><!--rowtablaeventos-->
+                                    <div style="height:2%;width:100%">
+                                        
+                                    </div>
                                     <div class="rowtableeventos_footer">
                                         <div class="apuesta">
                                                         <span class="rowtableeventos_footer_apuesta">APUESTA</span>
@@ -352,6 +439,7 @@
                                                 <div class="rowbotonesdiv print icon icon-2x fa fa-print">
                                                 </div> 
                                     </div><!--rowapuestas-->
+                                    <div style="width:100%;height:1%"></div>
                                 </div>
                         </div><!--fin row medio -->
 
@@ -645,19 +733,28 @@
 
 </div><!--FIN  panel-body-->
               
-  
  
   </div>
+
   </div>
-  </div>
+  <?php }?>
+
+  <!-- </div> -->
     
+
 @stop
 
 @push('Js')
+    <link rel="stylesheet" href="{{asset('../css/caja/estilos_caja.css')}}">
+
     <script src="{{asset('../assets/Venta/ServerDate.js')}}"></script>
     <script src="{{asset('../assets/Venta/FuncionesCaja.js')}}"></script>
     <script src="{{asset('../assets/Venta/Index.js')}}"></script>
     <script src="{{asset('../assets/Venta/ClaseWebSockets.js')}}"></script>
+    <?php if($error!=""){?>
+<script>toastr.error("<?php echo $error;?>")</script>
+
+        <?php }?>
 
 @endpush
 

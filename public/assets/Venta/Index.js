@@ -1,5 +1,3 @@
-///  RESPONSIVE TOMBOLACUY  
-
 IPSERVIDOR_WEBSOCKETS="35.237.208.5";
 PUERTO_WEBSOCKETS="50051";
 // IPSERVIDOR_WEBSOCKETS="192.168.1.60";
@@ -30,7 +28,6 @@ $(document).ready(function () {
                 } 
                 $(".nombre_tituloconfiguracionevento ").text($(this).data("nombre"));
                 $(".id_tituloconfiguracionevento ").text("#"+$(this).data("id"));
-
                 EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));///DATOS jugador,divisa,jackpot
                 //, inicia setinterval de historialyjackpot 
                 //, inicia reloj y contador
@@ -64,13 +61,16 @@ $(document).ready(function () {
         //HistorialJson(eventoactual.IdEvento);
         eventos_botones(); ////botones 1-22, rangos, colores ,  botones apuestas(1,2,4,5,10,20,50,100)  , botones check, x, buscar,imprimir
         eventos_botones_modalbuscar(); ///botones del modal buscar=>  1-9 , buscar
-
         //mover_barra();
-    // $(".TOMBOLACUY").show();
-        // responsivetombola();
-        // $(window).resize(function () {
-        //         responsivetombola();
-        //     }).trigger('resize');
+    $(".TOMBOLACUY").show();
+        responsivetombola();
+        $(window).resize(function () {
+                responsivetombola();
+                heighttbody=$(".rowtablaeventos").height()-$("#tabla_eventos thead").height()     
+                $("#tabla_eventos tbody").height(heighttbody)
+
+
+            }).trigger('resize');
 });////fin document funciton
 
 
@@ -78,7 +78,7 @@ function mover_barra(){
         $("#barra_loading").css("width","100%")
             width=100;
             if(typeof intervalo_barra!="undefined"){
-            clearInterval(intervalo_barra)
+              clearInterval(intervalo_barra)
             }
             intervalo_barra=setInterval(function(){
               
@@ -87,19 +87,6 @@ function mover_barra(){
             },1000)
 }
 
-// function mover_barra() {
-//   var elem = document.getElementById("barra_loading");   
-//   var width = 1;
-//   var id = setInterval(frame, 10);
-//   function frame() {
-//     if (width >= 100) {
-//       clearInterval(id);
-//     } else {
-//       width++; 
-//       elem.style.width = width + '%'; 
-//     }
-//   }
-// }
 
 
 
