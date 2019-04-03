@@ -72,7 +72,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 101)
+                ->where('t.idTipoApuesta', '=', 43)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -86,7 +86,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 102)
+                ->where('t.idTipoApuesta', '=', 44)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -102,7 +102,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 103)
+                ->where('t.idTipoApuesta', '=', 45)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -118,7 +118,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 104)
+                ->where('t.idTipoApuesta', '=', 46)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -134,7 +134,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 105)
+                ->where('t.idTipoApuesta', '=', 47)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -150,7 +150,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 106)
+                ->where('t.idTipoApuesta', '=', 48)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -166,7 +166,7 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 107)
+                ->where('t.idTipoApuesta', '=', 40)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -182,7 +182,23 @@ class TipoApuesta extends Model
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 108)
+                ->where('t.idTipoApuesta', '=', 41)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        if ($NumeroGenerado >= 25 && $NumeroGenerado <= 36) {
+            //1-6
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 42)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
