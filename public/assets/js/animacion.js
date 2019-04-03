@@ -3,21 +3,23 @@ token="";
 anguloRotacion=0;
 i=0;
 x=0;
-puntos=[{x:3,y:0},{x:-3,y:0},{x:0,y:3},{x:0,y:-3}];
+puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5}];
+flag=false;
+pos=3;
 $(document).ready(function () {
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
-    CargarEstadistica(1);
+    //CargarEstadistica(1);
     $("#ImgContainer").hide();
 
-    setInterval(function () {
-        if(i==10){
-            location.reload();
-        }
-        if (iniciado == false) {
-            consultarEvento(1);
-        }
-    }, 1000);
+    // setInterval(function () {
+    //     if(i==10){
+    //         location.reload();
+    //     }
+    //     if (iniciado == false) {
+    //         consultarEvento(1);
+    //     }
+    // }, 1000);
 
 
 });
@@ -896,24 +898,55 @@ function animate() {
         modelCuyDudando.visible = false;        
         modelCuyChoque.visible = false;
 
-        pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
-              
-        caminar(0,0,puntos[0].x,puntos[0].y);
+        //pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+        //pos=3;
+        newPos=caminar(model.position.x,model.position.z,puntos[pos].x,puntos[pos].y);  
+
+        // if(respuesta==true){
+        //     debugger
+        //     caminar(0,0,puntos[pos-1].x,puntos[pos-1].y);
+        // }
+        // else{
+        //     respuesta=caminar(0,0,puntos[pos].x,puntos[pos].y);
+        // }        
         
-        console.log(model.position.x,model.position.z);  
+        //console.log(model.position.x,model.position.z);  
         renderer.render(scene, camera);
     }
 }
 function caminar(x0,y0,x1,y1){
+    debugger
+    flag=true;    
+    m=(y1-y0)/(x1-x0);
+    if(m != Infinity && m != -Infinity){
+        y=m*(x-x0)+y0;
+        if(x1>0){
+            x=x+0.1;
+        }
+        else{
+            x=x-0.1;
+        }
+    }else{
+        y=model.position.z;       
+        if(y1>0){
+            y=y+0.1;
+        }
+        else{
+            y=y-0.1;
+        }
+    }
     
-    m=(y1-y0)/(x1-x0)
-    y=m*(x-x0)+y0;
-    if(x1>0){
-        x=x+0.1;
-    }
-    else{
-        x=x-0.1;
-    }
     model.position.x=x;
     model.position.z=y;
+
+    calculo=(x**2)+(y**2);
+    if(calculo>=9){
+        pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+        //debugger
+        console.log(puntos[pos]);
+    }
+    else{
+        pos=pos;
+    }
+
 }
