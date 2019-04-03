@@ -496,7 +496,8 @@ function iniciarContador(duration, display) {
         minutos = minutos < 10 ? "0" + minutos : minutos;
         segundos = segundos < 10 ? "0" + segundos : segundos;
         display.text(minutos + ":" + segundos);
-
+        if($("#contador_overlay").length>0){
+        $("#contador_overlay").text(segundos)}
         ///termometro
 //         porcentaje= duration-((100*timer)/duration);
          porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
@@ -507,6 +508,10 @@ function iniciarContador(duration, display) {
         segantesdebloque=eventoactual.segBloqueoAntesEvento;
         if(minutos==0 && segundos==segantesdebloque){
            $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+
+
+           $(".loadingoverlay").append($('<div id="contador_overlay" style="position: relative; left: 6%;width:7%;height: 10%; text-align:center;font-size:8vh;color:red">--</div>'))
+
         }
         else{
            segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
@@ -517,6 +522,7 @@ function iniciarContador(duration, display) {
         if(minutos==0 && segundos==1){
           setTimeout(function(){
             $.LoadingOverlay("hide");
+            $("#contador_overlay").remove();1
             location.reload(true)
           },2000)
         }
@@ -749,7 +755,20 @@ function eventos_botones(){
     $("#numeros_tabla [data-tipo='numero']").off().on("click",function(e){ 
             $(this).toggleClass("seleccionado") ;
         })
+
+    $(".apuestasadicionalescontenedor .apuestacondicional_fila .apuestacondicional_fila_datos div")
+    .off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
 /////finbotones numeros
+
+
+///nuevo
+$("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){ 
+            $(this).toggleClass("seleccionado") ;
+        })
+///fin nueo
+
         $("#numeros_tabla [data-tipo='rango']").off().on("click",function(e){ 
             $(this).toggleClass("seleccionado") ;
         })
@@ -791,7 +810,10 @@ function eventos_botones(){
                 toastr.error("Seleccione Apuesta")
                 return false;
             }
-            cantidadnumeros=$("#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
+            //cantidadnumeros=$("#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
+            cantidadnumeros=$(".apuestacondicional_fila_datos .seleccionado,#numeros_tabla2 .seleccionado,#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
+   // $(".apuestasadicionalescontenedor .apuestacondicional_fila .apuestacondicional_fila_datos div .seleccionado")
+
             if(cantidadnumeros==0)
             {
                 toastr.error("Seleccione Número")
@@ -806,7 +828,8 @@ function eventos_botones(){
             }
             array_apuestas_json=generar_json_apuestas();
             FILA_PARA_TABLA={};
-            $("#numeros_tabla .seleccionado , .rectangulo_izquierda.seleccionado")
+            //$("#numeros_tabla .seleccionado , .rectangulo_izquierda.seleccionado")
+            $(".apuestacondicional_fila_datos .seleccionado,#numeros_tabla2 .seleccionado,#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado")
             // $("#numeros_tabla .seleccionado")
             .each(function(i,e){
 ////
@@ -896,6 +919,9 @@ function eventos_botones(){
                     toastr.error("Ya ingresó  "+valornumero);
                 }
             })///fin numerotabla seleccionados
+
+            $(".apuestacondicional_fila_datos .seleccionado,#numeros_tabla2 .seleccionado,#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").removeClass("seleccionado");
+
         $("#numeros_tabla .seleccionado").removeClass("seleccionado");
 
     })////FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN on click boton check
@@ -1255,7 +1281,9 @@ function HistorialJackpotDatosJson(puntoventa,idev){
             $(".historial_numeros").empty();
             $(historialdatos).each(function(i,e){
                   $(".historial_numeros").append(
-                    $("<div>").text(e.valorGanador).css("background-color",e.color)
+                    $("<div>")
+                    .attr("data-idEvento",e.idEvento)
+                    .text(e.valorGanador).css("background-color",e.color)
                 )
             })
         },

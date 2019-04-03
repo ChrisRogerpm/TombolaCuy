@@ -101,7 +101,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function HistorialEvento($ideventoactual)
     {
-        $listar = DB::select(DB::raw("select  res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
+        $listar = DB::select(DB::raw("select evt.idEvento, res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=" . $ideventoactual . " 
@@ -171,7 +171,7 @@ LIMIT 18
                             $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
                             $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
                         }
-                        $numero_random = rand(0, 24);
+                        $numero_random = rand(0, 36);
                         TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
                     }
                 }

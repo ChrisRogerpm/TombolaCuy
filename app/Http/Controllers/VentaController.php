@@ -86,11 +86,19 @@ class VentaController extends Controller
     {
         $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
         $usuario = Auth::user()->idUsuario;
+        $error="";
         try {
             $hora_servidor = date('Y-m-d H:i:s');
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
+            if(count($aperturacajadatos)==0){
+                $error="No hay Apertura de Cajas";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
             $tipoapuesta = Evento::TipoApuestaListar();
-
+            if(count($tipoapuesta)==0){
+                $error="No hay Apuestas";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
             $divzero=null;
             $primerafila=array();
             $segundafila=array();
@@ -144,7 +152,7 @@ class VentaController extends Controller
             }
 
             foreach($tipoapuesta as $apuesta) {
-                if(in_array( $apuesta->idTipoApuesta, [40,41,42])){
+                if(in_array( $apuesta->idTipoApuesta, [40,41,42,45,46,47,48])){
                         array_push($rangosfila, $apuesta);
                 }
             }
@@ -157,12 +165,21 @@ class VentaController extends Controller
                 $aperturacajadatos=$aperturacajadatos[0];
             }
             $eventos = Evento::EventoListar();
+              if(count($eventos)==0){
+                $error="No hay Eventos Registrados";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
             $dinerodefault = Evento::DineroDefaultListar();
+               if(count($dinerodefault)==0){
+                $error="No hay Eventos DineroDefault";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         };
-        return view('Venta.Index', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
-            "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila","rangosfila","par_imparfila"));
+        return view('Venta.IndexNuevo', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+            "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
+            "rangosfila","par_imparfila","error"));
     }
 
 

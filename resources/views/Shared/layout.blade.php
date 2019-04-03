@@ -58,6 +58,10 @@
     <link rel="stylesheet" href="{{asset('../components/select2/select2.min.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('../css/demo.css')}}">
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
+
+
+
+    
 <!-- <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}"> -->
 
     <!-- /Styles -->
@@ -359,7 +363,7 @@
                         <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        <li><a href="{{route('Venta.Index')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Caja Venta</span></a></li>
 
                     </ul>
