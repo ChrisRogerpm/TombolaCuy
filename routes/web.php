@@ -138,6 +138,10 @@ Route::post('JackpotDatosJsonFk', 'VentaController@JackpotDatosJson');
 Route::post('ImprimirDatosJsonFk', 'VentaController@ImprimirDatosJson');
 Route::post('GuardarGanadorEventoFk', 'VentaController@GuardarGanadorEvento');
 Route::post('JugadoresDatosJsonFk', 'VentaController@JugadoresDatosJson');
+Route::post('CajaTablaFk', 'VentaController@CajaTablaFk');
+
+
+
 
 /*Reportes*/
 Route::post('ReporteHistorialTicketJsonFk', 'ReporteController@ReporteHistorialTicketJson');

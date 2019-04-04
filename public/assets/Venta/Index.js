@@ -1,14 +1,19 @@
-IPSERVIDOR_WEBSOCKETS="35.237.208.5";
-PUERTO_WEBSOCKETS="50051";
-// IPSERVIDOR_WEBSOCKETS="192.168.1.60";
-// PUERTO_WEBSOCKETS="9004";
+// IPSERVIDOR_WEBSOCKETS="35.237.208.5";
+// PUERTO_WEBSOCKETS="50051";
+IPSERVIDOR_WEBSOCKETS="192.168.1.60";
+PUERTO_WEBSOCKETS="4555";
 
 USUARIO=$(".user-name").text();
 CC_ID=$("#cc_id").val();
 IDAPERTURACAJA=$("#idAperturaCaja").val();
 /////fin responsive tombolacuy
 $(document).ready(function () {
-        ////activar reloj sin websockets   
+    INICIAR()
+       
+});////fin document funciton
+
+function INICIAR(){
+ ////activar reloj sin websockets   
         //     if ($("#fechaHoy").length) {
         //     var today = moment().format('DD/MM/YYYY');
         //     //document.getElementById("fechaHoy").innerHTML = today;
@@ -19,7 +24,7 @@ $(document).ready(function () {
             // DATOSVENTAJSON=ListarVentaDatosJson();
 
     /////////onClick de Eventos 
-    $("#div_configuracioneventos .configuracioneventosdiv").on("click",function(){
+    $("#div_configuracioneventos .configuracioneventosdiv").off("click").on("click",function(){
         $(".TOMBOLACUY").css("cursor","wait");
                 $("#div_configuracioneventos .configuracioneventosdiv").removeClass("seleccionadoevento");
                 $(this).addClass("seleccionadoevento");
@@ -71,9 +76,8 @@ $(document).ready(function () {
 
 
             }).trigger('resize');
-});////fin document funciton
 
-
+}
 function mover_barra(){
         $("#barra_loading").css("width","100%")
             width=100;
@@ -87,6 +91,21 @@ function mover_barra(){
             },1000)
 }
 
+
+
+function CargarTabla() {
+    $.ajax({
+        type: 'POST',
+        url: basePath + 'CajaTablaFk',
+        data: {
+            '_token': $('input[name=_token]').val(),
+        },
+        success: function (response) {
+            $(".content.container-fluid").html(response.html);
+            INICIAR();
+        },
+    })
+}
 
 
 
