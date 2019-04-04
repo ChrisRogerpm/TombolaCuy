@@ -2,25 +2,33 @@
 function BuscarTicket(ticketobjeto){
     $.ajax({
         type: 'POST',
-        async:false,
+        //async:false,
         url: basePath + 'BuscarTicketFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':ticketobjeto
         },
         success: function (response) {
+            $("#btn_buscar_ticket").LoadingOverlay("hide");
+                $("#btn_buscar_ticket").attr("disabled",false);
+
+
                 $("#modal_imprimir_pago #imagen_apuestatotal").attr("src",basePath+"img/logo.png")
 
             ticketbuscado=response.ticketbuscado;
             ticketsganadores=response.tickets;
             resultados_evento=response.resultados_evento;
+            apuestasticket=response.apuestas_ticket;
             
              ganadores="";
+             if(apuestasticket.length==0){
+                toastr.error("Ticket "+ ticketbuscado +" no está registrado");return;
+             }
              if(ticketsganadores.length>0){
 
-                if(ticketsganadores[0].estadoTicket==0){toastr.error("Ticket Anulado");return false;}
-                if(ticketsganadores[0].estadoTicket==2){toastr.error("Ticket Pagado");return false;}
-                if(ticketsganadores[0].estadoTicket==3){toastr.error("Ticket Suspendido");return false;}
+                if(ticketsganadores[0].estadoTicket==0){toastr.error("Ticket"+ ticketbuscado+ " Anulado");return false;}
+                if(ticketsganadores[0].estadoTicket==2){toastr.error("Ticket "+ ticketbuscado+" Pagado");return false;}
+                if(ticketsganadores[0].estadoTicket==3){toastr.error("Ticket "+ ticketbuscado+" Suspendido");return false;}
 
                 GuardarGanadorEvento(ticketsganadores,ticketsganadores[0].idTicket);
 
@@ -92,6 +100,7 @@ function BuscarTicket(ticketobjeto){
              else{
                 toastr.error("Ticket "+ticketbuscado+ " Evento "+ticketobjeto.nombre+"<br>No hay Apuestas Ganadoras");
              }
+
            
         },
     })
@@ -199,7 +208,8 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
     $.ajax({
         type: 'POST',
        // async:false,
-        
+        tryCount : 0,
+        retryLimit : 3,
         url: basePath + 'EventoDatosJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
@@ -223,67 +233,9 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
             $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
             $(".apuesta span").text("APUESTA "+divisa)
-
 // ////////PROXIMO EN
-//             fechaFinEvento=eventodatos.fechaFinEvento;
-//            //proxima_fecha=moment(eventodatos.FechaEvento, "YYYY-MM-DD HH:mm:ss a");
-//             proxima_fecha=moment(eventodatos.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
-//             ahora=moment(hora_servidor, "YYYY-MM-DD HH:mm:ss a");
-//              minutos=proxima_fecha.diff(ahora,'minutes');
-//              segundos=proxima_fecha.diff(ahora.add(minutos,"minutes"),'seconds');
-//             //var segundos=0;//proxima_fecha.diff(ahora,'seconds');
-//             //var timer2 = minutos+":01";//"5:01";
-//             var timer2 = minutos+":"+segundos;
-//             console.log(fechaFinEvento + " "+ hora_servidor+  "  - "+timer2 );
-//             if(minutos<0)
-//             console.error("fechaFinEvento MENOR a hora_servidor => "+ fechaFinEvento +" < " +hora_servidor );
-
-//             if(typeof interval!="undefined"){
-//                 clearInterval(interval);$('.countdown').html("00:00")
-//             }
-//             setTimeout(function(){
-//                 interval = setInterval(function() {
-//                     var timer = timer2.split(':');
-//                     var minutes = parseInt(timer[0], 10);
-//                     var seconds = parseInt(timer[1], 10);
-//                     --seconds;
-//                     minutes = (seconds < 0) ? --minutes : minutes;
-//                     if (minutes < 0) clearInterval(interval);
-//                     seconds = (seconds < 0) ? 59 : seconds;
-//                     seconds = (seconds < 10) ? '0' + seconds : seconds;
-// ///////segundos bloqueo
-//                     if(minutes==0 && seconds==SEGBLOQUEOANTESEVENTO){
-//                         $.LoadingOverlay("show");
-//                     }
-//                     else{
-//                         segundostotales= parseInt((parseInt(minutes)*60))+parseInt(seconds);
-//                         if(segundostotales==SEGBLOQUEOANTESEVENTO){
-//                             $.LoadingOverlay("show");
-//                         }
-
-//                     }
-//                     if(minutes==0 && seconds==0){
-//                         setTimeout(function(){
-//                                 $.LoadingOverlay("hide");
-//                                 location.reload(true);
-
-//                         },1500)
-                        
-//                     }
-// //fin segundos bloqueo
-//                     if(minutes<0){
-//                         $('.countdown').html('--');
-//                         timer2 = minutes + ':' + seconds;
-//                     }else{
-//                         $('.countdown').html(minutes + ':' + seconds);
-//                         timer2 = minutes + ':' + seconds;
-//                     }
-//                 }, 1000)
-//             }, 1000);
-
             //////CONECTAR A SERVIDOR WEBSOCKET Y PEDIR HORA CADA  SEGUNDO
-            // connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-            
+            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
             // setTimeout(function(){
             //     console.error("declarando intervalohora");
             //     // intervalohora=setInterval(function(){
@@ -293,149 +245,11 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
             ///////////////////////////////////////////////////////////////
 ////////FIN PROXIMO EN
 
-
-////multiplicadores definir
-///fin multiplicadores
-////PLENO
-
-
-    // var div_zero=$(".rectangulo_izquierda");
-    // var valorzero=$(div_zero).text();
-    // var colorzero="";var cuotazero="";
-    //  $(tipoapuesta).each(function(ii,ee){
-    //                 var valorapuesta=ee.valorapuesta;
-    //                 if(ee.idTipoPago==6 && valorapuesta.toString()=="0"){
-    //                     color=ee.rgb;
-    //                     cuota=ee.multiplicadorDefecto;
-    //                 }
-    // });
-    // $(div_zero).css("background-color",color);
-    // $(div_zero).attr("data-cuota",cuota);
-    // $(div_zero).attr("data-idtipoapuesta",100);
-
-
-   //  $("#numeros_tabla .numeros_rect DIV").each(function(i,e){
-   //          var valor=$(e).text();
-   //          var color="";
-   //          var cuota="";
-   //          var idtipoapuesta="";
-
-   //          $(tipoapuesta).each(function(ii,ee){
-   //                  var valorapuesta=ee.valorapuesta;
-   //                  if(ee.idTipoPago==1&&valorapuesta.toString()==valor.toString()){
-   //                      color=ee.rgb;
-   //                      cuota=ee.multiplicadorDefecto;
-   //                      idtipoapuesta=ee.idTipoApuesta;
-   //                  }
-   //          })  
-   //          $(e).css("background-color",color);
-   //          $(e).attr("data-cuota",cuota);
-   //          $(e).attr("data-idtipoapuesta",idtipoapuesta);
-   //  })
-
-   // $(".numeros_rango2 [data-tipo='color']").each(function(i,e){
-   //          var valor=$(e).text();
-   //          var color="";var cuota="";
-   //          var idtipoapuesta="";
-   //          $(tipoapuesta).each(function(ii,ee){
-   //                  var valorapuesta=ee.valorapuesta;
-   //                  if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
-   //                      color=ee.rgb;
-   //                      cuota=ee.multiplicadorDefecto;
-   //                      idtipoapuesta=ee.idTipoApuesta;
-
-   //                  }
-   //          })  
-   //          $(e).css("background-color",color);
-   //          $(e).attr("data-cuota",cuota);
-   //          $(e).attr("data-idtipoapuesta",idtipoapuesta);
-
-   //  })
-    // $(".numeros_rango2 [data-tipo='rojos']").each(function(i,e){
-    //         var valor=$(e).text();
-    //         var color="";var cuota="";
-    //         $(tipoapuesta).each(function(ii,ee){
-    //                 var valorapuesta=ee.valorapuesta;
-    //                 if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
-    //                     color=ee.rgb;
-    //                     cuota=ee.multiplicadorDefecto;
-    //                 }
-    //         })  
-    //         $(e).css("background-color",color);
-    //         $(e).attr("data-cuota",cuota);
-
-    // })
-    // $(".numeros_rango2 [data-tipo='negros']").each(function(i,e){
-    //         var valor=$(e).text();
-    //         var color="";var cuota="";
-    //         $(tipoapuesta).each(function(ii,ee){
-    //                 var valorapuesta=ee.valorapuesta;
-    //                 if(ee.idTipoPago==2 && valorapuesta.toString()== $(e).data("valor")){
-    //                     color=ee.rgb;
-    //                     cuota=ee.multiplicadorDefecto;
-                     
-    //                 }
-    //         })  
-    //         $(e).css("background-color",color);
-    //         $(e).attr("data-cuota",cuota);
-    // })
-
-    // $(".numeros_rango div").each(function(i,e){
-    //     var valor=$(e).text();
-    //         var color="";var cuota="";
-    //         var idtipoapuesta="";
-    //         $(tipoapuesta).each(function(ii,ee){
-    //                 var valorapuesta=ee.valorapuesta;
-    //                 var nombreapuesta=ee.nombre;
-
-    //                 if(ee.idTipoPago==4 && nombreapuesta.toString()==$(e).data("valor") ){
-    //                     cuota=ee.multiplicadorDefecto;
-    //                     idtipoapuesta=ee.idTipoApuesta;
-    //                 }
-    //         })  
-    //         $(e).attr("data-cuota",cuota);
-    //         $(e).attr("data-idtipoapuesta",idtipoapuesta);
-
-    // })
-
-    // $(".numeros_rango2 div:not('.rectangulo_negro'):not('.rectangulo_rojo')").each(function(i,e){
-    //     var valor=$(e).text();
-    //     var idtipopago=$(e).data("idtipopago")
-    //         var color="";var cuota="";
-    //         var idtipoapuesta="";
-    //         $(tipoapuesta).each(function(ii,ee){
-    //                 var valorapuesta=ee.valorapuesta;
-    //                 var nombreapuesta=ee.nombre;
-    //                 if(idtipopago.toString()==(ee.idTipoPago).toString() && nombreapuesta.toString()==$(e).data("valor") ){
-    //                     cuota=ee.multiplicadorDefecto;
-    //                     idtipoapuesta=ee.idTipoApuesta;
-    //                 }
-    //         })  
-    //         $(e).attr("data-cuota",cuota);
-    //         $(e).attr("data-idtipoapuesta",idtipoapuesta);
-
-    // })
-        //FIN PLENO
-
         ////jackpot
-
-        HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
-        intervaloihistorialjackpot=setInterval(function(){
-             HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
-        },14000)
-            // eventoactual={};
-            //     eventoactual.FechaEvento=$(this).data("fechaevento");
-            //     eventoactual.fechaFinEvento=$(this).data("fechafinevento");
-            //     eventoactual.nombre=$(this).data("nombre");
-            //     eventoactual.IdEvento=$(this).data("id");
-            //     eventoactual.apuestaMinima=$(this).data("apuestaminima");
-            //     eventoactual.apuestaMaxima=$(this).data("apuestamaxima");
-            //     eventoactual.segBloqueoAntesEvento=$(this).data("segbloqueoantesevento");
-            //     eventoactual.idMoneda=$(this).data("idmoneda");
-            //     var imagensrc=$("img",this).attr("src");
-            //     eventoactual.Imagen=imagensrc;
-            //     $("#modal_imprimir #imagen_apuestatotal").attr("src",basePath+"img/logo.png");
-            //     $("#modal_imprimir #imagen_eventoactual").attr("src",$("img",this).attr("src"));
+            HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
+            intervaloihistorialjackpot=setInterval(function(){
+                 HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
+            },14000)
 
             //      horaserv=ServerDate();horaserv= new Date(horaserv);
             //     reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
@@ -452,22 +266,58 @@ function EventoDatosJson(idEvento,idPuntoVenta,segundosantesbloqueo) {
                 eventoactual.Imagen="img/juegos/"+eventodatos.logo;
                 $("#modal_imprimir #imagen_eventoactual").attr("src",eventodatos.logo);
                     setTimeout(function(){
-                       horaserv=ServerDate();horaserv= new Date(horaserv);
-                                    reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+                                   // horaserv=ServerDate();horaserv= new Date(horaserv);
+                                    // reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
                                     $(".TOMBOLACUY").css("cursor","");
                                     $(".TOMBOLACUY").show();
                     },500)
-
-
-              
-
-
         ///fin jackpot
-
         },///FIN SUCCESS
     })
 }///FIN EventoDatosJson
 
+
+
+function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesbloqueo) {
+    IDPUNTOVENTA=idPuntoVenta;
+    IDEVENTO=idEvento;
+    SEGBLOQUEOANTESEVENTO=segundosantesbloqueo;
+            jugador=$(divelemento).attr("data-jugador");
+            divisa=$(divelemento).attr("data-divisa");
+            jackpotsuma=$(divelemento).attr("data-jackpotsuma");
+            idevento=$(divelemento).attr("data-id");
+            $("#row_datosevento #jugador").text(jugador);
+            $("#row_datosevento #divisa").text(divisa);
+            $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
+            $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
+            $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
+            $(".apuesta span").text("APUESTA "+divisa)
+            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+        ////jackpot
+            HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
+            intervaloihistorialjackpot=setInterval(function(){
+                 HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
+            },14000)
+                eventoactual={};
+                eventoactual.FechaEvento=$(divelemento).attr("data-FechaEvento");
+                eventoactual.fechaFinEvento=$(divelemento).attr("data-fechaFinEvento");
+                eventoactual.nombre=$(divelemento).attr("data-nombre");
+                eventoactual.IdEvento=idevento;
+                eventoactual.apuestaMinima=$(divelemento).attr("data-apuestaMinima");
+                eventoactual.apuestaMaxima=$(divelemento).attr("data-apuestaMaxima");
+                eventoactual.segBloqueoAntesEvento=$(divelemento).attr("data-segBloqueoAntesEvento");
+                eventoactual.idMoneda=$(divelemento).attr("data-idMoneda");
+                eventoactual.Imagen="img/juegos/"+$(divelemento).attr("data-logo");
+                $("#modal_imprimir #imagen_eventoactual").attr("src",$(divelemento).attr("data-logo"));
+                    setTimeout(function(){
+                                   // horaserv=ServerDate();horaserv= new Date(horaserv);
+                                    // reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
+                                    $(".TOMBOLACUY").css("cursor","");
+                                    $(".TOMBOLACUY").show();
+                    },500)
+        ///fin jackpot
+   
+}///FIN EventoDatosJson
 
 
 function responsivetombola(){
@@ -491,27 +341,25 @@ function iniciarContador(duration, display) {
     }
     intervalo_contador=setInterval(function () {
         minutos = parseInt(timer / 60, 10);
-        segundos = parseInt(timer % 60, 10);
+        segundos = parseInt(timer % 60, 10);    
 
         minutos = minutos < 10 ? "0" + minutos : minutos;
         segundos = segundos < 10 ? "0" + segundos : segundos;
         display.text(minutos + ":" + segundos);
         if($("#contador_overlay").length>0){
-        $("#contador_overlay").text(segundos)}
-        ///termometro
-//         porcentaje= duration-((100*timer)/duration);
-         porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
-         console.warn("porcn=" + porcentaje);
-         $("#barra_loading").css("width",porcentaje+"%")
+            $("#contador_overlay").text(segundos)
+        }
+            ///termometro
+        //         porcentaje= duration-((100*timer)/duration);
+            porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
+         //console.warn("porcn=" + porcentaje);
+            $("#barra_loading").css("width",porcentaje+"%")
         //
        // ///////segundos bloqueo
-        segantesdebloque=eventoactual.segBloqueoAntesEvento;
+           segantesdebloque=eventoactual.segBloqueoAntesEvento;
         if(minutos==0 && segundos==segantesdebloque){
            $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
-
-
            $(".loadingoverlay").append($('<div id="contador_overlay" style="position: relative; left: 6%;width:7%;height: 10%; text-align:center;font-size:8vh;color:red">--</div>'))
-
         }
         else{
            segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
@@ -519,12 +367,18 @@ function iniciarContador(duration, display) {
              $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
           }
         }
-        if(minutos==0 && segundos==1){
-          setTimeout(function(){
-            $.LoadingOverlay("hide");
-            $("#contador_overlay").remove();1
-            location.reload(true)
-          },2000)
+        if(minutos==0 && segundos==0){
+              setTimeout(function(){
+                 RECONECTAR_WEBSOCKET=false;
+                 socket.close();///cerrar socket
+                  location.reload();
+                 //CargarTabla();
+
+                 $("#contador_overlay").remove();
+               // $.LoadingOverlay("hide");
+
+                //location.reload();
+              },1000)
         }
           //fin segundos bloqueo
         if (--timer < 0) {
@@ -533,6 +387,80 @@ function iniciarContador(duration, display) {
     }, 1000);
 }
 
+function reloj_websockets(horaserv,fechaFinEvento,segundosantesbloqueo){
+ // horaserv=ServerDate();horaserv= new Date(horaserv);
+    proxima_fecha=moment(fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
+    ahora=moment(horaserv);
+    segundos=proxima_fecha.diff(ahora,'seconds');
+    if(segundos>0){
+        iniciarContador(segundos, $("#proximo_en2")) ;
+    }
+    else{
+        if(typeof intervalo_contador!="undefined"){
+            clearInterval(intervalo_contador) 
+        }
+
+    }
+    $("#proximo_en2").text("--")
+    console.log("proximo_en2 ="+segundos);
+    console.log(horaserv)
+    if(typeof intervalo_horaservidor!="undefined"){
+        clearInterval(intervalo_horaservidor)
+    }
+
+    intervalo_horaservidor=setInterval(function(){
+                            horaserv=new Date(horaserv);
+                            horaserv=horaserv.setSeconds(horaserv.getSeconds()+1)
+                            horaserv=new Date(horaserv);
+
+                            hora=horaserv.getHours();
+                            minutos=horaserv.getMinutes();
+                            segundos=horaserv.getSeconds();
+                            var dn = "PM";
+                            if (hora < 12){
+                                dn = "AM";
+                            }
+                            if (hora > 12){
+                                hora = hora - 12;
+                            }
+                            if (hora == 0){
+                                hora = 12;
+                            }
+                            if (minutos <= 9){
+                                minutos = "0" + minutos;
+                            }
+                            if (segundos <= 9){
+                                segundos = "0" + segundos;
+                            }
+                            hora_servidor_final=hora
+                                                +":"+minutos
+                                                +":"+segundos
+                                                +" "+dn;
+                           ///////segundos bloqueo
+                            // if(minutos==0 && segundos==segundosantesbloqueo){
+                            //     $.LoadingOverlay("show");
+                            // }
+                            // else{
+                            //     segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
+                            //     if(segundostotales==segundosantesbloqueo){
+                            //         $.LoadingOverlay("show");
+                            //     }
+
+                            // }
+                            // if(minutos==0 && segundos==0){
+                            //     setTimeout(function(){
+                            //         RECONECTAR_WEBSOCKET=false;
+                            //            socket.close();///cerrar socket
+                            //             $.LoadingOverlay("hide");
+                            //             CargarTabla()
+                            //             // location.reload();
+                            //     },1500)
+                            // }
+                            //fin segundos bloqueo
+                            $('#fechaServidor').text(hora_servidor_final);
+                        },1000)
+
+}
 
 function reloj_servidor(horaserv,fechaFinEvento,segundosantesbloqueo){
  // horaserv=ServerDate();horaserv= new Date(horaserv);
@@ -1020,7 +948,13 @@ $('.digitador .digito').on('click',function(){
         
 
         $("#btn_buscar_ticket").on("click",function(e){
-            e.preventDefault(); 
+                e.preventDefault(); 
+
+
+            if($("#ticket_txt").val().trim()!=""){
+                       $("#btn_buscar_ticket").attr("disabled",true);
+                $("#btn_buscar_ticket").LoadingOverlay("show");
+
                 objetobuscar={};
                 objetobuscar.idEvento=eventoactual.IdEvento;
                 objetobuscar.nombre=eventoactual.nombre;
@@ -1028,7 +962,15 @@ $('.digitador .digito').on('click',function(){
                 // objetobuscar.idTipoApuesta=eventoactual.idTipoApuesta;
                 BuscarTicket(objetobuscar);
                 $("#ticket_txt").val("");
-            
+
+            }else{
+                toastr.error("Ingrese Número Ticket");
+                $("#btn_buscar_ticket").LoadingOverlay("hide");
+                $("#btn_buscar_ticket").attr("disabled",false);
+
+
+
+            }
         })
         $("#buscar_div").on("click",function(e){
               e.preventDefault(); 

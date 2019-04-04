@@ -1,9 +1,4 @@
-@extends('Shared.layout')
 
-@section('body-class')
-    sidebar-style loaded
-@stop
-@section('content')
        <?php if($error==""){?>
 
     <div class="row">
@@ -93,7 +88,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:100vh;display:none">
+                    <DIV class="TOMBOLACUY" style="height:80vh;display:none">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -257,19 +252,7 @@
                                                      @endforeach
                                                 </div>
                                                         <div class=" margen_bottom_numeros"></div>
-
-
-
-                                               
-
-                                                <!--  <div class="rowhistorial">
-                                       <div class="historial">HISTORIAL</div>
-                                  </div>-->
-
                                             </div><!--div col 10-->
-
-
-                                              
                                               <!-- <div class="col-xs-12 col-md-1"></div> -->
                                     </div><!--contenedor_tablaprincipal-->
                                         </div><!--FIN TABLA PLENO-->
@@ -338,7 +321,6 @@
                                                             data-idTipoPago="{{$div->idTipoPago}}" 
                                                             style="background-color:{{$div->rgb}}" 
                                                             data-tipo="par_impar" 
-
                                                         <?php
                                                                     $datacolor=$div->rgb;
                                                                 
@@ -358,8 +340,6 @@
 
                                
                             </DIV>
-
-
                             <div class="tabla_historial">
                                     <div class=" tabla_historial_titulo" ><div class="tabla_historial_titulo_div">HISTORIAL</div></div>
                                      <div class=" historial_numeros" style="height:80%">
@@ -447,7 +427,7 @@
                         <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
                          
                                 <div class="eventos_fila_izq">
-                                        @foreach($eventosdatos as $evento) 
+                                        @foreach($eventos as $evento) 
 
                                             <div class="configuracioneventosdiv" 
                                                     data-id="{{ $evento->idEvento }}"
@@ -458,12 +438,6 @@
                                                     data-fechaFinEvento="{{ $evento->fechaFinEvento }}"
                                                     data-segBloqueoAntesEvento="{{ $evento->segBloqueoAntesEvento }}"
                                                     data-idMoneda="{{ $evento->idMoneda }}"
-                                                   
-                                                    data-jugador="{{$evento->jugador}}"
-                                                    data-divisa="{{$evento->divisa}}"
-                                                    data-jackpotsuma="{{$evento->jackpotsuma}}"
-                                                    data-logo="{{$evento->logo}}"
-                                                    "
                                                     > 
                                                     <div style="width: 30%; height: 100%;float:left;position:relative">
                                                         <img style="width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;" src="img/juegos/{{$evento->logo}}">
@@ -748,19 +722,11 @@
   <!-- </div> -->
     
 
-@stop
 
 @push('Js')
-    <link rel="stylesheet" href="{{asset('../css/caja/estilos_caja.css')}}">
-    <!-- <script src="{{asset('../assets/Venta/ServerDate.js')}}"></script> -->
-    <script src="{{asset('../assets/Venta/FuncionesCaja.js')}}"></script>
-    <script src="{{asset('../assets/Venta/Index.js')}}"></script>
-    <script src="{{asset('../assets/Venta/ClaseWebSockets.js')}}"></script>
     <?php if($error!=""){?>
 <script>toastr.error("<?php echo $error;?>")</script>
-
         <?php }?>
-
 @endpush
 
 

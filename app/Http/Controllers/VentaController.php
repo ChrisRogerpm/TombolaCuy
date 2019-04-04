@@ -88,6 +88,109 @@ class VentaController extends Controller
         $usuario = Auth::user()->idUsuario;
         $error="";
         try {
+            $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
+            if(count($aperturacajadatos)==0){
+                $error="No hay Apertura de Cajas";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
+            $tipoapuesta = Evento::TipoApuestaListar();
+            if(count($tipoapuesta)==0){
+                $error="No hay Apuestas";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
+            $divzero=null;
+            $primerafila=array();
+            $segundafila=array();
+            $tercerafila=array();
+            $cuartafila=array();
+            $quintafila=array();
+            $sextafila=array();
+            $coloresfila=array();
+            $rangosfila=array();
+            $par_imparfila=array();
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [39])){
+                        $divzero=$apuesta;
+                }
+            }
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [1,2,3,4,5,6])){
+                        array_push($primerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [7,8,9,10,11,12])){
+                        array_push($segundafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [13,14,15,16,17,18])){
+                        array_push($tercerafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [19,20,21,22,23,24])){
+                        array_push($cuartafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [25,26,27,28,29,30])){
+                        array_push($quintafila, $apuesta);
+                }
+            }
+             foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [31,32,33,34,35,36])){
+                        array_push($sextafila, $apuesta);
+                }
+            }
+
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [37,38,39])){
+                        array_push($coloresfila, $apuesta);
+                }
+            }
+
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [40,41,42,45,46,47,48])){
+                        array_push($rangosfila, $apuesta);
+                }
+            }
+            foreach($tipoapuesta as $apuesta) {
+                if(in_array( $apuesta->idTipoApuesta, [43,44])){
+                        array_push($par_imparfila, $apuesta);
+                }
+            }
+            if(count($aperturacajadatos)>0){
+                $aperturacajadatos=$aperturacajadatos[0];
+            }
+            $eventos = Evento::EventoListar();
+
+            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+              if(count($eventos)==0){
+                $error="No hay Eventos Registrados";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
+            $dinerodefault = Evento::DineroDefaultListar();
+               if(count($dinerodefault)==0){
+                $error="No hay Eventos DineroDefault";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        };
+        $hora_servidor = date('Y-m-d H:i:s');
+        return  view('Venta.IndexNuevo', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+            "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
+            "rangosfila","par_imparfila","error","eventos","eventosdatos"));
+    }
+
+
+      public function CajaTablaFk()
+    {
+        $usuarionombre=Auth::user()->usuario;//"BTD OSCAR AGUILAR";
+        $usuario = Auth::user()->idUsuario;
+        $error="";
+        try {
             $hora_servidor = date('Y-m-d H:i:s');
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
             if(count($aperturacajadatos)==0){
@@ -174,12 +277,21 @@ class VentaController extends Controller
                 $error="No hay Eventos DineroDefault";
                 return view('Venta.IndexNuevo', compact("error"));
             }
+            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+              if(count($eventos)==0){
+                $error="No hay Eventos Registrados";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         };
-        return view('Venta.IndexNuevo', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+$view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","eventosdatos","dinerodefault","tipoapuesta",
             "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
-            "rangosfila","par_imparfila","error"));
+            "rangosfila","par_imparfila","error"))->render();
+    return response()->json(['html'=>$view]);
+        // return view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+        //     "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
+        //     "rangosfila","par_imparfila","error"));
     }
 
 
@@ -255,6 +367,7 @@ class VentaController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
                return response()->json([
+                    // 'ticketnoexiste'=>$ticketnoexiste,
                     'apuestas_ticket'=> $apuestas_ticket, ////apuestas del ticket
                     'resultados_evento'=>$resultados_evento,
                     'ticketbuscado'=>$idticket,

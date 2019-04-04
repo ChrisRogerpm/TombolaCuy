@@ -145,8 +145,49 @@ class TipoApuesta extends Model
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
         }
-    }
 
+
+        $color_valorGenerado = DB::table('tipo_apuesta as t')
+            ->select('t.*', 'tp.multiplicadorDefecto')
+            ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+            ->where('t.valorapuesta', '=', $NumeroGenerado)
+            ->first();
+
+        //Color 1
+        if($color_valorGenerado->rgb == "#F9D716"){
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 37)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+        //Color 2
+        if($color_valorGenerado->rgb == "#16277D"){
+            $apuesta = DB::table('tipo_apuesta as t')
+                ->select('t.*', 'tp.multiplicadorDefecto')
+                ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+                ->where('t.idTipoApuesta', '=', 38)
+                ->first();
+            $resultado = new ResultadoEvento();
+            $resultado->idEvento = $idEvento;
+            $resultado->multiplicadorApuestaGanada = $apuesta->multiplicadorDefecto;
+            $resultado->valorGanador = $NumeroGenerado;
+            $resultado->idTipoPago = $apuesta->idTipoPago;
+            $resultado->estado = 1;
+            $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
+            $resultado->save();
+        }
+
+
+    }
 
 
     public static function EstadisticaUltimosTipoApuesta()
