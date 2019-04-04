@@ -46,7 +46,7 @@ function init(host,port){
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
                     pedir_hora_server();
-                },300)
+                },200)
                 // if(typeof intervalohora!="undefined"){
                 //  clearInterval(intervalohora);
                 // }
@@ -58,7 +58,6 @@ function init(host,port){
       aaaaa=msg;
            mensaje=msg.data;
           if(mensaje=="ACTUALIZAR"){
-
           }
           else{
              reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);

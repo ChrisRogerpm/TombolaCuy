@@ -40,6 +40,28 @@ left join juego ju on ju.idJuego= ev.idJuego
 where ev.estadoEvento=1'));
         return $listar;
     }
+      public static function EventoDatosListar($idPuntoVenta)
+    {
+        $listar = DB::select(DB::raw('
+ select 
+(select  COUNT(*)  as cantidadganadores FROM ticket WHERE idEvento=ev.idEvento) as jugador,
+(select mon.simbolo as simbolo  FROM evento ev2 left join moneda mon on mon.idMoneda=ev2.idMoneda WHERE ev2.idEvento=ev.idEvento ) as divisa,
+(select   IFNULL(sum(POL.montoActual),0) as sumajackpots FROM pozo_online POL
+            INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
+            INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
+            INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
+            WHERE JPV.idPuntoVenta= '.$idPuntoVenta.') as jackpotsuma,
+ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
+ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
+from evento ev
+left join juego ju on ju.idJuego= ev.idJuego
+where ev.estadoEvento=1'));
+        return $listar;
+    }
+
+
+
+   
 
     public static function EventoId($idEvento)
     {

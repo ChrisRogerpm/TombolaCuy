@@ -138,6 +138,9 @@ height:18%;
   background-color: rgb(39, 40, 44);
   font-weight:bold;
   font-size:1.8vh;
+  display:flex;
+  align-items: center;
+  justify-content: center
 
   
 }

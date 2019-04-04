@@ -93,7 +93,7 @@
         <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <DIV class="TOMBOLACUY" style="height:80vh;display:none">
+                    <DIV class="TOMBOLACUY" style="height:100vh;display:none">
                         <div class=" rowcabecera">
                             
                                 <div class=" rowcabecera_nombres">
@@ -447,7 +447,7 @@
                         <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
                          
                                 <div class="eventos_fila_izq">
-                                        @foreach($eventos as $evento) 
+                                        @foreach($eventosdatos as $evento) 
 
                                             <div class="configuracioneventosdiv" 
                                                     data-id="{{ $evento->idEvento }}"
@@ -458,6 +458,12 @@
                                                     data-fechaFinEvento="{{ $evento->fechaFinEvento }}"
                                                     data-segBloqueoAntesEvento="{{ $evento->segBloqueoAntesEvento }}"
                                                     data-idMoneda="{{ $evento->idMoneda }}"
+                                                   
+                                                    data-jugador="{{$evento->jugador}}"
+                                                    data-divisa="{{$evento->divisa}}"
+                                                    data-jackpotsuma="{{$evento->jackpotsuma}}"
+                                                    data-logo="{{$evento->logo}}"
+                                                    "
                                                     > 
                                                     <div style="width: 30%; height: 100%;float:left;position:relative">
                                                         <img style="width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;" src="img/juegos/{{$evento->logo}}">

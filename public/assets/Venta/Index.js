@@ -1,7 +1,8 @@
 // IPSERVIDOR_WEBSOCKETS="35.237.208.5";
 // PUERTO_WEBSOCKETS="50051";
 IPSERVIDOR_WEBSOCKETS="192.168.1.60";
-PUERTO_WEBSOCKETS="4555";
+// PUERTO_WEBSOCKETS="4555";
+PUERTO_WEBSOCKETS="50051";
 
 USUARIO=$(".user-name").text();
 CC_ID=$("#cc_id").val();
@@ -33,7 +34,8 @@ function INICIAR(){
                 } 
                 $(".nombre_tituloconfiguracionevento ").text($(this).data("nombre"));
                 $(".id_tituloconfiguracionevento ").text("#"+$(this).data("id"));
-                EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));///DATOS jugador,divisa,jackpot
+                EventoDatosJsonNuevo(this,$(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));
+                //EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));///DATOS jugador,divisa,jackpot
                 //, inicia setinterval de historialyjackpot 
                 //, inicia reloj y contador
                 //, carga imagenes de logo de evento

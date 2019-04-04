@@ -282,14 +282,10 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
     IDPUNTOVENTA=idPuntoVenta;
     IDEVENTO=idEvento;
     SEGBLOQUEOANTESEVENTO=segundosantesbloqueo;
-            eventodatos=response.eventodatos;
-            hora_servidor=response.hora_servidor;
-            jugador=response.jugador;
-            divisa=response.divisa;
-            jackpotsuma=response.jackpotsuma;
-            tipoapuesta=response.tipoapuesta;
-            dinerodefault=response.dinerodefault;
-
+            jugador=$(divelemento).attr("data-jugador");
+            divisa=$(divelemento).attr("data-divisa");
+            jackpotsuma=$(divelemento).attr("data-jackpotsuma");
+            idevento=$(divelemento).attr("data-id");
             $("#row_datosevento #jugador").text(jugador);
             $("#row_datosevento #divisa").text(divisa);
             $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
@@ -298,21 +294,21 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
             $(".apuesta span").text("APUESTA "+divisa)
             connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
         ////jackpot
-            HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
+            HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
             intervaloihistorialjackpot=setInterval(function(){
-                 HistorialJackpotDatosJson($("#idPuntoVenta").val(),eventodatos.idEvento);
+                 HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
             },14000)
                 eventoactual={};
-                eventoactual.FechaEvento=eventodatos.FechaEvento;
-                eventoactual.fechaFinEvento=eventodatos.fechaFinEvento;
-                eventoactual.nombre=eventodatos.nombre;
-                eventoactual.IdEvento=eventodatos.idEvento;
-                eventoactual.apuestaMinima=eventodatos.apuestaMinima;
-                eventoactual.apuestaMaxima=eventodatos.apuestaMaxima;
-                eventoactual.segBloqueoAntesEvento=eventodatos.segBloqueoAntesEvento;
-                eventoactual.idMoneda=eventodatos.idMoneda;
-                eventoactual.Imagen="img/juegos/"+eventodatos.logo;
-                $("#modal_imprimir #imagen_eventoactual").attr("src",eventodatos.logo);
+                eventoactual.FechaEvento=$(divelemento).attr("data-FechaEvento");
+                eventoactual.fechaFinEvento=$(divelemento).attr("data-fechaFinEvento");
+                eventoactual.nombre=$(divelemento).attr("data-nombre");
+                eventoactual.IdEvento=idevento;
+                eventoactual.apuestaMinima=$(divelemento).attr("data-apuestaMinima");
+                eventoactual.apuestaMaxima=$(divelemento).attr("data-apuestaMaxima");
+                eventoactual.segBloqueoAntesEvento=$(divelemento).attr("data-segBloqueoAntesEvento");
+                eventoactual.idMoneda=$(divelemento).attr("data-idMoneda");
+                eventoactual.Imagen="img/juegos/"+$(divelemento).attr("data-logo");
+                $("#modal_imprimir #imagen_eventoactual").attr("src",$(divelemento).attr("data-logo"));
                     setTimeout(function(){
                                    // horaserv=ServerDate();horaserv= new Date(horaserv);
                                     // reloj_servidor(horaserv,eventodatos.fechaFinEvento,eventodatos.segBloqueoAntesEvento);
@@ -371,7 +367,7 @@ function iniciarContador(duration, display) {
              $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
           }
         }
-        if(minutos==0 && segundos==1){
+        if(minutos==0 && segundos==0){
               setTimeout(function(){
                  RECONECTAR_WEBSOCKET=false;
                  socket.close();///cerrar socket
@@ -379,10 +375,10 @@ function iniciarContador(duration, display) {
                  //CargarTabla();
 
                  $("#contador_overlay").remove();
-                $.LoadingOverlay("hide");
+               // $.LoadingOverlay("hide");
 
                 //location.reload();
-              },500)
+              },1000)
         }
           //fin segundos bloqueo
         if (--timer < 0) {
@@ -398,8 +394,14 @@ function reloj_websockets(horaserv,fechaFinEvento,segundosantesbloqueo){
     segundos=proxima_fecha.diff(ahora,'seconds');
     if(segundos>0){
         iniciarContador(segundos, $("#proximo_en2")) ;
+    }
+    else{
+        if(typeof intervalo_contador!="undefined"){
+            clearInterval(intervalo_contador) 
+        }
 
     }
+    $("#proximo_en2").text("--")
     console.log("proximo_en2 ="+segundos);
     console.log(horaserv)
     if(typeof intervalo_horaservidor!="undefined"){

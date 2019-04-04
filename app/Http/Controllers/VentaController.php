@@ -164,6 +164,8 @@ class VentaController extends Controller
                 $aperturacajadatos=$aperturacajadatos[0];
             }
             $eventos = Evento::EventoListar();
+
+            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
                 return view('Venta.IndexNuevo', compact("error"));
@@ -179,7 +181,7 @@ class VentaController extends Controller
         $hora_servidor = date('Y-m-d H:i:s');
         return  view('Venta.IndexNuevo', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
             "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
-            "rangosfila","par_imparfila","error","eventos"));
+            "rangosfila","par_imparfila","error","eventos","eventosdatos"));
     }
 
 
@@ -275,10 +277,15 @@ class VentaController extends Controller
                 $error="No hay Eventos DineroDefault";
                 return view('Venta.IndexNuevo', compact("error"));
             }
+            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+              if(count($eventos)==0){
+                $error="No hay Eventos Registrados";
+                return view('Venta.IndexNuevo', compact("error"));
+            }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         };
-$view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
+$view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","eventosdatos","dinerodefault","tipoapuesta",
             "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
             "rangosfila","par_imparfila","error"))->render();
     return response()->json(['html'=>$view]);
