@@ -171,7 +171,7 @@ LIMIT 18
                             $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
                             $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
                         }
-                        $numero_random = rand(0, 24);
+                        $numero_random = rand(0, 36);
                         TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
                     }
                 }
