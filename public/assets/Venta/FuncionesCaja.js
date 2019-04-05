@@ -92,10 +92,11 @@ function BuscarTicket(ticketobjeto){
 
                 $("#modal_imprimir_pago").modal("show");
 
-                $(ticketsganadores).each(function(i,e){
-                     ganadores=ganadores+"<br> "+e.TipoPagoNombre+" "+e.TipoApuestaValor;
-                })
-                toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre+" <br>Apuestas Ganadoras:" +ganadores);
+                // $(ticketsganadores).each(function(i,e){
+                //      ganadores=ganadores+"<br> "+e.TipoPagoNombre+" "+e.TipoApuestaValor;
+                // })
+                // toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre+" <br>Apuestas Ganadoras:" +ganadores);
+                 toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre);
              }
              else{
                 toastr.error("Ticket "+ticketbuscado+ " Evento "+ticketobjeto.nombre+"<br>No hay Apuestas Ganadoras");
@@ -156,11 +157,14 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
 
     $.ajax({
         type: 'POST',
-        async:false,
+       // async:false,
         url: basePath + 'GuardarTicketFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':datosobjeto
+        },
+        beforeSend:function(){
+            modalguardarticket=toastr.info("...Guardando Ticket")
         },
         success: function (response) {
             ticketdata=response.id_ticketinsertado;
@@ -291,8 +295,15 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
             $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
             $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
             $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
-            $(".apuesta span").text("APUESTA "+divisa)
-            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            $(".apuesta span").text("APUESTA "+divisa);
+            if(socket!=null && socket.readyState==1){
+                console.warn("YA CONECTADO, pedir hora")
+                pedir_hora_server();
+            }else{
+                console.warn("INICIANDO CONEXIÓN ");
+                connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            }
+            // connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
         ////jackpot
             HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
             intervaloihistorialjackpot=setInterval(function(){
@@ -369,16 +380,17 @@ function iniciarContador(duration, display) {
         }
         if(minutos==0 && segundos==0){
               setTimeout(function(){
-                 RECONECTAR_WEBSOCKET=false;
-                 socket.close();///cerrar socket
-                  location.reload();
-                 //CargarTabla();
-
+                 // RECONECTAR_WEBSOCKET=false;
+                 // socket.close();///cerrar socket
+                 //  location.reload();
+                $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
+                 CargarTabla();
+
                // $.LoadingOverlay("hide");
 
                 //location.reload();
-              },1000)
+              },250)
         }
           //fin segundos bloqueo
         if (--timer < 0) {
@@ -726,7 +738,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
     /////BOTONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS  DINERODEFAULT
 
     ///boton check
-    $("#div_botones .check").on("click",function(){
+    $("#div_botones .check").off().on("click",function(){
             ID_EVENTO=$(".id_tituloconfiguracionevento").text();
 
             cantidadapuesta=$("#div_apuestas .seleccionadoapuesta").length;
@@ -855,7 +867,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
     })////FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN on click boton check
 
         ///BOTON CERRAR  -- BORRAR
-        $("#div_botones .cerrar").on("click",function(){
+        $("#div_botones .cerrar").off().on("click",function(){
             if($("#tabla_eventos tbody tr").length=="0"){
                 toastr.error("No hay Apuestas");
             }else{
@@ -872,12 +884,12 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
         })
 
            ///BOTON BUSCAR
-        $("#div_botones .barcode").on("click",function(){
+        $("#div_botones .barcode").off().on("click",function(){
              $("#modal_buscar").modal("show"); 
         })
 
         ///BOTON IMPRIMIR
-        $("#div_botones .print").on("click",function(){
+        $("#div_botones .print").off().on("click",function(){
             if($("#tabla_eventos tbody tr").length=="0"){
                 toastr.error("No hay Apuestas");
             }
@@ -933,21 +945,21 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
 
 
 function eventos_botones_modalbuscar(){
-$('.digitador .digito').on('click',function(){
+$('.digitador .digito').off().on('click',function(){
              valor=$(this).text();
              valortxt=$("#ticket_txt").val();
             valortxt=valortxt+valor;
             $("#ticket_txt").val(valortxt);
         })
 
-        $('.digitador .borrar').on('click',function(){
+        $('.digitador .borrar').off().on('click',function(){
             var valortxt=$("#ticket_txt").val();
             valortxt=valortxt.substring(0,valortxt.length-1);
             $("#ticket_txt").val(valortxt);
         })
         
 
-        $("#btn_buscar_ticket").on("click",function(e){
+        $("#btn_buscar_ticket").off().on("click",function(e){
                 e.preventDefault(); 
 
 
@@ -972,13 +984,13 @@ $('.digitador .digito').on('click',function(){
 
             }
         })
-        $("#buscar_div").on("click",function(e){
+        $("#buscar_div").off().on("click",function(e){
               e.preventDefault(); 
                 $("#btn_buscar_ticket").click();
             
         })
 
-        $("#modal_buscar").on("shown.bs.modal",function(){
+        $("#modal_buscar").off().on("shown.bs.modal",function(){
                 $("#modal_buscar #ticket_txt").focus();
         });
 
@@ -1129,13 +1141,16 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
    TICKET_IMPRIMIR=ticketobjeto_imprimir;
         ticketobjeto_imprimir.Id_Ticket=idTicket;
         $.ajax({
-        type: 'POST',async:false,
+        type: 'POST',
+        async:false,
         url: basePath + 'ImprimirDatosJsonFk',
         data: {
             'TICKET_IMPRIMIR': ticketobjeto_imprimir,
             '_token': $('input[name=_token]').val(),
         },
         success: function (response) {
+            modalguardarticket.hide();
+
                 codigo_barrahtml=response.codigo_barrahtml;
                 qrcode_src=response.qrcode_src;
                 codigo_barra_src=response.codigo_barra_src;
@@ -1266,4 +1281,67 @@ function HistorialJson(idev) {
             })
         },
     })
+}
+
+
+
+function mover_barra(){
+        $("#barra_loading").css("width","100%")
+            width=100;
+            if(typeof intervalo_barra!="undefined"){
+              clearInterval(intervalo_barra)
+            }
+            intervalo_barra=setInterval(function(){
+              
+            $("#barra_loading").css("width",width+"%")
+            width=width-10;
+            },1000)
+}
+
+
+
+var serverTimeOffset = false;
+function getServerTime(callback) {
+    if (serverTimeOffset === false) {
+
+        var scripts = document.getElementsByTagName("script"),
+            URL = scripts[scripts.length - 1].src;
+
+        var clientTimestamp = Date.parse(new Date().toUTCString());
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("HEAD", URL + "?noCache=" + Date.now(), true);
+        xmlhttp.onload = function(){
+            if (xmlhttp.readyState === 4) {
+                if (xmlhttp.status === 200) {
+
+                    var serverDateStr = xmlhttp.getResponseHeader('Date');
+                    var serverTimestamp = Date.parse(new Date(Date.parse(serverDateStr)).toUTCString());
+
+                    var serverClientRequestDiffTime = serverTimestamp - clientTimestamp;
+                    var nowTimeStamp  = Date.parse(new Date().toUTCString());
+
+                    var serverClientResponseDiffTime = nowTimeStamp - serverTimestamp;
+                    var responseTime = (serverClientRequestDiffTime - nowTimeStamp + clientTimestamp - serverClientResponseDiffTime )/2;
+
+                    serverTimeOffset = (serverClientResponseDiffTime - responseTime);
+
+                    var date = new Date();
+
+                    date.setTime(date.getTime() + serverTimeOffset);
+
+                    callback.call(null, date);
+                } else {
+                    console.error(xmlhttp.statusText);
+                }
+            }
+        };
+        xmlhttp.send(null);
+        
+    } else {
+        var date = new Date();
+
+        date.setTime(date.getTime() + serverTimeOffset);
+
+        callback.call(null, date);
+    }
 }

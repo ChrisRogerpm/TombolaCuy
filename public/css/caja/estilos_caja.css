@@ -295,6 +295,9 @@ align-items:center;
   background-color:rgb(39, 40, 44);
   text-align:center;
 color:white;font-weight:bold;font-size:1.8vh;
+display:flex;
+justify-content: center;
+align-items: center;
 }
 .apuestasadicionalescontenedor{
 
