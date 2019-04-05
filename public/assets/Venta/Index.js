@@ -65,17 +65,17 @@ function INICIAR(){
         $("#div_configuracioneventos .eventos_fila_izq>div").eq(0).click();
     },0)
         //HistorialJson(eventoactual.IdEvento);
-        eventos_botones(); ////botones 1-22, rangos, colores ,  botones apuestas(1,2,4,5,10,20,50,100)  , botones check, x, buscar,imprimir
-        eventos_botones_modalbuscar(); ///botones del modal buscar=>  1-9 , buscar
+    eventos_botones(); ////botones 1-22, rangos, colores ,  botones apuestas(1,2,4,5,10,20,50,100)  , botones check, x, buscar,imprimir
+    eventos_botones_modalbuscar(); ///botones del modal buscar=>  1-9 , buscar
     $(".TOMBOLACUY").show();
-        responsivetombola();
-        $(window).resize(function () {
-                responsivetombola();
-                heighttbody=$(".rowtablaeventos").height()-$("#tabla_eventos thead").height()     
-                $("#tabla_eventos tbody").height(heighttbody)
+    responsivetombola();
+    $(window).resize(function () {
+            responsivetombola();
+            heighttbody=$(".rowtablaeventos").height()-$("#tabla_eventos thead").height()     
+            $("#tabla_eventos tbody").height(heighttbody)
 
 
-            }).trigger('resize');
+    }).trigger('resize');
 
 }
 
