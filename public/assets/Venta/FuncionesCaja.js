@@ -92,10 +92,11 @@ function BuscarTicket(ticketobjeto){
 
                 $("#modal_imprimir_pago").modal("show");
 
-                $(ticketsganadores).each(function(i,e){
-                     ganadores=ganadores+"<br> "+e.TipoPagoNombre+" "+e.TipoApuestaValor;
-                })
-                toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre+" <br>Apuestas Ganadoras:" +ganadores);
+                // $(ticketsganadores).each(function(i,e){
+                //      ganadores=ganadores+"<br> "+e.TipoPagoNombre+" "+e.TipoApuestaValor;
+                // })
+                // toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre+" <br>Apuestas Ganadoras:" +ganadores);
+                 toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre);
              }
              else{
                 toastr.error("Ticket "+ticketbuscado+ " Evento "+ticketobjeto.nombre+"<br>No hay Apuestas Ganadoras");
@@ -156,11 +157,14 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
 
     $.ajax({
         type: 'POST',
-        async:false,
+       // async:false,
         url: basePath + 'GuardarTicketFk',
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':datosobjeto
+        },
+        beforeSend:function(){
+            modalguardarticket=toastr.info("...Guardando Ticket")
         },
         success: function (response) {
             ticketdata=response.id_ticketinsertado;
@@ -1137,13 +1141,16 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
    TICKET_IMPRIMIR=ticketobjeto_imprimir;
         ticketobjeto_imprimir.Id_Ticket=idTicket;
         $.ajax({
-        type: 'POST',async:false,
+        type: 'POST',
+        async:false,
         url: basePath + 'ImprimirDatosJsonFk',
         data: {
             'TICKET_IMPRIMIR': ticketobjeto_imprimir,
             '_token': $('input[name=_token]').val(),
         },
         success: function (response) {
+            modalguardarticket.hide();
+
                 codigo_barrahtml=response.codigo_barrahtml;
                 qrcode_src=response.qrcode_src;
                 codigo_barra_src=response.codigo_barra_src;
