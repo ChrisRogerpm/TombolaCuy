@@ -46,7 +46,7 @@ function init(host,port){
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
                     pedir_hora_server();
-                },200)
+                },100)
                 // if(typeof intervalohora!="undefined"){
                 //  clearInterval(intervalohora);
                 // }

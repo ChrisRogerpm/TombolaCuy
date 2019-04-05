@@ -291,8 +291,15 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
             $("#row_datosevento #jackpotsuma").text(divisa+" "+jackpotsuma);
             $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
             $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
-            $(".apuesta span").text("APUESTA "+divisa)
-            connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            $(".apuesta span").text("APUESTA "+divisa);
+            if(socket!=null && socket.readyState==1){
+                console.warn("YA CONECTADO, pedir hora")
+                pedir_hora_server();
+            }else{
+                console.warn("INICIANDO CONEXIÓN ");
+                connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            }
+            // connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
         ////jackpot
             HistorialJackpotDatosJson($("#idPuntoVenta").val(),idEvento);
             intervaloihistorialjackpot=setInterval(function(){
@@ -369,16 +376,17 @@ function iniciarContador(duration, display) {
         }
         if(minutos==0 && segundos==0){
               setTimeout(function(){
-                 RECONECTAR_WEBSOCKET=false;
-                 socket.close();///cerrar socket
-                  location.reload();
-                 //CargarTabla();
-
+                 // RECONECTAR_WEBSOCKET=false;
+                 // socket.close();///cerrar socket
+                 //  location.reload();
+                $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
+                 CargarTabla();
+
                // $.LoadingOverlay("hide");
 
                 //location.reload();
-              },1000)
+              },250)
         }
           //fin segundos bloqueo
         if (--timer < 0) {
@@ -726,7 +734,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
     /////BOTONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS  DINERODEFAULT
 
     ///boton check
-    $("#div_botones .check").on("click",function(){
+    $("#div_botones .check").off().on("click",function(){
             ID_EVENTO=$(".id_tituloconfiguracionevento").text();
 
             cantidadapuesta=$("#div_apuestas .seleccionadoapuesta").length;
@@ -855,7 +863,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
     })////FINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN on click boton check
 
         ///BOTON CERRAR  -- BORRAR
-        $("#div_botones .cerrar").on("click",function(){
+        $("#div_botones .cerrar").off().on("click",function(){
             if($("#tabla_eventos tbody tr").length=="0"){
                 toastr.error("No hay Apuestas");
             }else{
@@ -872,12 +880,12 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
         })
 
            ///BOTON BUSCAR
-        $("#div_botones .barcode").on("click",function(){
+        $("#div_botones .barcode").off().on("click",function(){
              $("#modal_buscar").modal("show"); 
         })
 
         ///BOTON IMPRIMIR
-        $("#div_botones .print").on("click",function(){
+        $("#div_botones .print").off().on("click",function(){
             if($("#tabla_eventos tbody tr").length=="0"){
                 toastr.error("No hay Apuestas");
             }
@@ -933,21 +941,21 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
 
 
 function eventos_botones_modalbuscar(){
-$('.digitador .digito').on('click',function(){
+$('.digitador .digito').off().on('click',function(){
              valor=$(this).text();
              valortxt=$("#ticket_txt").val();
             valortxt=valortxt+valor;
             $("#ticket_txt").val(valortxt);
         })
 
-        $('.digitador .borrar').on('click',function(){
+        $('.digitador .borrar').off().on('click',function(){
             var valortxt=$("#ticket_txt").val();
             valortxt=valortxt.substring(0,valortxt.length-1);
             $("#ticket_txt").val(valortxt);
         })
         
 
-        $("#btn_buscar_ticket").on("click",function(e){
+        $("#btn_buscar_ticket").off().on("click",function(e){
                 e.preventDefault(); 
 
 
@@ -972,13 +980,13 @@ $('.digitador .digito').on('click',function(){
 
             }
         })
-        $("#buscar_div").on("click",function(e){
+        $("#buscar_div").off().on("click",function(e){
               e.preventDefault(); 
                 $("#btn_buscar_ticket").click();
             
         })
 
-        $("#modal_buscar").on("shown.bs.modal",function(){
+        $("#modal_buscar").off().on("shown.bs.modal",function(){
                 $("#modal_buscar #ticket_txt").focus();
         });
 
@@ -1266,4 +1274,19 @@ function HistorialJson(idev) {
             })
         },
     })
+}
+
+
+
+function mover_barra(){
+        $("#barra_loading").css("width","100%")
+            width=100;
+            if(typeof intervalo_barra!="undefined"){
+              clearInterval(intervalo_barra)
+            }
+            intervalo_barra=setInterval(function(){
+              
+            $("#barra_loading").css("width",width+"%")
+            width=width-10;
+            },1000)
 }

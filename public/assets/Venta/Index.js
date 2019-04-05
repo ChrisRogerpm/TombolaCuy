@@ -23,7 +23,6 @@ function INICIAR(){
         ///reloj sin websockets
             // $.LoadingOverlay("show");
             // DATOSVENTAJSON=ListarVentaDatosJson();
-
     /////////onClick de Eventos 
     $("#div_configuracioneventos .configuracioneventosdiv").off("click").on("click",function(){
         $(".TOMBOLACUY").css("cursor","wait");
@@ -68,7 +67,6 @@ function INICIAR(){
         //HistorialJson(eventoactual.IdEvento);
         eventos_botones(); ////botones 1-22, rangos, colores ,  botones apuestas(1,2,4,5,10,20,50,100)  , botones check, x, buscar,imprimir
         eventos_botones_modalbuscar(); ///botones del modal buscar=>  1-9 , buscar
-        //mover_barra();
     $(".TOMBOLACUY").show();
         responsivetombola();
         $(window).resize(function () {
@@ -80,18 +78,7 @@ function INICIAR(){
             }).trigger('resize');
 
 }
-function mover_barra(){
-        $("#barra_loading").css("width","100%")
-            width=100;
-            if(typeof intervalo_barra!="undefined"){
-              clearInterval(intervalo_barra)
-            }
-            intervalo_barra=setInterval(function(){
-              
-            $("#barra_loading").css("width",width+"%")
-            width=width-10;
-            },1000)
-}
+
 
 
 
@@ -102,9 +89,19 @@ function CargarTabla() {
         data: {
             '_token': $('input[name=_token]').val(),
         },
+
+        beforeSend:function(){
+             // RECONECTAR_WEBSOCKET=false;socket.close();
+                $.LoadingOverlay("show");
+        },
         success: function (response) {
+            $('.modal').modal('hide');
+            //if($(".modal-backdrop").length>0){$(".modal-backdrop").hide()}
+          //    RECONECTAR_WEBSOCKET=true;
             $(".content.container-fluid").html(response.html);
             INICIAR();
+            $.LoadingOverlay("hide");
+
         },
     })
 }
