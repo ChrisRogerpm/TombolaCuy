@@ -3,9 +3,11 @@ token="";
 anguloRotacion=0;
 i=0;
 x=0;
+m=0;
 puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5}];
-flag=false;
+flag=true;
 pos=3;
+pos1=3;
 $(document).ready(function () {
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
@@ -915,23 +917,25 @@ function animate() {
     }
 }
 function caminar(x0,y0,x1,y1){
-    debugger
-    flag=true;    
-    m=(y1-y0)/(x1-x0);
+    //debugger
+    if(flag==true){
+        m=(y1-y0)/(x1-x0);
+          
+    }
     if(m != Infinity && m != -Infinity){
-        y=m*(x-x0)+y0;
-        if(x1>0){
+        if(x1>=0){
             x=x+0.1;
         }
         else{
             x=x-0.1;
         }
+        y=m*(x-x0)+y0;
     }else{
         y=model.position.z;       
-        if(y1>0){
+        if(y1>=0){
             y=y+0.1;
         }
-        else{
+        else{            
             y=y-0.1;
         }
     }
@@ -940,13 +944,24 @@ function caminar(x0,y0,x1,y1){
     model.position.z=y;
 
     calculo=(x**2)+(y**2);
-    if(calculo>=9){
+    if(calculo>=9  && pos == pos1 ){
+        
         pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+        //console.log(pos1,pos);
+        model.position.x=parseInt(model.position.x);
+        model.position.z=parseInt(model.position.z);
+        console.log(model.position.x,model.position.z);
+        debugger
+        flag=true;  
         //debugger
-        console.log(puntos[pos]);
+        //console.log(puntos[pos]);
     }
     else{
+        if( calculo<9){
+            pos1=pos;
+        }
         pos=pos;
+        flag=false;
     }
 
 }
