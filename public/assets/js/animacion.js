@@ -4,10 +4,11 @@ anguloRotacion=0;
 i=0;
 x=0;
 m=0;
-puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5}];
+puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5},{x:0,y:0}];
 flag=true;
-pos=3;
-pos1=3;
+posF=3;
+posF1=3;
+posO=4;
 $(document).ready(function () {
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
@@ -902,7 +903,7 @@ function animate() {
 
         //pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
         //pos=3;
-        newPos=caminar(model.position.x,model.position.z,puntos[pos].x,puntos[pos].y);  
+        caminar(puntos[posO].x,puntos[posO].y,puntos[posF].x,puntos[posF].y);  
 
         // if(respuesta==true){
         //     debugger
@@ -918,49 +919,50 @@ function animate() {
 }
 function caminar(x0,y0,x1,y1){
     //debugger
+    
+    console.log(model.position.x,model.position.z);
     if(flag==true){
-        m=(y1-y0)/(x1-x0);
-          
+        //debugger
+        m=(y1-y0)/(x1-x0);    
+        x=parseFloat(x0).toFixed(2);
     }
-    if(m != Infinity && m != -Infinity){
-        if(x1>=0){
-            x=x+0.1;
+    if(m != Infinity && m != -Infinity && isNaN(m)==false ){
+        if(x1>=x0){
+            x=parseFloat(x)+0.1;
         }
         else{
-            x=x-0.1;
-        }
+            x=parseFloat(x)-0.1;
+        }    
         y=m*(x-x0)+y0;
     }else{
         y=model.position.z;       
-        if(y1>=0){
+        if(y1>=y0){
             y=y+0.1;
         }
         else{            
             y=y-0.1;
         }
-    }
-    
-    model.position.x=x;
-    model.position.z=y;
-
+    }    
+    y=parseFloat(y).toFixed(2);
+    x=parseFloat(x).toFixed(2);       
+    model.position.x=parseFloat(x);
+    model.position.z=parseFloat(y);
     calculo=(x**2)+(y**2);
-    if(calculo>=9  && pos == pos1 ){
+    if(calculo>=6.25 && posF == posF1 ){ 
+        //console.log(model.position.x,model.position.z);
+        //debugger       
+        posO=posF;
+        posF=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+        // model.position.x=parseInt(model.position.x);
+        // model.position.z=parseInt(model.position.z);
         
-        pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
-        //console.log(pos1,pos);
-        model.position.x=parseInt(model.position.x);
-        model.position.z=parseInt(model.position.z);
-        console.log(model.position.x,model.position.z);
-        debugger
         flag=true;  
-        //debugger
-        //console.log(puntos[pos]);
     }
     else{
-        if( calculo<9){
-            pos1=pos;
+        if( calculo<6.25){
+            posF1=posF;
         }
-        pos=pos;
+        //pos=pos;
         flag=false;
     }
 
