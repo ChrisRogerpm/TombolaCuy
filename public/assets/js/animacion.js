@@ -118,7 +118,11 @@ function init() {
             });
             model.scale.set(0.5, 0.5, 0.5);
             model.position.set(0, 0, 0);
+            model.lookAt(-2.5,0,0) ;
+            //model.rotateY(1.5708) ; 
+            //model.rotation._y           
             scene.add(model);
+
             //model.position.z=2;
             skeleton = new THREE.SkeletonHelper(model);
             var animations = gltf.animations;
@@ -765,12 +769,13 @@ function iniciar(numeorGanador) {
     // clock = new THREE.Clock();
     // clockCuyDudando = new THREE.Clock();
     // clockCuyChoque = new THREE.Clock();
-    if(model!=undefined){
-        model.rotation.y=0;
-    }
-    if(modelCuyDudando!=undefined){
-        modelCuyDudando.rotation.y=0;
-    }
+
+    // if(model!=undefined){
+    //     model.rotation.y=0;
+    // }
+    // if(modelCuyDudando!=undefined){
+    //     modelCuyDudando.rotation.y=0;
+    // }
     
     animate();
 }
@@ -917,30 +922,26 @@ function animate() {
         renderer.render(scene, camera);
     }
 }
-function caminar(x0,y0,x1,y1){
-    //debugger
-    
-    console.log(model.position.x,model.position.z);
+function caminar(x0,y0,x1,y1){    
     if(flag==true){
-        //debugger
         m=(y1-y0)/(x1-x0);    
         x=parseFloat(x0).toFixed(2);
     }
     if(m != Infinity && m != -Infinity && isNaN(m)==false ){
         if(x1>=x0){
-            x=parseFloat(x)+0.1;
+            x=parseFloat(x)+0.05;
         }
         else{
-            x=parseFloat(x)-0.1;
+            x=parseFloat(x)-0.05;
         }    
         y=m*(x-x0)+y0;
     }else{
         y=model.position.z;       
         if(y1>=y0){
-            y=y+0.1;
+            y=y+0.05;
         }
         else{            
-            y=y-0.1;
+            y=y-0.05;
         }
     }    
     y=parseFloat(y).toFixed(2);
@@ -948,21 +949,19 @@ function caminar(x0,y0,x1,y1){
     model.position.x=parseFloat(x);
     model.position.z=parseFloat(y);
     calculo=(x**2)+(y**2);
-    if(calculo>=6.25 && posF == posF1 ){ 
-        //console.log(model.position.x,model.position.z);
-        //debugger       
+    if(calculo>=6.25  ){ 
+        i=1;
+        while (i<1000) {
+            console.log(123);
+            i++;
+        }   
         posO=posF;
-        posF=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
-        // model.position.x=parseInt(model.position.x);
-        // model.position.z=parseInt(model.position.z);
-        
+        while(posO==posF){
+            posF=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+        }              
         flag=true;  
     }
-    else{
-        if( calculo<6.25){
-            posF1=posF;
-        }
-        //pos=pos;
+    else{        
         flag=false;
     }
 
