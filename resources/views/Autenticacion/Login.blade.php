@@ -14,7 +14,7 @@
                         <img src="{{asset('images/logo.png')}}">
                     </div>
 
-                    <form id="frmNuevo">
+                    <form id="frmNuevo" autocomplete="off">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="login">Usuario</label>

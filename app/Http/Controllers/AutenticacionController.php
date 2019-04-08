@@ -34,13 +34,16 @@ class AutenticacionController extends Controller
             if ($http_code == 202) {
                 $validar = Usuario::where('usuario', $usuario)->first();
                 if ($validar == null) {
-                    Usuario::RegistrarUsuario($usuario, $password);
-                    if (Auth::attempt(['usuario' => $usuario, 'password' => $password])) {
-                        $respuesta = true;
-                    }
+//                    Usuario::RegistrarUsuario($usuario, $password);
+//                    if (Auth::attempt(['usuario' => $usuario, 'password' => $password])) {
+//                        $respuesta = true;
+//                    }
+                    $mensaje_error = "El usuario ingresado no existe";
                 } else {
                     if (Auth::attempt(['usuario' => $usuario, 'password' => $password])) {
                         $respuesta = true;
+                    }else{
+                        $mensaje_error = "La contraseña ingresada es erronea";
                     }
                 }
             } else if ($http_code == 401) {

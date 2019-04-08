@@ -15,13 +15,13 @@ $(document).ready(function(){
                 },
                 complete: function () {
                     $.LoadingOverlay("hide");
-                    $("#txtusuario").attr('readonly',true);
-                    $("#txtpassword").attr('readonly',true);
-                    $("#btnEntrar").attr('disabled',true);
                 },
                 success: function (response) {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
+                        $("#txtusuario").attr('readonly',true);
+                        $("#txtpassword").attr('readonly',true);
+                        $("#btnEntrar").attr('disabled',true);
                         toastr.success("Bienvenido al Sistema", "Mensaje Servidor");
                         $("#btnEntrar").attr('disabled',true);
                         var url = basePath + "Dashboard";
