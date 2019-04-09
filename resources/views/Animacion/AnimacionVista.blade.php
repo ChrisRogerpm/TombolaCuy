@@ -120,9 +120,9 @@
 		</style>
 	</head>
 	<body>
-		<div id="ImgContainer"></div>
+		<!-- <div id="ImgContainer"></div> -->
 		<div id="container"></div>		
-		<div id="contenedorEstadistica">
+		<!-- <div id="contenedorEstadistica">
 			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:90%;margin-top: 5vh;">
 			<h1>Estadisticas</h1>	
 			<div id="cajaInteriror">
@@ -235,7 +235,7 @@
 					{{--</tr>					--}}
 				</table>
 			</div>			
-		</div>	
+		</div>	 -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 			
