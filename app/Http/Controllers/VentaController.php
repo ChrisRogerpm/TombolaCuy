@@ -384,11 +384,12 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
         {
             $apuestas=$request->apuestas;
             $idTicket=$request->idTicket;
+            $idAperturaCaja=$request->idAperturaCaja;
             foreach($apuestas as $apu){
                 $apuestaobjeto=$request->merge($apu);
                 $ganadorevento=GanadorEvento::GuardarGanadorEvento($apuestaobjeto);
             }
-            Ticket::TicketPagarEstado($idTicket);
+            Ticket::TicketPagarEstado($idTicket,$idAperturaCaja);
             $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
