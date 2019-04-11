@@ -30,7 +30,7 @@ if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
 var scene, renderer, camera, stats;
-var model, modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja, clock;
+var model, modelCaja,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja, clock;
 var crossFadeControls = [];
 var idleAction, walkAction, runAction;
 var idleWeight, walkWeight, runWeight;
@@ -53,7 +53,7 @@ function init() {
 
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
-    camera.position.set(0, 10, 0);
+    camera.position.set(0, 20, 0);
     
     //escena
     scene = new THREE.Scene();
@@ -93,18 +93,18 @@ function init() {
     var loader = new THREE.GLTFLoader();
     // Plano y Cajas
     var loaderCaja = new THREE.GLTFLoader();
-    loaderCaja.load('images/Cajas5.glb', function (gltfCaja) {
+    loaderCaja.load('images/cajasFFF.glb', function (gltfCaja) {
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
                 object.castShadow = true;
-                if (object.name != "Box006" && object.name != "Box007") {
-                    object.position.y = 0;
-                }
-                ;
+                // if (object.name != "Box006" && object.name != "Box007") {
+                //     object.position.y = 0;
+                // };
             }
         });
-        //modelCaja.position.set(-2,0,2);
+        modelCaja.scale.set(0.005, 0.005, 0.005);
+        //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         //cargar los demas modelos
@@ -118,7 +118,7 @@ function init() {
             });
             model.scale.set(0.5, 0.5, 0.5);
             model.position.set(0, 0, 0);
-            model.lookAt(-2.5,0,0) ;
+            //model.lookAt(-2.5,0,0) ;
             //model.rotateY(1.5708) ; 
             //model.rotation._y           
             scene.add(model);
@@ -129,6 +129,20 @@ function init() {
             mixer = new THREE.AnimationMixer(model);
             mixer.clipAction(animations[0]).play();
             loaded = true;
+        });
+        // CAJA GIRATORIA
+        var loaderCajaGira = new THREE.GLTFLoader();
+        loaderCajaGira.load('images/cajaGira.glb', function (gltf) {
+            modelCaja = gltf.scenes[0];
+            modelCaja.traverse(function (objectCuyDudando) {
+                if (objectCuyDudando instanceof THREE.Mesh) {
+                    objectCuyDudando.castShadow = true
+                }
+            });            
+            modelCaja.position.set(0, 0, 0);
+            scene.add(modelCaja);
+            skeleton = new THREE.SkeletonHelper(modelCaja);
+            
         });
         // CUY DUDANDO
         var loaderCuyDudando = new THREE.GLTFLoader();
@@ -186,6 +200,7 @@ function animate1() {
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
         model.visible = true;
+        modelCaja.visible=true;
         // if (clock.getElapsedTime() <= 8) {
         //     if (clock.getElapsedTime() <= 3) {                                
         //         modelCuyDudando.visible = true;
