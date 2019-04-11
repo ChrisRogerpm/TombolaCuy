@@ -14,7 +14,7 @@ class Ticket extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idAperturaCaja', 'idEvento','codigoQR','nroTicketParticipante','ganador','estadoTicket','montoTotal'];
+    public $fillable = ['idAperturaCaja', 'idEvento','codigoQR','nroTicketParticipante','ganador','estadoTicket','montoTotal','fechaPago','idAperturaCajaPago'];
 
 
     public static function TicketListarJson()
@@ -38,10 +38,12 @@ class Ticket extends Model
         return $Ticket;
     }
 
-    public static function TicketPagarEstado($idTicket)
+    public static function TicketPagarEstado($idTicket,$idAperturaCaja)
     {
         $Ticket = Ticket::findorfail($idTicket);
         $Ticket->estadoTicket = 2;
+        $Ticket->fechaPago = date('Y-m-d H:i:s');
+        $Ticket->idAperturaCajaPago = $idAperturaCaja;//punto venta;
         $Ticket->save();
         return $Ticket;
     }

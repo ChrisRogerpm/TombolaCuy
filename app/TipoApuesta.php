@@ -68,7 +68,7 @@ class TipoApuesta extends Model
             $resultado->save();
         }
 
-        if ($NumeroGenerado % 2 == 0) {
+        if ($NumeroGenerado % 2 == 0 && $NumeroGenerado != 0) {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
@@ -154,7 +154,7 @@ class TipoApuesta extends Model
             ->first();
 
         //Color 1
-        if($color_valorGenerado->rgb == "#F9D716"){
+        if ($color_valorGenerado->rgb == "#F9D716") {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
@@ -170,7 +170,7 @@ class TipoApuesta extends Model
             $resultado->save();
         }
         //Color 2
-        if($color_valorGenerado->rgb == "#16277D"){
+        if ($color_valorGenerado->rgb == "#16277D") {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')

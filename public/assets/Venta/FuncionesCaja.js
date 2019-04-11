@@ -116,7 +116,8 @@ function GuardarGanadorEvento(apuestas_ganadoras,idTicket){/////GuardarGanadorEv
          data: {
             '_token': $('input[name=_token]').val(),
             'apuestas':apuestas_ganadoras,
-            'idTicket':idTicket
+            'idTicket':idTicket,
+            'idAperturaCaja':$("#idAperturaCaja").val()
         },
         success: function (response) {
             if(response.respuesta){
