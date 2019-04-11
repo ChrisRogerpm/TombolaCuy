@@ -120,6 +120,8 @@ class SeguridadController extends Controller
                 }
             }
 
+            $lista_rutas_excepciones = ["/","AnimacionVista","api/ConfirmacionToken","api/DataEventoResultadoEvento","Dashboard"];
+
             foreach ($routeCollection as $value) {
                 $position = in_array($value->uri(), $permisos_route_array_BD);
                 if (!$position) {
@@ -128,15 +130,18 @@ class SeguridadController extends Controller
 //                    if ($value->uri() !== "BarridoPermisos" || $value->uri() !== 'ValidarLoginJson' || $value->uri() !== "Login" || $value->uri() !== "ListdoUsuariosSelect" || $value->uri() !== "DataAuditoriaRegistro") {
                     $validar = strpos($uri_entrante, 'Fk');
                     if (!$validar) {
-                        DB::table('permisos')->insertGetId(
-                            [
-                                'fecha_registro' => date('Y-m-d H:i:s'),
-                                'nombre' => $value->uri(),
-                                'controller' => $value->getActionName(),
-                                'method' => $value->methods()[0],
-                                'estado' => 1,
-                            ]
-                        );
+
+                        if (!in_array($uri_entrante, $lista_rutas_excepciones)) {
+                            DB::table('permisos')->insertGetId(
+                                [
+                                    'fecha_registro' => date('Y-m-d H:i:s'),
+                                    'nombre' => $value->uri(),
+                                    'controller' => $value->getActionName(),
+                                    'method' => $value->methods()[0],
+                                    'estado' => 1,
+                                ]
+                            );
+                        }
                     }
                 }
 
@@ -202,27 +207,27 @@ class SeguridadController extends Controller
 
     public function AgregarTodoPermisosJson(Request $request)
     {
-        $respuesta =false;
+        $respuesta = false;
         $mensaje = "";
-        try{
+        try {
             Permisos::AgregarPermisosTodos($request);
             $respuesta = true;
-        }catch (QueryException $ex){
-            $mensaje =$ex->errorInfo;
+        } catch (QueryException $ex) {
+            $mensaje = $ex->errorInfo;
         }
-        return response()->json(['respuesta'=>$respuesta,'mensaje'=>$mensaje]);
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje]);
     }
 
     public function QuitarTodoPermisosJson(Request $request)
     {
-        $respuesta =false;
+        $respuesta = false;
         $mensaje = "";
-        try{
+        try {
             Permisos::QuitarPermisosTodos($request);
             $respuesta = true;
-        }catch (QueryException $ex){
-            $mensaje =$ex->errorInfo;
+        } catch (QueryException $ex) {
+            $mensaje = $ex->errorInfo;
         }
-        return response()->json(['respuesta'=>$respuesta,'mensaje'=>$mensaje]);
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje]);
     }
 }
