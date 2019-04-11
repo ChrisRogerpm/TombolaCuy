@@ -120,7 +120,7 @@ class SeguridadController extends Controller
                 }
             }
 
-            $lista_rutas_excepciones = ["/","AnimacionVista","api/ConfirmacionToken","api/DataEventoResultadoEvento","Dashboard"];
+            $lista_rutas_excepciones = ["/","AnimacionVista","api/ConfirmacionToken","api/DataEventoResultadoEvento"];
 
             foreach ($routeCollection as $value) {
                 $position = in_array($value->uri(), $permisos_route_array_BD);
