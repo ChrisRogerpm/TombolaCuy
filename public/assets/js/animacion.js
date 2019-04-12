@@ -4,12 +4,19 @@ anguloRotacion=0;
 i=0;
 x=0;
 m=0;
-puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5},{x:0,y:0}];
+id=0;
+//puntos=[{x:2.5,y:0},{x:-2.5,y:0},{x:0,y:2.5},{x:0,y:-2.5},{x:0,y:0}];
+puntos=[{x:0.3,y:2.48},{x:0.7,y:2.4},{x:1.1,y:2.32},{x:1.4,y:-2.07},{x:1.7,y:1.83},{x:2,y:1.5},{x:2.2,y:1.18},{x:2.4,y:0.7},{x:2.47,y:0.38},
+        {x:2.49,y:-0.22},{x:2.45,y:-0.49},{x:2.3,y:-0.98},{x:2.15,y:-1.27},{x:1.88,y:1.64},{x:1.5,y:-2.0},{x:1.2,y:-2.19},{x:0.9,y:-2.33},{x:0.45,y:-2.45},
+        {x:0,y:-2.5},{x:-0.4,y:-2.46},{x:-0.84,y:-2.35},{x:-1.21,y:-2.18},{x:-1.6,y:-1.92},{x:-1.93,y:1.58},{x:-2.06,y:-1.41},{x:-2.3,y:-0.98},{x:-2.41,y:-0.63},{x:-2.49,y:-0.19},
+        {x:-2.47,y:0.37},{x:-2.38,y:0.76},{x:-2.18,y:1.21},{x:-2.0,y:1.5},{x:-1.74,y:-1.79},{x:-1.3,y:2.13},{x:-1.03,y:2.27},{x:-0.63,y:2.41},{x:-0.25,y:2.48},{x:0,y:0}];
 flag=true;
 posF=3;
 posF1=3;
-posO=4;
+posO=37;
+entrar=false;
 $(document).ready(function () {
+    
     var i=0;
     $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
     //CargarEstadistica(1);
@@ -30,7 +37,7 @@ if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
 var scene, renderer, camera, stats;
-var model, modelCaja,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja, clock;
+var model, modelCajaP,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja, clock;
 var crossFadeControls = [];
 var idleAction, walkAction, runAction;
 var idleWeight, walkWeight, runWeight;
@@ -49,11 +56,12 @@ function init() {
     //relojes
     clock = new THREE.Clock();
     clockCuyDudando = new THREE.Clock();
+    clockCajaP = new THREE.Clock();
     clockCuyChoque = new THREE.Clock();
 
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
-    camera.position.set(0, 20, 0);
+    camera.position.set(0, 10, 0);
     
     //escena
     scene = new THREE.Scene();
@@ -74,8 +82,8 @@ function init() {
     scene.add(dirLight);
 
 
-    var axesHelper = new THREE.AxesHelper( 5,5,5 );
-    scene.add( axesHelper );
+    // var axesHelper = new THREE.AxesHelper( 5,5,5 );
+    // scene.add( axesHelper );
 
     // controls = new THREE.OrbitControls(camera);
     // controls.autoRotate = true;
@@ -94,6 +102,7 @@ function init() {
     // Plano y Cajas
     var loaderCaja = new THREE.GLTFLoader();
     loaderCaja.load('images/cajasFFF.glb', function (gltfCaja) {
+        
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
@@ -112,11 +121,12 @@ function init() {
         loader.load('images/cuy6.glb', function (gltf) {
             model = gltf.scenes[0];
             model.traverse(function (object) {
+                debugger
                 if (object instanceof THREE.Mesh) {
                     object.castShadow = true
                 }
             });
-            model.scale.set(0.5, 0.5, 0.5);
+            model.scale.set(0.3, 0.3, 0.3);
             model.position.set(0, 0, 0);
             //model.lookAt(-2.5,0,0) ;
             //model.rotateY(1.5708) ; 
@@ -125,24 +135,30 @@ function init() {
 
             //model.position.z=2;
             skeleton = new THREE.SkeletonHelper(model);
-            var animations = gltf.animations;
+            var animations = gltf.animations;  
+                      
             mixer = new THREE.AnimationMixer(model);
             mixer.clipAction(animations[0]).play();
             loaded = true;
         });
         // CAJA GIRATORIA
         var loaderCajaGira = new THREE.GLTFLoader();
-        loaderCajaGira.load('images/cajaGira.glb', function (gltf) {
-            modelCaja = gltf.scenes[0];
-            modelCaja.traverse(function (objectCuyDudando) {
+        loaderCajaGira.load('images/cajaPensando.glb', function (gltf) {
+            modelCajaP = gltf.scenes[0];
+            modelCajaP.traverse(function (objectCuyDudando) {
                 if (objectCuyDudando instanceof THREE.Mesh) {
                     objectCuyDudando.castShadow = true
                 }
             });            
-            modelCaja.position.set(0, 0, 0);
-            scene.add(modelCaja);
-            skeleton = new THREE.SkeletonHelper(modelCaja);
+            modelCajaP.scale.set(0.05, 0.05, 0.05);
+            modelCajaP.position.set(0, 0, 0);
+            scene.add(modelCajaP);
+            skeleton = new THREE.SkeletonHelper(modelCajaP);
+            var animations = gltf.animations;
             
+            mixerCajaP = new THREE.AnimationMixer(modelCajaP);
+            mixerCajaP.clipAction(animations[0]).play();
+            loaded = true;
         });
         // CUY DUDANDO
         var loaderCuyDudando = new THREE.GLTFLoader();
@@ -200,7 +216,9 @@ function animate1() {
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
         model.visible = true;
-        modelCaja.visible=true;
+        
+        mixerCajaP.update(clockCajaP.getDelta());
+        modelCajaP.visible=true;
         // if (clock.getElapsedTime() <= 8) {
         //     if (clock.getElapsedTime() <= 3) {                                
         //         modelCuyDudando.visible = true;
@@ -751,7 +769,8 @@ function animate1() {
 }
 
 function iniciar(numeorGanador) {  
-      
+    
+    setTimeout(function(){ entrar=true; }, 15000);
     ganador=parseInt(numeorGanador);
     // ganador = parseInt(0);
     //ganador=Math.floor((Math.random() * 24));
@@ -917,13 +936,34 @@ function animate() {
     if (loaded) {        
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
-        model.visible = true;        
-        modelCuyDudando.visible = false;        
+        mixerCajaP.update(clockCajaP.getDelta());
+       
+        
+        model.visible = true;  
+        modelCajaP.visible = true;
+        modelCuyDudando.visible = true;        
+        modelCuyDudando.scale.set(0.1,0.1,0.1);
+        modelCuyDudando.position.x=-0.25;
+        modelCuyDudando.position.z=2.48;       
         modelCuyChoque.visible = false;
-
+        //Math.sqrt(6.25-(0.5)**2)
         //pos=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
         //pos=3;
-        caminar(puntos[posO].x,puntos[posO].y,puntos[posF].x,puntos[posF].y);  
+        if(clockCajaP.getElapsedTime()<8){
+
+        }else{
+            //model.lookAt(-2.5,0,0) ;
+            //model.rotateY(1.5708) ; 
+            //model.rotation._y   
+            modelCajaP.visible = false;
+            model.lookAt(puntos[posF].x,0,puntos[posF].y)
+            if(entrar==true){
+                caminar(puntos[posO].x,puntos[posO].y,puntos[posF].x,puntos[posF].y);  
+            }else{
+                caminar(puntos[posO].x,puntos[posO].y,puntos[posF].x,puntos[posF].y);             
+            }
+            //console.log(puntos[posF].x,puntos[posF].y);             
+        }
 
         // if(respuesta==true){
         //     debugger
@@ -937,42 +977,54 @@ function animate() {
         renderer.render(scene, camera);
     }
 }
-function caminar(x0,y0,x1,y1){    
+function caminar(x0,y0,x1,y1){        
     if(flag==true){
-        m=(y1-y0)/(x1-x0);    
+        m=(y1-y0)/(x1-x0);  
         x=parseFloat(x0).toFixed(2);
+        desplazamienoX=(x1-x0)/30;
+        desplazamienoY=(y1-y0)/30;
     }
     if(m != Infinity && m != -Infinity && isNaN(m)==false ){
         if(x1>=x0){
             x=parseFloat(x)+0.05;
+            //x=parseFloat(x)+desplazamienoX;
         }
         else{
             x=parseFloat(x)-0.05;
+            //x=parseFloat(x)-desplazamienoX;
         }    
         y=m*(x-x0)+y0;
     }else{
         y=model.position.z;       
         if(y1>=y0){
             y=y+0.05;
+            //y=y + desplazamienoY;
         }
         else{            
-            y=y-0.05;
+            y=y-0.05
+            //y=y - desplazamienoY;
         }
     }    
+    console.log(desplazamienoX,desplazamienoY);
+    //console.log(x,y);
     y=parseFloat(y).toFixed(2);
     x=parseFloat(x).toFixed(2);       
     model.position.x=parseFloat(x);
     model.position.z=parseFloat(y);
     calculo=(x**2)+(y**2);
     if(calculo>=6.25  ){ 
-        i=1;
-        while (i<1000) {
-            console.log(123);
-            i++;
-        }   
+        if(entrar==true){
+//            debugger
+            cancelAnimationFrame(id);
+        }
+        // i=1;
+        // while (i<1000) {
+        //     console.log(123);
+        //     i++;
+        // }   
         posO=posF;
         while(posO==posF){
-            posF=Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+            posF=Math.floor(Math.random() * (36 - 0 + 1)) + 0;
         }              
         flag=true;  
     }
