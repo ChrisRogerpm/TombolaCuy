@@ -1360,7 +1360,7 @@ function localeWeekdaysShort (m) {
     return (m) ? this._weekdaysShort[m.day()] : this._weekdaysShort;
 }
 
-var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+var defaultLocaleWeekdaysMin = 'Do_Lu_Mar_Mie_Jue_Vie_Sab'.split('_');
 function localeWeekdaysMin (m) {
     return (m) ? this._weekdaysMin[m.day()] : this._weekdaysMin;
 }

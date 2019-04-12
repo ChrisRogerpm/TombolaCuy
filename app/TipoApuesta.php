@@ -82,7 +82,8 @@ class TipoApuesta extends Model
             $resultado->estado = 1;
             $resultado->idTipoApuesta = $apuesta->idTipoApuesta;
             $resultado->save();
-        } else {
+        }
+        if ($NumeroGenerado % 2 !== 0 && $NumeroGenerado != 0) {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
