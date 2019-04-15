@@ -80,14 +80,16 @@ function ReporteHistorialTicket(url, dataForm) {
                 "order": [[1, "desc"]],
                 data: resp,
                 columns: [
-                    {data: "fechaevento", title: "Fecha", class: 'text-center'},
+                    {data: "fechaevento", title: "Fecha Evento", class: 'text-center'},
                     {data: "juego", title: "Juego", class: 'text-center'},
                     {data: "idEvento", title: "Evento", class: 'text-center'},
                     {data: "idticket", title: "Ticket", class: 'text-center'},
                     {data: "fechaRegistro", title: "Fecha Ticket", class: 'text-center'},
+                    {data: "puntoventa", title: "Punto de Venta", class: 'text-center'},
+                    {data: "fechapago", title: "Fecha de Pago", class: 'text-center'},
+                    {data: "puntoventapago", title: "Punto de Venta de Pago", class: 'text-center'},
                     {data: "montototal", title: "Apuesta", class: 'text-center'},
                     {data: "valores", title: "Valores", class: 'text-center'},
-                    {data: "puntoventa", title: "Punto de Venta", class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
                     $('.btnVer').tooltip({

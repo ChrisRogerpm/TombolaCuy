@@ -418,15 +418,28 @@ class Reporte extends Model
 
         $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
 
-        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
-        , (select GROUP_CONCAT(ta.descripcion SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
+        $resultado = DB::select(DB::raw("select 
+        e.fechaevento,
+        e.nombre as 'juego',
+        e.idEvento,        
+        ti.idticket,
+        ti.fechaRegistro,
+        pv.nombre as 'puntoventa',
+        ti.fechapago,
+        pvpago.nombre as 'puntoventapago', 
+        ti.montototal,
+        (select GROUP_CONCAT(ta.descripcion SEPARATOR '|') 
+        from tipo_apuesta ta inner join  apuesta apu
         on ta.idtipoapuesta=apu.idtipoapuesta
-        where apu.idticket=ti.idticket) valores 
+        where apu.idticket=ti.idticket) valores
         from ticket ti
         inner join evento e on e.idEvento=ti.idevento
         inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
         inner join caja ca on ca.idcaja=ac.idcaja
         inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
+        inner join apertura_caja acpago on acpago.idaperturacaja=ti.idAperturaCajaPago
+        inner join caja capago on capago.idcaja=acpago.idcaja
+        inner join punto_venta pvpago on pvpago.idpuntoventa=capago.idpuntoventa
         where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
         return $resultado;
     }
