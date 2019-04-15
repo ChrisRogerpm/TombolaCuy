@@ -28,8 +28,11 @@ class ResultadoEvento extends Model
         $eventoActivo = Evento::where('estadoEvento', 1)->first();
 
         $resultado = DB::table('resultado_evento as re')
-            ->select('e.idEvento', 're.valorGanador')
+            ->select('e.idEvento', 're.valorGanador','tipoapuesta.rgb')
             ->join('evento as e', 'e.idEvento', 're.idEvento')
+
+            ->join('tipo_apuesta as tipoapuesta','tipoapuesta.idTipoApuesta','re.idTipoApuesta')
+            
             ->where('e.idJuego', $IdJuego)
             ->where('re.estado', 1)
             ->whereIn('re.idTipoPago', array(1, 6))
