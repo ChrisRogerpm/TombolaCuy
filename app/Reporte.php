@@ -84,29 +84,34 @@ class Reporte extends Model
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
 
         $listar = DB::select(DB::raw("select p.nombre tienda,ac.fechaoperacion,ac.idturno Turno
-          ,sum(t.montoTotal) apuestas
+          ,IFNULL(sum(t.montoTotal),0) apuestas
          ,IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+            inner join apuesta apu on apu.idApuesta=ge.idApuesta
+          where apu.idTicket=IFNULL(t.idTicket,tpago.idTicket) ),0) Pagos
+       
+        ,IFNULL( e.idEVento,epago.idEvento) Evento  ,count(t.idticket) Jugadores,
+     	  IFNULL(( select count(ti.idTicket) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket ti on ti.idTicket=a.idTicket
-         where ti.idAperturaCaja= ac.idaperturacaja and ti.idEvento=e.idEvento ),0) Pagos
-        ,
-         e.idEVento Evento  ,count(t.idticket) Jugadores
-         ,  IFNULL(( select count(ti.idTicket) from ganador_evento ge
-         inner join apuesta a on a.idApuesta=ge.idApuesta
-         inner join ticket ti on ti.idTicket=a.idTicket
-         where ti.idAperturaCaja= ac.idaperturacaja and ti.idEvento=e.idEvento),0) totalganadores
-         ,re.valorGanador ganador   , tia.rgb color, tip.nombre TipoApuesta  
+         where ti.idAperturaCajaPago= ac.idaperturacaja and ti.idEvento=epago.idEvento),0) totalganadores
+         ,IFNULL(re.valorGanador,repago.valorGanador) ganador   , IFNULL(tia.rgb,tiapago.rgb) color, IFNULL(tip.nombre,tippago.nombre) TipoApuesta  
            from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
          left join ticket t on  t.idaperturacaja=ac.idaperturacaja        
          left join evento e on e.idevento=t.idevento          
+           left join ticket tpago on  tpago.idAperturaCajaPago=ac.idaperturacaja    
+            left join evento epago on epago.idevento=tpago.idevento  
          left join resultado_evento re on re.idevento=e.idevento and re.idTipoPago in (1,6)
+            left join resultado_evento repago on repago.idevento=epago.idevento and repago.idTipoPago in (1,6)
           left join tipo_apuesta tia on tia.idTipoApuesta=re.idTipoApuesta  and re.idTipoPago in (1,6)
+             left join tipo_apuesta tiapago on tiapago.idTipoApuesta=repago.idTipoApuesta  and repago.idTipoPago in (1,6)
            left join tipo_pago tip on tip.idTipoPago=tia.idTipoPago  
+               left join tipo_pago tippago on tippago.idTipoPago=tiapago.idTipoPago  
           where  ac.estado!=0
-         and ac.fechaoperacion between '$fechaIni' and '$fechaFin' $condicional
-       group by p.nombre,e.idEVento,ac.fechaoperacion,ac.idturno,re.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tip.nombre"));
+           and ac.fechaoperacion between '$fechaIni' and '$fechaFin' $condicional	 
+       group by p.nombre,e.idEVento,epago.idEvento,ac.fechaoperacion,ac.idturno,re.valorGanador,repago.valorGanador,ac.idAperturaCaja,t.idAperturaCaja,tia.rgb,tiapago.rgb,tip.nombre,tippago.nombre
+       ,tpago.idTicket,t.idTicket"));
         $data = [];
         foreach ($listar as $l) {
             $turno = Turno::TurnoObtenerId($l->Turno);

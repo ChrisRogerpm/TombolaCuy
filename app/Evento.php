@@ -355,7 +355,7 @@ LIMIT 18
 
 
         foreach ($ListaEventosDia as $li) {
-            if ($li->fechaEvento <= now() && $li->fechaFinEvento > now() && $li->estadoEvento == 0) {
+            if ($li->fechaEvento < now() && $li->fechaFinEvento > now() && $li->estadoEvento == 0) {
                 $val = Evento::findorfail($li->idEvento);
                 $val->estadoEvento = 1;
                 $val->save();
