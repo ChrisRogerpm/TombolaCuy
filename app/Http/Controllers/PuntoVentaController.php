@@ -85,10 +85,10 @@ class PuntoVentaController extends Controller
             $validar_api = new ValidarApi();
             $respuesta_api = $validar_api->ListaTiendasTokenApi();
             $respuesta_api = (string)$respuesta_api;
-            $respuesta = json_decode($respuesta_api, true);
-            $http_code = $respuesta['http_code'];
+            $resp = json_decode($respuesta_api, true);
+            $http_code = $resp['http_code'];
             if ($http_code == 200) {
-                foreach ($respuesta['result'] as $data) {
+                foreach ($resp['result'] as $data) {
                     $data_unit_ids = $data['unit_ids'];
                     $unit_ids = "";
                     $come = ",";
