@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ApiApuestaTotal\ValidarApi;
+use App\Evento;
 use App\Funciones;
+use App\ResultadoEvento;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 

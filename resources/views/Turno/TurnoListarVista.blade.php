@@ -56,5 +56,5 @@
 @stop
 
 @push('Js')
-<script src="{{asset('../assets/Turno/TurnoListar.js')}}"></script>
+<script src="{{asset('assets/Turno/TurnoListar.js')}}"></script>
 @endpush

@@ -40,7 +40,8 @@ left join juego ju on ju.idJuego= ev.idJuego
 where ev.estadoEvento=1'));
         return $listar;
     }
-      public static function EventoDatosListar($idPuntoVenta)
+
+    public static function EventoDatosListar($idPuntoVenta)
     {
         $listar = DB::select(DB::raw('
  select 
@@ -50,7 +51,7 @@ where ev.estadoEvento=1'));
             INNER JOIN pozo_jackpot PZJ ON PZJ.idPozoJackpot=POL.idPozoJackpot
             INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
             INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
-            WHERE JPV.idPuntoVenta= '.$idPuntoVenta.') as jackpotsuma,
+            WHERE JPV.idPuntoVenta= ' . $idPuntoVenta . ') as jackpotsuma,
 ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
@@ -59,9 +60,6 @@ where ev.estadoEvento=1'));
         return $listar;
     }
 
-
-
-   
 
     public static function EventoId($idEvento)
     {
@@ -341,8 +339,7 @@ LIMIT 18
 
     public static function GenerarResultadoEvento_CambiarEstadoEvento()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')
-            ->first();
+        $Configuracion = DB::table('configuracion_generar_evento')->first();
         if ($Configuracion != null) {
             $fechaIni = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fechaFin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
@@ -350,21 +347,25 @@ LIMIT 18
             $fechaIni = today()->startOfDay()->toDateTimeString();
             $fechaFin = today()->endOfDay()->toDateTimeString();
         }
-        $ListaEventosDia = DB::table('evento as e')
-            ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
-            ->get();
+        $hora_actual = now()->format('h:i');
+        $ListaEventosDia = DB::select(DB::raw("SELECT * 
+        FROM evento e 
+        WHERE e.fechaEvento BETWEEN '$fechaIni' AND '$fechaFin'
+        AND HOUR(e.fechaEvento) = '$hora_actual'"));
+
 
         foreach ($ListaEventosDia as $li) {
-
-            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+            if ($li->fechaEvento <= now() && $li->fechaFinEvento > now() && $li->estadoEvento == 0) {
                 $val = Evento::findorfail($li->idEvento);
-                if ($val->estadoEvento == 0) {
-                    $val->estadoEvento = 1;
-                    $val->save();
+                $val->estadoEvento = 1;
+                $val->save();
+                $cantidad_resultados = ResultadoEvento::ResultadosEvento($val->idEvento);
+                if($cantidad_resultados == 0){
                     $numero_random = rand(0, 36);
                     TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
                 }
-            } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
+            }
+            if ($li->fechaEvento <= now() && $li->fechaFinEvento <= now() && $li->estadoEvento == 1) {
                 $evento = Evento::findorfail($li->idEvento);
                 $evento->estadoEvento = 2;
                 $evento->save();

@@ -34,20 +34,20 @@ class Reporte extends Model
         $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
         $lista = DB::select(DB::raw("
-        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
+        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
         inner join ticket ti on ti.idTicket=a.idTicket
-        where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
-        e.nombre Evento,count(t.idticket) Jugadores
+        where ti.idAperturaCajaPago= ac.idaperturacaja),0) Pagos,
+        IFNULL(e.nombre,'CUY') Evento,count(t.idticket) Jugadores
         from apertura_caja ac
-        inner join caja c on c.idCaja=ac.idCaja
-        inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-        inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
-        inner join evento e on e.idevento=t.idevento 
+        left join caja c on c.idCaja=ac.idCaja
+        left join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+        left join ticket t on  t.idaperturacaja=ac.idaperturacaja
+        left join evento e on e.idevento=t.idevento 
         where  ac.estado!=0
-        $condicional
-        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'        
+         $condicional
+       and ac.fechaoperacion between '$fechaIni' and '$fechaFin'               
         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
         "));
         $data = [];
@@ -418,15 +418,28 @@ class Reporte extends Model
 
         $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
 
-        $resultado = DB::select(DB::raw("select e.nombre as 'juego',e.idEvento,e.fechaevento,ti.idticket,ti.montototal,ti.fechaRegistro,pv.nombre as 'puntoventa'
-        , (select GROUP_CONCAT(ta.descripcion SEPARATOR '|')   from tipo_apuesta ta inner join  apuesta apu
+        $resultado = DB::select(DB::raw("select 
+        e.fechaevento,
+        e.nombre as 'juego',
+        e.idEvento,        
+        ti.idticket,
+        ti.fechaRegistro,
+        pv.nombre as 'puntoventa',
+        ti.fechapago,
+        pvpago.nombre as 'puntoventapago', 
+        ti.montototal,
+        (select GROUP_CONCAT(ta.descripcion SEPARATOR '|') 
+        from tipo_apuesta ta inner join  apuesta apu
         on ta.idtipoapuesta=apu.idtipoapuesta
-        where apu.idticket=ti.idticket) valores 
+        where apu.idticket=ti.idticket) valores
         from ticket ti
         inner join evento e on e.idEvento=ti.idevento
         inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
         inner join caja ca on ca.idcaja=ac.idcaja
         inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
+        inner join apertura_caja acpago on acpago.idaperturacaja=ti.idAperturaCajaPago
+        inner join caja capago on capago.idcaja=acpago.idcaja
+        inner join punto_venta pvpago on pvpago.idpuntoventa=capago.idpuntoventa
         where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
         return $resultado;
     }

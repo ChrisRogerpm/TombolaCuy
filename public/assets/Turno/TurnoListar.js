@@ -10,7 +10,7 @@ $(document).ready(function () {
 function ListarTurno() {
     $.ajax({
         type: 'POST',
-        url: basePath + 'TurnoListarJson',
+        url: basePath + 'TurnoListarJsonFk',
         data: {
             '_token': $('input[name=_token]').val(),
         },
