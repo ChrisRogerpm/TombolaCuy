@@ -14,6 +14,11 @@ class PuntoVentaController extends Controller
     public function PuntoVentaListarVista()
     {
         return view('PuntoVenta.PuntoVentaListarVista');
+//        $validar_api = new ValidarApi();
+//        $respuesta_api = $validar_api->ListaTiendasTokenApi();
+//        $respuesta_api = (string)$respuesta_api;
+//        $resp = json_decode($respuesta_api, true);
+//        return count($resp['result']);
     }
 
     public function PuntoVentaInsertarVista()

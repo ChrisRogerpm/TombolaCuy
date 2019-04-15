@@ -23,6 +23,13 @@ class ResultadoEvento extends Model
         return $resultado;
     }
 
+    public static function ResultadoEventoContador($idEvento){
+        $resultado = DB::table('resultado_evento')
+            ->where('idEvento',$idEvento)
+            ->count();
+        return $resultado;
+    }
+
     public static function ResultadosEvento($IdJuego)
     {
         $eventoActivo = Evento::where('estadoEvento', 1)->first();

@@ -1,7 +1,16 @@
 $(document).ready(function () {
     // $(".select2").select2();
-    var dateNow = new Date();
+    // var dateNow = new Date();
+    var d = new Date();
+    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
     $(".Fecha").datetimepicker({
+        format: 'YYYY/MM/DD HH:mm:ss',
+        defaultDate: datestring,
+        useCurrent:'day'
+    });
+
+    var dateNow = new Date();
+    $(".FechaFin").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: dateNow,
     });

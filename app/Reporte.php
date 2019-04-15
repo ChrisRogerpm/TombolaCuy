@@ -34,20 +34,20 @@ class Reporte extends Model
         $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
         $lista = DB::select(DB::raw("
-        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,sum(t.montoTotal) apuestas,
+        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
         inner join ticket ti on ti.idTicket=a.idTicket
-        where t.idAperturaCaja= ac.idaperturacaja),0) Pagos,
-        e.nombre Evento,count(t.idticket) Jugadores
+        where ti.idAperturaCajaPago= ac.idaperturacaja),0) Pagos,
+        IFNULL(e.nombre,'CUY') Evento,count(t.idticket) Jugadores
         from apertura_caja ac
-        inner join caja c on c.idCaja=ac.idCaja
-        inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-        inner join ticket t on  t.idaperturacaja=ac.idaperturacaja
-        inner join evento e on e.idevento=t.idevento 
+        left join caja c on c.idCaja=ac.idCaja
+        left join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+        left join ticket t on  t.idaperturacaja=ac.idaperturacaja
+        left join evento e on e.idevento=t.idevento 
         where  ac.estado!=0
-        $condicional
-        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'        
+         $condicional
+       and ac.fechaoperacion between '$fechaIni' and '$fechaFin'               
         group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
         "));
         $data = [];

@@ -74,7 +74,7 @@
                                     <label for="">Fecha Fin</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control input-sm Fecha" name="fechaFin" required>
+                                        <input type="text" class="form-control input-sm FechaFin" name="fechaFin" required>
                                     </div>
                                 </div>
                             </div>
