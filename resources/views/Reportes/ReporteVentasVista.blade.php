@@ -82,7 +82,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Zona Comercial</label>
-                                    <select multiple="multiple" id="cboZona" name="zonas"
+                                    <select multiple="multiple" id="cboZona" name="ZonaComercial"
                                             class="form-control input-sm multiselect" style="width: 100%;">
                                         <option value="0">Todos</option>
                                         <option value="1">Zona Comercial 1</option>
@@ -113,8 +113,10 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                             <th>Total</th>
                             <th id="TotalGanancia">0</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>

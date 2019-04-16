@@ -29,11 +29,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#btnBuscar', function () {
         var url = basePath + "ReporteVentaJsonFk";
-        var dataForm = {
-            fechaInicio: $("input[name='fechaInicio']").val(),
-            fechaFin: $("input[name='fechaFin']").val(),
-            _token: $("input[name='_token']").val()
-        };
+        var dataForm = $('#frmNuevo').serializeFormJSON();
         ReporteVentaJson(url, dataForm);
     });
     $(document).on('click', '.btnVer', function () {
@@ -93,13 +89,15 @@ function ReporteVentaJson(url, dataForm) {
                 "order": [[1, "desc"]],
                 data: resp,
                 columns: [
-                    {data: "Fecha", title: "Fecha", class: 'text-center'},
-                    {data: "Evento", title: "Evento", class: 'text-center'},
+                    {data: "Fecha", title: "Fecha Evento", class: 'text-center'},
+                    {data: "ZonaComercial", title: 'Zona Comercial', class: 'text-center'},
+                    {data: "Tienda", title: 'Tienda', class: 'text-center'},
                     {data: "Juego", title: "Juego", class: 'text-center'},
+                    {data: "Evento", title: "Evento", class: 'text-center'},
                     {data: "TipoApuesta", title: 'Tipo Apta', class: 'text-center'},
                     {data: "Moneda", title: "Moneda", class: 'text-center'},
-                    {data: "estadoEvento", title: "Estado", class: 'text-center'},
                     {data: "Ganado", title: 'Ganado', class: 'text-center'},
+                    {data: "estadoEvento", title: "Estado", class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
                 }

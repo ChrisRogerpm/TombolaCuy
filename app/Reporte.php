@@ -55,12 +55,12 @@ class Reporte extends Model
             $turno = Turno::TurnoObtenerId($l->Turno);
             $data [] = [
                 'Tienda' => $l->Tienda,
-                'fechaoperacion' => $l->fechaoperacion,
                 'Turno' => ucwords($turno),
                 'apuestas' => $l->apuestas,
                 'Pagos' => $l->Pagos,
                 'Evento' => $l->Evento,
                 'Jugadores' => $l->Jugadores,
+                'fechaoperacion' => $l->fechaoperacion
             ];
         }
         return $data;
@@ -262,39 +262,52 @@ class Reporte extends Model
     {
         $fecha_ini = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fecha_fin = Carbon::parse($request->input('fechaFin'))->endOfDay();
+        $ZonaComercial = $request->input('ZonaComercial');
+        $ZonaComercial = is_array($ZonaComercial) ? implode(",", $ZonaComercial) : $ZonaComercial;
 
-//        $listar = DB::table('evento as e')
-//            ->select('e.idEvento', 'e.fechaEvento AS Fecha', 'e.idEvento AS Evento', 'j.nombre AS Juego', 'm.codlso as Moneda', 'e.estadoEvento')
-//            ->JOIN('juego as  j', 'j.idJuego', 'e.idJuego')
-//            ->JOIN('moneda as m', 'm.idMoneda', 'e.idMoneda')
-//            ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-//            ->get();
+        $condicional = $ZonaComercial == 0 ? "" : "and p.ZonaComercial in ($ZonaComercial)";
 
-        $listar = DB::select(DB::raw("SELECT e.idEvento, e.fechaEvento AS Fecha, e.idEvento AS Evento, j.nombre AS Juego, m.codlso as Moneda,
-         e.estadoEvento,ifnull(sum(t.montoTotal),0) - ifnull(sum(ge.montoAPagar),0) Ganado
-        FROM evento e
-        inner JOIN juego as j on j.idJuego = e.idJuego
-        inner JOIN moneda AS m on m.idMoneda = e.idMoneda
-        left join ticket t on t.idEvento=e.idevento 
-        left join apuesta a on a.idTicket=t.idticket
-        left join  ganador_evento ge on ge.idApuesta=a.idApuesta
-        where e.fechaEvento between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)
-        group by  e.idEvento, e.fechaEvento  , e.idEvento  , j.nombre  , m.codlso,  e.estadoEvento
-        order by e.idevento desc"));
+        $listar = DB::select(DB::raw("
+        select 
+        IFNULL(e.idEVento,epago.idEvento) Evento,
+        concat('ZONA COMERCIAL ',IFNULL(p.ZonaComercial,0)) ZonaComercial ,
+        p.nombre tienda,
+        IFNULL(e.fechaEvento,epago.fechaEvento) Fecha
+        , j.nombre AS Juego, m.simbolo as Moneda,
+        IFNULL(sum(t.montoTotal),0) - IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        inner join apuesta apu on apu.idApuesta=ge.idApuesta
+        inner join ticket tiint on tiint.idTicket=apu.idTicket                  
+        where tiint.idEvento=IFNULL( e.idEVento,epago.idEvento) ),0) Ganado
+        ,IFNULL( e.idEVento,epago.idEvento) Evento  , IFNULL(e.estadoEvento,epago.estadoEvento) estadoEvento     
+        from apertura_caja ac
+        LEFT join caja c on c.idCaja=ac.idCaja
+        left join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
+        left join ticket t on  t.idaperturacaja=ac.idaperturacaja        
+        left join evento e on e.idevento=t.idevento          
+        left join ticket tpago on  tpago.idAperturaCajaPago=ac.idaperturacaja    
+        left join evento epago on epago.idevento=tpago.idevento   
+        inner JOIN juego as j on j.idJuego = IFNULL(e.idJuego,epago.idJuego)
+        inner JOIN moneda AS m on m.idMoneda = IFNULL(e.idMoneda,epago.idMoneda)
+        where  ac.estado!=0
+        and IFNULL(e.fechaEvento,epago.fechaEvento) between '$fecha_ini' and '$fecha_fin'
+        $condicional
+        group by p.nombre,e.idEVento,epago.idEvento,ac.fechaoperacion,ac.idturno ,ac.idAperturaCaja,t.idAperturaCaja, e.estadoEvento , j.nombre , m.simbolo,p.ZonaComercial,e.fechaEvento,epago.fechaEvento,epago.estadoEvento
+        order by 2,3,1"));
 
         $data = [];
 
         foreach ($listar as $l) {
             $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
             $data [] = [
-//                'idEvento' => $l->idEvento,
                 'Fecha' => $l->Fecha,
-                'TipoApuesta' => 'Pleno',
-                'Evento' => $l->Evento,
+                'ZonaComercial' => $l->ZonaComercial,
+                'Tienda' => $l->tienda,
                 'Juego' => $l->Juego,
+                'Evento' => $l->Evento,
+                'TipoApuesta' => 'Pleno',
                 'Moneda' => $l->Moneda,
-                'estadoEvento' => $estadoEventoNombre,
                 'Ganado' => $l->Ganado,
+                'estadoEvento' => $estadoEventoNombre
             ];
         }
 
@@ -398,11 +411,11 @@ class Reporte extends Model
          IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket t on t.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) Pagado
+         where t.idAperturaCajaPago= ac.idaperturacaja),0) Pagado 
            from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-         where usuario=$IdUsuario and ac.estado=1"));
+         where usuario=$IdUsuario  and and ac.estado=1"));
         return $resultado;
     }
 

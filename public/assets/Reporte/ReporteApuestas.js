@@ -49,6 +49,8 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     $.LoadingOverlay("hide");
+                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th></th><th class="text-center" id="TotalJugadores"></th><th></th></tr></tfoot>');
+                    GananciaTotal();
                 },
                 success: function (response) {
                     var resp = response.data;
@@ -71,7 +73,7 @@ $(document).ready(function () {
                             {data: "Evento", title: "Evento", class: "text-center"},
                             {data: "Jugadores", title: "Jugadores", class: "text-center"},
                             {data: "fechaoperacion", title: "Fecha de Operacion", class: "text-center"},
-                        ]
+                        ],
                     });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -81,55 +83,25 @@ $(document).ready(function () {
     });
 });
 
-// function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
-//     var tienda = IdTienda;
-//     var url = basePath + "ReporteApuestaJsonFk";
-//     var dataForm = {
-//         fechaInicio: $("input[name='fechaInicio']").val(),
-//         fechaFin: $("input[name='fechaFin']").val(),
-//         tiendas: IdTienda,
-//         _token: $("input[name='_token']").val()
-//     };
-//     $.ajax({
-//         url: url,
-//         type: "POST",
-//         contentType: "application/json",
-//         data: JSON.stringify(dataForm),
-//         beforeSend: function () {
-//             $.LoadingOverlay("show");
-//         },
-//         complete: function () {
-//             $.LoadingOverlay("hide");
-//         },
-//         success: function (response) {
-//             var resp = response.data;
-//             $("#PanelTabla").show();
-//             $("#" + Tabla).DataTable({
-//                 "bDestroy": true,
-//                 "bSort": true,
-//                 "scrollCollapse": true,
-//                 "scrollX": false,
-//                 "paging": true,
-//                 "autoWidth": false,
-//                 "bProcessing": true,
-//                 "bDeferRender": true,
-//                 data: resp,
-//                 columns: [
-//
-//                     {data: "Tienda", title: "Tienda"},
-//                     {data: "apuestas", title: "Apuestas"},
-//                     {data: "Pagos", title: "Pagos"},
-//                     {data: "Evento", title: "Evento"},
-//                     {data: "Jugadores", title: "Jugadores"},
-//                     {data: "fechaoperacion", title: "Fecha de Operacion"},
-//                 ]
-//             });
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//         }
-//     });
-// }
-
+function GananciaTotal() {
+    var total;
+    var table = $('#table').DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var totalApuestas = 0;
+    var totalJugadores = 0;
+    var totalPagos = 0;
+    $.each(data, function (key, value) {
+        totalApuestas += parseFloat(value.apuestas);
+        totalJugadores += value.Jugadores;
+        totalPagos += value.Pagos;
+    });
+    //return total;
+    $('#TotalApuesta').html(totalApuestas.toFixed(2));
+    $('#TotalPagos').html(totalPagos);
+    $('#TotalJugadores').html(totalJugadores);
+}
 $("#frmNuevo")
     .validate({
         rules: {
