@@ -23,20 +23,19 @@ ARRAY_PUNTOSCAJAS=[];
 
 
 ARRAY_PUNTOSCAJAS.push({nombre:26,posicion:{x:-0.30980586278363836,y:0,z:-3.3762877429185947} })
-ARRAY_PUNTOSCAJAS.push({nombre:3,posicion:{x:-0.8491542474495604,y:0,z:-3.2508043486227187}})
+ARRAY_PUNTOSCAJAS.push({nombre:3,posicion:{x:-0.949006568309034,y:0,z:-3.356998701580594}})
+
 ARRAY_PUNTOSCAJAS.push({nombre:35,posicion:{x:-1.4167106765152129,y:0,z:-3.1356755102510894} })
-ARRAY_PUNTOSCAJAS.push({nombre:12,posicion:{x:-2.103012524 ,   y: 1.31786  ,  z: -2.880642131} })
+ARRAY_PUNTOSCAJAS.push({nombre:12,posicion:{x:-1.8540938062507262,y:0,z:-2.791641244935619} })
 ///29 28                                   
-ARRAY_PUNTOSCAJAS.push({nombre:28,posicion:{x:-2.3589124452269257,y:0,z:-2.4427245436088114} })
+ARRAY_PUNTOSCAJAS.push({nombre:28,posicion:{x:-2.3978601268406794,y:0,z:-2.467785601362559}})
 
-ARRAY_PUNTOSCAJAS.push({nombre:7,posicion:{x:-2.83103364     ,    y:  3.73421583,   z:-2.1094473} })
-
+ARRAY_PUNTOSCAJAS.push({nombre:7,posicion:{x:-2.765080554750653,y:0,z:-2.0221378996133974} })
                                            
 ARRAY_PUNTOSCAJAS.push({nombre:29,posicion:{x:-2.9853090380374905,y:0,  z:-1.541500347580593} })
 
-
-ARRAY_PUNTOSCAJAS.push({nombre:18,posicion:{x:-3.2384277      ,    y:-1.0414147  ,    z:-0.95414578} })
-ARRAY_PUNTOSCAJAS.push({nombre:22,posicion:{x:-3.336961        ,  y:-1.7764711    ,   z:-0.35392671} })
+ARRAY_PUNTOSCAJAS.push({nombre:18,posicion:{x:-3.224733808882785,y:0,z:-0.9138055339476931} })
+ARRAY_PUNTOSCAJAS.push({nombre:22,posicion:{x:-3.4912757475952065,y:0,z:-0.44938379926419136} })
 ARRAY_PUNTOSCAJAS.push({nombre:9,posicion:{x:-3.476497,  y:0 , z:0.23360957} })
 
 ARRAY_PUNTOSCAJAS.push({nombre:31,posicion:{x:-3.35743326 ,y:0,z:0.7374220786} })
@@ -46,30 +45,30 @@ ARRAY_PUNTOSCAJAS.push({nombre:1,posicion:{x:-2.51463235,y:0,z:2.18843981} })
 ARRAY_PUNTOSCAJAS.push({nombre:33,posicion:{x: -2.18747530,y:0,z:2.60356937} })
 ARRAY_PUNTOSCAJAS.push({nombre:16,posicion:{x: -1.593648, y:0,z:2.85932161} })
 ///24´
-ARRAY_PUNTOSCAJAS.push({nombre:24,posicion:{x: -1.1770804 , y:1.11470191,z:3.154577} })
-ARRAY_PUNTOSCAJAS.push({nombre:5,posicion:{x:-0.54013880  , y:1.184496 ,z:3.37651267} })
-ARRAY_PUNTOSCAJAS.push({nombre:10,posicion:{x:-0.03006175  , y:1.19588 , z:3.41271828} })
-ARRAY_PUNTOSCAJAS.push({nombre:23,posicion:{x:0.5825021   ,y:1.160233068 ,z:3.29935941} })
+ARRAY_PUNTOSCAJAS.push({nombre:24,posicion:{x:-1.088638265020644,y:0,z:3.2145740703933443} })
+ARRAY_PUNTOSCAJAS.push({nombre:5,posicion:{x:-0.5348062371620586,y:0,z:3.301620951663683} })
+ARRAY_PUNTOSCAJAS.push({nombre:10,posicion:{x:-0.02302394273425558,y:0,z:3.5234013240937334}    })
+ARRAY_PUNTOSCAJAS.push({nombre:23,posicion:{x:0.5254609302769983,y:0,z:3.3041370243871855} })
 
-ARRAY_PUNTOSCAJAS.push({nombre:8,posicion:{x:1.11613945  , y:1.134411 , z:3.21725140} })
-ARRAY_PUNTOSCAJAS.push( { nombre:30 ,posicion:{x:1.7076888671927042,y:1.050872390580982e-78,z:2.9516095931820985}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:11 ,posicion:{x:2.126286631957775,y:9.79397767480261e-79,z:2.724331487521306}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:36 ,posicion:{x:2.628689325067648,y:8.38801974987717e-79,z:2.2772588903486373} }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:13 ,posicion:{x:2.8784870945608,y:6.886329118767497e-79,z:1.7997447921683765}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:27 ,posicion:{x:3.080753138239195,y:4.973970600084433e-79,z:1.1916447384499933}   }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:6 ,posicion:{x:3.305584908644189,y:3.480423440551881e-79,z:0.7167201366717904}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:34 ,posicion:{x:3.3567289812049506,y:1.6496994745192558e-79,z:0.13457859197092054}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:17 ,posicion:{x:3.4104972649128986,y:-1.0765274287774236e-80,z:-0.4242318859603784}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:25 ,posicion:{x:3.2428980465333046,y:-1.8129229624946896e-79,z:-0.966481104411095}  }   )
+ARRAY_PUNTOSCAJAS.push({nombre:8,posicion:{x:1.1413224681962724,y:0,z:3.2268432103527904} })
+ARRAY_PUNTOSCAJAS.push( { nombre:30 ,posicion:{x:1.6125922448708456,y:0,z:2.9984823398983607}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:11 ,posicion:{x:2.164808512786406,y:0,z:2.7421715169359664}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:36 ,posicion:{x:2.651818597146128,y:0,z:2.3733912998766367} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:13 ,posicion:{x:2.9243464869306433,y:0,z:1.831102276556383}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:27 ,posicion:{x:3.0508343404937066,y:0,z:1.2188483240919867}   }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:6 ,posicion:{x:3.32875742450882,y:0,z:0.7543380207997183}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:34 ,posicion:{x:3.377377358498914,y:0,z:0.12394453640106479}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:17 ,posicion:{x:3.4183559221406865,y:0,z:-0.36684366594296364}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:25 ,posicion:{x:3.263097590331593,y:0,z:-0.9840921494909135}  }   )
 
-ARRAY_PUNTOSCAJAS.push( { nombre:2 ,posicion: {x:3.0008399114242144,y:-3.333412519564821e-79,z:-1.4499729665799899} }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:21 ,posicion:{x:2.7685358027269076,y:-5.023952696111626e-79,z:-1.9875382620660917}  }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:4 ,posicion: {x:2.261878139124354,y:-6.274871952715972e-79,z:-2.385310991241556} }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:19 ,posicion: {x:1.9705155678503274,y:-7.866898767607047e-79,z:-2.8915505808364315} }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:15 ,posicion:{x:1.4077703258667897,y:-8.627596789534276e-79,z:-3.13344063622} }   )
-ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.8564101084451127,y:-9.199006989090577e-79,z:-3.31514012909786} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:2 ,posicion: {x:3.037643184345156,y:0,z:-1.5227852729244755} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:21 ,posicion:{x:2.7196177221423063,y:0,z:-1.959217585937729}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:4 ,posicion: {x:2.3607702253224208,y:0,z:-2.3638512662486857} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:19 ,posicion: {x:2.002183195861022,y:0,z:-2.910166458303999} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:15 ,posicion:{x:1.448259415771182,y:0,z:-3.172386117998001} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348998139977028} }   )
 
-ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.2504557653960453,y:-7.945443504468425e-79,z:-2.9165265768319912} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
 function get_caja(numero){
         cajaobjeto={};
@@ -85,23 +84,11 @@ return cajaobjeto;
 }
 
 $(document).ready(function () {
-    
     var i=0;
-    $("#ImgContainer").css("background-image", "url('images/fondo_inicio.jpg')");
+    //$("#ImgContainer").css("background-image", "url('images/fondo_inicio.jpg')");
     CargarEstadistica(1);
-    //$("#ImgContainer").hide();
-
-    // setInterval(function () {
-    //     if(i==10){
-    //         location.reload();
-    //     }
-    //     if (iniciado == false) {
-    //         consultarEvento(1);
-    //     }
-    // }, 1000);
-
-
 });
+
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
@@ -186,89 +173,6 @@ function init() {
         //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
-        //cargar los demas modelos
-        // CUY CAMINANDO				
-        // loader.load('images/cuy6.glb', function (gltf) {
-        //     model = gltf.scenes[0];
-        //     model.traverse(function (object) {
-        //         //debugger
-        //         if (object instanceof THREE.Mesh) {
-        //             object.castShadow = true
-        //         }
-        //     });
-        //     model.scale.set(0.3, 0.3, 0.3);
-        //     model.position.set(0, 0, 0);
-        //     model.name = "CUY";
-        //     //model.lookAt(-2.5,0,0) ;
-        //     //model.rotateY(1.5708) ; 
-        //     //model.rotation._y           
-        //     scene.add(model);
-
-        //     //model.position.z=2;
-        //     skeleton = new THREE.SkeletonHelper(model);
-        //     var animations = gltf.animations;  
-                      
-        //     mixer = new THREE.AnimationMixer(model);
-        //     mixer.clipAction(animations[0]).play();
-        //     loaded = true;
-        // });
-        // // CAJA GIRATORIA
-        // var loaderCajaGira = new THREE.GLTFLoader();
-        // loaderCajaGira.load('images/cajaPensando.glb', function (gltf) {
-        //     modelCajaP = gltf.scenes[0];
-        //     modelCajaP.traverse(function (objectCuyDudando) {
-        //         if (objectCuyDudando instanceof THREE.Mesh) {
-        //             objectCuyDudando.castShadow = true
-        //         }
-        //     });            
-        //     modelCajaP.scale.set(0.05, 0.05, 0.05);
-        //     modelCajaP.position.set(0, 0, 0);
-        //     scene.add(modelCajaP);
-        //     skeleton = new THREE.SkeletonHelper(modelCajaP);
-        //     var animations = gltf.animations;
-            
-        //     mixerCajaP = new THREE.AnimationMixer(modelCajaP);
-        //     mixerCajaP.clipAction(animations[0]).play();
-        //     loaded = true;
-        // });
-        // // CUY DUDANDO
-        // var loaderCuyDudando = new THREE.GLTFLoader();
-        // loaderCuyDudando.load('images/cuyDudandoGLB.glb', function (gltf) {
-        //     modelCuyDudando = gltf.scenes[0];
-        //     modelCuyDudando.traverse(function (objectCuyDudando) {
-        //         if (objectCuyDudando instanceof THREE.Mesh) {
-        //             objectCuyDudando.castShadow = true
-        //         }
-        //     });
-        //     modelCuyDudando.scale.set(0.5, 0.5, 0.5);
-        //     model.position.set(0, 0, 0);
-        //     scene.add(modelCuyDudando);
-        //     skeleton = new THREE.SkeletonHelper(model);
-        //     var animations = gltf.animations;
-        //     mixerCuyDudando = new THREE.AnimationMixer(modelCuyDudando);
-        //     mixerCuyDudando.clipAction(animations[0]).play();
-        //     loaded = true;
-        // });
-        // // CUY CHOQUE				
-        // var loaderCuyChoque = new THREE.GLTFLoader();
-        // loaderCuyChoque.load('images/cuyChoqueGLB.glb', function (gltf) {
-        //     modelCuyChoque = gltf.scenes[0];
-        //     modelCuyChoque.traverse(function (objectCuyChoque) {
-        //         if (objectCuyChoque instanceof THREE.Mesh) {
-        //             objectCuyChoque.castShadow = true
-        //         }
-        //     });
-        //     modelCuyChoque.scale.set(0.5, 0.5, 0.5);
-        //     model.position.set(0, 0, 0);
-        //     scene.add(modelCuyChoque);
-        //     skeleton = new THREE.SkeletonHelper(model);
-        //     var animations = gltf.animations;
-        //     mixerCuyChoque = new THREE.AnimationMixer(modelCuyChoque);
-        //     mixerCuyChoque.clipAction(animations[0]).play();
-        //     loaded = true;
-        // });
-
-
         cargar_archivos();
         modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
         //modelCaja.children[0].children[0].position.y = 410
