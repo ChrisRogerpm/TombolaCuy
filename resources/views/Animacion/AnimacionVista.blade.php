@@ -32,11 +32,15 @@
 				text-decoration: line-through;
 			}
 			#ImgContainer{
-				width: 100vw;
+				z-index:2;
+				width: 60vw;
     			height: 100vh;  
 				background-image: url("images/fondo_inicio.jpg");  
 				background-position: center;
 				background-repeat: no-repeat;
+				background-size:100% 100%;
+				position:absolute;
+				left:20%;
 			}
 			#container{
 				z-index:10;
@@ -130,7 +134,7 @@
 					background: #2c2e38 url(images/retro.jpg) center center;
 					/*margin:auto;
 					//margin-top:0.5%;*/
-					z-index:20;position:absolute;
+					z-index:1;position:absolute;
 					left:35%;
 				}
 
@@ -149,9 +153,82 @@
 
 
 				@font-face {
-    font-family: RosewoodStd-Regular;
-    src: url("fonts/RosewoodStd-Regular.otf") format("opentype");
+				    font-family: RosewoodStd-Regular;
+				    src: url("fonts/RosewoodStd-Regular.otf") format("opentype");
+				}
+
+
+/*////////////////////////*/
+.glass {
+  background: #D8D4D5;
+    border-radius: 100px 100px 0 0;
+    display: block;
+    height: 240px; 
+    padding: 7px;
+    position: absolute;
+    width: 3px;
+    margin-top: 16px;
+    margin-left: 31px;
+    z-index: 4;
 }
+.amount {
+    background: rgb(45, 82, 216) ;
+    border-radius: 100px;
+    display: block;
+    width: 7px;
+    position: absolute;
+    bottom: -5px;
+    margin-left: -2px;
+}
+
+.bulb {
+    background: #D8D4D5;
+    border-radius: 100px;
+    display: block;
+    height: 28px;
+    padding: 5px;
+    position: absolute;
+    width: 28px;
+    margin-top: 247px;
+    margin-left: 20px;
+    z-index: 3;
+}
+.red-circle {
+  background: rgb(45, 82, 216);
+    border-radius: 100px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    z-index: 8;
+    margin-top: 251px;
+    margin-left: 24px;
+}
+.filler {
+    background:  rgb(45, 82, 216);
+    border-radius: 100px 100px 0 0;
+    display: block;
+    height: 30px;
+    width: 7px;
+    position: absolute;
+    z-index: 30;
+    margin-top: 239px;
+    margin-left: 36px;
+}
+
+.marks{
+  width: 20px;
+  height: 90px;
+  position: absolute;
+  z-index: 40;
+  margin-left: 14px;
+}
+
+.line{
+  line-height: 15px;
+    margin-top: 19px;
+}
+
 
 
 		</style>
@@ -160,13 +237,28 @@
 		<div id="ImgContainer"></div>
 
 
+		<div id="progreso" style="display:none;height: 400px; text-align: left; position: absolute; top: 18%; left: 23%; color: black">
+		<img src="images/termo.png" style="width: 75px;height: 300px;position: absolute;">
+		<span class="glass">
+			<strong class="total" style="bottom: 24%"></strong>
+			<span class="amount" id="barra_loading" style="height: 0%"></span>
+		</span>
+		<div class="bulb">
+		</div>
+		<span class="red-circle"></span>
+		<span class="filler"></span>
+		<div class="marks"><div class="line">--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--<br>--</div></div>
+	</div>
+
+
+
 <!-- <div id="progreso" style="display:none;position:absolute ;left: 22%; top: 20%; padding: 0;float:right;width: 4%;margin:auto;height:40%; background:rgba(0, 0, 0, 0) linear-gradient(to top,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
 	 <div id="barra_loading" style="float:right;width:100%;height:100%;background-color:green;"></div>
 </div> -->
-<div id="progreso" style="display:none;position: absolute; left: 22%;top: 18%;  width: 4%; height: 45%; background-image: url(&quot;images/termo.png&quot;);">
-<div  style="padding: 0px; margin: auto;margin-top:100%; background: transparent linear-gradient(to top, rgb(33, 150, 243), rgb(139, 195, 74), rgb(244, 67, 54)) repeat scroll 0px 0px; width: 80%; height: 80%;">
+<!-- <div id="progreso" style="display:none;position: absolute; left: 22%;top: 18%;  width: 4%; height: 45%; background-image: url(&quot;images/termo.png&quot;);">
+<div  style="padding: 0px; background: transparent linear-gradient(to top, rgb(33, 150, 243), rgb(139, 195, 74), rgb(244, 67, 54)) repeat scroll 0px 0px; height: 90%; width: 20%; margin: 45% auto auto 55%;;">
 	 <div id="barra_loading" style="float: right; width: 100%; height: 100%; background-color: green;"></div>
-  </div></div>
+  </div></div> -->
 
 
 		<div class="nroevento">
@@ -175,7 +267,7 @@
 
 		<div id="container"></div>		
 		<div id="contenedorEstadistica">
-			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:90%;margin-top: 5vh;height:18%">
+			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:75%;margin-top: 5vh;height:18%">
 			<h1>Estadísticas</h1>	
 			<div id="cajaInteriror">
 				<h2 style="margin-top:5px;margin-bottom:5px">Números últimos 120 Eventos</h2>	
