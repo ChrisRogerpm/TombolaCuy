@@ -1,5 +1,6 @@
+GANADOR_DE_EVENTO="";
 iniciado = false;
-token="";
+token="";  /// en consultarevento obtiene valor
 anguloRotacion=0;
 i=0;
 x=0;
@@ -15,12 +16,80 @@ posF=3;
 posF1=3;
 posO=37;
 entrar=false;
+
+
+ARRAY_PUNTOSCAJAS=[];
+
+
+
+ARRAY_PUNTOSCAJAS.push({nombre:26,posicion:{x:-0.30980586278363836,y:0,z:-3.3762877429185947} })
+ARRAY_PUNTOSCAJAS.push({nombre:3,posicion:{x:-0.8491542474495604,y:0,z:-3.2508043486227187}})
+ARRAY_PUNTOSCAJAS.push({nombre:35,posicion:{x:-1.4167106765152129,y:0,z:-3.1356755102510894} })
+ARRAY_PUNTOSCAJAS.push({nombre:12,posicion:{x:-2.103012524 ,   y: 1.31786  ,  z: -2.880642131} })
+///29 28                                   
+ARRAY_PUNTOSCAJAS.push({nombre:28,posicion:{x:-2.3589124452269257,y:0,z:-2.4427245436088114} })
+
+ARRAY_PUNTOSCAJAS.push({nombre:7,posicion:{x:-2.83103364     ,    y:  3.73421583,   z:-2.1094473} })
+
+                                           
+ARRAY_PUNTOSCAJAS.push({nombre:29,posicion:{x:-2.9853090380374905,y:0,  z:-1.541500347580593} })
+
+
+ARRAY_PUNTOSCAJAS.push({nombre:18,posicion:{x:-3.2384277      ,    y:-1.0414147  ,    z:-0.95414578} })
+ARRAY_PUNTOSCAJAS.push({nombre:22,posicion:{x:-3.336961        ,  y:-1.7764711    ,   z:-0.35392671} })
+ARRAY_PUNTOSCAJAS.push({nombre:9,posicion:{x:-3.476497,  y:0 , z:0.23360957} })
+
+ARRAY_PUNTOSCAJAS.push({nombre:31,posicion:{x:-3.35743326 ,y:0,z:0.7374220786} })
+ARRAY_PUNTOSCAJAS.push({nombre:14,posicion:{x:-3.28769929 ,y:0,z:1.28942981} })
+ARRAY_PUNTOSCAJAS.push({nombre:20,posicion:{x: -2.8653985,y:0,z:1.736809} })
+ARRAY_PUNTOSCAJAS.push({nombre:1,posicion:{x:-2.51463235,y:0,z:2.18843981} })
+ARRAY_PUNTOSCAJAS.push({nombre:33,posicion:{x: -2.18747530,y:0,z:2.60356937} })
+ARRAY_PUNTOSCAJAS.push({nombre:16,posicion:{x: -1.593648, y:0,z:2.85932161} })
+///24´
+ARRAY_PUNTOSCAJAS.push({nombre:24,posicion:{x: -1.1770804 , y:1.11470191,z:3.154577} })
+ARRAY_PUNTOSCAJAS.push({nombre:5,posicion:{x:-0.54013880  , y:1.184496 ,z:3.37651267} })
+ARRAY_PUNTOSCAJAS.push({nombre:10,posicion:{x:-0.03006175  , y:1.19588 , z:3.41271828} })
+ARRAY_PUNTOSCAJAS.push({nombre:23,posicion:{x:0.5825021   ,y:1.160233068 ,z:3.29935941} })
+
+ARRAY_PUNTOSCAJAS.push({nombre:8,posicion:{x:1.11613945  , y:1.134411 , z:3.21725140} })
+ARRAY_PUNTOSCAJAS.push( { nombre:30 ,posicion:{x:1.7076888671927042,y:1.050872390580982e-78,z:2.9516095931820985}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:11 ,posicion:{x:2.126286631957775,y:9.79397767480261e-79,z:2.724331487521306}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:36 ,posicion:{x:2.628689325067648,y:8.38801974987717e-79,z:2.2772588903486373} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:13 ,posicion:{x:2.8784870945608,y:6.886329118767497e-79,z:1.7997447921683765}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:27 ,posicion:{x:3.080753138239195,y:4.973970600084433e-79,z:1.1916447384499933}   }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:6 ,posicion:{x:3.305584908644189,y:3.480423440551881e-79,z:0.7167201366717904}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:34 ,posicion:{x:3.3567289812049506,y:1.6496994745192558e-79,z:0.13457859197092054}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:17 ,posicion:{x:3.4104972649128986,y:-1.0765274287774236e-80,z:-0.4242318859603784}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:25 ,posicion:{x:3.2428980465333046,y:-1.8129229624946896e-79,z:-0.966481104411095}  }   )
+
+ARRAY_PUNTOSCAJAS.push( { nombre:2 ,posicion: {x:3.0008399114242144,y:-3.333412519564821e-79,z:-1.4499729665799899} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:21 ,posicion:{x:2.7685358027269076,y:-5.023952696111626e-79,z:-1.9875382620660917}  }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:4 ,posicion: {x:2.261878139124354,y:-6.274871952715972e-79,z:-2.385310991241556} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:19 ,posicion: {x:1.9705155678503274,y:-7.866898767607047e-79,z:-2.8915505808364315} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:15 ,posicion:{x:1.4077703258667897,y:-8.627596789534276e-79,z:-3.13344063622} }   )
+ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.8564101084451127,y:-9.199006989090577e-79,z:-3.31514012909786} }   )
+
+ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.2504557653960453,y:-7.945443504468425e-79,z:-2.9165265768319912} }   )
+
+function get_caja(numero){
+        cajaobjeto={};
+ $(ARRAY_PUNTOSCAJAS).each(function(i,e){
+    if(e.nombre==numero){
+        cajaobjeto=e;
+        return false;
+    }
+ })
+return cajaobjeto;
+
+
+}
+
 $(document).ready(function () {
     
     var i=0;
-    $("#ImgContainer").css("background-image", "url('images/imgCuyInicio.jpg')");
-    //CargarEstadistica(1);
-    $("#ImgContainer").hide();
+    $("#ImgContainer").css("background-image", "url('images/fondo_inicio.jpg')");
+    CargarEstadistica(1);
+    //$("#ImgContainer").hide();
 
     // setInterval(function () {
     //     if(i==10){
@@ -37,7 +106,7 @@ if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
 var scene, renderer, camera, stats;
-var model, modelCajaP,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja, clock;
+var model, modelCajaP,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja,mixerCuyDudando,mixerCajaP, clock;
 var crossFadeControls = [];
 var idleAction, walkAction, runAction;
 var idleWeight, walkWeight, runWeight;
@@ -81,7 +150,6 @@ function init() {
     dirLight.shadow.camera.far = 40;
     scene.add(dirLight);
 
-
     // var axesHelper = new THREE.AxesHelper( 5,5,5 );
     // scene.add( axesHelper );
 
@@ -100,6 +168,9 @@ function init() {
     var material = new THREE.MeshBasicMaterial();
     var loader = new THREE.GLTFLoader();
     // Plano y Cajas
+
+    CAJAS_ARRAY = [];
+
     var loaderCaja = new THREE.GLTFLoader();
     loaderCaja.load('images/cajasFFF.glb', function (gltfCaja) {
         
@@ -107,98 +178,106 @@ function init() {
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
                 object.castShadow = true;
-                // if (object.name != "Box006" && object.name != "Box007") {
-                //     object.position.y = 0;
-                // };
+           
             }
         });
         modelCaja.scale.set(0.005, 0.005, 0.005);
+        modelCaja.name ="TABLA_CAJAS";
         //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         //cargar los demas modelos
         // CUY CAMINANDO				
-        loader.load('images/cuy6.glb', function (gltf) {
-            model = gltf.scenes[0];
-            model.traverse(function (object) {
-                debugger
-                if (object instanceof THREE.Mesh) {
-                    object.castShadow = true
-                }
-            });
-            model.scale.set(0.3, 0.3, 0.3);
-            model.position.set(0, 0, 0);
-            //model.lookAt(-2.5,0,0) ;
-            //model.rotateY(1.5708) ; 
-            //model.rotation._y           
-            scene.add(model);
+        // loader.load('images/cuy6.glb', function (gltf) {
+        //     model = gltf.scenes[0];
+        //     model.traverse(function (object) {
+        //         //debugger
+        //         if (object instanceof THREE.Mesh) {
+        //             object.castShadow = true
+        //         }
+        //     });
+        //     model.scale.set(0.3, 0.3, 0.3);
+        //     model.position.set(0, 0, 0);
+        //     model.name = "CUY";
+        //     //model.lookAt(-2.5,0,0) ;
+        //     //model.rotateY(1.5708) ; 
+        //     //model.rotation._y           
+        //     scene.add(model);
 
-            //model.position.z=2;
-            skeleton = new THREE.SkeletonHelper(model);
-            var animations = gltf.animations;  
+        //     //model.position.z=2;
+        //     skeleton = new THREE.SkeletonHelper(model);
+        //     var animations = gltf.animations;  
                       
-            mixer = new THREE.AnimationMixer(model);
-            mixer.clipAction(animations[0]).play();
-            loaded = true;
-        });
-        // CAJA GIRATORIA
-        var loaderCajaGira = new THREE.GLTFLoader();
-        loaderCajaGira.load('images/cajaPensando.glb', function (gltf) {
-            modelCajaP = gltf.scenes[0];
-            modelCajaP.traverse(function (objectCuyDudando) {
-                if (objectCuyDudando instanceof THREE.Mesh) {
-                    objectCuyDudando.castShadow = true
-                }
-            });            
-            modelCajaP.scale.set(0.05, 0.05, 0.05);
-            modelCajaP.position.set(0, 0, 0);
-            scene.add(modelCajaP);
-            skeleton = new THREE.SkeletonHelper(modelCajaP);
-            var animations = gltf.animations;
+        //     mixer = new THREE.AnimationMixer(model);
+        //     mixer.clipAction(animations[0]).play();
+        //     loaded = true;
+        // });
+        // // CAJA GIRATORIA
+        // var loaderCajaGira = new THREE.GLTFLoader();
+        // loaderCajaGira.load('images/cajaPensando.glb', function (gltf) {
+        //     modelCajaP = gltf.scenes[0];
+        //     modelCajaP.traverse(function (objectCuyDudando) {
+        //         if (objectCuyDudando instanceof THREE.Mesh) {
+        //             objectCuyDudando.castShadow = true
+        //         }
+        //     });            
+        //     modelCajaP.scale.set(0.05, 0.05, 0.05);
+        //     modelCajaP.position.set(0, 0, 0);
+        //     scene.add(modelCajaP);
+        //     skeleton = new THREE.SkeletonHelper(modelCajaP);
+        //     var animations = gltf.animations;
             
-            mixerCajaP = new THREE.AnimationMixer(modelCajaP);
-            mixerCajaP.clipAction(animations[0]).play();
-            loaded = true;
-        });
-        // CUY DUDANDO
-        var loaderCuyDudando = new THREE.GLTFLoader();
-        loaderCuyDudando.load('images/cuyDudandoGLB.glb', function (gltf) {
-            modelCuyDudando = gltf.scenes[0];
-            modelCuyDudando.traverse(function (objectCuyDudando) {
-                if (objectCuyDudando instanceof THREE.Mesh) {
-                    objectCuyDudando.castShadow = true
-                }
-            });
-            modelCuyDudando.scale.set(0.5, 0.5, 0.5);
-            model.position.set(0, 0, 0);
-            scene.add(modelCuyDudando);
-            skeleton = new THREE.SkeletonHelper(model);
-            var animations = gltf.animations;
-            mixerCuyDudando = new THREE.AnimationMixer(modelCuyDudando);
-            mixerCuyDudando.clipAction(animations[0]).play();
-            loaded = true;
-        });
-        // CUY CHOQUE				
-        var loaderCuyChoque = new THREE.GLTFLoader();
-        loaderCuyChoque.load('images/cuyChoqueGLB.glb', function (gltf) {
-            modelCuyChoque = gltf.scenes[0];
-            modelCuyChoque.traverse(function (objectCuyChoque) {
-                if (objectCuyChoque instanceof THREE.Mesh) {
-                    objectCuyChoque.castShadow = true
-                }
-            });
-            modelCuyChoque.scale.set(0.5, 0.5, 0.5);
-            model.position.set(0, 0, 0);
-            scene.add(modelCuyChoque);
-            skeleton = new THREE.SkeletonHelper(model);
-            var animations = gltf.animations;
-            mixerCuyChoque = new THREE.AnimationMixer(modelCuyChoque);
-            mixerCuyChoque.clipAction(animations[0]).play();
-            loaded = true;
-        });
+        //     mixerCajaP = new THREE.AnimationMixer(modelCajaP);
+        //     mixerCajaP.clipAction(animations[0]).play();
+        //     loaded = true;
+        // });
+        // // CUY DUDANDO
+        // var loaderCuyDudando = new THREE.GLTFLoader();
+        // loaderCuyDudando.load('images/cuyDudandoGLB.glb', function (gltf) {
+        //     modelCuyDudando = gltf.scenes[0];
+        //     modelCuyDudando.traverse(function (objectCuyDudando) {
+        //         if (objectCuyDudando instanceof THREE.Mesh) {
+        //             objectCuyDudando.castShadow = true
+        //         }
+        //     });
+        //     modelCuyDudando.scale.set(0.5, 0.5, 0.5);
+        //     model.position.set(0, 0, 0);
+        //     scene.add(modelCuyDudando);
+        //     skeleton = new THREE.SkeletonHelper(model);
+        //     var animations = gltf.animations;
+        //     mixerCuyDudando = new THREE.AnimationMixer(modelCuyDudando);
+        //     mixerCuyDudando.clipAction(animations[0]).play();
+        //     loaded = true;
+        // });
+        // // CUY CHOQUE				
+        // var loaderCuyChoque = new THREE.GLTFLoader();
+        // loaderCuyChoque.load('images/cuyChoqueGLB.glb', function (gltf) {
+        //     modelCuyChoque = gltf.scenes[0];
+        //     modelCuyChoque.traverse(function (objectCuyChoque) {
+        //         if (objectCuyChoque instanceof THREE.Mesh) {
+        //             objectCuyChoque.castShadow = true
+        //         }
+        //     });
+        //     modelCuyChoque.scale.set(0.5, 0.5, 0.5);
+        //     model.position.set(0, 0, 0);
+        //     scene.add(modelCuyChoque);
+        //     skeleton = new THREE.SkeletonHelper(model);
+        //     var animations = gltf.animations;
+        //     mixerCuyChoque = new THREE.AnimationMixer(modelCuyChoque);
+        //     mixerCuyChoque.clipAction(animations[0]).play();
+        //     loaded = true;
+        // });
+
+
+        cargar_archivos();
+        modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
+        //modelCaja.children[0].children[0].position.y = 410
+        //modelCaja.children[0].scale.set(1, 1, 1);
+        CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
+        //modelCaja.children[0].scale.set(1, 1, 1);  
+
     });
     
-
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -280,46 +359,7 @@ function animate1() {
         //                 posicionZ = model.position.z;
         //             }
         //             break;
-        //         case 1:
-        //             if (model.position.z > 4.5) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/1.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {                                
-        //                 //model.rotation.y = 0.4;                        
-        //                 model.position.z += 0.01;
-        //                 model.position.x += 0.002;
-        //             }
-        //             break;
-        //         case 2:
-        //             if (model.position.z < -1.38) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/2.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 1.9;
-        //                 model.position.z -= 0.009;
-        //                 model.position.x += 0.023;
-        //             }
-        //             break;
+    
         //         case 3:
         //             if (model.position.z > 3.6) {
         //                 cancelAnimationFrame(id);
@@ -340,426 +380,7 @@ function animate1() {
         //                 model.position.x += 0.0145;
         //             }
         //             break;
-        //         case 4:
-        //             if (model.position.z < -2.98) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/4.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 2.7;
-        //                 model.position.z -= 0.011;
-        //                 model.position.x += 0.008;
-        //             }
-        //             break;
-        //         case 5:
-        //             if (model.position.z > 3.7) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/5.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -0.8;
-        //                 model.position.z += 0.01;
-        //                 model.position.x -= 0.008;
-        //             }
-        //             break;
-        //         case 6:
-        //             if (model.position.z > 4.2) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/6.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 0.35;
-        //                 model.position.z += 0.01;
-        //                 model.position.x += 0.0045;
-        //             }
-        //             break;
-        //         case 7:
-        //             if (model.position.z > 1.9) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/7.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -1.15;
-        //                 model.position.z += 0.005;
-        //                 model.position.x -= 0.011;
-        //             }
-        //             break;
-        //         case 8:
-        //             if (model.position.z > 4.6) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/8.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -0.1;
-        //                 model.position.z += 0.01;
-        //                 //model.position.x +=0.002;
-        //             }
-        //             break;
-        //         case 9:
-        //             if (model.position.z < -0.37) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/9.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 1.5;
-        //                 model.position.z -= 0.003;
-        //                 model.position.x += 0.028;
-        //             }
-        //             break;
-        //         case 10:
-        //             if (model.position.z > 4.3) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/10.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                // model.rotation.y = -0.5;
-        //                 model.position.z += 0.01;
-        //                 model.position.x -= 0.0048;
-        //             }
-        //             break;
-        //         case 11:
-        //             if (model.position.z > 2.7) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/11.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 0.85;
-        //                 model.position.z += 0.011;
-        //                 model.position.x += 0.0145;
-        //             }
-        //             break;
-        //         case 12:
-        //             if (model.position.z < -3.4) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/12.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -2.65;
-        //                 model.position.z -= 0.008;
-        //                 model.position.x -= 0.0045;
-        //             }
-        //             break;
-        //         case 13:
-        //             if (model.position.z < -1.15) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/13.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -1.9;
-        //                 model.position.z -= 0.0053;
-        //                 model.position.x -= 0.018;
-        //             }
-        //             break;
-        //         case 14:
-        //             if (model.position.z < -2.1) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/14.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -2.1;
-        //                 model.position.z -= 0.006;
-        //                 model.position.x -= 0.01;
-        //             }
-        //             break;
-        //         case 15:
-        //             if (model.position.z < -3.6) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/15.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 3;
-        //                 model.position.z -= 0.01;
-        //                 model.position.x += 0.0005;
-        //             }
-        //             break;
-        //         case 16:
-        //             if (model.position.z > 1.8) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/16.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                // model.rotation.y = 1;
-        //                 model.position.z += 0.0065;
-        //                 model.position.x += 0.0145;
-        //             }
-        //             break;
-        //         case 17:
-        //             if (model.position.z < -2.8) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/17.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -2.4;
-        //                 model.position.z -= 0.01;
-        //                 model.position.x -= 0.01;
-        //             }
-        //             break;
-        //         case 18:
-        //             if (model.position.z < -0.145) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/18.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -1.6;
-        //                 model.position.z -= 0.0008;
-        //                 model.position.x -= 0.018;
-        //             }
-        //             break;
-        //         case 19:
-        //             if (model.position.z < -3.4) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/19.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 2.7;
-        //                 model.position.z -= 0.011;
-        //                 model.position.x += 0.0038;
-        //             }
-        //             break;
-        //         case 20:
-        //             if (model.position.z > 0.87) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/20.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -1.3;
-        //                 model.position.z += 0.0028;
-        //                 model.position.x -= 0.015;
-        //             }
-        //             break;
-        //         case 21:
-        //             if (model.position.z < -2.27) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/21.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 2.1;
-        //                 model.position.z -= 0.011;
-        //                 model.position.x += 0.0145;
-        //             }
-        //             break;
-        //         case 22:
-        //             if (model.position.z > 0.765) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/22.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = 1.3;
-        //                 model.position.z += 0.0025;
-        //                 model.position.x += 0.0145;
-        //             }
-        //             break;
-        //         case 23:
-        //             if (model.position.z > 4.5) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/23.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -0.3;
-        //                 model.position.z += 0.01;
-        //                 model.position.x -= 0.0023;
-        //             }
-        //             break;
-        //         case 24:
-        //             if (model.position.z > 2.85) {
-        //                 cancelAnimationFrame(id);
-        //                 $("#ImgContainer").css("background-image", "url('images/24.jpg')");
-        //                 $("#ImgContainer").show();
-        //                 model.position.x = 0;
-        //                 model.position.y = 0;
-        //                 model.position.z = 0;
-        //                 clock = new THREE.Clock();
-        //                 clockCuyDudando = new THREE.Clock();
-        //                 CerrarEvento(1,token);
-        //                 token = "";
-        //                 iniciado = false;
-        //             }
-        //             else {
-        //                 //model.rotation.y = -0.9;
-        //                 model.position.z += 0.01;
-        //                 model.position.x -= 0.013;
-        //             }
-        //             break;
+       
         //         default:
         //         // code block
         //     }
@@ -800,17 +421,6 @@ function iniciar(numeorGanador) {
     if(ganador==3){anguloRotacion=6.7;}    
     if(ganador==6){anguloRotacion=6.6;}    
     $("#ImgContainer").hide();
-    // clock = new THREE.Clock();
-    // clockCuyDudando = new THREE.Clock();
-    // clockCuyChoque = new THREE.Clock();
-
-    // if(model!=undefined){
-    //     model.rotation.y=0;
-    // }
-    // if(modelCuyDudando!=undefined){
-    //     modelCuyDudando.rotation.y=0;
-    // }
-    
     animate();
 }
 
@@ -822,44 +432,52 @@ function consultarEvento(IdJuego) {
         contentType: "application/json",
         data: JSON.stringify({IdJuego: IdJuego}),
         beforeSend: function () {
+            buscando_evento=true;
         },
         complete: function () {
         },
         success: function (response) {
-            //console.log(response);
+
+            EVENTORESPONSE=response;
             if(response.token_animacion != undefined){       
                 i=i+1;
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
+                    $("#"+value.TipoValorApuesta).prev().css("background-color",value.rgb)
                 });
                 var strUltimos12="";
                 var clase="caja1";
                 $.each(response.resultado_evento, function( key, value ) {
-                    if(key<12){
-                        switch (value.valorGanador) {
-                            case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
-                                clase="caja2";
-                              break;
-                            case '15':case '4':case '2':case '22':case '11':case '6':case '8':case '10':case '24':case '20':case '13':case '17':
-                                clase="caja1";
-                              break;                            
-                            default:
-                                clase="caja0";
-                        }
-                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
+                     if(key<12){
+                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
                     }
                 });
                 $("#tablaUltimos").html(strUltimos12);
                 iniciado = true;
-                iniciar(response.evento_valor_ganador);
+                $("#idevento_titulo").text(response.evento_id_actual);
+                $("#progreso").show();
+                $("#barra_loading").css("height","100%");
+
+
+                buscando_evento=false;
+                clearInterval(intervalo_revisar_evento);
+                GANADOR_DE_EVENTO=response.evento_valor_ganador;
+                iniciar_juego();
+                cajagirando_animacion();
+               // iniciar(response.evento_valor_ganador);
+               //iniciar_juego();
+               //iniciar_cuy();
+
             }
             else{
-
+                buscando_evento=false;
             }
             //setTimeout(function(){ iniciado=false; }, 10000);   
         },
         error: function (jqXHR, textStatus, errorThrown) {
+                buscando_evento=false;
+
         }
     });
 }
@@ -876,6 +494,7 @@ function CerrarEvento(IdJuego,token_animacion) {
         complete: function () {
         },
         success: function (response) {  
+          //  windows.reload()
             //console.log(response);
             //alert("muerto");                                               
         },
@@ -894,28 +513,32 @@ function CargarEstadistica(IdJuego) {
         },
         complete: function () {
         },
-        success: function (response) {            
+        success: function (response) {    
+        aaa=response;        
             //console.log(response);
             if(response.token_animacion != undefined){                
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
+                    $("#"+value.TipoValorApuesta).prev().css("background-color",value.rgb)
+
                 });
                 var strUltimos12="";
                 var clase="caja1";
                 $.each(response.resultado_evento, function( key, value ) {
-                    if(key<12){
-                        switch (value.valorGanador) {
-                            case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
-                                clase="caja2";
-                              break;
-                            case '15':case '4':case '2':case '22':case '11':case '6':case '8':case '10':case '24':case '20':case '13':case '17':
-                                clase="caja1";
-                              break;                            
-                            default:
-                                clase="caja0";
-                        }
-                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
+                         if(key<12){
+                    //     switch (value.valorGanador) {
+                    //         case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
+                    //             clase="caja2";
+                    //           break;
+                    //         case '15':case '4':case '2':case '22':case '11' :case '6':case '8':case '10':case '24':case '20':case '13':case '17':
+                    //             clase="caja1";
+                    //           break;                            
+                    //         default:
+                    //             clase="caja0";
+                    //     }
+                        //strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
+                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
                     }
                 });
                 $("#tablaUltimos").html(strUltimos12);
@@ -1011,7 +634,8 @@ function caminar(x0,y0,x1,y1){
     x=parseFloat(x).toFixed(2);       
     model.position.x=parseFloat(x);
     model.position.z=parseFloat(y);
-    calculo=(x**2)+(y**2);
+    //calculo=(x**2)+(y**2);
+    calculo=(Math.pow(x,2) )+(Math.pow(x,2) );
     if(calculo>=6.25  ){ 
         if(entrar==true){
 //            debugger

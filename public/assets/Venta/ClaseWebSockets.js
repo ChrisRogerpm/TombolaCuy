@@ -60,7 +60,19 @@ function init(host,port){
           if(mensaje=="ACTUALIZAR"){
           }
           else{
-             reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
+               proxima_fecha=moment(eventoactual.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
+               ahora=moment(msg.data);
+               segundos=proxima_fecha.diff(ahora,'seconds');
+               if(segundos<1){
+                  console.warn("Evento con fecha fin menor a hora actual, recargando....");
+                    $.LoadingOverlay("hide");
+                 $("#contador_overlay").remove();
+                  CargarTabla();
+                }else{
+                reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
+
+               }
+             //reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
           }
 
           //  var proxima_fecha=moment(eventoactual.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");

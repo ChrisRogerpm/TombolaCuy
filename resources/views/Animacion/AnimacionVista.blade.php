@@ -34,7 +34,7 @@
 			#ImgContainer{
 				width: 100vw;
     			height: 100vh;  
-				background-image: url("images/imgCuyInicio.jpg");  
+				background-image: url("images/fondo_inicio.jpg");  
 				background-position: center;
 				background-repeat: no-repeat;
 			}
@@ -60,10 +60,10 @@
 				width:20vw;
 			}
 			#cajaInteriror{
-				position: absolute;
+				/*position: absolute;*/
 				bottom:0px;				
-				height:48%;
-				width:100%;
+				height:68%;
+				/*width:100%;*/
 				margin: auto;		
 				background-color:#303e5a;
 				overflow: auto;
@@ -93,7 +93,7 @@
 			tr{
 				height: 3vh;
 			}
-			.cajaRoja{
+			/*.cajaRoja{
 				background-color:#DC2525;
 				width:20%;
 			}
@@ -101,7 +101,7 @@
 				background-color:#C3C3C3;
 				color:black;			
 				width:20%;
-			}
+			}*/
 			.caja{							
 				width:50%;
 			}
@@ -117,52 +117,123 @@
 				background-color:#3C8A39;
 				width:50%;
 			}
+
+
+
+				.nroevento {
+					width: 30%;	
+					/*margin-right: auto;
+					margin-left: auto;
+					*/border: 1px solid #424242;
+					/*margin-bottom: 10px;*/
+					margin:0.5% auto auto;position:absolute;
+					background: #2c2e38 url(images/retro.jpg) center center;
+					/*margin:auto;
+					//margin-top:0.5%;*/
+					z-index:20;position:absolute;
+					left:35%;
+				}
+
+				h1 {
+					color: #d7ceb2;	text-shadow: 3px 3px 0px #2c2e38, 5px 5px 0px #5c5f72;
+					font-size: 25px;
+					letter-spacing: 6px;
+					margin-top:10px;margin-bottom:10px;
+				}
+
+
+				.smaller {
+					font-size: 23px;
+					vertical-align: .2em;
+				}
+
+
+				@font-face {
+    font-family: RosewoodStd-Regular;
+    src: url("fonts/RosewoodStd-Regular.otf") format("opentype");
+}
+
+
 		</style>
 	</head>
 	<body>
-		<!-- <div id="ImgContainer"></div> -->
+		<div id="ImgContainer"></div>
+
+
+<!-- <div id="progreso" style="display:none;position:absolute ;left: 22%; top: 20%; padding: 0;float:right;width: 4%;margin:auto;height:40%; background:rgba(0, 0, 0, 0) linear-gradient(to top,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
+	 <div id="barra_loading" style="float:right;width:100%;height:100%;background-color:green;"></div>
+</div> -->
+<div id="progreso" style="display:none;position: absolute; left: 22%;top: 18%;  width: 4%; height: 45%; background-image: url(&quot;images/termo.png&quot;);">
+<div  style="padding: 0px; margin: auto;margin-top:100%; background: transparent linear-gradient(to top, rgb(33, 150, 243), rgb(139, 195, 74), rgb(244, 67, 54)) repeat scroll 0px 0px; width: 80%; height: 80%;">
+	 <div id="barra_loading" style="float: right; width: 100%; height: 100%; background-color: green;"></div>
+  </div></div>
+
+
+		<div class="nroevento">
+			<h1><span class="smaller"></span> <span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> --</span> <span class="smaller"></span></h1>
+	</div>
+
 		<div id="container"></div>		
-		<!-- <div id="contenedorEstadistica">
-			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:90%;margin-top: 5vh;">
-			<h1>Estadisticas</h1>	
+		<div id="contenedorEstadistica">
+			<img src="images/apuestaTotal.jpg" alt="apuesta total" style="width:90%;margin-top: 5vh;height:18%">
+			<h1>Estadísticas</h1>	
 			<div id="cajaInteriror">
-				<h2>Numeros (ultimos 120 Eventos)</h2>	
-				<table id="tableEstadistica">
+				<h2 style="margin-top:5px;margin-bottom:5px">Números últimos 120 Eventos</h2>	
+				<table id="tableEstadistica" style="width:90%">
 					<tr>
-						<th class="cajaRoja">1</th><th id="1">0</th> <th class="cajaNegra">13</th><th id="13">0</th>
+						<th class="cajaRoja">1</th><th id="1">0</th> <th class="cajaNegra">19</th><th id="19">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">2</th><th id="2">0</th> <th class="cajaRoja">14</th><th id="14">0</th>
+						<th class="cajaNegra">2</th><th id="2">0</th> <th class="cajaRoja">20</th><th id="20">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">3</th><th id="3">0</th> <th class="cajaNegra">15</th><th id="15">0</th>
+						<th class="cajaRoja">3</th><th id="3">0</th> <th class="cajaNegra">21</th><th id="21">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">4</th><th id="4">0</th> <th class="cajaRoja">16</th><th id="16">0</th>
+						<th class="cajaNegra">4</th><th id="4">0</th> <th class="cajaRoja">22</th><th id="22">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">5</th><th id="5">0</th> <th class="cajaNegra">17</th><th id="17">0</th>
+						<th class="cajaRoja">5</th><th id="5">0</th> <th class="cajaNegra">23</th><th id="23">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">6</th><th id="6">0</th> <th class="cajaRoja">18</th><th id="18">0</th>
+						<th class="cajaNegra">6</th><th id="6">0</th> <th class="cajaRoja">24</th><th id="24">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">7</th><th id="7">0</th> <th class="cajaRoja">19</th><th id="19">0</th>
+						<th class="cajaRoja">7</th><th id="7">0</th> <th class="cajaRoja">25</th><th id="25">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">8</th><th id="8">0</th> <th class="cajaNegra">20</th><th id="20">0</th>
+						<th class="cajaNegra">8</th><th id="8">0</th> <th class="cajaNegra">26</th><th id="26">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">9</th><th id="9">0</th> <th class="cajaRoja">21</th><th id="21">0</th>
+						<th class="cajaRoja">9</th><th id="9">0</th> <th class="cajaRoja">27</th><th id="27">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">10</th><th id="10">0</th> <th class="cajaNegra">22</th><th id="22">0</th>
+						<th class="cajaNegra">10</th><th id="10">0</th> <th class="cajaNegra">28</th><th id="28">0</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">11</th><th id="11">0</th> <th class="cajaRoja">23</th><th id="23">0</th>
+						<th class="cajaNegra">11</th><th id="11">0</th> <th class="cajaRoja">29</th><th id="29">0</th>
 					</tr>
 					<tr>
-						<th class="cajaRoja">12</th><th id="12">0</th> <th class="cajaNegra">24</th><th id="24">0</th>
+						<th class="cajaRoja">12</th><th id="12">0</th> <th class="cajaNegra">30</th><th id="30">0</th>
+					</tr>
+
+					<tr>
+						<th class="cajaRoja">13</th><th id="13">0</th> <th class="cajaNegra">31</th><th id="31">0</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">14</th><th id="14">0</th> <th class="cajaNegra">32</th><th id="32">0</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">15</th><th id="15">0</th> <th class="cajaNegra">33</th><th id="33">0</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">16</th><th id="16">0</th> <th class="cajaNegra">34</th><th id="34">0</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">17</th><th id="17">0</th> <th class="cajaNegra">35</th><th id="35">0</th>
+					</tr>
+					<tr>
+						<th class="cajaRoja">18</th><th id="18">0</th> <th class="cajaNegra">36</th><th id="36">0</th>
 					</tr>
 					<tr>
 						<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th id="0" colspan="2">0</th>
@@ -171,31 +242,31 @@
 			</div>			
 		</div>	
 		<div id="pagosHistorial">
-			<img src="images/imgCuyInicio.jpg" alt="apuesta total" style="width:90%;margin-top: 2vh;">			
+			<img src="images/fondo_inicio.jpg" alt="apuesta total" style="width:90%;margin-top: 2vh;">			
 			<div id="cajaInterirorIzquierda">
-				<h2>Pagos</h2>	
+				<h2 style="margin-top:5px;margin-bottom:5px">Pagos</h2>	
 				<table id="">
 					<tr>
-						<th rowspan="3" >Color</th><th class="cajaRoja">2</th>
+						<th rowspan="3" >Color</th><th style="background-color: rgb(22, 39, 125);" >2</th>
 					</tr>
 					<tr>
-						<th class="cajaNegra">2</th> 
+						<th style="background-color: rgb(249, 215, 22);">2</th> 
 					</tr>
 					<tr>
-						<th style="background-color:#3C8A39;width:50%" >24</th>
+						<th style="background-color:#3C8A39;width:50%" >36</th>
 					</tr>
 					<tr>
-						<th >1/2 Docena</th><th>2</th>
+						<th >Docena</th><th>3</th>
 					</tr>
 					<tr>
 						<th>Par / Impar</th><th>2</th>
 					</tr>
 					<tr>
-						<th>Número</th><th>24</th>
+						<th>Número</th><th>36</th>
 					</tr>					
 				</table>
 				<br />
-				<h2>Historial</h2>	
+				<h2 style="margin-top:2px;margin-bottom:8px">Historial</h2>	
 				<table id="tablaUltimos">
 					{{--<tr>--}}
 						{{--<th class="caja">#123wqw1</th><th class="caja1">1</th>--}}
@@ -235,7 +306,7 @@
 					{{--</tr>					--}}
 				</table>
 			</div>			
-		</div>	 -->
+		</div>	
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 			
@@ -247,6 +318,10 @@
         <script src="{{asset('../assets/js/dat.gui.min.js')}}"></script>
         <script src="{{asset('../assets/js/OrbitControls.js')}}"></script>
         <script src="{{asset('../assets/js/animacion.js')}}"></script>
+
+
+        <script src="{{asset('../assets/js/animacion_cuy.js')}}"></script>
+
 
 	</body>
 </html>

@@ -339,7 +339,8 @@ LIMIT 18
 
     public static function GenerarResultadoEvento_CambiarEstadoEvento()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')->first();
+        $Configuracion = DB::table('configuracion_generar_evento')
+            ->first();
         if ($Configuracion != null) {
             $fechaIni = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fechaFin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
@@ -347,25 +348,21 @@ LIMIT 18
             $fechaIni = today()->startOfDay()->toDateTimeString();
             $fechaFin = today()->endOfDay()->toDateTimeString();
         }
-        $hora_actual = now()->format('h:i');
-        $ListaEventosDia = DB::select(DB::raw("SELECT * 
-        FROM evento e 
-        WHERE e.fechaEvento BETWEEN '$fechaIni' AND '$fechaFin'
-        AND HOUR(e.fechaEvento) = '$hora_actual'"));
-
+        
+        $ListaEventosDia = DB::table('evento as e')
+            ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
+            ->get();
 
         foreach ($ListaEventosDia as $li) {
-            if ($li->fechaEvento < now() && $li->fechaFinEvento > now() && $li->estadoEvento == 0) {
+            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
                 $val = Evento::findorfail($li->idEvento);
-                $val->estadoEvento = 1;
-                $val->save();
-                $cantidad_resultados = ResultadoEvento::ResultadosEvento($val->idEvento);
-                if($cantidad_resultados == 0){
+                if ($val->estadoEvento == 0) {
+                    $val->estadoEvento = 1;
+                    $val->save();
                     $numero_random = rand(0, 36);
                     TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
                 }
-            }
-            if ($li->fechaEvento <= now() && $li->fechaFinEvento <= now() && $li->estadoEvento == 1) {
+            } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
                 $evento = Evento::findorfail($li->idEvento);
                 $evento->estadoEvento = 2;
                 $evento->save();

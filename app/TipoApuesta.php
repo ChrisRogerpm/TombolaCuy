@@ -200,7 +200,7 @@ class TipoApuesta extends Model
             ->take(120)
             ->get();
         $lista_valorapuesta = DB::table('tipo_apuesta as ta')
-            ->select('ta.valorapuesta')
+            ->select('ta.valorapuesta','ta.rgb')
             ->whereIn('ta.idTipoPago', [1, 6])
             ->orderBy('ta.valorapuesta')
             ->get();
@@ -213,6 +213,7 @@ class TipoApuesta extends Model
             $valores = array_count_values($lista_sub);
             $lista[] = [
                 'TipoValorApuesta' => $va->valorapuesta,
+                'rgb'=> $va->rgb,
                 'Repetidos' => array_key_exists($va->valorapuesta, $valores) == false ? 0 : $valores[$va->valorapuesta]
             ];
         }
