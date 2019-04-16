@@ -33,7 +33,10 @@ class ApiController extends Controller
                     $fecha_evento_proximo = Carbon::parse($evento_actual->fechaEvento)->addMinutes($NumeroMinutos);
                 }
                 $fecha_evento_prox = $fecha_evento_proximo->toDateTimeString();
-                $fecha_animacion = Carbon::parse($fecha_evento_proximo)->subSeconds($evento_actual->segBloqueoAntesEvento)->toDateTimeString();
+
+                $segundos_agregados = $evento_actual->segBloqueoAntesEvento + 10;
+
+                $fecha_animacion = Carbon::parse($fecha_evento_proximo)->subSeconds($segundos_agregados)->toDateTimeString();
                 $estado_animacion = false;
                 if (now() > $fecha_animacion && now() < $fecha_evento_prox) {
                     $estado_animacion = true;

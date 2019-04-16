@@ -55,12 +55,12 @@ class Reporte extends Model
             $turno = Turno::TurnoObtenerId($l->Turno);
             $data [] = [
                 'Tienda' => $l->Tienda,
-                'fechaoperacion' => $l->fechaoperacion,
                 'Turno' => ucwords($turno),
                 'apuestas' => $l->apuestas,
                 'Pagos' => $l->Pagos,
                 'Evento' => $l->Evento,
                 'Jugadores' => $l->Jugadores,
+                'fechaoperacion' => $l->fechaoperacion
             ];
         }
         return $data;
@@ -300,14 +300,14 @@ class Reporte extends Model
             $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
             $data [] = [
                 'Fecha' => $l->Fecha,
-                'TipoApuesta' => 'Pleno',
-                'Evento' => $l->Evento,
-                'Juego' => $l->Juego,
-                'Moneda' => $l->Moneda,
-                'estadoEvento' => $estadoEventoNombre,
-                'Ganado' => $l->Ganado,
+                'ZonaComercial'=>$l->ZonaComercial,
                 'Tienda' => $l->tienda,
-                'ZonaComercial'=>$l->ZonaComercial
+                'Juego' => $l->Juego,
+                'Evento' => $l->Evento,
+                'TipoApuesta' => 'Pleno',
+                'Moneda' => $l->Moneda,
+                'Ganado' => $l->Ganado,
+                'estadoEvento' => $estadoEventoNombre
             ];
         }
 
