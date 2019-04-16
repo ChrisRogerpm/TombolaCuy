@@ -49,15 +49,17 @@ class Caja extends Model
     {
         $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
         $data = [];
+        $resultado = "";
         foreach ($puntoventa as $l) {
             $data [] = $l->idPuntoVenta;
         }
-        $data = implode(",",$data);
-
-        $resultado = DB::select(DB::raw("SELECT c.idCaja,CONCAT(c.nombre,' - ',p.nombre) NombreCaja
-        FROM caja c
-        JOIN punto_venta p ON p.idPuntoVenta = c.idPuntoVenta
-        WHERE c.idPuntoVenta IN ($data)"));
+        if (count($data) > 0) {
+            $data = implode(",", $data);
+            $resultado = DB::select(DB::raw("SELECT c.idCaja,CONCAT(c.nombre,' - ',p.nombre) NombreCaja
+            FROM caja c
+            JOIN punto_venta p ON p.idPuntoVenta = c.idPuntoVenta
+            WHERE c.idPuntoVenta IN ($data)"));
+        }
         return $resultado;
 
     }
