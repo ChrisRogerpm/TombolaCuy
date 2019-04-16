@@ -300,7 +300,7 @@ class Reporte extends Model
             $estadoEventoNombre = Reporte::EstadoEventoNombre($l->estadoEvento);
             $data [] = [
                 'Fecha' => $l->Fecha,
-                'ZonaComercial'=>$l->ZonaComercial,
+                'ZonaComercial' => $l->ZonaComercial,
                 'Tienda' => $l->tienda,
                 'Juego' => $l->Juego,
                 'Evento' => $l->Evento,
@@ -411,11 +411,11 @@ class Reporte extends Model
          IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
          inner join ticket t on t.idTicket=a.idTicket
-         where t.idAperturaCaja= ac.idaperturacaja),0) Pagado
+         where t.idAperturaCajaPago= ac.idaperturacaja),0) Pagado 
            from apertura_caja ac
          inner join caja c on c.idCaja=ac.idCaja
          inner join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
-         where usuario=$IdUsuario and ac.estado=1"));
+         where usuario=$IdUsuario  and and ac.estado=1"));
         return $resultado;
     }
 

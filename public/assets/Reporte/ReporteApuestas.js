@@ -49,6 +49,8 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     $.LoadingOverlay("hide");
+                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th></th><th class="text-center" id="TotalJugadores"></th><th></th></tr></tfoot>')
+                    GananciaTotal();
                 },
                 success: function (response) {
                     var resp = response.data;
@@ -71,7 +73,7 @@ $(document).ready(function () {
                             {data: "Evento", title: "Evento", class: "text-center"},
                             {data: "Jugadores", title: "Jugadores", class: "text-center"},
                             {data: "fechaoperacion", title: "Fecha de Operacion", class: "text-center"},
-                        ]
+                        ],
                     });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -80,6 +82,26 @@ $(document).ready(function () {
         }
     });
 });
+
+function GananciaTotal() {
+    var total;
+    var table = $('#table').DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var totalApuestas = 0;
+    var totalJugadores = 0;
+    var totalPagos = 0;
+    $.each(data, function (key, value) {
+        totalApuestas += value.apuestas;
+        totalJugadores += value.Jugadores;
+        totalPagos += value.Pagos;
+    });
+    //return total;
+    $('#TotalApuesta').html(totalApuestas);
+    $('#TotalPagos').html(totalJugadores);
+    $('#TotalJugadores').html(totalPagos);
+}
 
 // function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
 //     var tienda = IdTienda;

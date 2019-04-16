@@ -1,6 +1,20 @@
 $(document).ready(function () {
+    // $(".Fecha").datetimepicker({
+    //     format: 'YYYY/MM/DD HH:mm:ss',
+    // });
+
+    var d = new Date();
+    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
+        defaultDate: datestring,
+        useCurrent:'day'
+    });
+
+    var dateNow = new Date();
+    $(".FechaFin").datetimepicker({
+        format: 'YYYY/MM/DD HH:mm:ss',
+        defaultDate: dateNow,
     });
 
     $(document).on('click', '.btnJuego', function (e) {
@@ -13,7 +27,7 @@ $(document).ready(function () {
             _token: $("input[name='_token']").val()
         };
         $("#txtIdJuego").val(IdJuego);
-        $(".Fecha").val("");
+        // $(".Fecha").val("");
         $("#txtNombreTabla").val(NombreJuego);
         ReporteVentaJson(url, dataForm, NombreJuego);
         $("#btnBuscar").attr('disabled', false);
