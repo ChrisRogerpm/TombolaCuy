@@ -113,8 +113,10 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                             <th>Total</th>
                             <th id="TotalGanancia">0</th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>

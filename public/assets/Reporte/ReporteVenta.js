@@ -89,15 +89,15 @@ function ReporteVentaJson(url, dataForm) {
                 "order": [[1, "desc"]],
                 data: resp,
                 columns: [
-                    {data: "Fecha", title: "Fecha", class: 'text-center'},
-                    {data: "Evento", title: "Evento", class: 'text-center'},
+                    {data: "Fecha", title: "Fecha Evento", class: 'text-center'},
+                    {data: "ZonaComercial", title: 'Zona Comercial', class: 'text-center'},
+                    {data: "Tienda", title: 'Tienda', class: 'text-center'},
                     {data: "Juego", title: "Juego", class: 'text-center'},
+                    {data: "Evento", title: "Evento", class: 'text-center'},
                     {data: "TipoApuesta", title: 'Tipo Apta', class: 'text-center'},
                     {data: "Moneda", title: "Moneda", class: 'text-center'},
-                    {data: "estadoEvento", title: "Estado", class: 'text-center'},
                     {data: "Ganado", title: 'Ganado', class: 'text-center'},
-                    {data: "Tienda", title: 'Tienda', class: 'text-center'},
-                    {data: "ZonaComercial", title: 'ZonaComercial', class: 'text-center'},
+                    {data: "estadoEvento", title: "Estado", class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
                 }
