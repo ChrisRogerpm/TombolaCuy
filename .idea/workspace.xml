@@ -61,7 +61,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="env" value="49" />
-          <entry key="js" value="337" />
+          <entry key="js" value="358" />
           <entry key="php" value="1420" />
         </counts>
       </usages-collector>
@@ -69,7 +69,7 @@
         <counts>
           <entry key=".env file" value="49" />
           <entry key="Blade" value="20" />
-          <entry key="JavaScript" value="337" />
+          <entry key="JavaScript" value="358" />
           <entry key="PHP" value="1373" />
           <entry key="SQL" value="27" />
         </counts>
@@ -102,8 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="97" column="34" lean-forward="true" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+            <state relative-caret-position="357">
+              <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tfoot#0;n#!!top" expanded="true" />
@@ -557,7 +557,7 @@
       <workItem from="1554403303694" duration="1864000" />
       <workItem from="1555016675414" duration="4240000" />
       <workItem from="1555342759633" duration="19536000" />
-      <workItem from="1555420027767" duration="11715000" />
+      <workItem from="1555420027767" duration="12572000" />
     </task>
     <task id="LOCAL-00001" summary="okk">
       <created>1549559165798</created>
@@ -605,7 +605,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="529570000" />
+    <option name="totallyTimeSpent" value="530427000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -620,7 +620,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.24377745" />
+      <window_info content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" weight="0.24377745" />
       <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
@@ -1060,8 +1060,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteApuestas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="97" column="34" lean-forward="true" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+        <state relative-caret-position="357">
+          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tfoot#0;n#!!top" expanded="true" />

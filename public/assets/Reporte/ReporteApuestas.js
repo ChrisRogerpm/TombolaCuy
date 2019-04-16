@@ -49,7 +49,7 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     $.LoadingOverlay("hide");
-                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th></th><th class="text-center" id="TotalJugadores"></th><th></th></tr></tfoot>')
+                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th></th><th class="text-center" id="TotalJugadores"></th><th></th></tr></tfoot>');
                     GananciaTotal();
                 },
                 success: function (response) {
@@ -93,65 +93,15 @@ function GananciaTotal() {
     var totalJugadores = 0;
     var totalPagos = 0;
     $.each(data, function (key, value) {
-        totalApuestas += parseFloat(value.apuestas ).toFixed(2);
+        totalApuestas += parseFloat(value.apuestas);
         totalJugadores += value.Jugadores;
         totalPagos += value.Pagos;
     });
     //return total;
-    $('#TotalApuesta').html(totalApuestas);
+    $('#TotalApuesta').html(totalApuestas.toFixed(2));
     $('#TotalPagos').html(totalPagos);
     $('#TotalJugadores').html(totalJugadores);
 }
-
-// function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
-//     var tienda = IdTienda;
-//     var url = basePath + "ReporteApuestaJsonFk";
-//     var dataForm = {
-//         fechaInicio: $("input[name='fechaInicio']").val(),
-//         fechaFin: $("input[name='fechaFin']").val(),
-//         tiendas: IdTienda,
-//         _token: $("input[name='_token']").val()
-//     };
-//     $.ajax({
-//         url: url,
-//         type: "POST",
-//         contentType: "application/json",
-//         data: JSON.stringify(dataForm),
-//         beforeSend: function () {
-//             $.LoadingOverlay("show");
-//         },
-//         complete: function () {
-//             $.LoadingOverlay("hide");
-//         },
-//         success: function (response) {
-//             var resp = response.data;
-//             $("#PanelTabla").show();
-//             $("#" + Tabla).DataTable({
-//                 "bDestroy": true,
-//                 "bSort": true,
-//                 "scrollCollapse": true,
-//                 "scrollX": false,
-//                 "paging": true,
-//                 "autoWidth": false,
-//                 "bProcessing": true,
-//                 "bDeferRender": true,
-//                 data: resp,
-//                 columns: [
-//
-//                     {data: "Tienda", title: "Tienda"},
-//                     {data: "apuestas", title: "Apuestas"},
-//                     {data: "Pagos", title: "Pagos"},
-//                     {data: "Evento", title: "Evento"},
-//                     {data: "Jugadores", title: "Jugadores"},
-//                     {data: "fechaoperacion", title: "Fecha de Operacion"},
-//                 ]
-//             });
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//         }
-//     });
-// }
-
 $("#frmNuevo")
     .validate({
         rules: {
