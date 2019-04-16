@@ -210,7 +210,7 @@ function mover_cuy() {    ///var_cuymoviendo  => animationframe
         modelCuyChoque.position.z = model.position.z;
          modelCuyChoque.position.x = model.position.x;
         modelCuyChoque.position.y = model.position.y;
-        if(GANADOR_DE_EVENTO==0){
+        if(GANADOR_DE_EVENTO==0 && a.x==get_caja(0).posicion.x && a.z==get_caja(0).posicion.z){
             cuychoque();
         }
          else{
