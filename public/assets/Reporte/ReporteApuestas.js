@@ -23,6 +23,26 @@ $(document).ready(function () {
             text: '--Seleccione--'
         }
     });
+
+    $('#cboTienda').on('select2:select', function (e) {
+        var data = e.params.data;
+        var valor = data.id;
+        if (valor == 0) {
+            $('#cboTienda').val([]).trigger('change');
+            $('#cboTienda').val(0).trigger('change');
+        }
+        else {
+            var valores = $('#cboTienda').val();
+            var nuevo = [];
+            $.each(valores, function (index, value) {
+                if (value != 0) {
+                    nuevo.push(value);
+                }
+            })
+            $('#cboTienda').val(nuevo).trigger('change');
+        }
+    });
+
     llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
 
