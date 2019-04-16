@@ -154,21 +154,23 @@
 }
 
 
-
 		</style>
 	</head>
 	<body>
 		<div id="ImgContainer"></div>
 
 
-<div id="progreso" style="display:none;position:absolute ;left: 22%; top: 20%; padding: 0;float:right;width: 4%;margin:auto;height:40%; background:rgba(0, 0, 0, 0) linear-gradient(to top,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
+<!-- <div id="progreso" style="display:none;position:absolute ;left: 22%; top: 20%; padding: 0;float:right;width: 4%;margin:auto;height:40%; background:rgba(0, 0, 0, 0) linear-gradient(to top,#2196f3, #8bc34a, #f44336) repeat scroll 0 0">
 	 <div id="barra_loading" style="float:right;width:100%;height:100%;background-color:green;"></div>
-</div>
-
+</div> -->
+<div id="progreso" style="display:none;position: absolute; left: 22%;top: 18%;  width: 4%; height: 45%; background-image: url(&quot;images/termo.png&quot;);">
+<div  style="padding: 0px; margin: auto;margin-top:100%; background: transparent linear-gradient(to top, rgb(33, 150, 243), rgb(139, 195, 74), rgb(244, 67, 54)) repeat scroll 0px 0px; width: 80%; height: 80%;">
+	 <div id="barra_loading" style="float: right; width: 100%; height: 100%; background-color: green;"></div>
+  </div></div>
 
 
 		<div class="nroevento">
-			<h1><span class="smaller"></span> <span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> 800954</span> <span class="smaller"></span></h1>
+			<h1><span class="smaller"></span> <span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> --</span> <span class="smaller"></span></h1>
 	</div>
 
 		<div id="container"></div>		

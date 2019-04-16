@@ -387,7 +387,7 @@ function iniciar_cuy() {
     position_caja11 = posicion_ganador;///  ganador
     i = 0;
     cantidadveces_random = 5;
-    porcentaje=80;
+    porcentaje=100;
         porcentaje_r=80;
         //  porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
          //console.warn("porcn=" + porcentaje);
@@ -442,13 +442,13 @@ function iniciar_cuy() {
             funcion_callback = function () {
                 console.warn("CUY RANDOM No=" + i);
             }
-            porcentaje=porcentaje-porcentaje_r/cantidadveces_random
+            porcentaje=porcentaje-16;//porcentaje_r/cantidadveces_random
               $("#barra_loading").css("height",porcentaje+"%")
             cuyrandom();
             i++;
         }
     }
-        , 1500);
+        , 1700);
 }
 //////////////////////////FIN   COMENZAR CUY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -648,7 +648,7 @@ function iniciar_juego() {
         cancelAnimationFrame(var_cuydudando);
     }
     cuydudando();
-    teclas();
+    //teclas();
 }
 
 function teclas() {///mover cuy con teclas flechas  y ctrl  giro
