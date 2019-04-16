@@ -93,14 +93,14 @@ function GananciaTotal() {
     var totalJugadores = 0;
     var totalPagos = 0;
     $.each(data, function (key, value) {
-        totalApuestas += value.apuestas;
+        totalApuestas += parseFloat(value.apuestas ).toFixed(2);
         totalJugadores += value.Jugadores;
         totalPagos += value.Pagos;
     });
     //return total;
     $('#TotalApuesta').html(totalApuestas);
-    $('#TotalPagos').html(totalJugadores);
-    $('#TotalJugadores').html(totalPagos);
+    $('#TotalPagos').html(totalPagos);
+    $('#TotalJugadores').html(totalJugadores);
 }
 
 // function CargarDataTienda(Tabla, IdTienda, NombreTienda) {
