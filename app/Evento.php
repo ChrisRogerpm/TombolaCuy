@@ -159,6 +159,7 @@ LIMIT 18
 
     public static function RegistrarEvento($juego, $fechaEventoFin, $fechaIni)
     {
+        $token_generado = str_random(8);
         $evento = new Evento();
         $evento->idJuego = $juego->idJuego;
         $evento->nombre = $juego->nombre;
@@ -169,7 +170,7 @@ LIMIT 18
         $evento->idMoneda = $juego->idMoneda;
         $evento->estadoEvento = 0;
         $evento->estadoAnimacion = 0;
-        $evento->tokenAnimacion = '';
+        $evento->tokenAnimacion = $token_generado;
         $evento->save();
         return $evento;
     }
