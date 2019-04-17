@@ -74,22 +74,6 @@ function ReporteHistorialTicket(url, dataForm) {
         },
         complete: function () {
             $.LoadingOverlay("hide");
-            $("#table_panel").append('<tfoot>\n' +
-                '                        <tr style="background-color: #CCCCCC">\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th></th>\n' +
-                '                            <th class="text-center" id="TotalApostado"></th>\n' +
-                '                            <th class="text-center" id="TotalPagado"></th>\n' +
-                '                            <th class="text-center" id="TotalUtilidad"></th>\n' +
-                '                            <th></th>\n' +
-                '                        </tr>\n' +
-                '                    </tfoot>');
             Totales();
         },
         success: function (response) {

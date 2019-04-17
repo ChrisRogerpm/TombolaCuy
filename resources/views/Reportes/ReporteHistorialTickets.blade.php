@@ -98,7 +98,24 @@
                  style="padding-top:10px; padding-left:10px;padding-right:10px;display: none"
                  id="PanelTabla">
                 <div class="panel-body">
-                    <table class="table table-bordered border-1" id="table_panel"></table>
+                    <table class="table table-bordered border-1" id="table_panel">
+                        <tfoot>
+                        <tr style="background-color: #CCCCCC">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-center" id="TotalApostado"></th>
+                            <th class="text-center" id="TotalPagado"></th>
+                            <th class="text-center" id="TotalUtilidad"></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </div>
         </div>
