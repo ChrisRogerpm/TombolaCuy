@@ -33,7 +33,7 @@ class Evento extends Model
     public static function EventoListar()
     {
         $listar = DB::select(DB::raw('
-select ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
+select ev.idEvento,ev.idJuego,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
@@ -52,7 +52,7 @@ where ev.estadoEvento=1'));
             INNER JOIN jackpot JACK ON JACK.idJackpot=PZJ.idJackpot
             INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
             WHERE JPV.idPuntoVenta= ' . $idPuntoVenta . ') as jackpotsuma,
-ev.idEvento,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
+ev.idEvento,ev.idJuego,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
@@ -121,10 +121,15 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function HistorialEvento($ideventoactual)
     {
-        $listar = DB::select(DB::raw("select evt.idEvento, res.`valorGanador`,tipo_apuesta.rgb as color FROM  `resultado_evento` res
+        $listar = DB::select(DB::raw("select evt.idEvento, res.`valorGanador`,tipo_apuesta.rgb as color
+         FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
-WHERE evt.IDJUEGO=1 and res.idtipopago=1 and evt.idEvento!=" . $ideventoactual . " 
+WHERE  
+ evt.idJuego=(select even.idJuego from evento as even where even.idEvento=".$ideventoactual.")
+
+and (tipo_apuesta.idTipoPago in (1,6) ) 
+and evt.idEvento!=" . $ideventoactual . " 
 order by evt.`fechaEvento` DESC
 LIMIT 18
             "));

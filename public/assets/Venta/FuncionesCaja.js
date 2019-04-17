@@ -386,7 +386,7 @@ function iniciarContador(duration, display) {
                  //  location.reload();
                 $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
-                 CargarTabla();
+                CargarTabla();
 
                // $.LoadingOverlay("hide");
 

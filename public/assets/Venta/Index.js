@@ -89,7 +89,6 @@ function CargarTabla() {
         data: {
             '_token': $('input[name=_token]').val(),
         },
-
         beforeSend:function(){
              // RECONECTAR_WEBSOCKET=false;socket.close();
                 $.LoadingOverlay("show");

@@ -64,11 +64,13 @@ function init(host,port){
                ahora=moment(msg.data);
                segundos=proxima_fecha.diff(ahora,'seconds');
                if(segundos<1){
-                  console.warn("Evento con fecha fin menor a hora actual, recargando....");
-                    $.LoadingOverlay("hide");
-                 $("#contador_overlay").remove();
-                  CargarTabla();
-                }else{
+                   console.warn("Evento con fecha fin menor a hora actual, recargando....");
+                   $.LoadingOverlay("hide");
+                   $("#contador_overlay").remove();
+                   $("#recargar_tabla").text("Recargar");
+                   //CargarTabla();
+               } else {
+                   $("#recargar_tabla").text("")
                 reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
 
                }

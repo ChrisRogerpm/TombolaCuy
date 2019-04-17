@@ -14,10 +14,15 @@
                                 <div class="block-content-outer">
                                     <div class="block-content-inner">
                                         <div class="row">
-                                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                            <div class="col-md-6 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
                                                     Venta Caja    
+                                                </h6>
+                                            </div>
+                                            <div class="col-md-6 col-xs-12 col-sm-12">
+                                                <h6>
+                                                    <span id="recargar_tabla" onClick="CargarTabla()"></span>   
                                                 </h6>
                                             </div>
                                         </div>
@@ -361,6 +366,7 @@
                                         @foreach($eventos as $evento) 
 
                                             <div class="configuracioneventosdiv" 
+                                                    data-idJuego="{{ $evento->idJuego }}"
                                                     data-id="{{ $evento->idEvento }}"
                                                     data-nombre="{{ $evento->nombre }}"
                                                     data-apuestaMinima="{{ $evento->apuestaMinima }}"
