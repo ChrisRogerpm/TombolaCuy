@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::post('DataEventoResultadoEvento','Api\ApiController@EventoFecha');
+//Route::post('DataEventoResultadoEvento','Api\ApiController@EventoFecha');
 Route::post('ConfirmacionToken','Api\ApiController@ConfirmacionToken');
-Route::post('DataEventoResultadoEventoFk','Api\ApiController@EventoFecha_outValidate');
+//Route::post('DataEventoResultadoEventoFk','Api\ApiController@EventoFecha_outValidate');
+Route::post('DataEventoResultadoEventoFk','Api\ApiController@EventoFecha');
