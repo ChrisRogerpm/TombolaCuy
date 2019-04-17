@@ -193,5 +193,9 @@
         <script src="{{asset('../assets/js/animacion_cuy.js')}}"></script>
 
 
+
+        <script src="{{asset('../assets/js/ClaseWebSocketsCuy.js')}}"></script>
+
+
 	</body>
 </html>

@@ -43,7 +43,8 @@ function cargar_archivos() {
         console.warn("FIN CARGA ARCHIVOS");
 
         CargarEstadistica(1);
-
+        IPSERVIDOR_WEBSOCKETS="35.237.182.107";
+        PUERTO_WEBSOCKETS="888";
         window.addEventListener('resize', responsive_canvas, false);
         //consultarEvento(1);
         // intervalo_revisar_evento=setInterval(function(){
@@ -145,6 +146,8 @@ function cajagirando_animacion() {
         modelCuyDudando.visible = true;       
         modelCuyChoque.visible = false;
         $("#barra_loading").css("height","0%");
+        $("#barra_loading_tpi").css("width","0%");
+
         if (clockCajaP.getElapsedTime() < (TIEMPO_GIRO_CAJA/1000)){
 
         }else{
@@ -321,7 +324,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
     var_cuymoviendo = requestAnimationFrame(mover_cuyrandom);
     if(t>=1)
     {
-        console.warn("LLEGÓ ccc");
+        // console.warn("LLEGÓ ccc");
         model.position.set(b.x, b.y, b.z); ///ajustar posición si no llegó exacto
         a = { x: model.position.x, y: model.position.y, z: model.position.z }; 
         cancelAnimationFrame(var_cuymoviendo);
@@ -367,6 +370,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                 console.warn("CALLBACK CUY GANADOR ---------");//**/}
                                 CerrarEvento(1,token);
                                 $("#barra_loading").css("height","0%");
+                                $("#barra_loading_tpi").css("width","0%");
 
                                 tiempo_cuychoque=1;
                                 if(GANADOR_DE_EVENTO=="0"){
@@ -385,7 +389,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                             
                                             $("#termotetro_para_iniciar").show();
                                             CargarEstadistica(1);
-
                                             // intervalo_revisar_evento=setInterval(function(){
                                             //     if(!buscando_evento){
                                             //         consultarEvento(1);
