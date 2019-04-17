@@ -27,15 +27,28 @@ function ListarAperturaCaja() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
-                    {data: "Caja", title: "Caja"},
-                    {data: "Turno", title: "Turno"},
-                    {data: "usuario", title: "Usuario"},
-                    {data: "fechaOperacion", title: "Fecha Operacion"},
+                    {data: "Caja", title: "Caja", class:"text-center"},
+                    {data: "Turno", title: "Turno", class:"text-center"},
+                    {data: "usuario", title: "Usuario", class:"text-center"},
+                    {data: "fechaOperacion", title: "Fecha Operacion", class:"text-center"},
+                    {
+                        data: null,title:"Estado",
+                        "render":function (value) {
+                            var estado = value.estado == 1 ? 'Caja Abierta' : 'Caja Cerrada';
+                            return estado;
+                        },class:"text-center"
+                    },
                     {
                         data: null, title: "",
                         "render": function (value) {
-                            return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idAperturaCaja + '"><i class="fa fa-edit"></i></button>';
-                        }
+                            var estado = value.estado;
+                            if(estado === 1){
+                                return '<button type="button" class="btn btn-success btn-sm btnEditar" data-id="' + value.idAperturaCaja + '"><i class="fa fa-edit"></i></button>';
+                            }else{
+                                return '<button type="button" class="btn btn-success btn-sm" disabled><i class="fa fa-edit"></i></button>';
+                            }
+
+                        },class:"text-center"
                     }
                 ],
                 "drawCallback": function (settings) {

@@ -54,13 +54,6 @@ function MostrarDataCierreCaja() {
             }
 
             $("#table").DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    {
-                        extend: 'excelHtml5',
-                        title: 'Reporte Cierre de Caja'
-                    }
-                ],
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
@@ -70,7 +63,6 @@ function MostrarDataCierreCaja() {
                 "bProcessing": true,
                 "bDeferRender": true,
                 data: data,
-
                 columns: [
                     {data: "caja", title: "Caja"},
                     {data: "puntoventa", title: "Punto de Venta"},

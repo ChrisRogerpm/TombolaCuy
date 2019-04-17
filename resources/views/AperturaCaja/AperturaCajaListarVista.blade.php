@@ -56,5 +56,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/AperturaCaja/AperturaCajaListar.js')}}"></script>
+    <script src="{{asset('assets/AperturaCaja/AperturaCajaListar.js')}}"></script>
 @endpush
