@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-    $.when(llenarSelect(basePath + "CajaPuntoVentaUsuarioJson", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "NombreCaja", parseInt($("#txtidCaja").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "CajaPuntoVentaUsuarioJsonFk", {'_token': $("input[name='_token']").val()}, "cboCaja", "idCaja", "NombreCaja", parseInt($("#txtidCaja").val()))).then(function (response, textStatus) {
         $("#cboCaja").select2();
     });
 
-    $.when(llenarSelect(basePath + "TurnoListarJson", {'_token': $("input[name='_token']").val()}, "cboTurno", "idTurno", "nombre", parseInt($("#txtidTurno").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "TurnoListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboTurno", "idTurno", "nombre", parseInt($("#txtidTurno").val()))).then(function (response, textStatus) {
         $("#cboTurno").select2();
     });
     var dateNow = new Date();

@@ -74,6 +74,23 @@ function ReporteHistorialTicket(url, dataForm) {
         },
         complete: function () {
             $.LoadingOverlay("hide");
+            $("#table_panel").append('<tfoot>\n' +
+                '                        <tr style="background-color: #CCCCCC">\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th></th>\n' +
+                '                            <th class="text-center" id="TotalApostado"></th>\n' +
+                '                            <th class="text-center" id="TotalPagado"></th>\n' +
+                '                            <th class="text-center" id="TotalUtilidad"></th>\n' +
+                '                            <th></th>\n' +
+                '                        </tr>\n' +
+                '                    </tfoot>');
+            Totales();
         },
         success: function (response) {
             $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
@@ -98,11 +115,13 @@ function ReporteHistorialTicket(url, dataForm) {
                     {data: "juego", title: "Juego", class: 'text-center'},
                     {data: "idEvento", title: "Evento", class: 'text-center'},
                     {data: "idticket", title: "Ticket", class: 'text-center'},
-                    {data: "fechaRegistro", title: "Fecha Ticket", class: 'text-center'},
+                    {data: "fechaApuesta", title: "Fecha Apuesta", class: 'text-center'},
                     {data: "puntoventa", title: "Punto de Venta", class: 'text-center'},
                     {data: "fechapago", title: "Fecha de Pago", class: 'text-center'},
                     {data: "puntoventapago", title: "Punto de Venta de Pago", class: 'text-center'},
-                    {data: "montototal", title: "Apuesta", class: 'text-center'},
+                    {data: "apostado", title: "Apostado", class: 'text-center'},
+                    {data: "pagado", title: "Pagado", class: 'text-center'},
+                    {data: "utilidad", title: "Utilidad", class: 'text-center'},
                     {data: "valores", title: "Valores", class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
@@ -113,4 +132,23 @@ function ReporteHistorialTicket(url, dataForm) {
             });
         }
     })
+}
+
+function Totales() {
+    var table = $('#table_panel').DataTable();
+    var data = table
+        .rows()
+        .data().toArray();
+    var totalapostado = 0;
+    var totalpagado = 0;
+    var totalutilidad = 0;
+    $.each(data, function (key, value) {
+        totalapostado += parseFloat(value.apostado);
+        totalpagado += value.pagado;
+        totalutilidad += value.utilidad;
+    });
+    //return total;
+    $('#TotalApostado').html(totalapostado.toFixed(2));
+    $('#TotalPagado').html(totalpagado);
+    $('#TotalUtilidad').html(totalutilidad);
 }

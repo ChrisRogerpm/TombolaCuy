@@ -16,11 +16,23 @@ class AperturaCaja extends Model
 
     public static function AperturaCajaListarJson()
     {
-        $listar = DB::table('apertura_caja as ac')
-            ->select('ac.idAperturaCaja', 'c.nombre as Caja', 't.nombre as Turno', 'ac.usuario', 'ac.fechaOperacion', 'ac.fechaRegistro','ac.estado')
-            ->join('caja as c', 'c.idCaja', 'ac.idCaja')
-            ->join('turno as t', 't.idTurno', 'ac.idTurno')
-            ->get();
+//        $listar = DB::table('apertura_caja as ac')
+//            ->select('ac.idAperturaCaja', 'c.nombre as Caja', 't.nombre as Turno', 'ac.usuario', 'ac.fechaOperacion', 'ac.fechaRegistro','ac.estado')
+//            ->join('caja as c', 'c.idCaja', 'ac.idCaja')
+//            ->join('turno as t', 't.idTurno', 'ac.idTurno')
+//            ->get();
+        $listar = DB::select(DB::raw("SELECT 
+        ac.idAperturaCaja, 
+        c.nombre AS Caja, 
+        t.nombre AS Turno, 
+        u.usuario,
+        ac.fechaOperacion, 
+        ac.fechaRegistro,
+        ac.estado
+        FROM apertura_caja ac
+        JOIN caja c ON c.idCaja = ac.idCaja
+        JOIN turno t ON t.idTurno = ac.idTurno
+        JOIN users u ON u.idUsuario = ac.usuario"));
         return $listar;
     }
 
@@ -60,7 +72,6 @@ class AperturaCaja extends Model
         $AperturaCaja->idTurno = $request->input('idTurno');
         $AperturaCaja->usuario = $request->input('usuario');
         $AperturaCaja->fechaOperacion = $request->input('fechaOperacion');
-        $AperturaCaja->estado = $request->input('estado');
         $AperturaCaja->save();
         return $AperturaCaja;
     }

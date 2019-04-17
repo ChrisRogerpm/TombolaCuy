@@ -193,31 +193,16 @@ class TipoApuesta extends Model
 
     public static function EstadisticaUltimosTipoApuesta()
     {
-        $resultado = DB::table('resultado_evento as re')
-            ->select('re.idEvento', 're.valorGanador')
-            ->groupBy('re.idEvento', 're.valorGanador')
-            ->orderBy('re.idEvento', 'DESC')
-            ->take(120)
-            ->get();
-        $lista_valorapuesta = DB::table('tipo_apuesta as ta')
-            ->select('ta.valorapuesta','ta.rgb')
-            ->whereIn('ta.idTipoPago', [1, 6])
-            ->orderBy('ta.valorapuesta')
-            ->get();
-        $lista = [];
-        foreach ($lista_valorapuesta as $va) {
-            $lista_sub = [];
-            foreach ($resultado as $r) {
-                $lista_sub [] = $r->valorGanador;
-            }
-            $valores = array_count_values($lista_sub);
-            $lista[] = [
-                'TipoValorApuesta' => $va->valorapuesta,
-                'rgb'=> $va->rgb,
-                'Repetidos' => array_key_exists($va->valorapuesta, $valores) == false ? 0 : $valores[$va->valorapuesta]
-            ];
-        }
+        $lista = DB::select(DB::raw("SELECT 
+        re.valorGanador as TipoValorApuesta,(SELECT COUNT(rev.valorGanador) total FROM resultado_evento rev 
+        WHERE rev.valorGanador = re.valorGanador ORDER BY rev.valorGanador desc LIMIT 120) as Repetidos,
+         (SELECT tap.rgb
+        FROM tipo_apuesta tap
+        WHERE tap.valorapuesta = re.valorGanador) as rgb
+        FROM resultado_evento re 
+        JOIN tipo_apuesta ta ON ta.idTipoApuesta = re.idTipoApuesta
+        GROUP BY re.valorGanador
+        ORDER BY re.valorGanador desc LIMIT 120"));
         return $lista;
-
     }
 }
