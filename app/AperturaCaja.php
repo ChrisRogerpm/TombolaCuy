@@ -72,7 +72,6 @@ class AperturaCaja extends Model
         $AperturaCaja->idTurno = $request->input('idTurno');
         $AperturaCaja->usuario = $request->input('usuario');
         $AperturaCaja->fechaOperacion = $request->input('fechaOperacion');
-        $AperturaCaja->estado = $request->input('estado');
         $AperturaCaja->save();
         return $AperturaCaja;
     }
