@@ -69,7 +69,7 @@ $(document).ready(function () {
                 },
                 complete: function () {
                     $.LoadingOverlay("hide");
-                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th></th><th class="text-center" id="TotalJugadores"></th><th></th></tr></tfoot>');
+                    $("#table").append('<tfoot style="background-color: #CCCCCC"><tr><th class="text-center">Total</th><th></th><th></th><th></th><th class="text-center" id="TotalApuesta"></th><th class="text-center" id="TotalPagos"></th><th class="text-center" id="TotalUtilidad"></th><th class="text-center" id="TotalJugadores"></th></tr></tfoot>');
                     GananciaTotal();
                 },
                 success: function (response) {
@@ -86,13 +86,15 @@ $(document).ready(function () {
                         "bDeferRender": true,
                         data: resp,
                         columns: [
-                            {data: "Tienda", title: "Tienda", class: "text-center"},
-                            {data: "Turno", title: "Turno", class: "text-center"},
-                            {data: "apuestas", title: "Apuestas", class: "text-center"},
-                            {data: "Pagos", title: "Pagos", class: "text-center"},
-                            {data: "Evento", title: "Evento", class: "text-center"},
-                            {data: "Jugadores", title: "Jugadores", class: "text-center"},
+                            {data: "Tienda", title: "Punto de Venta", class: "text-center"},
                             {data: "fechaoperacion", title: "Fecha de Operacion", class: "text-center"},
+                            {data: "Turno", title: "Turno", class: "text-center"},
+                            {data: "Evento", title: "Evento", class: "text-center"},
+                            {data: "apuestas", title: "Apostado", class: "text-center"},
+                            {data: "Pagos", title: "Pagado", class: "text-center"},
+                            {data: "Utilidad", title: "Utilidad", class: "text-center"},
+                            {data: "Jugadores", title: "Num. Jugadores", class: "text-center"},
+
                         ],
                     });
                 },
@@ -112,15 +114,18 @@ function GananciaTotal() {
     var totalApuestas = 0;
     var totalJugadores = 0;
     var totalPagos = 0;
+    var totalUtilidad = 0;
     $.each(data, function (key, value) {
         totalApuestas += parseFloat(value.apuestas);
         totalJugadores += value.Jugadores;
         totalPagos += value.Pagos;
+        totalUtilidad += value.Utilidad;
     });
     //return total;
     $('#TotalApuesta').html(totalApuestas.toFixed(2));
     $('#TotalPagos').html(totalPagos);
     $('#TotalJugadores').html(totalJugadores);
+    $('#TotalUtilidad').html(totalUtilidad);
 }
 $("#frmNuevo")
     .validate({

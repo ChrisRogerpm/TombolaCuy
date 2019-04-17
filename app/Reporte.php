@@ -33,22 +33,27 @@ class Reporte extends Model
         }
         $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
-        $lista = DB::select(DB::raw("
-        select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
+        $lista = DB::select(DB::raw("select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
         inner join ticket ti on ti.idTicket=a.idTicket
         where ti.idAperturaCajaPago= ac.idaperturacaja),0) Pagos,
+        IFNULL(sum(t.montoTotal),0) -
+        IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        inner join apuesta a on a.idApuesta=ge.idApuesta
+        inner join ticket ti on ti.idTicket=a.idTicket
+        where ti.idAperturaCajaPago= ac.idaperturacaja),0) Utilidad,
         IFNULL(e.nombre,'CUY') Evento,count(t.idticket) Jugadores
         from apertura_caja ac
         left join caja c on c.idCaja=ac.idCaja
         left join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
         left join ticket t on  t.idaperturacaja=ac.idaperturacaja
         left join evento e on e.idevento=t.idevento 
-        where  ac.estado!=0
+        where  ac.estado!=0      
          $condicional
        and ac.fechaoperacion between '$fechaIni' and '$fechaFin'               
-        group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja,ac.idAperturaCaja
+        group by p.nombre,e.nombre,ac.fechaoperacion,ac.idturno,t.idAperturaCaja, ac.idAperturaCaja
+        order by ac.fechaoperacion,ac.idturno,p.nombre
         "));
         $data = [];
         foreach ($lista as $l) {
@@ -60,7 +65,8 @@ class Reporte extends Model
                 'Pagos' => $l->Pagos,
                 'Evento' => $l->Evento,
                 'Jugadores' => $l->Jugadores,
-                'fechaoperacion' => $l->fechaoperacion
+                'fechaoperacion' => $l->fechaoperacion,
+                'Utilidad' => $l->Utilidad,
             ];
         }
         return $data;
@@ -441,24 +447,31 @@ class Reporte extends Model
         e.nombre as 'juego',
         e.idEvento,        
         ti.idticket,
-        ti.fechaRegistro,
+        ti.fechaRegistro fechaApuesta,
         pv.nombre as 'puntoventa',
-        ti.fechapago,
-        pvpago.nombre as 'puntoventapago', 
-        ti.montototal,
+        IFNULL( ti.fechapago,ti.fechaRegistro) fechapago,
+        IFNULL(pvpago.nombre,'-') as 'puntoventapago', 
+        ti.montototal apostado,
+    	IFNULL((select sum(ge.montoAPagar) from ganador_evento ge 
+        inner join apuesta apu on apu.idApuesta=ge.idApuesta
+        where apu.idTicket=ti.idTicket),0) pagado,
+          ti.montototal -
+    	IFNULL((select sum(ge.montoAPagar) from ganador_evento ge 
+        inner join apuesta apu on apu.idApuesta=ge.idApuesta
+        where apu.idTicket=ti.idTicket),0) utilidad,
         (select GROUP_CONCAT(ta.descripcion SEPARATOR '|') 
         from tipo_apuesta ta inner join  apuesta apu
         on ta.idtipoapuesta=apu.idtipoapuesta
         where apu.idticket=ti.idticket) valores
         from ticket ti
-        inner join evento e on e.idEvento=ti.idevento
-        inner join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
-        inner join caja ca on ca.idcaja=ac.idcaja
-        inner join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
-        inner join apertura_caja acpago on acpago.idaperturacaja=ti.idAperturaCajaPago
-        inner join caja capago on capago.idcaja=acpago.idcaja
-        inner join punto_venta pvpago on pvpago.idpuntoventa=capago.idpuntoventa
-        where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
+        left join evento e on e.idEvento=ti.idevento
+        left join apertura_caja ac on ac.idaperturacaja=ti.idaperturacaja
+        left join caja ca on ca.idcaja=ac.idcaja
+        left join punto_venta pv on pv.idpuntoventa=ca.idpuntoventa
+        left join apertura_caja acpago on acpago.idaperturacaja=ti.idAperturaCajaPago
+        left join caja capago on capago.idcaja=acpago.idcaja
+        left join punto_venta pvpago on pvpago.idpuntoventa=capago.idpuntoventa        
+         where ti.fechaRegistro between '$fecha_ini' and '$fecha_fin' and e.estadoEvento in (1,2)  $condicional"));
         return $resultado;
     }
 
