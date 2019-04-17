@@ -265,8 +265,8 @@ function cuy_rotacion() {//var_cuy_rotando
 }
 ////////////////////nuevo random
 function generar_nueva_posicion_random(){
-        randomx = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.4))) : -Math.abs(parseFloat(random_posicion(0, 2.4))) ;  // rango x=> -2.5  a   2.5 
-        randomz = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.4))) : -Math.abs(parseFloat(random_posicion(0, 2.4))); // rango z=> -2.5  a   2.5
+        randomx = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.3))) : -Math.abs(parseFloat(random_posicion(0, 2.3))) ;  // rango x=> -2.5  a   2.5 
+        randomz = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.3))) : -Math.abs(parseFloat(random_posicion(0, 2.3))); // rango z=> -2.5  a   2.5
         b = { x: randomx, y: 0, z: randomz  };
 }
 function cuy_rotacionrandom() {//var_cuy_rotando
