@@ -66,6 +66,7 @@ class ApiController extends Controller
                     'fecha_evento_proximo' => $fecha_evento_prox,
                     'fecha_animacion' => $fecha_animacion,
                     'evento_id_actual' => $evento_actual->idEvento,
+                    'evento_valor_ganador' => $ganador->valorGanador,
                 ];
                 return response()->json([
                     'mensaje' => 'No se encuentra en el tiempo de rango de Animación',
