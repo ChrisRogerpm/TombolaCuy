@@ -261,33 +261,26 @@ function CargarEstadistica(IdJuego) {
                         segundos_total=FECHA_ANIMACION.diff(ahora,'seconds');
                         console.info(segundos_total);
                        
-                       con_segundos=1;
+                       con_segundos=0;
+                       //$("#barra_loading_tpi").css("width","14%");
                        intervalo_loading_inicio=setInterval(function(){
                             porcentaje=(con_segundos*100)/segundos_total;
+                            //console.warn(porcentaje);
                             $("#barra_loading_tpi").css("width",(porcentaje)+"%");
                             if(porcentaje==100){
                                 clearInterval(intervalo_loading_inicio);
-
-
-                                $("#idevento_titulo").text(response.evento_id_actual);
-                                $("#progreso").show();
+                                $("#idevento_titulo").text(EVENTO_ID);
                                 $("#barra_loading").css("height","100%");
-
-                                EVENTO_ID= response.evento_id_actual;
                                 fechaFinEvento=response.fecha_evento_fin_actual;
-                                // segAntesdeBloqueo=
                                 $("#termotetro_para_iniciar").hide();
-                                
                                 buscando_evento=false;
-                                clearInterval(intervalo_revisar_evento);
-                                GANADOR_DE_EVENTO = response.evento_valor_ganador;
+                                GANADOR_DE_EVENTO = response.evento.evento_valor_ganador;
                                 TIEMPO_GIRO_CAJA=4500;
                                 TIEMPO_CUY = 20000;
                                 INICIO_ANIMACION_CUY();////////////////////////////////////////
-
                             }
-                            con_segundos++;
-                       },(segundos_total*1000))
+                            con_segundos=con_segundos+0.5;
+                       },1000)
                 }
 
 
