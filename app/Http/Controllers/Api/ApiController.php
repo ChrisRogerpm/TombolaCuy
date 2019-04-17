@@ -60,8 +60,16 @@ class ApiController extends Controller
                     return response()->json(['mensaje' => 'El estado de animación del evento actual esta activado']);
                 }
             } else {
+                $array_evento = [
+                    'fecha_evento_ini_actual' => $fecha_ini_actual,
+                    'fecha_evento_fin_actual' => $fecha_fin_actual,
+                    'fecha_evento_proximo' => $fecha_evento_prox,
+                    'fecha_animacion' => $fecha_animacion,
+                    'evento_id_actual' => $evento_actual->idEvento,
+                ];
                 return response()->json([
                     'mensaje' => 'No se encuentra en el tiempo de rango de Animación',
+                    'evento' => $array_evento,
                     'resultado_evento' => $resultado_evento,
                     'estadistica' => $estadistica
                 ]);
