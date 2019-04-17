@@ -253,34 +253,65 @@ function CargarEstadistica(IdJuego) {
                 if(typeof response.evento!="undefined"){
                         EVENTO_ID= response.evento.evento_id_actual;
                         $("#termotetro_para_iniciar").show();
-                        FECHA_ANIMACION=response.evento.fecha_animacion;
-                        FECHA_ANIMACION=moment(FECHA_ANIMACION, "YYYY-MM-DD HH:mm:ss a");
+
+                        EVENTO_ACTUAL=response.evento;
+
+                          if(socket!=null && socket.readyState==1){
+                                console.warn("YA CONECTADO, pedir hora")
+                                 pedir_hora_server();
+                         }else{
+                              console.warn("INICIANDO CONEXIÓN ");
+                                connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                         }   
+                        //pedir_hora_server();
+
                         ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
-                        console.info(moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a"));
-                        console.info(moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
-                        segundos_total=FECHA_ANIMACION.diff(ahora,'seconds');
-                        console.info(segundos_total);
-                       
-                       con_segundos=0;
-                       //$("#barra_loading_tpi").css("width","14%");
-                       intervalo_loading_inicio=setInterval(function(){
-                            porcentaje=(con_segundos*100)/segundos_total;
-                            //console.warn(porcentaje);
-                            $("#barra_loading_tpi").css("width",(porcentaje)+"%");
-                            if(porcentaje==100){
-                                clearInterval(intervalo_loading_inicio);
-                                $("#idevento_titulo").text(EVENTO_ID);
-                                $("#barra_loading").css("height","100%");
-                                fechaFinEvento=response.fecha_evento_fin_actual;
-                                $("#termotetro_para_iniciar").hide();
-                                buscando_evento=false;
-                                GANADOR_DE_EVENTO = response.evento.evento_valor_ganador;
-                                TIEMPO_GIRO_CAJA=4500;
-                                TIEMPO_CUY = 20000;
-                                INICIO_ANIMACION_CUY();////////////////////////////////////////
-                            }
-                            con_segundos=con_segundos+0.5;
-                       },1000)
+
+                       //  FECHA_FIN_EVENTO=response.evento.fecha_evento_fin_actual;
+                       //  FECHA_FIN_EVENTO=moment(FECHA_FIN_EVENTO, "YYYY-MM-DD HH:mm:ss a");
+                       //  segundos_finevento=FECHA_FIN_EVENTO.diff(ahora,'seconds');
+
+                       //  FECHA_ANIMACION=response.evento.fecha_animacion;
+                       //  FECHA_ANIMACION=moment(FECHA_ANIMACION, "YYYY-MM-DD HH:mm:ss a");
+                       //  console.info(moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a"));
+                       //  console.info(moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
+                       //  segundos_total=FECHA_ANIMACION.diff(ahora,'seconds');
+                       //  console.info(segundos_total);
+                      
+
+                       // if(segundos_total>0){ ///fuera rango animacion
+                       //       con_segundos=0;
+                       //         //$("#barra_loading_tpi").css("width","14%");
+                       //         intervalo_loading_inicio=setInterval(function(){
+                       //              porcentaje=(con_segundos*100)/segundos_total;
+                       //              //console.warn(porcentaje);
+                       //              $("#barra_loading_tpi").css("width",(porcentaje)+"%");
+                       //              if(porcentaje==100){
+                       //                  clearInterval(intervalo_loading_inicio);
+                       //                  $("#idevento_titulo").text(EVENTO_ID);
+                       //                  $("#barra_loading").css("height","100%");
+                       //                  fechaFinEvento=response.fecha_evento_fin_actual;
+                       //                  $("#termotetro_para_iniciar").hide();
+                       //                  buscando_evento=false;
+                       //                  GANADOR_DE_EVENTO = response.evento.evento_valor_ganador;
+                       //                  TIEMPO_GIRO_CAJA=4500;
+                       //                  TIEMPO_CUY = 20000;
+                       //                  INICIO_ANIMACION_CUY();////////////////////////////////////////
+                       //              }
+                       //              con_segundos=con_segundos+0.5;
+                       //         },1000)
+                       // }else{
+                       //  console.log("esperando fecha fin evento actual,para recargar");
+                       //      iii=0;
+                       //      intervalo_fin_evento=setInterval(function(){
+                       //          if(iii>segundos_finevento){
+                       //              CargarEstadistica(1);
+                       //              clearInterval(intervalo_fin_evento);
+                       //          }
+                       //          iii++;
+                       //     },1000);
+                       // } 
+                      
                 }
 
 
