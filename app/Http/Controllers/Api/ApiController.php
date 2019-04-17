@@ -36,6 +36,7 @@ class ApiController extends Controller
             if (now() > $fecha_animacion && now() < $fecha_evento_prox) {
                 $estado_animacion = true;
             }
+            
             if ($estado_animacion) {
                 if ($evento_actual->estadoAnimacion == 0) {
                     $token_generado = str_random(8);

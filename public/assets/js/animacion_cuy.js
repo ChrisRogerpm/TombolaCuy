@@ -6,6 +6,16 @@ var escalacuys = 0.3;
 var intervalo_consultaevento=2000;
 buscando_evento=false;
 
+function get_caja(numero){
+    cajaobjeto={};
+    $(ARRAY_PUNTOSCAJAS).each(function(i,e){
+        if(e.nombre==numero){
+            cajaobjeto=e;
+            return false;
+        }
+    })
+    return cajaobjeto;
+}
 function responsive_canvas() {
    camera.aspect = window.innerWidth / window.innerHeight;
    camera.updateProjectionMatrix();
@@ -31,13 +41,16 @@ function cargar_archivos() {
         $.LoadingOverlay("hide");
 
         console.warn("FIN CARGA ARCHIVOS");
+
+        CargarEstadistica(1);
+
         window.addEventListener('resize', responsive_canvas, false);
         //consultarEvento(1);
-        intervalo_revisar_evento=setInterval(function(){
-                    if(!buscando_evento){
-                        consultarEvento(1);
-                    }
-                },intervalo_consultaevento) 
+        // intervalo_revisar_evento=setInterval(function(){
+        //             if(!buscando_evento){
+        //                 consultarEvento(1);
+        //             }
+        //         },intervalo_consultaevento) 
     //    iniciar_juego();
       //  cajagirando_animacion();
         return
@@ -117,6 +130,9 @@ function cargar_archivos() {
     });
 }
 
+function INICIO_ANIMACION_CUY(){
+    cajagirando_animacion();
+}
 function cajagirando_animacion() {
     $("#ImgContainer").hide();
     var_cajagirando = requestAnimationFrame(cajagirando_animacion);
@@ -357,34 +373,40 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                 $("#barra_loading").css("height","98%");
 
                                 setTimeout(function(){
-                                    $("#progreso").hide();
-                                    $("#img_ganador").show();
-                                    setTimeout(function () {
-                                        $("#img_ganador").hide();
-                                        $("#ImgContainer").show();
-                                        $("#barra_loading").css("height","0%");
-                                    },10000)
-                                    modelCajaP.visible=true;
-                                    model.position.set(0,0,0);
-                                    modelCuyDudando.position.set(0,0,0);
-                                    modelCuyChoque.position.set(0,0,0);
-                                    clock = new THREE.Clock();
-                                    clockCuyDudando = new THREE.Clock();
-                                    clockCuyChoque= new THREE.Clock();
-                                    clockCajaP= new THREE.Clock();
-                                    token="";
-                                    GANADOR_DE_EVENTO="";
-                                    $("#barra_loading").css("height","100%");
-                                    $("#idevento_titulo").text("");
-                                    if(typeof intervalo_revisar_evento!="undefined"){
-                                        clearInterval(intervalo_revisar_evento);
-                                    }
-                                    intervalo_revisar_evento=setInterval(function(){
-                                        if(!buscando_evento){
-                                            consultarEvento(1);
+                                        $("#progreso").hide();
+                                        $("#img_ganador").show();
+
+                                        setTimeout(function () {
+                                            $("#img_ganador").hide();
+                                            $("#ImgContainer").show();
+                                            $("#barra_loading").css("height","0%");
+                                            
+                                            $("#termotetro_para_iniciar").show();
+                                            CargarEstadistica(1);
+
+                                            // intervalo_revisar_evento=setInterval(function(){
+                                            //     if(!buscando_evento){
+                                            //         consultarEvento(1);
+                                            //     }
+                                            //  },intervalo_consultaevento);
+                                        },10000)
+                                        modelCajaP.visible=true;
+                                        model.position.set(0,0,0);
+                                        modelCuyDudando.position.set(0,0,0);
+                                        modelCuyChoque.position.set(0,0,0);
+                                        clock = new THREE.Clock();
+                                        clockCuyDudando = new THREE.Clock();
+                                        clockCuyChoque= new THREE.Clock();
+                                        clockCajaP= new THREE.Clock();
+                                        token="";
+                                        GANADOR_DE_EVENTO="";
+                                        $("#barra_loading").css("height","100%");
+                                        $("#idevento_titulo").text("");
+                                        if(typeof intervalo_revisar_evento!="undefined"){
+                                            clearInterval(intervalo_revisar_evento);
                                         }
-                                    },intervalo_consultaevento)
-                                }, tiempo_cuychoque);
+                                      
+                                    }, tiempo_cuychoque);
                  }
                 fin_tiempof = performance.now();
                 milisegundosf = (fin_tiempof - inicio_tiempo);
@@ -405,119 +427,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
 }
 
 
-ULTIMA_CORRIDA = false;
-function mover_cuyrandom2() {    ///var_cuymoviendo  => animationframe
-    if (!CUY_CORRIENDO) { return; }
-    model.visible = true;
-    modelCuyChoque.visible = false;
-    modelCuyDudando.visible = false;
-    if (typeof var_cuydudando !== "undefined") {
-        cancelAnimationFrame(var_cuydudando);
-    }
-    if (typeof var_cuychoque !== "undefined") {
-        cancelAnimationFrame(var_cuychoque);
-    }
-    var newX = lerp(a.x, b.x, ease(t));
-    var newY = lerp(a.y, b.y, ease(t));
-    var newZ = lerp(a.z, b.z, ease(t));
-    model.position.set(newX, 0, newZ);
-    t += dt;
-    mixer.update(clock.getDelta());
-    renderer.render(scene, camera);
-    var_cuymoviendo = requestAnimationFrame(mover_cuyrandom2);
-    if (t >= 1) {
-        console.warn("LLEGÓ ccc");
-        model.position.set(b.x, b.y, b.z); ///ajustar posición si no llegó exacto
-        a = { x: model.position.x, y: model.position.y, z: model.position.z };
-        cancelAnimationFrame(var_cuymoviendo);
-        if (typeof animacion !== "undefined") {
-            cancelAnimationFrame(animacion);
-            delete animacion;
-            aumento = 0;
-        }
-        if (typeof var_cuymoviendo !== "undefined") {
-            cancelAnimationFrame(var_cuymoviendo);
-            delete var_cuymoviendo;
-            aumento = 0;
-        }
-        if (typeof var_cuy_rotando != "undefined") {
-            cancelAnimationFrame(var_cuy_rotando);
-            delete var_cuy_rotando;
-        }
-        modelCuyDudando.position.z = model.position.z;
-        modelCuyDudando.position.x = model.position.x;
-        modelCuyDudando.position.y = model.position.y;
-        modelCuyChoque.position.z = model.position.z;
-        modelCuyChoque.position.x = model.position.x;
-        modelCuyChoque.position.y = model.position.y;
-        fin_tiempo = performance.now();
-        milisegundos = (fin_tiempo - inicio_tiempo);
-        console.warn("tiempo  " + milisegundos + " milliseconds.");
-        cuydudando();
-        if (milisegundos > TIEMPO_RANDOM) {
-                CUY_CORRIENDO = false;
-                if (get_caja(0).posicion.x == model.position.x && get_caja(0).posicion.y == model.position.y) {
-                    cuychoque();
-                }
-                if (typeof funcion_callback != "undefined") {
-                    delete funcion_callback;
-                }
-                funcion_callback = function () {
-                    console.warn("CALLBACK CUY GANADOR ---------");//**/}
-                    CerrarEvento(1, token);
-                    tiempo_cuychoque = 1;
-                    if (GANADOR_DE_EVENTO == "0") {
-                        tiempo_cuychoque = 5000;
-                    }
-                    $("#barra_loading").css("height", "98%");
-                    setTimeout(function () {
-                        $("#progreso").hide();
-                        $("#img_ganador").show();
-                        setTimeout(function () {
-                            $("#img_ganador").hide();
-                            $("#ImgContainer").show();
-                            $("#barra_loading").css("height", "0%");
-                        }, 10000)
-                        modelCajaP.visible = true;
-                        model.position.set(0, 0, 0);
-                        modelCuyDudando.position.set(0, 0, 0);
-                        modelCuyChoque.position.set(0, 0, 0);
-                        clock = new THREE.Clock();
-                        clockCuyDudando = new THREE.Clock();
-                        clockCuyChoque = new THREE.Clock();
-                        clockCajaP = new THREE.Clock();
-                        token = "";
-                        GANADOR_DE_EVENTO = "";
-                        $("#barra_loading").css("height", "100%");
-                        $("#idevento_titulo").text("");
-                        if (typeof intervalo_revisar_evento != "undefined") {
-                            clearInterval(intervalo_revisar_evento);
-                        }
-                        intervalo_revisar_evento = setInterval(function () {
-                            if (!buscando_evento) {
-                                consultarEvento(1);
-                            }
-                        }, intervalo_consultaevento)
-                    }, tiempo_cuychoque);
-                }
-                funcion_callback();
-                delete funcion_callback;
-                console.info("fin");
-        }///ms > tiempo
-        else {
-            setTimeout(function () {
-                if ((milisegundos + 1000) > TIEMPO_RANDOM) {
-                    b = _get_caja(GANADOR_DE_EVENTO).posicion;
-                    ULTIMA_CORRIDA = true;
-                } else {
-                    generar_nueva_posicion_random();//b
-                }
-                random_tiempo();
-            }, 1000);
-
-        }
-    }  ///fin t>1
-}
 CUY_CORRIENDO = false;
 function iniciar_tiempo_random(tiempo) {
     CUY_CORRIENDO = true;
