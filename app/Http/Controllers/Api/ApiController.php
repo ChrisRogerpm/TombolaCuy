@@ -16,7 +16,7 @@ class ApiController extends Controller
         $IdJuego = $request->input('IdJuego');
         $evento_actual = Evento::EventoActual($IdJuego);
         $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
-        if($evento_actual != null){
+        if ($evento_actual != null) {
             $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
             $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
             $fecha_ini_actual = $evento_actual->fechaEvento;
@@ -76,10 +76,18 @@ class ApiController extends Controller
             } else {
                 return response()->json(['mensaje' => 'No se encuentra en el tiempo de rango de Animación']);
             }
-        }
-        else{
+        } else {
             $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
             return response()->json([
+                'token_animacion' => '',
+                'mensaje_token' => '',
+                'estado_animacion' => '',
+                'fecha_evento_ini_actual' => '',
+                'fecha_evento_fin_actual' => '',
+                'fecha_evento_proximo' => '',
+                'fecha_animacion' => '',
+                'evento_id_actual' => '',
+                'evento_valor_ganador' => '',
                 'resultado_evento' => $resultado_evento,
                 'estadistica' => $estadistica
             ]);
