@@ -1,36 +1,20 @@
 GANADOR_DE_EVENTO="";
 iniciado = false;
 token="";  /// en consultarevento obtiene valor
-anguloRotacion=0;
-i=0;
-x=0;
-m=0;
-id=0;
-flag=true;
-posF=3;
-posF1=3;
-posO=37;
-entrar=false;
-
-
+EVENTO_ID="";
 ARRAY_PUNTOSCAJAS=[];
 
 ARRAY_PUNTOSCAJAS.push({nombre:26,posicion:{x:-0.30980586278363836,y:0,z:-3.3762877429185947} })
 ARRAY_PUNTOSCAJAS.push({nombre:3,posicion:{x:-0.949006568309034,y:0,z:-3.356998701580594}})
-
 ARRAY_PUNTOSCAJAS.push({nombre:35,posicion:{x:-1.4167106765152129,y:0,z:-3.1356755102510894} })
 ARRAY_PUNTOSCAJAS.push({nombre:12,posicion:{x:-1.8540938062507262,y:0,z:-2.791641244935619} })
 ///29 28                                   
 ARRAY_PUNTOSCAJAS.push({nombre:28,posicion:{x:-2.3978601268406794,y:0,z:-2.467785601362559}})
-
 ARRAY_PUNTOSCAJAS.push({nombre:7,posicion:{x:-2.765080554750653,y:0,z:-2.0221378996133974} })
-                                           
 ARRAY_PUNTOSCAJAS.push({nombre:29,posicion:{x:-2.9853090380374905,y:0,  z:-1.541500347580593} })
-
 ARRAY_PUNTOSCAJAS.push({nombre:18,posicion:{x:-3.224733808882785,y:0,z:-0.9138055339476931} })
 ARRAY_PUNTOSCAJAS.push({nombre:22,posicion:{x:-3.4912757475952065,y:0,z:-0.44938379926419136} })
 ARRAY_PUNTOSCAJAS.push({nombre:9,posicion:{x:-3.476497,  y:0 , z:0.23360957} })
-
 ARRAY_PUNTOSCAJAS.push({nombre:31,posicion:{x:-3.35743326 ,y:0,z:0.7374220786} })
 ARRAY_PUNTOSCAJAS.push({nombre:14,posicion:{x:-3.28769929 ,y:0,z:1.28942981} })
 ARRAY_PUNTOSCAJAS.push({nombre:20,posicion:{x: -2.8653985,y:0,z:1.736809} })
@@ -42,7 +26,6 @@ ARRAY_PUNTOSCAJAS.push({nombre:24,posicion:{x:-1.088638265020644,y:0,z:3.2145740
 ARRAY_PUNTOSCAJAS.push({nombre:5,posicion:{x:-0.5348062371620586,y:0,z:3.301620951663683} })
 ARRAY_PUNTOSCAJAS.push({nombre:10,posicion:{x:-0.02302394273425558,y:0,z:3.5234013240937334}    })
 ARRAY_PUNTOSCAJAS.push({nombre:23,posicion:{x:0.5254609302769983,y:0,z:3.3041370243871855} })
-
 ARRAY_PUNTOSCAJAS.push({nombre:8,posicion:{x:1.1413224681962724,y:0,z:3.2268432103527904} })
 ARRAY_PUNTOSCAJAS.push( { nombre:30 ,posicion:{x:1.6125922448708456,y:0,z:2.9984823398983607}  }   )
 ARRAY_PUNTOSCAJAS.push( { nombre:11 ,posicion:{x:2.164808512786406,y:0,z:2.7421715169359664}  }   )
@@ -63,23 +46,8 @@ ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348
 
 ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
-function get_caja(numero){
-        cajaobjeto={};
- $(ARRAY_PUNTOSCAJAS).each(function(i,e){
-    if(e.nombre==numero){
-        cajaobjeto=e;
-        return false;
-    }
- })
-return cajaobjeto;
-
-
-}
-
 $(document).ready(function () {
-    var i=0;
-    //$("#ImgContainer").css("background-image", "url('images/fondo_inicio.jpg')");
-    CargarEstadistica(1);
+    // CargarEstadistica(1);
 });
 
 if (WEBGL.isWebGLAvailable() === false) {
@@ -106,11 +74,9 @@ function init() {
     clockCuyDudando = new THREE.Clock();
     clockCajaP = new THREE.Clock();
     clockCuyChoque = new THREE.Clock();
-
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
     camera.position.set(0, 10, 0);
-    
     //escena
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xa0a0a0);
@@ -130,7 +96,6 @@ function init() {
     scene.add(dirLight);
     // var axesHelper = new THREE.AxesHelper( 5,5,5 );
     // scene.add( axesHelper );
-
     // controls = new THREE.OrbitControls(camera);
     // controls.autoRotate = true;
     // controls.autoRotateSpeed = 10;
@@ -146,7 +111,6 @@ function init() {
     var material = new THREE.MeshBasicMaterial();
     var loader = new THREE.GLTFLoader();
     // Plano y Cajas
-
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
     $.LoadingOverlay("show");
@@ -166,12 +130,9 @@ function init() {
         cargar_archivos();
         modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
         //modelCaja.children[0].children[0].position.y = 410
-        //modelCaja.children[0].scale.set(1, 1, 1);
         CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
-        //modelCaja.children[0].scale.set(1, 1, 1);  
 
     });
-    
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -195,10 +156,8 @@ function consultarEvento(IdJuego) {
         complete: function () {
         },
         success: function (response) {
-
             EVENTORESPONSE=response;
             if(response.token_animacion != undefined){       
-                i=i+1;
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
                     $("#"+value.TipoValorApuesta).text(value.Repetidos);
@@ -217,38 +176,36 @@ function consultarEvento(IdJuego) {
                 $("#progreso").show();
                 $("#barra_loading").css("height","100%");
 
-
+                EVENTO_ID= response.evento_id_actual;
+                fechaFinEvento=response.fecha_evento_fin_actual;
+                // segAntesdeBloqueo=
+                $("#termotetro_para_iniciar").hide();
+                
                 buscando_evento=false;
                 clearInterval(intervalo_revisar_evento);
                 GANADOR_DE_EVENTO = response.evento_valor_ganador;
                 TIEMPO_GIRO_CAJA=4500;
                 TIEMPO_CUY = 20000;
-                //iniciar_juego();
-                cajagirando_animacion();
-               // iniciar(response.evento_valor_ganador);
-               //iniciar_juego();
-               //iniciar_cuy();
-
+                INICIO_ANIMACION_CUY();////////////////////////////////////////
             }
             else{
                 buscando_evento=false;
             }
-            //setTimeout(function(){ iniciado=false; }, 10000);   
         },
         error: function (jqXHR, textStatus, errorThrown) {
                 buscando_evento=false;
-
         }
     });
 }
 
-function CerrarEvento(IdJuego,token_animacion) {
+function CerrarEvento(IdJuego,token_animacion,IdEvento) {
     var url = document.location.origin + "/" + "api/ConfirmacionToken";
     $.ajax({
         url: url,
         type: "POST",
         contentType: "application/json",
-        data: JSON.stringify({IdJuego: IdJuego,token:token_animacion}),
+        data: JSON.stringify({IdJuego: IdJuego,token:token_animacion
+            ,IdEvento:EVENTO_ID}),
         beforeSend: function () {
         },
         complete: function () {
@@ -274,8 +231,7 @@ function CargarEstadistica(IdJuego) {
         complete: function () {
         },
         success: function (response) {    
-        aaa=response;        
-            //console.log(response);
+            aaa=response;        
             if(response.token_animacion != undefined){                
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
@@ -286,27 +242,52 @@ function CargarEstadistica(IdJuego) {
                 var strUltimos12="";
                 var clase="caja1";
                 $.each(response.resultado_evento, function( key, value ) {
-                         if(key<12){
-                    //     switch (value.valorGanador) {
-                    //         case '12':case '19':case '21':case '9':case '16':case '3':case '1':case '23':case '5':case '7':case '18':case '14':
-                    //             clase="caja2";
-                    //           break;
-                    //         case '15':case '4':case '2':case '22':case '11' :case '6':case '8':case '10':case '24':case '20':case '13':case '17':
-                    //             clase="caja1";
-                    //           break;                            
-                    //         default:
-                    //             clase="caja0";
-                    //     }
-                        //strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th class="'+clase+'">'+value.valorGanador+'</th></tr>';
-                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
+                    if(key<12){
+                              strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
                     }
                 });
                 $("#tablaUltimos").html(strUltimos12);
             }
             //else{
-
             //}
-            //setTimeout(function(){ iniciado=false; }, 10000);   
+
+                EVENTO_ID= response.evento_id_actual;
+                $("#termotetro_para_iniciar").show();
+                FECHA_ANIMACION=response.fecha_animacion;
+                FECHA_ANIMACION=moment(FECHA_ANIMACION, "YYYY-MM-DD HH:mm:ss a");
+               ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
+               console.info(moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a"));
+               console.info(moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
+               segundos_total=FECHA_ANIMACION.diff(ahora,'seconds');
+               console.info(segundos_total);
+               
+               con_segundos=1;
+               intervalo_loading_inicio=setInterval(function(){
+                    porcentaje=(con_segundos*100)/segundos_total;
+                    $("#barra_loading_tpi").css("width",(porcentaje)+"%");
+                    if(porcentaje==100){
+                        clearInterval(intervalo_loading_inicio);
+
+
+                        $("#idevento_titulo").text(response.evento_id_actual);
+                        $("#progreso").show();
+                        $("#barra_loading").css("height","100%");
+
+                        EVENTO_ID= response.evento_id_actual;
+                        fechaFinEvento=response.fecha_evento_fin_actual;
+                        // segAntesdeBloqueo=
+                        $("#termotetro_para_iniciar").hide();
+                        
+                        buscando_evento=false;
+                        clearInterval(intervalo_revisar_evento);
+                        GANADOR_DE_EVENTO = response.evento_valor_ganador;
+                        TIEMPO_GIRO_CAJA=4500;
+                        TIEMPO_CUY = 20000;
+                        INICIO_ANIMACION_CUY();////////////////////////////////////////
+
+                    }
+                    con_segundos++;
+               },(segundos_total*1000))
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }

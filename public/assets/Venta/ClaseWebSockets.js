@@ -65,12 +65,21 @@ function init(host,port){
                segundos=proxima_fecha.diff(ahora,'seconds');
                if(segundos<1){
                    console.warn("Evento con fecha fin menor a hora actual, recargando....");
+                   if(typeof intervalo_contador!="undefined"){
+                      clearInterval(intervalo_contador) 
+                    }
+                    $("#proximo_en2").text("--");
+                    $("#barra_loading").css("width","100%");
                    $.LoadingOverlay("hide");
                    $("#contador_overlay").remove();
                    $("#recargar_tabla").text("Recargar");
+                $("#recargar_tabla").show();
+
                    //CargarTabla();
                } else {
-                   $("#recargar_tabla").text("")
+                $("#recargar_tabla").hide();
+                $("#recargar_tabla").text("");
+                    
                 reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
 
                }
