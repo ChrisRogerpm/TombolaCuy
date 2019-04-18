@@ -235,8 +235,8 @@ function CargarEstadistica(IdJuego) {
             //if(response.evento.token_animacion != undefined){                
                 token=response.token_animacion;                
                 $.each(response.estadistica, function( key, value ) {
-                    $("#"+value.TipoValorApuesta).text(value.Repetidos);
-                    $("#"+value.TipoValorApuesta).prev().css("background-color",value.rgb)
+                    $("#"+value.valorapuesta).text(value.Repetidos);
+                    $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
 
                 });
                 var strUltimos12="";
