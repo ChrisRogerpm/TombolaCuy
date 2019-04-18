@@ -34,6 +34,9 @@ function INICIAR(){
                 $(".nombre_tituloconfiguracionevento ").text($(this).data("nombre"));
                 $(".id_tituloconfiguracionevento ").text("#"+$(this).data("id"));
                 EventoDatosJsonNuevo(this,$(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));
+                
+                $("#modal_imprimir #divimpresion .imagen img").attr("src","img/juegos/"+$(this).data("logo"))
+
                 //EventoDatosJson($(this).data("id"),$("#idPuntoVenta").val(),$(this).data("segbloqueoantesevento"));///DATOS jugador,divisa,jackpot
                 //, inicia setinterval de historialyjackpot 
                 //, inicia reloj y contador

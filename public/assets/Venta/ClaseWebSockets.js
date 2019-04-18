@@ -63,11 +63,11 @@ function init(host,port){
                proxima_fecha=moment(eventoactual.fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
                ahora=moment(msg.data);
                segundos=proxima_fecha.diff(ahora,'seconds');
+              reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
+
                if(segundos<1){
-                   console.warn("Evento con fecha fin menor a hora actual, recargando....");
-                   if(typeof intervalo_contador!="undefined"){
-                      clearInterval(intervalo_contador) 
-                    }
+                   console.warn("Evento "+eventoactual.IdEvento+" con fecha fin= "+proxima_fecha.format("YYYY-MM-DD HH:mm:ss")+" menor a hora actual="+ahora.format("YYYY-MM-DD HH:mm:ss")+", recargando....");
+                   detenerContador();
                     $("#proximo_en2").text("--");
                     $("#barra_loading").css("width","100%");
                    $.LoadingOverlay("hide");
@@ -77,11 +77,10 @@ function init(host,port){
 
                    //CargarTabla();
                } else {
-                $("#recargar_tabla").hide();
-                $("#recargar_tabla").text("");
-                    
-                reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
-
+                  $("#recargar_tabla").hide();
+                  $("#recargar_tabla").text("");
+                  console.info("Iniciando Reloj serv "+msg.data); 
+                  ContadorProximoEvento(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
                }
              //reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
           }

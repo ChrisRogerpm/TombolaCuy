@@ -424,7 +424,7 @@
                                                     data-divisa="{{$evento->divisa}}"
                                                     data-jackpotsuma="{{$evento->jackpotsuma}}"
                                                     data-logo="{{$evento->logo}}"
-                                                    "
+                                                    
                                                     > 
                                                     <div style="width: 30%; height: 100%;float:left;position:relative">
                                                         <img style="width:70%;height:80%;position: absolute; left: 50%; transform: translate(-50%, -50%); top: 50%;" src="img/juegos/{{$evento->logo}}">
@@ -522,48 +522,48 @@
 </div>
 
 <div class="modal" id="modal_buscar" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">TICKET</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="overflow:auto">
-                 <div class="row">
-                    <div class="col-md-12">
-                       <form class="form-inline">
-                                <div class="form-group">
-                                    <label for="inputPassword2" class="sr-only">Nro Ticket</label>
-                                    <input class="form-control" id="ticket_txt" placeholder="Ticket" type="text">
-                                </div>
-                                <button type="submit" class="btn btn-success" id="btn_buscar_ticket">Buscar</button>
-                            </form>
-                    </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">TICKET</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="digitador">
-                                <div class="digito">7</div>
-                                <div class="digito">8</div>
-                                <div class="digito">9</div>
-                                <div class="digito">4</div>
-                                <div class="digito">5</div>
-                                <div class="digito">6</div>
-                                <div class="digito">1</div>
-                                <div class="digito">2</div>
-                                <div class="digito">3</div>
-                                <div class="borrar">BORRAR</div>
-                                <div class="digito">0</div>
-                                <div class="buscar_div" id="buscar_div">BUSCAR</div>
+                <div class="modal-body" style="overflow:auto">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <form class="form-inline">
+                                    <div class="form-group">
+                                        <label for="inputPassword2" class="sr-only">Nro Ticket</label>
+                                        <input class="form-control" id="ticket_txt" placeholder="Ticket" type="text">
+                                    </div>
+                                    <button type="submit" class="btn btn-success" id="btn_buscar_ticket">Buscar</button>
+                                </form>
                         </div>
                     </div>
-                </div>
-            </div><!--FIN DIV WRAPPER-->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="digitador">
+                                    <div class="digito">7</div>
+                                    <div class="digito">8</div>
+                                    <div class="digito">9</div>
+                                    <div class="digito">4</div>
+                                    <div class="digito">5</div>
+                                    <div class="digito">6</div>
+                                    <div class="digito">1</div>
+                                    <div class="digito">2</div>
+                                    <div class="digito">3</div>
+                                    <div class="borrar">BORRAR</div>
+                                    <div class="digito">0</div>
+                                    <div class="buscar_div" id="buscar_div">BUSCAR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--FIN DIV WRAPPER-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
        </div>
     </div>
 </div>

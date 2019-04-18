@@ -345,12 +345,23 @@ function responsivetombola(){
         })
 }
 
-function iniciarContador(duration, display) {
+function detenerRelojServidor(){
+     if(typeof intervalo_horaservidor!="undefined"){
+        clearInterval(intervalo_horaservidor)
+        delete intervalo_horaservidor;
+    }
+}
+function detenerContador(){
+     if(typeof intervalo_contador!="undefined"){
+            clearInterval(intervalo_contador);
+            delete intervalo_contador;
+     }
+}
+
+function iniciarContador(duration, display,segundosantesbloqueo) {
     tiempototal=duration;
     var timer = duration, minutos, segundos;
-    if(typeof intervalo_contador!="undefined"){
-      clearInterval(intervalo_contador) 
-    }
+    detenerContador();
     intervalo_contador=setInterval(function () {
         minutos = parseInt(timer / 60, 10);
         segundos = parseInt(timer % 60, 10);    
@@ -358,20 +369,24 @@ function iniciarContador(duration, display) {
         minutos = minutos < 10 ? "0" + minutos : minutos;
         segundos = segundos < 10 ? "0" + segundos : segundos;
         display.text(minutos + ":" + segundos);
-        if($("#contador_overlay").length>0){
-            $("#contador_overlay").text(segundos)
-        }
+      
             ///termometro
         //         porcentaje= duration-((100*timer)/duration);
-            porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
+            porcentaje=((100*(timer-segundosantesbloqueo))/duration);
          //console.warn("porcn=" + porcentaje);
             $("#barra_loading").css("width",porcentaje+"%")
         //
        // ///////segundos bloqueo
-           segantesdebloque=eventoactual.segBloqueoAntesEvento;
-        if(minutos==0 && segundos==segantesdebloque){
-           $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
-           $(".loadingoverlay").append($('<div id="contador_overlay" style="position: relative; left: 6%;width:7%;height: 10%; text-align:center;font-size:8vh;color:red">--</div>'))
+           segantesdebloque=segundosantesbloqueo;
+        if(minutos==0 && segundos<=segantesdebloque){
+            if($("#contador_overlay").length==0){
+                    $.LoadingOverlay("show",{image:basePath+"img/loading/load.gif"})
+                    $(".loadingoverlay").append($('<div id="contador_overlay" style="position: relative; left: 6%;width:7%;height: 10%; text-align:center;font-size:8vh;color:red">--</div>'))
+                
+            }
+            if($("#contador_overlay").length>0){
+                    $("#contador_overlay").text(segundos)
+                }
         }
         else{
            segundostotales= parseInt((parseInt(minutos)*60))+parseInt(segundos);
@@ -387,9 +402,7 @@ function iniciarContador(duration, display) {
                 $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
                 CargarTabla();
-
                // $.LoadingOverlay("hide");
-
                 //location.reload();
               },250)
         }
@@ -399,14 +412,13 @@ function iniciarContador(duration, display) {
         }
     }, 1000);
 }
-
-function reloj_websockets(horaserv,fechaFinEvento,segundosantesbloqueo){
- // horaserv=ServerDate();horaserv= new Date(horaserv);
+function ContadorProximoEvento(horaserv,fechaFinEvento,segundosantesbloqueo){
     proxima_fecha=moment(fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
     ahora=moment(horaserv);
     segundos=proxima_fecha.diff(ahora,'seconds');
+    $("#proximo_en2").text("--");
     if(segundos>0){
-        iniciarContador(segundos, $("#proximo_en2")) ;
+        iniciarContador(segundos, $("#proximo_en2"),segundosantesbloqueo) ;
     }
     else{
         if(typeof intervalo_contador!="undefined"){
@@ -414,13 +426,28 @@ function reloj_websockets(horaserv,fechaFinEvento,segundosantesbloqueo){
         }
 
     }
-    $("#proximo_en2").text("--")
-    console.log("proximo_en2 ="+segundos);
-    console.log(horaserv)
-    if(typeof intervalo_horaservidor!="undefined"){
-        clearInterval(intervalo_horaservidor)
-    }
+     console.log("proximo_en2 ="+segundos);
+    console.log(horaserv);
+}
+function reloj_websockets(horaserv,fechaFinEvento,segundosantesbloqueo){
+ // horaserv=ServerDate();horaserv= new Date(horaserv);
+    //proxima_fecha=moment(fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
+    //ahora=moment(horaserv);
+    //segundos=proxima_fecha.diff(ahora,'seconds');
+    //$("#proximo_en2").text("--");
 
+    // if(segundos>0){
+    //     iniciarContador(segundos, $("#proximo_en2")) ;
+    // }
+    // else{
+    //     if(typeof intervalo_contador!="undefined"){
+    //         clearInterval(intervalo_contador) 
+    //     }
+
+    // }
+    // console.log("proximo_en2 ="+segundos);
+    // console.log(horaserv)
+    detenerRelojServidor();
     intervalo_horaservidor=setInterval(function(){
                             horaserv=new Date(horaserv);
                             horaserv=horaserv.setSeconds(horaserv.getSeconds()+1)
@@ -481,7 +508,7 @@ function reloj_servidor(horaserv,fechaFinEvento,segundosantesbloqueo){
     ahora=moment(horaserv);
     segundos=proxima_fecha.diff(ahora,'seconds');
     if(segundos>0){
-        iniciarContador(segundos, $("#proximo_en2")) ;
+        iniciarContador(segundos, $("#proximo_en2"),segundosantesbloqueo) ;
 
     }
     console.log("proximo_en2 ="+segundos);
@@ -891,6 +918,12 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
 
         ///BOTON IMPRIMIR
         $("#div_botones .print").off().on("click",function(){
+
+            if(typeof intervalo_contador=="undefined"){
+                toastr.error("Evento Actual Ya Finalizó,   Recargar Página");
+                return;
+            }
+
             if($("#tabla_eventos tbody tr").length=="0"){
                 toastr.error("No hay Apuestas");
             }
@@ -940,6 +973,30 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
                 GuardarTicket(TICKET_IMPRIMIR);
             }
         })
+
+
+
+        $("#modal_buscar").off("hidden.bs.modal").on("hidden.bs.modal", function () {
+             ;CargarTabla();
+        })
+        $("#modal_buscar").off("shown.bs.modal").on("shown.bs.modal",function(){
+                detenerContador();
+                $("#modal_buscar #ticket_txt").focus();
+        });
+      
+        $("#modal_imprimir").off("hidden.bs.modal").on("hidden.bs.modal", function () {
+             CargarTabla();
+        })
+        $("#modal_imprimir").off("shown.bs.modal").on("shown.bs.modal", function () {
+            detenerContador();  
+        })
+        $("#modal_imprimir_pago").off("hidden.bs.modal").on("hidden.bs.modal", function () {
+             CargarTabla();
+        })
+        $("#modal_imprimir_pago").off("shown.bs.modal").on("shown.bs.modal", function () {
+            detenerContador();  
+        })        
+        
 ///////////////////////////FIN BOTONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
 }
@@ -991,9 +1048,7 @@ $('.digitador .digito').off().on('click',function(){
             
         })
 
-        $("#modal_buscar").off().on("shown.bs.modal",function(){
-                $("#modal_buscar #ticket_txt").focus();
-        });
+      
 
 
 }
@@ -1184,7 +1239,7 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
                 $("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
                 $("#modal_imprimir #divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
 
-                $("#modal_imprimir #divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)
+                //$("#modal_imprimir #divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)  demora 
                 ///$("#codigo_barra").html(codigo_barrahtml);
                 $("#modal_imprimir #imagen_qrcode").attr("src","data:image/png;base64,"+qrcode_src);
                 $("#modal_imprimir #imagen_codigobarra").attr("src","data:image/png;base64,"+codigo_barra_src);
