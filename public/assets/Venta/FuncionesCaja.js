@@ -159,7 +159,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     $.ajax({
         type: 'POST',
        // async:false,
-        url: basePath + 'GuardarTicketFk',
+        url: basePath + 'GuardarTicketFk', 
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':datosobjeto
