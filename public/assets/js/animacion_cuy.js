@@ -37,7 +37,7 @@ function cargarImagenes(srcs, callback) {
 function cargar_archivos() {
     if (index > archivos.length - 1) {
         modelCaja.children[0].position.y = 30;
-        modelCaja.children[0].children[1].scale.set(3, 3, 3)
+        modelCaja.children[0].children[1].scale.set(3, 3, 3);
         $.LoadingOverlay("hide");
 
         console.warn("FIN CARGA ARCHIVOS");
@@ -46,12 +46,7 @@ function cargar_archivos() {
         IPSERVIDOR_WEBSOCKETS="35.237.182.107";
         PUERTO_WEBSOCKETS="888";
         window.addEventListener('resize', responsive_canvas, false);
-        //consultarEvento(1);
-        // intervalo_revisar_evento=setInterval(function(){
-        //             if(!buscando_evento){
-        //                 consultarEvento(1);
-        //             }
-        //         },intervalo_consultaevento) 
+  
     //    iniciar_juego();
       //  cajagirando_animacion();
         return
@@ -390,11 +385,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                             
                                             $("#termotetro_para_iniciar").show();
                                             CargarEstadistica(1);
-                                            // intervalo_revisar_evento=setInterval(function(){
-                                            //     if(!buscando_evento){
-                                            //         consultarEvento(1);
-                                            //     }
-                                            //  },intervalo_consultaevento);
+                                         
                                         },10000)
                                         modelCajaP.visible=true;
                                         model.position.set(0,0,0);
@@ -408,9 +399,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                         GANADOR_DE_EVENTO="";
                                         $("#barra_loading").css("height","100%");
                                         $("#idevento_titulo").text("");
-                                        if(typeof intervalo_revisar_evento!="undefined"){
-                                            clearInterval(intervalo_revisar_evento);
-                                        }
                                       
                                     }, tiempo_cuychoque);
                  }
@@ -423,10 +411,12 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             console.info("fin");
         }///ms > tiempo
         else{
+            // tiempoazar_entrepuntos=Math.random() >= 0.5 ?
+            tiempodudando=Math.random() * (1000 - 1) + 1; 
            setTimeout(function(){
                generar_nueva_posicion_random();//b
                random_tiempo();
-           },1000);
+           },tiempodudando);
 
         }
     }  ///fin t>1

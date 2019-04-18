@@ -105,6 +105,12 @@ function CargarTabla() {
             $.LoadingOverlay("hide");
 
         },
+       error: function (jqXHR, textStatus, errorThrown) {
+                toastr.error("Error de Conexión a Servidor");
+                $.LoadingOverlay("hide");
+                setTimeout(function(){CargarTabla()},1000)
+        
+        }
     })
 }
 

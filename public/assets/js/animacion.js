@@ -166,6 +166,9 @@ function CerrarEvento(IdJuego,token_animacion,IdEvento) {
         }
     });
 }
+
+
+CONSULTADO_EVENTO=false;
 function CargarEstadistica(IdJuego) {    
     var url = document.location.origin + "/" + "api/DataEventoResultadoEventoFk";
     $.ajax({
@@ -174,10 +177,13 @@ function CargarEstadistica(IdJuego) {
         contentType: "application/json",
         data: JSON.stringify({IdJuego: IdJuego}),
         beforeSend: function () {
+          CONSULTADO_EVENTO=true;
         },
         complete: function () {
         },
-        success: function (response) {    
+        success: function (response) { 
+          CONSULTADO_EVENTO=false;
+
             aaa=response;        
             //if(response.evento.token_animacion != undefined){                
                 token=response.token_animacion;                
@@ -198,6 +204,7 @@ function CargarEstadistica(IdJuego) {
             //else{
             //}
                 if(typeof response.evento!="undefined"){
+                    if(response.evento.evento_id_actual!=""){
                         EVENTO_ID= response.evento.evento_id_actual;
                         GANADOR_DE_EVENTO = response.evento_valor_ganador;
                         TIEMPO_GIRO_CAJA=10000;
@@ -215,7 +222,7 @@ function CargarEstadistica(IdJuego) {
                          }   
                         //pedir_hora_server();
 
-                        ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
+                        //ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
 
                        //  FECHA_FIN_EVENTO=response.evento.fecha_evento_fin_actual;
                        //  FECHA_FIN_EVENTO=moment(FECHA_FIN_EVENTO, "YYYY-MM-DD HH:mm:ss a");
@@ -261,12 +268,23 @@ function CargarEstadistica(IdJuego) {
                        //          iii++;
                        //     },1000);
                        // } 
-                      
+                    }
+                    else{
+                      setTimeout(function(){
+                        CargarEstadistica(1);
+                      },1000)
+                    }
                 }
 
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
+          CONSULTADO_EVENTO=false;
+          setTimeout(function(){
+            CargarEstadistica(1);
+          }
+            ,1000)
+
         }
     });
 }

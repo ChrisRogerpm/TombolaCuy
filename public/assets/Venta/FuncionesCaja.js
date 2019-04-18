@@ -170,7 +170,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
         success: function (response) {
             ticketdata=response.id_ticketinsertado;
             idticket=ticketdata.idTicket;
-                ImprimirJson(ticketobjeto_imprimir,idticket);
+            ImprimirJson(ticketobjeto_imprimir,idticket);
 
             $("#divimpresion #IDTique").text(idticket);
             $("#modal_imprimir").modal("show");
@@ -180,6 +180,12 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
 
             $("#div_botones .cerrar").click();
         },
+        error: function (jqXHR, textStatus, errorThrown) {
+            modalguardarticket.hide();
+            toastr.error("Error al Guardar Ticket");
+        }
+
+
     })
 }
 
