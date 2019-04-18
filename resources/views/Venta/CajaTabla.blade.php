@@ -93,49 +93,65 @@
                     <div class="TOMBOLACUY" style="height:100vh;display:none">
                         <div class=" rowcabecera">
                                 <div class=" rowcabecera_nombres">
-                                                <div style="width:20%" class="">
+                                                <div style="width:25%" class="">
                                                     HORA
                                                 </div>
   
-                                                <div style="width:15%"class="">
+                                                <div style="width:20%"class="">
                                                 PRÓXIMO EN
                                                 </div>
                                                 <div style="width:15%"class="">
                                                 JUGADOR
                                                 </div>
-                                                <div style="width:15%" class="">
+                                                <div style="width:10%" class="">
                                                 DIVISA
                                                 </div>
-                                                  <div style="width:35%;text-align:right" class="">
+                                                  <div style="width:30%;text-align:right" class="">
                                                 JACKPOT
                                                 </div>
                                  </div>
 
                                             <div class=" rowcabecera_datos" id="row_datosevento">
-                                        <div style="width:20%;display:block" class="" >
+                                        <div style="width:25%;display:block" class="" >
                                                 <div style="display:flex;width:100%">
                                                     <div id="fechaServidor" style="display:flex;width:50%;border:0" ></div>
-                                                    <div id="progreso" style="padding: 0;display:block;float:right;width: 40%;margin:auto;height:45%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0; border-radius:5px 0px 0px 5px">
+                                                   <!--  <div id="progreso" style="padding: 0;display:block;float:right;width: 40%;margin:auto;height:45%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0; border-radius:5px 0px 0px 5px">
+                                                        <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: green;
+
+                                                        "></div>
+                                                    </div> -->
+                                            </div>
+                                        </div>
+
+                                        <div style="width:20%" class="">
+                                            <!-- <span id="proximo_en" class="countdown">-</span> |  -->
+                                          
+<div style="width:50%;border-right:0px" id="proximo_en2" class="countdown">-</div>
+                                            
+
+
+
+                                                <div style="display:flex;width:50%">
+                                                  
+                                                    <div id="progreso" style="padding: 0;display:block;float:right;width: 80%;margin:auto;height:45%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0; border-radius:5px 0px 0px 5px">
                                                         <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: green;
 
                                                         "></div>
                                                     </div>
                                             </div>
-                                        </div>
 
-                                        <div style="width:15%" class="">
-                                            <!-- <span id="proximo_en" class="countdown">-</span> |  -->
-                                            <span id="proximo_en2" class="countdown">-</span>
+
+
                                         </div>
                                         <div style="width:15%" class="">
                                             <span id="jugador" >-</span>
 
                                         </div>
-                                        <div style="width:15%" class="">
+                                        <div style="width:10%" class="">
                                             <span id="divisa" >-</span>
 
                                         </div>
-                                        <div style="width:35%;text-align:right" class="">
+                                        <div style="width:30%;text-align:right" class="">
                                             <span id="jackpotsuma" >0.00</span>
                                         </div>
                                 </div>

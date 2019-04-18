@@ -184,7 +184,7 @@ function consultarEvento(IdJuego) {
                 buscando_evento=false;
                 clearInterval(intervalo_revisar_evento);
                 GANADOR_DE_EVENTO = response.evento_valor_ganador;
-                TIEMPO_GIRO_CAJA=4500;
+                TIEMPO_GIRO_CAJA=10000;
                 TIEMPO_CUY = 20000;
                 INICIO_ANIMACION_CUY();////////////////////////////////////////
             }

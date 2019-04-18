@@ -52,24 +52,39 @@ function init(host,port){
                         console.info(segundos_total);
                       
                        if(segundos_total>0){ ///EN rango animacion
-                             con_segundos=0;
-                               //$("#barra_loading_tpi").css("width","14%");
-                               intervalo_loading_inicio=setInterval(function(){
-                                    porcentaje=(con_segundos*100)/segundos_total;
-                                    $("#barra_loading_tpi").css("width",(porcentaje)+"%");
-                                    if(porcentaje==100){
-                                        clearInterval(intervalo_loading_inicio);
-                                        $("#idevento_titulo").text(EVENTO_ID);
-                                       // $("#barra_loading").css("height","100%");
-                                        $("#termotetro_para_iniciar").hide();
-                                        buscando_evento=false;
-                                        GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                                        TIEMPO_GIRO_CAJA=4500;
-                                        TIEMPO_CUY = 20000;
-                                        INICIO_ANIMACION_CUY();////////////////////////////////////////
+                             // con_segundos=0;
+                             //   //$("#barra_loading_tpi").css("width","14%");
+                             //   intervalo_loading_inicio=setInterval(function(){
+                             //        porcentaje=(con_segundos*100)/segundos_total;
+                             //     //   $("#barra_loading_tpi").css("width",(porcentaje)+"%");
+                             //        if(porcentaje==100){
+                             //            clearInterval(intervalo_loading_inicio);
+                             //            $("#idevento_titulo").text(EVENTO_ID);
+                             //           // $("#barra_loading").css("height","100%");
+                             //            $("#termotetro_para_iniciar").hide();
+                             //            buscando_evento=false;
+                             //            GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
+                             //            TIEMPO_GIRO_CAJA=4500;
+                             //            TIEMPO_CUY = 20000;
+                             //            INICIO_ANIMACION_CUY();////////////////////////////////////////
+                             //        }
+                             //        con_segundos=con_segundos+1;
+                             //   },1000);
+                            setTimeout(function(){
+                                  $("#barra_loading_tpi").animate(
+                                     {width:"100%"}
+                                    ,(segundos_total)*1000
+                                    ,function(){
+                                              $("#idevento_titulo").text(EVENTO_ID);
+                                                $("#termotetro_para_iniciar").hide();
+                                                buscando_evento=false;
+                                                GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
+                                                TIEMPO_GIRO_CAJA=4500;
+                                                TIEMPO_CUY = 20000;
+                                                INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
-                                    con_segundos=con_segundos+1;
-                               },1000)
+                                  );
+                            },1000);
 
 
                         // segundos_inicioevento_animacion=FECHA_ANIMACION.diff(FECHA_INICIO_EVENTO,'seconds');
@@ -77,8 +92,6 @@ function init(host,port){
                         // segundo_actual=segundos_total;
                         // inicio_porcentaje=segundo_actual/segundos_inicioevento_animacion;
                         // setInterval(function(){
-
-
                         // },300)
 
 

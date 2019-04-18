@@ -361,6 +361,7 @@ function detenerContador(){
 function iniciarContador(duration, display,segundosantesbloqueo) {
     tiempototal=duration;
     var timer = duration, minutos, segundos;
+
     detenerContador();
     intervalo_contador=setInterval(function () {
         minutos = parseInt(timer / 60, 10);
@@ -371,10 +372,11 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
         display.text(minutos + ":" + segundos);
       
             ///termometro
+
         //         porcentaje= duration-((100*timer)/duration);
-            porcentaje=((100*(timer-segundosantesbloqueo))/duration);
+          //  porcentaje=((100*(timer-segundosantesbloqueo))/duration);
+            //         $("#barra_loading").css("width",porcentaje+"%");    
          //console.warn("porcn=" + porcentaje);
-            $("#barra_loading").css("width",porcentaje+"%")
         //
        // ///////segundos bloqueo
            segantesdebloque=segundosantesbloqueo;
@@ -395,15 +397,11 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
           }
         }
         if(minutos==0 && segundos==0){
+            detenerContador();
               setTimeout(function(){
-                 // RECONECTAR_WEBSOCKET=false;
-                 // socket.close();///cerrar socket
-                 //  location.reload();
                 $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
                 CargarTabla();
-               // $.LoadingOverlay("hide");
-                //location.reload();
               },250)
         }
           //fin segundos bloqueo
@@ -411,6 +409,13 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
             timer = duration;
         }
     }, 1000);
+    console.info(" dura : "+duration);
+    console.info(" dura : "+segundosantesbloqueo);
+
+    setTimeout(function(){
+        $("#barra_loading").animate({width:"0"},(duration-segundosantesbloqueo)*1000);
+    },1000);
+
 }
 function ContadorProximoEvento(horaserv,fechaFinEvento,segundosantesbloqueo){
     proxima_fecha=moment(fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");

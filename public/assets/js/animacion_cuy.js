@@ -148,7 +148,7 @@ function cajagirando_animacion() {
         $("#barra_loading").css("height","0%");
         $("#barra_loading_tpi").css("width","0%");
 
-        if (clockCajaP.getElapsedTime() < (TIEMPO_GIRO_CAJA/1000)){
+        if (clockCajaP.getElapsedTime() <= (TIEMPO_GIRO_CAJA/1000)){
 
         }else{
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO)
