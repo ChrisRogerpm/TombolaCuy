@@ -79,8 +79,8 @@ function init(host,port){
                                                 $("#termotetro_para_iniciar").hide();
                                                 buscando_evento=false;
                                                 GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                                                TIEMPO_GIRO_CAJA=4500;
-                                                TIEMPO_CUY = 20000;
+                                                //TIEMPO_GIRO_CAJA=TIEMPO_GIRO_CAJA;
+                                                //TIEMPO_CUY = 20000;
                                                 INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
                                   );
