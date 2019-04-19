@@ -317,9 +317,14 @@
 			font-size: 103px;
 			color: white;
 			bottom: 135%;
-			left: -91%;
 			font-family: arial;
 			font-weight: bolder;
+
+			width:35%;
+			left:-87%;
+			display:flex;
+			justify-content: center;
+			align-items: center;
 		}
 
 		.nuevo_lados{
