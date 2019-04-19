@@ -116,7 +116,7 @@
 	</div>	
 	<div id="pagosHistorial" class="nuevo_lados">
 		<div class="image" style="width: 80%;height: 170px;margin:auto;margin-top: 2vh;">
-			<img src="images/fondo_inicio.jpg"  alt="apuesta total" >		
+			<img src="images/figura_lado.jpg"  alt="apuesta total" >		
 		</div>
 		<h2>Pagos</h2>	
 
