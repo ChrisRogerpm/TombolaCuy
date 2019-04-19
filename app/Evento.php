@@ -56,7 +56,7 @@ ev.idEvento,ev.idJuego,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fe
 ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
-where ev.estadoEvento=1'));
+where ev.estadoEvento=1 and ju.estado=1'));
         return $listar;
     }
 

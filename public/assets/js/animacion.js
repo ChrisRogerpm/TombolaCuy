@@ -143,60 +143,7 @@ function init() {
 }
 
 
-function consultarEvento(IdJuego) {    
-    var url = document.location.origin + "/" + "api/DataEventoResultadoEvento";
-    $.ajax({
-        url: url,
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({IdJuego: IdJuego}),
-        beforeSend: function () {
-            buscando_evento=true;
-        },
-        complete: function () {
-        },
-        success: function (response) {
-            EVENTORESPONSE=response;
-            if(response.token_animacion != undefined){       
-                token=response.token_animacion;                
-                $.each(response.estadistica, function( key, value ) {
-                    $("#"+value.TipoValorApuesta).text(value.Repetidos);
-                    $("#"+value.TipoValorApuesta).prev().css("background-color",value.rgb)
-                });
-                var strUltimos12="";
-                var clase="caja1";
-                $.each(response.resultado_evento, function( key, value ) {
-                     if(key<12){
-                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
-                    }
-                });
-                $("#tablaUltimos").html(strUltimos12);
-                iniciado = true;
-                $("#idevento_titulo").text(response.evento_id_actual);
-                $("#progreso").show();
-                $("#barra_loading").css("height","100%");
 
-                EVENTO_ID= response.evento_id_actual;
-                fechaFinEvento=response.fecha_evento_fin_actual;
-                // segAntesdeBloqueo=
-                $("#termotetro_para_iniciar").hide();
-                
-                buscando_evento=false;
-                clearInterval(intervalo_revisar_evento);
-                GANADOR_DE_EVENTO = response.evento_valor_ganador;
-                TIEMPO_GIRO_CAJA=4500;
-                TIEMPO_CUY = 20000;
-                INICIO_ANIMACION_CUY();////////////////////////////////////////
-            }
-            else{
-                buscando_evento=false;
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-                buscando_evento=false;
-        }
-    });
-}
 
 function CerrarEvento(IdJuego,token_animacion,IdEvento) {
     var url = document.location.origin + "/" + "api/ConfirmacionToken";
@@ -219,6 +166,9 @@ function CerrarEvento(IdJuego,token_animacion,IdEvento) {
         }
     });
 }
+
+
+CONSULTADO_EVENTO=false;
 function CargarEstadistica(IdJuego) {    
     var url = document.location.origin + "/" + "api/DataEventoResultadoEventoFk";
     $.ajax({
@@ -227,10 +177,13 @@ function CargarEstadistica(IdJuego) {
         contentType: "application/json",
         data: JSON.stringify({IdJuego: IdJuego}),
         beforeSend: function () {
+          CONSULTADO_EVENTO=true;
         },
         complete: function () {
         },
-        success: function (response) {    
+        success: function (response) { 
+          CONSULTADO_EVENTO=false;
+
             aaa=response;        
             //if(response.evento.token_animacion != undefined){                
                 token=response.token_animacion;                
@@ -251,7 +204,11 @@ function CargarEstadistica(IdJuego) {
             //else{
             //}
                 if(typeof response.evento!="undefined"){
+                    if(response.evento.evento_id_actual!=""){
                         EVENTO_ID= response.evento.evento_id_actual;
+                        GANADOR_DE_EVENTO = response.evento_valor_ganador;
+                        TIEMPO_GIRO_CAJA=10000;
+                        TIEMPO_CUY = 20000;
                         $("#termotetro_para_iniciar").show();
 
                         EVENTO_ACTUAL=response.evento;
@@ -265,7 +222,7 @@ function CargarEstadistica(IdJuego) {
                          }   
                         //pedir_hora_server();
 
-                        ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
+                        //ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
 
                        //  FECHA_FIN_EVENTO=response.evento.fecha_evento_fin_actual;
                        //  FECHA_FIN_EVENTO=moment(FECHA_FIN_EVENTO, "YYYY-MM-DD HH:mm:ss a");
@@ -311,12 +268,23 @@ function CargarEstadistica(IdJuego) {
                        //          iii++;
                        //     },1000);
                        // } 
-                      
+                    }
+                    else{
+                      setTimeout(function(){
+                        CargarEstadistica(1);
+                      },1000)
+                    }
                 }
 
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
+          CONSULTADO_EVENTO=false;
+          setTimeout(function(){
+            CargarEstadistica(1);
+          }
+            ,1000)
+
         }
     });
 }

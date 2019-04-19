@@ -159,7 +159,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     $.ajax({
         type: 'POST',
        // async:false,
-        url: basePath + 'GuardarTicketFk',
+        url: basePath + 'GuardarTicketFk', 
          data: {
             '_token': $('input[name=_token]').val(),
             'datos':datosobjeto
@@ -170,7 +170,7 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
         success: function (response) {
             ticketdata=response.id_ticketinsertado;
             idticket=ticketdata.idTicket;
-                ImprimirJson(ticketobjeto_imprimir,idticket);
+            ImprimirJson(ticketobjeto_imprimir,idticket);
 
             $("#divimpresion #IDTique").text(idticket);
             $("#modal_imprimir").modal("show");
@@ -180,6 +180,12 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
 
             $("#div_botones .cerrar").click();
         },
+        error: function (jqXHR, textStatus, errorThrown) {
+            modalguardarticket.hide();
+            toastr.error("Error al Guardar Ticket");
+        }
+
+
     })
 }
 
@@ -361,6 +367,7 @@ function detenerContador(){
 function iniciarContador(duration, display,segundosantesbloqueo) {
     tiempototal=duration;
     var timer = duration, minutos, segundos;
+
     detenerContador();
     intervalo_contador=setInterval(function () {
         minutos = parseInt(timer / 60, 10);
@@ -371,10 +378,11 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
         display.text(minutos + ":" + segundos);
       
             ///termometro
+
         //         porcentaje= duration-((100*timer)/duration);
-            porcentaje=((100*(timer-segundosantesbloqueo))/duration);
+          //  porcentaje=((100*(timer-segundosantesbloqueo))/duration);
+            //         $("#barra_loading").css("width",porcentaje+"%");    
          //console.warn("porcn=" + porcentaje);
-            $("#barra_loading").css("width",porcentaje+"%")
         //
        // ///////segundos bloqueo
            segantesdebloque=segundosantesbloqueo;
@@ -395,15 +403,11 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
           }
         }
         if(minutos==0 && segundos==0){
+            detenerContador();
               setTimeout(function(){
-                 // RECONECTAR_WEBSOCKET=false;
-                 // socket.close();///cerrar socket
-                 //  location.reload();
                 $.LoadingOverlay("hide");
                  $("#contador_overlay").remove();
                 CargarTabla();
-               // $.LoadingOverlay("hide");
-                //location.reload();
               },250)
         }
           //fin segundos bloqueo
@@ -411,6 +415,13 @@ function iniciarContador(duration, display,segundosantesbloqueo) {
             timer = duration;
         }
     }, 1000);
+    console.info(" dura : "+duration);
+    console.info(" dura : "+segundosantesbloqueo);
+
+    setTimeout(function(){
+        $("#barra_loading").animate({width:"0"},(duration-segundosantesbloqueo)*1000);
+    },1000);
+
 }
 function ContadorProximoEvento(horaserv,fechaFinEvento,segundosantesbloqueo){
     proxima_fecha=moment(fechaFinEvento, "YYYY-MM-DD HH:mm:ss a");
