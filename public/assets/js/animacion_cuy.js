@@ -258,7 +258,7 @@ function cuy_rotacion() {//var_cuy_rotando
         cuydudando();
         if (typeof callback_rotacion != "undefined") {
             callback_rotacion();
-            delete callback_rotacion();
+            delete callback_rotacion;
         }
     }
 }
@@ -269,17 +269,24 @@ function generar_nueva_posicion_random(){
         b = { x: randomx, y: 0, z: randomz  };
 }
 function cuy_rotacionrandom() {//var_cuy_rotando
+    if(!CUY_ROTANDO){return;}
     model.visible = true;
     modelCuyDudando.visible = false;
     modelCuyChoque.visible = false;
-    dtrotacion = 0.05; // changed
+    // dtrotacion = 0.05; // changed
     timerotacion += dtrotacion;
     var_cuy_rotando = requestAnimationFrame(cuy_rotacionrandom);
     mixer.update(clock.getDelta());
     THREE.Quaternion.slerp(q1, q2, model.quaternion, timerotacion); // added
     renderer.render(scene, camera);
     if (timerotacion > 1) {
+        CUY_ROTANDO=false;
+        console.log("rotacion "+timerotacion);  
         timerotacion = 0; cancelAnimationFrame(var_cuy_rotando) // changed
+         if (typeof var_cuy_rotando != "undefined") {
+            cancelAnimationFrame(var_cuy_rotando);
+            delete var_cuy_rotando;
+        }
         //console.info("acabo rotacion rand");
         modelCuyDudando.rotation.x = model.rotation.x;
         modelCuyDudando.rotation.y = model.rotation.y;
@@ -294,7 +301,7 @@ function cuy_rotacionrandom() {//var_cuy_rotando
         //cuydudando();
         if (typeof callback_rotacion != "undefined") {
             callback_rotacion();
-            delete callback_rotacion();
+            delete callback_rotacion;
         }
     }
 }
@@ -412,17 +419,17 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
         }///ms > tiempo
         else{
             // tiempoazar_entrepuntos=Math.random() >= 0.5 ?
-            tiempodudando=Math.random() * (1000 - 1) + 1; 
+            tiempodudando=Math.random() * (10 - 1) + 1; 
            setTimeout(function(){
                generar_nueva_posicion_random();//b
                random_tiempo();
-           },tiempodudando);
+           },tiempodudando*100);
 
         }
     }  ///fin t>1
 }
 
-
+CUY_ROTANDO=false;
 CUY_CORRIENDO = false;
 function iniciar_tiempo_random(tiempo) {
     CUY_CORRIENDO = true;
@@ -431,6 +438,8 @@ function iniciar_tiempo_random(tiempo) {
     mover_a_ganador=false;
     cuydudando();
     generar_nueva_posicion_random()//b
+    dt =0.01 // velocidad movimiento
+    dtrotacion = 0.05; // velocidad rotacion;
     random_tiempo();
 }
 function random_tiempo(){
@@ -464,6 +473,8 @@ function random_tiempo(){
         callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
             mover_cuyrandom();
         }
+        CUY_ROTANDO=true;
+        //console.info("rotando true");
         cuy_rotacionrandom();
     } else {
         cancelAnimationFrame(var_cuymoviendo);

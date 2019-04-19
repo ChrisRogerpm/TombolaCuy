@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
+    <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
 	</head>
@@ -176,6 +177,7 @@
 		</div>	
 
         <script src="{{asset('../assets/js/jquery3_3_1.min.js')}}"></script>
+		<script src="{{asset('../components/toastr/toastr.min.js')}}"></script>
 			
 		<script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
 
