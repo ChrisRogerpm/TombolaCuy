@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Animación</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
+	<head>
+		<title>Animación</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
+    <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
 
-	<link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
-</head>
-<body>
-	<div id="ImgContainer"></div>
-	<div id="img_ganador">
-		<div id='texto_ganador' style='font-family:RosewoodStd-Regular;height:50% ; width: 50%; font-size: 60vh;position:relative;left:35%;top:30%;color:black'>
-		</div>
-	</div>
+    <link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
+	</head>
+	<body>
+		<div id="ImgContainer"></div>
+		<div id="img_ganador">
+            <div id='texto_ganador' style='font-family:RosewoodStd-Regular;height:50% ; width: 50%; font-size: 60vh;position:relative;left:35%;top:30%;color:black'>
+         </div>
+        </div>
 
 
-	<div id="progreso" style="display:none;height: 400px; text-align: left; position: absolute; top: 18%; left: 23%; color: black">
+		<div id="progreso" style="display:none;height: 400px; text-align: left; position: absolute; top: 18%; left: 23%; color: black">
 		<img src="images/termo.png" style="width: 75px;height: 300px;position: absolute;">
 		<span class="glass">
 			<strong class="total" style="bottom: 24%"></strong>
@@ -188,7 +189,7 @@
 	</div>	
 
 	<script src="{{asset('../assets/js/jquery3_3_1.min.js')}}"></script>
-
+	<script src="{{asset('../components/toastr/toastr.min.js')}}"></script>
 	<script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
 
 	<script src="{{asset('../js/moment-with-locales.js')}}"></script>
