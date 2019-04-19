@@ -1,3 +1,6 @@
+
+$.LoadingOverlay("show");
+$(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 GANADOR_DE_EVENTO="";
 iniciado = false;
 token="";  /// en consultarevento obtiene valor
@@ -113,7 +116,7 @@ function init() {
     // Plano y Cajas
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
-    $.LoadingOverlay("show");
+    // $.LoadingOverlay("show");
     loaderCaja.load('images/cajasFFF.glb', function (gltfCaja) {
         
         modelCaja = gltfCaja.scenes[0];
@@ -200,6 +203,11 @@ function CargarEstadistica(IdJuego) {
                     }
                 });
                 $("#tablaUltimos").html(strUltimos12);
+
+
+        $("#imagen_cargando").hide();
+        $.LoadingOverlay("hide");
+
             //}
             //else{
             //}

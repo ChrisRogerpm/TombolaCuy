@@ -26,7 +26,7 @@ function init(host,port){
     //log('WebSocket - status '+socket.readyState);
     socket.onopen    = function(msg){
             if(typeof toastr_errorconexion!="undefined"){
-                toastr_errorconexion.hide();
+                toastr_errorconexion.hide();  
             }
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
@@ -54,7 +54,7 @@ function init(host,port){
                         console.info("F.ACTUAL   =  "+ moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
                         segundos_para_animacion=FECHA_ANIMACION.diff(ahora,'seconds');
                         console.info(segundos_para_animacion);
-                      
+                        seg_animacion=segundos_para_animacion*1000;
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                   $("#barra_loading_tpi").animate(
@@ -70,6 +70,14 @@ function init(host,port){
                                                   INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
                                   );
+
+                                  var conta=segundos_para_animacion-1;
+                                  conteo_=setInterval(function(){
+                                    $("#contador_para_activar").text(conta);
+                                    if(conta<1){clearInterval(conteo_);}
+                                    conta=parseInt(conta)-1;
+                                  },1000);
+
                             },1000);
                        }else{
                         toastr.options = {
@@ -90,6 +98,14 @@ function init(host,port){
                                           CargarEstadistica(1);
                                     }
                                   );
+                                     var conta=(segundos_para_fin_evento)-1;
+                                  conteo_=setInterval(function(){
+                                    $("#contador_para_activar").text(conta);
+                                    if(conta<1){clearInterval(conteo_);}
+                                    conta=parseInt(conta)-1;
+                                  },1000);
+
+
                               }else{
                                 toastr_eventofinalizo=toastr.error("Evento actual ya finalizó")
                                   iii=0;
@@ -126,7 +142,9 @@ function init(host,port){
             clearInterval(intervalohora);
         }
         if(RECONECTAR_WEBSOCKET){
-          toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
+          if(typeof toastr_errorconexion!="undefined"){
+            toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
+          }
           logwarn("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
           setTimeout(function(){
             connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
