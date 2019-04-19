@@ -43,7 +43,7 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 
 
 	<div style="" class="wrapper" style="" id="termotetro_para_iniciar">
-		<div class="number_">180</div>
+		<div class="number_" id="contador_para_activar">---</div>
 		<div class="loader">
 			<div class="inner" id="barra_loading_tpi" style="width: 0%;"></div>
 		</div>
