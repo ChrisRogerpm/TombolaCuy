@@ -26,7 +26,7 @@ function init(host,port){
     //log('WebSocket - status '+socket.readyState);
     socket.onopen    = function(msg){
             if(typeof toastr_errorconexion!="undefined"){
-                toastr_errorconexion.hide();
+                toastr_errorconexion.hide();  
             }
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
@@ -126,7 +126,9 @@ function init(host,port){
             clearInterval(intervalohora);
         }
         if(RECONECTAR_WEBSOCKET){
-          toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
+          if(typeof toastr_errorconexion!="undefined"){
+            toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
+          }
           logwarn("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
           setTimeout(function(){
             connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)

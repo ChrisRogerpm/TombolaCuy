@@ -38,8 +38,8 @@ function cargar_archivos() {
     if (index > archivos.length - 1) {
         modelCaja.children[0].position.y = 30;
         modelCaja.children[0].children[1].scale.set(3, 3, 3);
-        $.LoadingOverlay("hide");
 
+        // $("#imagen_cargando").hide();
         console.warn("FIN CARGA ARCHIVOS");
 
         CargarEstadistica(1);

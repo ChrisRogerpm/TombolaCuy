@@ -8,8 +8,19 @@
     <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
+    <script>
+    	
+
+
+    </script>
 	</head>
-	<body>
+	<body >
+		<div style="width:100%;height:100%;position:absolute;z-index: 10;background: 
+rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center / 100% 100%
+
+		;z-index:2000;background-repeat: no-repeat;background-position: center center;background.size:100% 100%" 
+		 id="imagen_cargando"></div>
+
 		<div id="ImgContainer"></div>
 		<div id="img_ganador">
             <div id='texto_ganador' style='font-family:RosewoodStd-Regular;height:50% ; width: 50%; font-size: 60vh;position:relative;left:35%;top:30%;color:black'>
