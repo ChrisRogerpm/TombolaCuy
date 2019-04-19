@@ -377,8 +377,7 @@ LIMIT 18
 
     }
 
-    public
-    static function CerrarEventoJuego($IdJuego)
+    public static function CerrarEventoJuego($IdJuego)
     {
         $UltimoEvento = Evento::where('idJuego', $IdJuego)->first();
         $resultado = Evento::findorfail($UltimoEvento->idEvento);
