@@ -50,7 +50,7 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 	</div>
 
 	<div class="nroevento">
-		<h1><span class="smaller"></span> <span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> --</span> <span class="smaller"></span></h1>
+		<h1><span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> </span></h1>
 	</div>
 
 	<div id="container"></div>		

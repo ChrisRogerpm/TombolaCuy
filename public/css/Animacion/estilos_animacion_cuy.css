@@ -155,7 +155,7 @@
 
 
 		.smaller {
-			font-size: 23px;
+			font-size: 36px;
 			vertical-align: .2em;
 		}
 
@@ -289,15 +289,12 @@
 		}
 
 		.inner {
-			width: 0%;
 			height: 100%;
-			background: #2b8095;
-			background: linear-gradient(to right, #237686, #34476f, #5b426c, #965666, #ba835c, #d0c746, #e74c3c);
-			/*animation: loader 5s ease-out infinite;*/
-			border-radius: inherit;
-			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 
-			inset 0 8px 1px rgba(255, 255, 255, 0.1), 
-			inset 0 -2px 1px rgba(255, 255, 255, 0.1);
+    background: #2b8095;
+    background: linear-gradient(to right, #ba835c, #d0c746, #e74c3c);
+    /* animation: loader 5s ease-out infinite; */
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 8px 1px rgba(255, 255, 255, 0.1), inset 0 -2px 1px rgba(255, 255, 255, 0.1);
 		}
 
 		.inner:after {
@@ -320,7 +317,7 @@
 			font-size: 103px;
 			color: white;
 			bottom: 135%;
-			left: -380px;
+			left: -91%;
 			font-family: arial;
 			font-weight: bolder;
 		}
@@ -355,8 +352,8 @@
 		}
 
 		h2{
-			padding: 7px 0px 20px 0px;
-			background: url(../../images/right_h_bg.png) top left no-repeat;
+			padding: 7px 0px 19px 0px;
+			background: url(../../images/right_h_bg.png) top left repeat;
 			height: 15px;
 			text-align: center;
 			text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
@@ -409,4 +406,8 @@
 			-o-transition: color 0.35s ease-in-out;
 			margin-top: 5px;
 			margin-bottom: -10px;
+		}
+
+		#idevento_titulo{
+			font-size: 60px;
 		}
