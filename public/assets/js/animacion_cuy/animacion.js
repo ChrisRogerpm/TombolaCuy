@@ -80,6 +80,13 @@ function init() {
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
     camera.position.set(0, 10, 0);
+//coontroles 
+    //controls
+    controls = new THREE.OrbitControls(camera);
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
+
     //escena
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0xa0a0a0);
@@ -132,9 +139,7 @@ function init() {
         skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos();
         modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
-        //modelCaja.children[0].children[0].position.y = 410
         CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
-
     });
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -144,8 +149,6 @@ function init() {
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
 }
-
-
 
 
 function CerrarEvento(IdJuego,token_animacion,IdEvento) {
@@ -161,9 +164,6 @@ function CerrarEvento(IdJuego,token_animacion,IdEvento) {
         complete: function () {
         },
         success: function (response) {  
-          //  windows.reload()
-            //console.log(response);
-            //alert("muerto");                                               
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
@@ -185,113 +185,81 @@ function CargarEstadistica(IdJuego) {
         complete: function () {
         },
         success: function (response) { 
-          CONSULTADO_EVENTO=false;
-
+            CONSULTADO_EVENTO=false;
             aaa=response;        
-            //if(response.evento.token_animacion != undefined){                
-                token=response.token_animacion;                
-                $.each(response.estadistica, function( key, value ) {
-                    $("#"+value.valorapuesta).text(value.Repetidos);
-                    $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
+            token=response.token_animacion;             
+            $.each(response.estadistica, function( key, value ) {
+                $("#"+value.valorapuesta).text(value.Repetidos);
+                $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
 
-                });
-                var strUltimos12="";
-                var clase="caja1";
-                $.each(response.resultado_evento, function( key, value ) {
-                    if(key<12){
-                              strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
-                    }
-                });
-                $("#tablaUltimos").html(strUltimos12);
+            });
+            var strUltimos12="";
+            var clase="caja1";
+            $.each(response.resultado_evento, function( key, value ) {
+                if(key<12){
+                          strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
+                }
+            });
+            $("#tablaUltimos").html(strUltimos12);
 
 
-        $("#imagen_cargando").hide();
-        $.LoadingOverlay("hide");
+            $("#imagen_cargando").hide();
+            $.LoadingOverlay("hide");
 
-            //}
-            //else{
-            //}
-                if(typeof response.evento!="undefined"){
-                    if(response.evento.evento_id_actual!=""){
-                        EVENTO_ID= response.evento.evento_id_actual;
-                        GANADOR_DE_EVENTO = response.evento_valor_ganador;
-                        TIEMPO_GIRO_CAJA=10000;
-                        TIEMPO_CUY = 20000;
-                        $("#termotetro_para_iniciar").show();
+            if(typeof response.evento!="undefined"){
+                if(response.evento.evento_id_actual!=""){
+                    EVENTO_ACTUAL=response.evento;
 
-                        EVENTO_ACTUAL=response.evento;
+                    EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
+                    GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
+                    TIEMPO_GIRO_CAJA=10000;//EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    $("#termotetro_para_iniciar").show();
 
-                          if(socket!=null && socket.readyState==1){
-                                console.warn("YA CONECTADO, pedir hora")
-                                 pedir_hora_server();
-                         }else{
-                              console.warn("INICIANDO CONEXIÓN ");
-                                connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                         }   
-                        //pedir_hora_server();
-
-                        //ahora=moment(new Date());//.format("YYYY-MM-DD HH:mm:ss a");
-
-                       //  FECHA_FIN_EVENTO=response.evento.fecha_evento_fin_actual;
-                       //  FECHA_FIN_EVENTO=moment(FECHA_FIN_EVENTO, "YYYY-MM-DD HH:mm:ss a");
-                       //  segundos_finevento=FECHA_FIN_EVENTO.diff(ahora,'seconds');
-
-                       //  FECHA_ANIMACION=response.evento.fecha_animacion;
-                       //  FECHA_ANIMACION=moment(FECHA_ANIMACION, "YYYY-MM-DD HH:mm:ss a");
-                       //  console.info(moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a"));
-                       //  console.info(moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
-                       //  segundos_total=FECHA_ANIMACION.diff(ahora,'seconds');
-                       //  console.info(segundos_total);
-                      
-
-                       // if(segundos_total>0){ ///fuera rango animacion
-                       //       con_segundos=0;
-                       //         //$("#barra_loading_tpi").css("width","14%");
-                       //         intervalo_loading_inicio=setInterval(function(){
-                       //              porcentaje=(con_segundos*100)/segundos_total;
-                       //              //console.warn(porcentaje);
-                       //              $("#barra_loading_tpi").css("width",(porcentaje)+"%");
-                       //              if(porcentaje==100){
-                       //                  clearInterval(intervalo_loading_inicio);
-                       //                  $("#idevento_titulo").text(EVENTO_ID);
-                       //                  $("#barra_loading").css("height","100%");
-                       //                  fechaFinEvento=response.fecha_evento_fin_actual;
-                       //                  $("#termotetro_para_iniciar").hide();
-                       //                  buscando_evento=false;
-                       //                  GANADOR_DE_EVENTO = response.evento.evento_valor_ganador;
-                       //                  TIEMPO_GIRO_CAJA=4500;
-                       //                  TIEMPO_CUY = 20000;
-                       //                  INICIO_ANIMACION_CUY();////////////////////////////////////////
-                       //              }
-                       //              con_segundos=con_segundos+0.5;
-                       //         },1000)
-                       // }else{
-                       //  console.log("esperando fecha fin evento actual,para recargar");
-                       //      iii=0;
-                       //      intervalo_fin_evento=setInterval(function(){
-                       //          if(iii>segundos_finevento){
-                       //              CargarEstadistica(1);
-                       //              clearInterval(intervalo_fin_evento);
-                       //          }
-                       //          iii++;
-                       //     },1000);
-                       // } 
+                    if(socket!=null && socket.readyState==1){
+                          console.warn("YA CONECTADO, pedir hora")
+                          pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
                     }
                     else{
-                      setTimeout(function(){
-                        CargarEstadistica(1);
-                      },1000)
-                    }
+                          console.warn("INICIANDO CONEXIÓN ");
+                          CONECTADO__A_SERVIDORWEBSOCKET=false;
+                          inicio_intento_conexion=performance.now();
+                          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                            revisar_ya_conecto=setInterval(function(){
+                                    if(CONECTADO__A_SERVIDORWEBSOCKET){
+                                        if(typeof toasr_websockets_error!="undefined"){
+                                            toasr_websockets_error.hide();
+                                        }
+                                        clearInterval(revisar_ya_conecto);
+                                    }
+                                    else{
+                                        if(typeof toasr_websockets_error=="undefined"){
+                                            toastr.options = {
+                                              timeOut: 0,
+                                              extendedTimeOut: 0,
+                                              tapToDismiss: false
+                                            };
+                                            toasr_websockets_error=toastr.error("Conectando a Servidor...");
+                                        }
+                                        else{toasr_websockets_error.show()}
+                                    }
+                            },1000);
+                    }   
                 }
-
-
+                else{
+                  console.warn("No hay evento activo");
+                  setTimeout(function(){
+                    CargarEstadistica(1);
+                  },1000)
+                }
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;
           setTimeout(function(){
             CargarEstadistica(1);
           }
-            ,1000)
+            ,1500)
 
         }
     });

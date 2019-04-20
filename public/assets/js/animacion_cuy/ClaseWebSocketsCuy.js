@@ -28,6 +28,11 @@ function init(host,port){
             if(typeof toastr_errorconexion!="undefined"){
                 toastr_errorconexion.hide();  
             }
+                CONECTADO__A_SERVIDORWEBSOCKET=true;                
+                if(typeof toasr_websockets_error!="undefined"){
+                        toasr_websockets_error.hide();
+                    }
+
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
                     pedir_hora_server();
@@ -62,30 +67,27 @@ function init(host,port){
                                     ,(segundos_para_animacion)*1000
                                     ,function(){
                                               $("#idevento_titulo").text(EVENTO_ID);
-                                                $("#termotetro_para_iniciar").hide();
-                                                buscando_evento=false;
-                                                GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                                                //TIEMPO_GIRO_CAJA=TIEMPO_GIRO_CAJA;
-                                                //TIEMPO_CUY = 20000;
-                                                  INICIO_ANIMACION_CUY();////////////////////////////////////////
+                                              $("#termotetro_para_iniciar").hide();
+                                              buscando_evento=false;
+                                              INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
                                   );
 
                                   var conta=segundos_para_animacion-1;
                                   conteo_=setInterval(function(){
-                                    $("#contador_para_activar").text(conta);
-                                    if(conta<1){clearInterval(conteo_);}
-                                    conta=parseInt(conta)-1;
+                                      $("#contador_para_activar").text(conta);
+                                      if(conta<1){clearInterval(conteo_);}
+                                      conta=parseInt(conta)-1;
                                   },1000);
 
                             },1000);
                        }else{
-                        toastr.options = {
-                        timeOut: 0,
-                        extendedTimeOut: 0,
-                        tapToDismiss: false
-                    };
-                        console.log("esperando fecha fin evento actual,para recargar " +FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")) ;
+                          toastr.options = {
+                          timeOut: 0,
+                          extendedTimeOut: 0,
+                          tapToDismiss: false
+                          };
+                          console.log("esperando fecha fin evento actual,para recargar " +FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")) ;
                               if(segundos_para_fin_evento>0){
 
                                 toast_eventoterminar=toastr.error("Esperando que termine evento actual");
@@ -120,31 +122,29 @@ function init(host,port){
 
                               }
 
-                           // iii=0;
-                           //  intervalo_fin_evento=setInterval(function(){
-                           //      if(iii>segundos_para_fin_evento){
-                           //          CargarEstadistica(1);
-                           //          clearInterval(intervalo_fin_evento);
-                           //      }
-                           //      iii++;
-                           // },1000);
-                       
                     }
              //reloj_websockets(msg.data,eventoactual.fechaFinEvento,eventoactual.segBloqueoAntesEvento);
           }
 
 	 };
   socket.onerror=function(msg){
+        CONECTADO__A_SERVIDORWEBSOCKET=false;
         logwarn("error sockets");
    };
   socket.onclose   = function(msg){ 
+       CONECTADO__A_SERVIDORWEBSOCKET=false;
        if(typeof intervalohora!="undefined"){
             clearInterval(intervalohora);
         }
         if(RECONECTAR_WEBSOCKET){
-          if(typeof toastr_errorconexion!="undefined"){
-            toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
-          }
+          if(typeof toasr_websockets_error=="undefined"){
+            toastr.options = {
+              timeOut: 0,
+              extendedTimeOut: 0,
+              tapToDismiss: false
+            };
+             toastr_errorconexion=toastr.error("Error de Conexión al Servidor");
+          }else{toasr_websockets_error.show();}
           logwarn("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
           setTimeout(function(){
             connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
@@ -155,6 +155,7 @@ function init(host,port){
      };
   }
   catch(ex){ 
+    CONECTADO__A_SERVIDORWEBSOCKET=false;
     logerror(ex); 
   }
 }
