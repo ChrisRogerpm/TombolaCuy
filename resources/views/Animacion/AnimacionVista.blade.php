@@ -55,7 +55,7 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 
 	<div id="container"></div>		
 	<div id="contenedorEstadistica" class="nuevo_lados">
-		<div class="image" style="width: 80%;height: 170px;margin:auto;margin-top: 2vh;">
+		<div class="image">
 			<img src="images/apuestaTotal.jpg" alt="apuesta total">		
 		</div>
 
@@ -126,7 +126,7 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 		</div>		
 	</div>	
 	<div id="pagosHistorial" class="nuevo_lados">
-		<div class="image" style="width: 80%;height: 170px;margin:auto;margin-top: 2vh;">
+		<div class="image">
 			<img src="images/figura_lado.jpg"  alt="apuesta total" >		
 		</div>
 		<h2>Pagos</h2>	
