@@ -2,9 +2,58 @@
 var index = 0;
 var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudandoGLB.glb', 'images/cuyChoqueGLB.glb'];
 var objLoader = new THREE.GLTFLoader();
-var escalacuys = 0.3;
+var escalacuys = 0.2;
 var intervalo_consultaevento=2000;
 buscando_evento=false;
+
+
+function camara_mirar(objeto){
+ camera.position.x = objeto.position.x +0.1;
+ camera.position.y = objeto.position.y + 0.7;
+ camera.position.z = objeto.position.z +2.9;
+ camera.lookAt(objeto.position);
+}
+
+function camara_inicio(){
+ camera.position.x = 0;
+ camera.position.y = 10;
+ camera.position.z = 0;
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
+}
+
+function animar_camara() {
+    TWEEN.update();
+    requestAnimationFrame(animar_camara);
+    renderer.render(scene, camera);
+    controls.update();
+}
+
+function camara_movimiento_inicio(camera,tiempo){
+        var from = {
+            x: camera.position.x,
+            y: camera.position.y,
+            z: camera.position.z
+        };
+
+        var to = {
+            x: 0,
+            y: 10,
+            z: 0
+        };
+        var tween = new TWEEN.Tween(from)
+            .to(to, tiempo)
+            .easing(TWEEN.Easing.Linear.None)
+            .onUpdate(function () {
+            camera.position.set(this.x, this.y, this.z);
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+        })
+            .onComplete(function () {
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+        })
+            .start();
+}
+
+
 
 function get_caja(numero){
     cajaobjeto={};
@@ -77,7 +126,7 @@ function cargar_archivos() {
                     objectCajaGira.castShadow = true
                 }
             });
-            modelCajaP.scale.set(0.05, 0.05, 0.05);
+            modelCajaP.scale.set(0.04, 0.04, 0.04);
             modelCajaP.position.set(0, 0, 0);
             scene.add(modelCajaP);
             skeleton = new THREE.SkeletonHelper(modelCajaP);

@@ -213,12 +213,13 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 	<script src="{{asset('../assets/js/GLTFLoader.js')}}"></script>
 	<script src="{{asset('../assets/js/dat.gui.min.js')}}"></script>
 	<script src="{{asset('../assets/js/OrbitControls.js')}}"></script>
-	<script src="{{asset('../assets/js/animacion.js')}}"></script>
-	<script src="{{asset('../assets/js/animacion_cuy.js')}}"></script>
 
 
 
-	<script src="{{asset('../assets/js/ClaseWebSocketsCuy.js')}}"></script>
+	<script src="{{asset('../assets/js/animacion_cuy/animacion.js')}}"></script>
+	<script src="{{asset('../assets/js/animacion_cuy/animacion_cuy.js')}}"></script>
+	<script src="{{asset('../assets/js/animacion_cuy/tween.min.js')}}"></script>
+	<script src="{{asset('../assets/js/animacion_cuy/ClaseWebSocketsCuy.js')}}"></script>
 
 
 </body>
