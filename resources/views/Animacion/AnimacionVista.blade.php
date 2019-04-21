@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Animación</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
-    <link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
+<head>
+	<title>Animación</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="shortcut icon" href="{{asset('images/logoat.jpg')}}">
+	<link rel="stylesheet" href="{{asset('../components/toastr/toastr.min.css')}}">
+	<link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
+	<script>
 
-    <link rel="stylesheet" href="{{asset('../css/Animacion/estilos_animacion_cuy.css')}}">
-    <script>
-    	
+	</script>
+</head>
+<body >
+	<div style="width:100%;height:100%;position:absolute;z-index: 10;background: 
+	rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center / 100% 100%
 
+	;z-index:2000;background-repeat: no-repeat;background-position: center center;background.size:100% 100%" 
+	id="imagen_cargando"></div>
 
-    </script>
-	</head>
-	<body >
-		<div style="width:100%;height:100%;position:absolute;z-index: 10;background: 
-rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center / 100% 100%
+	<div id="ImgContainer"></div>
+	<div id="img_ganador">
+		<div id='texto_ganador' style='font-family: RosewoodStd-Regular;height: 50%;width: 50%;font-size: 60vh;position: relative;left: 39%;top: 36%;color: black;text-align: center;'>
+		</div>
+	</div>
 
-		;z-index:2000;background-repeat: no-repeat;background-position: center center;background.size:100% 100%" 
-		 id="imagen_cargando"></div>
-
-		<div id="ImgContainer"></div>
-		<div id="img_ganador">
-            <div id='texto_ganador' style='font-family:RosewoodStd-Regular;height:50% ; width: 50%; font-size: 60vh;position:relative;left:35%;top:30%;color:black'>
-         </div>
-        </div>
-
-
-		<div id="progreso" style="display:none;height: 400px; text-align: left; position: absolute; top: 18%; left: 23%; color: black">
+	<div id="progreso" style="display:none;height: 400px; text-align: left; position: absolute; top: 18%; left: 23%; color: black">
 		<img src="images/termo.png" style="width: 75px;height: 300px;position: absolute;">
 		<span class="glass">
 			<strong class="total" style="bottom: 24%"></strong>
@@ -49,13 +45,13 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 		</div>
 	</div>
 
-	<div class="nroevento">
-		<h1><span class="smaller">#</span><span class="smaller"></span><span id="idevento_titulo"> </span></h1>
+	<div class="nroevento borde">
+		<h1><span class="smaller neon">#</span><span id="idevento_titulo" class="neon"> </span></h1>
 	</div>
 
 	<div id="container"></div>		
-	<div id="contenedorEstadistica" class="nuevo_lados">
-		<div class="image">
+	<div id="contenedorEstadistica" class="nuevo_lados borde-lateral">
+		<div class="image imageout">
 			<img src="images/apuestaTotal.jpg" alt="apuesta total">		
 		</div>
 
@@ -125,7 +121,7 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 
 		</div>		
 	</div>	
-	<div id="pagosHistorial" class="nuevo_lados">
+	<div id="pagosHistorial" class="nuevo_lados borde-lateral">
 		<div class="image">
 			<img src="images/figura_lado.jpg"  alt="apuesta total" >		
 		</div>
@@ -154,73 +150,71 @@ rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center /
 			</table>
 		</div>
 		
-<!-- https://skywarriorthemes.com/orizon/blue/
- -->		<h2>Historial</h2>	
+		<!-- https://skywarriorthemes.com/orizon/blue/-->		
+		<h2>Historial</h2>	
 		<div class="contenidos_side">
 			<table id="tablaUltimos">
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">1</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">2</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">3</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">4</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja2">5</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja2">6</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">7</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja2">8</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">9</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja2">10</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja1">11</th>--}}
-			{{--</tr>--}}
-			{{--<tr>--}}
-				{{--<th class="caja">#123wqw1</th><th class="caja2">12</th>--}}
-			{{--</tr>					--}}
-		</table>	
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">1</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">2</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">3</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">4</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja2">5</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja2">6</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">7</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja2">8</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">9</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja2">10</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja1">11</th>--}}
+				{{--</tr>--}}
+				{{--<tr>--}}
+					{{--<th class="caja">#123wqw1</th><th class="caja2">12</th>--}}
+				{{--</tr>					--}}
+			</table>	
 		</div>
-			
+
 	</div>	
 
 	<script src="{{asset('../assets/js/jquery3_3_1.min.js')}}"></script>
 	<script src="{{asset('../components/toastr/toastr.min.js')}}"></script>
 	<script src="{{asset('../components/loadingoverlay/loadingoverlay.min.js')}}"></script>
-
 	<script src="{{asset('../js/moment-with-locales.js')}}"></script>
 	<script src="{{asset('../components/momentjs/moment_locales.min.js')}}"></script>
 	<script src="{{asset('../js/moment.js')}}"></script>
-
 	<script src="{{asset('../assets/js/three.js')}}"></script>
 	<script src="{{asset('../assets/js/WebGL.js')}}"></script>
 	<script src="{{asset('../assets/js/stats.min.js')}}"></script>
 	<script src="{{asset('../assets/js/GLTFLoader.js')}}"></script>
 	<script src="{{asset('../assets/js/dat.gui.min.js')}}"></script>
 	<script src="{{asset('../assets/js/OrbitControls.js')}}"></script>
-
-
-
 	<script src="{{asset('../assets/js/animacion_cuy/animacion.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/animacion_cuy.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/tween.min.js')}}"></script>
+	<script src="{{asset('../assets/js/animacion_cuy/TweenMax.min.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/ClaseWebSocketsCuy.js')}}"></script>
-
-
+	<script>
+		
+	
+	</script>
 </body>
 </html>
