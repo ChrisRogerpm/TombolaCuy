@@ -185,6 +185,10 @@ function CargarEstadistica(IdJuego) {
         complete: function () {
         },
         success: function (response) { 
+
+               ocultar_toasr_nohay_evento();
+               ocultar_toasr_servidor_error()
+                
             CONSULTADO_EVENTO=false;
             aaa=response;        
             token=response.token_animacion;             
@@ -217,7 +221,17 @@ function CargarEstadistica(IdJuego) {
                     $("#termotetro_para_iniciar").show();
 
                     if(socket!=null && socket.readyState==1){
-                          console.warn("YA CONECTADO, pedir hora")
+                          inicio_pedir_hora=performance.now();
+                          pedir_hora=true;
+                          timeout_pedir_hora=setInterval(function(){
+                                if(pedir_hora){
+                                    crear_toastr_websockets_error();
+                                }
+                                else{
+                                    clearInterval(timeout_pedir_hora);
+                                }
+                          },1000);
+                          console.warn("YA CONECTADO, pedir hora");
                           pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
                     }
                     else{
@@ -233,20 +247,15 @@ function CargarEstadistica(IdJuego) {
                                         clearInterval(revisar_ya_conecto);
                                     }
                                     else{
-                                        if(typeof toasr_websockets_error=="undefined"){
-                                            toastr.options = {
-                                              timeOut: 0,
-                                              extendedTimeOut: 0,
-                                              tapToDismiss: false
-                                            };
-                                            toasr_websockets_error=toastr.error("Conectando a Servidor...");
-                                        }
-                                        else{toasr_websockets_error.show()}
+                                       crear_toastr_websockets_error();
                                     }
                             },1000);
                     }   
                 }
                 else{
+
+                    crear_toasr_nohay_evento();
+               
                   console.warn("No hay evento activo");
                   setTimeout(function(){
                     CargarEstadistica(1);
@@ -256,6 +265,8 @@ function CargarEstadistica(IdJuego) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;
+         ocultar_toasr_nohay_evento();
+          crear_toasr_servidor_error();
           setTimeout(function(){
             CargarEstadistica(1);
           }
@@ -265,4 +276,49 @@ function CargarEstadistica(IdJuego) {
     });
 }
 
+function crear_toastr_websockets_error(){
+    if(typeof toasr_websockets_error=="undefined"){
+        toastr.options = {
+          timeOut: 0,
+          extendedTimeOut: 0,
+          tapToDismiss: false
+        };
+        toasr_websockets_error=toastr.error("Conectando a Servidor...");
+    }
+    else{
+        toasr_websockets_error.show()}
+}
 
+function crear_toasr_nohay_evento(){
+  if(typeof toasr_nohay_evento=="undefined"){
+                                toastr.options = {
+                                  timeOut: 0,
+                                  extendedTimeOut: 0,
+                                  tapToDismiss: false
+                                };
+                                toasr_nohay_evento=toastr.error("No hay Evento Activo...");
+                            }
+            else{toasr_nohay_evento.show()}
+}
+
+function crear_toasr_servidor_error(){
+  if(typeof toasr_servidor_error=="undefined"){
+                                toastr.options = {
+                                  timeOut: 0,
+                                  extendedTimeOut: 0,
+                                  tapToDismiss: false
+                                };
+                                toasr_servidor_error=toastr.error("Error Servidor...");
+                            }
+            else{toasr_servidor_error.show()}
+}
+function ocultar_toasr_nohay_evento(){
+    if(typeof toasr_nohay_evento!="undefined"){
+                    toasr_nohay_evento.hide();
+                }
+}
+function ocultar_toasr_servidor_error(){ 
+     if(typeof toasr_servidor_error!="undefined"){
+        toasr_servidor_error.hide();
+    }
+}
