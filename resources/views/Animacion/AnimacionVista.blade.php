@@ -51,11 +51,8 @@
 
 	<div id="container"></div>		
 	<div id="contenedorEstadistica" class="nuevo_lados borde-lateral">
-		<div class="image imageout" style="display:inline-block;
-  position:relative;
-  overflow:hidden;
-  box-sizing:border-box;">
-			<!-- <img src="images/apuestaTotal.jpg" alt="apuesta total">		 -->
+		<div class="image">
+			<img src="images/apuestaTotal.jpg" alt="apuesta total">		
 		</div>
 
 		<h2>Estadísticas</h2>
