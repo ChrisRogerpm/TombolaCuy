@@ -51,8 +51,11 @@
 
 	<div id="container"></div>		
 	<div id="contenedorEstadistica" class="nuevo_lados borde-lateral">
-		<div class="image imageout">
-			<img src="images/apuestaTotal.jpg" alt="apuesta total">		
+		<div class="image imageout" style="display:inline-block;
+  position:relative;
+  overflow:hidden;
+  box-sizing:border-box;">
+			<!-- <img src="images/apuestaTotal.jpg" alt="apuesta total">		 -->
 		</div>
 
 		<h2>Estadísticas</h2>
@@ -212,9 +215,6 @@
 	<script src="{{asset('../assets/js/animacion_cuy/tween.min.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/TweenMax.min.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/ClaseWebSocketsCuy.js')}}"></script>
-	<script>
-		
-	
-	</script>
+
 </body>
 </html>
