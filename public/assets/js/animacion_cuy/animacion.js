@@ -82,10 +82,10 @@ function init() {
     camera.position.set(0, 10, 0);
 //coontroles 
     //controls
-    controls = new THREE.OrbitControls(camera);
-    controls.rotateSpeed = 1.0;
-    controls.zoomSpeed = 1.2;
-    controls.panSpeed = 0.8;
+    // controls = new THREE.OrbitControls(camera);
+    // controls.rotateSpeed = 1.0;
+    // controls.zoomSpeed = 1.2;
+    // controls.panSpeed = 0.8;
 
     //escena
     scene = new THREE.Scene();
