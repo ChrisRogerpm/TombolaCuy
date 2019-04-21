@@ -44,6 +44,16 @@ function init(host,port){
           if(mensaje=="ACTUALIZAR"){
           }
           else{
+            pedir_hora=false;
+                      if(typeof toastr_errorconexion!="undefined"){
+                          toastr_errorconexion.hide();  
+                      }
+
+                         if(typeof toasr_websockets_error!="undefined"){
+                          toasr_websockets_error  .hide();  
+                      }
+
+                      
                         ahora=moment(msg.data);//.format("YYYY-MM-DD HH:mm:ss a");
                         FECHA_INICIO_EVENTO=EVENTO_ACTUAL.fecha_evento_ini_actual;
                         FECHA_INICIO_EVENTO=moment(FECHA_INICIO_EVENTO, "YYYY-MM-DD HH:mm:ss a");
@@ -163,7 +173,9 @@ function pedir_hora_server(){
   msg = "date";
   try
   {
+
       socket.send(msg); 
+
   } 
   catch(ex)
   { 
