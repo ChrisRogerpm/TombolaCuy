@@ -3,7 +3,7 @@ $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 GANADOR_DE_EVENTO="";
 iniciado = false;
-token="";  /// en consultarevento obtiene valor
+token="";  /// en consultarevento obtiene valor 
 EVENTO_ID="";
 ARRAY_PUNTOSCAJAS=[];
 
