@@ -74,29 +74,29 @@
                             <div class=" rowcabecera">
                                 <div class=" rowcabecera_nombres">
                                     <div style="width:25%" class="">
-                                        HORA
+                                        <span> HORA</span>
                                     </div>
 
                                     <div style="width:20%"class="">
-                                        PRÓXIMO EN
-                                    </div>
-                                    <div style="width:15%"class="">
-                                        JUGADOR
-                                    </div>
-                                    <div style="width:10%" class="">
-                                        DIVISA
-                                    </div>
-                                    <div style="width:30%;text-align:right" class="">
-                                        JACKPOT
-                                    </div>
+                                     <span>PRÓXIMO EN</span> 
+                                 </div>
+                                 <div style="width:15%"class="">
+                                    <span>JUGADOR</span> 
                                 </div>
+                                <div style="width:10%" class="">
+                                  <span>DIVISA</span>  
+                              </div>
+                              <div style="width:30%;text-align:right" class="">
+                                  <span>JACKPOT</span>  
+                              </div>
+                          </div>
 
-                                <div class=" rowcabecera_datos" id="row_datosevento">
-                                    <div style="width:25%;display:block" class="" >
-                                        <div style="display:flex;width:100%">
-                                            <div id="fechaServidor" style="display:flex;width:50%;border:0" >
+                          <div class=" rowcabecera_datos" id="row_datosevento">
+                            <div style="width:25%;display:block" class="" >
+                                <div style="display:flex;width:100%">
+                                    <div id="fechaServidor" style="display:flex;width:50%;border:0" >
 
-                                            </div>
+                                    </div>
                                                    <!--  <div id="progreso" style="padding: 0;display:block;float:right;width: 40%;margin:auto;height:45%; background:rgba(0, 0, 0, 0) linear-gradient(to right,#2196f3, #8bc34a, #f44336) repeat scroll 0 0; border-radius:5px 0px 0px 5px">
                                                         <div id="barra_loading" style="float:right;width:100%;height:100%;background-color: green;
 
@@ -150,101 +150,101 @@
                                                     <div class=" margen_numeros">
                                                     </div>
                                                     <div class=" numeros_rect2">
-                                                       @foreach($primerafila as $div) 
-                                                       <div 
-                                                       data-idTipoPago="{{$div->idTipoPago}}" 
-                                                       data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                                       style="background-color:{{$div->rgb}}" 
-                                                       data-tipo="numero" 
-                                                       data-color="{{$div->rgb}}"
-                                                       data-valor={{$div->valorapuesta}} 
-                                                       data-cuota={{$div->multiplicadorDefecto}} 
-                                                       >{{$div->valorapuesta}}
-                                                   </div>
-                                                   @endforeach
-                                               </div>
-                                               <div class=" margen_bottom_numeros">
-
-                                               </div>
-                                               <div class=" margen_numeros">
-
-                                               </div>
-                                               <div class=" numeros_rect2">
-                                                 @foreach($segundafila as $div) 
-                                                 <div 
-                                                 data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                                 data-idTipoPago="{{$div->idTipoPago}}" 
-                                                 style="background-color:{{$div->rgb}}" 
-                                                 data-tipo="numero" 
-                                                 data-color="{{$div->rgb}}"
-                                                 data-valor={{$div->valorapuesta}} 
-                                                 data-cuota={{$div->multiplicadorDefecto}} 
-                                                 >{{$div->valorapuesta}}
+                                                     @foreach($primerafila as $div) 
+                                                     <div 
+                                                     data-idTipoPago="{{$div->idTipoPago}}" 
+                                                     data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                                     style="background-color:{{$div->rgb}}" 
+                                                     data-tipo="numero" 
+                                                     data-color="{{$div->rgb}}"
+                                                     data-valor={{$div->valorapuesta}} 
+                                                     data-cuota={{$div->multiplicadorDefecto}} 
+                                                     >{{$div->valorapuesta}}
+                                                 </div>
+                                                 @endforeach
                                              </div>
-                                             @endforeach
-                                         </div>
-                                         <div class=" margen_bottom_numeros"></div>
-                                         <div class=" margen_numeros"></div>
-                                         <div class=" numeros_rect2">
-                                            @foreach($tercerafila as $div) 
-                                            <div 
-                                            data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                            data-idTipoPago="{{$div->idTipoPago}}" 
-                                            style="background-color:{{$div->rgb}}" 
-                                            data-tipo="numero" 
-                                            data-color="{{$div->rgb}}"
-                                            data-valor={{$div->valorapuesta}} 
-                                            data-cuota={{$div->multiplicadorDefecto}} 
-                                            >{{$div->valorapuesta}}</div>
-                                            @endforeach
-                                        </div>
-                                        <div class=" margen_bottom_numeros"></div>
-                                        <div class=" margen_numeros"></div>
-                                        <div class=" numeros_rect2">
-                                            @foreach($cuartafila as $div) 
-                                            <div 
-                                            data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                            data-idTipoPago="{{$div->idTipoPago}}" 
-                                            style="background-color:{{$div->rgb}}" 
-                                            data-tipo="numero" 
-                                            data-color="{{$div->rgb}}"
-                                            data-valor={{$div->valorapuesta}} 
-                                            data-cuota={{$div->multiplicadorDefecto}} 
-                                            >{{$div->valorapuesta}}</div>
-                                            @endforeach
-                                        </div>
-                                        <div class=" margen_bottom_numeros"></div>
-                                        <div class=" margen_numeros"></div>
-                                        <div class=" numeros_rect2">
-                                            @foreach($quintafila as $div) 
-                                            <div 
-                                            data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                            data-idTipoPago="{{$div->idTipoPago}}" 
-                                            style="background-color:{{$div->rgb}}" 
-                                            data-tipo="numero" 
-                                            data-color="{{$div->rgb}}"
-                                            data-valor={{$div->valorapuesta}} 
-                                            data-cuota={{$div->multiplicadorDefecto}} 
-                                            >{{$div->valorapuesta}}</div>
-                                            @endforeach
-                                        </div>
-                                        <div class=" margen_bottom_numeros"></div>
-                                        <div class=" margen_numeros"></div>
-                                        <div class=" numeros_rect2">
+                                             <div class=" margen_bottom_numeros">
 
-                                            @foreach($sextafila as $div) 
-                                            <div 
-                                            data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                            data-idTipoPago="{{$div->idTipoPago}}" 
-                                            style="background-color:{{$div->rgb}}" 
-                                            data-tipo="numero" 
-                                            data-color="{{$div->rgb}}"
-                                            data-valor={{$div->valorapuesta}} 
-                                            data-cuota={{$div->multiplicadorDefecto}} 
-                                            >{{$div->valorapuesta}}</div>
-                                            @endforeach
-                                        </div>
-                                        <div class=" margen_bottom_numeros"></div>
+                                             </div>
+                                             <div class=" margen_numeros">
+
+                                             </div>
+                                             <div class=" numeros_rect2">
+                                               @foreach($segundafila as $div) 
+                                               <div 
+                                               data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                               data-idTipoPago="{{$div->idTipoPago}}" 
+                                               style="background-color:{{$div->rgb}}" 
+                                               data-tipo="numero" 
+                                               data-color="{{$div->rgb}}"
+                                               data-valor={{$div->valorapuesta}} 
+                                               data-cuota={{$div->multiplicadorDefecto}} 
+                                               >{{$div->valorapuesta}}
+                                           </div>
+                                           @endforeach
+                                       </div>
+                                       <div class=" margen_bottom_numeros"></div>
+                                       <div class=" margen_numeros"></div>
+                                       <div class=" numeros_rect2">
+                                        @foreach($tercerafila as $div) 
+                                        <div 
+                                        data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                        data-idTipoPago="{{$div->idTipoPago}}" 
+                                        style="background-color:{{$div->rgb}}" 
+                                        data-tipo="numero" 
+                                        data-color="{{$div->rgb}}"
+                                        data-valor={{$div->valorapuesta}} 
+                                        data-cuota={{$div->multiplicadorDefecto}} 
+                                        >{{$div->valorapuesta}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class=" margen_bottom_numeros"></div>
+                                    <div class=" margen_numeros"></div>
+                                    <div class=" numeros_rect2">
+                                        @foreach($cuartafila as $div) 
+                                        <div 
+                                        data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                        data-idTipoPago="{{$div->idTipoPago}}" 
+                                        style="background-color:{{$div->rgb}}" 
+                                        data-tipo="numero" 
+                                        data-color="{{$div->rgb}}"
+                                        data-valor={{$div->valorapuesta}} 
+                                        data-cuota={{$div->multiplicadorDefecto}} 
+                                        >{{$div->valorapuesta}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class=" margen_bottom_numeros"></div>
+                                    <div class=" margen_numeros"></div>
+                                    <div class=" numeros_rect2">
+                                        @foreach($quintafila as $div) 
+                                        <div 
+                                        data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                        data-idTipoPago="{{$div->idTipoPago}}" 
+                                        style="background-color:{{$div->rgb}}" 
+                                        data-tipo="numero" 
+                                        data-color="{{$div->rgb}}"
+                                        data-valor={{$div->valorapuesta}} 
+                                        data-cuota={{$div->multiplicadorDefecto}} 
+                                        >{{$div->valorapuesta}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class=" margen_bottom_numeros"></div>
+                                    <div class=" margen_numeros"></div>
+                                    <div class=" numeros_rect2">
+
+                                        @foreach($sextafila as $div) 
+                                        <div 
+                                        data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                        data-idTipoPago="{{$div->idTipoPago}}" 
+                                        style="background-color:{{$div->rgb}}" 
+                                        data-tipo="numero" 
+                                        data-color="{{$div->rgb}}"
+                                        data-valor={{$div->valorapuesta}} 
+                                        data-cuota={{$div->multiplicadorDefecto}} 
+                                        >{{$div->valorapuesta}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class=" margen_bottom_numeros"></div>
                                                     <!--  <div class="rowhistorial">
                                            <div class="historial">HISTORIAL</div>
                                        </div>-->
@@ -265,68 +265,68 @@
                                     <div class="apuestacondicional_fila">
                                         <div class="apuestacondicional_fila_nombre">COLORES</div>
                                         <div class="apuestacondicional_fila_datos">
-                                           @foreach($coloresfila as $div) 
-                                           <div 
-                                           data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                           data-idTipoPago="{{$div->idTipoPago}}" 
-                                           style="background-color:{{$div->rgb}}" 
+                                         @foreach($coloresfila as $div) 
+                                         <div 
+                                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                         data-idTipoPago="{{$div->idTipoPago}}" 
+                                         style="background-color:{{$div->rgb}}" 
 
-                                           data-tipo="color" 
+                                         data-tipo="color" 
 
-                                           <?php 
-                                           $datacolor=$div->nombre;
-                                           ?>
-                                           data-color="{{$datacolor}}"
-                                           data-valor={{$div->nombre}} 
-                                           data-cuota={{$div->multiplicadorDefecto}} 
-                                           >{{$div->nombre}}</div>
-                                           @endforeach
-                                       </div>      
-                                   </div>
-                                   <div class="apuestacondicional_fila">
-                                       <div class="apuestacondicional_fila_nombre">RANGOS</div>
-                                       <div class="apuestacondicional_fila_datos">
-                                           @foreach($rangosfila as $div) 
-                                           <div 
-                                           data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                           data-idTipoPago="{{$div->idTipoPago}}" 
-                                           style="background-color:{{$div->rgb}}" 
-                                           data-tipo="rango" 
-                                           <?php
-                                           $datacolor=$div->rgb;
-                                           ?>
-                                           data-color="{{$datacolor}}"
-                                           data-valor={{$div->nombre}} 
-                                           data-cuota={{$div->multiplicadorDefecto}} 
-                                           >{{$div->nombre}}
-                                       </div>
-                                       @endforeach
-                                   </div>      
-                               </div>
-                               <div class="apuestacondicional_fila">
+                                         <?php 
+                                         $datacolor=$div->nombre;
+                                         ?>
+                                         data-color="{{$datacolor}}"
+                                         data-valor={{$div->nombre}} 
+                                         data-cuota={{$div->multiplicadorDefecto}} 
+                                         >{{$div->nombre}}</div>
+                                         @endforeach
+                                     </div>      
+                                 </div>
+                                 <div class="apuestacondicional_fila">
+                                     <div class="apuestacondicional_fila_nombre">RANGOS</div>
+                                     <div class="apuestacondicional_fila_datos">
+                                         @foreach($rangosfila as $div) 
+                                         <div 
+                                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                         data-idTipoPago="{{$div->idTipoPago}}" 
+                                         style="background-color:{{$div->rgb}}" 
+                                         data-tipo="rango" 
+                                         <?php
+                                         $datacolor=$div->rgb;
+                                         ?>
+                                         data-color="{{$datacolor}}"
+                                         data-valor={{$div->nombre}} 
+                                         data-cuota={{$div->multiplicadorDefecto}} 
+                                         >{{$div->nombre}}
+                                     </div>
+                                     @endforeach
+                                 </div>      
+                             </div>
+                             <div class="apuestacondicional_fila">
 
-                                   <div class="apuestacondicional_fila_nombre">PAR/IMPAR</div>
+                                 <div class="apuestacondicional_fila_nombre">PAR/IMPAR</div>
 
-                                   <div class="apuestacondicional_fila_datos">
-                                       @foreach($par_imparfila as $div) 
-                                       <div 
-                                       data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                       data-idTipoPago="{{$div->idTipoPago}}" 
-                                       style="background-color:{{$div->rgb}}" 
-                                       data-tipo="par_impar" 
-                                       <?php
-                                       $datacolor=$div->rgb;
+                                 <div class="apuestacondicional_fila_datos">
+                                     @foreach($par_imparfila as $div) 
+                                     <div 
+                                     data-idTipoApuesta="{{$div->idTipoApuesta}}" 
+                                     data-idTipoPago="{{$div->idTipoPago}}" 
+                                     style="background-color:{{$div->rgb}}" 
+                                     data-tipo="par_impar" 
+                                     <?php
+                                     $datacolor=$div->rgb;
 
-                                       ?>
-                                       data-color="{{$datacolor}}"
-                                       data-valor={{$div->nombre}} 
-                                       data-cuota={{$div->multiplicadorDefecto}} 
-                                       >{{$div->nombre}}</div>
-                                       @endforeach
-                                   </div>     
-                               </div>
-                               <!-- <div class="rectangulo_rojo">1</div> -->
-                           </div>    
+                                     ?>
+                                     data-color="{{$datacolor}}"
+                                     data-valor={{$div->nombre}} 
+                                     data-cuota={{$div->multiplicadorDefecto}} 
+                                     >{{$div->nombre}}</div>
+                                     @endforeach
+                                 </div>     
+                             </div>
+                             <!-- <div class="rectangulo_rojo">1</div> -->
+                         </div>    
                                        <!--  </div>
                                        </div> -->
                                    </div>
@@ -355,7 +355,7 @@
                                 <div class="izquierda">
                                     <span CLASS="nombre_tituloconfiguracionevento"></span>
                                 </div>
-                                <div class="derecha">
+                                <div class="derecha" style="padding-right">
                                     <span class="id_tituloconfiguracionevento"></span>   
                                 </div>
                             </div>
@@ -381,7 +381,7 @@
                                     <span class="rowtableeventos_footer_apuesta">APUESTA</span>
                                 </div>
                                 <div class="valorestotalmax">
-                                 <div id="valor_total"> 
+                                   <div id="valor_total"> 
                                     <span>TOTAL: 0.00 S/.</span>
                                 </div>
                                 <div  id="valor_maximo">
@@ -391,33 +391,33 @@
                         </div>
                         <!--rowtableeventos_footer-->
                         <div class="rowapuestas" id="div_apuestas">
-                           @foreach($dinerodefault as $apuesta) 
-                           <div class="rowapuestasdiv" 
-                           data-valor="{{$apuesta->monto}}"
-                           data-tipo="apuesta"
-                           >
-                           {{$apuesta->monto}}
-                       </div>
-                       @endforeach
+                         @foreach($dinerodefault as $apuesta) 
+                         <div class="rowapuestasdiv" 
+                         data-valor="{{$apuesta->monto}}"
+                         data-tipo="apuesta"
+                         >
+                         {{$apuesta->monto}}
+                     </div>
+                     @endforeach
                                            <!--      <div class="rowapuestasdiv">
                                            </div> -->
                                        </div>
                                        <!--rowapuestas-->
                                        <div class="rowbotones" id="div_botones">
-                                         <div class="rowbotonesdiv check icon icon-2x fa fa-check">
-                                         </div> 
-                                         <div class="rowbotonesdiv cerrar icon icon-2x fa fa-close">
-                                         </div> 
-                                         <div class="rowbotonesdiv barcode icon icon-2x fa fa-barcode">
-                                         </div> 
-                                         <div class="rowbotonesdiv print icon icon-2x fa fa-print">
-                                         </div> 
-                                     </div>
-                                     <!--rowapuestas-->
-                                     <div style="width:100%;height:1%"></div>
-                                 </div>
-                             </div><!--fin row medio -->
-                             <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
+                                           <div class="rowbotonesdiv check icon icon-2x fa fa-check">
+                                           </div> 
+                                           <div class="rowbotonesdiv cerrar icon icon-2x fa fa-close">
+                                           </div> 
+                                           <div class="rowbotonesdiv barcode icon icon-2x fa fa-barcode">
+                                           </div> 
+                                           <div class="rowbotonesdiv print icon icon-2x fa fa-print">
+                                           </div> 
+                                       </div>
+                                       <!--rowapuestas-->
+                                       <div style="width:100%;height:1%"></div>
+                                   </div>
+                               </div><!--fin row medio -->
+                               <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
 
                                 <div class="eventos_fila_izq">
                                     @foreach($eventosdatos as $evento) 
@@ -462,122 +462,122 @@
                               </button>
                           </div>
                           <div class="modal-body" style="overflow:auto">
-                           <div style="text-align:center">
-                            <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
-                                <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
-                                    <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
-                                        <img id="imagen_apuestatotal" width="180" height="80" src="{{asset('img/logo.png')}}">
-                                    </div></div>
-                                    <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
-                                    <div class="datos" style="width:100%;display:table;padding-top:4px">
-                                        <div style="width:100%;border-top:2px dotted;display:table">
-                                            <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
-                                        </div>
-                                        <div style="width:100%;display:table">
+                             <div style="text-align:center">
+                                <div id="divimpresion" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
+                                    <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
+                                        <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
+                                            <img id="imagen_apuestatotal" width="180" height="80" src="{{asset('img/logo.png')}}">
+                                        </div></div>
+                                        <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
+                                        <div class="datos" style="width:100%;display:table;padding-top:4px">
+                                            <div style="width:100%;border-top:2px dotted;display:table">
+                                                <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
+                                            </div>
+                                            <div style="width:100%;display:table">
 
-                                            <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
-                                        </div>
-                                        <div style="width:100%;display:table">
+                                                <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="IDUnidad"></div>
+                                            </div>
+                                            <div style="width:100%;display:table">
 
-                                            <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
-                                        </div>
-                                        <div style="width:100%;display:table">
-                                            <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
-                                        </div>
-                                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
-                                        </div>
+                                                <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="NroEvento"></div>
+                                            </div>
+                                            <div style="width:100%;display:table">
+                                                <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="descripcion"></div>
+                                            </div>
+                                            <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
+                                            </div>
 
-                                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
-                                            <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
-                                        </div>
-                                        <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                                            <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
+                                                <div style="width:50%;float:LEFT;text-align:left">Total del Ticket</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
+                                            </div>
+                                            <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
 
-                                            <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
+                                                <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
+                                            </div>
+                                            <div style="width:100%;display:table;padding-bottom:4px;" id="">
+                                                <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
+                                            </div>
+                                            <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                                                <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
+                                            </div>
+                                            <div style="width:100%;display:table" id="">
+                                                <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
+                                            </div>
                                         </div>
-                                        <div style="width:100%;display:table;padding-bottom:4px;" id="">
-                                            <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
+                                        <div class="footer" style="width:100%;text-align:center"></div>
+                                        <div class="codigoqr_barra" style="width:100%;margin-bottom:8mm;display:table">
+                                          <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
+                                            <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
+                                            <img id="imagen_codigobarra"width="114" height="80">
                                         </div>
-                                        <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
-                                            <div style="width:50%;float:LEFT;text-align:left;">Premio Máximo a Pagar </div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoAPagar"></div>
-                                        </div>
-                                        <div style="width:100%;display:table" id="">
-                                            <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
-                                            <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
-                                        </div>
+                                        <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
                                     </div>
-                                    <div class="footer" style="width:100%;text-align:center"></div>
-                                    <div class="codigoqr_barra" style="width:100%;margin-bottom:8mm;display:table">
-                                      <div id="codigo_barra" style="float: LEFT; width:50%;padding-top:20px;text-align:center">
-                                        <!-- <img id="imagen_codigobarra"width="180" height="80"> -->
-                                        <img id="imagen_codigobarra"width="114" height="80">
-                                    </div>
-                                    <div id="codigo_qr" style="float: left; width:50%;text-align:right"><img id="imagen_qrcode"  width="120" height="120"></div>
                                 </div>
                             </div>
-                        </div>
-                    </div><!--FIN DIV WRAPPER-->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="modal_buscar" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">TICKET</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body" style="overflow:auto">
-               <div class="row">
-                <div class="col-md-12">
-                 <form class="form-inline">
-                    <div class="form-group">
-                        <label for="inputPassword2" class="sr-only">Nro Ticket</label>
-                        <input class="form-control" id="ticket_txt" placeholder="Ticket" type="text">
+                        </div><!--FIN DIV WRAPPER-->
                     </div>
-                    <button type="submit" class="btn btn-success" id="btn_buscar_ticket">Buscar</button>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="digitador">
-                    <div class="digito">7</div>
-                    <div class="digito">8</div>
-                    <div class="digito">9</div>
-                    <div class="digito">4</div>
-                    <div class="digito">5</div>
-                    <div class="digito">6</div>
-                    <div class="digito">1</div>
-                    <div class="digito">2</div>
-                    <div class="digito">3</div>
-                    <div class="borrar">BORRAR</div>
-                    <div class="digito">0</div>
-                    <div class="buscar_div" id="buscar_div">BUSCAR</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnimprimir">Imprimir</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div><!--FIN DIV WRAPPER-->
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        <div class="modal" id="modal_buscar" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">TICKET</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body" style="overflow:auto">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <form class="form-inline">
+                            <div class="form-group">
+                                <label for="inputPassword2" class="sr-only">Nro Ticket</label>
+                                <input class="form-control" id="ticket_txt" placeholder="Ticket" type="text">
+                            </div>
+                            <button type="submit" class="btn btn-success" id="btn_buscar_ticket">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="digitador">
+                            <div class="digito">7</div>
+                            <div class="digito">8</div>
+                            <div class="digito">9</div>
+                            <div class="digito">4</div>
+                            <div class="digito">5</div>
+                            <div class="digito">6</div>
+                            <div class="digito">1</div>
+                            <div class="digito">2</div>
+                            <div class="digito">3</div>
+                            <div class="borrar">BORRAR</div>
+                            <div class="digito">0</div>
+                            <div class="buscar_div" id="buscar_div">BUSCAR</div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--FIN DIV WRAPPER-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </div>
 
 <div class="modal" id="modal_imprimir_pago" tabindex="-1" role="dialog">
@@ -590,60 +590,60 @@
           </button>
       </div>
       <div class="modal-body" style="overflow:auto">
-       <div style="text-align:center">
-        <div id="divimpresion_pago" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
-            <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
-                <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
-                    <img id="imagen_apuestatotal" width="180" height="80">
-                </div></div>
-                <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
+         <div style="text-align:center">
+            <div id="divimpresion_pago" style="box-shadow:0 0 10px black;width:80mm;margin:auto">
+                <div class="ticket" style="display:inline-block;font-size:10pt;width:80mm;padding:8mm">
+                    <div class="titulo" style="width: 100%; text-align: center; display: flex; align-items: center;border-bottom:1px solid;padding-bottom:5px"><div style="width:100%">
+                        <img id="imagen_apuestatotal" width="180" height="80">
+                    </div></div>
+                    <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
 
-                <div style="width:100%;display:table;border-top:2px dotted;;border-bottom:2px dotted;padding-bottom:4px;padding-top:4px;word-spacing:13px;letter-spacing:3px" id="totales_ticket">
-                    <div style="width:100%;;text-align:center">TIQUE DE PAGO</div>
-
-                </div>
-
-                <div class="datos" style="width:100%;display:table;padding-top:4px;padding-top:17px">
-                    <div style="width:100%;border-top:2px dotted;display:table">
-                        <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
-                        <div style="width:50%;float:LEFT;text-align:left" id="IDTique"></div>
-                    </div>
-                    <div style="width:100%;display:table">
-
-                        <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
-                        <div style="width:50%;float:LEFT;text-align:left" id="IDUnidad"></div>
+                    <div style="width:100%;display:table;border-top:2px dotted;;border-bottom:2px dotted;padding-bottom:4px;padding-top:4px;word-spacing:13px;letter-spacing:3px" id="totales_ticket">
+                        <div style="width:100%;;text-align:center">TIQUE DE PAGO</div>
 
                     </div>
-                    <div style="width:100%;display:table">
 
-                        <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
-                        <div style="width:50%;float:LEFT;text-align:left" id="NroEvento"></div>
+                    <div class="datos" style="width:100%;display:table;padding-top:4px;padding-top:17px">
+                        <div style="width:100%;border-top:2px dotted;display:table">
+                            <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                            <div style="width:50%;float:LEFT;text-align:left" id="IDTique"></div>
+                        </div>
+                        <div style="width:100%;display:table">
 
-                    </div>
-                    <div style="width:100%;display:table">
+                            <div style="width:50%;float:LEFT;text-align:left">ID Unidad</div>
+                            <div style="width:50%;float:LEFT;text-align:left" id="IDUnidad"></div>
 
-                        <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
-                        <div style="width:50%;float:LEFT;text-align:left" id="descripcion"></div>
-                    </div>
-                    <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
-                    </div>
+                        </div>
+                        <div style="width:100%;display:table">
 
-                    <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
-                        <div style="width:50%;float:LEFT;text-align:left">Cantidad Ganada</div>
-                        <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
+                            <div style="width:50%;float:LEFT;text-align:left">Nro Evento</div>
+                            <div style="width:50%;float:LEFT;text-align:left" id="NroEvento"></div>
 
-                    </div>
-                    <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+                        </div>
+                        <div style="width:100%;display:table">
 
-                        <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
-                        <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
+                            <div style="width:50%;float:LEFT;text-align:left">Desc.</div>
+                            <div style="width:50%;float:LEFT;text-align:left" id="descripcion"></div>
+                        </div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="datos_filas">
+                        </div>
 
-                    </div>
-                    <div style="width:100%;display:table;padding-bottom:6pt;" id="">
-                        <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
-                        <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-bottom:4px;padding-top:4px" id="totales_ticket">
+                            <div style="width:50%;float:LEFT;text-align:left">Cantidad Ganada</div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="total_ticket"></div>
 
-                    </div>
+                        </div>
+                        <div style="width:100%;display:table;border-top:2px dotted;padding-top:4px" id="">
+
+                            <div style="width:50%;float:LEFT;text-align:left;">Impreso En</div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_en"></div>
+
+                        </div>
+                        <div style="width:100%;display:table;padding-bottom:6pt;" id="">
+                            <div style="width:50%;float:LEFT;text-align:left">Impresor por </div>
+                            <div style="width:50%;float:LEFT;text-align:right" id="impreso_por"></div>
+
+                        </div>
 
 <!-- 
                              <div style="width:100%;display:table;border-top:2px dotted;padding-top:8pt" id="">
