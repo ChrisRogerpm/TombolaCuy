@@ -1,6 +1,13 @@
 
 $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
+
+// IPSERVIDOR_WEBSOCKETS="35.237.182.107";
+// PUERTO_WEBSOCKETS="888";
+IPSERVIDOR_WEBSOCKETS="192.168.1.60";
+PUERTO_WEBSOCKETS="50051";
+
+
 GANADOR_DE_EVENTO="";
 iniciado = false;
 token="";  /// en consultarevento obtiene valor
@@ -70,9 +77,9 @@ var ganador = 0;
 var controls;
 var posicionZ = 0;
 
-init();
+INICIAR_RENDER();
 
-function init() {
+function INICIAR_RENDER() {
     clock = new THREE.Clock();
     clockCuyDudando = new THREE.Clock();
     clockCajaP = new THREE.Clock();
@@ -82,10 +89,10 @@ function init() {
     camera.position.set(0, 10, 0);
 //coontroles 
     //controls
-    // controls = new THREE.OrbitControls(camera);
-    // controls.rotateSpeed = 1.0;
-    // controls.zoomSpeed = 1.2;
-    // controls.panSpeed = 0.8;
+    controls = new THREE.OrbitControls(camera);
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
 
     //escena
     scene = new THREE.Scene();
@@ -95,7 +102,7 @@ function init() {
     hemiLight.position.set(0, 20, 0);
     scene.add(hemiLight);
     var dirLight = new THREE.DirectionalLight(0xffffff);
-    dirLight.position.set(-3, 10, -10);
+    dirLight.position.set(-3, 15, -10);
     dirLight.castShadow = true;
     dirLight.shadow.camera.top = 2;
     dirLight.shadow.camera.bottom = -2;
@@ -103,11 +110,14 @@ function init() {
     dirLight.shadow.camera.right = 2;
     dirLight.shadow.camera.near = 0.1;
     dirLight.shadow.camera.far = 40;
+
+    dirLight.shadow.mapSize.height=2048;
+    dirLight.shadow.mapSize.height=2048;
     scene.add(dirLight);
     // var axesHelper = new THREE.AxesHelper( 5,5,5 );
     // scene.add( axesHelper );
     // controls = new THREE.OrbitControls(camera);
-    // controls.autoRotate = true;
+     controls.autoRotate = true;
     // controls.autoRotateSpeed = 10;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -133,12 +143,18 @@ function init() {
             }
         });
         modelCaja.scale.set(0.005, 0.005, 0.005);
+
+        // modelCaja.position.z=0.8
+
+
         modelCaja.name ="TABLA_CAJAS";
         //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos();
         modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
+
+        modelCaja.children[0].children[1].receiveShadow=true;
         CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
     });
     renderer = new THREE.WebGLRenderer({antialias: true});
@@ -214,10 +230,12 @@ function CargarEstadistica(IdJuego) {
                 if(response.evento.evento_id_actual!=""){
                     EVENTO_ACTUAL=response.evento;
 
+
+
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=1000;//EVENTO_ACTUAL.tiempo_giro_caja;
-                    TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    TIEMPO_GIRO_CAJA=10000;//EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_CUY = 15000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                     $("#termotetro_para_iniciar").show();
 
                     if(socket!=null && socket.readyState==1){
