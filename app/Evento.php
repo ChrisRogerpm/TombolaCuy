@@ -354,27 +354,28 @@ LIMIT 18
             $fechaIni = today()->startOfDay()->toDateTimeString();
             $fechaFin = today()->endOfDay()->toDateTimeString();
         }
-        
-        $ListaEventosDia = DB::table('evento as e')
-            ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
-            ->get();
-
-        foreach ($ListaEventosDia as $li) {
-            if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
-                $val = Evento::findorfail($li->idEvento);
-                if ($val->estadoEvento == 0) {
-                    $val->estadoEvento = 1;
-                    $val->save();
-                    $numero_random = rand(0, 36);
-                    TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+        $lista_Juegos = Juego::JuegoListarLapsoJson();
+        foreach ($lista_Juegos as $juego){
+            $ListaEventosDia = DB::table('evento as e')
+                ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
+                ->where('e.idJuego',$juego->idJuego)
+                ->get();
+            foreach ($ListaEventosDia as $li) {
+                if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
+                    $val = Evento::findorfail($li->idEvento);
+                    if ($val->estadoEvento == 0) {
+                        $val->estadoEvento = 1;
+                        $val->save();
+                        $numero_random = rand(0, 36);
+                        TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+                    }
+                } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
+                    $evento = Evento::findorfail($li->idEvento);
+                    $evento->estadoEvento = 2;
+                    $evento->save();
                 }
-            } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
-                $evento = Evento::findorfail($li->idEvento);
-                $evento->estadoEvento = 2;
-                $evento->save();
             }
         }
-
     }
 
     public static function CerrarEventoJuego($IdJuego)
