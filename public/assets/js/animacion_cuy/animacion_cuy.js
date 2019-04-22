@@ -283,7 +283,7 @@ function cuy_rotacion() {//var_cuy_rotando
     modelCuyDudando.visible = false;
     model.visible = true;
     modelCuyChoque.visible = false;
-    dtrotacion = 0.04; // changed
+    dtrotacion = 0.1; // changed
     timerotacion += dtrotacion;
     var_cuy_rotando = requestAnimationFrame(cuy_rotacion);
     mixer.update(clock.getDelta());
@@ -321,14 +321,17 @@ function cuy_rotacionrandom() {//var_cuy_rotando
     if(!CUY_ROTANDO){return;}
     model.visible = true;
     modelCuyDudando.visible = false;
-    modelCuyChoque.visible = false;
+    modelCuyChoque.visible = false; 
     // dtrotacion = 0.05; // changed
-    timerotacion += dtrotacion;
+    // timerotacion += dtrotacion;
+    timerotacion=parseFloat(timerotacion+dtrotacion).toFixed(5);
+    timerotacion=parseFloat(timerotacion);
     var_cuy_rotando = requestAnimationFrame(cuy_rotacionrandom);
     mixer.update(clock.getDelta());
+    console.log("aca "+timerotacion)
     THREE.Quaternion.slerp(q1, q2, model.quaternion, timerotacion); // added
     renderer.render(scene, camera);
-    if (timerotacion > 1) {
+    if (timerotacion >= 1) {
         CUY_ROTANDO=false;
         console.log("rotacion "+timerotacion);  
         timerotacion = 0; cancelAnimationFrame(var_cuy_rotando) // changed
@@ -403,7 +406,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
         fin_tiempo=performance.now();
         milisegundos=(fin_tiempo-inicio_tiempo);
         console.warn("tiempo  " + milisegundos + " milliseconds.");
-        cuydudando();
+        // cuydudando();
         if (milisegundos > TIEMPO_RANDOM) {
             if(!mover_a_ganador){
                     mover_a_ganador=true;
@@ -441,7 +444,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                             
                                             $("#termotetro_para_iniciar").show();
                                             CargarEstadistica(1);
-                                         
                                         },10000)
                                         modelCajaP.visible=true;
                                         model.position.set(0,0,0);
@@ -456,7 +458,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                         $("#barra_loading").css("height","100%");
                                         $("#idevento_titulo").text("");
                                       
-                                    }, tiempo_cuychoque);
+                                }, tiempo_cuychoque);
                  }
                 fin_tiempof = performance.now();
                 milisegundosf = (fin_tiempof - inicio_tiempo);
@@ -468,12 +470,19 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
         }///ms > tiempo
         else{
             // tiempoazar_entrepuntos=Math.random() >= 0.5 ?
-            tiempodudando=Math.random() * (10 - 1) + 1; 
-           setTimeout(function(){
-               generar_nueva_posicion_random();//b
-               random_tiempo();
-           },tiempodudando*100);
-
+            mostrar_cuydudando=Math.random()>=0.5?true:false;
+            if(mostrar_cuydudando){
+                cuydudando();
+                tiempodudando=Math.random() * (10 - 1) + 1; 
+                setTimeout(function(){
+                   generar_nueva_posicion_random();//b
+                   random_tiempo();
+                },tiempodudando*100);
+            }
+            else{
+                generar_nueva_posicion_random();//b
+                random_tiempo();
+            }
         }
     }  ///fin t>1
 }
@@ -487,8 +496,8 @@ function iniciar_tiempo_random(tiempo) {
     mover_a_ganador=false;
     cuydudando();
     generar_nueva_posicion_random()//b
-    dt =0.01 // velocidad movimiento
-    dtrotacion = 0.05; // velocidad rotacion;
+    dt =0.02 // velocidad movimiento
+    dtrotacion = 0.1; // velocidad rotacion;
     random_tiempo();
 }
 function random_tiempo(){
@@ -519,6 +528,20 @@ function random_tiempo(){
             cancelAnimationFrame(var_cuy_rotando);
             delete var_cuy_rotando;
         }
+        // rotarono=Math.random() >= 0.5 ?true:false;
+        // if(rotarono){
+        //     callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
+        //         mover_cuyrandom();
+        //     }
+        //     CUY_ROTANDO=true;
+        //     //console.info("rotando true");
+        //     cuy_rotacionrandom();
+        // }else{
+        //     model.lookAt(b.x, b.y, b.z);
+        //     modelCuyDudando.lookAt(b.x, b.y, b.z);
+        //     mover_cuyrandom();
+        // }
+
         callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
             mover_cuyrandom();
         }
@@ -651,29 +674,28 @@ function iniciar_cuy(ganador,TIEMPO_RANDOM) {
     //  porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
     //console.warn("porcn=" + porcentaje);
     TIEMPO_RANDOM = TIEMPO_RANDOM;
-
-    TIEMPO_RANDOM = TIEMPO_RANDOM - 1500;
+    TIEMPO_RANDOM = TIEMPO_RANDOM - 2000;
 
     iniciar_tiempo_random(TIEMPO_RANDOM); //////INICIO  CUY
-    cantidad_inter=TIEMPO_RANDOM/100;
-    porcentaje=90/cantidad_inter;
-    porc=0;
-    ii=0;
-        inicio=performance.now();
-        intervalo_termometro=setInterval(function(){
-            if(ii>cantidad_inter){
-                porc=90;
-                clearInterval(intervalo_termometro);
-                return;
-            }
-            porc=porc+porcentaje;
-            $("#barra_loading").css("height",(porc)+"%")
-            if(porc>50){
-                $(".amount,.filler,.red-circle").css("background","#ff0000");
-            }
-            ii++;
+    // cantidad_inter=TIEMPO_RANDOM/100;
+    // porcentaje=90/cantidad_inter;
+    // porc=0;
+    // ii=0;
+    //     inicio=performance.now();
+    //     intervalo_termometro=setInterval(function(){
+    //         if(ii>cantidad_inter){
+    //             porc=90;
+    //             clearInterval(intervalo_termometro);
+    //             return;
+    //         }
+    //         porc=porc+porcentaje;
+    //         $("#barra_loading").css("height",(porc)+"%")
+    //         if(porc>50){
+    //             $(".amount,.filler,.red-circle").css("background","#ff0000");
+    //         }
+    //         ii++;
 
-       },100)
+    //    },100)
 }
 //////////////////////////FIN   COMENZAR CUY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
