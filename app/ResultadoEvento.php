@@ -33,7 +33,7 @@ class ResultadoEvento extends Model
     public static function ResultadosEvento($IdJuego)
     {
         $resultado = DB::table('resultado_evento as re')
-            ->select('e.idEvento', 're.valorGanador','tipoapuesta.rgb')
+            ->select('e.idEvento', 're.valorGanador','tipoapuesta.rgb','tipoapuesta.rgbLetra')
             ->join('evento as e', 'e.idEvento', 're.idEvento')
             ->join('tipo_apuesta as tipoapuesta','tipoapuesta.idTipoApuesta','re.idTipoApuesta')
             ->where('e.idJuego', $IdJuego)

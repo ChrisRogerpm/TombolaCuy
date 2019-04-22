@@ -344,10 +344,12 @@ LIMIT 18
         }
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {
+
             $ListaEventosDia = DB::table('evento as e')
                 ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
                 ->where('e.idJuego', $juego->idJuego)
                 ->get();
+
             foreach ($ListaEventosDia as $li) {
                 if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
                     $val = Evento::findorfail($li->idEvento);
@@ -363,6 +365,7 @@ LIMIT 18
                     $evento->save();
                 }
             }
+
         }
     }
 
