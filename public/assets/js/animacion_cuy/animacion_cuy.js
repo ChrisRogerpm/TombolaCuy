@@ -96,7 +96,8 @@ scene.children[1].visible=true;
         console.warn("FIN CARGA ARCHIVOS");
 
         CargarEstadistica(1);
-
+        IPSERVIDOR_WEBSOCKETS="35.239.64.189";
+        PUERTO_WEBSOCKETS="888";
         window.addEventListener('resize', responsive_canvas, false);
   
     //    iniciar_juego();

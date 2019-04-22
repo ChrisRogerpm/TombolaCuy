@@ -195,11 +195,15 @@ class TipoApuesta extends Model
         $lista = DB::select(DB::raw("SELECT 
         rev.idEvento,rev.valorGanador
         FROM resultado_evento rev
-        WHERE rev.valorGanador = $ValorGanador
         GROUP BY rev.idEvento,rev.valorGanador
-        ORDER BY rev.valorGanador DESC
+        ORDER BY rev.idEvento DESC
         LIMIT 120"));
-        $total = count($lista);
+        $lista_valores = [];
+        foreach ($lista as $l){
+            $lista_valores [] = $l->valorGanador;
+        }
+        $total_coincidencias = array_count_values($lista_valores);
+        $total = array_key_exists($ValorGanador, $total_coincidencias) == false ? 0 : $total_coincidencias[$ValorGanador];
         return $total;
     }
 

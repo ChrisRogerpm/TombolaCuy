@@ -10,7 +10,7 @@ PUERTO_WEBSOCKETS="50051";
 
 GANADOR_DE_EVENTO="";
 iniciado = false;
-token="";  /// en consultarevento obtiene valor
+token="";  /// en consultarevento obtiene valor 
 EVENTO_ID="";
 ARRAY_PUNTOSCAJAS=[];
 
@@ -235,7 +235,7 @@ function CargarEstadistica(IdJuego) {
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=10000;//EVENTO_ACTUAL.tiempo_giro_caja;
-                    TIEMPO_CUY = 15000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                     $("#termotetro_para_iniciar").show();
 
                     if(socket!=null && socket.readyState==1){

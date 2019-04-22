@@ -23,7 +23,8 @@ class Juego extends Model
         'segBloqueoAntesEvento',
         'idMoneda',
         'diasVigentesCobroTicket',
-        'estado'
+        'estado',
+        'segBloqueoAntesAnimacion'
     ];
 
     public static function JuegoListarLapsoJson()
