@@ -216,7 +216,7 @@ function CargarEstadistica(IdJuego) {
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=1000;//EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_GIRO_CAJA=10000;//EVENTO_ACTUAL.tiempo_giro_caja;
                     TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                     $("#termotetro_para_iniciar").show();
 
