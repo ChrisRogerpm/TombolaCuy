@@ -48,6 +48,9 @@ function camara_movimiento_inicio(hacia,camera,tiempo){
             camera.position.set(this.x, this.y, this.z);
             camera.lookAt(new THREE.Vector3(0, 0, 0));
         })
+            .onStart(function(){
+              //  camera.position.x=to.x;camera.position.z=to.z;camera.position.y=to.y
+            })
             .onComplete(function () {
             camera.lookAt(new THREE.Vector3(0, 0, 0));
         })

@@ -126,7 +126,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
 WHERE  
- evt.idJuego=(select even.idJuego from evento as even where even.idEvento=".$ideventoactual.")
+ evt.idJuego=(select even.idJuego from evento as even where even.idEvento=" . $ideventoactual . ")
 
 and (tipo_apuesta.idTipoPago in (1,6) ) 
 and evt.idEvento!=" . $ideventoactual . " 
@@ -157,7 +157,7 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaEventoFin, $fechaIni)
+    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin)
     {
         $token_generado = str_random(8);
         $evento = new Evento();
@@ -173,50 +173,6 @@ LIMIT 18
         $evento->tokenAnimacion = $token_generado;
         $evento->save();
         return $evento;
-    }
-
-    //public static function
-    public static function GenerarEventoJob()
-    {
-        $ListaJuego = Juego::JuegoListarLapsoJson();
-        foreach ($ListaJuego as $juego) {
-            $JuegoEvento = Juego::JuegoEventoEjecucion($juego->idJuego);
-            if ($JuegoEvento != null) {
-                if (now() >= $JuegoEvento->fechaFinEvento) {
-                    $respuesta = Juego::ActualizarEventoEjecucion($JuegoEvento->idEvento);
-                    if ($respuesta) {
-                        $Evento_creado = "";
-                        if ($juego->lapsoProxEventoHoras > 0) {
-                            $NumeroHoras = $juego->lapsoProxEventoHoras;
-                            $fechaIni = $JuegoEvento->fechaFinEvento;
-                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addHours($NumeroHoras);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
-                        } else if ($juego->lapsoProxEventoMinutos > 0) {
-                            $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                            $fechaIni = $JuegoEvento->fechaFinEvento;
-                            $fechaFin = Carbon::parse($JuegoEvento->fechaFinEvento)->addMinutes($NumeroMinutos);
-                            $Evento_creado = Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
-                        }
-                        $numero_random = rand(0, 36);
-                        TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
-                    }
-                }
-            } else {
-                //crear evento desde 0
-                $Evento_creado = "";
-                if ($juego->lapsoProxEventoHoras > 0) {
-                    $NumeroHoras = $juego->lapsoProxEventoHoras;
-                    $fecha = now()->addHours($NumeroHoras);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha, now());
-                } else if ($juego->lapsoProxEventoMinutos > 0) {
-                    $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                    $fecha = now()->addMinutes($NumeroMinutos);
-                    $Evento_creado = Evento::RegistrarEvento($juego, $fecha, now());
-                }
-                $numero_random = rand(0, 24);
-                TipoApuesta::TipoApuestaColor($numero_random, $Evento_creado->idEvento);
-            }
-        }
     }
 
     public static function EventoActual($IdJuego)
@@ -285,8 +241,7 @@ LIMIT 18
 
     public static function GenerarEventoJobNuevo()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')
-            ->first();
+        $Configuracion = DB::table('configuracion_generar_evento')->first();
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
@@ -294,43 +249,76 @@ LIMIT 18
             $fecha_inicio = today()->startOfDay()->toDateTimeString();
             $fecha_fin = today()->endOfDay()->toDateTimeString();
         }
-        while ($fecha_inicio <= $fecha_fin) {
-            $respuesta = false;
-            $ListaJuego = Juego::JuegoListarLapsoJson();
-            foreach ($ListaJuego as $juego) {
-                $evento_creado = Evento::ObtenerUltimoEvento($juego->idJuego, $fecha_inicio, $fecha_fin);
-                if ($evento_creado != null) {
-                    $fechaIni = "";
-                    $fechaFin = "";
+        $lista_array_eventos = [];
+        $lista_coincidencias = [];
+        $ListaJuego = Juego::JuegoListarLapsoJson();
+        foreach ($ListaJuego as $juego) {
+            //Evento creado anteriormente
+            $evento_creado = Evento::ObtenerUltimoEvento($juego->idJuego, $fecha_inicio, $fecha_fin);
+
+            if ($evento_creado != null) {
+                $fechaIni = $evento_creado->fechaFinEvento;
+                $fechaFin = "";
+                while ($fechaIni < $fecha_fin) {
                     if ($juego->lapsoProxEventoHoras > 0) {
                         $NumeroHoras = $juego->lapsoProxEventoHoras;
-                        $fechaIni = $evento_creado->fechaFinEvento;
-                        $fechaFin = Carbon::parse($evento_creado->fechaFinEvento)->addHours($NumeroHoras);
+                        $fechaFin = Carbon::parse($fechaIni)->addHours($NumeroHoras);
                     } else if ($juego->lapsoProxEventoMinutos > 0) {
                         $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                        $fechaIni = $evento_creado->fechaFinEvento;
-                        $fechaFin = Carbon::parse($evento_creado->fechaFinEvento)->addMinutes($NumeroMinutos);
+                        $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
-                    if ($fechaFin >= $fecha_fin) {
-                        $respuesta = true;
+                    if ($fechaIni >= $fecha_fin) {
+//                        $respuesta = true;
                         break;
                     } else {
-                        Evento::RegistrarEvento($juego, $fechaFin, $fechaIni);
-                    }
-                } else {
-                    if ($juego->lapsoProxEventoHoras > 0) {
-                        $NumeroHoras = $juego->lapsoProxEventoHoras;
-                        $fecha = Carbon::parse($fecha_inicio)->addHours($NumeroHoras);
-                        Evento::RegistrarEvento($juego, $fecha, $fecha_inicio);
-                    } else if ($juego->lapsoProxEventoMinutos > 0) {
-                        $NumeroMinutos = $juego->lapsoProxEventoMinutos;
-                        $fecha = Carbon::parse($fecha_inicio)->addMinutes($NumeroMinutos);
-                        Evento::RegistrarEvento($juego, $fecha, $fecha_inicio);
+                        $lista_array_eventos [] = [
+                            'idJuego' => $juego->idJuego,
+//                            'nombre' => $juego->nombre,
+                            'fechaEvento' => $fechaIni,
+                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
+//                            'apuestaMinima' => $juego->apuestaMinima,
+//                            'apuestaMaxima' => $juego->apuestaMaxima,
+//                            'idMoneda' => $juego->idMoneda,
+//                            'estadoEvento' => 0,
+//                            'estadoAnimacion' => 0,
+//                            'tokenAnimacion' => $token_generado,
+                        ];
+                        $lista_coincidencias [] = $fechaIni;
+                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
-            }
-            if ($respuesta) {
-                break;
+            } else {
+                $fechaIni = $fecha_inicio;
+                $fechaFin = "";
+                while ($fechaIni < $fecha_fin) {
+                    if ($juego->lapsoProxEventoHoras > 0) {
+                        $NumeroHoras = $juego->lapsoProxEventoHoras;
+                        $fechaFin = Carbon::parse($fechaIni)->addHours($NumeroHoras);
+                    } else if ($juego->lapsoProxEventoMinutos > 0) {
+                        $NumeroMinutos = $juego->lapsoProxEventoMinutos;
+                        $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
+                    }
+                    if ($fechaIni >= $fecha_fin) {
+//                        $respuesta = true;
+                        break;
+                    } else {
+                        $lista_array_eventos [] = [
+                            'idJuego' => $juego->idJuego,
+//                            'nombre' => $juego->nombre,
+                            'fechaEvento' => $fechaIni,
+                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
+//                            'apuestaMinima' => $juego->apuestaMinima,
+//                            'apuestaMaxima' => $juego->apuestaMaxima,
+//                            'idMoneda' => $juego->idMoneda,
+//                            'estadoEvento' => 0,
+//                            'estadoAnimacion' => 0,
+//                            'tokenAnimacion' => $token_generado,
+                        ];
+                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $fechaIni = $fechaFin->toDateTimeString();
+                    }
+                }
             }
         }
     }
@@ -355,11 +343,13 @@ LIMIT 18
             $fechaFin = today()->endOfDay()->toDateTimeString();
         }
         $lista_Juegos = Juego::JuegoListarLapsoJson();
-        foreach ($lista_Juegos as $juego){
+        foreach ($lista_Juegos as $juego) {
+
             $ListaEventosDia = DB::table('evento as e')
                 ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
-                ->where('e.idJuego',$juego->idJuego)
+                ->where('e.idJuego', $juego->idJuego)
                 ->get();
+
             foreach ($ListaEventosDia as $li) {
                 if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
                     $val = Evento::findorfail($li->idEvento);
@@ -375,6 +365,7 @@ LIMIT 18
                     $evento->save();
                 }
             }
+
         }
     }
 
