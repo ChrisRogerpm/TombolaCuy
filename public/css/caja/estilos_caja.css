@@ -95,15 +95,18 @@
 
 }
 .div_pleno{
-	background-color:rgb(39, 40, 44);float:left;
-	display:flex;
-	justify-content:center;
-	/*padding:10px;*/
-	color:rgb(252,252,232);
-	height:70%;
-	width:30%;text-align:center;font-weight:bold;
-	align-items:center;
-	font-size:1.8vh;
+	background-color: rgb(39, 40, 44);
+	float: left;
+	justify-content: center;
+	color: rgb(252,252,232);
+	height: 21px;
+	width: 30%;
+	padding: 3px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.8vh;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4), inset 0 -15px 10px rgba(0, 0, 0, 0.25);
+
 }
 
 .columna_principalizquierda{
@@ -142,19 +145,20 @@
 .tabla_historial_titulo{
 
 	height:20%;
-
+	margin-bottom: 5px;
 }
 .tabla_historial_titulo_div{
-
-	height:85%;
-	width:30%;
 	background-color: rgb(39, 40, 44);
-	font-weight:bold;
-	font-size:1.8vh;
-	display:flex;
-	align-items: center;
-	justify-content: center
-
+	float: left;
+	justify-content: center;
+	color: rgb(252,252,232);
+	height: 21px;
+	width: 30%;
+	padding: 3px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.8vh;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4), inset 0 -15px 10px rgba(0, 0, 0, 0.25);
 
 }
 #columna_izq{
@@ -224,6 +228,10 @@
 
 	height:14.66%;
 	width:100%;float:left;
+}
+
+.numeros_rect2 div{
+	box-shadow: inset 0 -0.6em 0 -0.34em rgba(0,0,0,0.17);
 }
 .margen_numeros{
 
@@ -302,15 +310,18 @@
 
 }
 .apuestasadicionales_titulo_div{
-
-	height:75%;
-	width:30%;
-	background-color:rgb(39, 40, 44);
-	text-align:center;
-	color:white;font-weight:bold;font-size:1.8vh;
-	display:flex;
+	background-color: rgb(39, 40, 44);
+	float: left;
 	justify-content: center;
-	align-items: center;
+	color: rgb(252,252,232);
+	height: 21px;
+	width: 30%;
+	padding: 3px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.8vh;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4), inset 0 -15px 10px rgba(0, 0, 0, 0.25);
+
 }
 .apuestasadicionalescontenedor{
 
@@ -326,6 +337,7 @@
 	align-items:center;
 	font-weight:bold;
 	font-size:1.8vh;
+	padding-left: 8px;
 }
 .apuestacondicional_fila_datos {
 	width:85%;height:100%;float:right;
@@ -347,7 +359,7 @@
 	justify-content: center;
 	margin-left:1.03%;
 	margin-right:1.03%;
-
+	box-shadow: inset 0 -0.6em 0 -0.34em rgba(0,0,0,0.17);
 }
 
 
@@ -494,6 +506,7 @@ align-items: center;
 	height:48%;
 	margin-right:1%;
 	width:10.21%;
+	box-shadow: inset 0 -0.6em 0 -0.34em rgba(0,0,0,0.17);
   /*  border-right:1px solid rgb(172, 168, 157);
     border-left:1px solid rgb(172, 168, 157);
     border-bottom:19px solid rgb(172, 168, 157);*/
@@ -646,11 +659,10 @@ align-items: center;
 	border-color:white;
 	border-style:solid;
 	cursor:pointer;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	box-shadow: inset 0 -0.6em 0 -0.34em rgba(0,0,0,0.17);
 }
 
 .rowbotones{
@@ -684,7 +696,7 @@ align-items: center;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	box-shadow: inset 0 -0.6em 0 -0.34em rgba(0,0,0,0.17);
 
 
 }
@@ -808,10 +820,10 @@ align-items: center;
     }
     table.table-stripedVenta tbody {
     	height: 154px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    color: white;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0px 2px rgba(0, 0, 0, 0.12), 0 2px 1px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.4), inset 0 -15px 24px rgba(0, 0, 0, 0.25);
+    	overflow-y: auto;
+    	overflow-x: hidden;
+    	color: white;
+    	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 0px 2px rgba(0, 0, 0, 0.12), 0 2px 1px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.4), inset 0 -15px 24px rgba(0, 0, 0, 0.25);
     }
 
     table.table-stripedVenta tbody td,
@@ -929,6 +941,10 @@ align-items: center;
     /*FIN CLASES  TICKET IMPRIMIR*/
 
 
-.rowcabecera_datos div:not(div){
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4), inset 0 -15px 10px rgba(0, 0, 0, 0.25);
-}
+    .rowcabecera_datos div:not(div){
+    	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -3px 2px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.4), 0 0 5px rgba(0, 0, 0, 0.4), inset 0 -15px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .table-stripedVenta tbody{
+    	font-size: 16px;
+    }
