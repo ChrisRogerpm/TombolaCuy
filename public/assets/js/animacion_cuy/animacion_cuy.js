@@ -2,13 +2,14 @@
 var index = 0;
 var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudandoGLB.glb', 'images/cuyChoqueGLB.glb'];
 var objLoader = new THREE.GLTFLoader();
-var escalacuys = 0.2;
+var escalacuys = 0.3;
+var escalacajagirando = 0.04;
 var intervalo_consultaevento=2000;
 buscando_evento=false;
 
 
 function camara_mirar(objeto){
- camera.position.x = objeto.position.x +0.1;
+ camera.position.x = objeto.position.x ;
  camera.position.y = objeto.position.y + 0.7;
  camera.position.z = objeto.position.z +2.9;
  camera.lookAt(objeto.position);
@@ -28,7 +29,7 @@ function animar_camara() {
     controls.update();
 }
 
-function camara_movimiento_inicio(camera,tiempo){
+function camara_movimiento_inicio(hacia,camera,tiempo){
         var from = {
             x: camera.position.x,
             y: camera.position.y,
@@ -36,9 +37,9 @@ function camara_movimiento_inicio(camera,tiempo){
         };
 
         var to = {
-            x: 0,
-            y: 10,
-            z: 0
+            x: hacia.x,
+            y: hacia.y,
+            z: hacia.z
         };
         var tween = new TWEEN.Tween(from)
             .to(to, tiempo)
@@ -47,6 +48,9 @@ function camara_movimiento_inicio(camera,tiempo){
             camera.position.set(this.x, this.y, this.z);
             camera.lookAt(new THREE.Vector3(0, 0, 0));
         })
+            .onStart(function(){
+              //  camera.position.x=to.x;camera.position.z=to.z;camera.position.y=to.y
+            })
             .onComplete(function () {
             camera.lookAt(new THREE.Vector3(0, 0, 0));
         })
@@ -88,6 +92,9 @@ function cargar_archivos() {
         modelCaja.children[0].position.y = 30;
         modelCaja.children[0].children[1].scale.set(3, 3, 3);
 
+scene.children[1].visible=false;
+scene.children[1].visible=true;
+
         // $("#imagen_cargando").hide();
         console.warn("FIN CARGA ARCHIVOS");
 
@@ -113,6 +120,8 @@ function cargar_archivos() {
             model.position.set(0, 0, 0);
             model.name = "CUY";
 
+            model.castShadow=true;
+            model.receiveShadow=true;
             scene.add(model);
             skeleton = new THREE.SkeletonHelper(model);
             var animations = gltf.animations;
@@ -126,8 +135,11 @@ function cargar_archivos() {
                     objectCajaGira.castShadow = true
                 }
             });
-            modelCajaP.scale.set(0.04, 0.04, 0.04);
+            modelCajaP.scale.set(escalacajagirando,escalacajagirando,escalacajagirando);
             modelCajaP.position.set(0, 0, 0);
+            modelCajaP.castShadow=true;
+            modelCajaP.receiveShadow=true;
+
             scene.add(modelCajaP);
             skeleton = new THREE.SkeletonHelper(modelCajaP);
             var animations = gltf.animations;
@@ -137,6 +149,8 @@ function cargar_archivos() {
         }
         if (archivos[index] == "images/cuyDudandoGLB.glb") {
             modelCuyDudando = gltf.scenes[0];
+            modelCuyDudando.castShadow=true;
+            modelCuyDudando.receiveShadow=true;
             modelCuyDudando.traverse(function (objectCuyDudando) {
                 if (objectCuyDudando instanceof THREE.Mesh) {
                     objectCuyDudando.castShadow = true
@@ -159,6 +173,8 @@ function cargar_archivos() {
                     objectCuyChoque.castShadow = true
                 }
             });
+            modelCuyChoque.castShadow=true;
+            modelCuyChoque.receiveShadow=true;
             modelCuyChoque.name = "CUY_CHOQUE";
 
             modelCuyChoque.scale.set(escalacuys, escalacuys, escalacuys);
@@ -177,19 +193,34 @@ function cargar_archivos() {
 
 function INICIO_ANIMACION_CUY(){
     iniciogiro =  clockCajaP.getElapsedTime();
+
+    dt =0.05 // velocidad movimiento cuy
+    dtrotacion = 0.05; // velocidad rotacion cuy;
+
+        animar_camara();
+        camara_mirar(modelCajaP);
+
     cajagirando_animacion();
 }
 function cajagirando_animacion() {
-    $("#ImgContainer").hide();
-    var_cajagirando = requestAnimationFrame(cajagirando_animacion);
+        $("#ImgContainer").hide();
+        var_cajagirando = requestAnimationFrame(cajagirando_animacion);
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
         mixerCajaP.update(clockCajaP.getDelta());
        
-        model.visible = true; 
+        model.visible = false; 
         modelCajaP.visible = true;
-        modelCuyDudando.visible = true;       
+        modelCuyDudando.visible = false;       
         modelCuyChoque.visible = false;
+
+        model.position.set(0,0,0);
+        modelCuyDudando.position.x=model.position.x;
+        modelCuyDudando.position.y=model.position.y;
+        modelCuyDudando.position.z=model.position.z;
+        modelCuyChoque.position.x=model.position.x;
+        modelCuyChoque.position.y=model.position.y;
+        modelCuyChoque.position.z=model.position.z;
         $("#barra_loading").css("height","0%");
         $("#barra_loading_tpi").css("width","0%");
         var tiempogirando = clockCajaP.getElapsedTime() - iniciogiro;
@@ -198,7 +229,13 @@ function cajagirando_animacion() {
         }else{
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO)
             modelCajaP.visible = false;
+             model.visible = true; 
+             modelCuyDudando.visible = true;       
+            modelCuyChoque.visible = false;
             cancelAnimationFrame(var_cajagirando);
+
+            controls.autoRotate = false;
+            camara_movimiento_inicio({x:0,y:10,z:0},camera,5000);
             iniciar_cuy(GANADOR_DE_EVENTO,TIEMPO_CUY);
         }
         renderer.render(scene, camera);
@@ -323,15 +360,18 @@ function cuy_rotacionrandom() {//var_cuy_rotando
     modelCuyDudando.visible = false;
     modelCuyChoque.visible = false; 
     // dtrotacion = 0.05; // changed
-    // timerotacion += dtrotacion;
-    timerotacion=parseFloat(timerotacion+dtrotacion).toFixed(5);
-    timerotacion=parseFloat(timerotacion);
+     timerotacion += dtrotacion;
+    //timerotacion=parseFloat(timerotacion+dtrotacion).toFixed(5);
+    //timerotacion=parseFloat(timerotacion);
     var_cuy_rotando = requestAnimationFrame(cuy_rotacionrandom);
     mixer.update(clock.getDelta());
-    console.log("aca "+timerotacion)
+  //  console.log("aca "+timerotacion)
     THREE.Quaternion.slerp(q1, q2, model.quaternion, timerotacion); // added
     renderer.render(scene, camera);
-    if (timerotacion >= 1) {
+    if (timerotacion > 1) {
+        model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+        model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+
         CUY_ROTANDO=false;
         console.log("rotacion "+timerotacion);  
         timerotacion = 0; cancelAnimationFrame(var_cuy_rotando) // changed
@@ -368,9 +408,11 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
     if (typeof var_cuychoque!== "undefined") {
         cancelAnimationFrame(var_cuychoque);
     }
-    var newX = lerp(a.x, b.x, ease(t));  
-    var newY = lerp(a.y, b.y, ease(t));  
-    var newZ = lerp(a.z, b.z, ease(t));  
+
+    funcion_ease=EasingFunctions_array[0].funcion;//linear
+    var newX = lerp(a.x, b.x, funcion_ease(t));  
+    var newY = lerp(a.y, b.y, funcion_ease(t));  
+    var newZ = lerp(a.z, b.z, funcion_ease(t));  
     model.position.set(newX,0,newZ); 
     t += dt;
     //console.warn("x=> " + newX + "  y=>" + newY + "  z= " + newZ);
@@ -469,7 +511,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             console.info("fin");
         }///ms > tiempo
         else{
-            // tiempoazar_entrepuntos=Math.random() >= 0.5 ?
+            //tiempoazar_entrepuntos=Math.random() >= 0.5 ?
             mostrar_cuydudando=Math.random()>=0.5?true:false;
             if(mostrar_cuydudando){
                 cuydudando();
@@ -495,9 +537,8 @@ function iniciar_tiempo_random(tiempo) {
     inicio_tiempo = performance.now();
     mover_a_ganador=false;
     cuydudando();
-    generar_nueva_posicion_random()//b
-    dt =0.02 // velocidad movimiento
-    dtrotacion = 0.1; // velocidad rotacion;
+    generar_nueva_posicion_random();//b
+
     random_tiempo();
 }
 function random_tiempo(){
@@ -528,26 +569,26 @@ function random_tiempo(){
             cancelAnimationFrame(var_cuy_rotando);
             delete var_cuy_rotando;
         }
-        // rotarono=Math.random() >= 0.5 ?true:false;
-        // if(rotarono){
-        //     callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
-        //         mover_cuyrandom();
-        //     }
-        //     CUY_ROTANDO=true;
-        //     //console.info("rotando true");
-        //     cuy_rotacionrandom();
-        // }else{
-        //     model.lookAt(b.x, b.y, b.z);
-        //     modelCuyDudando.lookAt(b.x, b.y, b.z);
-        //     mover_cuyrandom();
-        // }
-
-        callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
+        rotarono=Math.random() >= 0.5 ?true:false;
+        if(rotarono){
+            callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
+                mover_cuyrandom();
+            }
+            CUY_ROTANDO=true;
+            //console.info("rotando true");
+            cuy_rotacionrandom();
+        }else{
+            model.lookAt(b.x, b.y, b.z);
+            modelCuyDudando.lookAt(b.x, b.y, b.z);
             mover_cuyrandom();
         }
-        CUY_ROTANDO=true;
-        //console.info("rotando true");
-        cuy_rotacionrandom();
+
+        // callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
+        //     mover_cuyrandom();
+        // }
+        // CUY_ROTANDO=true;
+        // //console.info("rotando true");
+        // cuy_rotacionrandom();
     } else {
         cancelAnimationFrame(var_cuymoviendo);
     } 
@@ -669,33 +710,10 @@ function iniciar_cuy(ganador,TIEMPO_RANDOM) {
     posicion_ganador = get_caja(ganador).posicion;///  ganador
     i = 0;
     cantidadveces_random = 5;
-    porcentaje=100;
-    porcentaje_r=80;
-    //  porcentaje=((100*(timer-eventoactual.segBloqueoAntesEvento))/duration);
-    //console.warn("porcn=" + porcentaje);
     TIEMPO_RANDOM = TIEMPO_RANDOM;
     TIEMPO_RANDOM = TIEMPO_RANDOM - 2000;
 
     iniciar_tiempo_random(TIEMPO_RANDOM); //////INICIO  CUY
-    // cantidad_inter=TIEMPO_RANDOM/100;
-    // porcentaje=90/cantidad_inter;
-    // porc=0;
-    // ii=0;
-    //     inicio=performance.now();
-    //     intervalo_termometro=setInterval(function(){
-    //         if(ii>cantidad_inter){
-    //             porc=90;
-    //             clearInterval(intervalo_termometro);
-    //             return;
-    //         }
-    //         porc=porc+porcentaje;
-    //         $("#barra_loading").css("height",(porc)+"%")
-    //         if(porc>50){
-    //             $(".amount,.filler,.red-circle").css("background","#ff0000");
-    //         }
-    //         ii++;
-
-    //    },100)
 }
 //////////////////////////FIN   COMENZAR CUY ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

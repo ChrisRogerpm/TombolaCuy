@@ -3,7 +3,6 @@ var url = null;
 var host= null;
 var port=null;
 var path=null;
-
 RECONECTAR_WEBSOCKET=true;
 function hora(){
   setInterval(function(){
