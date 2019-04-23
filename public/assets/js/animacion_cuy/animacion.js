@@ -7,7 +7,6 @@ $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 PUERTO_WEBSOCKETS="50051";
 
-
 GANADOR_DE_EVENTO="";
 iniciado = false;
 token="";  /// en consultarevento obtiene valor 
@@ -195,7 +194,6 @@ function CargarEstadistica(IdJuego) {
 
             });
             var strUltimos12="";
-            var clase="caja1";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
                           strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
@@ -210,8 +208,6 @@ function CargarEstadistica(IdJuego) {
             if(typeof response.evento!="undefined"){
                 if(response.evento.evento_id_actual!=""){
                     EVENTO_ACTUAL=response.evento;
-
-
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
@@ -260,7 +256,7 @@ function CargarEstadistica(IdJuego) {
                     CargarEstadistica(1);
                   },1000)
                 }
-            }
+            }////fin if eresponse evento
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;

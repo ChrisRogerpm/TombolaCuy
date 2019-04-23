@@ -295,7 +295,7 @@ function INICIO_ANIMACION_CUY(){
         if(typeof ULTIMO_PUNTO_CUY!="undefined"){
             ULTIMO_PUNTO_CUY=a;
         }
-        reiniciar_cuy();
+        reiniciar_cuy();///reiniciar posicion cuyes 0 0 0
 
         actualizar_cuyes_posicion();
         controls.autoRotate = true;

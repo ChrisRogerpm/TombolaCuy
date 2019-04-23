@@ -47,11 +47,9 @@ function init(host,port){
                       if(typeof toastr_errorconexion!="undefined"){
                           toastr_errorconexion.hide();  
                       }
-
                          if(typeof toasr_websockets_error!="undefined"){
                           toasr_websockets_error  .hide();  
                       }
-
                       
                         ahora=moment(msg.data);//.format("YYYY-MM-DD HH:mm:ss a");
                         FECHA_INICIO_EVENTO=EVENTO_ACTUAL.fecha_evento_ini_actual;
@@ -73,6 +71,7 @@ function init(host,port){
                         segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
+                                ///barra carga cuy
                                   $("#barra_loading_tpi").animate(
                                      {width:"100%"}
                                     ,(segundos_para_animacion)*1000
@@ -82,8 +81,9 @@ function init(host,port){
                                               buscando_evento=false;
                                               INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
-                                  );
-
+                                   );
+                                ///fin barra cuy
+                                  ///contador inicio cuy
                                   $("#contador_para_activar").text(segundos_para_animacion);
                                   var conta=segundos_para_animacion-1;
                                   conteo_=setInterval(function(){
@@ -91,6 +91,7 @@ function init(host,port){
                                       if(conta<1){clearInterval(conteo_);}
                                       conta=parseInt(conta)-1;
                                   },1000);
+                                  ////fin contador inicio cuy
 
                             },1000);
                        }else{
@@ -173,17 +174,15 @@ function init(host,port){
   }
 }
 function pedir_hora_server(){
-  msg = "date";
-  try
-  {
-
-      socket.send(msg); 
-
-  } 
-  catch(ex)
-  { 
-    logerror(ex);  
-  }
+    msg = "date";
+    try
+    {
+        socket.send(msg); 
+    } 
+    catch(ex)
+    { 
+      logerror(ex);  
+    }
 }
 function quit(){
   log("Goodbye! "+url);
