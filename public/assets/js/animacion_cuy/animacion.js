@@ -167,25 +167,6 @@ function INICIAR_RENDER() {
 }
 
 
-// function CerrarEvento(IdJuego,token_animacion,IdEvento) {
-//     var url = document.location.origin + "/" + "api/ConfirmacionToken";
-//     $.ajax({
-//         url: url,
-//         type: "POST",
-//         contentType: "application/json",
-//         data: JSON.stringify({IdJuego: IdJuego,token:token_animacion
-//             ,IdEvento:EVENTO_ID}),
-//         beforeSend: function () {
-//         },
-//         complete: function () {
-//         },
-//         success: function (response) {  
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//         }
-//     });
-// }
-
 
 CONSULTADO_EVENTO=false;
 function CargarEstadistica(IdJuego) {    

@@ -438,7 +438,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                 }
                  funcion_callback = function () {
                                 console.warn("CALLBACK CUY GANADOR ---------");//**/}
-                               // CerrarEvento(1,token);
                                 $("#barra_loading").css("height","0%");
                                 $("#barra_loading_tpi").css("width","0%");
 
