@@ -56,7 +56,7 @@ class ApiController extends Controller
                 'estadistica' => $estadistica
             ]);
         } else {
-            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
+            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta($IdJuego);
             $array_evento = [
                 'token_animacion' => '',
                 'mensaje_token' => '',
