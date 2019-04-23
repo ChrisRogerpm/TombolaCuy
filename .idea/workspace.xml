@@ -33,7 +33,7 @@
         <counts>
           <entry key="env" value="59" />
           <entry key="js" value="325" />
-          <entry key="php" value="3542" />
+          <entry key="php" value="3550" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -41,7 +41,7 @@
           <entry key=".env file" value="59" />
           <entry key="Blade" value="117" />
           <entry key="JavaScript" value="325" />
-          <entry key="PHP" value="3404" />
+          <entry key="PHP" value="3412" />
           <entry key="SQL" value="21" />
         </counts>
       </usages-collector>
@@ -77,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Evento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="173" column="50" lean-forward="true" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
+            <state relative-caret-position="399">
+              <caret line="172" column="37" lean-forward="true" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -95,7 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PuntoVentaListarJsonFk</find>
       <find>ReporteVentaJsonFk</find>
       <find>rec</find>
       <find>AgregarTodoPermisosJsonFk</find>
@@ -125,6 +124,7 @@
       <find>AperturaCajaListarJsonFk</find>
       <find>generar_posiciones_random</find>
       <find>$posiciones</find>
+      <find>RegistrarEvento</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -569,7 +569,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="593587000" />
+    <option name="totallyTimeSpent" value="593692000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1007,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="173" column="50" lean-forward="true" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
+        <state relative-caret-position="399">
+          <caret line="172" column="37" lean-forward="true" selection-start-line="172" selection-start-column="37" selection-end-line="172" selection-end-column="37" />
         </state>
       </provider>
     </entry>
