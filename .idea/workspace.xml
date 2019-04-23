@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/JobCommand1.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/JobCommand1.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Evento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Evento.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +33,7 @@
         <counts>
           <entry key="env" value="51" />
           <entry key="js" value="325" />
-          <entry key="php" value="2810" />
+          <entry key="php" value="2845" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -42,7 +41,7 @@
           <entry key=".env file" value="51" />
           <entry key="Blade" value="117" />
           <entry key="JavaScript" value="325" />
-          <entry key="PHP" value="2672" />
+          <entry key="PHP" value="2707" />
           <entry key="SQL" value="21" />
         </counts>
       </usages-collector>
@@ -87,10 +86,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Evento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="355" column="39" lean-forward="true" selection-start-line="355" selection-start-column="39" selection-end-line="355" selection-end-column="39" />
+            <state relative-caret-position="651">
+              <caret line="319" column="43" selection-start-line="319" selection-start-column="43" selection-end-line="319" selection-end-column="43" />
               <folding>
-                <element signature="e#8348#12674#0#PHP" />
                 <element signature="e#12680#12861#0#PHP" />
               </folding>
             </state>
@@ -599,7 +597,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="582516000" />
+    <option name="totallyTimeSpent" value="583081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -683,7 +681,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Evento.php</url>
-          <line>335</line>
+          <line>339</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
@@ -1039,10 +1037,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="355" column="39" lean-forward="true" selection-start-line="355" selection-start-column="39" selection-end-line="355" selection-end-column="39" />
+        <state relative-caret-position="651">
+          <caret line="319" column="43" selection-start-line="319" selection-start-column="43" selection-end-line="319" selection-end-column="43" />
           <folding>
-            <element signature="e#8348#12674#0#PHP" />
             <element signature="e#12680#12861#0#PHP" />
           </folding>
         </state>
