@@ -14,7 +14,7 @@ class TipoApuesta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado'];
+    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado','rgb','rgbLetra'];
 
 
     public static function TipoApuestaListarJson()
@@ -195,6 +195,8 @@ class TipoApuesta extends Model
         $lista = DB::select(DB::raw("SELECT 
         rev.idEvento,rev.valorGanador
         FROM resultado_evento rev
+        JOIN evento e ON e.idEvento = rev.idEvento
+        WHERE e.estadoEvento = 2
         GROUP BY rev.idEvento,rev.valorGanador
         ORDER BY rev.idEvento DESC
         LIMIT 120"));
@@ -210,7 +212,7 @@ class TipoApuesta extends Model
     public static function EstadisticaUltimosTipoApuesta()
     {
         $lista_valorapuesta = DB::table('tipo_apuesta as ta')
-            ->select('ta.valorapuesta', 'ta.rgb')
+            ->select('ta.valorapuesta', 'ta.rgb','ta.rgbLetra')
             ->whereIn('ta.idTipoPago', [1, 6])
             ->orderBy('ta.valorapuesta')
             ->get();

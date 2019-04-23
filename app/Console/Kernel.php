@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         //
         'App\Console\Commands\JobCommand1',
         'App\Console\Commands\JobCommand2',
+        'App\Console\Commands\JobCommand3',
     ];
 
     /**
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('command:name1')->everyMinute();
         $schedule->command('command:name2')->dailyAt('01:00');
+        $schedule->command('command:name3')->dailyAt('02:00');
     }
 
     /**
