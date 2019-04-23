@@ -18,7 +18,7 @@ class ApiController extends Controller
         $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
         if ($evento_actual != null) {
             $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
-            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
+            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta($IdJuego);
             $fecha_ini_actual = $evento_actual->fechaEvento;
             $fecha_fin_actual = $evento_actual->fechaFinEvento;
             $fecha_evento_proximo = new Carbon();
