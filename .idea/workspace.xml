@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Evento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Evento.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,7 +33,7 @@
         <counts>
           <entry key="env" value="59" />
           <entry key="js" value="325" />
-          <entry key="php" value="3531" />
+          <entry key="php" value="3542" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -42,7 +41,7 @@
           <entry key=".env file" value="59" />
           <entry key="Blade" value="117" />
           <entry key="JavaScript" value="325" />
-          <entry key="PHP" value="3393" />
+          <entry key="PHP" value="3404" />
           <entry key="SQL" value="21" />
         </counts>
       </usages-collector>
@@ -78,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Evento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="173" column="41" selection-start-line="173" selection-start-column="41" selection-end-line="173" selection-end-column="41" />
+            <state relative-caret-position="416">
+              <caret line="173" column="50" lean-forward="true" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -96,7 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BuscarPermiso</find>
       <find>PuntoVentaListarJsonFk</find>
       <find>ReporteVentaJsonFk</find>
       <find>rec</find>
@@ -126,6 +124,7 @@
       <find>histori</find>
       <find>AperturaCajaListarJsonFk</find>
       <find>generar_posiciones_random</find>
+      <find>$posiciones</find>
     </findStrings>
     <replaceStrings>
       <replace>$this-&gt;</replace>
@@ -570,7 +569,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="593385000" />
+    <option name="totallyTimeSpent" value="593587000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -585,7 +584,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" weight="0.25622255" />
+      <window_info active="true" content_ui="combo" x="299" y="154" width="281" height="569" id="Project" order="0" sideWeight="0.49912128" visible="true" weight="0.23645681" />
       <window_info id="Structure" order="1" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="npm" order="2" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
       <window_info id="Favorites" order="3" sideWeight="0.50087875" side_tool="true" weight="0.28441754" />
@@ -1008,8 +1007,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="173" column="41" selection-start-line="173" selection-start-column="41" selection-end-line="173" selection-end-column="41" />
+        <state relative-caret-position="416">
+          <caret line="173" column="50" lean-forward="true" selection-start-line="173" selection-start-column="50" selection-end-line="173" selection-end-column="50" />
         </state>
       </provider>
     </entry>

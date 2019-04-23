@@ -172,7 +172,7 @@ LIMIT 18
         $evento->estadoEvento = 0;
         $evento->estadoAnimacion = 0;
         $evento->tokenAnimacion = $token_generado;
-        $evento->puntosCuy = $posiciones;
+        $evento->puntosCuy = json_decode($posiciones);
         $evento->save();
         return $evento;
     }
