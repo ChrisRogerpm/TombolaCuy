@@ -341,7 +341,7 @@ function cuy_rotacionrandom() {//var_cuy_rotando
     modelCuyDudando.visible = false;
     modelCuyChoque.visible = false; 
     // dtrotacion = 0.05; // changed
-     timerotacion += dtrotacion;
+    // timerotacion += dtrotacion;
     timerotacion=parseFloat(timerotacion+dtrotacion).toFixed(5);
     timerotacion=parseFloat(timerotacion);
     var_cuy_rotando = requestAnimationFrame(cuy_rotacionrandom);
@@ -560,6 +560,7 @@ function random_tiempo(){
         if(rotarono){
             callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
                 detener_var_cuymoviendo();
+                CUY_CORRIENDO=true;
                 mover_cuyrandom();
             }
             CUY_ROTANDO=true;
