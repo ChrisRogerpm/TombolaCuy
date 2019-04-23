@@ -12,7 +12,7 @@ class AperturaCaja extends Model
     protected $table = 'apertura_caja';
     protected $primaryKey = 'idAperturaCaja';
     public $timestamps = false;
-    protected $fillable = ['idCaja', 'idTurno', 'usuario', 'fechaOperacion', 'fechaRegistro','estado'];
+    protected $fillable = ['idCaja', 'idTurno', 'usuario', 'fechaOperacion', 'fechaRegistro','estado','fechaCierre'];
 
     public static function AperturaCajaListarJson()
     {
@@ -28,6 +28,7 @@ class AperturaCaja extends Model
         u.usuario,
         ac.fechaOperacion, 
         ac.fechaRegistro,
+        ac.fechaCierre,
         ac.estado
         FROM apertura_caja ac
         JOIN caja c ON c.idCaja = ac.idCaja
@@ -96,6 +97,7 @@ class AperturaCaja extends Model
     {
         $idAperturaCaja = $request->input('idAperturaCaja');
         $apertura = AperturaCaja::findorfail($idAperturaCaja);
+        $apertura->fechaCierre = now()->toDateTimeString();
         $apertura->estado = 2;
         $apertura->save();
     }

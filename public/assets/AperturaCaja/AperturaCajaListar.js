@@ -30,7 +30,14 @@ function ListarAperturaCaja() {
                     {data: "Caja", title: "Caja", class:"text-center"},
                     {data: "Turno", title: "Turno", class:"text-center"},
                     {data: "usuario", title: "Usuario", class:"text-center"},
-                    {data: "fechaOperacion", title: "Fecha Operacion", class:"text-center"},
+                    {data: "fechaRegistro", title: "Fecha Apertura", class:"text-center"},
+                    {
+                        data: "fechaCierre", title: "Fecha Cierre", class:"text-center",
+                        "render":function (value) {
+                            var data = value == null ? '--' : value;
+                            return data;
+                        }
+                    },
                     {
                         data: null,title:"Estado",
                         "render":function (value) {

@@ -46,4 +46,13 @@ class ResultadoEvento extends Model
         return $resultado;
     }
 
+
+    public static function ValidarCantidadValorGanadorEvento($idEvento){
+        $resultado = DB::table('resultado_evento re')
+            ->where('re.idEvento',$idEvento)
+            ->groupBy('re.valorGanador',$idEvento)
+            ->count();
+        return $resultado;
+    }
+
 }

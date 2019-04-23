@@ -363,8 +363,11 @@ LIMIT 18
                     if ($val->estadoEvento == 0) {
                         $val->estadoEvento = 1;
                         $val->save();
-                        $numero_random = rand(0, 36);
-                        TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+                        $total = ResultadoEvento::ValidarCantidadValorGanadorEvento($val->idEvento);
+                        if($total == 0){
+                            $numero_random = rand(0, 36);
+                            TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+                        }
                     }
                 } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
                     $evento = Evento::findorfail($li->idEvento);
