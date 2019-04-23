@@ -213,42 +213,48 @@ function CargarEstadistica(IdJuego) {
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=4000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_GIRO_CAJA=10000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
                     TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                    PUNTOS_CUY=EVENTO_ACTUAL.puntos_cuy;
+                    PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
 
-                    if(socket!=null && socket.readyState==1){
-                          inicio_pedir_hora=performance.now();
-                          pedir_hora=true;
-                          timeout_pedir_hora=setInterval(function(){
-                                if(pedir_hora){
-                                    crear_toastr_websockets_error();
-                                }
-                                else{
-                                    clearInterval(timeout_pedir_hora);
-                                }
-                          },1000);
-                          console.warn("YA CONECTADO, pedir hora");
-                          pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
-                    }
-                    else{
-                          console.warn("INICIANDO CONEXIÓN ");
-                          CONECTADO__A_SERVIDORWEBSOCKET=false;
-                          inicio_intento_conexion=performance.now();
-                          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                            revisar_ya_conecto=setInterval(function(){
-                                    if(CONECTADO__A_SERVIDORWEBSOCKET){
-                                        if(typeof toasr_websockets_error!="undefined"){
-                                            toasr_websockets_error.hide();
-                                        }
-                                        clearInterval(revisar_ya_conecto);
+
+                    setTimeout(function(){
+                        if(socket!=null && socket.readyState==1){
+                              inicio_pedir_hora=performance.now();
+                              pedir_hora=true;
+                              timeout_pedir_hora=setInterval(function(){
+                                    if(pedir_hora){
+                                        crear_toastr_websockets_error();
                                     }
                                     else{
-                                       crear_toastr_websockets_error();
+                                        clearInterval(timeout_pedir_hora);
                                     }
-                            },1000);
-                    }   
+                              },1000);
+                              console.warn("YA CONECTADO, pedir hora");
+                              pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
+                        }
+                        else{
+                              console.warn("INICIANDO CONEXIÓN ");
+                              CONECTADO__A_SERVIDORWEBSOCKET=false;
+                              inicio_intento_conexion=performance.now();
+                              connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                                revisar_ya_conecto=setInterval(function(){
+                                        if(CONECTADO__A_SERVIDORWEBSOCKET){
+                                            if(typeof toasr_websockets_error!="undefined"){
+                                                toasr_websockets_error.hide();
+                                            }
+                                            clearInterval(revisar_ya_conecto);
+                                        }
+                                        else{
+                                           crear_toastr_websockets_error();
+                                        }
+                                },1000);
+                        } 
+
+
+                    },1000)
+                    
                 }
                 else{
 
