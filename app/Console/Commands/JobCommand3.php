@@ -48,7 +48,7 @@ class JobCommand3 extends Command
                 'random' => $numero_random];
         }
         foreach ($lista as $l) {
-            TipoApuesta::TipoApuestaColor($l->random, $l->idEvento);
+            TipoApuesta::TipoApuestaColor($l['random'], $l['idEvento']);
         }
     }
 }
