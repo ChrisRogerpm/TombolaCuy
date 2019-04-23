@@ -4,8 +4,8 @@ $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
 // IPSERVIDOR_WEBSOCKETS="35.237.182.107";
 // PUERTO_WEBSOCKETS="888";
-IPSERVIDOR_WEBSOCKETS="192.168.1.60";
-PUERTO_WEBSOCKETS="50051";
+IPSERVIDOR_WEBSOCKETS="35.239.64.189";
+PUERTO_WEBSOCKETS="888";
 
 GANADOR_DE_EVENTO="";
 iniciado = false;
@@ -56,7 +56,7 @@ ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348
 ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
 $(document).ready(function () {
-    // CargarEstadistica(1);
+    INICIAR_RENDER()
 });
 
 if (WEBGL.isWebGLAvailable() === false) {
@@ -76,7 +76,7 @@ var ganador = 0;
 var controls;
 var posicionZ = 0;
 
-INICIAR_RENDER();
+;
 
 function INICIAR_RENDER() {
     clock = new THREE.Clock();
@@ -87,11 +87,14 @@ function INICIAR_RENDER() {
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
     camera.position.set(0, 10, 0);
 //coontroles 
-    //controls
-    controls = new THREE.OrbitControls(camera);
-    controls.rotateSpeed = 1.0;
-    controls.zoomSpeed = 1.2;
-    controls.panSpeed = 0.8;
+    // //controls
+    // controls = new THREE.OrbitControls(camera);
+    // controls.rotateSpeed = 1.0;
+    // controls.zoomSpeed = 1.2;
+    // controls.panSpeed = 0.8;
+    //  controls.autoRotate = true;
+
+    //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 
     //escena
     scene = new THREE.Scene();
@@ -116,7 +119,6 @@ function INICIAR_RENDER() {
     // var axesHelper = new THREE.AxesHelper( 5,5,5 );
     // scene.add( axesHelper );
     // controls = new THREE.OrbitControls(camera);
-     controls.autoRotate = true;
     // controls.autoRotateSpeed = 10;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -127,7 +129,7 @@ function INICIAR_RENDER() {
     mesh.rotation.x = -Math.PI / 2;
     mesh.receiveShadow = true;
     scene.add(mesh);
-    var material = new THREE.MeshBasicMaterial();
+    //var material = new THREE.MeshBasicMaterial();
     var loader = new THREE.GLTFLoader();
     // Plano y Cajas
     CAJAS_ARRAY = [];
@@ -144,13 +146,11 @@ function INICIAR_RENDER() {
         modelCaja.scale.set(0.005, 0.005, 0.005);
 
         // modelCaja.position.z=0.8
-
-
         modelCaja.name ="TABLA_CAJAS";
         //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
-        cargar_archivos();
+        cargar_archivos(); ///////////////////////
         modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
 
         modelCaja.children[0].children[1].receiveShadow=true;
@@ -213,8 +213,9 @@ function CargarEstadistica(IdJuego) {
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=4000;//EVENTO_ACTUAL.tiempo_giro_caja;
-                    TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    TIEMPO_GIRO_CAJA=4000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    PUNTOS_CUY=EVENTO_ACTUAL.puntos_cuy;
                     $("#termotetro_para_iniciar").show();
 
                     if(socket!=null && socket.readyState==1){

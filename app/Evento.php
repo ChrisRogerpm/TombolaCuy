@@ -282,6 +282,8 @@ LIMIT 18
 //                            'estadoEvento' => 0,
 //                            'estadoAnimacion' => 0,
 //                            'tokenAnimacion' => $token_generado,
+                            'puntosCuy'=>$this->generar_posiciones_random()
+
                         ];
                         $lista_coincidencias [] = $fechaIni;
                         $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
@@ -316,6 +318,7 @@ LIMIT 18
 //                            'estadoEvento' => 0,
 //                            'estadoAnimacion' => 0,
 //                            'tokenAnimacion' => $token_generado,
+                            'puntosCuy'=>$this->generar_posiciones_random()
                         ];
                         $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
 //                        $numero_random = rand(0, 36);
@@ -409,4 +412,37 @@ LIMIT 18
             ->get();
         return $lista;
     }
+
+
+
+
+
+        //////////////////////FUNCIONES GENERAR PUNTOS RANDOM  
+    public function random_posicion($min, $max) {
+        $numero=(($this->random_0_1() * ($max - $min)) + $min);
+        $numero_decimal=number_format((float)$numero, 2, '.', '');
+        return $numero_decimal;
+    }
+   public function generar_posiciones_random(){
+    $array_puntos=array();
+        // rango z=> -2.5  a   2.5
+        for($i=0;$i<10;$i++){
+            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3)) ;  
+            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3)); 
+            $obj = (object) [
+                'x' => $randomx,
+                'y' => 0,
+                'z' => $randomz
+            ];
+            array_push($array_puntos,$obj);
+
+        }
+        return $array_puntos;
+    }
+    function random_0_1() 
+    {
+        return (float)rand() / (float)getrandmax();
+    }
+    /////FIN FUNCIONES GENERAR PUNTOS RANDOM
+
 }
