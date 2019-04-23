@@ -35,7 +35,7 @@ function init(host,port){
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState);
                 setTimeout(function(){
                     pedir_hora_server();
-                },50)
+                },1)
      };
     socket.onmessage = function(msg){ 
       aaaaa=msg;
@@ -69,6 +69,8 @@ function init(host,port){
                         segundos_para_animacion=FECHA_ANIMACION.diff(ahora,'seconds');
                         console.info(segundos_para_animacion);
                         seg_animacion=segundos_para_animacion*1000;
+
+                        segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                   $("#barra_loading_tpi").animate(
@@ -82,6 +84,7 @@ function init(host,port){
                                     }
                                   );
 
+                                  $("#contador_para_activar").text(segundos_para_animacion);
                                   var conta=segundos_para_animacion-1;
                                   conteo_=setInterval(function(){
                                       $("#contador_para_activar").text(conta);
@@ -109,6 +112,7 @@ function init(host,port){
                                           CargarEstadistica(1);
                                     }
                                   );
+                                 $("#contador_para_activar").text(segundos_para_fin_evento);
                                      var conta=(segundos_para_fin_evento)-1;
                                   conteo_=setInterval(function(){
                                     $("#contador_para_activar").text(conta);
