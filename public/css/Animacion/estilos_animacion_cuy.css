@@ -598,3 +598,12 @@ table tr{
   background-repeat:no-repeat;
   background-origin:center;
 }
+
+#top_rotulo{
+	width: 61vw;
+	margin: auto;
+	position: relative;
+	height: 58px;
+	background: url(../../images/hn_box_bg.png) repeat-x top left #1f1f1f;
+	z-index: 0;
+}

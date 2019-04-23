@@ -158,7 +158,7 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin)
+    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin,$posiciones)
     {
         $token_generado = str_random(8);
         $evento = new Evento();
@@ -172,6 +172,7 @@ LIMIT 18
         $evento->estadoEvento = 0;
         $evento->estadoAnimacion = 0;
         $evento->tokenAnimacion = $token_generado;
+        $evento->puntosCuy = json_encode($posiciones);
         $evento->save();
         return $evento;
     }
@@ -272,22 +273,10 @@ LIMIT 18
 //                        $respuesta = true;
                         break;
                     } else {
-                        $lista_array_eventos [] = [
-                            'idJuego' => $juego->idJuego,
-//                            'nombre' => $juego->nombre,
-                            'fechaEvento' => $fechaIni,
-                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
-//                            'apuestaMinima' => $juego->apuestaMinima,
-//                            'apuestaMaxima' => $juego->apuestaMaxima,
-//                            'idMoneda' => $juego->idMoneda,
-//                            'estadoEvento' => 0,
-//                            'estadoAnimacion' => 0,
-//                            'tokenAnimacion' => $token_generado,
-                            'puntos_Cuy'=>$this->generar_posiciones_random()
-
-                        ];
                         $lista_coincidencias [] = $fechaIni;
-                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $event = new Evento();
+                        $posiciones = $event->generar_posiciones_random();
+                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
 //                        $numero_random = rand(0, 36);
 //                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
@@ -308,20 +297,9 @@ LIMIT 18
 //                        $respuesta = true;
                         break;
                     } else {
-                        $lista_array_eventos [] = [
-                            'idJuego' => $juego->idJuego,
-//                            'nombre' => $juego->nombre,
-                            'fechaEvento' => $fechaIni,
-                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
-//                            'apuestaMinima' => $juego->apuestaMinima,
-//                            'apuestaMaxima' => $juego->apuestaMaxima,
-//                            'idMoneda' => $juego->idMoneda,
-//                            'estadoEvento' => 0,
-//                            'estadoAnimacion' => 0,
-//                            'tokenAnimacion' => $token_generado,
-                            'puntos_Cuy'=>$this->generar_posiciones_random()
-                        ];
-                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $event = new Evento();
+                        $posiciones = $event->generar_posiciones_random();
+                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
 //                        $numero_random = rand(0, 36);
 //                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
@@ -415,17 +393,17 @@ LIMIT 18
     }
 
 
-
-
-
-        //////////////////////FUNCIONES GENERAR PUNTOS RANDOM  
-    public function random_posicion($min, $max) {
-        $numero=(($this->random_0_1() * ($max - $min)) + $min);
-        $numero_decimal=number_format((float)$numero, 2, '.', '');
+    //////////////////////FUNCIONES GENERAR PUNTOS RANDOM
+    public function random_posicion($min, $max)
+    {
+        $numero = (($this->random_0_1() * ($max - $min)) + $min);
+        $numero_decimal = number_format((float)$numero, 2, '.', '');
         return $numero_decimal;
     }
-   public function generar_posiciones_random(){
-    $array_puntos=array();
+
+    public function generar_posiciones_random()
+    {
+        $array_puntos = array();
         // rango z=> -2.5  a   2.5
         for($i=0;$i<20;$i++){
             $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3)) ;  
@@ -435,12 +413,13 @@ LIMIT 18
                 'y' => 0,
                 'z' => $randomz
             ];
-            array_push($array_puntos,$obj);
+            array_push($array_puntos, $obj);
 
         }
         return $array_puntos;
     }
-    function random_0_1() 
+
+    function random_0_1()
     {
         return (float)rand() / (float)getrandmax();
     }
