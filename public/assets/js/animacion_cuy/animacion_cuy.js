@@ -349,6 +349,12 @@ function generar_nueva_posicion_random(){
     //    b = { x: randomx, y: 0, z: randomz  };
         b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
         INDICE_PUNTOS_CUY++;
+
+        if(INDICE_PUNTOS_CUY>PUNTOS_CUY.length){
+            console.warn("---------Cuy pasó length del array PUNTOS_CUY  --- ")
+            INDICE_PUNTOS_CUY=0;    
+        }
+
         return b;
 }
 function cuy_rotacionrandom() {//var_cuy_rotando
