@@ -129,7 +129,7 @@ WHERE
  evt.idJuego=(select even.idJuego from evento as even where even.idEvento=" . $ideventoactual . ")
 
 and (tipo_apuesta.idTipoPago in (1,6) ) 
-and evt.idEvento!=" . $ideventoactual . " 
+and evt.idEvento!=" . $ideventoactual . "  and evt.estadoEvento=2
 order by evt.`fechaEvento` DESC
 LIMIT 18
             "));
