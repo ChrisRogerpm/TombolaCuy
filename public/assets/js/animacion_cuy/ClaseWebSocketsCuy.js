@@ -68,7 +68,6 @@ function init(host,port){
                         console.info(segundos_para_animacion);
                         seg_animacion=segundos_para_animacion*1000;
 
-                        segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                 ///barra carga cuy
