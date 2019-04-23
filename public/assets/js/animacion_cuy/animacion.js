@@ -191,12 +191,14 @@ function CargarEstadistica(IdJuego) {
             $.each(response.estadistica, function( key, value ) {
                 $("#"+value.valorapuesta).text(value.Repetidos);
                 $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
+                $("#"+value.valorapuesta).prev().css("color",value.rgbLetra)
+
 
             });
             var strUltimos12="";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
-                          strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
+                          strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="color:'+value.rgbLetra+';background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
                 }
             });
             $("#tablaUltimos").html(strUltimos12);
