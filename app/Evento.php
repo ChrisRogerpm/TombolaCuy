@@ -285,8 +285,8 @@ LIMIT 18
                         ];
                         $lista_coincidencias [] = $fechaIni;
                         $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
-                        $numero_random = rand(0, 36);
-                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
+//                        $numero_random = rand(0, 36);
+//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
@@ -318,8 +318,8 @@ LIMIT 18
 //                            'tokenAnimacion' => $token_generado,
                         ];
                         $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
-                        $numero_random = rand(0, 36);
-                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
+//                        $numero_random = rand(0, 36);
+//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }

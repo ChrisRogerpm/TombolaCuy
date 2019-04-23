@@ -39,7 +39,7 @@ class ResultadoEvento extends Model
             ->where('e.idJuego', $IdJuego)
             ->where('re.estado', 1)
             ->whereIn('re.idTipoPago', array(1, 6))
-            ->where('e.estadoEvento', '!=', 1)
+            ->where('e.estadoEvento', '=', 2)
             ->orderBy('re.idEvento', 'DESC')
             ->take(20)
             ->get();

@@ -195,6 +195,8 @@ class TipoApuesta extends Model
         $lista = DB::select(DB::raw("SELECT 
         rev.idEvento,rev.valorGanador
         FROM resultado_evento rev
+        JOIN evento e ON e.idEvento = rev.idEvento
+        WHERE e.estadoEvento = 2
         GROUP BY rev.idEvento,rev.valorGanador
         ORDER BY rev.idEvento DESC
         LIMIT 120"));
