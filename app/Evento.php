@@ -25,7 +25,8 @@ class Evento extends Model
         'idMoneda',
         'estadoEvento',
         'estadoAnimacion',
-        'tokenAnimacion'
+        'tokenAnimacion',
+        'puntosCuy'
     ];
 
     public $timestamps = false;
@@ -129,7 +130,7 @@ WHERE
  evt.idJuego=(select even.idJuego from evento as even where even.idEvento=" . $ideventoactual . ")
 
 and (tipo_apuesta.idTipoPago in (1,6) ) 
-and evt.idEvento!=" . $ideventoactual . " 
+and evt.idEvento!=" . $ideventoactual . "  and evt.estadoEvento=2
 order by evt.`fechaEvento` DESC
 LIMIT 18
             "));
@@ -157,7 +158,7 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin)
+    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin,$posiciones)
     {
         $token_generado = str_random(8);
         $evento = new Evento();
@@ -171,6 +172,7 @@ LIMIT 18
         $evento->estadoEvento = 0;
         $evento->estadoAnimacion = 0;
         $evento->tokenAnimacion = $token_generado;
+        $evento->puntosCuy = json_encode($posiciones);
         $evento->save();
         return $evento;
     }
@@ -271,20 +273,12 @@ LIMIT 18
 //                        $respuesta = true;
                         break;
                     } else {
-                        $lista_array_eventos [] = [
-                            'idJuego' => $juego->idJuego,
-//                            'nombre' => $juego->nombre,
-                            'fechaEvento' => $fechaIni,
-                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
-//                            'apuestaMinima' => $juego->apuestaMinima,
-//                            'apuestaMaxima' => $juego->apuestaMaxima,
-//                            'idMoneda' => $juego->idMoneda,
-//                            'estadoEvento' => 0,
-//                            'estadoAnimacion' => 0,
-//                            'tokenAnimacion' => $token_generado,
-                        ];
                         $lista_coincidencias [] = $fechaIni;
-                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $event = new Evento();
+                        $posiciones = $event->generar_posiciones_random();
+                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
+//                        $numero_random = rand(0, 36);
+//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
@@ -303,19 +297,11 @@ LIMIT 18
 //                        $respuesta = true;
                         break;
                     } else {
-                        $lista_array_eventos [] = [
-                            'idJuego' => $juego->idJuego,
-//                            'nombre' => $juego->nombre,
-                            'fechaEvento' => $fechaIni,
-                            'fechaFinEvento' => $fechaFin->toDateTimeString(),
-//                            'apuestaMinima' => $juego->apuestaMinima,
-//                            'apuestaMaxima' => $juego->apuestaMaxima,
-//                            'idMoneda' => $juego->idMoneda,
-//                            'estadoEvento' => 0,
-//                            'estadoAnimacion' => 0,
-//                            'tokenAnimacion' => $token_generado,
-                        ];
-                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString());
+                        $event = new Evento();
+                        $posiciones = $event->generar_posiciones_random();
+                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
+//                        $numero_random = rand(0, 36);
+//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
@@ -345,17 +331,17 @@ LIMIT 18
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {
 
-            $hora_actual = now()->format('H').':00';
+            $hora_actual = now()->format('H') . ':00';
 
-//            $ListaEventosDia = DB::table('evento as e')
-//                ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
-//                ->where('e.idJuego', $juego->idJuego)
-//                ->get();
-            $ListaEventosDia = DB::select(DB::raw("SELECT *
-            FROM evento e 
-            WHERE e.fechaEvento BETWEEN '$fechaIni' AND '$fechaFin'
-            AND e.idJuego = $juego->idJuego
-            AND  HOUR(e.fechaEvento) = HOUR('$hora_actual')"));
+            $ListaEventosDia = DB::table('evento as e')
+                ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
+                ->where('e.idJuego', $juego->idJuego)
+                ->get();
+//            $ListaEventosDia = DB::select(DB::raw("SELECT *
+//            FROM evento e
+//            WHERE e.fechaEvento BETWEEN '$fechaIni' AND '$fechaFin'
+//            AND e.idJuego = $juego->idJuego
+//            AND  HOUR(e.fechaEvento) = HOUR('$hora_actual')"));
 
             foreach ($ListaEventosDia as $li) {
                 if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
@@ -363,11 +349,11 @@ LIMIT 18
                     if ($val->estadoEvento == 0) {
                         $val->estadoEvento = 1;
                         $val->save();
-                        $total = ResultadoEvento::ValidarCantidadValorGanadorEvento($val->idEvento);
-                        if($total == 0){
-                            $numero_random = rand(0, 36);
-                            TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
-                        }
+//                        $total = ResultadoEvento::ValidarCantidadValorGanadorEvento($val->idEvento);
+//                        if($total == 0){
+//                            $numero_random = rand(0, 36);
+//                            TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
+//                        }
                     }
                 } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
                     $evento = Evento::findorfail($li->idEvento);
@@ -386,4 +372,57 @@ LIMIT 18
         $resultado->estadoEvento = 2;
         $resultado->save();
     }
+
+    public static function EventosDiaActualGenerados()
+    {
+
+        $Configuracion = DB::table('configuracion_generar_evento')->first();
+        if ($Configuracion != null) {
+            $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
+            $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
+        } else {
+            $fecha_inicio = today()->startOfDay()->toDateTimeString();
+            $fecha_fin = today()->endOfDay()->toDateTimeString();
+        }
+
+        $lista = DB::table('evento as e')
+            ->whereBetween('e.fechaEvento', array($fecha_inicio, $fecha_fin))
+            ->where('e.estadoEvento', 0)
+            ->get();
+        return $lista;
+    }
+
+
+    //////////////////////FUNCIONES GENERAR PUNTOS RANDOM
+    public function random_posicion($min, $max)
+    {
+        $numero = (($this->random_0_1() * ($max - $min)) + $min);
+        $numero_decimal = number_format((float)$numero, 2, '.', '');
+        return $numero_decimal;
+    }
+
+    public function generar_posiciones_random()
+    {
+        $array_puntos = array();
+        // rango z=> -2.5  a   2.5
+        for ($i = 0; $i < 10; $i++) {
+            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3));
+            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3));
+            $obj = (object)[
+                'x' => $randomx,
+                'y' => 0,
+                'z' => $randomz
+            ];
+            array_push($array_puntos, $obj);
+
+        }
+        return $array_puntos;
+    }
+
+    function random_0_1()
+    {
+        return (float)rand() / (float)getrandmax();
+    }
+    /////FIN FUNCIONES GENERAR PUNTOS RANDOM
+
 }

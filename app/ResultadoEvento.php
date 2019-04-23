@@ -39,7 +39,7 @@ class ResultadoEvento extends Model
             ->where('e.idJuego', $IdJuego)
             ->where('re.estado', 1)
             ->whereIn('re.idTipoPago', array(1, 6))
-            ->where('e.estadoEvento', '!=', 1)
+            ->where('e.estadoEvento', '=', 2)
             ->orderBy('re.idEvento', 'DESC')
             ->take(20)
             ->get();
@@ -48,9 +48,9 @@ class ResultadoEvento extends Model
 
 
     public static function ValidarCantidadValorGanadorEvento($idEvento){
-        $resultado = DB::table('resultado_evento re')
+        $resultado = DB::table('resultado_evento as re')
             ->where('re.idEvento',$idEvento)
-            ->groupBy('re.valorGanador',$idEvento)
+            ->groupBy('re.valorGanador')
             ->count();
         return $resultado;
     }

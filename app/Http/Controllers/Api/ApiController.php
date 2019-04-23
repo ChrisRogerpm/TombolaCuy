@@ -18,7 +18,7 @@ class ApiController extends Controller
         $resultado_evento = ResultadoEvento::ResultadosEvento($IdJuego);
         if ($evento_actual != null) {
             $ganador = ResultadoEvento::ValorGanadorEvento($evento_actual->idEvento);
-            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta();
+            $estadistica = TipoApuesta::EstadisticaUltimosTipoApuesta($IdJuego);
             $fecha_ini_actual = $evento_actual->fechaEvento;
             $fecha_fin_actual = $evento_actual->fechaFinEvento;
             $fecha_evento_proximo = new Carbon();
@@ -47,7 +47,8 @@ class ApiController extends Controller
                 'fecha_animacion' => $fecha_animacion,
                 'evento_id_actual' => $evento_actual->idEvento,
                 'evento_valor_ganador' => $ganador->valorGanador,
-                'segBloqueoAntesAnimacion' => $segundos_agregados
+                'segBloqueoAntesAnimacion' => $segundos_agregados,
+                'puntos_cuy'=> $evento_actual->puntos_Cuy// $this->generar_posiciones_random()
             ];
             return response()->json([
                 'evento' => $array_evento,
@@ -89,4 +90,9 @@ class ApiController extends Controller
             }
         }
     }
+
+
+
+
+
 }

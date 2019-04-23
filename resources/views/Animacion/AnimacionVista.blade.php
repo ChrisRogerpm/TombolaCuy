@@ -212,9 +212,12 @@
 
 	<script src="{{asset('../assets/js/animacion_cuy/Funciones_Easing.js')}}"></script>
 
-	
+
 	<script src="{{asset('../assets/js/animacion_cuy/animacion.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/animacion_cuy.js')}}"></script>
+
+	<script src="{{asset('../assets/js/animacion_cuy/animacion_cuy_teclas.js')}}"></script>
+
 	<script src="{{asset('../assets/js/animacion_cuy/tween.min.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/TweenMax.min.js')}}"></script>
 	<script src="{{asset('../assets/js/animacion_cuy/ClaseWebSocketsCuy.js')}}"></script>
