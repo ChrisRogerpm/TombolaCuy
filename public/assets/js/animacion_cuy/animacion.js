@@ -7,7 +7,6 @@ $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 PUERTO_WEBSOCKETS="50051";
 
-
 GANADOR_DE_EVENTO="";
 iniciado = false;
 token="";  /// en consultarevento obtiene valor 
@@ -167,25 +166,6 @@ function INICIAR_RENDER() {
 }
 
 
-function CerrarEvento(IdJuego,token_animacion,IdEvento) {
-    var url = document.location.origin + "/" + "api/ConfirmacionToken";
-    $.ajax({
-        url: url,
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify({IdJuego: IdJuego,token:token_animacion
-            ,IdEvento:EVENTO_ID}),
-        beforeSend: function () {
-        },
-        complete: function () {
-        },
-        success: function (response) {  
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-        }
-    });
-}
-
 
 CONSULTADO_EVENTO=false;
 function CargarEstadistica(IdJuego) {    
@@ -214,7 +194,6 @@ function CargarEstadistica(IdJuego) {
 
             });
             var strUltimos12="";
-            var clase="caja1";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
                           strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
@@ -230,11 +209,9 @@ function CargarEstadistica(IdJuego) {
                 if(response.evento.evento_id_actual!=""){
                     EVENTO_ACTUAL=response.evento;
 
-
-
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=10000;//EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_GIRO_CAJA=4000;//EVENTO_ACTUAL.tiempo_giro_caja;
                     TIEMPO_CUY = 20000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                     $("#termotetro_para_iniciar").show();
 
@@ -279,7 +256,7 @@ function CargarEstadistica(IdJuego) {
                     CargarEstadistica(1);
                   },1000)
                 }
-            }
+            }////fin if eresponse evento
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;
