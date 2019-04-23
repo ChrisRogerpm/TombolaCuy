@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8950406d-160b-4351-8e97-422a9ac6d392" name="Default Changelist" comment="okk">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Evento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Evento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ResultadoEvento.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ResultadoEvento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TipoApuesta.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TipoApuesta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +34,7 @@
         <counts>
           <entry key="env" value="59" />
           <entry key="js" value="325" />
-          <entry key="php" value="3468" />
+          <entry key="php" value="3480" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -45,23 +42,23 @@
           <entry key=".env file" value="59" />
           <entry key="Blade" value="117" />
           <entry key="JavaScript" value="325" />
-          <entry key="PHP" value="3330" />
+          <entry key="PHP" value="3342" />
           <entry key="SQL" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="env" value="11" />
-          <entry key="js" value="4" />
-          <entry key="php" value="93" />
+          <entry key="js" value="5" />
+          <entry key="php" value="94" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="11" />
           <entry key="Blade" value="3" />
-          <entry key="JavaScript" value="4" />
-          <entry key="PHP" value="90" />
+          <entry key="JavaScript" value="5" />
+          <entry key="PHP" value="91" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -78,29 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ApiController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/TipoApuesta.php">
+        <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="220" column="32" selection-start-line="220" selection-start-column="32" selection-end-line="220" selection-end-column="32" />
+            <state relative-caret-position="374">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -197,7 +176,6 @@
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteVentasVista.blade.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/views/Reportes/ReporteVentaJuegoVista.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" />
         <option value="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaEditarVista.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/AperturaCaja/AperturaCajaEditar.js" />
         <option value="$PROJECT_DIR$/resources/views/AperturaCaja/AperturaCajaListarVista.blade.php" />
@@ -218,8 +196,9 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Evento.php" />
         <option value="$PROJECT_DIR$/app/ResultadoEvento.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/app/TipoApuesta.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js" />
       </list>
     </option>
   </component>
@@ -340,7 +319,7 @@
       <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="629" />
     <option name="y" value="124" />
     <option name="width" value="934" />
@@ -401,6 +380,24 @@
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
               <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TombolaCuy" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="Reporte" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TombolaCuy" type="b2602c69:ProjectViewProjectNode" />
@@ -580,7 +577,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="589686000" />
+    <option name="totallyTimeSpent" value="593246000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,13 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="117" column="57" lean-forward="true" selection-start-line="117" selection-start-column="57" selection-end-line="117" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -988,13 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Evento.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -1002,10 +985,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
+    <entry file="file://$PROJECT_DIR$/app/TipoApuesta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        <state relative-caret-position="294">
+          <caret line="220" column="32" selection-start-line="220" selection-start-column="32" selection-end-line="220" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1016,10 +999,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/TipoApuesta.php">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="220" column="32" selection-start-line="220" selection-start-column="32" selection-end-line="220" selection-end-column="32" />
+        <state relative-caret-position="221">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Reporte/ReporteVentaJuego.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>

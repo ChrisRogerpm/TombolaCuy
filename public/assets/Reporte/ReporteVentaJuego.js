@@ -28,8 +28,8 @@ $(document).ready(function () {
         };
         $("#txtIdJuego").val(IdJuego);
         // $(".Fecha").val("");
-        $("#txtNombreTabla").val(NombreJuego);
-        ReporteVentaJson(url, dataForm, NombreJuego);
+        $("#txtNombreTabla").val(NombreJuego.split(' ').join(''));
+        ReporteVentaJson(url, dataForm, NombreJuego.split(' ').join(''));
         $("#btnBuscar").attr('disabled', false);
     });
 
