@@ -349,7 +349,7 @@ LIMIT 18
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {
 
-            $hora_actual = now()->format('H').':00';
+            $hora_actual = now()->format('H') . ':00';
 
             $ListaEventosDia = DB::table('evento as e')
                 ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
@@ -389,5 +389,24 @@ LIMIT 18
         $resultado = Evento::findorfail($UltimoEvento->idEvento);
         $resultado->estadoEvento = 2;
         $resultado->save();
+    }
+
+    public static function EventosDiaActualGenerados()
+    {
+
+        $Configuracion = DB::table('configuracion_generar_evento')->first();
+        if ($Configuracion != null) {
+            $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
+            $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
+        } else {
+            $fecha_inicio = today()->startOfDay()->toDateTimeString();
+            $fecha_fin = today()->endOfDay()->toDateTimeString();
+        }
+
+        $lista = DB::table('evento as e')
+            ->whereBetween('e.fechaEvento', array($fecha_inicio, $fecha_fin))
+            ->where('e.estadoEvento', 0)
+            ->get();
+        return $lista;
     }
 }
