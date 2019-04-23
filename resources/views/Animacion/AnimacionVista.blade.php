@@ -48,7 +48,9 @@
 	<div class="nroevento borde">
 		<h1><span class="smaller neon">#</span><span id="idevento_titulo" class="neon"> </span></h1>
 	</div>
-
+	<div id="top_rotulo" class="borde-lateral">
+		
+	</div>
 	<div id="container"></div>		
 	<div id="contenedorEstadistica" class="nuevo_lados borde-lateral">
 		<div class="image">

@@ -858,7 +858,8 @@ align-items: center;
     	background-color:red;
     	line-height:13px;
     	cursor:pointer;
-
+    	padding: 5px;
+    	padding-top: 1px;
     }
     .divcerrarfila i{
 
