@@ -51,7 +51,7 @@ class ResultadoEvento extends Model
         $resultado = DB::table('resultado_evento as re')
             ->where('re.idEvento',$idEvento)
             ->groupBy('re.valorGanador')
-            ->count();
+            ->get();
         return $resultado;
     }
 

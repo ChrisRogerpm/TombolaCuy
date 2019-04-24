@@ -375,7 +375,6 @@ LIMIT 18
 
     public static function EventosDiaActualGenerados()
     {
-
         $Configuracion = DB::table('configuracion_generar_evento')->first();
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
