@@ -269,7 +269,7 @@ LIMIT 18
                         $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                         $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
-                    if ($fechaIni >= $fecha_fin) {
+                    if ($fechaIni > $fecha_fin) {
 //                        $respuesta = true;
                         break;
                     } else {
@@ -375,7 +375,6 @@ LIMIT 18
 
     public static function EventosDiaActualGenerados()
     {
-
         $Configuracion = DB::table('configuracion_generar_evento')->first();
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;

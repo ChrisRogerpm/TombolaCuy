@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Evento;
+use App\ResultadoEvento;
 use App\TipoApuesta;
 use Illuminate\Console\Command;
 
@@ -39,16 +40,21 @@ class JobCommand3 extends Command
      */
     public function handle()
     {
-        $eventos = Evento::all();
+        $eventos = Evento::EventosDiaActualGenerados();
         $lista = [];
         foreach ($eventos as $e) {
             $numero_random = rand(0, 36);
-            $lista [] = [
-                'idEvento' => $e->idEvento,
-                'random' => $numero_random];
+            $totalValorGanador = ResultadoEvento::ValidarCantidadValorGanadorEvento($e->idEvento);
+            if(count($totalValorGanador) == 0){
+                $lista [] = [
+                    'idEvento' => $e->idEvento,
+                    'random' => $numero_random];
+            }
         }
-        foreach ($lista as $l) {
-            TipoApuesta::TipoApuestaColor($l['random'], $l['idEvento']);
+        if(count($lista) != 0){
+            foreach ($lista as $l) {
+                TipoApuesta::TipoApuestaColor($l['random'], $l['idEvento']);
+            }
         }
     }
 }
