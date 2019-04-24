@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Evento;
 use App\Exports\ReporteApuestaExport;
 use App\Juego;
+use App\PuntoVenta;
 use App\Reporte;
 use DB;
 use Illuminate\Database\QueryException;
@@ -204,6 +205,18 @@ class ReporteController extends Controller
             $mensaje_error = $ex->errorInfo;
         }
 
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function ObtenerPuntosVentaZonaComercialJson(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = PuntoVenta::PuntoVentaZonaListarUsuarioJson($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
         return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 

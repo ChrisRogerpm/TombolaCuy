@@ -6,26 +6,50 @@ $(document).ready(function () {
         defaultDate: dateNow,
     });
     $('#cboZona').select2();
-
-    $('#cboZona').on('select2:select', function (e) {
-        var data = e.params.data;
-        var valor = data.id;
-        if (valor == 0) {
-            $('#cboZona').val([]).trigger('change');
-            $('#cboZona').val(0).trigger('change');
-        }
-        else {
-            var valores = $('#cboZona').val();
-            var nuevo = [];
-            $.each(valores, function (index, value) {
-                if (value != 0) {
-                    nuevo.push(value);
+    $("#cboPuntoVenta").select2();
+    $(document).on('change', '#cboZona', function () {
+        var IdZonaComercial = $(this).val();
+        var url = basePath + "ObtenerPuntosVentaZonaComercialJsonFk";
+        var dataForm = {
+            'IdZonaComercial': IdZonaComercial
+        };
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: dataForm,
+            success: function (response) {
+                var data = response.data;
+                $('#cboPuntoVenta').html("");
+                if (data.length === 0) {
+                    toastr.warning('No hay Puntos de Ventas registrados', 'Mensaje Servidor');
+                } else {
+                    $.each(data, function (key, value) {
+                        $('#cboPuntoVenta').append('<option value="' + value.idPuntoVenta + '">' + value.nombre + '</option>')
+                    });
+                    $("#cboPuntoVenta").select2();
                 }
-            })
-            $('#cboZona').val(nuevo).trigger('change');
-        }
+            }
+        });
     });
 
+    $('#cboPuntoVenta').on('select2:select', function (e) {
+        var data = e.params.data;
+        var valor = data.id;
+        if (valor === 0) {
+            $('#cboPuntoVenta').val([]).trigger('change');
+            $('#cboPuntoVenta').val(0).trigger('change');
+        }
+        else {
+            var valores = $('#cboPuntoVenta').val();
+            var nuevo = [];
+            $.each(valores, function (index, value) {
+                if (value !== 0) {
+                    nuevo.push(value);
+                }
+            });
+            $('#cboPuntoVenta').val(nuevo).trigger('change');
+        }
+    });
 
     $(document).on('click', '#btnBuscar', function () {
         var url = basePath + "ReporteVentaJsonFk";

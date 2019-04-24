@@ -97,6 +97,13 @@ function ListarPuntoVenta() {
                     {data: "idPuntoVenta", title: "Id"},
                     {data: "nombre", title: "Punto de Venta"},
                     {
+                        data: null, title: "Zona Comercial",
+                        "render": function (value) {
+                            var ZonaComercial = value.ZonaComercial == null ? 'Sin Asignar' : 'Zona Comercial ' + value.ZonaComercial;
+                            return ZonaComercial;
+                        }
+                    },
+                    {
                         data: null, title: "",
                         "render": function (value) {
                             var resp = lista_obtener.includes(value.idPuntoVenta);
