@@ -1,8 +1,14 @@
 ///////////FUNCIONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 var index = 0;
-var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudandoGLB.glb', 'images/cuyChoqueGLB.glb'];
+var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudandoGLB.glb', 
+// 'images/cuyChoqueGLB.glb'
+'images/glb/cuyChoque2.glb'
+// ,'images/glb/cuyesperando.glb'
+// ,'images/glb/cuypremio.glb'
+// ,'images/glb/cuysalto.glb'
+];
 var objLoader = new THREE.GLTFLoader();
-var escalacuys = 0.3;
+var escalacuys = 0.25;
 var escalacajagirando = 0.04;
 var intervalo_consultaevento=2000;
 buscando_evento=false;
@@ -92,8 +98,7 @@ function cargarImagenes(srcs, callback) {
 
 function cargar_archivos() {
     if (index > archivos.length - 1) {
-        modelCaja.children[0].position.y = 30;
-        modelCaja.children[0].children[1].scale.set(3, 3, 3); ///suelo
+   
         console.warn("FIN CARGA ARCHIVOS");
         CargarEstadistica(1);
         window.addEventListener('resize', responsive_canvas, false);
@@ -127,13 +132,13 @@ function cargar_archivos() {
                     objectCajaGira.castShadow = true
                 }
             });
+            modelCajaP.name="CAJA_GIRANDO";
             modelCajaP.scale.set(escalacajagirando,escalacajagirando,escalacajagirando);
             modelCajaP.position.set(0, 0, 0);
             modelCajaP.castShadow=true;
             modelCajaP.receiveShadow=true;
 
             scene.add(modelCajaP);
-            skeleton = new THREE.SkeletonHelper(modelCajaP);
             var animations = gltf.animations;
            
             mixerCajaP = new THREE.AnimationMixer(modelCajaP);
@@ -153,12 +158,14 @@ function cargar_archivos() {
             modelCuyDudando.scale.set(escalacuys, escalacuys, escalacuys);
             modelCuyDudando.position.set(0, 0, 0);
             scene.add(modelCuyDudando);
-            skeleton = new THREE.SkeletonHelper(modelCuyDudando);
             var animations = gltf.animations;
             mixerCuyDudando = new THREE.AnimationMixer(modelCuyDudando);
             mixerCuyDudando.clipAction(animations[0]).play();
         }
-        if (archivos[index] == "images/cuyChoqueGLB.glb") {
+        if (archivos[index] ==
+         "images/glb/cuyChoque2.glb"
+         // "images/cuyChoqueGLB.glb"
+         ) {
             modelCuyChoque = gltf.scenes[0];
             modelCuyChoque.traverse(function (objectCuyChoque) {
                 if (objectCuyChoque instanceof THREE.Mesh) {
@@ -170,12 +177,68 @@ function cargar_archivos() {
             modelCuyChoque.name = "CUY_CHOQUE";
             modelCuyChoque.scale.set(escalacuys, escalacuys, escalacuys);
             modelCuyChoque.position.set(0, 0, 0);
+            // modelCuyChoque.children[0].children[0].scale.set(1,1,1);
             scene.add(modelCuyChoque);
-            skeleton = new THREE.SkeletonHelper(modelCuyChoque);
             var animations = gltf.animations;
             mixerCuyChoque = new THREE.AnimationMixer(modelCuyChoque);
             mixerCuyChoque.clipAction(animations[0]).play();
         }
+
+          if (archivos[index] =="images/glb/cuypremio.glb") {
+            modelCuyPremio = gltf.scenes[0];
+            modelCuyPremio.traverse(function (objeto) {
+                if (objeto instanceof THREE.Mesh) {
+                    objeto.castShadow = true
+                }
+            });
+            modelCuyPremio.castShadow=true;
+            modelCuyPremio.receiveShadow=true;
+            modelCuyPremio.name = "CUY_PREMIO";
+            modelCuyPremio.scale.set(escalacuys, escalacuys, escalacuys);
+            modelCuyPremio.position.set(0, 0, 0);
+            scene.add(modelCuyPremio);
+            var animations = gltf.animations;
+            mixerCuyPremio = new THREE.AnimationMixer(modelCuyPremio);
+            mixerCuyPremio.clipAction(animations[0]).play();
+        }
+
+        if (archivos[index] =="images/glb/cuyesperando.glb") {
+            modelCuyEsperando = gltf.scenes[0];
+            modelCuyEsperando.traverse(function (objeto) {
+                if (objeto instanceof THREE.Mesh) {
+                    objeto.castShadow = true
+                }
+            });
+            modelCuyEsperando.castShadow=true;
+            modelCuyEsperando.receiveShadow=true;
+            modelCuyEsperando.name = "CUY_PREMIO";
+            modelCuyEsperando.scale.set(escalacuys, escalacuys, escalacuys);
+            modelCuyEsperando.position.set(0, 0, 0);
+            scene.add(modelCuyEsperando);
+            var animations = gltf.animations;
+            mixerCuyEsperando = new THREE.AnimationMixer(modelCuyEsperando);
+            mixerCuyEsperando.clipAction(animations[0]).play();
+        }
+         if (archivos[index] =="images/glb/cuysalto.glb") {
+            modelCuySalto = gltf.scenes[0];
+            modelCuySalto.traverse(function (objeto) {
+                if (objeto instanceof THREE.Mesh) {
+                    objeto.castShadow = true
+                }
+            });
+            modelCuySalto.castShadow=true;
+            modelCuySalto.receiveShadow=true;
+            modelCuySalto.name = "CUY_PREMIO";
+            modelCuySalto.scale.set(escalacuys, escalacuys, escalacuys);
+            modelCuySalto.position.set(0, 0, 0);
+            scene.add(modelCuySalto);
+            var animations = gltf.animations;
+            mixerCuySalto = new THREE.AnimationMixer(modelCuySalto);
+            mixerCuySalto.clipAction(animations[0]).play();
+        }
+
+
+
         index++;
         cargar_archivos();
 
@@ -230,6 +293,35 @@ function detener_animacion(){
             aumento = 0;
         }
 }
+function detener_var_animar_cajax(){
+         if (typeof var_animar_cajax !== "undefined") {
+            cancelAnimationFrame(var_animar_cajax);
+            delete var_animar_cajax;
+        }
+}
+
+function detener_var_cuysalto(){
+        if (typeof var_cuysalto !== "undefined") {
+            cancelAnimationFrame(var_cuysalto);
+            delete var_cuysalto;
+        }
+
+}
+function detener_var_cuypremio(){
+        if (typeof var_cuypremio !== "undefined") {
+            cancelAnimationFrame(var_cuypremio);
+            delete var_cuypremio;
+        }
+
+}
+function detener_var_cuyesperando(){
+        if (typeof var_cuyesperando !== "undefined") {
+            cancelAnimationFrame(var_cuyesperando);
+            delete var_cuyesperando;
+        }
+
+}
+
 function mostrar_cuymoviendo(){
         model.visible = true; 
         modelCajaP.visible = false;
@@ -276,9 +368,18 @@ function reiniciar_cuy(){
 
 
 function INICIO_ANIMACION_CUY(){
+
+//     detener_var_cuysalto();detener_var_cuypremio();detener_var_cuyesperando();
+// modelCuyPremio.position.set(3,0,3);cuypremio();
+// modelCuySalto.position.set(-3,0,3);cuysalto();
+// modelCuyEsperando.position.set(3,0,-3);cuyesperando();
+// modelCuyPremio.scale.set(1.3,1.3,1.3);
+// modelCuySalto.scale.set(1.3,1.3,1.3);
+// modelCuyEsperando.scale.set(1.3,1.3,1.3);
+
         iniciogiro =  clockCajaP.getElapsedTime();
 
-        dt =0.05 // velocidad movimiento cuy
+        dt =0.03 // velocidad movimiento cuy
         dtrotacion = 0.05; // velocidad rotacion cuy;
         t = 0   /// tiempo movimiento cuy;
         timerotacion=0; 
@@ -286,7 +387,7 @@ function INICIO_ANIMACION_CUY(){
         animar_camara();
 
         camara_mirar(modelCajaP);
-        if(typeof ULTIMO_PUNTO_CUY!="undefined"){
+        if(typeof a!="undefined"){
             ULTIMO_PUNTO_CUY=a;
         }
         reiniciar_cuy();///reiniciar posicion cuyes 0 0 0
@@ -319,12 +420,62 @@ function cajagirando_animacion() {
             detener_var_cajagirando();
             mostrar_cuymoviendo();
 
+            cajax=getObjeto_caja("x");
+            //modelCaja.children[0].children[0].children[0].children[2];//
+            // madera1=modelCaja.children[0].children[0].children[0];
+            // madera2=modelCaja.children[0].children[0].children[1];
+             // maderas=get_maderas();
+             maderas=[];
+             maderas.push(getObjeto_caja("madera"));
+             maderas.push(getObjeto_caja("madera2"));
+             // maderas.push(modelCaja.children[0].children[0].children[0].children[1]);
+             // maderas.push(modelCaja.children[0].children[0].children[0].children[2]);
+            posicionxcajaxinicial=9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
+            bcajaxz=8.2;//3.4999993133545217//800;
+            dtcajax=0.2;
+            tcajax=0;
+
+            //retornar_cajx();
             if(typeof controls!="undefined"){
               controls.autoRotate = false;
             }
             camara_movimiento_inicio({x:0,y:10,z:0},camera,2500);
             iniciar_cuy(GANADOR_DE_EVENTO,TIEMPO_CUY);
         }
+}
+
+function retornar_cajx(){
+    // cajax.position.z=-6.86645478253922e-7;//-993.228455; 
+    cajax.position.y=9.932283401;//-993.228455; 
+
+
+    // madera1.position.z=-0.0000610351563;
+    // madera2.position.z=-0.0000610351563;
+        maderas[0].visible=true;
+    maderas[1].visible=true;
+
+}
+
+function cajax_animacion(){
+    maderas[0].visible=false;
+    maderas[1].visible=false;
+
+    funcion_ease=EasingFunctions_array[2].funcion;//easeOutQuad
+    // var newZ = lerp(posicionxcajaxinicial, bcajaxz, funcion_ease(tcajax));  
+    var newY = lerp(posicionxcajaxinicial, bcajaxz, funcion_ease(tcajax));  
+    // cajax.position.z=newZ;
+    cajax.position.y=newY;
+
+    //t += dt;
+   tcajax=parseFloat(tcajax+dtcajax).toFixed(5);
+    tcajax=parseFloat(tcajax);
+
+
+    var_animar_cajax = requestAnimationFrame(cajax_animacion);
+    if(tcajax>1){
+        detener_var_animar_cajax();tcajax=0;
+
+    }
 }
 
 // var t = 0;
@@ -351,12 +502,18 @@ function generar_nueva_posicion_random(){
         INDICE_PUNTOS_CUY++;
 
         if(INDICE_PUNTOS_CUY>PUNTOS_CUY.length){
-            console.warn("---------Cuy pasó length del array PUNTOS_CUY  --- ")
-            INDICE_PUNTOS_CUY=0;    
+            console.warn(INDICE_PUNTOS_CUY+ " ---------Cuy pasó length del array PUNTOS_CUY  --- ")
+            INDICE_PUNTOS_CUY=0; 
+            b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
+
         }
 
         return b;
 }
+
+
+
+
 function cuy_rotacionrandom() {//var_cuy_rotando
     if(!CUY_ROTANDO){return;}
     model.visible = true;
@@ -376,7 +533,7 @@ function cuy_rotacionrandom() {//var_cuy_rotando
         model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
 
         CUY_ROTANDO=false;
-        console.log("rotacion "+timerotacion);  
+        // console.log("rotacion "+timerotacion);  
         timerotacion = 0; cancelAnimationFrame(var_cuy_rotando) // changed
          if (typeof var_cuy_rotando != "undefined") {
             cancelAnimationFrame(var_cuy_rotando);
@@ -430,24 +587,28 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
 
         fin_tiempo=performance.now();
         milisegundos=(fin_tiempo-inicio_tiempo);
-        console.warn("tiempo => "+t+"   segundos :"+parseFloat(milisegundos/1000).toFixed(2) +"   -    milliseconds :"+ milisegundos  );
+        // console.warn("tiempo => "+t+"   segundos :"+parseFloat(milisegundos/1000).toFixed(2) +"   -    milliseconds :"+ milisegundos  );
         // cuydudando();
         if (milisegundos > TIEMPO_RANDOM) {
             if(!mover_a_ganador){
                     mover_a_ganador=true;
                     b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    console.log("aca");
+                    console.log(b);
                     random_tiempo();
             }  
             else {
                 CUY_CORRIENDO = false;
                 if(get_caja(0).posicion.x==model.position.x && get_caja(0).posicion.y==model.position.y){
+                    modelCuyChoque.position.y=-0.1;
                     cuychoque();
+                    cajax_animacion();
                 }
                 if (typeof funcion_callback != "undefined") {
                     delete funcion_callback;
                 }
                  funcion_callback = function () {
-                                console.warn("CALLBACK CUY GANADOR ---------");//**/}
+                                console.warn("CALLBACK CUY GANADOR  --------");//**/}
                                 $("#barra_loading").css("height","0%");
                                 $("#barra_loading_tpi").css("width","0%");
 
@@ -539,6 +700,9 @@ function iniciar_tiempo_random(tiempo) {
     setTimeout(function(){
         detener_var_cuydudando();
         generar_nueva_posicion_random();//b
+        console.info(b);
+        esta=typeof var_cuymoviendo === "undefined"?"true":"false";
+        console.warn(esta);
             random_tiempo();
     },3500);
 
@@ -582,7 +746,7 @@ function random_tiempo(){
             modelCuyDudando.lookAt(b.x, b.y, b.z);
             t=0;
             aver=CUY_CORRIENDO?"true":"false";
-             console.warn("t else:::::  "+t +" "+b.x+" "+b.y+" "+b.z +"  cuycorriendo  = "+ aver);
+              console.warn("t else:::::  "+t +" "+b.x+" "+b.y+" "+b.z +"  cuycorriendo  = "+ aver);
             detener_var_cuymoviendo();
             detener_var_cuydudando();
             detener_var_cuychoque();
@@ -615,6 +779,34 @@ function cuychoque() {
     modelCuyChoque.visible = true;
     model.visible = false;
     modelCuyDudando.visible = false;
+    renderer.render(scene, camera);
+}
+
+function cuyesperando(){
+    mixerCuyEsperando.update
+    mixerCuyEsperando.update(clockCuyEsperando.getDelta());
+    var_cuyesperando = requestAnimationFrame(cuyesperando);
+    modelCuyEsperando.visible = true;
+   // model.visible = false;
+   // modelCuyChoque.visible = false;
+    renderer.render(scene, camera);
+}
+function cuysalto(){
+    mixerCuySalto.update
+    mixerCuySalto.update(clockCuySalto.getDelta());
+    var_cuysalto = requestAnimationFrame(cuysalto);
+    modelCuySalto.visible = true;
+   // model.visible = false;
+   // modelCuyChoque.visible = false;
+    renderer.render(scene, camera);
+}
+function cuypremio(){
+    mixerCuyPremio.update
+    mixerCuyPremio.update(clockCuyPremio.getDelta());
+    var_cuypremio = requestAnimationFrame(cuypremio);
+    modelCuyPremio.visible = true;
+   // model.visible = false;
+   // modelCuyChoque.visible = false;
     renderer.render(scene, camera);
 }
 
