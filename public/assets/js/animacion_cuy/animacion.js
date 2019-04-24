@@ -63,7 +63,8 @@ if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
 var scene, renderer, camera, stats;
-var model, modelCajaP,modelCuyDudando, modelChoque, modelCaja, skeleton, mixer, mixerCaja,mixerCuyDudando,mixerCajaP, clock;
+var model, modelCajaP,modelCuyDudando, modelChoque, modelCaja,modelCuyPremio,modelCuySalto,modelCuyEsperando, skeleton, 
+mixer, mixerCaja,mixerCuyDudando,mixerCajaP,mixerCuyPremio,mixerCuyEsperando,mixerCuySalto, clock,clockCuyPremio,clockCuyEsperando,clockCuySalto;
 var crossFadeControls = [];
 var idleAction, walkAction, runAction;
 var idleWeight, walkWeight, runWeight;
@@ -78,21 +79,52 @@ var posicionZ = 0;
 
 ;
 
+function getObjeto_caja(nombrebuscar){
+    // arraycajas=modelCaja.children[0].children[0].children;
+    arraycajas=modelCaja.children[0].children[0].children[0].children;
+    objetoretornar=null;
+    $(arraycajas).each(function(i,e){
+        // nombre=e.material.map.name;///1.png
+         nombre=e.name;///1.png
+        //nombre=nombre.substring(0,nombre.indexOf("."));
+        if(nombre==nombrebuscar){
+            objetoretornar= e;
+            return false;
+        }
+    })
+return objetoretornar;
+}
+
+function get_maderas(){
+    maderas=[];
+    arraycajas=modelCaja.children[0].children[0].children;
+    $(arraycajas).each(function(i,e){
+        nombre=e.name;///1.png
+        if(nombre=="madera" || nombre=="madera2" ){
+            maderas.push(e);
+        }
+    })
+return maderas;
+}
+
 function INICIAR_RENDER() {
     clock = new THREE.Clock();
     clockCuyDudando = new THREE.Clock();
     clockCajaP = new THREE.Clock();
     clockCuyChoque = new THREE.Clock();
+    clockCuyPremio = new THREE.Clock();
+    clockCuyEsperando = new THREE.Clock();
+    clockCuySalto= new THREE.Clock();
     var container = document.getElementById('container');
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100);
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-    // controls = new THREE.OrbitControls(camera);
-    // controls.rotateSpeed = 1.0;
-    // controls.zoomSpeed = 1.2;
-    // controls.panSpeed = 0.8;
-    //  controls.autoRotate = true;
+        controls = new THREE.OrbitControls(camera);
+        controls.rotateSpeed = 1.0;
+        controls.zoomSpeed = 1.2;
+        controls.panSpeed = 0.8;
+        // controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 
@@ -104,7 +136,7 @@ function INICIAR_RENDER() {
     hemiLight.position.set(0, 20, 0);
     scene.add(hemiLight);
     var dirLight = new THREE.DirectionalLight(0xffffff);
-    dirLight.position.set(-3, 15, -10);
+    dirLight.position.set(-3, 20, -10);
     dirLight.castShadow = true;
     dirLight.shadow.camera.top = 2;
     dirLight.shadow.camera.bottom = -2;
@@ -135,15 +167,27 @@ function INICIAR_RENDER() {
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
     // $.LoadingOverlay("show");
-    loaderCaja.load('images/cajasFFF.glb', function (gltfCaja) {
+    loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
         
+
+todo=gltfCaja;
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
                 object.castShadow = true;
             }
         });
-        modelCaja.scale.set(0.005, 0.005, 0.005);
+        modelCaja.position.y=0.24;
+        // modelCaja.scale.set(0.005, 0.005, 0.005);
+
+
+
+//           var box = new THREE.Box3().setFromObject( modelCaja );
+//         box.center( modelCaja.position ); // this re-sets the mesh position
+//         modelCaja.position.multiplyScalar( - 1 );
+//          pivot = new THREE.Group();
+// scene.add( pivot );
+// pivot.add( modelCaja );
 
         // modelCaja.position.z=0.8
         modelCaja.name ="TABLA_CAJAS";
@@ -151,10 +195,16 @@ function INICIAR_RENDER() {
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos(); ///////////////////////
-        modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
+        // modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
 
-        modelCaja.children[0].children[1].receiveShadow=true;
+       //  modelCaja.children[0].children[1].receiveShadow=true;
+       modelCaja.children[0].children[0].children[1].receiveShadow=true;
+       // modelCaja.children[0].position.y = 39;
+       // modelCaja.children[0].children[1].scale.set(3, 3, 3); ///suelo
         CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
+
+        cajax=modelCaja.children[0].children[0].children[2];
+
     });
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -214,7 +264,8 @@ function CargarEstadistica(IdJuego) {
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=10000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
-                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    // TIEMPO_CUY =10000000;
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
 
