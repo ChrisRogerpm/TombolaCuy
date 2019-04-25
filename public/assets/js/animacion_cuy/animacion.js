@@ -125,11 +125,11 @@ function INICIAR_RENDER() {
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-        // controls = new THREE.OrbitControls(camera);
-        // controls.rotateSpeed = 1.0;
-        // controls.zoomSpeed = 1.2;
-        // controls.panSpeed = 0.8;
-//         controls.autoRotate = true;
+        controls = new THREE.OrbitControls(camera);
+        controls.rotateSpeed = 1.0;
+        controls.zoomSpeed = 1.2;
+        controls.panSpeed = 0.8;
+        controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 
@@ -262,7 +262,12 @@ function CargarEstadistica(IdJuego) {
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                     // TIEMPO_CUY =10000000;
+                    
+
+                    // TIEMPO_GIRO_CAJA=2000;
+                    // TIEMPO_CUY =10000000;
+                    
+
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
 

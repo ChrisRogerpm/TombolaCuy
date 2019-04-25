@@ -382,8 +382,8 @@ LIMIT 18
         $array_puntos = array();
         // rango z=> -2.5  a   2.5
         for($i=0;$i<40;$i++){
-            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3)) ;  
-            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.3)) : -abs($this->random_posicion(0, 2.3)); 
+            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)) ;  
+            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)); 
             $obj = (object) [
                 'x' => $randomx,
                 'y' => 0,
