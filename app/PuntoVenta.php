@@ -24,7 +24,8 @@ class PuntoVenta extends Model
         pv.nombre,
         e.razonSocial,
         (SELECT u.nombre FROM ubigeo u
-        WHERE u.cod_depa = pv.idUbigeo AND u.cod_prov ='00' AND u.cod_dist='00') Ubigeo
+        WHERE u.cod_depa = pv.idUbigeo AND u.cod_prov ='00' AND u.cod_dist='00') Ubigeo,
+        pv.ZonaComercial
         FROM punto_venta pv
         LEFT JOIN empresa e ON e.idEmpresa = pv.idEmpresa"));
         return $listar;
@@ -68,6 +69,25 @@ class PuntoVenta extends Model
         $punto_venta->ZonaComercial = $zonaComercial;
         $punto_venta->save();
         return $punto_venta;
+    }
+
+    public static function PuntoVentaZonaListarUsuarioJson(Request $request)
+    {
+        $IdUsuario = Auth::user()->idUsuario;
+        $IdZonaComercial = $request->input('IdZonaComercial');
+        $condicional = $IdZonaComercial == 0 ? '' : 'AND pv.ZonaComercial = ' . $IdZonaComercial;
+        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)->get();
+        $data = [];
+        foreach ($lista_punto_venta_usuario as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+
+        $data = is_array($data) ? implode(",", $data) : $data;
+
+        $listar = DB::select(DB::raw("SELECT * 
+        FROM punto_venta pv
+        WHERE pv.idPuntoVenta IN ($data)  $condicional"));
+        return $listar;
     }
 
 }

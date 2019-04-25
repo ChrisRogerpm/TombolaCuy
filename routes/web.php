@@ -148,6 +148,7 @@ Route::post('ReporteHistorialTicketJsonFk', 'ReporteController@ReporteHistorialT
 Route::post('ReporteVentaJsonFk', 'ReporteController@ReporteVentaJson');
 Route::post('ReporteVentaJuegoFk', 'ReporteController@ReporteVentaJuegoJson');
 Route::post('ReporteApuestaJsonFk', 'ReporteController@ReporteApuestaJson');
+Route::post('ObtenerPuntosVentaZonaComercialJsonFk','ReporteController@ObtenerPuntosVentaZonaComercialJson');
 
 /*ConfiguracionJackpot*/
 Route::post('ConfiguracionPozoSegunConfJackPotFk', 'ReporteController@ConfiguracionPozoSegunConfJackPot');

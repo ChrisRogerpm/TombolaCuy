@@ -251,13 +251,10 @@ LIMIT 18
             $fecha_inicio = today()->startOfDay()->toDateTimeString();
             $fecha_fin = today()->endOfDay()->toDateTimeString();
         }
-        $lista_array_eventos = [];
-        $lista_coincidencias = [];
         $ListaJuego = Juego::JuegoListarLapsoJson();
         foreach ($ListaJuego as $juego) {
             //Evento creado anteriormente
             $evento_creado = Evento::ObtenerUltimoEvento($juego->idJuego, $fecha_inicio, $fecha_fin);
-
             if ($evento_creado != null) {
                 $fechaIni = $evento_creado->fechaFinEvento;
                 $fechaFin = "";
@@ -270,15 +267,11 @@ LIMIT 18
                         $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
                     if ($fechaIni > $fecha_fin) {
-//                        $respuesta = true;
                         break;
                     } else {
-                        $lista_coincidencias [] = $fechaIni;
                         $event = new Evento();
                         $posiciones = $event->generar_posiciones_random();
-                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
-//                        $numero_random = rand(0, 36);
-//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
+                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
@@ -294,14 +287,11 @@ LIMIT 18
                         $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
                     if ($fechaIni >= $fecha_fin) {
-//                        $respuesta = true;
                         break;
                     } else {
                         $event = new Evento();
                         $posiciones = $event->generar_posiciones_random();
-                        $evento_guardado = Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
-//                        $numero_random = rand(0, 36);
-//                        TipoApuesta::TipoApuestaColor($numero_random, $evento_guardado->idEvento);
+                        Evento::RegistrarEvento($juego, $fechaIni, $fechaFin->toDateTimeString(), $posiciones);
                         $fechaIni = $fechaFin->toDateTimeString();
                     }
                 }
@@ -330,30 +320,16 @@ LIMIT 18
         }
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {
-
-            $hora_actual = now()->format('H') . ':00';
-
             $ListaEventosDia = DB::table('evento as e')
                 ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
                 ->where('e.idJuego', $juego->idJuego)
                 ->get();
-//            $ListaEventosDia = DB::select(DB::raw("SELECT *
-//            FROM evento e
-//            WHERE e.fechaEvento BETWEEN '$fechaIni' AND '$fechaFin'
-//            AND e.idJuego = $juego->idJuego
-//            AND  HOUR(e.fechaEvento) = HOUR('$hora_actual')"));
-
             foreach ($ListaEventosDia as $li) {
                 if ($li->fechaEvento < now() && $li->fechaFinEvento > now()) {
                     $val = Evento::findorfail($li->idEvento);
                     if ($val->estadoEvento == 0) {
                         $val->estadoEvento = 1;
                         $val->save();
-//                        $total = ResultadoEvento::ValidarCantidadValorGanadorEvento($val->idEvento);
-//                        if($total == 0){
-//                            $numero_random = rand(0, 36);
-//                            TipoApuesta::TipoApuestaColor($numero_random, $val->idEvento);
-//                        }
                     }
                 } else if ($li->fechaEvento < now() && $li->fechaFinEvento < now() && $li->estadoEvento == 1) {
                     $evento = Evento::findorfail($li->idEvento);

@@ -60,7 +60,7 @@
                     <form id="frmNuevo" autocomplete="off">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Fecha Inicio</label>
                                     <div class="input-group">
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Fecha Fin</label>
                                     <div class="input-group">
@@ -79,16 +79,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Zona Comercial</label>
-                                    <select multiple="multiple" id="cboZona" name="ZonaComercial"
-                                            class="form-control input-sm multiselect" style="width: 100%;">
+                                    <select id="cboZona" name="ZonaComercial"
+                                            class="form-control input-sm" style="width: 100%;">
                                         <option value="0">Todos</option>
                                         <option value="1">Zona Comercial 1</option>
                                         <option value="2">Zona Comercial 2</option>
                                         <option value="3">Zona Comercial 3</option>
                                         <option value="4">Zona Comercial 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Puntos de Venta</label>
+                                    <select multiple id="cboPuntoVenta" name="PuntoVenta"
+                                            class="form-control input-sm" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>
