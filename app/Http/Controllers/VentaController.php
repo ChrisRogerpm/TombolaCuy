@@ -353,10 +353,10 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
            // $idEvento = $datos["idEvento"];
             $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);  ////Apuestas
             if(count($apuestas_ticket)>0){
-            $idEvento=$apuestas_ticket[0]->idEvento;
-            $resultados_evento=Ticket::ResultadosEvento($idEvento);
-            $tickets=Ticket::BuscarGanadoresTicket($idticket);
-            //$tickets=Ticket::BuscarGanadoresTicketidEvento($idEvento,$idticket);
+                $idEvento=$apuestas_ticket[0]->idEvento;
+                $resultados_evento=Ticket::ResultadosEvento($idEvento);
+                $tickets=Ticket::BuscarGanadoresTicket($idticket);
+                //$tickets=Ticket::BuscarGanadoresTicketidEvento($idEvento,$idticket);
             }else{
                 $resultados_evento=null;
                 $tickets=array();

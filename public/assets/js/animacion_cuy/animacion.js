@@ -260,7 +260,7 @@ function CargarEstadistica(IdJuego) {
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=10000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
+                    TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                      // TIEMPO_CUY =10000000;
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);

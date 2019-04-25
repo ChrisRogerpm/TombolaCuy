@@ -26,7 +26,8 @@ class Evento extends Model
         'estadoEvento',
         'estadoAnimacion',
         'tokenAnimacion',
-        'puntosCuy'
+        'puntosCuy',
+        'segCajaGirando'
     ];
 
     public $timestamps = false;
