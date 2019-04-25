@@ -117,7 +117,7 @@
 					<th class="cajaRoja">18</th><th id="18">0</th> <th class="cajaNegra">36</th><th id="36">0</th>
 				</tr>
 				<tr>
-					<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th id="0" colspan="2">0</th>
+					<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">x</th><th id="0" colspan="2">0</th>
 				</tr>
 			</table>
 

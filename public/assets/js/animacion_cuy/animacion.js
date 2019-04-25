@@ -55,6 +55,11 @@ ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348
 
 ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
+
+
+
+
+
 $(document).ready(function () {
     INICIAR_RENDER()
 });
@@ -120,11 +125,11 @@ function INICIAR_RENDER() {
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-        controls = new THREE.OrbitControls(camera);
-        controls.rotateSpeed = 1.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 0.8;
-        // controls.autoRotate = true;
+        // controls = new THREE.OrbitControls(camera);
+        // controls.rotateSpeed = 1.0;
+        // controls.zoomSpeed = 1.2;
+        // controls.panSpeed = 0.8;
+//         controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 
@@ -167,31 +172,23 @@ function INICIAR_RENDER() {
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
     // $.LoadingOverlay("show");
-    loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
+    // loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
+    loaderCaja.load('images/glb/cajastar.glb', function (gltfCaja) {
         
 
-todo=gltfCaja;
+        todo=gltfCaja;
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
                 object.castShadow = true;
             }
         });
-        modelCaja.position.y=0.24;
         // modelCaja.scale.set(0.005, 0.005, 0.005);
+        modelCaja.children[0].children[0].position.y=0.28; 
+        modelCaja.children[0].children[0].children[1].scale.set(2.4,2.4,4.21);/// suelo 
 
 
-
-//           var box = new THREE.Box3().setFromObject( modelCaja );
-//         box.center( modelCaja.position ); // this re-sets the mesh position
-//         modelCaja.position.multiplyScalar( - 1 );
-//          pivot = new THREE.Group();
-// scene.add( pivot );
-// pivot.add( modelCaja );
-
-        // modelCaja.position.z=0.8
         modelCaja.name ="TABLA_CAJAS";
-        //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos(); ///////////////////////
@@ -201,8 +198,8 @@ todo=gltfCaja;
        modelCaja.children[0].children[0].children[1].receiveShadow=true;
        // modelCaja.children[0].position.y = 39;
        // modelCaja.children[0].children[1].scale.set(3, 3, 3); ///suelo
-        CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
-
+        // CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
+           CAJAS_ARRAY=modelCaja.children[0].children[0].children[0].children;
         cajax=modelCaja.children[0].children[0].children[2];
 
     });
@@ -232,8 +229,8 @@ function CargarEstadistica(IdJuego) {
         },
         success: function (response) { 
 
-               ocultar_toasr_nohay_evento();
-               ocultar_toasr_servidor_error()
+           ocultar_toasr_nohay_evento();
+           ocultar_toasr_servidor_error()
                 
             CONSULTADO_EVENTO=false;
             aaa=response;        
@@ -264,8 +261,8 @@ function CargarEstadistica(IdJuego) {
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=10000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
-                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                    // TIEMPO_CUY =10000000;
+                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                     // TIEMPO_CUY =10000000;
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
 
