@@ -68,7 +68,7 @@ function init(host,port){
                         console.info(segundos_para_animacion);
                         seg_animacion=segundos_para_animacion*1000;
 
-                      //  segundos_para_animacion=1;///
+                        // segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                 ///barra carga cuy
@@ -81,7 +81,7 @@ function init(host,port){
                                               buscando_evento=false;
                                               INICIO_ANIMACION_CUY();////////////////////////////////////////
                                     }
-                                   );
+                                   ); 
                                 ///fin barra cuy
                                   ///contador inicio cuy
                                   $("#contador_para_activar").text(segundos_para_animacion);

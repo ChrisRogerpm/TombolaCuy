@@ -519,7 +519,7 @@ function teclas() {///mover cuy con teclas flechas  y ctrl  giro
 
 
 
-    document.onkeydown = function(e) {
+document.onkeydown = function(e) {
             if(e.keyCode == 123) {
             return false;
             }
@@ -533,7 +533,6 @@ function teclas() {///mover cuy con teclas flechas  y ctrl  giro
             return false;
             }
 }
-
 
 
 

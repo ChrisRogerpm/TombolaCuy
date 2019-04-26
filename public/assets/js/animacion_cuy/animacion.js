@@ -2,10 +2,10 @@
 $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
-// IPSERVIDOR_WEBSOCKETS="35.237.182.107";
-// PUERTO_WEBSOCKETS="888";
-IPSERVIDOR_WEBSOCKETS="35.239.64.189";
+IPSERVIDOR_WEBSOCKETS="35.237.182.107";
 PUERTO_WEBSOCKETS="888";
+// IPSERVIDOR_WEBSOCKETS="192.168.1.60";
+// PUERTO_WEBSOCKETS="50051";
 
 GANADOR_DE_EVENTO="";
 iniciado = false;
@@ -242,6 +242,21 @@ function CargarEstadistica(IdJuego) {
 
 
             });
+
+
+            // $(response.estadistica).each(function(i,e){
+            //     var numero=e.valorapuesta.toString();//1
+            //     if(numero=="0"){numero="x";}
+            //     rgb_background=hexToRgb(e.rgb);
+            //     console.info(numero);
+            //     objeto= modelCaja.getObjectByName(numero);
+            //     objeto.material.color.r=rgb_background.r;
+            //     objeto.material.color.g=rgb_background.g;
+            //     objeto.material.color.b=rgb_background.b;
+
+            // })
+
+
             var strUltimos12="";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
@@ -259,13 +274,13 @@ function CargarEstadistica(IdJuego) {
                     EVENTO_ACTUAL=response.evento;
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
-                    GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
+                    GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
                     
 
-                    // TIEMPO_GIRO_CAJA=2000;
-                    // TIEMPO_CUY =10000000;
+                // TIEMPO_GIRO_CAJA=2000;
+                //     TIEMPO_CUY =10000000;
                     
 
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
