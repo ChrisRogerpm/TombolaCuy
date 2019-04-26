@@ -2,7 +2,7 @@
 $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
-IPSERVIDOR_WEBSOCKETS="35.237.182.107";
+IPSERVIDOR_WEBSOCKETS="35.202.47.253";
 PUERTO_WEBSOCKETS="888";
 // IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 // PUERTO_WEBSOCKETS="50051";
@@ -125,11 +125,11 @@ function INICIAR_RENDER() {
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-        controls = new THREE.OrbitControls(camera);
-        controls.rotateSpeed = 1.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 0.8;
-        controls.autoRotate = true;
+        // controls = new THREE.OrbitControls(camera);
+        // controls.rotateSpeed = 1.0;
+        // controls.zoomSpeed = 1.2;
+        // controls.panSpeed = 0.8;
+        // controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 

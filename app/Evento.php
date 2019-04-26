@@ -123,7 +123,7 @@ where ev.estadoEvento=1 and idEvento=' . $idEvento));
 
     public static function HistorialEvento($ideventoactual)
     {
-        $listar = DB::select(DB::raw("select evt.idEvento, res.`valorGanador`,tipo_apuesta.rgb as color
+        $listar = DB::select(DB::raw("select evt.idEvento, res.`valorGanador`,tipo_apuesta.rgb as color,tipo_apuesta.rgbLetra as rgbLetra
          FROM  `resultado_evento` res
 inner join evento evt on res.`idEvento`=evt.`idEvento`
 left join tipo_apuesta on tipo_apuesta.idTipoApuesta=res.idTipoApuesta
@@ -144,7 +144,8 @@ LIMIT 18
         select tip_apu.valorapuesta,
  tip_apu.idTipoApuesta ,
  tip_apu.nombre,
- tip_apu.rgb, 
+ tip_apu.rgb,
+ tip_apu.rgbLetra, 
  FLOOR(tip_pag.multiplicadorDefecto) as multiplicadorDefecto,
   tip_pag.idTipoPago,
  tip_pag.plenoMinimo,

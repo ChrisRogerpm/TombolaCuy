@@ -149,7 +149,7 @@
                                      <div 
                                      data-idTipoPago="{{$div->idTipoPago}}" 
                                      data-idTipoApuesta="{{$div->idTipoApuesta}}" 
-                                     style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
                                      data-tipo="numero" 
                                      data-color="{{$div->rgb}}"
                                      data-valor={{$div->valorapuesta}} 
@@ -169,7 +169,7 @@
                                <div 
                                data-idTipoApuesta="{{$div->idTipoApuesta}}" 
                                data-idTipoPago="{{$div->idTipoPago}}" 
-                               style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
                                data-tipo="numero" 
                                data-color="{{$div->rgb}}"
                                data-valor={{$div->valorapuesta}} 
@@ -185,7 +185,8 @@
                         <div 
                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
                         data-idTipoPago="{{$div->idTipoPago}}" 
-                        style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
+                        
                         data-tipo="numero" 
                         data-color="{{$div->rgb}}"
                         data-valor={{$div->valorapuesta}} 
@@ -200,7 +201,8 @@
                         <div 
                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
                         data-idTipoPago="{{$div->idTipoPago}}" 
-                        style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
+                       
                         data-tipo="numero" 
                         data-color="{{$div->rgb}}"
                         data-valor={{$div->valorapuesta}} 
@@ -215,7 +217,8 @@
                         <div 
                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
                         data-idTipoPago="{{$div->idTipoPago}}" 
-                        style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
+                       
                         data-tipo="numero" 
                         data-color="{{$div->rgb}}"
                         data-valor={{$div->valorapuesta}} 
@@ -231,7 +234,8 @@
                         <div 
                         data-idTipoApuesta="{{$div->idTipoApuesta}}" 
                         data-idTipoPago="{{$div->idTipoPago}}" 
-                        style="background-color:{{$div->rgb}}" 
+                                     style="background-color:{{$div->rgb}};color:{{$div->rgbLetra}}" 
+                        
                         data-tipo="numero" 
                         data-color="{{$div->rgb}}"
                         data-valor={{$div->valorapuesta}} 
