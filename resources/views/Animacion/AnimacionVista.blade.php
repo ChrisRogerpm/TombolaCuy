@@ -20,7 +20,13 @@
 
 	<div id="ImgContainer"></div>
 	<div id="img_ganador">
-		<div id='texto_ganador' style='font-family: RosewoodStd-Regular;height: 50%;width: 50%;font-size: 60vh;position: relative;left: 39%;top: 36%;color: black;text-align: center;'>
+		<div class="nroevento_ganador borde_blanco">
+			<h1 style="letter-spacing: 2px;">
+				<span class="smaller neon">#</span>
+				<span id="idevento_titulo_ganador" class="neon"></span>
+			</h1>
+		</div>
+		<div id='texto_ganador' class="borde_blanco">
 		</div>
 	</div>
 
