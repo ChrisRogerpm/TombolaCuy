@@ -125,11 +125,11 @@ function INICIAR_RENDER() {
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-        controls = new THREE.OrbitControls(camera);
-        controls.rotateSpeed = 1.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 0.8;
-        controls.autoRotate = true;
+        // controls = new THREE.OrbitControls(camera);
+        // controls.rotateSpeed = 1.0;
+        // controls.zoomSpeed = 1.2;
+        // controls.panSpeed = 0.8;
+        // controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
 
@@ -242,8 +242,6 @@ function CargarEstadistica(IdJuego) {
 
 
             });
-
-
             // $(response.estadistica).each(function(i,e){
             //     var numero=e.valorapuesta.toString();//1
             //     if(numero=="0"){numero="x";}
@@ -256,7 +254,6 @@ function CargarEstadistica(IdJuego) {
 
             // })
 
-
             var strUltimos12="";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
@@ -268,6 +265,48 @@ function CargarEstadistica(IdJuego) {
 
             $("#imagen_cargando").hide();
             $.LoadingOverlay("hide");
+
+
+
+
+
+
+
+            ///NUEVOOOOOOOOOO
+                        // if(socket!=null && socket.readyState==1){
+                        //       inicio_pedir_hora=performance.now();
+                        //       pedir_hora=true;
+                        //       timeout_pedir_hora=setInterval(function(){
+                        //             if(pedir_hora){
+                        //                 crear_toastr_websockets_error();
+                        //             }
+                        //             else{
+                        //                 clearInterval(timeout_pedir_hora);
+                        //             }
+                        //       },1000);
+                        //       console.warn("YA CONECTADO, pedir hora");
+                        //       pedir_evento();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
+                        // }
+                        // else{
+                        //       console.warn("INICIANDO CONEXIÓN ");
+                        //       CONECTADO__A_SERVIDORWEBSOCKET=false;
+                        //       inicio_intento_conexion=performance.now();
+                        //       connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                        //         revisar_ya_conecto=setInterval(function(){
+                        //                 if(CONECTADO__A_SERVIDORWEBSOCKET){
+                        //                     if(typeof toasr_websockets_error!="undefined"){
+                        //                         toasr_websockets_error.hide();
+                        //                     }
+                        //                     clearInterval(revisar_ya_conecto);
+                        //                 }
+                        //                 else{
+                        //                    crear_toastr_websockets_error();
+                        //                 }
+                        //         },1000);
+                        // }
+
+
+            ///
 
             if(typeof response.evento!="undefined"){
                 if(response.evento.evento_id_actual!=""){
@@ -333,7 +372,8 @@ function CargarEstadistica(IdJuego) {
                     CargarEstadistica(1);
                   },1000)
                 }
-            }////fin if eresponse evento
+            }
+            ////fin if eresponse evento
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;

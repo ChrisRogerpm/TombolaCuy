@@ -1315,7 +1315,9 @@ function HistorialJackpotDatosJson(puntoventa,idev){
                   $(".historial_numeros").append(
                     $("<div>")
                     .attr("data-idEvento",e.idEvento)
-                    .text(e.valorGanador).css("background-color",e.color)
+                    .text(e.valorGanador)
+                    .css("background-color",e.color)
+                    .css("color",e.rgbLetra)
                 )
             })
         },

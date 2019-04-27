@@ -469,7 +469,7 @@ function cajagirando_animacion() {
         }
         else{
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO);
-
+$("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
 
 
    // spline = new THREE.SplineCurve3(puntos_azar());

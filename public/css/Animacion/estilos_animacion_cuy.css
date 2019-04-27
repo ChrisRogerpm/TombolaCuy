@@ -15,26 +15,27 @@ a {
 	/* Set neon color */
 	--neon-text-color: #f40;
 	--neon-border-color: #08f;
+	--neon-blanco-border-color: #fff;
 	--neon-lateral-border-color: #3eb92e;
 }
 
 .borde-lateral {
 	text-shadow:
-		-0.2rem -0.2rem 1rem #fff,
-		0.2rem 0.2rem 1rem #fff,
-		0 0 2rem var(--neon-text-color),
-		0 0 4rem var(--neon-text-color),
-		0 0 6rem var(--neon-text-color),
-		0 0 8rem var(--neon-text-color),
-		0 0 10rem var(--neon-text-color);
+	-0.2rem -0.2rem 1rem #fff,
+	0.2rem 0.2rem 1rem #fff,
+	0 0 2rem var(--neon-text-color),
+	0 0 4rem var(--neon-text-color),
+	0 0 6rem var(--neon-text-color),
+	0 0 8rem var(--neon-text-color),
+	0 0 10rem var(--neon-text-color);
 
-		box-shadow:
-		0 0 .1rem #fff,
-		inset 0 0 .1rem #fff,
-		0 0 1rem var(--neon-lateral-border-color),
-		inset 0 0 1rem var(--neon-lateral-border-color),
-		0 0 1rem var(--neon-lateral-border-color),
-		inset 0 0 1rem var(--neon-lateral-border-color);        
+	box-shadow:
+	0 0 .1rem #fff,
+	inset 0 0 .1rem #fff,
+	0 0 1rem var(--neon-lateral-border-color),
+	inset 0 0 1rem var(--neon-lateral-border-color),
+	0 0 1rem var(--neon-lateral-border-color),
+	inset 0 0 1rem var(--neon-lateral-border-color);        
 	/*animation: borde_lateral 1s ease alternate;
 	-moz-animation: borde_lateral 1s ease infinite;
 	-webkit-animation: borde_lateral 1s ease infinite;*/
@@ -47,11 +48,16 @@ a {
 }
 
 .neon {
-	text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
-		color: #FED128;
+	/*text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;*/
+	text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 0.4vw #FED128, 0.2vw 0.3vw 0.1vw #806914;
+	color: #FED128;
 	/*animation: neon 1s ease infinite;
 	-moz-animation: neon 1s ease infinite;
 	-webkit-animation: neon 1s ease infinite;*/
+}
+
+.borde_blanco{
+	box-shadow: 0 0 0.5rem #fff, inset 0 0 0.1rem #fff, 0 0 0.1rem var(--neon-border-color), inset 0 0 0.1rem var(--neon-border-color), 0 0 0.1rem var(--neon-border-color), inset 0 0 0.1rem var(--neon-border-color);
 }
 
 @keyframes borde {
@@ -602,19 +608,19 @@ table tr{
 }
 
 .gridContainer{
-  width:100%;
-  height:100%;
+	width:100%;
+	height:100%;
 }
 
 .gridTile
 {
-  position:absolute;
-  
-  width:100%;
-  height:100%;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-origin:center;
+	position:absolute;
+
+	width:100%;
+	height:100%;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-origin:center;
 }
 
 #top_rotulo{
@@ -624,4 +630,35 @@ table tr{
 	height: 58px;
 	background: url(../../images/hn_box_bg.png) repeat-x top left #1f1f1f;
 	z-index: 0;
+}
+
+.nroevento_ganador {
+	width: 40%;
+	/* border: 1px solid #424242; */
+	margin: 0.5% auto auto;
+	position: absolute;
+	/*background: #2c2e38 url(../../images/retro.jpg) center center;*/
+	z-index: 1;
+	position: absolute;
+	top: 13%;
+	left: 33%;
+	box-shadow: 0 5px 10px rgba(9,0,0,0.5);
+}
+
+#idevento_titulo_ganador{
+	font-size: 40px;
+}
+
+#texto_ganador{
+	font-family: RosewoodStd-Regular;
+	height: 50%;
+	width: 50%;
+	font-size: 51vh;
+	position: absolute;
+	left: 39%;
+	top: 37%;
+	background-color: #f9d716;
+	color: #5b1312;
+	text-align: center;
+	padding: 6px;
 }
