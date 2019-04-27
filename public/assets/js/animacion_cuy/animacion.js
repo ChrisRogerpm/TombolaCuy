@@ -2,14 +2,16 @@
 $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
-IPSERVIDOR_WEBSOCKETS="35.202.47.253";
-PUERTO_WEBSOCKETS="888";
+// IPSERVIDOR_WEBSOCKETS="35.202.47.253";
+// PUERTO_WEBSOCKETS="888";
+
+
+IPSERVIDOR_WEBSOCKETS=$("#IPSERVIDOR_WEBSOCKETS").val();
+PUERTO_WEBSOCKETS=$("#PUERTO_WEBSOCKETS").val();
 // IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 // PUERTO_WEBSOCKETS="50051";
 
 GANADOR_DE_EVENTO="";
-iniciado = false;
-token="";  /// en consultarevento obtiene valor 
 EVENTO_ID="";
 ARRAY_PUNTOSCAJAS=[];
 
@@ -56,11 +58,8 @@ ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348
 ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
 
-
-
-
-
 $(document).ready(function () {
+    bloquear_teclas_mouse();
     INICIAR_RENDER()
 });
 
@@ -229,18 +228,13 @@ function CargarEstadistica(IdJuego) {
         },
         success: function (response) { 
 
-           ocultar_toasr_nohay_evento();
-           ocultar_toasr_servidor_error()
                 
             CONSULTADO_EVENTO=false;
             aaa=response;        
-            token=response.token_animacion;             
             $.each(response.estadistica, function( key, value ) {
                 $("#"+value.valorapuesta).text(value.Repetidos);
                 $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
                 $("#"+value.valorapuesta).prev().css("color",value.rgbLetra)
-
-
             });
             // $(response.estadistica).each(function(i,e){
             //     var numero=e.valorapuesta.toString();//1
@@ -269,7 +263,8 @@ function CargarEstadistica(IdJuego) {
 
 
 
-
+         ocultar_toasr_nohay_evento();
+           ocultar_toasr_servidor_error()
 
 
             ///NUEVOOOOOOOOOO
@@ -309,29 +304,26 @@ function CargarEstadistica(IdJuego) {
             ///
 
             if(typeof response.evento!="undefined"){
-                if(response.evento.evento_id_actual!=""){
+                if(response.evento.evento_id_actual!=""){/// SI RESPONSE EVENTO TIENE ID EVENTO
                     EVENTO_ACTUAL=response.evento;
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                    
-
                 // TIEMPO_GIRO_CAJA=2000;
                 //     TIEMPO_CUY =10000000;
                     
 
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
-                    $("#termotetro_para_iniciar").show();
+                    $("#termotetro_para_iniciar").show();/////CONTADOR PARA EVENTO
 
 
-                    setTimeout(function(){
-                        if(socket!=null && socket.readyState==1){
+                        if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
                               inicio_pedir_hora=performance.now();
                               pedir_hora=true;
                               timeout_pedir_hora=setInterval(function(){
-                                    if(pedir_hora){
+                                    if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
                                         crear_toastr_websockets_error();
                                     }
                                     else{
@@ -347,7 +339,7 @@ function CargarEstadistica(IdJuego) {
                               inicio_intento_conexion=performance.now();
                               connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
                                 revisar_ya_conecto=setInterval(function(){
-                                        if(CONECTADO__A_SERVIDORWEBSOCKET){
+                                        if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
                                             if(typeof toasr_websockets_error!="undefined"){
                                                 toasr_websockets_error.hide();
                                             }
@@ -360,13 +352,10 @@ function CargarEstadistica(IdJuego) {
                         } 
 
 
-                    },1000)
                     
-                }
-                else{
-
+                }///
+                else{////NO HAY EVENTO
                     crear_toasr_nohay_evento();
-               
                   console.warn("No hay evento activo");
                   setTimeout(function(){
                     CargarEstadistica(1);

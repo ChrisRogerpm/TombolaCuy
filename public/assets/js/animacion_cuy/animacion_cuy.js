@@ -32,11 +32,6 @@ function hexToRgb(hex) {
 }
 
 function camara_mirar(objeto){
-        // camera.position.x = objeto.position.x ;
-        // camera.position.y = objeto.position.y + 0.9;
-        // camera.position.z = objeto.position.z +3.6;
-        // camera.lookAt(objeto.position);
-
         camera.position.x = objeto.position.x ;
         camera.position.y = objeto.position.y + 1.6;
         camera.position.z = objeto.position.z +4;
@@ -290,9 +285,6 @@ function cargar_archivos() {
         //     mixerCuySalto = new THREE.AnimationMixer(modelCuyTablero);
         //     mixerCuySalto.clipAction(animations[0]).play();
         // }
-
-
-
         index++;
         cargar_archivos();
 
@@ -411,7 +403,6 @@ function reiniciar_cuy(){
         clockCuyDudando = new THREE.Clock();
         clockCuyChoque= new THREE.Clock();
         clockCajaP= new THREE.Clock();
-        token="";
         t=0;
         $("#barra_loading").css("height","100%");
         $("#barra_loading_tpi").css("width","0%");
@@ -469,27 +460,14 @@ function cajagirando_animacion() {
         }
         else{
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO);
-$("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
-
-
+            $("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
    // spline = new THREE.SplineCurve3(puntos_azar());
-
-
-
 
        // detener_var_animarcamara();
             detener_var_cajagirando();
             mostrar_cuymoviendo();
-
              cajax=getObjeto_caja("x");
-            //cajax=get_caja("x");
-            //modelCaja.children[0].children[0].children[0].children[2];//
-            // madera1=modelCaja.children[0].children[0].children[0];
-            // madera2=modelCaja.children[0].children[0].children[1];
-             // maderas=get_maderas();
              maderas=[];
-             // maderas.push(getObjeto_caja("madera"));
-             // maderas.push(getObjeto_caja("madera2"));
             maderas.push(getObjeto_caja("madera"));
              maderas.push(getObjeto_caja("madera2"));
             posicionycajaxinicial=-9.8808069229126  ;//9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
@@ -497,7 +475,6 @@ $("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
             dtcajax=0.2;
             tcajax=0;
             rotacionx_inicio=0;//-7.318557638911297e-33;
-            //rotacionx_fin=-5.3;
             rotacionx_fin=-1.4;
 
             if(typeof controls!="undefined"){
@@ -509,12 +486,8 @@ $("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
 }
 
 function retornar_cajx(){
-    // cajax.position.z=-6.86645478253922e-7;//-993.228455; 
     cajax.position.y=-9.8808069229126;//9.932283401;//-993.228455; 
     cajax.rotation.x=0;//-7.318557638911297e-33;
-
-    // madera1.position.z=-0.0000610351563;
-    // madera2.position.z=-0.0000610351563;
     maderas[0].visible=true;
     maderas[1].visible=true;
 }
@@ -539,7 +512,6 @@ function cajax_animacion(){
     }
 }
 
-
 function random_posicion(min, max) {
     return ((Math.random() * (max - min)) + min).toFixed(2);
 }
@@ -557,10 +529,8 @@ function ease(t) {
 
 ////////////////////nuevo random
 function generar_nueva_posicion_random(){
-     
         bfuncion_easing_indice=0;//random_entero(0,EasingFunctions_array.length-1);
         console.warn("i= "+bfuncion_easing_indice);
-      
         b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
         INDICE_PUNTOS_CUY++;
         if(INDICE_PUNTOS_CUY>PUNTOS_CUY.length){

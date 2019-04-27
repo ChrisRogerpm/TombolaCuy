@@ -49,7 +49,6 @@ function init(host,port){
       catch(ex){
         mensaje=msg.data;
         tipo="date";
-        
 
       }
           // mensaje=msg.data;
@@ -207,8 +206,9 @@ function pedir_hora_server(){
       logerror(ex);  
     }
 }
-function pedir_evento(){
-    msg = "evento";
+
+function pedir_eventoJSON(){
+    msg = "eventoJSON";
     try
     {
         socket.send(msg); 
