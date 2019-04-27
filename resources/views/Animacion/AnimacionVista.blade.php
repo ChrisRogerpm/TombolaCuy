@@ -22,7 +22,7 @@
 	<div id="img_ganador">
 		<div class="nroevento_ganador borde_blanco">
 			<h1 style="letter-spacing: 2px;">
-				<span class="smaller neon">#</span>
+				<span class="smaller neon" id="span_idevento">#</span>
 				<span id="idevento_titulo_ganador" class="neon"></span>
 			</h1>
 		</div>

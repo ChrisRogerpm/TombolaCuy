@@ -40,9 +40,18 @@ function init(host,port){
      };
     socket.onmessage = function(msg){ 
       aaaaa=msg;
+      try{
       jsondecode=JSON.parse(msg.data);
       mensaje=jsondecode.mensaje;
       tipo=jsondecode.tipo;
+        
+      }
+      catch(ex){
+        mensaje=msg.data;
+        tipo="date";
+        
+
+      }
           // mensaje=msg.data;
 
       if(typeof toastr_errorconexion!="undefined"){
