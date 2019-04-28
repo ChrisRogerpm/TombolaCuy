@@ -78,7 +78,7 @@ function init(host,port){
                         console.info("F.FIN EVENTO  =  "+moment(FECHA_FIN_EVENTO).format("YYYY-MM-DD HH:mm:ss a"));
                         console.info("F.ACTUAL   =  "+ moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
                         segundos_para_animacion=FECHA_ANIMACION.diff(ahora,'seconds');
-                        console.info(segundos_para_animacion);
+                        console.warn("SEG. PARA ANIMACIÓN= "+segundos_para_animacion);
                         seg_animacion=segundos_para_animacion*1000;
 
                         // segundos_para_animacion=1;///
@@ -184,7 +184,7 @@ function init(host,port){
           logwarn("Desconectado - status "+this.readyState+" ;Reintentando conectar en 2 segundos");
           setTimeout(function(){
             connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS)
-          },400);
+          },1000);
         }
 
                          

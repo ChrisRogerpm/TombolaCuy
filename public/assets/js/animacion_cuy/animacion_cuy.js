@@ -7,17 +7,15 @@ var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudando
 // ,'images/glb/cuypremio.glb'
 // ,'images/glb/cuysalto.glb'
 // ,'images/glb/tablero.glb'
-
 ];
-var objLoader = new THREE.GLTFLoader();
-var escalacuys = 0.25;
-var escalacajagirando = 0.04;
-var intervalo_consultaevento=2000;
+dt =0.03 // velocidad movimiento cuy
+dtrotacion = 0.05; // velocidad rotacion cuy;
+escalacuys = 0.25;
+escalacajagirando = 0.04;
+intervalo_consultaevento=2000;
 buscando_evento=false;
 
-
 function hexToRgb(hex) {
-    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function(m, r, g, b) {
         return r + r + g + g + b + b;
@@ -129,8 +127,8 @@ function cargarImagenes(srcs, callback) {
 }
 
 function cargar_archivos() {
+    var objLoader = new THREE.GLTFLoader();
     if (index > archivos.length - 1) {
-   
         console.warn("FIN CARGA ARCHIVOS");
         CargarEstadistica(1);
         window.addEventListener('resize', responsive_canvas, false);
@@ -408,12 +406,10 @@ function reiniciar_cuy(){
         $("#barra_loading_tpi").css("width","0%");
         //PUNTOS_CUY=null;
         //INDICE_PUNTOS_CUY=0;
-
 }
 
 
 function INICIO_ANIMACION_CUY(){
-
 //     detener_var_cuysalto();detener_var_cuypremio();detener_var_cuyesperando();
 // modelCuyPremio.position.set(3,0,3);cuypremio();
 // modelCuySalto.position.set(-3,0,3);cuysalto();
@@ -423,9 +419,6 @@ function INICIO_ANIMACION_CUY(){
 // modelCuyEsperando.scale.set(1.3,1.3,1.3);
 
         iniciogiro =  clockCajaP.getElapsedTime();
-
-        dt =0.03 // velocidad movimiento cuy
-        dtrotacion = 0.05; // velocidad rotacion cuy;
         t = 0   /// tiempo movimiento cuy;
         timerotacion=0; 
         detener_var_animarcamara();
@@ -441,7 +434,6 @@ function INICIO_ANIMACION_CUY(){
         if(typeof controls!="undefined"){
              //controls.autoRotate = true;
         }
-
         detener_var_cajagirando();
         cajagirando_animacion();
 }
@@ -472,10 +464,15 @@ function cajagirando_animacion() {
              maderas.push(getObjeto_caja("madera2"));
             posicionycajaxinicial=-9.8808069229126  ;//9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
             posicionfinalcaja=-11.4;//8.2;//3.4999993133545217//800;
+            
+            cajax_posicioninicial=cajax.getWorldPosition();
             dtcajax=0.2;
             tcajax=0;
             rotacionx_inicio=0;//-7.318557638911297e-33;
-            rotacionx_fin=-1.4;
+            rotacionx_fin=-Math.PI / 2;//-1.4;
+            q1_cajax = new THREE.Quaternion().copy(cajax.quaternion);
+            q2_cajax = new THREE.Quaternion().copy(cajax.quaternion);
+             timerotacion = 0;
 
             if(typeof controls!="undefined"){
               controls.autoRotate = false;
@@ -573,7 +570,7 @@ function linea_camino(){
 
 up = new THREE.Vector3(0,0,1 );
 axis = new THREE.Vector3( );
-t=0;dt=0.003
+// t=0;dt=0.003
 // correr_nuevo()
 function correr_nuevo(){
     var var_correr=requestAnimationFrame(correr_nuevo);
@@ -677,7 +674,8 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                     if(GANADOR_DE_EVENTO=="x" || GANADOR_DE_EVENTO=="0"){
                           bfuncion_easing_indice=7;//easeInQuart
                           console.log("X o O")
-                         b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
+                         // b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
+                         b=getObjeto_caja("madera").getWorldPosition();
 
                     }else{
                         b=get_caja(GANADOR_DE_EVENTO).posicion;
@@ -688,15 +686,14 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             }  
             else {
                 CUY_CORRIENDO = false;
-                // if(get_caja(0).posicion.x==model.position.x && get_caja(0).posicion.y==model.position.y){
-                // if(get_caja("madera").posicion.x==model.position.x && get_caja("madera").posicion.y==model.position.y){
-                if(ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.x==model.position.x 
-                    && ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.y==model.position.y ){
+               
+                if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
+                    model.position.z== getObjeto_caja("madera").getWorldPosition().z ){
                     modelCuyChoque.position.y=-0.1;
-
                     cuychoque();
                     cajax_animacion();
                 }
+
                 if (typeof funcion_callback != "undefined") {
                     delete funcion_callback;
                 }
@@ -725,7 +722,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
 
                                         setTimeout(function(){
                                                 $("#idevento_titulo").text("");
-                                               GANADOR_DE_EVENTO="";
+                                                GANADOR_DE_EVENTO="";
                                                  detener_var_animarcamara();
                                                 modelCajaP.visible=true;
                                                 PUNTOS_CUY=null;
