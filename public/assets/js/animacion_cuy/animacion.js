@@ -8,6 +8,8 @@ $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
 IPSERVIDOR_WEBSOCKETS=$("#IPSERVIDOR_WEBSOCKETS").val();
 PUERTO_WEBSOCKETS=$("#PUERTO_WEBSOCKETS").val();
+TIMEOUT_CONEXIONWEBSOCKETS=5000;
+
 // IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 // PUERTO_WEBSOCKETS="50051";
 
@@ -62,6 +64,10 @@ $(document).ready(function () {
     bloquear_teclas_mouse();
     INICIAR_RENDER()
 });
+
+// $(window).on('beforeunload', function(){
+//     socket.close();
+// });
 
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -318,38 +324,46 @@ function CargarEstadistica(IdJuego) {
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();/////CONTADOR PARA EVENTO
 
+                    if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
+                          inicio_pedir_hora=performance.now();
+                          pedir_hora=true;
+                          timeout_pedir_hora=setInterval(function(){
+                                if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
+                                    crear_toastr_websockets_error();
+                                }
+                                else{
+                                    clearInterval(timeout_pedir_hora);
+                                }
+                          },1000);
+                          console.warn("YA CONECTADO, pedir hora  estado socket=>"+socket.readyState);
+                          pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
+                    }
+                    else{
+                          console.warn("INICIANDO CONEXIÓN ");
+                          CONECTADO__A_SERVIDORWEBSOCKET=false;
+                          // inicio_intento_conexion=performance.now();
+                          intentando_conectarwebsocket=true;
+                          if(typeof socket!="undefined" && socket!=null){socket.close();socket=null;}
+                          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                          timeout_conexionwebsockets();
 
-                        if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
-                              inicio_pedir_hora=performance.now();
-                              pedir_hora=true;
-                              timeout_pedir_hora=setInterval(function(){
-                                    if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
-                                        crear_toastr_websockets_error();
-                                    }
-                                    else{
-                                        clearInterval(timeout_pedir_hora);
-                                    }
-                              },1000);
-                              console.warn("YA CONECTADO, pedir hora");
-                              pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
-                        }
-                        else{
-                              console.warn("INICIANDO CONEXIÓN ");
-                              CONECTADO__A_SERVIDORWEBSOCKET=false;
-                              inicio_intento_conexion=performance.now();
-                              connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                                revisar_ya_conecto=setInterval(function(){
-                                        if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
-                                            if(typeof toasr_websockets_error!="undefined"){
-                                                toasr_websockets_error.hide();
-                                            }
-                                            clearInterval(revisar_ya_conecto);
-                                        }
-                                        else{
-                                           crear_toastr_websockets_error();
-                                        }
-                                },1000);
-                        } 
+                          //   revisar_ya_conecto=setInterval(function(){
+                          //           if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
+                          //               if(typeof toasr_websockets_error!="undefined"){
+                          //                   toasr_websockets_error.hide();
+                          //               }
+                          //               clearInterval(revisar_ya_conecto);
+                          //           }
+                          //           else{
+                          //               if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS){
+                          //                   socket.close();
+                          //                   clearInterval(revisar_ya_conecto);
+
+                          //               }
+                          //              crear_toastr_websockets_error();
+                          //           }
+                          //   },1000);
+                    } 
 
 
                     
@@ -377,6 +391,32 @@ function CargarEstadistica(IdJuego) {
     });
 }
 
+function detener_timeout_conexionwebsockets(){
+      if(typeof revisar_ya_conecto!="undefined"){
+        clearInterval(revisar_ya_conecto);
+   } 
+}
+function timeout_conexionwebsockets(){
+     inicio_intento_conexion=performance.now();
+   detener_timeout_conexionwebsockets();
+   revisar_ya_conecto=setInterval(function(){
+                                if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
+                                    ocultar_toasr_websockets_error();
+                                    clearInterval(revisar_ya_conecto);
+                                }
+                                else{
+                                    if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS){
+                                        if(typeof socket!="undefined" && socket!=null){
+                                            socket.close();socket=null;
+                                        }
+                                        clearInterval(revisar_ya_conecto);
+
+                                    }
+                                   crear_toastr_websockets_error();
+                                }
+                        },1000);
+
+}
 function crear_toastr_websockets_error(){
     if(typeof toasr_websockets_error=="undefined"){
         toastr.options = {
@@ -390,6 +430,14 @@ function crear_toastr_websockets_error(){
         toasr_websockets_error.show()}
 }
 
+     
+
+
+function ocultar_toasr_websockets_error(){ 
+     if(typeof toasr_websockets_error!="undefined"){
+        toasr_websockets_error.hide();
+    }
+}
 function crear_toasr_nohay_evento(){
   if(typeof toasr_nohay_evento=="undefined"){
                                 toastr.options = {
