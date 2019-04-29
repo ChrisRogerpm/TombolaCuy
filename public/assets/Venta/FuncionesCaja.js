@@ -24,11 +24,19 @@ function BuscarTicket(ticketobjeto){
              if(apuestasticket.length==0){
                 toastr.error("Ticket "+ ticketbuscado +" no está registrado");return;
              }
+
+            //  if(apuestasticket[0].idPuntoVenta!=$("#idPuntoVenta").val()){
+            //     toastr.error("Ticket de Diferente Punto de Venta");return;
+            // }
+
+
              if(ticketsganadores.length>0){
 
                 if(ticketsganadores[0].estadoTicket==0){toastr.error("Ticket"+ ticketbuscado+ " Anulado");return false;}
                 if(ticketsganadores[0].estadoTicket==2){toastr.error("Ticket "+ ticketbuscado+" Pagado");return false;}
                 if(ticketsganadores[0].estadoTicket==3){toastr.error("Ticket "+ ticketbuscado+" Suspendido");return false;}
+
+                
 
                 GuardarGanadorEvento(ticketsganadores,ticketsganadores[0].idTicket);
 
@@ -1307,7 +1315,9 @@ function HistorialJackpotDatosJson(puntoventa,idev){
                   $(".historial_numeros").append(
                     $("<div>")
                     .attr("data-idEvento",e.idEvento)
-                    .text(e.valorGanador).css("background-color",e.color)
+                    .text(e.valorGanador)
+                    .css("background-color",e.color)
+                    .css("color",e.rgbLetra)
                 )
             })
         },

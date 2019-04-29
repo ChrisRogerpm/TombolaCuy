@@ -2,14 +2,16 @@
 $.LoadingOverlay("show");
 $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
-// IPSERVIDOR_WEBSOCKETS="35.237.182.107";
+// IPSERVIDOR_WEBSOCKETS="35.202.47.253";
 // PUERTO_WEBSOCKETS="888";
-IPSERVIDOR_WEBSOCKETS="35.239.64.189";
-PUERTO_WEBSOCKETS="888";
+
+
+IPSERVIDOR_WEBSOCKETS=$("#IPSERVIDOR_WEBSOCKETS").val();
+PUERTO_WEBSOCKETS=$("#PUERTO_WEBSOCKETS").val();
+// IPSERVIDOR_WEBSOCKETS="192.168.1.60";
+// PUERTO_WEBSOCKETS="50051";
 
 GANADOR_DE_EVENTO="";
-iniciado = false;
-token="";  /// en consultarevento obtiene valor 
 EVENTO_ID="";
 ARRAY_PUNTOSCAJAS=[];
 
@@ -55,7 +57,9 @@ ARRAY_PUNTOSCAJAS.push( { nombre:32 ,posicion: {x:0.931038104276527,y:0,z:-3.348
 
 ARRAY_PUNTOSCAJAS.push( { nombre:0 ,posicion: {x:0.21479664977962323,y:0,z:-2.8940485718326103} }   )
 
+
 $(document).ready(function () {
+    bloquear_teclas_mouse();
     INICIAR_RENDER()
 });
 
@@ -120,10 +124,10 @@ function INICIAR_RENDER() {
     camera.position.set(0, 10, 0);
 //coontroles 
     // //controls
-        controls = new THREE.OrbitControls(camera);
-        controls.rotateSpeed = 1.0;
-        controls.zoomSpeed = 1.2;
-        controls.panSpeed = 0.8;
+        // controls = new THREE.OrbitControls(camera);
+        // controls.rotateSpeed = 1.0;
+        // controls.zoomSpeed = 1.2;
+        // controls.panSpeed = 0.8;
         // controls.autoRotate = true;
 
     //  controls.addEventListener( 'change',  renderer.render( scene, camera ) ); 
@@ -167,31 +171,23 @@ function INICIAR_RENDER() {
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
     // $.LoadingOverlay("show");
-    loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
+    // loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
+    loaderCaja.load('images/glb/cajastar.glb', function (gltfCaja) {
         
 
-todo=gltfCaja;
+        todo=gltfCaja;
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
             if (object instanceof THREE.Mesh) {
                 object.castShadow = true;
             }
         });
-        modelCaja.position.y=0.24;
         // modelCaja.scale.set(0.005, 0.005, 0.005);
+        modelCaja.children[0].children[0].position.y=0.28; 
+        modelCaja.children[0].children[0].children[1].scale.set(2.4,2.4,4.21);/// suelo 
 
 
-
-//           var box = new THREE.Box3().setFromObject( modelCaja );
-//         box.center( modelCaja.position ); // this re-sets the mesh position
-//         modelCaja.position.multiplyScalar( - 1 );
-//          pivot = new THREE.Group();
-// scene.add( pivot );
-// pivot.add( modelCaja );
-
-        // modelCaja.position.z=0.8
         modelCaja.name ="TABLA_CAJAS";
-        //modelCaja.position.set(-15,0,0);
         scene.add(modelCaja);
         skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos(); ///////////////////////
@@ -201,8 +197,8 @@ todo=gltfCaja;
        modelCaja.children[0].children[0].children[1].receiveShadow=true;
        // modelCaja.children[0].position.y = 39;
        // modelCaja.children[0].children[1].scale.set(3, 3, 3); ///suelo
-        CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
-
+        // CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
+           CAJAS_ARRAY=modelCaja.children[0].children[0].children[0].children;
         cajax=modelCaja.children[0].children[0].children[2];
 
     });
@@ -232,19 +228,26 @@ function CargarEstadistica(IdJuego) {
         },
         success: function (response) { 
 
-               ocultar_toasr_nohay_evento();
-               ocultar_toasr_servidor_error()
                 
             CONSULTADO_EVENTO=false;
             aaa=response;        
-            token=response.token_animacion;             
             $.each(response.estadistica, function( key, value ) {
                 $("#"+value.valorapuesta).text(value.Repetidos);
                 $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
                 $("#"+value.valorapuesta).prev().css("color",value.rgbLetra)
-
-
             });
+            // $(response.estadistica).each(function(i,e){
+            //     var numero=e.valorapuesta.toString();//1
+            //     if(numero=="0"){numero="x";}
+            //     rgb_background=hexToRgb(e.rgb);
+            //     console.info(numero);
+            //     objeto= modelCaja.getObjectByName(numero);
+            //     objeto.material.color.r=rgb_background.r;
+            //     objeto.material.color.g=rgb_background.g;
+            //     objeto.material.color.b=rgb_background.b;
+
+            // })
+
             var strUltimos12="";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){
@@ -257,25 +260,70 @@ function CargarEstadistica(IdJuego) {
             $("#imagen_cargando").hide();
             $.LoadingOverlay("hide");
 
+
+
+
+         ocultar_toasr_nohay_evento();
+           ocultar_toasr_servidor_error()
+
+
+            ///NUEVOOOOOOOOOO
+                        // if(socket!=null && socket.readyState==1){
+                        //       inicio_pedir_hora=performance.now();
+                        //       pedir_hora=true;
+                        //       timeout_pedir_hora=setInterval(function(){
+                        //             if(pedir_hora){
+                        //                 crear_toastr_websockets_error();
+                        //             }
+                        //             else{
+                        //                 clearInterval(timeout_pedir_hora);
+                        //             }
+                        //       },1000);
+                        //       console.warn("YA CONECTADO, pedir hora");
+                        //       pedir_evento();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
+                        // }
+                        // else{
+                        //       console.warn("INICIANDO CONEXIÓN ");
+                        //       CONECTADO__A_SERVIDORWEBSOCKET=false;
+                        //       inicio_intento_conexion=performance.now();
+                        //       connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                        //         revisar_ya_conecto=setInterval(function(){
+                        //                 if(CONECTADO__A_SERVIDORWEBSOCKET){
+                        //                     if(typeof toasr_websockets_error!="undefined"){
+                        //                         toasr_websockets_error.hide();
+                        //                     }
+                        //                     clearInterval(revisar_ya_conecto);
+                        //                 }
+                        //                 else{
+                        //                    crear_toastr_websockets_error();
+                        //                 }
+                        //         },1000);
+                        // }
+
+
+            ///
+
             if(typeof response.evento!="undefined"){
-                if(response.evento.evento_id_actual!=""){
+                if(response.evento.evento_id_actual!=""){/// SI RESPONSE EVENTO TIENE ID EVENTO
                     EVENTO_ACTUAL=response.evento;
 
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
-                    GANADOR_DE_EVENTO = EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=10000;//10000 EVENTO_ACTUAL.tiempo_giro_caja;
-                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-10000;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                    // TIEMPO_CUY =10000000;
+                    GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
+                    TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
+                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                // TIEMPO_GIRO_CAJA=2000;
+                //     TIEMPO_CUY =10000000;
+                    
+
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
-                    $("#termotetro_para_iniciar").show();
+                    $("#termotetro_para_iniciar").show();/////CONTADOR PARA EVENTO
 
 
-                    setTimeout(function(){
-                        if(socket!=null && socket.readyState==1){
+                        if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
                               inicio_pedir_hora=performance.now();
                               pedir_hora=true;
                               timeout_pedir_hora=setInterval(function(){
-                                    if(pedir_hora){
+                                    if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
                                         crear_toastr_websockets_error();
                                     }
                                     else{
@@ -291,7 +339,7 @@ function CargarEstadistica(IdJuego) {
                               inicio_intento_conexion=performance.now();
                               connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
                                 revisar_ya_conecto=setInterval(function(){
-                                        if(CONECTADO__A_SERVIDORWEBSOCKET){
+                                        if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
                                             if(typeof toasr_websockets_error!="undefined"){
                                                 toasr_websockets_error.hide();
                                             }
@@ -304,19 +352,17 @@ function CargarEstadistica(IdJuego) {
                         } 
 
 
-                    },1000)
                     
-                }
-                else{
-
+                }///
+                else{////NO HAY EVENTO
                     crear_toasr_nohay_evento();
-               
                   console.warn("No hay evento activo");
                   setTimeout(function(){
                     CargarEstadistica(1);
                   },1000)
                 }
-            }////fin if eresponse evento
+            }
+            ////fin if eresponse evento
         },
         error: function (jqXHR, textStatus, errorThrown) {
           CONSULTADO_EVENTO=false;

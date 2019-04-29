@@ -48,6 +48,7 @@ class ApiController extends Controller
                 'evento_id_actual' => $evento_actual->idEvento,
                 'evento_valor_ganador' => $ganador->valorGanador,
                 'segBloqueoAntesAnimacion' => $segundos_agregados,
+                'segCajaGirando' => $evento_actual->segCajaGirando,
                 'puntos_cuy'=> $evento_actual->puntosCuy// $this->generar_posiciones_random()
             ];
             return response()->json([
@@ -67,7 +68,9 @@ class ApiController extends Controller
                 'fecha_animacion' => '',
                 'evento_id_actual' => '',
                 'evento_valor_ganador' => '',
-                'segBloqueoAntesAnimacion' => ''
+                'segBloqueoAntesAnimacion' => '',
+                'segCajaGirando' => ''
+
             ];
             return response()->json([
                 'evento' => $array_evento,

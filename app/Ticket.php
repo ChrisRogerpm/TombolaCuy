@@ -112,10 +112,18 @@ class Ticket extends Model
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
         $listar = DB::select(DB::raw("
                                
-                                select  tick.idEvento,tipoapuesta.idTipoApuesta, tipoapuesta.valorapuesta, tipopago.nombre from apuesta 
+                                select  tick.idEvento,tipoapuesta.idTipoApuesta, tipoapuesta.valorapuesta, tipopago.nombre 
+                                ,pu_ve.idPuntoVenta
+                                from apuesta 
                                 left join tipo_apuesta tipoapuesta on  tipoapuesta.idTipoApuesta=apuesta.idTipoApuesta 
                                 left join tipo_pago tipopago on tipopago.idTipoPago = tipoapuesta.idTipoPago
                                 left join ticket tick on tick.idTicket=apuesta.idTicket
+
+                                  left join apertura_caja ap_ca on ap_ca.idAperturaCaja=tick.idAperturaCaja
+                                left join caja ca on ca.idCaja= ap_ca.idCaja 
+                                left join punto_venta pu_ve on pu_ve.idPuntoVenta=ca.idPuntoVenta
+
+
                                 where apuesta.idTicket='".$idTicket."'
                                 "));
         return $listar;

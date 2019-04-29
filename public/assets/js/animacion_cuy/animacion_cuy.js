@@ -6,19 +6,34 @@ var archivos = ['images/cuy6.glb', 'images/cajaPensando.glb', 'images/cuyDudando
 // ,'images/glb/cuyesperando.glb'
 // ,'images/glb/cuypremio.glb'
 // ,'images/glb/cuysalto.glb'
+// ,'images/glb/tablero.glb'
 ];
-var objLoader = new THREE.GLTFLoader();
-var escalacuys = 0.25;
-var escalacajagirando = 0.04;
-var intervalo_consultaevento=2000;
+dt =0.03 // velocidad movimiento cuy
+dtrotacion = 0.05; // velocidad rotacion cuy;
+escalacuys = 0.25;
+escalacajagirando = 0.04;
+intervalo_consultaevento=2000;
 buscando_evento=false;
 
+function hexToRgb(hex) {
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+        return r + r + g + g + b + b;
+    });
+
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
 
 function camara_mirar(objeto){
- camera.position.x = objeto.position.x ;
- camera.position.y = objeto.position.y + 0.9;
- camera.position.z = objeto.position.z +3.6;
- camera.lookAt(objeto.position);
+        camera.position.x = objeto.position.x ;
+        camera.position.y = objeto.position.y + 1.6;
+        camera.position.z = objeto.position.z +4;
+        camera.lookAt(objeto.position);
 }
 
 function camara_inicio(){
@@ -68,7 +83,7 @@ function camara_movimiento_inicio(hacia,camera,tiempo, callback){
 }
 
 
-function get_caja(numero){
+function get_cajaanterior(numero){
     cajaobjeto={};
     $(ARRAY_PUNTOSCAJAS).each(function(i,e){
         if(e.nombre==numero){
@@ -77,6 +92,21 @@ function get_caja(numero){
         }
     })
     return cajaobjeto;
+}
+function get_caja(numero){
+    cajaobjeto={};
+    if(numero==0 || numero=="x"){
+        numero="x";
+    }
+    $(CAJAS_ARRAY).each(function(i,e){
+        if(e.name==numero){
+            cajaobjeto=e;
+            return false;
+        }
+    })
+    var worldposition=cajaobjeto.getWorldPosition();
+    posicion={nombre:numero,posicion:{x:worldposition.x,y:worldposition.y,z:worldposition.z}}
+    return posicion;
 }
 function responsive_canvas() {
    camera.aspect = window.innerWidth / window.innerHeight;
@@ -97,8 +127,8 @@ function cargarImagenes(srcs, callback) {
 }
 
 function cargar_archivos() {
+    var objLoader = new THREE.GLTFLoader();
     if (index > archivos.length - 1) {
-   
         console.warn("FIN CARGA ARCHIVOS");
         CargarEstadistica(1);
         window.addEventListener('resize', responsive_canvas, false);
@@ -236,9 +266,23 @@ function cargar_archivos() {
             mixerCuySalto = new THREE.AnimationMixer(modelCuySalto);
             mixerCuySalto.clipAction(animations[0]).play();
         }
-
-
-
+        // if (archivos[index] =="images/glb/tablero.glb") {
+        //     modelCuyTablero = gltf.scenes[0];
+        //     modelCuyTablero.traverse(function (objeto) {
+        //         if (objeto instanceof THREE.Mesh) {
+        //             objeto.castShadow = true
+        //         }
+        //     });
+        //     modelCuyTablero.castShadow=true;
+        //     modelCuyTablero.receiveShadow=true;
+        //     modelCuyTablero.name = "CUY_PREMIO";
+        //     modelCuyTablero.scale.set(escalacuys, escalacuys, escalacuys);
+        //     modelCuyTablero.position.set(0, 0, 0);
+        //     scene.add(modelCuyTablero);
+        //     var animations = gltf.animations;
+        //     mixerCuySalto = new THREE.AnimationMixer(modelCuyTablero);
+        //     mixerCuySalto.clipAction(animations[0]).play();
+        // }
         index++;
         cargar_archivos();
 
@@ -357,18 +401,15 @@ function reiniciar_cuy(){
         clockCuyDudando = new THREE.Clock();
         clockCuyChoque= new THREE.Clock();
         clockCajaP= new THREE.Clock();
-        token="";
         t=0;
         $("#barra_loading").css("height","100%");
         $("#barra_loading_tpi").css("width","0%");
         //PUNTOS_CUY=null;
         //INDICE_PUNTOS_CUY=0;
-
 }
 
 
 function INICIO_ANIMACION_CUY(){
-
 //     detener_var_cuysalto();detener_var_cuypremio();detener_var_cuyesperando();
 // modelCuyPremio.position.set(3,0,3);cuypremio();
 // modelCuySalto.position.set(-3,0,3);cuysalto();
@@ -378,12 +419,10 @@ function INICIO_ANIMACION_CUY(){
 // modelCuyEsperando.scale.set(1.3,1.3,1.3);
 
         iniciogiro =  clockCajaP.getElapsedTime();
-
-        dt =0.03 // velocidad movimiento cuy
-        dtrotacion = 0.05; // velocidad rotacion cuy;
         t = 0   /// tiempo movimiento cuy;
         timerotacion=0; 
         detener_var_animarcamara();
+        $("#ImgContainer").hide();
         animar_camara();
 
         camara_mirar(modelCajaP);
@@ -391,17 +430,16 @@ function INICIO_ANIMACION_CUY(){
             ULTIMO_PUNTO_CUY=a;
         }
         reiniciar_cuy();///reiniciar posicion cuyes 0 0 0
-
         actualizar_cuyes_posicion();
         if(typeof controls!="undefined"){
-             controls.autoRotate = true;
+             //controls.autoRotate = true;
         }
-
         detener_var_cajagirando();
         cajagirando_animacion();
 }
+
+
 function cajagirando_animacion() {
-        $("#ImgContainer").hide();
         var_cajagirando = requestAnimationFrame(cajagirando_animacion);
         mixer.update(clock.getDelta());
         mixerCuyDudando.update(clockCuyDudando.getDelta());
@@ -414,28 +452,28 @@ function cajagirando_animacion() {
         }
         else{
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO);
+            $("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
+   // spline = new THREE.SplineCurve3(puntos_azar());
 
        // detener_var_animarcamara();
-
             detener_var_cajagirando();
             mostrar_cuymoviendo();
-
-            cajax=getObjeto_caja("x");
-            //modelCaja.children[0].children[0].children[0].children[2];//
-            // madera1=modelCaja.children[0].children[0].children[0];
-            // madera2=modelCaja.children[0].children[0].children[1];
-             // maderas=get_maderas();
+             cajax=getObjeto_caja("x");
              maderas=[];
-             maderas.push(getObjeto_caja("madera"));
+            maderas.push(getObjeto_caja("madera"));
              maderas.push(getObjeto_caja("madera2"));
-             // maderas.push(modelCaja.children[0].children[0].children[0].children[1]);
-             // maderas.push(modelCaja.children[0].children[0].children[0].children[2]);
-            posicionxcajaxinicial=9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
-            bcajaxz=8.2;//3.4999993133545217//800;
+            posicionycajaxinicial=-9.8808069229126  ;//9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
+            posicionfinalcaja=-11.4;//8.2;//3.4999993133545217//800;
+            
+            cajax_posicioninicial=cajax.getWorldPosition();
             dtcajax=0.2;
             tcajax=0;
+            rotacionx_inicio=0;//-7.318557638911297e-33;
+            rotacionx_fin=-Math.PI / 2;//-1.4;
+            q1_cajax = new THREE.Quaternion().copy(cajax.quaternion);
+            q2_cajax = new THREE.Quaternion().copy(cajax.quaternion);
+             timerotacion = 0;
 
-            //retornar_cajx();
             if(typeof controls!="undefined"){
               controls.autoRotate = false;
             }
@@ -445,15 +483,10 @@ function cajagirando_animacion() {
 }
 
 function retornar_cajx(){
-    // cajax.position.z=-6.86645478253922e-7;//-993.228455; 
-    cajax.position.y=9.932283401;//-993.228455; 
-
-
-    // madera1.position.z=-0.0000610351563;
-    // madera2.position.z=-0.0000610351563;
-        maderas[0].visible=true;
+    cajax.position.y=-9.8808069229126;//9.932283401;//-993.228455; 
+    cajax.rotation.x=0;//-7.318557638911297e-33;
+    maderas[0].visible=true;
     maderas[1].visible=true;
-
 }
 
 function cajax_animacion(){
@@ -462,29 +495,27 @@ function cajax_animacion(){
 
     funcion_ease=EasingFunctions_array[2].funcion;//easeOutQuad
     // var newZ = lerp(posicionxcajaxinicial, bcajaxz, funcion_ease(tcajax));  
-    var newY = lerp(posicionxcajaxinicial, bcajaxz, funcion_ease(tcajax));  
+    var newY = lerp(posicionycajaxinicial, posicionfinalcaja, funcion_ease(tcajax));  
+    var newrotacionX = lerp(rotacionx_inicio, rotacionx_fin, funcion_ease(tcajax));  
     // cajax.position.z=newZ;
     cajax.position.y=newY;
-
+    cajax.rotation.x=newrotacionX;
     //t += dt;
-   tcajax=parseFloat(tcajax+dtcajax).toFixed(5);
+    tcajax=parseFloat(tcajax+dtcajax).toFixed(5);
     tcajax=parseFloat(tcajax);
-
-
     var_animar_cajax = requestAnimationFrame(cajax_animacion);
     if(tcajax>1){
         detener_var_animar_cajax();tcajax=0;
-
     }
 }
 
-// var t = 0;
-// var dt = 0.01;//0.02                   // t (dt delta for demo)
-//     a = { x: 0, y: 0, z: 0 }         // posicion inicio
-    //b = { x: 0, y: 0, z: 2.7 };       // posicion fin
-
 function random_posicion(min, max) {
     return ((Math.random() * (max - min)) + min).toFixed(2);
+}
+function random_entero(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 function lerp(a, b, t) {
     return a + (b - a) * t;
@@ -495,24 +526,68 @@ function ease(t) {
 
 ////////////////////nuevo random
 function generar_nueva_posicion_random(){
-       // randomx = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.3))) : -Math.abs(parseFloat(random_posicion(0, 2.3))) ;  // rango x=> -2.5  a   2.5 
-      //  randomz = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, 2.3))) : -Math.abs(parseFloat(random_posicion(0, 2.3))); // rango z=> -2.5  a   2.5
-    //    b = { x: randomx, y: 0, z: randomz  };
+        bfuncion_easing_indice=0;//random_entero(0,EasingFunctions_array.length-1);
+        console.warn("i= "+bfuncion_easing_indice);
         b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
         INDICE_PUNTOS_CUY++;
-
         if(INDICE_PUNTOS_CUY>PUNTOS_CUY.length){
             console.warn(INDICE_PUNTOS_CUY+ " ---------Cuy pasó length del array PUNTOS_CUY  --- ")
             INDICE_PUNTOS_CUY=0; 
             b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
-
         }
-
+        return b;
+}
+/////////////////nuevo movimiento
+function generar_nueva_posicion_random2(rango){
+    // rango=2.,5
+       randomx = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, rango))) : -Math.abs(parseFloat(random_posicion(0,rango))) ;  // rango x=> -2.5  a   2.5 
+       randomz = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, rango))) : -Math.abs(parseFloat(random_posicion(0, rango))); // rango z=> -2.5  a   2.5
+       b = { x: randomx, y: 0, z: randomz  };
+      
         return b;
 }
 
+function puntos_azar(){
+    arrayvector=[];
+    for(a=0;a<10;a++){
+        nuevo=generar_nueva_posicion_random2(2.7);
+        arrayvector.push(new THREE.Vector3(nuevo.x,0,nuevo.z))
+    }
+    return arrayvector;
+}
+function linea_camino(){
+ var material = new THREE.LineBasicMaterial({
+        color: 0xff00f0,
+    });
+    var geometry = new THREE.Geometry();
+    for(var i = 0; i < spline.getPoints(100).length; i++){
+        geometry.vertices.push(spline.getPoints(100)[i]);  
+    }
+    var line = new THREE.Line(geometry, material);line.name="linea_camino";
+    scene.add(line);
 
+}
 
+up = new THREE.Vector3(0,0,1 );
+axis = new THREE.Vector3( );
+// t=0;dt=0.003
+// correr_nuevo()
+function correr_nuevo(){
+    var var_correr=requestAnimationFrame(correr_nuevo);
+    var tangent;
+    pt = spline.getPoint( t );console.log(pt)
+    model.position.set( pt.x, pt.y, pt.z );
+    tangent = spline.getTangent( t ).normalize();
+    mixer.update(clock.getDelta())
+    axis.cross(up, tangent).normalize();
+    radians = Math.acos( up.dot( tangent ) );
+    model.quaternion.setFromAxisAngle( axis, radians );
+    t=t+dt;
+    if(t>=1){
+         t=0;cancelAnimationFrame(var_correr)  
+    }
+}
+////fin nuevo movimiento
 
 function cuy_rotacionrandom() {//var_cuy_rotando
     if(!CUY_ROTANDO){return;}
@@ -530,7 +605,8 @@ function cuy_rotacionrandom() {//var_cuy_rotando
     renderer.render(scene, camera);
     if (timerotacion > 1) {
         model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
-        model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+        modelCuyDudando.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+        modelCuyChoque.lookAt(new THREE.Vector3(b.x,b.y,b.z))
 
         CUY_ROTANDO=false;
         // console.log("rotacion "+timerotacion);  
@@ -561,7 +637,9 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
     if (!CUY_CORRIENDO) {  return;}
     mostrar_cuymoviendo();
 
-    funcion_ease=EasingFunctions_array[0].funcion;//linear
+    // funcion_ease=EasingFunctions_array[0].funcion;//linear
+    funcion_ease=EasingFunctions_array[bfuncion_easing_indice].funcion;//usar random de generarrandompunto b
+
     var newX = lerp(a.x, b.x, funcion_ease(t));  
     var newY = lerp(a.y, b.y, funcion_ease(t));  
     var newZ = lerp(a.z, b.z, funcion_ease(t));  
@@ -592,18 +670,30 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
         if (milisegundos > TIEMPO_RANDOM) {
             if(!mover_a_ganador){
                     mover_a_ganador=true;
-                    b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    // b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    if(GANADOR_DE_EVENTO=="x" || GANADOR_DE_EVENTO=="0"){
+                          bfuncion_easing_indice=7;//easeInQuart
+                          console.log("X o O")
+                         // b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
+                         b=getObjeto_caja("madera").getWorldPosition();
+
+                    }else{
+                        b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    }
                     console.log("aca");
                     console.log(b);
                     random_tiempo();
             }  
             else {
                 CUY_CORRIENDO = false;
-                if(get_caja(0).posicion.x==model.position.x && get_caja(0).posicion.y==model.position.y){
+               
+                if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
+                    model.position.z== getObjeto_caja("madera").getWorldPosition().z ){
                     modelCuyChoque.position.y=-0.1;
                     cuychoque();
                     cajax_animacion();
                 }
+
                 if (typeof funcion_callback != "undefined") {
                     delete funcion_callback;
                 }
@@ -613,7 +703,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                 $("#barra_loading_tpi").css("width","0%");
 
                                 tiempo_cuychoque=1;
-                                if(GANADOR_DE_EVENTO=="0"){
+                                if(GANADOR_DE_EVENTO=="0" || GANADOR_DE_EVENTO=="x"){
                                     tiempo_cuychoque=5000;
                                 }
 
@@ -632,12 +722,14 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
 
                                         setTimeout(function(){
                                                 $("#idevento_titulo").text("");
-                                               GANADOR_DE_EVENTO="";
+                                                GANADOR_DE_EVENTO="";
                                                  detener_var_animarcamara();
                                                 modelCajaP.visible=true;
                                                 PUNTOS_CUY=null;
                                                 INDICE_PUNTOS_CUY=0;
                                                 reiniciar_cuy();
+                                                retornar_cajx();
+                                                bfuncion_easing_indice=0;
 
                                         },1000);
                                       
@@ -743,10 +835,10 @@ function random_tiempo(){
             CUY_ROTANDO=false;
             model.lookAt(b.x, b.y, b.z);
             modelCuyDudando.lookAt(b.x, b.y, b.z);
-            modelCuyDudando.lookAt(b.x, b.y, b.z);
+            modelCuyChoque.lookAt(b.x, b.y, b.z);
             t=0;
             aver=CUY_CORRIENDO?"true":"false";
-              console.warn("t else:::::  "+t +" "+b.x+" "+b.y+" "+b.z +"  cuycorriendo  = "+ aver);
+              // console.warn("t else:::::  "+t +" "+b.x+" "+b.y+" "+b.z +"  cuycorriendo  = "+ aver);
             detener_var_cuymoviendo();
             detener_var_cuydudando();
             detener_var_cuychoque();
@@ -811,3 +903,168 @@ function cuypremio(){
 }
 
 ///////////FINNNNNNNNNNNNNNNNNNNNNNNNN            FUNCIONES nuevas
+
+
+
+
+
+
+
+
+function dibujarCurva() {
+  var vertices = path.getSpacedPoints(20);
+
+  // Change 2D points to 3D points
+  for (var i = 0; i < vertices.length; i++) {
+    point = vertices[i]
+    vertices[i] = new THREE.Vector3(point.x, point.y, 0);
+  }
+  var lineGeometry = new THREE.Geometry();
+  lineGeometry.vertices = vertices;
+  var lineMaterial = new THREE.LineBasicMaterial({
+    color: 0xffffff
+  });
+  var line = new THREE.Line(lineGeometry, lineMaterial)
+  scene.add(line);
+}
+
+
+
+
+
+
+
+
+
+
+function mover_rapido(ganador){
+    mover_a_ganador=ganador;
+    rotarono=Math.random() >= 0.5 ?true:false;
+        //rotarono=false;
+
+        t = 0;  ///coeficiente
+        timerotacion=0;
+     
+        mostrar_cuymoviendo();
+        mixer.update(clock.getDelta());
+        renderer.render(scene, camera);
+        if(rotarono){
+            q1 = new THREE.Quaternion().copy(model.quaternion);
+            model.lookAt(b.x,b.y,b.z);
+            q2 = new THREE.Quaternion().copy(model.quaternion);
+        }
+        detener_var_cuymoviendo();
+        detener_var_cuychoque();
+        detener_var_cuydudando();
+        detener_var_cuy_rotando();
+          
+        if(rotarono){
+            callback_rotacion = function () { ///se ejecuta al acabar  cuy_rotacion();
+                detener_var_cuymoviendo();
+                CUY_CORRIENDO=true;
+                mover_cuy_rapido();
+            }
+            CUY_ROTANDO=true;
+            detener_var_cuy_rotando();
+            cuy_rotacionrapido();
+        }else{
+            CUY_ROTANDO=false;
+            model.lookAt(b.x, b.y, b.z);
+            modelCuyDudando.lookAt(b.x, b.y, b.z);
+            modelCuyChoque.lookAt(b.x, b.y, b.z);
+            t=0;
+            aver=CUY_CORRIENDO?"true":"false";
+              // console.warn("t else:::::  "+t +" "+b.x+" "+b.y+" "+b.z +"  cuycorriendo  = "+ aver);
+            detener_var_cuymoviendo();
+            detener_var_cuydudando();
+            detener_var_cuychoque();
+            CUY_CORRIENDO=true;
+            mover_cuy_rapido();
+        }
+
+}
+
+function cuy_rotacionrapido() {//var_cuy_rotando
+    if(!CUY_ROTANDO){return;}
+    model.visible = true;
+    modelCuyDudando.visible = false;
+    modelCuyChoque.visible = false; 
+    timerotacion=parseFloat(timerotacion+dtrotacion).toFixed(5);
+    timerotacion=parseFloat(timerotacion);
+    var_cuy_rotando = requestAnimationFrame(cuy_rotacionrapido);
+    mixer.update(clock.getDelta());
+    THREE.Quaternion.slerp(q1, q2, model.quaternion, timerotacion); // added
+    renderer.render(scene, camera);
+    if (timerotacion > 1) {
+        model.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+        modelCuyDudando.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+        modelCuyChoque.lookAt(new THREE.Vector3(b.x,b.y,b.z))
+
+        CUY_ROTANDO=false;
+        // console.log("rotacion "+timerotacion);  
+        timerotacion = 0; cancelAnimationFrame(var_cuy_rotando) // changed
+         if (typeof var_cuy_rotando != "undefined") {
+            cancelAnimationFrame(var_cuy_rotando);
+            delete var_cuy_rotando;
+        }
+        //console.info("acabo rotacion rand");
+        modelCuyDudando.rotation.x = model.rotation.x;
+        modelCuyDudando.rotation.y = model.rotation.y;
+        modelCuyDudando.rotation.z = model.rotation.z;
+        modelCuyChoque.rotation.x = model.rotation.x;
+        modelCuyChoque.rotation.y = model.rotation.y;
+        modelCuyChoque.rotation.z = model.rotation.z;
+        modelCuyDudando.position.x = model.position.x;
+        modelCuyDudando.position.y = model.position.y;
+        modelCuyDudando.position.z = model.position.z;
+        a = { x: model.position.x, y: model.position.y, z: model.position.z }; 
+        //cuydudando();
+        if (typeof callback_rotacion != "undefined") {
+            callback_rotacion();
+            delete callback_rotacion;
+        }
+    }
+}
+
+
+function mover_cuy_rapido() {    ///var_cuymoviendo  => animationframe
+    if (!CUY_CORRIENDO) {  return;}
+    mostrar_cuymoviendo();
+    funcion_ease=EasingFunctions_array[bfuncion_easing_indice].funcion;//usar random de generarrandompunto b
+
+    var newX = lerp(a.x, b.x, funcion_ease(t));  
+    var newY = lerp(a.y, b.y, funcion_ease(t));  
+    var newZ = lerp(a.z, b.z, funcion_ease(t));  
+    model.position.set(newX,0,newZ); 
+    t=parseFloat(t+dt).toFixed(5);
+    t=parseFloat(t);
+    mixer.update(clock.getDelta());
+    renderer.render(scene, camera);
+    var_cuymoviendo = requestAnimationFrame(mover_cuy_rapido);
+    if(t>=1)
+    {
+        model.position.set(b.x, b.y, b.z); ///ajustar posición si no llegó exacto
+        a = { x: model.position.x, y: model.position.y, z: model.position.z };   //////nueva posicion
+        detener_var_cuymoviendo();
+        detener_var_cuy_rotando();
+        actualizar_cuyes_posicion();
+            if(!mover_a_ganador){
+                    mover_a_ganador=true;
+                    // b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    if(GANADOR_DE_EVENTO=="x"){
+                         b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
+                    }else{
+                        b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    }
+            }  
+            else {
+                CUY_CORRIENDO = false;
+                if(ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.x==model.position.x && ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.y==model.position.y ){
+                    modelCuyChoque.position.y=-0.1;
+                    cuychoque();
+                    cajax_animacion();
+                }
+             }
+      
+    }  ///fin t>1
+}

@@ -12,6 +12,9 @@
 	</script>
 </head>
 <body >
+
+<input type="hidden" id="IPSERVIDOR_WEBSOCKETS" value="{{env('IPSERVIDOR_WEBSOCKETS','192.168.1.66')}}">
+<input type="hidden" id="PUERTO_WEBSOCKETS" value="{{env('PUERTO_WEBSOCKETS','50051')}}">
 	<div style="width:100%;height:100%;position:absolute;z-index: 10;background: 
 	rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center / 100% 100%
 
@@ -20,7 +23,13 @@
 
 	<div id="ImgContainer"></div>
 	<div id="img_ganador">
-		<div id='texto_ganador' style='font-family: RosewoodStd-Regular;height: 50%;width: 50%;font-size: 60vh;position: relative;left: 39%;top: 36%;color: black;text-align: center;'>
+		<div class="nroevento_ganador borde_blanco">
+			<h1 style="letter-spacing: 2px;">
+				<span class="smaller neon" id="span_idevento">#</span>
+				<span id="idevento_titulo_ganador" class="neon"></span>
+			</h1>
+		</div>
+		<div id='texto_ganador' class="borde_blanco">
 		</div>
 	</div>
 
@@ -117,7 +126,7 @@
 					<th class="cajaRoja">18</th><th id="18">0</th> <th class="cajaNegra">36</th><th id="36">0</th>
 				</tr>
 				<tr>
-					<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">0</th><th id="0" colspan="2">0</th>
+					<th class="cajaRoja" style="background-color:#3C8A39;width:50%" colspan="2">x</th><th id="0" colspan="2">0</th>
 				</tr>
 			</table>
 
