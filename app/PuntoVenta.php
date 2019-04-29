@@ -66,6 +66,7 @@ class PuntoVenta extends Model
         $punto_venta->idEmpresa = $request->input('idEmpresa');
         $punto_venta->idUbigeo = $request->input('idUbigeo');
         $punto_venta->nombre = $request->input('nombre');
+        $punto_venta->cc_id = $request->input('cc_id');
         $punto_venta->ZonaComercial = $zonaComercial;
         $punto_venta->save();
         return $punto_venta;

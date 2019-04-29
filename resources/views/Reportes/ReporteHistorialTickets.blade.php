@@ -17,7 +17,8 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
-                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Historial Tickets
+                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Historial
+                                                    Tickets
                                                 </h6>
                                             </div>
                                         </div>
@@ -59,7 +60,7 @@
                     <form id="frmNuevo" autocomplete="off">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Fecha Inicio</label>
                                     <div class="input-group">
@@ -69,19 +70,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Fecha Fin</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control input-sm FechaFin" name="fechaFin" required>
+                                        <input type="text" class="form-control input-sm FechaFin" name="fechaFin"
+                                               required>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
-                                    <select multiple="multiple" id="cboTienda" name="tiendas" class="form-control input-sm multiselect" style="width: 100%;">
+                                    <select multiple="multiple" id="cboTienda" name="tiendas"
+                                            class="form-control input-sm multiselect" style="width: 100%;">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Eventos</label>
+                                    <select id="cboEvento" name="eventos"
+                                            class="form-control input-sm" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>

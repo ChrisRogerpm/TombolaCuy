@@ -1,4 +1,4 @@
-@extends('Shared.layout') 
+@extends('Shared.layout')
 @section('content')
 <div class="row">
     <div class="col-md-6">
@@ -28,14 +28,6 @@
         <div class="panel panel-primary">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <a href="{{route('PuntoVenta.Insertar')}}" class="btn btn-primary btn-sm col-md-12 col-xs-12">
-                                    <span class="glyphicon glyphicon-file"></span> NUEVO</a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                         <div class="row">
                             <div class="col-md-12 col-sm-12">

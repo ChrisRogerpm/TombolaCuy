@@ -83,6 +83,13 @@
                                            value="{{$PuntoVenta->nombre}}">
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>CC Id</label>
+                                    <input type="text" name="cc_id" class="form-control input-sm"
+                                           value="{{$PuntoVenta->cc_id}}">
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

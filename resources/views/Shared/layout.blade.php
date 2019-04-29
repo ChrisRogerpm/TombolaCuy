@@ -60,8 +60,6 @@
     <link rel="stylesheet" href="{{asset('../components/icheck/skins/all.css')}}">
 
 
-
-    
 <!-- <link rel="stylesheet" href="{{asset('../css/exportar-excel/buttons.dataTables.min.css')}}"> -->
 
     <!-- /Styles -->
@@ -91,17 +89,18 @@
 
             <!-- Brand -->
             {{--<a href="#" class="navbar-brand navbar-brand-cover">--}}
-                {{--<div class="navbar-brand-big">--}}
-                    {{--<img src="{{asset('images/logo.png')}}" alt="CasperoBoard">--}}
-                {{--</div>--}}
-                {{--<div class="navbar-brand-small">--}}
-                    {{--<img src="{{asset('images/logoat.jpg')}}" alt="CasperoBoard">--}}
-                {{--</div>--}}
+            {{--<div class="navbar-brand-big">--}}
+            {{--<img src="{{asset('images/logo.png')}}" alt="CasperoBoard">--}}
+            {{--</div>--}}
+            {{--<div class="navbar-brand-small">--}}
+            {{--<img src="{{asset('images/logoat.jpg')}}" alt="CasperoBoard">--}}
+            {{--</div>--}}
             {{--</a>--}}
 
             <a href="#" class="navbar-brand navbar-brand-cover">
                 <div class="navbar-brand-big" style="text-align: center;width: 100%;">
-                    <img src="{{url('../images/logo.png')}}" alt="logo apuesta total" style="height: 40px;padding-top:5px;">
+                    <img src="{{url('../images/logo.png')}}" alt="logo apuesta total"
+                         style="height: 40px;padding-top:5px;">
                 </div>
                 <div class="navbar-brand-small">
                     <img src="{{url('../images/logoat.jpg')}}" alt="logo apuesa total" style="height: 49px;">
@@ -335,17 +334,11 @@
             <ul class="nav-sidebar">
                 <li><a href="{{route('Dashboard')}}"><i class="icon icon-inline fa fa-home"></i> <span
                                 class="title">Inicio</span></a></li>
-                <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-money"></i> <span
-                                class="title">DineroDefault</span></a></li>
-
-                <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-building"></i> <span
-                                class="title">Empresa</span></a></li>
                 <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-inbox"></i> <span
                                 class="title">Punto Venta</span></a></li>
                 <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-shopping-cart"></i> <span
                                 class="title">Caja</span></a></li>
-                <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-calendar"></i> <span
-                                class="title">Turno</span></a></li>
+
                 <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
                 <li class="sub">
@@ -363,7 +356,8 @@
                         <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
+                                <span
                                         class="title">Caja Venta</span></a></li>
 
                     </ul>
@@ -373,22 +367,22 @@
                         <i class="icon icon-inline fa fa-line-chart"></i> <span class="title">Reporte</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Reporte">
-                        <li><a href="{{route('Reporte.Apuesta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
+                        <li><a href="{{route('Reporte.Ventas')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Apuesta</span></a></li>
-                        <li><a href="{{route('Reporte.HistorialGanadores')}}"><i
-                                        class="icon icon-inline fa fa-circle-thin"></i> 
-                                        <span
-                                        class="title">Historial Ganadores</span></a></li>   
+                                        class="title">Ventas</span></a></li>
+                        <li><a href="{{route('Reporte.DetalleApuestaEvento')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i>
+                                <span
+                                        class="title">Det Apuesta Evento</span></a></li>
                         <li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">JackPot</span></a></li>
-                        <li><a href="{{route('Reporte.Venta')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
+                        <li><a href="{{route('Reporte.VentaEvento')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Ventas</span></a></li>
+                                        class="title">Venta por Eventos</span></a></li>
                         <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
-                                        class="title">Ventas Juego</span></a></li>
+                                        class="title">Historial de Eventos</span></a></li>
                         <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Cierre Caja</span></a></li>
@@ -399,15 +393,31 @@
                     </ul>
                 </li>
                 <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-cog"></i> <span
-                                class="title">Configuración Evento</span></a></li>
+                                class="title">Configuración General</span></a></li>
+                <li class="sub">
+                    <a href="#" class="sub-toggle">
+                        <i class="icon icon-inline fa fa-building"></i> <span class="title">Settings Generales</span>
+                    </a>
+                    <ul class="sub-menu collapse" data-menu-title="Elements">
+                        <li><a href="{{route('DineroDefault.Listar')}}"><i class="icon icon-inline fa fa-money"></i>
+                                <span
+                                        class="title">DineroDefault</span></a></li>
+                        <li><a href="{{route('Turno.Listar')}}"><i class="icon icon-inline fa fa-calendar"></i> <span
+                                        class="title">Turno</span></a></li>
+                        <li><a href="{{route('Empresa.Listar')}}"><i class="icon icon-inline fa fa-building"></i> <span
+                                        class="title">Empresa</span></a></li>
+                    </ul>
+                </li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-shopping-bag"></i> <span class="title">Seguridad</span>
                     </a>
                     <ul class="sub-menu collapse" data-menu-title="Progresivo">
-                        <li><a href="{{route('UsuarioPuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                        <li><a href="{{route('UsuarioPuntoVenta.Listar')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Usuario Punto Venta</span></a></li>
-                        <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                        <li><a href="{{route('Seguridad.PermisosUsuario')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Permisos</span></a></li>
                         <li><a href="{{route('Auditoria')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Auditoria</span></a></li>
@@ -428,14 +438,14 @@
             </a>
 
             {{--<div class="btn-group-wrapper">--}}
-                {{--<div class="btn-group btn-group-justified" role="group">--}}
-                    {{--<a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>--}}
-                    {{--<a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i--}}
-                                {{--class="icon icon-inline fa fa-lock"></i></a>--}}
-                    {{--<a href="#" class="btn btn-dark" role="button"--}}
-                       {{--onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i--}}
-                                {{--class="icon icon-inline fa fa-sign-out"></i></a>--}}
-                {{--</div>--}}
+            {{--<div class="btn-group btn-group-justified" role="group">--}}
+            {{--<a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>--}}
+            {{--<a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i--}}
+            {{--class="icon icon-inline fa fa-lock"></i></a>--}}
+            {{--<a href="#" class="btn btn-dark" role="button"--}}
+            {{--onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i--}}
+            {{--class="icon icon-inline fa fa-sign-out"></i></a>--}}
+            {{--</div>--}}
             {{--</div>--}}
 
         </div>

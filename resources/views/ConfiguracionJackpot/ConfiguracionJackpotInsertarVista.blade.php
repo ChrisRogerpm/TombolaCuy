@@ -110,5 +110,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js')}}"></script>
+    <script src="{{asset('assets/Jackpot/JackpotConfiguracion/ConfiguracionJackpotInsertar.js')}}"></script>
 @endpush

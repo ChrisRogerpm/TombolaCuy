@@ -18,7 +18,7 @@
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
                                                     <i class="glyphicon glyphicon-th mr-2"></i>
-                                                    Reporte de Historial de Ganadores
+                                                    Reporte Detalle Apuesta por Evento
                                                 </h6>
                                             </div>
                                         </div>
