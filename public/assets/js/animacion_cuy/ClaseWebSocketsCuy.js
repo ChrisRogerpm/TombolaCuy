@@ -4,7 +4,7 @@ var host= null;
 var port=null;
 var path=null;
 
-var logueo_websockets=false;
+var logueo_websockets=true;
 RECONECTAR_WEBSOCKET=true;
 function hora(){
   setInterval(function(){
@@ -47,7 +47,7 @@ function ocultar_toastr_eventofinalizo(){
 
 function connectarWebSockets(ipservidor,puerto)
 {
-  console.log("tiempo = "+performance.now());
+  // console.log("tiempo = "+performance.now());
   host=ipservidor;
   port=puerto;
    init(host,port);
@@ -55,9 +55,10 @@ function connectarWebSockets(ipservidor,puerto)
 function init(host,port){
   host="ws://"+host+":"+port;
   url=host;
-  console.info("CONECTANDO A "+host);
+  // console.info("CONECTANDO A "+host);
   try{
     
+    console.log(performance.now() +" CREANDO SOCKET");
     socket = new WebSocket(host);
     //log('WebSocket - status '+socket.readyState);
 
@@ -75,22 +76,21 @@ function init(host,port){
                 logwarn("Conectado a "+url +" ; estado= "+this.readyState); /////3  => desconectado    0  no conectado,   1  conectado
                // setTimeout(function(){
                   //pedir_evento()
-                  console.info("pidiendo horaaaaaaaaaaaaaaaaaaaaaaaa despues de onopen");
+                  //console.info("pidiendo horaaaaaaaaaaaaaaaaaaaaaaaa despues de onopen");
                   intentando_conectarwebsocket=false;
                   CONECTADO__A_SERVIDORWEBSOCKET=true;
-                     pedir_hora_server();
+                    // pedir_hora_server();
+                    pedir_eventoJSON();
       //          },1)
      };
     socket.onmessage = function(msg){ 
       aaaaa=msg;
-      console.log("aaaaaa ---------------------------------------------------------");
       try{
-      jsondecode=JSON.parse(msg.data);
-      id=jsondecode.id;
-      mensaje=jsondecode.mensaje;
-      tipo=jsondecode.tipo;
-      console.log("ID SOCKET  =========="+ id);
-        
+        jsondecode=JSON.parse(msg.data);
+        id=jsondecode.id;
+        mensaje=jsondecode.mensaje;
+        tipo=jsondecode.tipo;
+        console.log("ID SOCKET  =========="+ id);
       }
       catch(ex){
         mensaje=msg.data;
@@ -232,7 +232,7 @@ function init(host,port){
                       //   // EVENTO_=EVENTO_DATOS.evento;
                       //   accion_evento(EVENTO_DATOS);/////////////////////////////////////////******//////////////////
                       // break;
-                      case "evento":
+                      case "eventoJSON":
                         console.info(jsondecode);
                         EVENTO_DATOS=JSON.parse(jsondecode.mensaje);
                         // EVENTO_=EVENTO_DATOS.evento;
@@ -267,13 +267,16 @@ function init(host,port){
                           console.log("reconectar socket ");//+socket.readyState);
                           intentando_conectarwebsocket=true;
                           socket=null;
-                          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);
-                          timeout_conexionwebsockets();
+                          if(ANIMACION_CUY==false){
+                                connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);
+                                timeout_conexionwebsockets();
+                          }
+                      
                         //}
               // },1000);
-            }
+              }
 
-      },5000);
+      },7000);
                              
      };///fin on close
   } //fin try
@@ -328,28 +331,47 @@ function logerror(msg){
 
 function accion_evento(DATOS){
 
-EVENTO_ACTUAL=DATOS.evento;
-hora_servidor=DATOS.hora_servidor;
+  EVENTO_ACTUAL=DATOS.evento;
+  estadistica=DATOS.evento.estadistica;
+  resultado_evento=DATOS.evento.resultado_evento;
+
+
+/////LLENAR TABLAS ESTADISTICA Y RESULTADOS
+          $.each(estadistica, function( key, value ) {
+              $("#"+value.valorapuesta).text(value.Repetidos);
+              $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
+              $("#"+value.valorapuesta).prev().css("color",value.rgbLetra)
+          });
+          var strUltimos12="";
+          $.each(resultado_evento, function( key, value ) {
+                        strUltimos12+='<tr><th class="caja">'+value.idEvento+'</th><th style="color:'+value.rgbLetra+';background-color:'+value.rgb+'">'+value.valorGanador+'</th></tr>';
+          });
+          $("#tablaUltimos").html(strUltimos12);
+/////////////////////////////////////
+
+
+
+                hora_servidor=DATOS.hora_servidor;
                 if(EVENTO_ACTUAL.evento_id_actual!=""){
                     EVENTO_ACTUAL=EVENTO_ACTUAL;
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
                     TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
-                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
 
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
-accion_cuy(DATOS);
+                    accion_cuy(DATOS);//////////////////////////////////////////////////
  
                 }
                 else{
-
                     crear_toasr_nohay_evento();
-               
-                  console.warn("No hay evento activo");
-                  setTimeout(function(){
-                    CargarEstadistica(1);
-                  },1000)
+                    console.warn("No hay evento activo");
+                    setTimeout(function(){
+                       iniciar_websocketservidor();
+
+                    //CargarEstadistica(1);
+                   },1000)
                 }
 
 
@@ -372,11 +394,16 @@ hora_servidor=DATOS.hora_servidor;
 
                         FECHA_ANIMACION=EVENTO_ACTUAL.fecha_animacion;
                         FECHA_ANIMACION=moment(FECHA_ANIMACION, "YYYY-MM-DD HH:mm:ss a");
-                        console.info("F.ANIMACIÓN  =  "+moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a"));
-                        console.info("F.FIN EVENTO  =  "+moment(FECHA_FIN_EVENTO).format("YYYY-MM-DD HH:mm:ss a"));
-                        console.info("F.ACTUAL   =  "+ moment(ahora).format("YYYY-MM-DD HH:mm:ss a"));
                         segundos_para_animacion=FECHA_ANIMACION.diff(ahora,'seconds');
-                        console.info(segundos_para_animacion);
+                        if(logueo_websockets){
+                            console.info("INI= "+FECHA_INICIO_EVENTO.format("YYYY-MM-DD HH:mm:ss a") + " - FIN="+FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")
+                                    +" ACTUAL=  "+ ahora.format("YYYY-MM-DD HH:mm:ss a")
+                                    +" - ANIMACIÓN= "+moment(FECHA_ANIMACION).format("YYYY-MM-DD HH:mm:ss a")
+                                    +"--SEG. PARA ANIMACIÓN= "+segundos_para_animacion
+                                    +" segBloqueoAntesAnimacion="+EVENTO_ACTUAL.segBloqueoAntesAnimacion
+                                    +" segCajaGirando="+EVENTO_ACTUAL.segCajaGirando
+
+                          );}
                         seg_animacion=segundos_para_animacion*1000;
                         // segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
@@ -419,7 +446,8 @@ hora_servidor=DATOS.hora_servidor;
                                     ,function(){
                                       $("#barra_loading_tpi").css("width","0%");
                                           toast_eventoterminar.hide();
-                                          CargarEstadistica(1);
+                      iniciar_websocketservidor();
+                                          ///CargarEstadistica(1);
                                     }
                                   );
                                  $("#contador_para_activar").text(segundos_para_fin_evento);
@@ -437,11 +465,12 @@ hora_servidor=DATOS.hora_servidor;
                                   intervalo_fin_evento=setInterval(function(){
                                       if(iii>segundos_para_fin_evento){
                                           toastr_eventofinalizo.hide();
-                                          CargarEstadistica(1);
+                      iniciar_websocketservidor();
+                                          ///CargarEstadistica(1);
                                           clearInterval(intervalo_fin_evento);
                                       }
                                       iii++;
-                                 },1000);
+                                 },4000);
 
                               }
 

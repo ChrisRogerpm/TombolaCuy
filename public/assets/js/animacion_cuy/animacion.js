@@ -259,111 +259,73 @@ function CargarEstadistica(IdJuego) {
 
          ocultar_toasr_nohay_evento();
            ocultar_toasr_servidor_error()
-
-
             ///NUEVOOOOOOOOOO
-                        // if(socket!=null && socket.readyState==1){
-                        //       inicio_pedir_hora=performance.now();
-                        //       pedir_hora=true;
-                        //       timeout_pedir_hora=setInterval(function(){
-                        //             if(pedir_hora){
-                        //                 crear_toastr_websockets_error();
-                        //             }
-                        //             else{
-                        //                 clearInterval(timeout_pedir_hora);
-                        //             }
-                        //       },1000);
-                        //       console.warn("YA CONECTADO, pedir hora");
-                        //       pedir_evento();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
-                        // }
-                        // else{
-                        //       console.warn("INICIANDO CONEXIÓN ");
-                        //       CONECTADO__A_SERVIDORWEBSOCKET=false;
-                        //       inicio_intento_conexion=performance.now();
-                        //       connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                        //         revisar_ya_conecto=setInterval(function(){
-                        //                 if(CONECTADO__A_SERVIDORWEBSOCKET){
-                        //                     if(typeof toasr_websockets_error!="undefined"){
-                        //                         toasr_websockets_error.hide();
-                        //                     }
-                        //                     clearInterval(revisar_ya_conecto);
-                        //                 }
-                        //                 else{
-                        //                    crear_toastr_websockets_error();
-                        //                 }
-                        //         },1000);
-                        // }
+                        iniciar_websocketservidor();
 
 
             ///
 
-            if(typeof response.evento!="undefined"){
-                if(response.evento.evento_id_actual!=""){/// SI RESPONSE EVENTO TIENE ID EVENTO
-                    EVENTO_ACTUAL=response.evento;
+            // if(typeof response.evento!="undefined"){
+            //     if(response.evento.evento_id_actual!=""){/// SI RESPONSE EVENTO TIENE ID EVENTO
+            //         EVENTO_ACTUAL=response.evento;
 
-                    EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
-                    GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
-                   TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
-                // TIEMPO_GIRO_CAJA=2000;
-                //     TIEMPO_CUY =10000000;
-                    
+            //         EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
+            //         GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
+            //         TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
+            //        TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+            //     // TIEMPO_GIRO_CAJA=2000;
+            //     //     TIEMPO_CUY =10000000;
+            //         PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
+            //         $("#termotetro_para_iniciar").show();/////CONTADOR PARA EVENTO
 
-                    PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
-                    $("#termotetro_para_iniciar").show();/////CONTADOR PARA EVENTO
+            //         if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
+            //               inicio_pedir_hora=performance.now();
+            //               pedir_hora=true;
+            //               timeout_pedir_hora=setInterval(function(){
+            //                     if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
+            //                         crear_toastr_websockets_error();
+            //                     }
+            //                     else{
+            //                         clearInterval(timeout_pedir_hora);
+            //                     }
+            //               },1000);
+            //               console.warn("YA CONECTADO, pedir hora  estado socket=>"+socket.readyState);
+            //               pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
+            //         }
+            //         else{
+            //               console.warn("INICIANDO CONEXIÓN ");
+            //               CONECTADO__A_SERVIDORWEBSOCKET=false;
+            //               // inicio_intento_conexion=performance.now();
+            //               intentando_conectarwebsocket=true;
+            //               if(typeof socket!="undefined" && socket!=null){socket.close();socket=null;}
+            //               connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            //               timeout_conexionwebsockets();
+            //               //   revisar_ya_conecto=setInterval(function(){
+            //               //           if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
+            //               //               if(typeof toasr_websockets_error!="undefined"){
+            //               //                   toasr_websockets_error.hide();
+            //               //               }
+            //               //               clearInterval(revisar_ya_conecto);
+            //               //           }
+            //               //           else{
+            //               //               if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS){
+            //               //                   socket.close();
+            //               //                   clearInterval(revisar_ya_conecto);
 
-                    if(socket!=null && socket.readyState==1){////SOCKET YA INICIADO
-                          inicio_pedir_hora=performance.now();
-                          pedir_hora=true;
-                          timeout_pedir_hora=setInterval(function(){
-                                if(pedir_hora){ ///SI EN 1 SEG NO RECIBIO HORA =>  TOASTRERROR 
-                                    crear_toastr_websockets_error();
-                                }
-                                else{
-                                    clearInterval(timeout_pedir_hora);
-                                }
-                          },1000);
-                          console.warn("YA CONECTADO, pedir hora  estado socket=>"+socket.readyState);
-                          pedir_hora_server();///INICIO_ANIMACION_CUY despues de recibir hora de servidor
-                    }
-                    else{
-                          console.warn("INICIANDO CONEXIÓN ");
-                          CONECTADO__A_SERVIDORWEBSOCKET=false;
-                          // inicio_intento_conexion=performance.now();
-                          intentando_conectarwebsocket=true;
-                          if(typeof socket!="undefined" && socket!=null){socket.close();socket=null;}
-                          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                          timeout_conexionwebsockets();
-
-                          //   revisar_ya_conecto=setInterval(function(){
-                          //           if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
-                          //               if(typeof toasr_websockets_error!="undefined"){
-                          //                   toasr_websockets_error.hide();
-                          //               }
-                          //               clearInterval(revisar_ya_conecto);
-                          //           }
-                          //           else{
-                          //               if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS){
-                          //                   socket.close();
-                          //                   clearInterval(revisar_ya_conecto);
-
-                          //               }
-                          //              crear_toastr_websockets_error();
-                          //           }
-                          //   },1000);
-                    } 
-
-
-                    
-                }///
-                else{////NO HAY EVENTO
-                    crear_toasr_nohay_evento();
-                  console.warn("No hay evento activo");
-                  setTimeout(function(){
-                    CargarEstadistica(1);
-                  },1000)
-                }
-            }
+            //               //               }
+            //               //              crear_toastr_websockets_error();
+            //               //           }
+            //               //   },1000);
+            //         } 
+            //     }///
+            //     else{////NO HAY EVENTO
+            //         crear_toasr_nohay_evento();
+            //       console.warn("No hay evento activo");
+            //       setTimeout(function(){
+            //         CargarEstadistica(1);
+            //       },1000)
+            //     }
+            // }
             ////fin if eresponse evento
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -381,8 +343,8 @@ function CargarEstadistica(IdJuego) {
 
 function detener_timeout_conexionwebsockets(){
       if(typeof revisar_ya_conecto!="undefined"){
-        clearInterval(revisar_ya_conecto);
-   } 
+        clearInterval(revisar_ya_conecto);revisar_ya_conecto=null;
+      } 
 }
 function timeout_conexionwebsockets(){
      inicio_intento_conexion=performance.now();
@@ -406,16 +368,20 @@ function timeout_conexionwebsockets(){
 
 }
 function crear_toastr_websockets_error(){
-    if(typeof toasr_websockets_error=="undefined"){
-        toastr.options = {
-          timeOut: 0,
-          extendedTimeOut: 0,
-          tapToDismiss: false
-        };
-        toasr_websockets_error=toastr.error("Conectando a Servidor...");
+    if(ANIMACION_CUY==false){
+        if(typeof toasr_websockets_error=="undefined"){
+            toastr.options = {
+              timeOut: 0,
+              extendedTimeOut: 0,
+              tapToDismiss: false
+            };
+            toasr_websockets_error=toastr.error("Conectando a Servidor...");
+        }
+        else{
+            toasr_websockets_error.show()
+        }
     }
-    else{
-        toasr_websockets_error.show()}
+
 }
 
      
@@ -457,5 +423,46 @@ function ocultar_toasr_nohay_evento(){
 function ocultar_toasr_servidor_error(){ 
      if(typeof toasr_servidor_error!="undefined"){
         toasr_servidor_error.hide();
+    }
+}
+
+
+function iniciar_websocketservidor(){
+            $("#imagen_cargando").hide();
+
+        $.LoadingOverlay("hide");
+        ocultar_toasr_nohay_evento();
+        ocultar_toasr_servidor_error()
+     if(socket!=null && socket.readyState==1){
+          inicio_pedir_hora=performance.now();
+          pedir_hora=true;
+          timeout_pedir_hora=setInterval(function(){
+                if(pedir_hora){
+                    crear_toastr_websockets_error();
+                }
+                else{
+                    clearInterval(timeout_pedir_hora);
+                }
+          },1000);
+          console.warn("YA CONECTADO, pedir datos");
+          pedir_eventoJSON();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
+    }
+    else{
+                console.warn("INICIANDO CONEXIÓN ");
+                  CONECTADO__A_SERVIDORWEBSOCKET=false;
+                  inicio_intento_conexion=performance.now();
+                  connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+                    revisar_ya_conecto=setInterval(function(){
+                            if(CONECTADO__A_SERVIDORWEBSOCKET){
+                                if(typeof toasr_websockets_error!="undefined"){
+                                    toasr_websockets_error.hide();
+                                }
+                                clearInterval(revisar_ya_conecto);
+                            }
+                            else{
+                               crear_toastr_websockets_error();
+                            }
+                    },1000);
+
     }
 }

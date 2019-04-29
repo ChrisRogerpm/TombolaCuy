@@ -7,6 +7,8 @@ use App\Evento;
 use App\Ticket;
 use App\Apuesta;
 use App\GanadorEvento;
+use App\Ubigeo;
+
 use Auth;
 use \Milon\Barcode\DNS1D;
 
@@ -333,9 +335,13 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
             $apuestas=$datos["Apuestas"];
             $ticketobjeto=$request->merge($ticketobjeto);
             $data=Ticket::GuardarTicket($ticketobjeto);
+            
+            $idZonaComercial = Ubigeo::ObtenerZonaComercial($datos["idUbigeo"]);
+
             $id_ticketinsertado=$data->idTicket;
             foreach($apuestas as $apu){
                 $apu["idTicket"]=$id_ticketinsertado;
+                $apu["ZonaComercial"]=$idZonaComercial;
                 Apuesta::GuardarApuestas($apu);
             }
             $respuesta = true;

@@ -155,12 +155,15 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
         ApuestaObjeto.montoApostado=e.apuesta;
         ApuestaObjeto.montoAPagar=0;
         ApuestaObjeto.ganador=0;
+        ApuestaObjeto.ZonaComercial=0;///en controlador
         Apuestas.push(ApuestaObjeto);
     })
 
     datosobjeto={};
     datosobjeto.TicketObjeto=TicketObjeto;
     datosobjeto.Apuestas=Apuestas;
+    datosobjeto.idUbigeo=$("#idUbigeo").val();
+
     var totales_maximo=sacar_totales_y_maximo();
     TicketObjeto.montoTotal=totales_maximo.total;
 
@@ -799,7 +802,6 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
             }
             //cantidadnumeros=$("#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
             cantidadnumeros=$(".apuestacondicional_fila_datos .seleccionado,#numeros_tabla2 .seleccionado,#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
-   // $(".apuestasadicionalescontenedor .apuestacondicional_fila .apuestacondicional_fila_datos div .seleccionado")
 
             if(cantidadnumeros==0)
             {

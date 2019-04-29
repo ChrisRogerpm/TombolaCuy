@@ -41,6 +41,7 @@
                                         <div class="input-group-addon bg-primary text-white">TIENDA</div>
                                         <input type="text" class="form-control input-sm" id="tienda"  value="{{ $aperturacajadatos->tienda }}" readonly>
                                         <input type="hidden" class="form-control input-sm" id="idPuntoVenta" value="{{ $aperturacajadatos->idPuntoVenta }}" >
+                                        <input type="hidden" class="form-control input-sm" id="idUbigeo" value="{{ $aperturacajadatos->idUbigeo }}" >
                                         <input type="hidden" class="form-control input-sm" id="idAperturaCaja" value="{{ $aperturacajadatos->idAperturaCaja }}" >
                                         <input type="hidden" class="form-control input-sm" id="cc_id" value="{{ $aperturacajadatos->cc_id }}" >
                                     </div>

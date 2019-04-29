@@ -15,6 +15,8 @@ escalacajagirando = 0.04;
 intervalo_consultaevento=2000;
 buscando_evento=false;
 
+ANIMACION_CUY=false;
+
 function hexToRgb(hex) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -130,7 +132,12 @@ function cargar_archivos() {
     var objLoader = new THREE.GLTFLoader();
     if (index > archivos.length - 1) {
         console.warn("FIN CARGA ARCHIVOS");
-        CargarEstadistica(1);
+        //CargarEstadistica(1);
+
+    
+            ///NUEVOOOOOOOOOO
+        iniciar_websocketservidor();
+
         window.addEventListener('resize', responsive_canvas, false);
         return
     };
@@ -417,7 +424,7 @@ function INICIO_ANIMACION_CUY(){
 // modelCuyPremio.scale.set(1.3,1.3,1.3);
 // modelCuySalto.scale.set(1.3,1.3,1.3);
 // modelCuyEsperando.scale.set(1.3,1.3,1.3);
-
+        ANIMACION_CUY=true;
         iniciogiro =  clockCajaP.getElapsedTime();
         t = 0   /// tiempo movimiento cuy;
         timerotacion=0; 
@@ -527,7 +534,7 @@ function ease(t) {
 ////////////////////nuevo random
 function generar_nueva_posicion_random(){
         bfuncion_easing_indice=0;//random_entero(0,EasingFunctions_array.length-1);
-        console.warn("i= "+bfuncion_easing_indice);
+        //console.warn("i= "+bfuncion_easing_indice);
         b=PUNTOS_CUY[INDICE_PUNTOS_CUY];
         INDICE_PUNTOS_CUY++;
         if(INDICE_PUNTOS_CUY>PUNTOS_CUY.length){
@@ -680,8 +687,8 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                     }else{
                         b=get_caja(GANADOR_DE_EVENTO).posicion;
                     }
-                    console.log("aca");
-                    console.log(b);
+                    //console.log("aca");
+                    //console.log(b);
                     random_tiempo();
             }  
             else {
@@ -717,7 +724,9 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                                             
                                             $("#termotetro_para_iniciar").show();
                                             t=0;
-                                            CargarEstadistica(1);
+                                            ANIMACION_CUY=false;
+                            iniciar_websocketservidor()
+                                            ///CargarEstadistica(1);
                                         },10000)
 
                                         setTimeout(function(){
@@ -792,9 +801,9 @@ function iniciar_tiempo_random(tiempo) {
     setTimeout(function(){
         detener_var_cuydudando();
         generar_nueva_posicion_random();//b
-        console.info(b);
-        esta=typeof var_cuymoviendo === "undefined"?"true":"false";
-        console.warn(esta);
+        // console.info(b);
+        //esta=typeof var_cuymoviendo === "undefined"?"true":"false";
+        //console.warn(esta);
             random_tiempo();
     },3500);
 

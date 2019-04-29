@@ -13,7 +13,7 @@ class Apuesta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idTicket', 'idTipoApuesta','idMoneda','montoApostado','montoAPagar','ganador'];
+    public $fillable = ['idTicket', 'idTipoApuesta','idMoneda','montoApostado','montoAPagar','ganador','ZonaComercial'];
 
 
     public static function ApuestaListarJson()
@@ -31,6 +31,7 @@ class Apuesta extends Model
         $Apuesta->montoApostado = $request['montoApostado'];
         $Apuesta->montoAPagar = 0;
         $Apuesta->ganador = 0;
+        $Apuesta->ZonaComercial = $request["ZonaComercial"];
         $Apuesta->save();
         return $Apuesta;
     }
