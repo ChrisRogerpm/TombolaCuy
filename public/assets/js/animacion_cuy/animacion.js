@@ -242,18 +242,6 @@ function CargarEstadistica(IdJuego) {
                 $("#"+value.valorapuesta).prev().css("background-color",value.rgb)
                 $("#"+value.valorapuesta).prev().css("color",value.rgbLetra)
             });
-            // $(response.estadistica).each(function(i,e){
-            //     var numero=e.valorapuesta.toString();//1
-            //     if(numero=="0"){numero="x";}
-            //     rgb_background=hexToRgb(e.rgb);
-            //     console.info(numero);
-            //     objeto= modelCaja.getObjectByName(numero);
-            //     objeto.material.color.r=rgb_background.r;
-            //     objeto.material.color.g=rgb_background.g;
-            //     objeto.material.color.b=rgb_background.b;
-
-            // })
-
             var strUltimos12="";
             $.each(response.resultado_evento, function( key, value ) {
                 if(key<12){

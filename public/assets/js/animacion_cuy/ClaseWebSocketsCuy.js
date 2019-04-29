@@ -275,8 +275,8 @@ function init(host,port){
 
       },5000);
                              
-     };
-  }
+     };///fin on close
+  } //fin try
   catch(ex){ 
     CONECTADO__A_SERVIDORWEBSOCKET=false;
     console.warn("try catch error")
