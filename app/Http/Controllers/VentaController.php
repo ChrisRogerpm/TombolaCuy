@@ -91,7 +91,7 @@ class VentaController extends Controller
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
             if(count($aperturacajadatos)==0){
                 $error="No hay Apertura de Cajas";
-                return view('Venta.IndexNuevo', compact("error"));
+             //   return view('Venta.IndexNuevo', compact("error"));
             }
             $tipoapuesta = Evento::TipoApuestaListar();
             if(count($tipoapuesta)==0){
@@ -165,7 +165,15 @@ class VentaController extends Controller
             }
             $eventos = Evento::EventoListar();
 
-            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+            if($aperturacajadatos==null){
+                $eventosdatos=null;
+            }else{
+                $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+
+            }
+            // if(count($eventodatos)==0){
+            //     $eventosdatos=null;
+            // }
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
                 return view('Venta.IndexNuevo', compact("error"));
