@@ -124,6 +124,10 @@ function CargarAperturaCaja(){
 window.location=basePath+"AperturaCajaListar";
 
 }
+function CargarCierreCaja(){
+window.location=basePath+"ReporteCierraVentaVista";
+
+}
 
 
 

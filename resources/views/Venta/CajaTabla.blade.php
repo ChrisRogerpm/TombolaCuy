@@ -22,7 +22,11 @@
                                     </div>
                                  <?php }
                                  else{ ?>
-                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                    <div class="col-md-6 col-xs-12 col-sm-12">
+
+                                         <button class="btn btn-primary pull-right" style="float: left;" id="cierre_caja" onClick="CargarCierreCaja()">CIERRE</button>   
+                                    </div>
+                                    <div class="col-md-6 col-xs-12 col-sm-12">
 
                                          <button class="btn btn-primary pull-right" style="float: left;" id="recargar_tabla" onClick="CargarTabla()">RECARGAR</button>   
                                     </div>
