@@ -38,6 +38,7 @@ class phpWebSocket{
     $this->master=socket_create(AF_INET, SOCK_STREAM, SOL_TCP)     or die("socket_create() failed");
     socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1)  or die("socket_option() failed");
     socket_bind($this->master, $address, $port)                    or die("socket_bind() failed");
+      ///$this->say("Error iniciando servidor"." \n");
     socket_listen($this->master,20)                                or die("socket_listen() failed");
     $this->sockets[] = $this->master;
 
@@ -114,6 +115,8 @@ class phpWebSocket{
    $msg = implode(array_map("chr", $bytesHeader)) ;
    $this->send($user->socket,$msg);
   }
+
+
   
   /**
  * Encode a text for sending to clients via ws://
@@ -222,9 +225,9 @@ function frame_encode($message) {
 
     function sendJSON($client,$msg,$tipo){ 
 
-    $msg=json_encode(['tipo'=>$tipo,'mensaje'=>$msg ]);
+    $msg=json_encode(['id'=>$client->id,'tipo'=>$tipo,'mensaje'=>$msg ]);
     $msg = $this->frame_encode($msg);
-    socket_write($client, $msg);
+    socket_write($client->socket, $msg);
    // $this->say("> ".$msg." (".strlen($msg). " bytes) \n");
   } 
 
