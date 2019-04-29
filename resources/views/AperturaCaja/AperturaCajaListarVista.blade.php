@@ -30,6 +30,16 @@
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <div class="row">
+                            <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <a href="{{route('Venta.IndexNuevo')}}"
+                                       class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
+                                                class="glyphicon glyphicon-file"></span> IR A VENTA</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">

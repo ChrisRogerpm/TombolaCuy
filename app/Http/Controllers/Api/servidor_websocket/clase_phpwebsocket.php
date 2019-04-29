@@ -8,7 +8,27 @@
 */
 // Usage: $master=new WebphpWebSocketSocket("localhost",12345);
 
+function probarconexion_mysql(){
+    $mysqli = new mysqli( $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],$GLOBALS['db']);
+    /* check connection */
+    if ($mysqli->connect_errno) {
+        printf("Conexión  falló: %s\n", $mysqli->connect_error);
+        exit();
+    }
+/* check if server is alive */
+    if ($mysqli->ping()) {
+        printf ("Conexión mysql ok!\n");
+    } else {
+        printf ("Error: %s\n", $mysqli->error);
+        exit();
+        
+    }
 
+/* close connection */
+$mysqli->close();
+
+
+}
 
 class phpWebSocket{
   var $master;
@@ -21,12 +41,12 @@ class phpWebSocket{
   
   function ascii_banner() //just for old-skool fun...
   {
-	$banner="               _    ____             _        _   \n";
-	$banner.=" __      _____| |__/ ___|  ___   ___| | _____| |_\n ";
-	$banner.="\ \ /\ / / _ \ '_ \___ \ / _ \ / __| |/ / _ \ __|\n";
-	$banner.="  \ V  V /  __/ |_) |__) | (_) | (__|   <  __/ |_ \n";
-	$banner.="   \_/\_/ \___|_.__/____/ \___/ \___|_|\_\___|\__|\n";
-	return $banner;
+  $banner="               _    ____             _        _   \n";
+  $banner.=" __      _____| |__/ ___|  ___   ___| | _____| |_\n ";
+  $banner.="\ \ /\ / / _ \ '_ \___ \ / _ \ / __| |/ / _ \ __|\n";
+  $banner.="  \ V  V /  __/ |_) |__) | (_) | (__|   <  __/ |_ \n";
+  $banner.="   \_/\_/ \___|_.__/____/ \___/ \___|_|\_\___|\__|\n";
+  return $banner;
                                                  
   }
   
@@ -38,29 +58,28 @@ class phpWebSocket{
     $this->master=socket_create(AF_INET, SOCK_STREAM, SOL_TCP)     or die("socket_create() failed");
     socket_set_option($this->master, SOL_SOCKET, SO_REUSEADDR, 1)  or die("socket_option() failed");
     socket_bind($this->master, $address, $port)                    or die("socket_bind() failed");
-      ///$this->say("Error iniciando servidor"." \n");
     socket_listen($this->master,20)                                or die("socket_listen() failed");
     $this->sockets[] = $this->master;
 
-	  $this->say($this->ascii_banner() );
-	  $this->say("PHP WebSocket Servidor Ejecutándose....");
+    $this->say($this->ascii_banner() );
+    $this->say("PHP WebSocket Servidor Ejecutándose....");
     $this->say("Server Iniciado : ".date('Y-m-d H:i:s'));
     $this->say("Escuchando en   : ".$address." port ".$port);
     $this->say("Master socket  : ".$this->master."\n");
-	  $this->say(".... Esperando Conexiones ...");
+    $this->say(".... Esperando Conexiones ...");
 
 
-	
-	// Main Server processing loop
+  
+  // Main Server processing loop
     while(true)  //server is always listening
-	  {
+    {
       $changed = $this->sockets;
       $write = array();
       $except = array();
       socket_select($changed,$write,$except,NULL);
-	    $this->say("Escuchando... Conectados:".count($this->users)."\n");
+      $this->say("Escuchando... Conectados:".count($this->users)."\n");
       foreach($changed as $socket)
-	    {
+      {
 
         if($socket==$this->master){
           $client=socket_accept($this->master);
@@ -72,23 +91,23 @@ class phpWebSocket{
         else{///cliente ya registrado
             $bytes = @socket_recv($socket,$buffer,2048,0);
             if($bytes==0)
-  		      { 
-  			     $this->disconnect($socket); ///cliente desconectado
-  			    }
+            { 
+             $this->disconnect($socket); ///cliente desconectado
+            }
             else{
               $user = $this->getuserbysocket($socket);
               if(!$user->handshake)
-  			      { 
-  			         $this->say("Handshaking $user");
-  			         $this->dohandshake($user,$buffer);
+              { 
+                 $this->say("Handshaking $user");
+                 $this->dohandshake($user,$buffer);
                 //$this->send($socket,date("h:i:s a"));
 
-   			      }
+              }
                else
-  			      { 
+              { 
 
-  			        $this->process($user,$this->frame_decode($buffer) ); 
-  			      } 
+                $this->process($user,$this->frame_decode($buffer) ); 
+              } 
             }
         }
       } //foreach socket
@@ -115,8 +134,6 @@ class phpWebSocket{
    $msg = implode(array_map("chr", $bytesHeader)) ;
    $this->send($user->socket,$msg);
   }
-
-
   
   /**
  * Encode a text for sending to clients via ws://
@@ -167,7 +184,7 @@ function frame_encode($message) {
             $bytesHeader[8] = ( $length >>  8 ) & 255;
             $bytesHeader[9] = ( $length       ) & 255;
     }
-	 //apply chr against bytesHeader , then prepend to message
+   //apply chr against bytesHeader , then prepend to message
     $str = implode(array_map("chr", $bytesHeader)) . $message;
     return $str;
 } 
@@ -178,8 +195,8 @@ function frame_encode($message) {
  */
  function frame_decode($payload) 
  {
-	if (!isset($payload))
-		return null;  //empty data return nothing
+  if (!isset($payload))
+    return null;  //empty data return nothing
 
     $length = ord($payload[1]) & 127;
 
@@ -196,17 +213,17 @@ function frame_encode($message) {
         $data = substr($payload, 6);
     }
 
-	for ($i = 0; $i < strlen($masks); ++$i) {
-	 // $this->say("header[".$i."] =". ord($masks[$i]). " \n");
-	}
-	 //$this->say(" data:$data \n");
-	 
-	 //did we just get a PING frame
-	 if (strlen($masks)==4 && strlen($data)==0) 
-	 {
-	  return "ping";
-	  }
-	
+  for ($i = 0; $i < strlen($masks); ++$i) {
+   // $this->say("header[".$i."] =". ord($masks[$i]). " \n");
+  }
+   //$this->say(" data:$data \n");
+   
+   //did we just get a PING frame
+   if (strlen($masks)==4 && strlen($data)==0) 
+   {
+    return "ping";
+    }
+  
     $text = '';
     for ($i = 0; $i < strlen($data); ++$i) {
         $text .= $data[$i] ^ $masks[$i%4];
@@ -217,12 +234,11 @@ function frame_encode($message) {
 
 
   function send($client,$msg){ 
+
     $msg = $this->frame_encode($msg);
     socket_write($client, $msg);
    // $this->say("> ".$msg." (".strlen($msg). " bytes) \n");
   } 
-
-
     function sendJSON($client,$msg,$tipo){ 
 
     $msg=json_encode(['id'=>$client->id,'tipo'=>$tipo,'mensaje'=>$msg ]);
@@ -230,7 +246,6 @@ function frame_encode($message) {
     socket_write($client->socket, $msg);
    // $this->say("> ".$msg." (".strlen($msg). " bytes) \n");
   } 
-
 
   function connect($socket){
     $user = new User();
@@ -249,16 +264,16 @@ function frame_encode($message) {
       if($this->users[$i]->socket==$socket){ $found=$i; break; }
     }
     if(!is_null($found))
-  	{ 
-  	   array_splice($this->users,$found,1); 
-  	}
+    { 
+       array_splice($this->users,$found,1); 
+    }
     $index=array_search($socket,$this->sockets);
     socket_close($socket);
-	  $this->say(" DISCONNECTED!  User count:".count( $this->users));
+    $this->say(" DISCONNECTED!  User count:".count( $this->users));
     if($index>=0)
-		{ 
-		   array_splice($this->sockets,$index,1); 
-		}
+    { 
+       array_splice($this->sockets,$index,1); 
+    }
   }
 
    function calcKey($key1,$ws_magic_string)
@@ -271,23 +286,23 @@ function frame_encode($message) {
   function dohandshake($user,$buffer){
     //$this->say("\nWS Requesting handshake...");
     list($resource,$host,$origin,$key1,$key2,$l8b) = $this->getheaders($buffer);
-   	$ws_magic_string="258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-	//Calculate Accept = base64_encode( SHA1( key1 +attach magic_string ))
-	 $accept=$this->calcKey($key1,$ws_magic_string);
+    $ws_magic_string="258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+  //Calculate Accept = base64_encode( SHA1( key1 +attach magic_string ))
+   $accept=$this->calcKey($key1,$ws_magic_string);
     
-		/*
-			Respond only when protocol specified in request header
-			"Sec-WebSocket-Protocol: chat" . "\r\n" .
-			*/
-	$upgrade = "HTTP/1.1 101 Switching Protocols\r\n".
+    /*
+      Respond only when protocol specified in request header
+      "Sec-WebSocket-Protocol: chat" . "\r\n" .
+      */
+  $upgrade = "HTTP/1.1 101 Switching Protocols\r\n".
                    "Upgrade: websocket\r\n".
                    "Connection: Upgrade\r\n".
-				    "WebSocket-Location: ws://" . $host . $resource . "\r\n" .
-					  "Sec-WebSocket-Accept: $accept".
+            "WebSocket-Location: ws://" . $host . $resource . "\r\n" .
+            "Sec-WebSocket-Accept: $accept".
                    "\r\n\r\n";
-					
+          
     socket_write($user->socket,$upgrade);
-	//$this->say("Issuing websocket Upgrade \n");
+  //$this->say("Issuing websocket Upgrade \n");
     $user->handshake=true;
   
     $this->say("Listo handshaking... usuarios CONECTADOS:".count( $this->users));
@@ -301,11 +316,15 @@ function frame_encode($message) {
       if(preg_match("/Host: (.*)\r\n/"              ,$req,$match)){ $h=$match[1]; }
       if(preg_match("/Origin: (.*)\r\n/"            ,$req,$match)){ $o=$match[1]; }
       if(preg_match("/Sec-WebSocket-Key: (.*)\r\n/",$req,$match)){ 
-          $this->say("WebSocket-Key: ".$sk1=$match[1]); 
+          // $this->say("WebSocket-Key: ".$sk1=$match[1]);
+           $sk1=$match[1];
       }
-      if(preg_match("/Sec-WebSocket-Version: (.*)\r\n/",$req,$match)){ $this->say("WebSocket-Version: ".$sk2=$match[1]); }
+      if(preg_match("/Sec-WebSocket-Version: (.*)\r\n/",$req,$match)){ 
+        //$this->say("WebSocket-Version: ".$sk2=$match[1]);
+        $sk2=$match[1];
+         }
       if($match=substr($req,-8)) 
-    	{ $this->log("Last 8 bytes: ".$l8b=$match); }
+      { $this->log("Last 8 bytes: ".$l8b=$match); }
       return array($r,$h,$o,$sk1,$sk2,$l8b);
   }
 
@@ -314,14 +333,81 @@ function frame_encode($message) {
     $found=null;
     foreach($this->users as $user){
       if($user->socket==$socket)
-		  { 
-  		  $found=$user; 
-  		  break; 
-		  }
+      { 
+        $found=$user; 
+        break; 
+      }
     }
     return $found;
   }
+////////////CONSULTAS
 
+  public function ResultadoEvento($idJuego){
+   $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+    $cantidad=12;
+    $consulta=" select e.idEvento, re.valorGanador,tipoapuesta.rgb,tipoapuesta.rgbLetra 
+                    from resultado_evento  as re
+                    left join evento as e  on e.idEvento=re.idEvento
+                    left join tipo_apuesta as tipoapuesta on tipoapuesta.idTipoApuesta=re.idTipoApuesta
+                      where e.idJuego=".$idJuego." and re.estado=1 and tipoapuesta.idTipoPago in (1,6)
+                       and e.estadoevento=2  
+                      order by re.idEvento desc limit ".$cantidad;
+    $result = $conn->query($consulta);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $array_resultado[] = $row;
+        }
+    } else {
+        echo "No hay Datos ";
+    }
+    $conn->close();
+
+      return $array_resultado;
+  }
+  public function Estadistica($idJuego){
+   $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+    $ultimoseventos_a_contar=120;
+    $consulta=" select ta.idTipoApuesta,
+                     ta.valorapuesta,
+                    (
+                     select    count(rev.valorGanador)
+                              FROM resultado_evento rev
+                              where rev.idTipoApuesta=ta.idTipoApuesta
+                              and rev.idEvento in 
+                              (
+                                select eventos.idEvento from
+                                    (
+                                    select eventosub.idEvento from  evento as eventosub where eventosub.estadoEvento=2 
+                                    and eventosub.idJuego=".$idJuego. " 
+                                    order by eventosub.idEvento desc limit ".$ultimoseventos_a_contar."
+                                    )
+                                as eventos 
+                              )
+                     ) as Repetidos,
+                     
+                      ta.rgb, ta.rgbLetra 
+                     from tipo_apuesta as ta
+                      where ta.idTipoPago in (1,6) 
+                      order by ta.valorapuesta desc";
+                      
+    $result = $conn->query($consulta);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $array_resultado[] = $row;
+        }
+    } else {
+        echo "No hay Datos ";
+    }
+    $conn->close();
+
+      return $array_resultado;
+  }
   public function resultados_evento($idEvento){
 
     $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
@@ -346,12 +432,12 @@ function frame_encode($message) {
     {
 
         $IdJuego = $idJuego;
-
         $conn = new mysqli($GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
         $sql = "select * from evento as ev left join juego as j on j.idJuego = ev.idJuego    where j.idJuego=".$idJuego." and ev.EstadoEvento=1";
+        ///////select evento  con idJuego y estadoevento=1
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -371,33 +457,17 @@ function frame_encode($message) {
            // print_r($ganador);
             $fecha_ini_actual = $evento_actual["fechaEvento"];
             $fecha_fin_actual = $evento_actual["fechaFinEvento"];
-            if ($evento_actual["lapsoProxEventoHoras"] > 0) {
-                $NumeroHoras = $evento_actual["lapsoProxEventoHoras"];
-
-                $fecha_evento_proximo = date("Y-m-d H:i:s a", strtotime('+'.$NumeroHoras.' hours',$evento_actual["fechaEvento"]));
-
-            } else if ($evento_actual["lapsoProxEventoMinutos"] > 0) {
-                $NumeroMinutos = $evento_actual["lapsoProxEventoMinutos"];
-                $fecha_evento_proximo = date('Y-m-d H:i:s a', strtotime('+'.$NumeroMinutos.' minutes',$evento_actual["fechaEvento"]));
-            }
-
             $segundos_agregados = $evento_actual["segBloqueoAntesAnimacion"];
-                echo "segundos_agregados ".$segundos_agregados;
-            $fecha_animacion = date("Y-m-d H:i:s a", strtotime('-'.$segundos_agregados.' seconds', strtotime($fecha_fin_actual)));//animacion=>  fechafin evento  - segBloqueoAntesAnimacion
-
-
-            $estado_animacion = false;
-            $fecha_actual=date("Y-m-d H:i:s");
-            if ($fecha_actual > $fecha_animacion && $fecha_actual < $fecha_evento_proximo) {
-                $estado_animacion = true;
-            }
+            $fecha_animacion = date("Y-m-d H:i:s a", strtotime('-'.$segundos_agregados.' seconds', strtotime($fecha_fin_actual)));
+            //animacion=>fechafin-segBloqueoAntesAnimacion
+            $resultado_evento=$this->ResultadoEvento($IdJuego);
+            $estadistica= $this->Estadistica($IdJuego);
+           
             $array_evento = [
-                'token_animacion' => '',
-                'mensaje_token' => 'Esperando respuesta de token',
-                'estado_animacion' => $estado_animacion,
+                'resultado_evento' => $resultado_evento,
+                'estadistica' => $estadistica,
                 'fecha_evento_ini_actual' => $fecha_ini_actual,
                 'fecha_evento_fin_actual' => $fecha_fin_actual,
-                'fecha_evento_proximo' => $fecha_evento_proximo,
                 'fecha_animacion' => $fecha_animacion,
                 'evento_id_actual' => $evento_actual["idEvento"],
                 'evento_valor_ganador' => $ganador["valorGanador"],
@@ -410,12 +480,11 @@ function frame_encode($message) {
             ]);
         } else {
             $array_evento = [
-                'token_animacion' => '',
-                'mensaje_token' => '',
+                 'resultado_evento' =>'',
+                'estadistica' => '',
                 'estado_animacion' => '',
                 'fecha_evento_ini_actual' => '',
                 'fecha_evento_fin_actual' => '',
-                'fecha_evento_proximo' => '',
                 'fecha_animacion' => '',
                 'evento_id_actual' => '',
                 'evento_valor_ganador' => '',
@@ -446,10 +515,10 @@ class User{
    {    //do stuff to initialize each user  
    }
   
-	public function __toString()
-	{	 return "(User: ". $this->id." )"; 	}
-	
-	
+  public function __toString()
+  {  return "(User: ". $this->id." )";  }
+  
+  
 }  //end of class User
 
 ?>

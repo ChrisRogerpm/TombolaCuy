@@ -20,14 +20,20 @@ function BuscarTicket(ticketobjeto){
             resultados_evento=response.resultados_evento;
             apuestasticket=response.apuestas_ticket;
             
+            conf_general=response.conf_general;
              ganadores="";
              if(apuestasticket.length==0){
                 toastr.error("Ticket "+ ticketbuscado +" no está registrado");return;
              }
+                        if(apuestasticket[0].idPuntoVenta!=$("#idPuntoVenta").val()){
 
-            //  if(apuestasticket[0].idPuntoVenta!=$("#idPuntoVenta").val()){
-            //     toastr.error("Ticket de Diferente Punto de Venta");return;
-            // }
+                            if(conf_general.CobrarTicket==0){//permitir cobrar ;  0=> no permitir cobrar en dif p venta al tick
+
+                                toastr.error("Ticket de Diferente Punto de Venta");return;
+                            }
+                        }
+                
+           
 
 
              if(ticketsganadores.length>0){
@@ -155,12 +161,15 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
         ApuestaObjeto.montoApostado=e.apuesta;
         ApuestaObjeto.montoAPagar=0;
         ApuestaObjeto.ganador=0;
+        ApuestaObjeto.ZonaComercial=0;///en controlador
         Apuestas.push(ApuestaObjeto);
     })
 
     datosobjeto={};
     datosobjeto.TicketObjeto=TicketObjeto;
     datosobjeto.Apuestas=Apuestas;
+    datosobjeto.idUbigeo=$("#idUbigeo").val();
+
     var totales_maximo=sacar_totales_y_maximo();
     TicketObjeto.montoTotal=totales_maximo.total;
 
@@ -799,7 +808,6 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
             }
             //cantidadnumeros=$("#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
             cantidadnumeros=$(".apuestacondicional_fila_datos .seleccionado,#numeros_tabla2 .seleccionado,#numeros_tabla .seleccionado, .rectangulo_izquierda.seleccionado").length;
-   // $(".apuestasadicionalescontenedor .apuestacondicional_fila .apuestacondicional_fila_datos div .seleccionado")
 
             if(cantidadnumeros==0)
             {

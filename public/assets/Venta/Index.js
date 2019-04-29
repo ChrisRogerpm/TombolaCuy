@@ -1,8 +1,12 @@
 // IPSERVIDOR_WEBSOCKETS="35.237.208.5";
 // PUERTO_WEBSOCKETS="50051";
-IPSERVIDOR_WEBSOCKETS="35.184.46.33";
-// PUERTO_WEBSOCKETS="4555";
-PUERTO_WEBSOCKETS="888";
+// IPSERVIDOR_WEBSOCKETS="35.184.46.33";
+// // PUERTO_WEBSOCKETS="4555";
+// PUERTO_WEBSOCKETS="888";
+
+IPSERVIDOR_WEBSOCKETS=$("#IPSERVIDOR_WEBSOCKETS").val();
+PUERTO_WEBSOCKETS=$("#PUERTO_WEBSOCKETS").val();
+
 
 USUARIO=$(".user-name").text();
 CC_ID=$("#cc_id").val();
@@ -86,6 +90,8 @@ function INICIAR(){
 
 
 function CargarTabla() {
+
+
     $.ajax({
         type: 'POST',
         url: basePath + 'CajaTablaFk',
@@ -112,6 +118,15 @@ function CargarTabla() {
         
         }
     })
+}
+
+function CargarAperturaCaja(){
+window.location=basePath+"AperturaCajaListar";
+
+}
+function CargarCierreCaja(){
+window.location=basePath+"ReporteCierraVentaVista";
+
 }
 
 

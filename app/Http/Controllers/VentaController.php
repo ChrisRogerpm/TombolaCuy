@@ -7,6 +7,8 @@ use App\Evento;
 use App\Ticket;
 use App\Apuesta;
 use App\GanadorEvento;
+use App\Ubigeo;
+use App\ConfiguracionGeneral;
 use Auth;
 use \Milon\Barcode\DNS1D;
 
@@ -91,7 +93,7 @@ class VentaController extends Controller
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
             if(count($aperturacajadatos)==0){
                 $error="No hay Apertura de Cajas";
-                return view('Venta.IndexNuevo', compact("error"));
+             //   return view('Venta.IndexNuevo', compact("error"));
             }
             $tipoapuesta = Evento::TipoApuestaListar();
             if(count($tipoapuesta)==0){
@@ -165,7 +167,15 @@ class VentaController extends Controller
             }
             $eventos = Evento::EventoListar();
 
-            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+            if($aperturacajadatos==null){
+                $eventosdatos=null;
+            }else{
+                $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+
+            }
+            // if(count($eventodatos)==0){
+            //     $eventosdatos=null;
+            // }
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
                 return view('Venta.IndexNuevo', compact("error"));
@@ -325,9 +335,13 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
             $apuestas=$datos["Apuestas"];
             $ticketobjeto=$request->merge($ticketobjeto);
             $data=Ticket::GuardarTicket($ticketobjeto);
+            
+            $idZonaComercial = Ubigeo::ObtenerZonaComercial($datos["idUbigeo"]);
+
             $id_ticketinsertado=$data->idTicket;
             foreach($apuestas as $apu){
                 $apu["idTicket"]=$id_ticketinsertado;
+                $apu["ZonaComercial"]=$idZonaComercial;
                 Apuesta::GuardarApuestas($apu);
             }
             $respuesta = true;
@@ -350,6 +364,7 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
         {
             $datos=$request->datos;
             $idticket = ltrim($datos["idTicket"], '0');
+            $conf_general=ConfiguracionGeneral::ObtenerConfiguracionEvento();
            // $idEvento = $datos["idEvento"];
             $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);  ////Apuestas
             if(count($apuestas_ticket)>0){
@@ -371,7 +386,8 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
                     'apuestas_ticket'=> $apuestas_ticket, ////apuestas del ticket
                     'resultados_evento'=>$resultados_evento,
                     'ticketbuscado'=>$idticket,
-                    'tickets' => $tickets   ////apuestas ganadoras 
+                    'tickets' => $tickets  ,
+                    'conf_general'=>$conf_general ////apuestas ganadoras 
                     ]);
     }
 

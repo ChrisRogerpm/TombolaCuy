@@ -1,20 +1,42 @@
-       <?php if($error==""){?>
+       <?php //if($error==""){?>
 
          <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-body" id="datoscaja">
                         <div class="row">
-                            <div class="col-md-10 col-xs-12 col-sm-12">
+                            <div class="col-md-9 col-xs-12 col-sm-12">
                                 <h6>
                                     <i class="glyphicon glyphicon-th mr-2"></i>
                                     Venta Caja    
+                                    
+<input type="hidden" id="IPSERVIDOR_WEBSOCKETS" value="{{env('IPSERVIDOR_WEBSOCKETS','192.168.1.66')}}">
+<input type="hidden" id="PUERTO_WEBSOCKETS" value="{{env('PUERTO_WEBSOCKETS','50051')}}">
                                 </h6>
                             </div>
-                            <div class="col-md-2 col-xs-12 col-sm-12">
-                                <button class="btn btn-primary" style="float: right;" id="recargar_tabla" onClick="CargarTabla()"></button>   
+                            <div class="col-md-3 col-xs-12 col-sm-12">
+                                <div class="row">
+                                <?php if($aperturacajadatos==null){?>
+                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <button class="btn btn-primary  pull-right" style="float: right;" id="apertura_de_caja" onClick="CargarAperturaCaja()">AP. DE CAJA</button> 
+                                    </div>
+                                 <?php }
+                                 else{ ?>
+                                    <div class="col-md-6 col-xs-12 col-sm-12">
+
+                                         <button class="btn btn-primary pull-right" style="float: left;" id="cierre_caja" onClick="CargarCierreCaja()">CIERRE</button>   
+                                    </div>
+                                    <div class="col-md-6 col-xs-12 col-sm-12">
+
+                                         <button class="btn btn-primary pull-right" style="float: left;" id="recargar_tabla" onClick="CargarTabla()">RECARGAR</button>   
+                                    </div>
+                               <?php }?>
+                               </div>
+
                             </div>
                         </div>
+                        <?php if($eventosdatos!=null){?>
+
                         <hr style="margin-top: 0px;">
                         <div class="row">
                             <div class="col-md-6">
@@ -23,6 +45,7 @@
                                         <div class="input-group-addon bg-primary text-white">TIENDA</div>
                                         <input type="text" class="form-control input-sm" id="tienda"  value="{{ $aperturacajadatos->tienda }}" readonly>
                                         <input type="hidden" class="form-control input-sm" id="idPuntoVenta" value="{{ $aperturacajadatos->idPuntoVenta }}" >
+                                        <input type="hidden" class="form-control input-sm" id="idUbigeo" value="{{ $aperturacajadatos->idUbigeo }}" >
                                         <input type="hidden" class="form-control input-sm" id="idAperturaCaja" value="{{ $aperturacajadatos->idAperturaCaja }}" >
                                         <input type="hidden" class="form-control input-sm" id="cc_id" value="{{ $aperturacajadatos->cc_id }}" >
                                     </div>
@@ -58,6 +81,7 @@
                             </div>
 
                         </div>
+                     <?php }?>
 
                     </div>
                 </div>
@@ -65,11 +89,13 @@
 
         </div>
 
-
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-body">
+
+<?php if($aperturacajadatos!=null){?>
+
                         <div class="TOMBOLACUY" style="height:120vh;display:none">
                             <div class=" rowcabecera">
                                 <div class=" rowcabecera_nombres">
@@ -447,7 +473,7 @@
                             </div>
                         </div><!--fin rowconfiguracioneventosdiv-->
                     </div><!--JUEGO TOMBOLACUY-->
-
+<?php }?>
 
                     <div class="modal" id="modal_imprimir" tabindex="-1" role="dialog">
                       <div class="modal-dialog" role="document">
@@ -682,7 +708,7 @@
 </div>
 
 </div>
-<?php }?>
+<?  //php }?>
 
 <!-- </div> -->
 
@@ -690,9 +716,9 @@
 
 @push('Js')
 
-<?php if($error!=""){?>
+<!-- <?php if($error!=""){?>
     <script>toastr.error("<?php echo $error;?>")</script>
-<?php }?>
+<?php }?> -->
 
 @endpush
 

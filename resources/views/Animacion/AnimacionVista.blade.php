@@ -141,13 +141,13 @@
 		<div class="contenidos_side">
 			<table id="">
 				<tr>
-					<th rowspan="3" >Color</th><th style="background-color: rgb(22, 39, 125);" >2</th>
+					<th rowspan="3" >Color</th><th style="background-color: rgb(22, 39, 125);" ></th>
 				</tr>
 				<tr>
-					<th style="background-color: rgb(249, 215, 22);">2</th> 
+					<th style="background-color: rgb(249, 215, 22);"></th> 
 				</tr>
 				<tr>
-					<th style="background-color:#3C8A39;width:50%" >36</th>
+					<th style="background-color:#3C8A39;width:50%" ></th>
 				</tr>
 				<tr>
 					<th >Docena</th><th>3</th>
