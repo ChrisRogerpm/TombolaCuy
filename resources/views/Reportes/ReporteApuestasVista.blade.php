@@ -17,9 +17,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
-                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de
-                                                    Apuestas/Pagos/Ventas
-                                                    Por Tienda.
+                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Ventas
                                                 </h6>
                                             </div>
                                         </div>

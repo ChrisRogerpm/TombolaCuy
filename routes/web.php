@@ -22,9 +22,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 
 #region [Punto Venta]
     Route::get('PuntoVentaListar', 'PuntoVentaController@PuntoVentaListarVista')->name('PuntoVenta.Listar');
-    Route::get('PuntoVentaInsertar', 'PuntoVentaController@PuntoVentaInsertarVista')->name('PuntoVenta.Insertar');
     Route::get('PuntoVentaEditar/{idPuntoVenta}', 'PuntoVentaController@PuntoVentaEditarVista')->name('PuntoVenta.Editar');
-    Route::post('PuntoVentaInsertarJson', 'PuntoVentaController@PuntoVentaInsertarJson');
     Route::post('PuntoVentaEditarJson', 'PuntoVentaController@PuntoVentaEditarJson');
 #endregion
 
@@ -105,12 +103,12 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 #endregion
 
 #region [Reporte]
-    Route::get('ReporteApuesta', 'ReporteController@ReporteApuestaVista')->name('Reporte.Apuesta');
-    Route::get('ReporteVentaVista', 'ReporteController@ReporteVentaVista')->name('Reporte.Venta');
-    Route::get('ReporteVentaJuegoVista', 'ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
+    Route::get('ReportedeVentasVista', 'ReporteController@ReporteApuestaVista')->name('Reporte.Ventas');
+    Route::get('ReporteVentasEventosVista', 'ReporteController@ReporteVentaVista')->name('Reporte.VentaEvento');
+    Route::get('ReporteHistorialEventosVista', 'ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
     Route::get('ReporteCierraVentaVista', 'ReporteController@ReporteCierraVentaVista')->name('Reporte.CierreCaja');
     Route::get('ReporteHistorialTicketVista', 'ReporteController@ReporteHistorialTicketVista')->name('Reporte.HistorialTicket');
-    Route::get('ReporteHistorialGanadores', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.HistorialGanadores');
+    Route::get('ReporteDetalleApuestaEventoVista', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.DetalleApuestaEvento');
     Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');
 #endregion
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
@@ -174,11 +172,11 @@ Route::post('ConfiguracionJackpotListarJson', 'ConfiguracionJackpotController@Co
 Route::post('ReporteHistorialGanadoresListarJsonFk', 'ReporteController@ReporteHistorialGanadoresListarJson');
 Route::post('ReporteCierreCajaFk', 'ReporteController@ReporteCierreCajaFk');
 
-Route::get('ConfiguracionEventoFk', 'ConfiguracionEventoController@ConfiguracionEventoVista')->name('ConfiguracionEvento');
-
 /*Configuracion Evento*/
-Route::post('ConfiguracionEventoJsonFk', 'ConfiguracionEventoController@ConfiguracionEventoInsertarJson');
-Route::post('ConfiguracionEventoMostrarFk', 'ConfiguracionEventoController@ConfiguracionEventoMostrar');
+Route::get('ConfiguracionGeneral', 'ConfiguracionGeneralController@ConfiguracionGeneralVista')->name('ConfiguracionEvento');
+Route::post('ConfiguracionEventoJsonFk', 'ConfiguracionGeneralController@ConfiguracionEventoInsertarJson');
+Route::post('ConfiguracionCobrarTicketJsonFk', 'ConfiguracionGeneralController@ConfiguracionCobrarTicketJson');
+Route::post('ConfiguracionEventoMostrarFk', 'ConfiguracionGeneralController@ConfiguracionEventoMostrar');
 
 
 Route::post('ConfiguracionPozoListarJsonFk', 'ConfiguracionPozoController@ConfiguracionPozoListarJson');
