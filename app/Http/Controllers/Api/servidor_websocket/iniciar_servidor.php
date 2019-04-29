@@ -7,7 +7,7 @@ $server_ip="192.168.1.60";  //what is the IP of your server
 $puerto=50051;
 
 
-
+/////SQL
 $GLOBALS['servername'] = "192.168.1.60";
 $GLOBALS['username'] = "sa";
 $GLOBALS['password'] = "123123";

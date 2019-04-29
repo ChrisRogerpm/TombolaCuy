@@ -350,8 +350,8 @@ function accion_evento(DATOS){
                     EVENTO_ACTUAL=EVENTO_ACTUAL;
                     EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                     GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
-                    TIEMPO_GIRO_CAJA=1000;//(EVENTO_ACTUAL.segCajaGirando)*1000;
-                    TIEMPO_CUY = 30000;//(EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
+                    TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
+                    TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
 
                     PUNTOS_CUY=JSON.parse(EVENTO_ACTUAL.puntos_cuy);
                     $("#termotetro_para_iniciar").show();
@@ -399,7 +399,7 @@ hora_servidor=DATOS.hora_servidor;
 
                           );}
                         seg_animacion=segundos_para_animacion*1000;
-                         segundos_para_animacion=1;///
+                        // segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                 ///barra carga cuy
