@@ -60,7 +60,7 @@
                     <form id="frmNuevo" autocomplete="off">
                         {{csrf_field()}}
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Fecha Inicio</label>
                                     <div class="input-group">
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Fecha Fin</label>
                                     <div class="input-group">
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
                                     <select multiple="multiple" id="cboTienda" name="tiendas"
@@ -88,11 +88,20 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Eventos</label>
-                                    <select id="cboEvento" name="eventos"
-                                            class="form-control input-sm" style="width: 100%;">
+                                    <label for="">Evento</label>
+                                    <input type="number" class="form-control" name="idEvento">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Tipo Tickets</label>
+                                    <select multiple="multiple" id="cboTickets" name="TipoTicket"
+                                            class="form-control input-sm multiselect" style="width: 100%;">
+                                        <option value="0">Todos</option>
+                                        <option value="1">Ganador</option>
+                                        <option value="2">Perdida</option>
                                     </select>
                                 </div>
                             </div>

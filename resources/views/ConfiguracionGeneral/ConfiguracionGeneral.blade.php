@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-8">
                             <button class="btn btn-primary btn-block btn-sm pull-right"
-                                    id="btnGuardarConfiguracionEvento">Guardar
+                                    id="btnGuardarConfiguracionCobrarTicket">Guardar
                             </button>
                         </div>
                     </div>

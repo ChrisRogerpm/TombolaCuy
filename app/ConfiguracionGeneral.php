@@ -35,7 +35,7 @@ class ConfiguracionGeneral extends Model
             $conf->HoraFinIntervalo = $request->input('HoraFinIntervalo');
             $conf->save();
         } else {
-            $conf = new ConfiguracionGenerarEvento();
+            $conf = new ConfiguracionGeneral();
             $conf->HoraInicioIntervalo = $request->input('HoraInicioIntervalo');
             $conf->HoraFinIntervalo = $request->input('HoraFinIntervalo');
             $conf->save();

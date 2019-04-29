@@ -341,6 +341,8 @@
 
                 <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
+                <li><a href="{{route('Juego.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
+                                class="title">Juegos</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
