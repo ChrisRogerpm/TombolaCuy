@@ -8,7 +8,7 @@ use App\Ticket;
 use App\Apuesta;
 use App\GanadorEvento;
 use App\Ubigeo;
-
+use App\ConfiguracionGeneral;
 use Auth;
 use \Milon\Barcode\DNS1D;
 
@@ -364,6 +364,7 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
         {
             $datos=$request->datos;
             $idticket = ltrim($datos["idTicket"], '0');
+            $conf_general=ConfiguracionGeneral::ObtenerConfiguracionEvento();
            // $idEvento = $datos["idEvento"];
             $apuestas_ticket= Ticket::BuscarApuestasIdTicket($idticket);  ////Apuestas
             if(count($apuestas_ticket)>0){
@@ -385,7 +386,8 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
                     'apuestas_ticket'=> $apuestas_ticket, ////apuestas del ticket
                     'resultados_evento'=>$resultados_evento,
                     'ticketbuscado'=>$idticket,
-                    'tickets' => $tickets   ////apuestas ganadoras 
+                    'tickets' => $tickets  ,
+                    'conf_general'=>$conf_general ////apuestas ganadoras 
                     ]);
     }
 

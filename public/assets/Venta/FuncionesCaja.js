@@ -20,14 +20,20 @@ function BuscarTicket(ticketobjeto){
             resultados_evento=response.resultados_evento;
             apuestasticket=response.apuestas_ticket;
             
+            conf_general=response.conf_general;
              ganadores="";
              if(apuestasticket.length==0){
                 toastr.error("Ticket "+ ticketbuscado +" no está registrado");return;
              }
+                        if(apuestasticket[0].idPuntoVenta!=$("#idPuntoVenta").val()){
 
-            //  if(apuestasticket[0].idPuntoVenta!=$("#idPuntoVenta").val()){
-            //     toastr.error("Ticket de Diferente Punto de Venta");return;
-            // }
+                            if(conf_general.CobrarTicket==0){//permitir cobrar ;  0=> no permitir cobrar en dif p venta al tick
+
+                                toastr.error("Ticket de Diferente Punto de Venta");return;
+                            }
+                        }
+                
+           
 
 
              if(ticketsganadores.length>0){
