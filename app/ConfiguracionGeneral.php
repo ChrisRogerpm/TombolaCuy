@@ -50,7 +50,7 @@ class ConfiguracionGeneral extends Model
             $conf->CobrarTicket = $request->input('CobrarTicket');
             $conf->save();
         } else {
-            $conf = new ConfiguracionGenerarEvento();
+            $conf = new ConfiguracionGeneral();
             $conf->CobrarTicket = $request->input('CobrarTicket');
             $conf->save();
         }

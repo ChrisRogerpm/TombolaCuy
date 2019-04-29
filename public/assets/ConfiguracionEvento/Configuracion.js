@@ -50,6 +50,7 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                        MostrarConfiguraciónEvento();
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }
