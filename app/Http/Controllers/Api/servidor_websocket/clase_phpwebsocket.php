@@ -9,23 +9,25 @@
 // Usage: $master=new WebphpWebSocketSocket("localhost",12345);
 
 function probarconexion_mysql(){
-    $mysqli = new mysqli( $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],$GLOBALS['db']);
-    /* check connection */
-    if ($mysqli->connect_errno) {
-        printf("Conexión  falló: %s\n", $mysqli->connect_error);
-        exit();
-    }
-/* check if server is alive */
-    if ($mysqli->ping()) {
-        printf ("Conexión mysql ok!\n");
-    } else {
-        printf ("Error: %s\n", $mysqli->error);
-        exit();
-        
-    }
-
-/* close connection */
-$mysqli->close();
+  try{
+      $mysqli = new mysqli( $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],$GLOBALS['db']);
+      if ($mysqli->connect_errno) {
+          printf("Conexión  falló: %s\n", $mysqli->connect_error);
+          exit();
+      }
+  /* check if server is alive */
+      if ($mysqli->ping()) {
+          printf ("Conexión mysql ok!\n");
+      } else {
+          printf ("Error: %s\n", $mysqli->error);
+          exit();
+      }
+     $mysqli->close();
+  }
+  catch(Exception $ex){
+      echo "aca= ". $ex->getMessage();
+  }
+    
 
 
 }
@@ -88,10 +90,15 @@ class phpWebSocket{
             $this->connect($client); ///conectar cliente
           }
         }
-        else{///cliente ya registrado
+        else{///clientes 
+
+          $user = $this->getuserbysocket($socket);
+          $this->say("cliente ".$user);
             $bytes = @socket_recv($socket,$buffer,2048,0);
             if($bytes==0)
             { 
+                 $this->say("disconnect $user->id");
+
              $this->disconnect($socket); ///cliente desconectado
             }
             else{
@@ -105,8 +112,12 @@ class phpWebSocket{
               }
                else
               { 
-
-                $this->process($user,$this->frame_decode($buffer) ); 
+                $decode=$this->frame_decode($buffer);
+                if($decode=="ping"){
+                   $this->disconnect($socket);
+                }else{
+                  $this->process($user,$decode ); 
+                }
               } 
             }
         }
@@ -268,6 +279,7 @@ function frame_encode($message) {
        array_splice($this->users,$found,1); 
     }
     $index=array_search($socket,$this->sockets);
+    $usuario=$this->getuserbysocket($socket);
     socket_close($socket);
     $this->say(" DISCONNECTED!  User count:".count( $this->users));
     if($index>=0)
@@ -364,8 +376,12 @@ function frame_encode($message) {
         echo "No hay Datos ";
     }
     $conn->close();
-
-      return $array_resultado;
+     if(isset($array_resultado)){
+        $rpta=$array_resultado;
+     }else{
+      $rpta=null;
+     }
+      return $rpta;
   }
   public function Estadistica($idJuego){
    $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
@@ -408,50 +424,68 @@ function frame_encode($message) {
 
       return $array_resultado;
   }
-  public function resultados_evento($idEvento){
-
-    $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
-    $sql_resultado="select valorGanador from resultado_evento as res where res.idEvento=".$idEvento." group by valorGanador";
-    $result = $conn->query($sql_resultado);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $resultados_evento[] = $row;
+  public function GanadorEvento($idEvento){
+      try{
+          $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
+          $sql_resultado="select valorGanador from resultado_evento as res where res.idEvento=".$idEvento." group by valorGanador";
+          $result = $conn->query($sql_resultado);
+          if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                  $resultados_evento[] = $row;
+              }
+          } else {
+              echo "No hay Resultado de Evento ".$idEvento;
+          }
+          $conn->close();
+      }catch(Exception $ex){
+            echo $ex->getMessage();
+      }
+      if(isset($resultados_evento)){
+          $resultados = $resultados_evento;
+        }else{
+           $resultados=null;
         }
-        $ganador=$resultados_evento[0];
-    } else {
-        echo "No hay Resultado de Evento ".$idEvento;
-    }
-    $conn->close();
-
-      return $resultados_evento;
+      return $resultados;
   }
    public function getEventoActual($idJuego)
     {
 
         $IdJuego = $idJuego;
-        $conn = new mysqli($GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        try{
+              $conn = new mysqli($GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
+              if ($conn->connect_error) {
+                  die("Connection failed: " . $conn->connect_error);
+              }
+              $sql = "select * from evento as ev left join juego as j on j.idJuego = ev.idJuego    where j.idJuego=".$idJuego." and ev.EstadoEvento=1";
+              ///////select evento  con idJuego y estadoevento=1
+              $result = $conn->query($sql);
+              if ($result->num_rows > 0) {
+                  while($row = $result->fetch_assoc()) {
+                      $evento_activo[] = $row;
+                  }
+                  $idEvento=$evento_activo[0]["idEvento"];
+              } else {
+                  echo "No hay eventos de Juego Tipo ".$idJuego." activos";
+              }
+              $conn->close();
+        }catch(Exception $ex){
+             echo $ex->getMessage();
+             $evento_activo=null;
         }
-        $sql = "select * from evento as ev left join juego as j on j.idJuego = ev.idJuego    where j.idJuego=".$idJuego." and ev.EstadoEvento=1";
-        ///////select evento  con idJuego y estadoevento=1
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $evento_activo[] = $row;
-            }
-            $idEvento=$evento_activo[0]["idEvento"];
-        } else {
-            echo "No hay eventos de Juego Tipo ".$idJuego." activos";
-        }
-        $conn->close();
 
-        $evento_actual = $evento_activo[0];
+        if(isset($evento_activo)){
+          $evento_actual = $evento_activo[0];
+        }
+        else{
+            $evento_actual=null;          
+        }
+        $resultado_evento=$this->ResultadoEvento($IdJuego);
+        $estadistica= $this->Estadistica($IdJuego);
         if ($evento_actual != null) {
-            $ganador=$this->resultados_evento($idEvento);
+            $ganador=$this->GanadorEvento($idEvento);
             $ganador=$ganador[0];
           // print_r($evento_actual);
            // print_r($ganador);
@@ -460,8 +494,7 @@ function frame_encode($message) {
             $segundos_agregados = $evento_actual["segBloqueoAntesAnimacion"];
             $fecha_animacion = date("Y-m-d H:i:s a", strtotime('-'.$segundos_agregados.' seconds', strtotime($fecha_fin_actual)));
             //animacion=>fechafin-segBloqueoAntesAnimacion
-            $resultado_evento=$this->ResultadoEvento($IdJuego);
-            $estadistica= $this->Estadistica($IdJuego);
+     
            
             $array_evento = [
                 'resultado_evento' => $resultado_evento,
@@ -480,8 +513,8 @@ function frame_encode($message) {
             ]);
         } else {
             $array_evento = [
-                 'resultado_evento' =>'',
-                'estadistica' => '',
+                  'resultado_evento' => $resultado_evento,
+                'estadistica' => $estadistica,
                 'estado_animacion' => '',
                 'fecha_evento_ini_actual' => '',
                 'fecha_evento_fin_actual' => '',

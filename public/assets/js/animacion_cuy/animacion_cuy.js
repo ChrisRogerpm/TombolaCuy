@@ -106,7 +106,8 @@ function get_caja(numero){
             return false;
         }
     })
-    var worldposition=cajaobjeto.getWorldPosition();
+    var worldposition=new THREE.Vector3();
+    cajaobjeto.getWorldPosition(worldposition);
     posicion={nombre:numero,posicion:{x:worldposition.x,y:worldposition.y,z:worldposition.z}}
     return posicion;
 }
@@ -472,7 +473,13 @@ function cajagirando_animacion() {
             posicionycajaxinicial=-9.8808069229126  ;//9.932283401;//-6.86645478253922e-7;//-993.228455;///  z=>  -993.228455
             posicionfinalcaja=-11.4;//8.2;//3.4999993133545217//800;
             
-            cajax_posicioninicial=cajax.getWorldPosition();
+            //cajax_posicioninicial=cajax.getWorldPosition();
+            cajax_posicioninicial= new THREE.Vector3() ; 
+            cajax.getWorldPosition(cajax_posicioninicial);
+
+            posicionmadera = new THREE.Vector3() ; 
+            getObjeto_caja("madera").getWorldPosition(posicionmadera)
+
             dtcajax=0.2;
             tcajax=0;
             rotacionx_inicio=0;//-7.318557638911297e-33;
@@ -680,9 +687,11 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                     // b=get_caja(GANADOR_DE_EVENTO).posicion;
                     if(GANADOR_DE_EVENTO=="x" || GANADOR_DE_EVENTO=="0"){
                           bfuncion_easing_indice=7;//easeInQuart
-                          console.log("X o O")
+                          console.log("X o O");
                          // b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
-                         b=getObjeto_caja("madera").getWorldPosition();
+                         // b=getObjeto_caja("madera").getWorldPosition();
+                         b=new THREE.Vector3();
+                         getObjeto_caja("madera").getWorldPosition(b);
 
                     }else{
                         b=get_caja(GANADOR_DE_EVENTO).posicion;
@@ -693,9 +702,14 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             }  
             else {
                 CUY_CORRIENDO = false;
-               
-                if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
-                    model.position.z== getObjeto_caja("madera").getWorldPosition().z ){
+                posicionmadera
+
+                // if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
+                //     model.position.z== getObjeto_caja("madera").getWorldPosition().z 
+                if(model.position.x== posicionmadera.x &&
+                    model.position.z== posicionmadera.z 
+                    )
+                {
                     modelCuyChoque.position.y=-0.1;
                     cuychoque();
                     cajax_animacion();
