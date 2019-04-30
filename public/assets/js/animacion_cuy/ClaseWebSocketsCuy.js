@@ -34,7 +34,7 @@ function crear_toastr_eventofinalizo(){
                                   extendedTimeOut: 0,
                                   tapToDismiss: false
                                 };
-                                toastr_eventofinalizo=toastr.error("Evento actual ya finalizó");
+                                toastr_eventofinalizo=toastr.warn("Evento actual ya finalizó");
                             }
             else{toastr_eventofinalizo.show()}
 }
@@ -184,7 +184,7 @@ function init(host,port){
                             }
                                   if(segundos_para_fin_evento>0){
 
-                                    toast_eventoterminar=toastr.error("Esperando que termine evento actual");
+                                    toast_eventoterminar=toastr.info("Esperando que termine evento actual");
                                      $("#barra_loading_tpi").animate(
                                          {width:"100%"}
                                         ,(segundos_para_fin_evento)*1000
@@ -477,7 +477,7 @@ function accion_evento(DATOS){
                           console.log(performance.now() +" esperando fecha fin evento actual,para recargar " +FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")) ;
                               if(segundos_para_fin_evento>0){
 
-                                   toast_eventoterminar=toastr.error("Esperando que termine evento actual");
+                                   toast_eventoterminar=toastr.info("Esperando que termine evento actual");
                                    $("#barra_loading_tpi").animate(
                                        {width:"100%"}
                                       ,(segundos_para_fin_evento)*1000
@@ -499,7 +499,7 @@ function accion_evento(DATOS){
 
                               }
                               else{
-                                  toastr_eventofinalizo=toastr.error(" Evento actual ya finalizó")
+                                  toastr_eventofinalizo=toastr.info(" Evento actual ya finalizó")
                                   if(typeof timeout_eventofinalizo!="undefined"){
                                     //clearTimeout(timeout_eventofinalizo);
                                   }
