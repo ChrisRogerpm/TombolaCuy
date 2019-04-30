@@ -4,7 +4,7 @@
 include "clase_phpwebsocket.php";
 
 $server_ip="10.128.0.2";  //what is the IP of your server
-$puerto=50051;
+$puerto=888;
 
 
 /////SQL
