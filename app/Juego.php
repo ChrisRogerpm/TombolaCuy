@@ -5,12 +5,15 @@ namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 class Juego extends Model
 {
     protected $table = 'juego';
 
     protected $primaryKey = 'idJuego';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'nombre',
@@ -24,7 +27,8 @@ class Juego extends Model
         'idMoneda',
         'diasVigentesCobroTicket',
         'estado',
-        'segBloqueoAntesAnimacion'
+        'segBloqueoAntesAnimacion',
+        'apuestaMaximaGeneral'
     ];
 
     public static function JuegoListarLapsoJson()
@@ -55,5 +59,15 @@ class Juego extends Model
         } catch (QueryException $ex) {
         }
         return $respuesta;
+    }
+
+    public static function JuegoEditarJson(Request $request)
+    {
+        $idJuego = $request->input('idJuego');
+        $juego = Juego::findorfail($idJuego);
+        $juego->apuestaMinima = $request->input('apuestaMinima');
+        $juego->apuestaMaxima = $request->input('apuestaMaxima');
+        $juego->apuestaMaximaGeneral = $request->input('apuestaMaximaGeneral');
+        $juego->save();
     }
 }

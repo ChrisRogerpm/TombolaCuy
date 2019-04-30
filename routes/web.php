@@ -95,11 +95,17 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 #endregion
 
 #region [Cliente]
-    Route::get('ClienteListar', 'ClienteController@ClienteListarVista')->name('Cliente.Listar');
-    Route::get('ClienteInsertar', 'ClienteController@ClienteInsertarVista')->name('Cliente.Insertar');
-    Route::get('ClienteEditar/{idCliente}', 'ClienteController@ClienteEditarVista')->name('Cliente.Editar');
-    Route::post('ClienteInsertarJson', 'ClienteController@ClienteInsertarJson');
-    Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
+//    Route::get('ClienteListar', 'ClienteController@ClienteListarVista')->name('Cliente.Listar');
+//    Route::get('ClienteInsertar', 'ClienteController@ClienteInsertarVista')->name('Cliente.Insertar');
+//    Route::get('ClienteEditar/{idCliente}', 'ClienteController@ClienteEditarVista')->name('Cliente.Editar');
+//    Route::post('ClienteInsertarJson', 'ClienteController@ClienteInsertarJson');
+//    Route::post('ClienteEditarJson', 'ClienteController@ClienteEditarJson');
+#endregion
+
+#region [Juego]
+    Route::get('JuegoListarVista', 'JuegoController@JuegoListarVista')->name('Juego.Listar');
+    Route::get('JuegoEditarVista/{IdJuego}', 'JuegoController@JuegoEditarVista')->name('Juego.Editar');
+    Route::post('JuegoEditarJson', 'JuegoController@JuegoEditarJson');
 #endregion
 
 #region [Reporte]
@@ -121,8 +127,11 @@ Route::middleware(['auth', 'permisos'])->group(function () {
 });
 /*GenerarExcel*/
 
-Route::post('GenerarExcelFk','HomeController@GenerarExcel');
-Route::post('GenerarArchivoExcelJackpotFk','HomeController@GenerarArchivoExcelJackpot');
+Route::post('GenerarExcelFk', 'HomeController@GenerarExcel');
+Route::post('GenerarArchivoExcelJackpotFk', 'HomeController@GenerarArchivoExcelJackpot');
+
+/*Juego*/
+Route::post('JuegoListarJsonFk', 'JuegoController@JuegoListarJson');
 
 /*Ventana Caja*/
 Route::post('VentaDatosJsonFk', 'VentaController@VentaDatosJson');
@@ -139,14 +148,12 @@ Route::post('JugadoresDatosJsonFk', 'VentaController@JugadoresDatosJson');
 Route::post('CajaTablaFk', 'VentaController@CajaTablaFk');
 
 
-
-
 /*Reportes*/
 Route::post('ReporteHistorialTicketJsonFk', 'ReporteController@ReporteHistorialTicketJson');
 Route::post('ReporteVentaJsonFk', 'ReporteController@ReporteVentaJson');
 Route::post('ReporteVentaJuegoFk', 'ReporteController@ReporteVentaJuegoJson');
 Route::post('ReporteApuestaJsonFk', 'ReporteController@ReporteApuestaJson');
-Route::post('ObtenerPuntosVentaZonaComercialJsonFk','ReporteController@ObtenerPuntosVentaZonaComercialJson');
+Route::post('ObtenerPuntosVentaZonaComercialJsonFk', 'ReporteController@ObtenerPuntosVentaZonaComercialJson');
 
 /*ConfiguracionJackpot*/
 Route::post('ConfiguracionPozoSegunConfJackPotFk', 'ReporteController@ConfiguracionPozoSegunConfJackPot');
@@ -193,7 +200,7 @@ Route::post('EmpresaListarJsonFk', 'EmpresaController@EmpresaListarJson');
 Route::post('PuntoVentaListarJsonFk', 'PuntoVentaController@PuntoVentaListarJson');
 Route::post('UbigeoListarJsonFk', 'UbigeoController@UbigeoListarJson');
 Route::post('TipoApuestaListarJsonFk', 'TipoApuestaController@TipoApuestaListarJson');
-Route::post('ClienteListarJsonFk', 'ClienteController@ClienteListarJson');
+//Route::post('ClienteListarJsonFk', 'ClienteController@ClienteListarJson');
 Route::post('SincronizarPuntoVentaFk', 'PuntoVentaController@SincronizarPuntoVentaAPI');
 Route::post('ConfiguracionPozoEliminarJsonFk', 'ConfiguracionPozoController@ConfiguracionPozoEliminarJson');
 Route::post('CambiarEstadoConfiguracionPozoJsonFk', 'ConfiguracionPozoController@CambiarEstadoConfiguracionPozoJson');
@@ -211,5 +218,5 @@ Route::post('AperturaCajaListarActivaFk', 'AperturaCajaController@AperturaCajaLi
 Route::post('PuntoVentaListarUsuarioJsonFk', 'PuntoVentaController@PuntoVentaListarUsuarioJson');
 
 /*Seguridad*/
-Route::post('AgregarTodoPermisosJsonFk','SeguridadController@AgregarTodoPermisosJson');
-Route::post('QuitarTodoPermisosJsonFk','SeguridadController@QuitarTodoPermisosJson');
+Route::post('AgregarTodoPermisosJsonFk', 'SeguridadController@AgregarTodoPermisosJson');
+Route::post('QuitarTodoPermisosJsonFk', 'SeguridadController@QuitarTodoPermisosJson');

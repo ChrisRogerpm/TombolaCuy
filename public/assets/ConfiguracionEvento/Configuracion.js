@@ -1,10 +1,10 @@
 $(document).ready(function () {
     MostrarConfiguraciónEvento();
-    $('#btnGuardarConfiguracionEvento').on('click', function (e) {
+    $(document).on('click', '#btnGuardarConfiguracionEvento', function () {
         var validar = $("#frmConfiguracionEvento");
         if (validar.valid()) {
             var url = basePath + "ConfiguracionEventoJsonFk";
-            var dataForm = $('#frmNuevo').serializeFormJSON();
+            var dataForm = $('#frmConfiguracionEvento').serializeFormJSON();
             $.ajax({
                 url: url,
                 type: "POST",
@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click', '#btnGuardarConfiguracionEvento', function () {
+    $(document).on('click', '#btnGuardarConfiguracionCobrarTicket', function () {
         var validar = $("#frmConfiguracionEvento");
         if (validar.valid()) {
             var url = basePath + "ConfiguracionCobrarTicketJsonFk";
@@ -50,7 +50,7 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
-                        MostrarConfiguraciónEvento();
+                        // MostrarConfiguraciónEvento();
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }
@@ -91,10 +91,10 @@ function MostrarConfiguraciónEvento() {
                 $(".idConfiguracion").val(data.idConfiguracion);
                 $("#HoraInicioIntervalo").val(data.HoraInicioIntervalo);
                 $("#HoraFinIntervalo").val(data.HoraFinIntervalo);
-                if(data.CobrarTicket === 1){
+                if (data.CobrarTicket === 1) {
                     $("#CheckTicket").attr('checked', true);
                     $("#txtCobrarTicket").val(1);
-                }else {
+                } else {
                     $("#CheckTicket").attr('checked', false);
                     $("#txtCobrarTicket").val(0);
                 }

@@ -3,15 +3,15 @@
 // Run from command prompt > php -q ws_server.php
 include "clase_phpwebsocket.php";
 
-$server_ip="192.168.1.60";  //what is the IP of your server
-$puerto=50051;
+$server_ip="10.128.0.2";  //what is the IP of your server
+$puerto=888;
 
 
 /////SQL
-$GLOBALS['servername'] = "192.168.1.60";
-$GLOBALS['username'] = "sa";
-$GLOBALS['password'] = "123123";
-$GLOBALS['db'] = "bd_s3k_tombolacuy_limpia";
+$GLOBALS['servername'] = "127.0.0.1";
+$GLOBALS['username'] = "root";
+$GLOBALS['password'] = "147896321";
+$GLOBALS['db'] = "bd_s3k_tombolacuy";
 
 probarconexion_mysql();
 // Extended basic WebSocket as ws_server

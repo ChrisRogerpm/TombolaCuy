@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    // var dateNow = new Date();
-    // $(".Fecha").datetimepicker({
-    //     format: 'YYYY/MM/DD HH:mm:ss',
-    //     defaultDate: dateNow,
-    // });
-
     var d = new Date();
     var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
     $(".Fecha").datetimepicker({
@@ -50,6 +44,25 @@ $(document).ready(function () {
                 }
             })
             $('#cboTienda').val(nuevo).trigger('change');
+        }
+    });
+
+    $('#cboTickets').on('select2:select', function (e) {
+        var data = e.params.data;
+        var valor = data.id;
+        if (valor == 0) {
+            $('#cboTickets').val([]).trigger('change');
+            $('#cboTickets').val(0).trigger('change');
+        }
+        else {
+            var valores = $('#cboTickets').val();
+            var nuevo = [];
+            $.each(valores, function (index, value) {
+                if (value != 0) {
+                    nuevo.push(value);
+                }
+            });
+            $('#cboTickets').val(nuevo).trigger('change');
         }
     });
 

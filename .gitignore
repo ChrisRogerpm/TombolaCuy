@@ -6,8 +6,8 @@
 /.idea
 /public/Reportes
 .phpunit.result.cache
-.env
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.env
