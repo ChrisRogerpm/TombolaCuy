@@ -486,9 +486,7 @@ function frame_encode($message) {
         $estadistica= $this->Estadistica($IdJuego);
         if ($evento_actual != null) {
             $ganador=$this->GanadorEvento($idEvento);
-            echo " - ";
             $ganador=$ganador[0];
-            echo $ganador;
           // print_r($evento_actual);
            // print_r($ganador);
             $fecha_ini_actual = $evento_actual["fechaEvento"];
