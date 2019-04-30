@@ -44,6 +44,11 @@ class ReporteController extends Controller
         return view('Seguridad.Auditoria');
     }
 
+    public function ReporteAlertasVista()
+    {
+        return view('Reportes.ReporteAlertasVista');
+    }
+
     public function ReporteApuestaJson(Request $request)
     {
         $lista = "";

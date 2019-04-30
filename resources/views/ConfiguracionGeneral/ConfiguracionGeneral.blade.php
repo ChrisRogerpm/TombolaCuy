@@ -101,6 +101,67 @@
             </div>
         </div>
 
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">Configuración Cuenta de Correo</div>
+                </div>
+                <div class="panel-body">
+                    <form id="frmConfiguracionCuentaCorreo" autocomplete="off">
+                        {{csrf_field()}}
+                        <input type="hidden" class="idConfiguracion" name="idConfiguracion">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Cuenta Correo</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" name="CuentaCorreo" id="CuentaCorreo">
+                                        <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-envelope-o"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Password Correo</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control input-sm" name="PasswordCorreo" id="PasswordCorreo">
+                                        <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-key"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">SMTP</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" name="SMTP" id="SMTP">
+                                        <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-cog"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">SSL</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm" name="SSL" id="SSL">
+                                        <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-cog"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-10">
+                            <button class="btn btn-primary btn-block btn-sm pull-right"
+                                    id="btnGuardarConfiguracionCuentaCorreo">Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 @stop
 

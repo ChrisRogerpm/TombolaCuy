@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    MostrarConfiguraciónEvento();
+    MostrarConfiguracionEvento();
     $(document).on('click', '#btnGuardarConfiguracionEvento', function () {
         var validar = $("#frmConfiguracionEvento");
         if (validar.valid()) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnGuardarConfiguracionCobrarTicket', function () {
-        var validar = $("#frmConfiguracionEvento");
+        var validar = $("#frmConfiguracionCobroTicket");
         if (validar.valid()) {
             var url = basePath + "ConfiguracionCobrarTicketJsonFk";
             var dataForm = $('#frmConfiguracionCobroTicket').serializeFormJSON();
@@ -61,6 +61,36 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on('click', '#btnGuardarConfiguracionCuentaCorreo', function () {
+        var validar = $("#frmConfiguracionCuentaCorreo");
+        if (validar.valid()) {
+            var url = basePath + "ConfiguracionCuentaCorreoJsonFk";
+            var dataForm = $('#frmConfiguracionCuentaCorreo').serializeFormJSON();
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(dataForm),
+                beforeSend: function () {
+                    $.LoadingOverlay("show");
+                },
+                complete: function () {
+                    $.LoadingOverlay("hide");
+                },
+                success: function (response) {
+                    var respuesta = response.respuesta;
+                    if (respuesta === true) {
+                        toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                    } else {
+                        toastr.error(response.mensaje, "Mensaje Servidor");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                }
+            });
+        }
+    });
+
     $(document).on('ifChecked', 'input:checkbox', function () {
         $('#txtCobrarTicket').val('1');
     });
@@ -69,7 +99,7 @@ $(document).ready(function () {
     });
 });
 
-function MostrarConfiguraciónEvento() {
+function MostrarConfiguracionEvento() {
     var url = basePath + "ConfiguracionEventoMostrarFk";
     $.ajax({
         type: 'POST',
@@ -91,6 +121,10 @@ function MostrarConfiguraciónEvento() {
                 $(".idConfiguracion").val(data.idConfiguracion);
                 $("#HoraInicioIntervalo").val(data.HoraInicioIntervalo);
                 $("#HoraFinIntervalo").val(data.HoraFinIntervalo);
+                $("#CuentaCorreo").val(data.CuentaCorreo);
+                $("#PasswordCorreo").val(data.PasswordCorreo);
+                $("#SMTP").val(data.SMTP);
+                $("#SSL").val(data.SSL);
                 if (data.CobrarTicket === 1) {
                     $("#CheckTicket").attr('checked', true);
                     $("#txtCobrarTicket").val(1);

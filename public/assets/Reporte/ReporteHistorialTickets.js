@@ -1,10 +1,10 @@
 $(document).ready(function () {
     var d = new Date();
-    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
+    var datestring = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: datestring,
-        useCurrent:'day'
+        useCurrent: 'day'
     });
 
     var dateNow = new Date();
@@ -34,8 +34,7 @@ $(document).ready(function () {
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        }
-        else {
+        } else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -46,26 +45,7 @@ $(document).ready(function () {
             $('#cboTienda').val(nuevo).trigger('change');
         }
     });
-
-    $('#cboTickets').on('select2:select', function (e) {
-        var data = e.params.data;
-        var valor = data.id;
-        if (valor == 0) {
-            $('#cboTickets').val([]).trigger('change');
-            $('#cboTickets').val(0).trigger('change');
-        }
-        else {
-            var valores = $('#cboTickets').val();
-            var nuevo = [];
-            $.each(valores, function (index, value) {
-                if (value != 0) {
-                    nuevo.push(value);
-                }
-            });
-            $('#cboTickets').val(nuevo).trigger('change');
-        }
-    });
-
+    $("#cboTickets").select2();
 
     llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
     $("#cboTienda").select2('val', [0]);
@@ -120,6 +100,7 @@ function ReporteHistorialTicket(url, dataForm) {
                     {data: "pagado", title: "Pagado", class: 'text-center'},
                     {data: "utilidad", title: "Utilidad", class: 'text-center'},
                     {data: "valores", title: "Valores", class: 'text-center'},
+                    {data: "estadoGanadorTicket", title: "Estado Ganador Ticket", class: 'text-center'},
                 ],
                 "drawCallback": function (settings) {
                     $('.btnVer').tooltip({

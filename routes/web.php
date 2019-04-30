@@ -116,6 +116,8 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('ReporteHistorialTicketVista', 'ReporteController@ReporteHistorialTicketVista')->name('Reporte.HistorialTicket');
     Route::get('ReporteDetalleApuestaEventoVista', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.DetalleApuestaEvento');
     Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');
+    Route::get('ReporteAlertasVista', 'ReporteController@ReporteAlertasVista')->name('Reporte.Alerta');
+
 #endregion
     Route::get('ProgresivoListar', 'ProgresivoController@ProgresivoListarVista')->name('Progresivo.Listar');
     Route::get('ProgresivoInsertar', 'ProgresivoController@ProgresivoInsertarVista')->name('Progresivo.Insertar');
@@ -183,6 +185,7 @@ Route::post('ReporteCierreCajaFk', 'ReporteController@ReporteCierreCajaFk');
 Route::get('ConfiguracionGeneral', 'ConfiguracionGeneralController@ConfiguracionGeneralVista')->name('ConfiguracionEvento');
 Route::post('ConfiguracionEventoJsonFk', 'ConfiguracionGeneralController@ConfiguracionEventoInsertarJson');
 Route::post('ConfiguracionCobrarTicketJsonFk', 'ConfiguracionGeneralController@ConfiguracionCobrarTicketJson');
+Route::post('ConfiguracionCuentaCorreoJsonFk', 'ConfiguracionGeneralController@ConfiguracionCuentaCorreoJson');
 Route::post('ConfiguracionEventoMostrarFk', 'ConfiguracionGeneralController@ConfiguracionEventoMostrar');
 
 

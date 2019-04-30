@@ -18,6 +18,10 @@ class ConfiguracionGeneral extends Model
         'HoraInicioIntervalo',
         'HoraFinIntervalo',
         'CobrarTicket',
+        'CuentaCorreo',
+        'PasswordCorreo',
+        'SMTP',
+        'SSL',
     ];
 
     public static function ObtenerConfiguracionEvento()
@@ -52,6 +56,26 @@ class ConfiguracionGeneral extends Model
         } else {
             $conf = new ConfiguracionGeneral();
             $conf->CobrarTicket = $request->input('CobrarTicket');
+            $conf->save();
+        }
+    }
+
+    public static function ConfiguracionCuentaCorreo(Request $request)
+    {
+        $configuracion = ConfiguracionGeneral::ObtenerConfiguracionEvento();
+        if ($configuracion != null) {
+            $conf = ConfiguracionGeneral::findorfail($configuracion->idConfiguracion);
+            $conf->CuentaCorreo = $request->input('CuentaCorreo');
+            $conf->PasswordCorreo = $request->input('PasswordCorreo');
+            $conf->SMTP = $request->input('SMTP');
+            $conf->SSL = $request->input('SSL');
+            $conf->save();
+        } else {
+            $conf = new ConfiguracionGeneral();
+            $conf->CuentaCorreo = $request->input('CuentaCorreo');
+            $conf->PasswordCorreo = $request->input('PasswordCorreo');
+            $conf->SMTP = $request->input('SMTP');
+            $conf->SSL = $request->input('SSL');
             $conf->save();
         }
     }

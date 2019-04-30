@@ -347,7 +347,7 @@
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
                     </a>
-                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                    <ul class="sub-menu collapse" data-menu-title="Jackpot">
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                         </li>
@@ -357,7 +357,7 @@
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
                     </a>
-                    <ul class="sub-menu collapse" data-menu-title="Progresivo">
+                    <ul class="sub-menu collapse" data-menu-title="Venta">
                         <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Caja Venta</span></a></li>
@@ -392,6 +392,11 @@
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Historial Ticket</span></a></li>
+
+                        <li><a href="{{route('Reporte.Alerta')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i>
+                                <span
+                                        class="title">Alertas</span></a></li>
                     </ul>
                 </li>
                 <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-cog"></i> <span

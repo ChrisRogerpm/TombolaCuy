@@ -17,8 +17,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
-                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Historial
-                                                    Tickets
+                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Alertas
                                                 </h6>
                                             </div>
                                         </div>
@@ -75,33 +74,16 @@
                                     <label for="">Fecha Fin</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                        <input type="text" class="form-control input-sm FechaFin" name="fechaFin"
-                                               required>
+                                        <input type="text" class="form-control input-sm FechaFin" name="fechaFin" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Tiendas</label>
-                                    <select multiple="multiple" id="cboTienda" name="tiendas"
-                                            class="form-control input-sm multiselect" style="width: 100%;">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Evento</label>
-                                    <input type="number" class="form-control input-sm" name="idEvento">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Tipo Tickets</label>
-                                    <select id="cboTickets" name="TipoTicket"
-                                            class="form-control input-sm" style="width: 100%;">
-                                        <option value="0">Todos</option>
-                                        <option value="1">Ganador</option>
-                                        <option value="2">No Ganador</option>
+                                    <select class="form-control input-sm multiselect" required name="tiendas"
+                                            style="width: 100%;" id="cboTienda" multiple="multiple">
+                                        <option value="0">--Seleccione--</option>
                                     </select>
                                 </div>
                             </div>
@@ -113,36 +95,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12" id="ContenedorTabla">
-            <div class="panel panel-primary"
-                 style="padding-top:10px; padding-left:10px;padding-right:10px;display: none"
-                 id="PanelTabla">
+        <div class="col-md-12">
+            <div class="panel panel-primary" id="PanelTabla" style="display:none;">
                 <div class="panel-body">
-                    <table class="table table-bordered border-1" id="table_panel">
-                        <tfoot>
-                        <tr style="background-color: #CCCCCC">
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th class="text-center" id="TotalApostado"></th>
-                            <th class="text-center" id="TotalPagado"></th>
-                            <th class="text-center" id="TotalUtilidad"></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-12" id="ContenedorTabla"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-@stop
 
-@push('Js')
-    <script src="{{asset('assets/Reporte/ReporteHistorialTickets.js')}}"></script>
+
+@stop @push('Js')
+    <script src="{{asset('assets/Reporte/ReporteAlertas.js')}}"></script>
 @endpush

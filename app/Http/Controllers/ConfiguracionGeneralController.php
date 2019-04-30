@@ -50,4 +50,17 @@ class ConfiguracionGeneralController extends Controller
         }
         return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje]);
     }
+
+    public function ConfiguracionCuentaCorreoJson(Request $request)
+    {
+        $respuesta = false;
+        $mensaje = "";
+        try {
+            ConfiguracionGeneral::ConfiguracionCuentaCorreo($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje]);
+    }
 }

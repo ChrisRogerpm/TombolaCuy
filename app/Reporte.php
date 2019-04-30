@@ -478,46 +478,86 @@ class Reporte extends Model
          $condicional
          $condicional2
          "));
-
-//        $lista = [];
-//        if ($TipoTicket == 0) {
-//            foreach ($resultado as $re) {
-//                $lista [] = [
-//                    'fechaevento' => $re->fechaevento,
-//                    'juego' => $re->juego,
-//                    'idEvento' => $re->idEvento,
-//                    'idticket' => $re->idticket,
-//                    'fechaApuesta' => $re->fechaApuesta,
-//                    'puntoventa' => $re->puntoventa,
-//                    'fechapago' => $re->fechapago,
-//                    'puntoventapago' => $re->puntoventapago,
-//                    'apostado' => $re->apostado,
-//                    'pagado' => $re->pagado,
-//                    'utilidad' => $re->utilidad,
-//                    'valores' => $re->valores,
-//                    'estadoGanador' => 1
-//                ];
-//            }
-//        } else if ($TipoTicket == 1) {
-//
-//        } else if ($TipoTicket == 2) {
-//
-//        }
-        return $resultado;
+        $lista = [];
+        foreach ($resultado as $re) {
+            $estadoGanador = Reporte::VerificarEstadoGanadorTicket($re->idticket);
+            if ($TipoTicket == 0) {
+                if ($estadoGanador) {
+                    $estado = "Ganador";
+                } else {
+                    $estado = "No Ganador";
+                }
+                $lista [] = [
+                    'fechaevento' => $re->fechaevento,
+                    'juego' => $re->juego,
+                    'idEvento' => $re->idEvento,
+                    'idticket' => $re->idticket,
+                    'fechaApuesta' => $re->fechaApuesta,
+                    'puntoventa' => $re->puntoventa,
+                    'fechapago' => $re->fechapago,
+                    'puntoventapago' => $re->puntoventapago,
+                    'apostado' => $re->apostado,
+                    'pagado' => $re->pagado,
+                    'utilidad' => $re->utilidad,
+                    'valores' => $re->valores,
+                    'estadoGanadorTicket' => $estado
+                ];
+            }else if($TipoTicket == 1 and $estadoGanador == true){
+                $estado = "Ganador";
+                $lista [] = [
+                    'fechaevento' => $re->fechaevento,
+                    'juego' => $re->juego,
+                    'idEvento' => $re->idEvento,
+                    'idticket' => $re->idticket,
+                    'fechaApuesta' => $re->fechaApuesta,
+                    'puntoventa' => $re->puntoventa,
+                    'fechapago' => $re->fechapago,
+                    'puntoventapago' => $re->puntoventapago,
+                    'apostado' => $re->apostado,
+                    'pagado' => $re->pagado,
+                    'utilidad' => $re->utilidad,
+                    'valores' => $re->valores,
+                    'estadoGanadorTicket' => $estado
+                ];
+            }else if($TipoTicket == 2 and $estadoGanador == false){
+                $estado = "No Ganador";
+                $lista [] = [
+                    'fechaevento' => $re->fechaevento,
+                    'juego' => $re->juego,
+                    'idEvento' => $re->idEvento,
+                    'idticket' => $re->idticket,
+                    'fechaApuesta' => $re->fechaApuesta,
+                    'puntoventa' => $re->puntoventa,
+                    'fechapago' => $re->fechapago,
+                    'puntoventapago' => $re->puntoventapago,
+                    'apostado' => $re->apostado,
+                    'pagado' => $re->pagado,
+                    'utilidad' => $re->utilidad,
+                    'valores' => $re->valores,
+                    'estadoGanadorTicket' => $estado
+                ];
+            }
+        }
+        return $lista;
     }
 
     public static function VerificarEstadoGanadorTicket($idTicket)
     {
-        $ticket = Ticket::where('idTicket',$idTicket)->first();
+        $ticket = Ticket::where('idTicket', $idTicket)->first();
         $IdEvento = $ticket->idEvento;
-        $valores_apostados = Apuesta::where('idTicket',$idTicket)->get();
-        $resultado_evento = ResultadoEvento::where('idEvento',$IdEvento)->get();
-
-
-        foreach ($valores_apostados as $va){
-
+        $valores_apostados = Apuesta::where('idTicket', $idTicket)->get();
+        $respuesta = false;
+        foreach ($valores_apostados as $va) {
+            $coincidencia_ganador = DB::table('resultado_evento as re')
+                ->where('re.idEvento', $IdEvento)
+                ->where('re.idTipoApuesta', $va->idTipoApuesta)
+                ->count();
+            if ($coincidencia_ganador > 0) {
+                $respuesta = true;
+                break;
+            }
         }
-
+        return $respuesta;
     }
 
     public static function ReporteAuditoriaListarJson(Request $request)
