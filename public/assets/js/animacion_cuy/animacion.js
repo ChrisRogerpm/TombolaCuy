@@ -8,7 +8,7 @@ $(".loadingoverlay").css("background-color","rgba(255, 255, 255, 0.2)");
 
 IPSERVIDOR_WEBSOCKETS=$("#IPSERVIDOR_WEBSOCKETS").val();
 PUERTO_WEBSOCKETS=$("#PUERTO_WEBSOCKETS").val();
-TIMEOUT_CONEXIONWEBSOCKETS=5000;
+TIMEOUT_CONEXIONWEBSOCKETS_CORTAR=5000;
 
 // IPSERVIDOR_WEBSOCKETS="192.168.1.60";
 // PUERTO_WEBSOCKETS="50051";
@@ -260,7 +260,7 @@ function CargarEstadistica(IdJuego) {
          ocultar_toasr_nohay_evento();
            ocultar_toasr_servidor_error()
             ///NUEVOOOOOOOOOO
-                        iniciar_websocketservidor();
+                     //   iniciar_websocketservidor();
 
 
             ///
@@ -347,24 +347,24 @@ function detener_timeout_conexionwebsockets(){
       } 
 }
 function timeout_conexionwebsockets(){
-     inicio_intento_conexion=performance.now();
-   detener_timeout_conexionwebsockets();
-   revisar_ya_conecto=setInterval(function(){
-                                if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
-                                    ocultar_toasr_websockets_error();
-                                    clearInterval(revisar_ya_conecto);
-                                }
-                                else{
-                                    if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS){
-                                        if(typeof socket!="undefined" && socket!=null){
-                                            socket.close();socket=null;
-                                        }
-                                        clearInterval(revisar_ya_conecto);
+   //   inicio_intento_conexion=performance.now();
+   // detener_timeout_conexionwebsockets();
+   // revisar_ya_conecto=setInterval(function(){
+   //                              if(CONECTADO__A_SERVIDORWEBSOCKET){//SI EN 1 SEG YA CONECTO
+   //                                  ocultar_toasr_websockets_error();
+   //                                  clearInterval(revisar_ya_conecto);
+   //                              }
+   //                              else{
+   //                                  if((performance.now()-inicio_intento_conexion)>TIMEOUT_CONEXIONWEBSOCKETS_CORTAR){
+   //                                      if(typeof socket!="undefined" && socket!=null){
+   //                                          socket.close();socket=null;
+   //                                      }
+   //                                      clearInterval(revisar_ya_conecto);
 
-                                    }
-                                   crear_toastr_websockets_error();
-                                }
-                        },1000);
+   //                                  }
+   //                                 crear_toastr_websockets_error();
+   //                              }
+   //                      },1000);
 
 }
 function crear_toastr_websockets_error(){
@@ -428,12 +428,17 @@ function ocultar_toasr_servidor_error(){
 
 
 function iniciar_websocketservidor(){
+
             $("#imagen_cargando").hide();
 
         $.LoadingOverlay("hide");
         ocultar_toasr_nohay_evento();
         ocultar_toasr_servidor_error()
      if(socket!=null && socket.readyState==1){
+
+        if(socket.readyState==0){
+            console.info("socket.readyState==0");
+        }
           inicio_pedir_hora=performance.now();
           pedir_hora=true;
           timeout_pedir_hora=setInterval(function(){
@@ -444,25 +449,25 @@ function iniciar_websocketservidor(){
                     clearInterval(timeout_pedir_hora);
                 }
           },1000);
-          console.warn("YA CONECTADO, pedir datos");
+          console.warn(performance.now() +"YA CONECTADO, pedir datos");
           pedir_eventoJSON();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
     }
     else{
-                console.warn("INICIANDO CONEXIÓN ");
-                  CONECTADO__A_SERVIDORWEBSOCKET=false;
-                  inicio_intento_conexion=performance.now();
-                  connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
-                    revisar_ya_conecto=setInterval(function(){
-                            if(CONECTADO__A_SERVIDORWEBSOCKET){
-                                if(typeof toasr_websockets_error!="undefined"){
-                                    toasr_websockets_error.hide();
-                                }
-                                clearInterval(revisar_ya_conecto);
-                            }
-                            else{
-                               crear_toastr_websockets_error();
-                            }
-                    },1000);
+          console.warn(performance.now() +"INICIANDO CONEXIÓN ");
+          CONECTADO__A_SERVIDORWEBSOCKET=false;
+          //inicio_intento_conexion=performance.now();
+          connectarWebSockets(IPSERVIDOR_WEBSOCKETS,PUERTO_WEBSOCKETS);  ///en archivo ClaseWebSockets.js
+            revisar_ya_conecto=setInterval(function(){
+                    if(CONECTADO__A_SERVIDORWEBSOCKET){
+                        if(typeof toasr_websockets_error!="undefined"){
+                            toasr_websockets_error.hide();
+                        }
+                        clearInterval(revisar_ya_conecto);
+                    }
+                    else{
+                       crear_toastr_websockets_error();
+                    }
+            },1000);
 
     }
 }

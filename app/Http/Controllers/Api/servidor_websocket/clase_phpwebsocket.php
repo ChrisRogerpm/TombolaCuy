@@ -88,10 +88,15 @@ class phpWebSocket{
             $this->connect($client); ///conectar cliente
           }
         }
-        else{///cliente ya registrado
+        else{///clientes 
+
+          $user = $this->getuserbysocket($socket);
+          $this->say("cliente ".$user);
             $bytes = @socket_recv($socket,$buffer,2048,0);
             if($bytes==0)
             { 
+                 $this->say("disconnect $user->id");
+
              $this->disconnect($socket); ///cliente desconectado
             }
             else{
@@ -105,8 +110,12 @@ class phpWebSocket{
               }
                else
               { 
-
-                $this->process($user,$this->frame_decode($buffer) ); 
+                $decode=$this->frame_decode($buffer);
+                if($decode=="ping"){
+                   $this->disconnect($socket);
+                }else{
+                  $this->process($user,$decode ); 
+                }
               } 
             }
         }
@@ -268,6 +277,7 @@ function frame_encode($message) {
        array_splice($this->users,$found,1); 
     }
     $index=array_search($socket,$this->sockets);
+    $usuario=$this->getuserbysocket($socket);
     socket_close($socket);
     $this->say(" DISCONNECTED!  User count:".count( $this->users));
     if($index>=0)
@@ -364,8 +374,12 @@ function frame_encode($message) {
         echo "No hay Datos ";
     }
     $conn->close();
-
-      return $array_resultado;
+     if(isset($array_resultado)){
+        $rpta=$array_resultado;
+     }else{
+      $rpta=null;
+     }
+      return $rpta;
   }
   public function Estadistica($idJuego){
    $conn = new mysqli(  $GLOBALS['servername'],  $GLOBALS['username'] ,   $GLOBALS['password'],   $GLOBALS['db']);
@@ -449,7 +463,15 @@ function frame_encode($message) {
         }
         $conn->close();
 
+        if(isset($evento_activo)){
         $evento_actual = $evento_activo[0];
+
+        }
+        else{
+            $evento_actual=null;          
+        }
+        $resultado_evento=$this->ResultadoEvento($IdJuego);
+        $estadistica= $this->Estadistica($IdJuego);
         if ($evento_actual != null) {
             $ganador=$this->resultados_evento($idEvento);
             $ganador=$ganador[0];
@@ -460,8 +482,7 @@ function frame_encode($message) {
             $segundos_agregados = $evento_actual["segBloqueoAntesAnimacion"];
             $fecha_animacion = date("Y-m-d H:i:s a", strtotime('-'.$segundos_agregados.' seconds', strtotime($fecha_fin_actual)));
             //animacion=>fechafin-segBloqueoAntesAnimacion
-            $resultado_evento=$this->ResultadoEvento($IdJuego);
-            $estadistica= $this->Estadistica($IdJuego);
+     
            
             $array_evento = [
                 'resultado_evento' => $resultado_evento,
@@ -480,8 +501,8 @@ function frame_encode($message) {
             ]);
         } else {
             $array_evento = [
-                 'resultado_evento' =>'',
-                'estadistica' => '',
+                  'resultado_evento' => $resultado_evento,
+                'estadistica' => $estadistica,
                 'estado_animacion' => '',
                 'fecha_evento_ini_actual' => '',
                 'fecha_evento_fin_actual' => '',
