@@ -320,6 +320,8 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
             $("#valor_total>span").text("TOTAL: 0.00 "+divisa);
             $("#valor_maximo>span").text("TOTAL: 0.00 "+divisa);
             $(".apuesta span").text("APUESTA "+divisa);
+            if($("#tabla_eventos tbody tr").length!="0"){
+                 $("#div_botones .cerrar").click();}
             if(socket!=null && socket.readyState==1){
                 console.warn("YA CONECTADO, pedir hora")
                 pedir_hora_server();
@@ -947,7 +949,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
         $("#div_botones .print").off().on("click",function(){
 
             if(typeof intervalo_contador=="undefined"){
-                toastr.error("Evento Actual Ya Finalizó,   Recargar Página");
+                toastr.error("Evento Actual "+eventoactual.IdEvento+" Ya Finalizó,   Recargar Página");
                 return;
             }
 
