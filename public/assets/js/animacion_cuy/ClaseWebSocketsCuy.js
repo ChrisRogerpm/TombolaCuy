@@ -58,7 +58,7 @@ function init(host,port){
   // console.info("CONECTANDO A "+host);
   try{
     
-        console.log(performance.now() +" CREANDO SOCKET");
+        console.log(performance.now() +" CREANDO SOCKET "+ url);
         socket = new WebSocket(host);
 
         console.log(performance.now()+" "+ socket.readyState);
@@ -358,7 +358,7 @@ function logerror(msg){
 //function onkey(event){ if(event.keyCode==13){ send(); } }
 
 
-
+//////////////////////////////////////////NUEVO ULTIMO///////////////////////////////////////////////////////////
 
 function accion_evento(DATOS){
 
@@ -379,8 +379,6 @@ function accion_evento(DATOS){
           });
           $("#tablaUltimos").html(strUltimos12);
 /////////////////////////////////////
-
-
 
             hora_servidor=DATOS.hora_servidor;
             if(EVENTO_ACTUAL.evento_id_actual!=""){
@@ -443,7 +441,7 @@ function accion_evento(DATOS){
                             //  );
                           }
                         seg_animacion=segundos_para_animacion*1000;
-                        // segundos_para_animacion=1;///
+                         segundos_para_animacion=1;///
                        if(segundos_para_animacion>0){ ///EN rango animacion
                             setTimeout(function(){
                                 ///barra carga cuy
