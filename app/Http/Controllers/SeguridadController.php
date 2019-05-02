@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Auditoria;
 use App\Permisos;
 use App\PermisosPerfil;
+use App\PuntoVentaTipoAlerta;
+use App\TipoAlerta;
 use App\Usuario;
 use Auth;
 use DB;
@@ -17,6 +19,53 @@ class SeguridadController extends Controller
     public function PermisosUsuarioVista()
     {
         return view('Seguridad.PermisoUsuario');
+    }
+
+    public function TipoAlertaVista()
+    {
+        return view('Seguridad.TipoAlertaListarVista');
+    }
+
+    public function TipoAlertaPuntoVentaVista($idTipoAlerta)
+    {
+        return view('Seguridad.TipoAlertaPuntoVentaVista',compact('idTipoAlerta'));
+    }
+
+    public function TipoAlertaPuntoVentaJson($idTipoAlerta)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = TipoAlerta::TipoAlertaPuntoVenta($idTipoAlerta);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+    }
+
+    public function TipoAlertaPuntoVentaInsertarJson(Request $request)
+    {
+        $mensaje_error = "";
+        $respuesta = false;
+        try {
+            PuntoVentaTipoAlerta::TipoAlertaPuntoVentaInsertar($request);
+            $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+    }
+
+    public function TipoAlertaListarJson()
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = TipoAlerta::ListarTipoAlerta();
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
     public function PermisoPerfilListarJson(Request $request)
@@ -120,7 +169,7 @@ class SeguridadController extends Controller
                 }
             }
 
-            $lista_rutas_excepciones = ["/","AnimacionVista","api/ConfirmacionToken","api/DataEventoResultadoEvento"];
+            $lista_rutas_excepciones = ["/", "AnimacionVista", "api/ConfirmacionToken", "api/DataEventoResultadoEvento"];
 
             foreach ($routeCollection as $value) {
                 $position = in_array($value->uri(), $permisos_route_array_BD);

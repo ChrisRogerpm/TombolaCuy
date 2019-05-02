@@ -24,25 +24,51 @@ class PuntoVenta extends Model
         pv.nombre,
         e.razonSocial,
         (SELECT u.nombre FROM ubigeo u
-        WHERE u.cod_depa = pv.idUbigeo AND u.cod_prov ='00' AND u.cod_dist='00') Ubigeo,
+        WHERE u.idUbigeo = pv.idUbigeo) Ubigeo,
         pv.ZonaComercial
         FROM punto_venta pv
         LEFT JOIN empresa e ON e.idEmpresa = pv.idEmpresa"));
         return $listar;
     }
 
+    public static function PuntoVentaUsuarioAlerta(){
+        $idUsuario = Auth::user()->idUsuario;
+        $lista = DB::select(DB::raw("SELECT * 
+        FROM usuario_punto_venta upv
+        JOIN punto_venta p ON p.idPuntoVenta = upv.idPuntoVenta
+        WHERE 
+        upv.idUsuario = $idUsuario 
+        AND upv.estado = 1
+        AND upv.idPuntoVenta not IN (SELECT pta.idPuntoVenta 
+        FROM punto_venta_tipo_alerta pta WHERE pta.estado = 1)"));
+        return $lista;
+    }
+
     public static function PuntoVentaListarUsuarioJson()
     {
         $IdUsuario = Auth::user()->idUsuario;
-        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)->get();
+        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)
+            ->where('estado',1)
+            ->get();
         $data = [];
         foreach ($lista_punto_venta_usuario as $l) {
             $data [] = $l->idPuntoVenta;
         }
-        $listar = DB::table('punto_venta as pv')
-            ->whereIn('pv.idPuntoVenta', $data)
-            ->get();
-        return $listar;
+        $data = is_array($data) ? implode(",", $data) : $data;
+        if ($data == "") {
+            $lista = [];
+            return $lista;
+        } else {
+            $lista = DB::select(DB::raw("SELECT 
+            pv.*,
+            e.razonSocial,
+            (SELECT u.nombre FROM ubigeo u
+            WHERE u.idUbigeo = pv.idUbigeo) Ubigeo
+            FROM punto_venta pv
+            LEFT JOIN empresa e ON e.idEmpresa = pv.idEmpresa
+            WHERE pv.idPuntoVenta IN ($data)"));
+        return $lista;
+        }
     }
 
     public static function PuntoVentaInsertarJson(Request $request)
@@ -61,7 +87,6 @@ class PuntoVenta extends Model
     {
         $idPuntoVenta = $request->input('idPuntoVenta');
         $zonaComercial = Ubigeo::ObtenerZonaComercial($request->input('idUbigeo'));
-
         $punto_venta = PuntoVenta::findorfail($idPuntoVenta);
         $punto_venta->idEmpresa = $request->input('idEmpresa');
         $punto_venta->idUbigeo = $request->input('idUbigeo');
@@ -82,9 +107,7 @@ class PuntoVenta extends Model
         foreach ($lista_punto_venta_usuario as $l) {
             $data [] = $l->idPuntoVenta;
         }
-
         $data = is_array($data) ? implode(",", $data) : $data;
-
         $listar = DB::select(DB::raw("SELECT * 
         FROM punto_venta pv
         WHERE pv.idPuntoVenta IN ($data)  $condicional"));

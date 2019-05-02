@@ -26,8 +26,8 @@ class Evento extends Model
         'estadoEvento',
         'estadoAnimacion',
         'tokenAnimacion',
-        'puntosCuy',
-        'segCajaGirando'
+        'segCajaGirando',
+        'puntosCuy'
     ];
 
     public $timestamps = false;
@@ -245,7 +245,7 @@ LIMIT 18
 
     public static function GenerarEventoJobNuevo()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')->first();
+        $Configuracion = DB::table('configuracion_general')->first();
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
@@ -311,7 +311,7 @@ LIMIT 18
 
     public static function GenerarResultadoEvento_CambiarEstadoEvento()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')
+        $Configuracion = DB::table('configuracion_general')
             ->first();
         if ($Configuracion != null) {
             $fechaIni = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
@@ -353,7 +353,7 @@ LIMIT 18
 
     public static function EventosDiaActualGenerados()
     {
-        $Configuracion = DB::table('configuracion_generar_evento')->first();
+        $Configuracion = DB::table('configuracion_general')->first();
         if ($Configuracion != null) {
             $fecha_inicio = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
             $fecha_fin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;

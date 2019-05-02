@@ -39,4 +39,29 @@ class PuntoVentaTipoAlerta extends Model
         $puntoVentaTipoAlerta->save();
     }
 
+    public static function TipoAlertaPuntoVentaInsertar(Request $request)
+    {
+        $idTipoAlerta = $request->input('idTipoAlerta');
+        $idPuntoVenta = $request->input('idPuntoVenta');
+        $correoDestino = $request->input('correoDestino');
+        $TipoAlerta = TipoAlerta::findorfail($idTipoAlerta);
+        foreach ($idPuntoVenta as $pv) {
+            $data = new PuntoVentaTipoAlerta();
+            $data->idTipoAlerta = $idTipoAlerta;
+            $data->idPuntoVenta = $pv;
+            $data->monto = $TipoAlerta->monto;
+            $data->asunto = $TipoAlerta->asunto;
+            $data->mensaje = $TipoAlerta->mensaje;
+            $data->estado = 1;
+            $data->save();
+            foreach ($correoDestino as $correo) {
+                $data_detalle = new DetallePuntoVentaTipoAlerta();
+                $data_detalle->idPuntoVentaTipoAlerta = $data->idPuntoVentaTipoAlerta;
+                $data_detalle->correoDestino = $correo;
+                $data_detalle->estado = 1;
+                $data_detalle->save();
+            }
+        }
+    }
+
 }

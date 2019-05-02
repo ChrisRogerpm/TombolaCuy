@@ -126,6 +126,10 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('UsuarioPuntoVentaEditar/{idUsuarioPuntoVenta}', 'UsuarioPuntoVentaController@UsuarioPuntoVentaEditarVista')->name('UsuarioPuntoVenta.Editar');
 
     Route::get('Auditoria', 'ReporteController@ReporteAuditoriaVista')->name('Auditoria');
+    Route::get('TipoAlertaVista', 'SeguridadController@TipoAlertaVista')->name('TipoAlerta.Listar');
+    Route::get('TipoAlertaPuntoVenta/{idTipoAlerta}', 'SeguridadController@TipoAlertaPuntoVentaVista');
+
+    Route::post('TipoAlertaPuntoVentaInsertarJson', 'SeguridadController@TipoAlertaPuntoVentaInsertarJson');
 });
 /*GenerarExcel*/
 
@@ -219,6 +223,9 @@ Route::post('AperturaCajaCerrarFk', 'AperturaCajaController@AperturaCajaCerrarFk
 Route::post('AperturaCajaListarActivaFk', 'AperturaCajaController@AperturaCajaListarActiva');
 
 Route::post('PuntoVentaListarUsuarioJsonFk', 'PuntoVentaController@PuntoVentaListarUsuarioJson');
+Route::post('PuntoVentaListaGeneralFk', 'PuntoVentaController@PuntoVentaListaGeneralJson');
+Route::post('TipoAlertaListarJsonFk', 'SeguridadController@TipoAlertaListarJson');
+Route::post('PuntoVentaUsuarioAlertaJsonFk', 'PuntoVentaController@PuntoVentaUsuarioAlertaJson');
 
 /*Seguridad*/
 Route::post('AgregarTodoPermisosJsonFk', 'SeguridadController@AgregarTodoPermisosJson');
