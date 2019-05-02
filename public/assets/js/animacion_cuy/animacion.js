@@ -176,11 +176,12 @@ function INICIAR_RENDER() {
     // Plano y Cajas
     CAJAS_ARRAY = [];
     var loaderCaja = new THREE.GLTFLoader();
+
+    TIEMPO_RENDER=performance.now();
     // $.LoadingOverlay("show");
     // loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
-    loaderCaja.load('images/glb/cajastar.glb', function (gltfCaja) {
+    loaderCaja.load('images/glb/cajacolores.glb', function (gltfCaja) {
         
-
         todo=gltfCaja;
         modelCaja = gltfCaja.scenes[0];
         modelCaja.traverse(function (object) {
@@ -195,17 +196,17 @@ function INICIAR_RENDER() {
 
         modelCaja.name ="TABLA_CAJAS";
         scene.add(modelCaja);
-        skeleton = new THREE.SkeletonHelper(modelCaja);
+       // skeleton = new THREE.SkeletonHelper(modelCaja);
         cargar_archivos(); ///////////////////////
         // modelCaja.children[0].children[0].rotation.y = 180 * (Math.PI / 180); ////rotar cajas para que caja X verde este arriba
 
-       //  modelCaja.children[0].children[1].receiveShadow=true;
        modelCaja.children[0].children[0].children[1].receiveShadow=true;
        // modelCaja.children[0].position.y = 39;
        // modelCaja.children[0].children[1].scale.set(3, 3, 3); ///suelo
         // CAJAS_ARRAY = modelCaja.children[0].children[0].children;  /// 0 1 => MADERAS   2=>caja verde  ,  3=> 32, 4 => 15 ...
            CAJAS_ARRAY=modelCaja.children[0].children[0].children[0].children;
         cajax=modelCaja.children[0].children[0].children[2];
+
 
     });
     renderer = new THREE.WebGLRenderer({antialias: true});

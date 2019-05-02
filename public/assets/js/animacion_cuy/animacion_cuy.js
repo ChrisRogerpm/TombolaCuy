@@ -34,7 +34,7 @@ function hexToRgb(hex) {
 function camara_mirar(objeto){
         camera.position.x = objeto.position.x ;
         camera.position.y = objeto.position.y + 1.6;
-        camera.position.z = objeto.position.z +4;
+        camera.position.z = objeto.position.z +4.5;
         camera.lookAt(objeto.position);
 }
 
@@ -132,15 +132,16 @@ function cargarImagenes(srcs, callback) {
 function cargar_archivos() {
     var objLoader = new THREE.GLTFLoader();
     if (index > archivos.length - 1) {
-        console.warn("FIN CARGA ARCHIVOS");
+        TIEMPO_FIN_RENDER=performance.now()-TIEMPO_RENDER;
+        TIEMPO_FIN_RENDER=(TIEMPO_FIN_RENDER/1000).toFixed(2);
+        console.warn("FIN CARGA ARCHIVOS en "+TIEMPO_FIN_RENDER + " seg");
         //CargarEstadistica(1);
-
     
-            ///NUEVOOOOOOOOOO
+        ///NUEVOOOOOOOOOO
         iniciar_websocketservidor();
 
         window.addEventListener('resize', responsive_canvas, false);
-        return
+        return;
     };
 
     objLoader.load(archivos[index], function (gltf) {
@@ -491,7 +492,7 @@ function cajagirando_animacion() {
             if(typeof controls!="undefined"){
               controls.autoRotate = false;
             }
-            camara_movimiento_inicio({x:0,y:10,z:0},camera,2500);
+            camara_movimiento_inicio({x:0,y:10.3,z:0},camera,2500);
             iniciar_cuy(GANADOR_DE_EVENTO,TIEMPO_CUY);
         }
 }
@@ -557,8 +558,7 @@ function generar_nueva_posicion_random2(rango){
        randomx = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, rango))) : -Math.abs(parseFloat(random_posicion(0,rango))) ;  // rango x=> -2.5  a   2.5 
        randomz = Math.random() >= 0.5 ? Math.abs(parseFloat(random_posicion(0, rango))) : -Math.abs(parseFloat(random_posicion(0, rango))); // rango z=> -2.5  a   2.5
        b = { x: randomx, y: 0, z: randomz  };
-      
-        return b;
+       return b;
 }
 
 function puntos_azar(){
@@ -579,7 +579,6 @@ function linea_camino(){
     }
     var line = new THREE.Line(geometry, material);line.name="linea_camino";
     scene.add(line);
-
 }
 
 up = new THREE.Vector3(0,0,1 );
@@ -702,7 +701,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             }  
             else {
                 CUY_CORRIENDO = false;
-                posicionmadera
 
                 // if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
                 //     model.position.z== getObjeto_caja("madera").getWorldPosition().z 
@@ -714,7 +712,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                     cuychoque();
                     cajax_animacion();
                 }
-
+                model.visible=false;
                 if (typeof funcion_callback != "undefined") {
                     delete funcion_callback;
                 }
