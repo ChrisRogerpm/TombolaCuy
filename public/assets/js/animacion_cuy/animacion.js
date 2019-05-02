@@ -180,7 +180,7 @@ function INICIAR_RENDER() {
     TIEMPO_RENDER=performance.now();
     // $.LoadingOverlay("show");
     // loaderCaja.load('images/glb/cajadiseno2.glb', function (gltfCaja) {
-    loaderCaja.load('images/glb/cajastar.glb', function (gltfCaja) {
+    loaderCaja.load('images/glb/cajacolores.glb', function (gltfCaja) {
         
         todo=gltfCaja;
         modelCaja = gltfCaja.scenes[0];
