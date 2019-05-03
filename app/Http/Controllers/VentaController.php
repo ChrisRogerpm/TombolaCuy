@@ -178,7 +178,7 @@ class VentaController extends Controller
             // }
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
-                return view('Venta.IndexNuevo', compact("error"));
+               // return view('Venta.IndexNuevo', compact("error"));
             }
             $dinerodefault = Evento::DineroDefaultListar();
                if(count($dinerodefault)==0){
@@ -280,7 +280,7 @@ class VentaController extends Controller
             $eventos = Evento::EventoListar();
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
-                return view('Venta.IndexNuevo', compact("error"));
+               // return view('Venta.IndexNuevo', compact("error"));
             }
             $dinerodefault = Evento::DineroDefaultListar();
                if(count($dinerodefault)==0){
@@ -290,7 +290,7 @@ class VentaController extends Controller
             $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
-                return view('Venta.IndexNuevo', compact("error"));
+               // return view('Venta.IndexNuevo', compact("error"));
             }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
@@ -298,7 +298,7 @@ class VentaController extends Controller
 $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","eventosdatos","dinerodefault","tipoapuesta",
             "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
             "rangosfila","par_imparfila","error"))->render();
-    return response()->json(['html'=>$view]);
+    return response()->json(['html'=>$view,'error'=>$error]);
         // return view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
         //     "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
         //     "rangosfila","par_imparfila","error"));

@@ -80,8 +80,6 @@ function INICIAR(){
             responsivetombola();
             heighttbody=$(".rowtablaeventos").height()-$("#tabla_eventos thead").height()     
             $("#tabla_eventos tbody").height(heighttbody)
-
-
     }).trigger('resize');
 
 }
@@ -107,6 +105,9 @@ function CargarTabla() {
             //if($(".modal-backdrop").length>0){$(".modal-backdrop").hide()}
           //    RECONECTAR_WEBSOCKET=true;
             $(".content.container-fluid").html(response.html);
+            if(response.error!=""){
+                toastr.error(response.error);
+            }
             INICIAR();
             $.LoadingOverlay("hide");
 
@@ -114,7 +115,7 @@ function CargarTabla() {
        error: function (jqXHR, textStatus, errorThrown) {
                 toastr.error("Error de Conexión a Servidor");
                 $.LoadingOverlay("hide");
-                setTimeout(function(){CargarTabla()},1000)
+                setTimeout(function(){CargarTabla()},5000)
         
         }
     })
