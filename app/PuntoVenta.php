@@ -31,7 +31,9 @@ class PuntoVenta extends Model
         return $listar;
     }
 
-    public static function PuntoVentaUsuarioAlerta(){
+    public static function PuntoVentaUsuarioAlerta(Request $request)
+    {
+        $idTipoAlerta = $request->input('idTipoAlerta');
         $idUsuario = Auth::user()->idUsuario;
         $lista = DB::select(DB::raw("SELECT * 
         FROM usuario_punto_venta upv
@@ -40,7 +42,7 @@ class PuntoVenta extends Model
         upv.idUsuario = $idUsuario 
         AND upv.estado = 1
         AND upv.idPuntoVenta not IN (SELECT pta.idPuntoVenta 
-        FROM punto_venta_tipo_alerta pta WHERE pta.estado = 1)"));
+        FROM punto_venta_tipo_alerta pta WHERE pta.estado = 1  AND pta.idTipoAlerta = $idTipoAlerta)"));
         return $lista;
     }
 
@@ -48,7 +50,7 @@ class PuntoVenta extends Model
     {
         $IdUsuario = Auth::user()->idUsuario;
         $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)
-            ->where('estado',1)
+            ->where('estado', 1)
             ->get();
         $data = [];
         foreach ($lista_punto_venta_usuario as $l) {
@@ -67,7 +69,7 @@ class PuntoVenta extends Model
             FROM punto_venta pv
             LEFT JOIN empresa e ON e.idEmpresa = pv.idEmpresa
             WHERE pv.idPuntoVenta IN ($data)"));
-        return $lista;
+            return $lista;
         }
     }
 

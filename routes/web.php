@@ -226,6 +226,7 @@ Route::post('PuntoVentaListarUsuarioJsonFk', 'PuntoVentaController@PuntoVentaLis
 Route::post('PuntoVentaListaGeneralFk', 'PuntoVentaController@PuntoVentaListaGeneralJson');
 Route::post('TipoAlertaListarJsonFk', 'SeguridadController@TipoAlertaListarJson');
 Route::post('PuntoVentaUsuarioAlertaJsonFk', 'PuntoVentaController@PuntoVentaUsuarioAlertaJson');
+Route::post('TipoAlertaPuntoVentaJsonFk', 'SeguridadController@TipoAlertaPuntoVentaJson');
 
 /*Seguridad*/
 Route::post('AgregarTodoPermisosJsonFk', 'SeguridadController@AgregarTodoPermisosJson');

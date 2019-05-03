@@ -28,15 +28,15 @@ class SeguridadController extends Controller
 
     public function TipoAlertaPuntoVentaVista($idTipoAlerta)
     {
-        return view('Seguridad.TipoAlertaPuntoVentaVista',compact('idTipoAlerta'));
+        return view('Seguridad.TipoAlertaPuntoVentaVista', compact('idTipoAlerta'));
     }
 
-    public function TipoAlertaPuntoVentaJson($idTipoAlerta)
+    public function TipoAlertaPuntoVentaJson(Request $request)
     {
         $lista = "";
         $mensaje_error = "";
         try {
-            $lista = TipoAlerta::TipoAlertaPuntoVenta($idTipoAlerta);
+            $lista = PuntoVentaTipoAlerta::TipoAlertaPuntoVentaListar($request);
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }

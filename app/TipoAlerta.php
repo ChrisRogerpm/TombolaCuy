@@ -44,15 +44,4 @@ class TipoAlerta extends Model
         $tipo_alerta->estado = $request->input('estado');
         $tipo_alerta->save();
     }
-
-    public static function TipoAlertaPuntoVenta($idTipoAlerta)
-    {
-        $lista = DB::table('punto_venta_tipo_alerta pv')
-            ->join('tipo_alerta ta', 'ta.idTipoAlerta', 'pv.idTipoAlerta')
-            ->join('punto_venta p', 'p.idPuntoVenta', 'pv.idPuntoVenta')
-            ->where('pv.idTipoAlerta', $idTipoAlerta)
-            ->get();
-        return $lista;
-    }
-
 }

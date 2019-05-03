@@ -1,4 +1,7 @@
 @extends('Shared.layout')
+@section('body-class')
+    sidebar-style loaded
+@stop
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -32,10 +35,22 @@
                         <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
+                                    <input type="hidden" id="txtIdTipoAlerta" value="{{$idTipoAlerta}}">
                                     <button type="button" id="btnNuevo" data-id="{{$idTipoAlerta}}"
                                             class="btn btn-primary btn-sm col-md-12 col-xs-12"><span
                                                 class="glyphicon glyphicon-file"></span> NUEVO
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4  col-xs-12 pull-right">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <a href="{{route('TipoAlerta.Listar')}}"
+                                       class="btn btn-success btn-sm col-md-12 col-xs-12">
+                                        <span
+                                                class="fa fa-arrow-circle-left"></span> Volver
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -71,14 +86,30 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Correo</label>
-                                    <input type="text" class="form-control">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="txtCorreo"
+                                               placeholder="Ingrese correo">
+                                        <span class="input-group-btn"><button class="btn btn-success"
+                                                                              id="btnAgregarCorreo" type="button"><i
+                                                        class="fa fa-plus"></i></button></span>
+                                    </div>
                                 </div>
+                                <table id="table_correo" class="table table-bordered table-striped" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Correo</th>
+                                        <th class="text-center">Accion</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
