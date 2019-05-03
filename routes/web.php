@@ -130,6 +130,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('TipoAlertaPuntoVenta/{idTipoAlerta}', 'SeguridadController@TipoAlertaPuntoVentaVista');
 
     Route::post('TipoAlertaPuntoVentaInsertarJson', 'SeguridadController@TipoAlertaPuntoVentaInsertarJson');
+    Route::post('TipoAlertaPuntoVentaEditarJson', 'SeguridadController@TipoAlertaPuntoVentaEditarJson');
 });
 /*GenerarExcel*/
 
@@ -227,6 +228,7 @@ Route::post('PuntoVentaListaGeneralFk', 'PuntoVentaController@PuntoVentaListaGen
 Route::post('TipoAlertaListarJsonFk', 'SeguridadController@TipoAlertaListarJson');
 Route::post('PuntoVentaUsuarioAlertaJsonFk', 'PuntoVentaController@PuntoVentaUsuarioAlertaJson');
 Route::post('TipoAlertaPuntoVentaJsonFk', 'SeguridadController@TipoAlertaPuntoVentaJson');
+Route::post('ReporteHistorialAlertaJsonFk', 'ReporteController@ReporteHistorialAlertaJson');
 
 /*Seguridad*/
 Route::post('AgregarTodoPermisosJsonFk', 'SeguridadController@AgregarTodoPermisosJson');

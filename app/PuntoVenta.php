@@ -23,6 +23,7 @@ class PuntoVenta extends Model
         pv.idPuntoVenta,
         pv.nombre,
         e.razonSocial,
+        pv.cc_id,
         (SELECT u.nombre FROM ubigeo u
         WHERE u.idUbigeo = pv.idUbigeo) Ubigeo,
         pv.ZonaComercial
