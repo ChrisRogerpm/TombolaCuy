@@ -379,7 +379,8 @@
                         <li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">JackPot</span></a></li>
-                        <li><a href="{{route('Reporte.VentaEvento')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
+                        <li><a href="{{route('Reporte.VentaEvento')}}"><i
+                                        class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Venta por Eventos</span></a></li>
                         <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
@@ -428,6 +429,8 @@
                                         class="title">Permisos</span></a></li>
                         <li><a href="{{route('Auditoria')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
                                         class="title">Auditoria</span></a></li>
+                        <li><a href="{{route('TipoAlerta.Listar')}}"><i class="icon icon-inline fa fa-circle-thin"></i> <span
+                                        class="title">Tipo Alerta</span></a></li>
                     </ul>
                 </li>
 

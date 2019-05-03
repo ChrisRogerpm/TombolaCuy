@@ -37,6 +37,7 @@ class UsuarioPuntoVenta extends Model
         $resultado = DB::table('usuario_punto_venta')
             ->select('idPuntoVenta')
             ->where('idUsuario', $idUsuario)
+            ->where('estado',1)
             ->get();
         $data = [];
         foreach ($resultado as $r) {
@@ -74,21 +75,46 @@ class UsuarioPuntoVenta extends Model
         return $total;
     }
 
+    public static function ValidarPuntoVentaUsuario($IdUsuario, $IdPuntoVenta)
+    {
+        $data = DB::table('usuario_punto_venta')
+            ->where('idUsuario', $IdUsuario)
+            ->where('idPuntoVenta', $IdPuntoVenta)
+            ->first();
+        return $data;
+    }
+
     public static function AgregarPuntoVentaUsuario(Request $request)
     {
-        $usupuntoventa = new UsuarioPuntoVenta();
-        $usupuntoventa->idUsuario = $request->input('IdUsuario');
-        $usupuntoventa->idPuntoVenta = $request->input('IdPuntoVenta');
-        $usupuntoventa->estado = 1;
-        $usupuntoventa->save();
+        $IdUsuario = $request->input('IdUsuario');
+        $IdPuntoVenta = $request->input('IdPuntoVenta');
+        $respuesta = UsuarioPuntoVenta::ValidarPuntoVentaUsuario($IdUsuario, $IdPuntoVenta);
+        if ($respuesta != null){
+            $usupuntoventa = UsuarioPuntoVenta::findorfail($respuesta->idUsuarioPuntoVenta);
+            $usupuntoventa->estado = 1;
+            $usupuntoventa->save();
+        }else{
+            $usupuntoventa = new UsuarioPuntoVenta();
+            $usupuntoventa->idUsuario = $request->input('IdUsuario');
+            $usupuntoventa->idPuntoVenta = $request->input('IdPuntoVenta');
+            $usupuntoventa->estado = 1;
+            $usupuntoventa->save();
+        }
     }
 
     public static function QuitarPuntoVentaUsuario(Request $request)
     {
-        DB::table('usuario_punto_venta')
-            ->where('idUsuario', $request->input('IdUsuario'))
-            ->where('idPuntoVenta', $request->input('IdPuntoVenta'))
-            ->delete();
+        $IdUsuario = $request->input('IdUsuario');
+        $IdPuntoVenta = $request->input('IdPuntoVenta');
+        $respuesta = UsuarioPuntoVenta::ValidarPuntoVentaUsuario($IdUsuario, $IdPuntoVenta);
+        $usupuntoventa = UsuarioPuntoVenta::findorfail($respuesta->idUsuarioPuntoVenta);
+        $usupuntoventa->estado = 0;
+        $usupuntoventa->save();
+
+//        DB::table('usuario_punto_venta')
+//            ->where('idUsuario', $request->input('IdUsuario'))
+//            ->where('idPuntoVenta', $request->input('IdPuntoVenta'))
+//            ->delete();
     }
 
 

@@ -10,7 +10,7 @@ class Ubigeo extends Model
 {
     protected $table = 'ubigeo';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'idUbigeo';
 
     public $timestamps = false;
 
@@ -19,17 +19,16 @@ class Ubigeo extends Model
     public static function UbigeoPaisListarJson()
     {
         $listar = DB::table('ubigeo')
-            ->select('cod_depa as id', 'nombre')
             ->where('cod_prov', '00')
             ->where('cod_dist', '00')
             ->get();
         return $listar;
     }
 
-    public static function ObtenerUbigeoJson($idDepartamento)
+    public static function ObtenerUbigeoJson($idUbigeo)
     {
         $ubigeo = DB::table('ubigeo')->where([
-            ['cod_depa', '=', $idDepartamento],
+            ['idUbigeo', '=', $idUbigeo],
             ['cod_prov', '=', 0],
             ['cod_dist', '=', 0]
         ])->first();
@@ -44,7 +43,20 @@ class Ubigeo extends Model
         if (strlen($departamento) > 2) {
             $departamento = substr($departamento, 0, 2);
         }
+        $idUbigeo = Ubigeo::ObtenerIdUbigeoDepartamento($departamento);
+        if($idUbigeo != null){
+            return $idUbigeo->idUbigeo;
+        }
         return $departamento;
+    }
+
+    public static function ObtenerIdUbigeoDepartamento($idDepartamento){
+        $data = DB::table('ubigeo')
+            ->where('cod_prov','00')
+            ->where('cod_dist','00')
+            ->where('cod_depa',$idDepartamento)
+            ->first();
+        return $data;
     }
 
     public static function ObtenerZonaComercial($idDepartamento)

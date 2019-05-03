@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -43,5 +44,4 @@ class TipoAlerta extends Model
         $tipo_alerta->estado = $request->input('estado');
         $tipo_alerta->save();
     }
-
 }

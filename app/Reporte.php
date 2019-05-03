@@ -11,15 +11,6 @@ use phpDocumentor\Reflection\Types\Array_;
 
 class Reporte extends Model
 {
-    //
-    //    protected $table = 'tipo_apuesta';
-    //
-    //    protected $primaryKey = 'idTipoApuesta';
-    //
-    //    public $timestamps = false;
-    //
-    //    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado'];
-
     public static function ReporteApuestaJson(Request $request)
     {
         $tiendas = $request->input('tiendas');

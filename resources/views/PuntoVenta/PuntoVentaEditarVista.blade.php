@@ -99,5 +99,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/PuntoVenta/PuntoVentaEditar.js')}}"></script>
+    <script src="{{asset('assets/PuntoVenta/PuntoVentaEditar.js')}}"></script>
 @endpush
