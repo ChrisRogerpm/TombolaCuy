@@ -17,16 +17,16 @@
                             <div class="col-md-3 col-xs-12 col-sm-12">
                                 <div class="row">
                                 <?php if($aperturacajadatos==null){?>
-                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                    <div class="col-md-12 col-xs-12 col-sm-12 pull-right">
                                         <button class="btn btn-primary  pull-right" style="float: right;" id="apertura_de_caja" onClick="CargarAperturaCaja()">AP. DE CAJA</button> 
                                     </div>
                                  <?php }
                                  else{ ?>
-                                    <div class="col-md-6 col-xs-12 col-sm-12">
+                                    <div class="col-md-6 col-xs-12 col-sm-12 pull-right">
 
-                                         <button class="btn btn-primary pull-right" style="float: left;" id="cierre_caja" onClick="CargarCierreCaja()">CIERRE</button>   
+                                         <button class="btn btn-primary pull-right" style="float: left;" id="cierre_caja" onClick="CargarCierreCaja()">CIERRE CAJA</button>   
                                     </div>
-                                    <div class="col-md-6 col-xs-12 col-sm-12">
+                                    <div class="col-md-6 col-xs-12 col-sm-12 pull-right">
 
                                          <button class="btn btn-primary pull-right" style="float: left;" id="recargar_tabla" onClick="CargarTabla()">RECARGAR</button>   
                                     </div>
@@ -94,7 +94,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-body">
 
-<?php if($aperturacajadatos!=null){?>
+<?php //if($aperturacajadatos!=null){?>
 
                         <div class="TOMBOLACUY" style="height:120vh;display:none">
                             <div class=" rowcabecera">
@@ -443,6 +443,7 @@
                                <div class="rowconfiguracioneventosdiv" id="div_configuracioneventos">
 
                                 <div class="eventos_fila_izq">
+                                    <?php if ($eventosdatos!=null){?>
                                     @foreach($eventosdatos as $evento) 
                                     <div class="configuracioneventosdiv" 
                                     data-id="{{ $evento->idEvento }}"
@@ -468,12 +469,13 @@
                                     </div>
                                 </div>
                                 @endforeach
+                            <?php }?>
                             </div>
                             <div class="eventos_fila_der">
                             </div>
                         </div><!--fin rowconfiguracioneventosdiv-->
                     </div><!--JUEGO TOMBOLACUY-->
-<?php }?>
+<?php //}?>
 
                     <div class="modal" id="modal_imprimir" tabindex="-1" role="dialog">
                       <div class="modal-dialog" role="document">

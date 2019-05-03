@@ -1051,12 +1051,12 @@ $('.digitador .digito').off().on('click',function(){
 
 
             if($("#ticket_txt").val().trim()!=""){
-                       $("#btn_buscar_ticket").attr("disabled",true);
+                $("#btn_buscar_ticket").attr("disabled",true);
                 $("#btn_buscar_ticket").LoadingOverlay("show");
 
                 objetobuscar={};
-                objetobuscar.idEvento=eventoactual.IdEvento;
-                objetobuscar.nombre=eventoactual.nombre;
+                //objetobuscar.idEvento=eventoactual.IdEvento;
+                //objetobuscar.nombre=eventoactual.nombre;
                 objetobuscar.idTicket=$("#ticket_txt").val().trim();
                 // objetobuscar.idTipoApuesta=eventoactual.idTipoApuesta;
                 BuscarTicket(objetobuscar);
