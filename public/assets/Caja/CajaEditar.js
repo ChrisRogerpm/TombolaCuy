@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $.when(llenarSelect(basePath + "PuntoVentaListarJsonFk", {'_token': $("input[name='_token']").val()}, "cboPuntVenta", "idPuntoVenta", "nombre",parseInt($("#txtidPuntoVenta").val()))).then(function (response, textStatus) {
+    $.when(llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboPuntVenta", "idPuntoVenta", "nombre",parseInt($("#txtidPuntoVenta").val()))).then(function (response, textStatus) {
         $("#cboPuntVenta").select2();
     });
     $('#btnGuardar').on('click', function (e) {
@@ -22,6 +22,9 @@ $(document).ready(function () {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                        var url = basePath + "CajaListar";
+                        window.location.replace(url);
+
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }

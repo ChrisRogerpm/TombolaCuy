@@ -57,6 +57,9 @@ function ListarPuntoVenta() {
                 "bDeferRender": true,
                 data: resp,
                 columns: [
+                    {
+                        data: "cc_id", title: "CC_Id"
+                    },
                     {data: "nombre", title: "Punto de Venta"},
                     {
                         data: null, title: "Empresa",
@@ -71,9 +74,6 @@ function ListarPuntoVenta() {
                             $Ubigeo = value.Ubigeo == null ? '--' : value.Ubigeo;
                             return $Ubigeo;
                         }
-                    },
-                    {
-                        data: "cc_id", title: "CC_Id"
                     },
                     {
                         data: null, title: "",

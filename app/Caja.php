@@ -16,9 +16,15 @@ class Caja extends Model
 
     public static function CajaListarJson()
     {
+        $lista_puntos_venta = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $puntoventa = [];
+        foreach ($lista_puntos_venta as $lpv) {
+            $puntoventa [] = $lpv->idPuntoVenta;
+        }
         $listar = DB::table('caja as c')
             ->select('c.idCaja', 'pv.nombre as PuntoVenta', 'c.nombre', 'c.estado')
             ->join('punto_venta as pv', 'pv.idPuntoVenta', 'c.idPuntoVenta')
+            ->whereIn('c.idPuntoVenta', $puntoventa)
             ->get();
         return $listar;
     }

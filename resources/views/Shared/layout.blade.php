@@ -332,16 +332,16 @@
             <!-- SIDEBAR NAVIGATION -->
 
             <ul class="nav-sidebar">
-                <li><a href="{{route('Dashboard')}}"><i class="icon icon-inline fa fa-home"></i> <span
+                <li><a href="{{route('Dashboard')}}" data-toggle="tooltip" title="Inicio"><i class="icon icon-inline fa fa-home"></i> <span
                                 class="title">Inicio</span></a></li>
-                <li><a href="{{route('PuntoVenta.Listar')}}"><i class="icon icon-inline fa fa-inbox"></i> <span
+                <li><a href="{{route('PuntoVenta.Listar')}}" data-toggle="tooltip" title="Punto Venta"><i class="icon icon-inline fa fa-inbox"></i> <span
                                 class="title">Punto Venta</span></a></li>
-                <li><a href="{{route('Caja.Listar')}}"><i class="icon icon-inline fa fa-shopping-cart"></i> <span
+                <li><a href="{{route('Caja.Listar')}}" data-toggle="tooltip" title="Caja"><i class="icon icon-inline fa fa-shopping-cart"></i> <span
                                 class="title">Caja</span></a></li>
 
-                <li><a href="{{route('AperturaCaja.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
+                <li><a href="{{route('AperturaCaja.Listar')}}" data-toggle="tooltip" title="Apertura Caja"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
-                <li><a href="{{route('Juego.Listar')}}"><i class="icon icon-inline fa fa-cube"></i> <span
+                <li><a href="{{route('Juego.Listar')}}" data-toggle="tooltip" title="Juegos"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Juegos</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
@@ -400,7 +400,7 @@
                                         class="title">Alertas</span></a></li>
                     </ul>
                 </li>
-                <li><a href="{{route('ConfiguracionEvento')}}"><i class="icon icon-inline fa fa-cog"></i> <span
+                <li><a href="{{route('ConfiguracionEvento')}}" data-toggle="tooltip" title="Configuracion General"><i class="icon icon-inline fa fa-cog"></i> <span
                                 class="title">Configuración General</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
@@ -433,48 +433,18 @@
                                         class="title">Tipo Alerta</span></a></li>
                     </ul>
                 </li>
-
             </ul>
-            <!-- /SIDEBAR NAVIGATION -->
-
         </div>
-        <!-- /Scrollable -->
-
-        <!-- Bottom Bar -->
         <div class="sidebar-fixed-bottom">
-
             <a href="#" class="btn btn-dark btn-block btn-show-group">
                 <i class="icon icon-inline fa fa-angle-right"></i>
             </a>
-
-            {{--<div class="btn-group-wrapper">--}}
-            {{--<div class="btn-group btn-group-justified" role="group">--}}
-            {{--<a href="#" class="btn btn-dark" role="button"><i class="icon icon-inline fa fa-gears"></i></a>--}}
-            {{--<a href="xp-lockscreen.html" class="btn btn-dark" role="button"><i--}}
-            {{--class="icon icon-inline fa fa-lock"></i></a>--}}
-            {{--<a href="#" class="btn btn-dark" role="button"--}}
-            {{--onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i--}}
-            {{--class="icon icon-inline fa fa-sign-out"></i></a>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-
         </div>
-        <!-- /Bottom Bar -->
-
     </div>
-    <!-- /SIDEBAR LEFT -->
-
-    <!-- CONTENT AREA -->
     <div class="content container-fluid">
         @yield('content')
     </div>
-    <!-- /CONTENT AREA -->
-
 </main>
-
-<!-- /MAIN CONTAINER -->
-
-
 <!-- SCRIPTS -->
 <script src="{{asset('../js/jquery-2.2.4.min.js')}}"></script>
 <script src="{{asset('../components/jquery-ui/jquery-ui.min.js')}}"></script>

@@ -17,7 +17,6 @@ $(document).ready(function () {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
             var url = basePath + "AperturaCajaInsertarJson";
-
             var dataForm = $('#frmNuevo').serializeFormJSON();
             idUsuario=dataForm.idUsuario;
               $.ajax({
@@ -64,9 +63,6 @@ $(document).ready(function () {
                 error: function (jqXHR, textStatus, errorThrown) {
                 }
             });
-
-
-            
         }
     });
 });
