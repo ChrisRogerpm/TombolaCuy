@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use App\Exports\ReporteApuestaExport;
+use App\HistorialAlerta;
 use App\Juego;
 use App\PuntoVenta;
 use App\Reporte;
@@ -47,6 +48,19 @@ class ReporteController extends Controller
     public function ReporteAlertasVista()
     {
         return view('Reportes.ReporteAlertasVista');
+    }
+
+
+    public function ReporteHistorialAlertaJson(Request $request)
+    {
+        $lista = "";
+        $mensaje_error = "";
+        try {
+            $lista = HistorialAlerta::HistorialAlertaListar($request);
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
     }
 
     public function ReporteApuestaJson(Request $request)

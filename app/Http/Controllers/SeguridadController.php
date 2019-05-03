@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Auditoria;
 use App\Permisos;
 use App\PermisosPerfil;
+use App\PuntoVenta;
 use App\PuntoVentaTipoAlerta;
 use App\TipoAlerta;
 use App\Usuario;
@@ -35,12 +36,15 @@ class SeguridadController extends Controller
     {
         $lista = "";
         $mensaje_error = "";
+        $lista_punto_venta_asignado = "";
         try {
             $lista = PuntoVentaTipoAlerta::TipoAlertaPuntoVentaListar($request);
+//            $lista_punto_venta_asignado = PuntoVenta::PuntoVentaUsuarioAlerta($request);
+            $lista_punto_venta_asignado = PuntoVenta::PuntoVentaListarUsuarioJson();
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+        return response()->json(['data' => $lista, 'data_lista' => $lista_punto_venta_asignado, 'mensaje' => $mensaje_error]);
     }
 
     public function TipoAlertaPuntoVentaInsertarJson(Request $request)
@@ -50,6 +54,21 @@ class SeguridadController extends Controller
         try {
             PuntoVentaTipoAlerta::TipoAlertaPuntoVentaInsertar($request);
             $respuesta = true;
+        } catch (QueryException $ex) {
+            $mensaje_error = $ex->errorInfo;
+        }
+        return response()->json(['respuesta' => $respuesta, 'mensaje' => $mensaje_error]);
+    }
+
+    public function TipoAlertaPuntoVentaEditarJson(Request $request)
+    {
+        $mensaje_error = "";
+        $respuesta = false;
+        try {
+            $respuesta = PuntoVentaTipoAlerta::PuntoVentaTipoAlertaEditar($request);
+            if(!$respuesta){
+                $mensaje_error = "El punto de venta indicado ya ha sido registrado";
+            }
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }

@@ -15,7 +15,6 @@ $(document).ready(function () {
             keyboard: false
         });
     });
-
     $(document).on('click', '#btnGuardar', function () {
         if (array_puntoventa.length === 0) {
             toastr.warning('Seleccione puntos de Ventas', 'Mensaje Servidor');
@@ -40,7 +39,9 @@ $(document).ready(function () {
                 success: function (response) {
                     var respuesta = response.respuesta;
                     if (respuesta === true) {
+                        $("#ModalNuevoAlertaPuntoVenta").modal("hide");
                         toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                        ListarAlertaPuntoVenta();
                     } else {
                         toastr.error(response.mensaje, "Mensaje Servidor");
                     }
@@ -82,7 +83,96 @@ $(document).ready(function () {
         }
         $(this).parent().parent().remove();
     });
+    $(document).on('click', '.btnEditar', function () {
+        var idPuntoVentaTipoAlerta = $(this).data("id");
+        var asunto = $("#table tbody").find(".asunto" + idPuntoVentaTipoAlerta).val();
+        var mensaje = $("#table tbody").find(".mensaje" + idPuntoVentaTipoAlerta).val();
+        var puntoventa = $("#table tbody").find(".puntoventa" + idPuntoVentaTipoAlerta).val();
+        var monto = $("#table tbody").find(".monto" + idPuntoVentaTipoAlerta).val();
+        var correo = $("#table tbody").find(".correo" + idPuntoVentaTipoAlerta).val();
+        var estado = $("#table tbody").find(".estado" + idPuntoVentaTipoAlerta).val();
+        if (asunto === "") {
+            toastr.warning('Ingrese un asunto', 'Mensaje Servidor');
+            return false;
+        }
+        if (mensaje === "") {
+            toastr.warning('Ingrese un mensaje', 'Mensaje Servidor');
+            return false;
+        }
+        if (monto === "") {
+            toastr.warning('Ingrese un monto', 'Mensaje Servidor');
+            return false;
+        }
+        if (monto <= 0) {
+            toastr.warning('Ingrese un monto mayor a 0', 'Mensaje Servidor');
+            return false;
+        }
+        if (correo === "") {
+            toastr.warning('Ingrese correos', 'Mensaje Servidor');
+            return false;
+        }
+        var validar = true;
+        correo = correo.split(",");
+        correo = removerItemArray(correo);
+        $.each(correo, function (key, value) {
+            var email = value;
+            var validacion = /\S+@\S+\.\S+/;
+            var respuesta = validacion.test(email);
+            if (!respuesta) {
+                toastr.warning('Los correos ingresados no son validos', 'Mensaje Servidor');
+                validar = false;
+                return false;
+            }
+        });
+        if (validar) {
+            var url = basePath + "TipoAlertaPuntoVentaEditarJson";
+            var dataForm = {
+                'idPuntoVentaTipoAlerta': idPuntoVentaTipoAlerta,
+                'asunto': asunto,
+                'mensaje': mensaje,
+                'puntoventa': puntoventa,
+                'monto': monto,
+                'correo': correo,
+                'estado': estado,
+            };
+            TipoAlertaPuntoVentaEditar(url, dataForm);
+        }
+    });
 });
+
+function TipoAlertaPuntoVentaEditar(url, dataForm) {
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: dataForm,
+        beforeSend: function () {
+            $.LoadingOverlay("show");
+        },
+        complete: function () {
+            $.LoadingOverlay("hide");
+        },
+        success: function (response) {
+            var respuesta = response.respuesta;
+            if (respuesta === true) {
+                toastr.success("Se Registro Correctamente", "Mensaje Servidor");
+                ListarAlertaPuntoVenta();
+            } else {
+                toastr.error(response.mensaje, "Mensaje Servidor");
+                ListarAlertaPuntoVenta();
+            }
+        }
+    })
+}
+
+function removerItemArray(lista_correo) {
+    let unique = {};
+    lista_correo.forEach(function (i) {
+        if (!unique[i]) {
+            unique[i] = true;
+        }
+    });
+    return Object.keys(unique);
+}
 
 function ListarPuntoVentaAsignados() {
     $.ajax({
@@ -140,6 +230,7 @@ function ListarAlertaPuntoVenta() {
         },
         success: function (response) {
             var resp = response.data;
+            var data_punto_usuario = response.data_lista;
             $("#table").DataTable({
                 "bDestroy": true,
                 "bSort": true,
@@ -149,25 +240,58 @@ function ListarAlertaPuntoVenta() {
                 "autoWidth": false,
                 "bProcessing": true,
                 "bDeferRender": true,
+                columnDefs: [
+                    {width: 50, targets: 1}
+                ],
                 data: resp,
                 columns: [
                     {data: "idPuntoVentaTipoAlerta", title: "Id"},
-                    {data: "Alerta", title: "Alerta"},
-                    {data: "asunto", title: "Asunto"},
-                    {data: "mensaje", title: "Mensaje"},
-                    {data: "PuntoVenta", title: "Punto Venta"},
+                    {
+                        data: "Alerta", title: "Alerta", class: "text-center"
+                    },
+                    {
+                        data: null, title: "Asunto",
+                        "render": function (value) {
+                            var asunto = value.asunto;
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
+                            return '<textarea class="form-control asunto' + idPuntoVentaTipoAlerta + '"  rows="3" maxlength="30" style="resize: none;">' + asunto + '</textarea>';
+                        }
+                    },
+                    {
+                        data: null, title: "Mensaje",
+                        "render": function (value) {
+                            var mensaje = value.mensaje;
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
+                            return '<textarea class="form-control mensaje' + idPuntoVentaTipoAlerta + '" rows="3" style="resize: none;">' + mensaje + '</textarea>';
+                        }
+                    },
+                    {
+                        data: null, title: "Punto Venta",
+                        "render": function (value) {
+                            var idPuntoVenta = value.idPuntoVenta;
+                            var option = "";
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
+                            $.each(data_punto_usuario, function (key, val) {
+                                var selected = val.idPuntoVenta === idPuntoVenta ? 'selected' : '';
+                                option += '<option value="' + val.idPuntoVenta + '" ' + selected + '>' + val.nombre + '</option>';
+                            });
+                            return '<select class="form-control select_general puntoventa' + idPuntoVentaTipoAlerta + '">' + option + '</select>';
+                        }
+                    },
                     {
                         data: null, title: "Monto",
                         "render": function (value) {
                             var monto = value.monto;
-                            return '<input type="text" class="form-control" value="' + monto + '"/>'
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
+                            return '<input type="number" min="0" class="form-control monto' + idPuntoVentaTipoAlerta + '" value="' + monto + '"/>'
                         }
                     },
                     {
                         data: null, title: "Enviar a",
                         "render": function (value) {
                             var correos = value.Enviar;
-                            return '<input type="text" class="form-control" value="' + correos + '"/>'
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
+                            return '<input type="text" class="form-control correo' + idPuntoVentaTipoAlerta + '" value="' + correos + '"/>'
                         }
                     },
                     {
@@ -175,8 +299,9 @@ function ListarAlertaPuntoVenta() {
                         "render": function (value) {
                             var select_activo = value.estado === 1 ? 'selected' : '';
                             var select_inactivo = value.estado === 0 ? 'selected' : '';
+                            var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
                             var option = '<option value="1"' + select_activo + '>Activo</option><option value="0"' + select_inactivo + '>Inactivo</option>';
-                            return '<select class="form-control estado" style="width: 100%">' + option + '</select>';
+                            return '<select class="form-control select_general estado' + idPuntoVentaTipoAlerta + '" style="width: 100%">' + option + '</select>';
                         }
                     },
                     {
@@ -190,7 +315,7 @@ function ListarAlertaPuntoVenta() {
                     $('.btnEditar').tooltip({
                         title: "Editar"
                     });
-                    $('.estado').select2();
+                    $('.select_general').select2();
                 }
             });
         },

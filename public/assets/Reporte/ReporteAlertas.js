@@ -1,10 +1,10 @@
 $(document).ready(function () {
     var d = new Date();
-    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
+    var datestring = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: datestring,
-        useCurrent:'day'
+        useCurrent: 'day'
     });
 
     var dateNow = new Date();
@@ -28,8 +28,7 @@ $(document).ready(function () {
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        }
-        else {
+        } else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -45,13 +44,13 @@ $(document).ready(function () {
     $("#cboTienda").select2('val', [0]);
 
     $(document).on('click', '#btnExcel', function () {
-        GenerarExcel("table", "Reporte de Apuestas");
+        GenerarExcel("table", "Reporte de Alerta");
     });
 
     $(document).on('click', '#btnBuscar', function () {
         var validar = $("#frmNuevo");
         if (validar.valid()) {
-            var url = basePath + "ReporteApuestaJsonFk";
+            var url = basePath + "ReporteHistorialAlertaJsonFk";
             var dataForm = $('#frmNuevo').serializeFormJSON();
             $("#ContenedorTabla").html("").append('<table id="table" class="table table-bordered table-striped" style="width:100%"></table>');
             $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
@@ -84,15 +83,14 @@ $(document).ready(function () {
                         "bDeferRender": true,
                         data: resp,
                         columns: [
-                            {data: "Tienda", title: "Punto de Venta", class: "text-center"},
-                            {data: "fechaoperacion", title: "Fecha de Operacion", class: "text-center"},
-                            {data: "Turno", title: "Turno", class: "text-center"},
-                            {data: "Evento", title: "Evento", class: "text-center"},
-                            {data: "apuestas", title: "Apostado", class: "text-center"},
-                            {data: "Pagos", title: "Pagado", class: "text-center"},
-                            {data: "Utilidad", title: "Utilidad", class: "text-center"},
-                            {data: "Jugadores", title: "Num. Jugadores", class: "text-center"},
-
+                            {data: "idHistorialAlerta", title: "Id"},
+                            {data: "nombre", title: "Nombre"},
+                            {data: "fechaAlerta", title: "FechaAlerta"},
+                            {data: "monto", title: "Monto"},
+                            {data: "correos_envio", title: "Correo"},
+                            {data: "estado_envio", title: "Estado de Envio"},
+                            {data: "asunto", title: "Asunto"},
+                            {data: "mensaje", title: "Mensaje"}
                         ],
                     });
                 },
@@ -140,8 +138,7 @@ $("#frmNuevo")
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {
                 element.closest('.option-group').after(error);
-            }
-            else {
+            } else {
                 error.insertAfter(element);
             }
         }
