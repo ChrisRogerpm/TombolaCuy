@@ -92,7 +92,7 @@ class VentaController extends Controller
         try {
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
             if(count($aperturacajadatos)==0){
-                $error="No hay Apertura de Cajas";
+                $error="No hay Apertura de Caja";
              //   return view('Venta.IndexNuevo', compact("error"));
             }
             $tipoapuesta = Evento::TipoApuestaListar();
@@ -204,8 +204,8 @@ class VentaController extends Controller
             $hora_servidor = date('Y-m-d H:i:s');
             $aperturacajadatos = AperturaCaja::AperturaCajaListarActiva($usuario);
             if(count($aperturacajadatos)==0){
-                $error="No hay Apertura de Cajas";
-                return view('Venta.IndexNuevo', compact("error"));
+                $error="No hay Apertura de Caja";
+               // return view('Venta.IndexNuevo', compact("error"));
             }
             $tipoapuesta = Evento::TipoApuestaListar();
             if(count($tipoapuesta)==0){
@@ -282,12 +282,18 @@ class VentaController extends Controller
                 $error="No hay Eventos Registrados";
                // return view('Venta.IndexNuevo', compact("error"));
             }
+
+              if($aperturacajadatos==null){
+                $eventosdatos=null;
+            }else{
+                $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+            }
             $dinerodefault = Evento::DineroDefaultListar();
                if(count($dinerodefault)==0){
                 $error="No hay Eventos DineroDefault";
                 return view('Venta.IndexNuevo', compact("error"));
             }
-            $eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
+            //$eventosdatos = Evento::EventoDatosListar($aperturacajadatos->idPuntoVenta);
               if(count($eventos)==0){
                 $error="No hay Eventos Registrados";
                // return view('Venta.IndexNuevo', compact("error"));
@@ -298,7 +304,8 @@ class VentaController extends Controller
 $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","eventosdatos","dinerodefault","tipoapuesta",
             "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
             "rangosfila","par_imparfila","error"))->render();
-    return response()->json(['html'=>$view,'error'=>$error]);
+    return response()->json(['html'=>$view,'error'=>$error
+]);
         // return view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadatos","eventos","dinerodefault","tipoapuesta",
         //     "divzero","primerafila","segundafila","tercerafila","cuartafila","quintafila","sextafila","coloresfila",
         //     "rangosfila","par_imparfila","error"));
