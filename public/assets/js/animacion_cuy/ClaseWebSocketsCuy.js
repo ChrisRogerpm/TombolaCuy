@@ -527,7 +527,7 @@ function logueo_opcional(mensaje){
 function getColor(array_estadistica,buscar){
   obj={};
   $(array_estadistica).each(function(i,e){
-     if(e.idTipoApuesta==buscar){
+     if(e.valorapuesta==buscar){
       obj=e;
       return false;
      }
