@@ -146,7 +146,7 @@ function INICIAR_RENDER() {
     hemiLight.position.set(0, 20, 0);
     scene.add(hemiLight);
     var dirLight = new THREE.DirectionalLight(0xffffff);
-    dirLight.position.set(-3, 20, -10);
+    dirLight.position.set(-3, 20, -15);
     dirLight.castShadow = true;
     dirLight.shadow.camera.top = 2;
     dirLight.shadow.camera.bottom = -2;
