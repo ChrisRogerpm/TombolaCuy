@@ -132,6 +132,8 @@ function cargarImagenes(srcs, callback) {
 function cargar_archivos() {
     var objLoader = new THREE.GLTFLoader();
     if (index > archivos.length - 1) {
+         otro=model.clone();////////////////////////
+
         TIEMPO_FIN_RENDER=performance.now()-TIEMPO_RENDER;
         TIEMPO_FIN_RENDER=(TIEMPO_FIN_RENDER/1000).toFixed(2);
         console.warn("FIN CARGA ARCHIVOS en "+TIEMPO_FIN_RENDER + " seg");
@@ -419,13 +421,7 @@ function reiniciar_cuy(){
 
 
 function INICIO_ANIMACION_CUY(){
-//     detener_var_cuysalto();detener_var_cuypremio();detener_var_cuyesperando();
-// modelCuyPremio.position.set(3,0,3);cuypremio();
-// modelCuySalto.position.set(-3,0,3);cuysalto();
-// modelCuyEsperando.position.set(3,0,-3);cuyesperando();
-// modelCuyPremio.scale.set(1.3,1.3,1.3);
-// modelCuySalto.scale.set(1.3,1.3,1.3);
-// modelCuyEsperando.scale.set(1.3,1.3,1.3);
+
         ANIMACION_CUY=true;
         iniciogiro =  clockCajaP.getElapsedTime();
         t = 0   /// tiempo movimiento cuy;
@@ -446,7 +442,27 @@ function INICIO_ANIMACION_CUY(){
         detener_var_cajagirando();
         cajagirando_animacion();
 }
-
+function getPositionOtro(ganador,otro){
+            vector_ganador=new THREE.Vector3();
+            getObjeto_caja(ganador).getWorldPosition(vector_ganador);
+            otro.position.copy(vector_ganador);
+            otro.lookAt(0,0,0);
+            otro.translateZ(1);
+            posicionnueva=otro.getWorldPosition();
+            return {x:posicionnueva.x,y:0,z:posicionnueva.z}
+}
+function getPositionOtroVector(ganador,otro){
+    if(ganador=="0"){ganador="x";}
+            vector_ganador=new THREE.Vector3();
+            getObjeto_caja(ganador).getWorldPosition(vector_ganador);
+            otro.position.copy(vector_ganador);
+            otro.lookAt(0,0,0);
+            otro.translateZ(1);
+            posicionnueva=new THREE.Vector3();
+            otro.getWorldPosition(posicionnueva);
+            vector =new THREE.Vector3(posicionnueva.x,0,posicionnueva.z);
+            return vector;
+}
 
 function cajagirando_animacion() {
         var_cajagirando = requestAnimationFrame(cajagirando_animacion);
@@ -460,13 +476,20 @@ function cajagirando_animacion() {
         if(tiempogirando<=(TIEMPO_GIRO_CAJA/1000)){
         }
         else{
+       puntootro=getPositionOtroVector(GANADOR_DE_EVENTO,otro);///punto antes de caja centro
+
             $("#texto_ganador").text(GANADOR_DE_EVENTO == 0 ? "x" : GANADOR_DE_EVENTO);
+
+            datos=getColor(estadistica,GANADOR_DE_EVENTO);
+            $("#texto_ganador").css("background-color",datos.rgb);
+            $("#texto_ganador").css("color",datos.rgbLetra);
             $("#span_idevento").text("#"+EVENTO_ACTUAL.evento_id_actual);
    // spline = new THREE.SplineCurve3(puntos_azar());
 
        // detener_var_animarcamara();
             detener_var_cajagirando();
             mostrar_cuymoviendo();
+       
              cajax=getObjeto_caja("x");
              maderas=[];
             maderas.push(getObjeto_caja("madera"));
@@ -585,19 +608,39 @@ up = new THREE.Vector3(0,0,1 );
 axis = new THREE.Vector3( );
 // t=0;dt=0.003
 // correr_nuevo()
-function correr_nuevo(){
-    var var_correr=requestAnimationFrame(correr_nuevo);
+function correr_spline(){
+    var var_correr=requestAnimationFrame(correr_spline);
     var tangent;
-    pt = spline.getPoint( t );console.log(pt)
+    pt = spline.getPoint( t );
+//    console.log(pt)
     model.position.set( pt.x, pt.y, pt.z );
     tangent = spline.getTangent( t ).normalize();
     mixer.update(clock.getDelta())
-    axis.cross(up, tangent).normalize();
+    axis.crossVectors(up, tangent).normalize();
     radians = Math.acos( up.dot( tangent ) );
     model.quaternion.setFromAxisAngle( axis, radians );
-    t=t+dt;
+    t=t+dtSPLINE;
     if(t>=1){
-         t=0;cancelAnimationFrame(var_correr)  
+        model.position.copy(posicion_fin_caja);
+         t=0;cancelAnimationFrame(var_correr) ;
+            console.info("FIN SPLINE");
+        CUY_CORRIENDO = false;
+        if(model.position.x== posicionmadera.x && model.position.z== posicionmadera.z)
+        {
+            modelCuyChoque.position.copy(posicionmodel);
+            modelCuyChoque.lookAt(getObjeto_caja("x").getWorldPosition());
+            modelCuyChoque.position.y=-0.1;
+            cuychoque();
+            cajax_animacion();///caja x voltear
+        }
+        model.visible=false;
+        callback_ganador();
+        fin_tiempof = performance.now();
+        milisegundosf = (fin_tiempof - inicio_tiempo);
+        console.info("TIEMPO FINAL=> segundos: " +parseFloat(milisegundosf/1000).toFixed(2)+" ,  milliseconds : "+ milisegundosf );
+      
+
+
     }
 }
 ////fin nuevo movimiento
@@ -646,6 +689,37 @@ function cuy_rotacionrandom() {//var_cuy_rotando
         }
     }
 }
+
+function callback_ganador(){
+        console.warn("CALLBACK CUY GANADOR  --------");//**/}
+        $("#barra_loading_tpi").css("width","0%");
+        tiempo_cuychoque=1000; ///por defecto 1 seg,al entrar en caja
+        if(GANADOR_DE_EVENTO=="0" || GANADOR_DE_EVENTO=="x"){
+            tiempo_cuychoque=5000;
+        }
+        setTimeout(function(){
+                $("#img_ganador").show();
+                setTimeout(function () {
+                    $("#img_ganador").hide();
+                    $("#ImgContainer").show();
+                    $("#termotetro_para_iniciar").show();
+                    t=0;
+                    ANIMACION_CUY=false;
+                    iniciar_websocketservidor()
+                },10000);
+                setTimeout(function(){
+                        $("#idevento_titulo").text("");
+                        GANADOR_DE_EVENTO="";
+                         detener_var_animarcamara();
+                        modelCajaP.visible=true;
+                        PUNTOS_CUY=null;
+                        INDICE_PUNTOS_CUY=0;
+                        reiniciar_cuy();
+                        retornar_cajx();
+                        bfuncion_easing_indice=0;
+                },1000);
+        }, tiempo_cuychoque);
+};
 function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
     if (!CUY_CORRIENDO) {  return;}
     mostrar_cuymoviendo();
@@ -680,7 +754,51 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
         milisegundos=(fin_tiempo-inicio_tiempo);
         // console.warn("tiempo => "+t+"   segundos :"+parseFloat(milisegundos/1000).toFixed(2) +"   -    milliseconds :"+ milisegundos  );
         // cuydudando();
-        if (milisegundos > TIEMPO_RANDOM) {
+
+        // if(milisegundos>TIEMPO_RANDOM){
+        //             posicion_fin_caja= new THREE.Vector3();
+        //             if(GANADOR_DE_EVENTO=="x" || GANADOR_DE_EVENTO=="0"){
+        //                 getObjeto_caja("madera").getWorldPosition(posicion_fin_caja);
+        //             }
+        //             else{
+        //                 getObjeto_caja(GANADOR_DE_EVENTO).getWorldPosition(posicion_fin_caja);
+        //             }
+        //             posicion_fin_caja.y=0;
+        //                     CUY_CORRIENDO = false;
+        //                     puntosspline=[];
+        //                     posicionmodel=new THREE.Vector3();
+        //                     model.getWorldPosition(posicionmodel);
+                            
+        //                     puntootro.y=0;
+        //                     puntosspline.push(posicionmodel);
+        //                     puntosspline.push(puntootro);
+        //                     puntosspline.push(posicion_fin_caja);
+        //                     spline= new THREE.SplineCurve3(puntosspline);
+        //                     // linea_camino();
+        //                     t=0;
+        //                     correr_spline();
+        // }
+        // else{
+        //     mostrar_cuydudando=Math.random()>=0.5?true:false;
+        //     if(mostrar_cuydudando){
+        //         detener_var_cuydudando();
+                
+        //         cuydudando();
+        //         tiempodudando=Math.random() * (10 - 1) + 1; 
+        //         setTimeout(function(){
+        //            generar_nueva_posicion_random();//b
+        //            random_tiempo();
+        //         },tiempodudando*100);
+        //     }
+        //     else{
+        //         detener_var_cuydudando();
+
+        //         generar_nueva_posicion_random();//b
+        //         random_tiempo();
+        //     }
+        // }  ///fin else ms >tiempo
+
+        if (milisegundos > TIEMPO_RANDOM) {////tiempo de animacion cuy paso, ir a caja ganador posicion
             if(!mover_a_ganador){
                     mover_a_ganador=true;
                     // b=get_caja(GANADOR_DE_EVENTO).posicion;
@@ -691,77 +809,51 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                          // b=getObjeto_caja("madera").getWorldPosition();
                          b=new THREE.Vector3();
                          getObjeto_caja("madera").getWorldPosition(b);
-
+                         random_tiempo();
                     }else{
-                        b=get_caja(GANADOR_DE_EVENTO).posicion;
-                    }
-                    //console.log("aca");
-                    //console.log(b);
-                    random_tiempo();
-            }  
-            else {
-                CUY_CORRIENDO = false;
 
-                // if(model.position.x== getObjeto_caja("madera").getWorldPosition().x &&
-                //     model.position.z== getObjeto_caja("madera").getWorldPosition().z 
-                if(model.position.x== posicionmadera.x &&
-                    model.position.z== posicionmadera.z 
-                    )
+                            posicion_fin_caja= new THREE.Vector3();
+                            getObjeto_caja(GANADOR_DE_EVENTO).getWorldPosition(posicion_fin_caja);
+                            posicion_fin_caja.y=0;
+                            CUY_CORRIENDO = false;
+                            puntosspline=[];
+                            posicionmodel=new THREE.Vector3();
+                            model.getWorldPosition(posicionmodel);
+
+                            puntootro.y=0;
+                            puntosspline.push(posicionmodel);
+                            puntosspline.push(puntootro);
+                            puntosspline.push(posicion_fin_caja);
+                            // spline= new THREE.SplineCurve3(puntosspline);
+                            spline= new THREE.CatmullRomCurve3(puntosspline);
+                            // linea_camino();
+                            t=0;
+                            dtSPLINE=0.02;
+        //                     // linea_camino();
+
+                            correr_spline();
+
+
+
+                           // b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    }
+                    //console.log(b);
+                   // random_tiempo();
+            }  
+            else { ///movera ganador true  => CUY EN POSICION DE CAJA, FINALIZAR ANIMACION
+                CUY_CORRIENDO = false;
+                if(model.position.x== posicionmadera.x && model.position.z== posicionmadera.z)
                 {
                     modelCuyChoque.position.y=-0.1;
                     cuychoque();
-                    cajax_animacion();
+                    cajax_animacion();///caja x voltear
                 }
                 model.visible=false;
-                if (typeof funcion_callback != "undefined") {
-                    delete funcion_callback;
-                }
-                 funcion_callback = function () {
-                                console.warn("CALLBACK CUY GANADOR  --------");//**/}
-                                $("#barra_loading").css("height","0%");
-                                $("#barra_loading_tpi").css("width","0%");
-
-                                tiempo_cuychoque=1;
-                                if(GANADOR_DE_EVENTO=="0" || GANADOR_DE_EVENTO=="x"){
-                                    tiempo_cuychoque=5000;
-                                }
-
-                                setTimeout(function(){
-                                        $("#progreso").hide();
-                                        $("#img_ganador").show();
-
-                                        setTimeout(function () {
-                                            $("#img_ganador").hide();
-                                            $("#ImgContainer").show();
-                                            
-                                            $("#termotetro_para_iniciar").show();
-                                            t=0;
-                                            ANIMACION_CUY=false;
-                            iniciar_websocketservidor()
-                                            ///CargarEstadistica(1);
-                                        },10000)
-
-                                        setTimeout(function(){
-                                                $("#idevento_titulo").text("");
-                                                GANADOR_DE_EVENTO="";
-                                                 detener_var_animarcamara();
-                                                modelCajaP.visible=true;
-                                                PUNTOS_CUY=null;
-                                                INDICE_PUNTOS_CUY=0;
-                                                reiniciar_cuy();
-                                                retornar_cajx();
-                                                bfuncion_easing_indice=0;
-
-                                        },1000);
-                                      
-                                      
-                                }, tiempo_cuychoque);
-                 }
+                callback_ganador();
                 fin_tiempof = performance.now();
                 milisegundosf = (fin_tiempof - inicio_tiempo);
                 console.info("TIEMPO FINAL=> segundos: " +parseFloat(milisegundosf/1000).toFixed(2)+" ,  milliseconds : "+ milisegundosf );
-                funcion_callback();
-                delete funcion_callback;
+               // delete funcion_callback;
              }
             console.info("fin");
         }///ms > tiempo
@@ -783,7 +875,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                 generar_nueva_posicion_random();//b
                 random_tiempo();
             }
-        }
+        }  ///fin else ms >tiempo
     }  ///fin t>1
 }
 

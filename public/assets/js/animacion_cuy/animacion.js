@@ -450,7 +450,7 @@ function iniciar_websocketservidor(){
                     clearInterval(timeout_pedir_hora);
                 }
           },2000);
-          console.warn(performance.now() +"YA CONECTADO, pedir datos");
+          console.warn(performance.now() +" YA CONECTADO, pedir datos");
           pedir_eventoJSON();///INICIO_ANIMACION_CUY despues de recibir hora de servidor ///////////////************///
     }
     else{
