@@ -264,13 +264,22 @@ class Reporte extends Model
         $ZonaComercial = $request->input('ZonaComercial');
         $ZonaComercial = is_array($ZonaComercial) ? implode(",", $ZonaComercial) : $ZonaComercial;
 
-//        $condicional = $ZonaComercial == 0 ? "" : "and p.ZonaComercial in ($ZonaComercial)";
-        $condicional = $puntoVenta == 0 ? "" : "and p.idPuntoVenta in ($puntoVenta)";
+        $puntoventa_lista = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa_lista as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",", $data);
+
+        $puntoventa_lista = is_array($data) ? implode(",", $data) : $data;
+
+        $ZonaComercial = $ZonaComercial == 0 ? "and p.idPuntoVenta in ($puntoventa_lista)" : "and p.ZonaComercial in ($ZonaComercial)";
+        $condicional = $puntoVenta == 0 ? $ZonaComercial : "and p.idPuntoVenta in ($puntoVenta)";
 
         $listar = DB::select(DB::raw("
         select 
         IFNULL(e.idEVento,epago.idEvento) Evento,
-        concat('ZONA COMERCIAL ',IFNULL(p.ZonaComercial,0)) ZonaComercial ,
+        concat('ZonaComercial ',IFNULL(p.ZonaComercial,0)) ZonaComercial ,
         p.nombre tienda,
         IFNULL(e.fechaEvento,epago.fechaEvento) Fecha
         , j.nombre AS Juego, m.simbolo as Moneda,
