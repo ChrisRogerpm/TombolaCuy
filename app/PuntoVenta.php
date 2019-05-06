@@ -105,7 +105,7 @@ class PuntoVenta extends Model
         $IdUsuario = Auth::user()->idUsuario;
         $IdZonaComercial = $request->input('IdZonaComercial');
         $condicional = $IdZonaComercial == 0 ? '' : 'AND pv.ZonaComercial = ' . $IdZonaComercial;
-        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)->get();
+        $lista_punto_venta_usuario = UsuarioPuntoVenta::where('idUsuario', $IdUsuario)->where('estado', 1)->get();
         $data = [];
         foreach ($lista_punto_venta_usuario as $l) {
             $data [] = $l->idPuntoVenta;
@@ -113,7 +113,8 @@ class PuntoVenta extends Model
         $data = is_array($data) ? implode(",", $data) : $data;
         $listar = DB::select(DB::raw("SELECT * 
         FROM punto_venta pv
-        WHERE pv.idPuntoVenta IN ($data)  $condicional"));
+        WHERE pv.idPuntoVenta IN ($data)  
+        $condicional"));
         return $listar;
     }
 

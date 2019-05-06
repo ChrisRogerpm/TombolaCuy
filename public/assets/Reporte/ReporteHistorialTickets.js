@@ -76,7 +76,7 @@ function ReporteHistorialTicket(url, dataForm) {
 
             var resp = response.data;
             $("#PanelTabla").show();
-            $("#table_panel").DataTable({
+            var objdata = $("#table_panel").DataTable({
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
@@ -107,6 +107,22 @@ function ReporteHistorialTicket(url, dataForm) {
                         title: "Ver"
                     });
                 }
+            });
+
+            objdata.on('search.dt', function () {
+                var data = objdata.rows({filter: 'applied'}).data().toArray();
+                var totalapostado = 0;
+                var totalpagado = 0;
+                var totalutilidad = 0;
+                $.each(data, function (key, value) {
+                    totalapostado += parseFloat(value.apostado);
+                    totalpagado += value.pagado;
+                    totalutilidad += value.utilidad;
+                });
+                //return total;
+                $('#TotalApostado').html(totalapostado.toFixed(2));
+                $('#TotalPagado').html(totalpagado);
+                $('#TotalUtilidad').html(totalutilidad);
             });
         }
     })

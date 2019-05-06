@@ -2,11 +2,11 @@ $(document).ready(function () {
     // $(".select2").select2();
     // var dateNow = new Date();
     var d = new Date();
-    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
+    var datestring = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: datestring,
-        useCurrent:'day'
+        useCurrent: 'day'
     });
 
     var dateNow = new Date();
@@ -30,8 +30,7 @@ $(document).ready(function () {
         if (valor == 0) {
             $('#cboTienda').val([]).trigger('change');
             $('#cboTienda').val(0).trigger('change');
-        }
-        else {
+        } else {
             var valores = $('#cboTienda').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -75,7 +74,7 @@ $(document).ready(function () {
                 success: function (response) {
                     var resp = response.data;
                     $("#PanelTabla").show();
-                    $("#table").DataTable({
+                    var objdata = $("#table").DataTable({
                         "bDestroy": true,
                         "bSort": true,
                         "scrollCollapse": true,
@@ -97,6 +96,25 @@ $(document).ready(function () {
 
                         ],
                     });
+
+                    objdata.on('search.dt', function () {
+                        var data = objdata.rows({filter: 'applied'}).data().toArray();
+                        var totalApuestas = 0;
+                        var totalJugadores = 0;
+                        var totalPagos = 0;
+                        var totalUtilidad = 0;
+                        $.each(data, function (key, value) {
+                            totalApuestas += parseFloat(value.apuestas);
+                            totalJugadores += value.Jugadores;
+                            totalPagos += value.Pagos;
+                            totalUtilidad += value.Utilidad;
+                        });
+                        $('#TotalApuesta').html(totalApuestas.toFixed(2));
+                        $('#TotalPagos').html(totalPagos);
+                        $('#TotalJugadores').html(totalJugadores);
+                        $('#TotalUtilidad').html(totalUtilidad);
+                    })
+
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                 }
@@ -127,6 +145,7 @@ function GananciaTotal() {
     $('#TotalJugadores').html(totalJugadores);
     $('#TotalUtilidad').html(totalUtilidad);
 }
+
 $("#frmNuevo")
     .validate({
         rules: {
@@ -164,8 +183,7 @@ $("#frmNuevo")
         errorPlacement: function (error, element) {
             if (element.is(":radio") || element.is(":checkbox")) {
                 element.closest('.option-group').after(error);
-            }
-            else {
+            } else {
                 error.insertAfter(element);
             }
         }

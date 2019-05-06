@@ -130,7 +130,7 @@ function ReporteVentaJson(url, dataForm) {
             debugger
             var resp = response.data;
             $("#PanelTabla").show();
-            $("#table_panel").DataTable({
+            var objdata = $("#table_panel").DataTable({
                 "bDestroy": true,
                 "bSort": true,
                 "scrollCollapse": true,
@@ -154,6 +154,15 @@ function ReporteVentaJson(url, dataForm) {
                 ],
                 "drawCallback": function (settings) {
                 }
+            });
+
+            objdata.on('search.dt', function () {
+                var data = objdata.rows({filter: 'applied'}).data().toArray();
+                var total = 0;
+                $.each(data, function (key, value) {
+                    total += value.Ganado;
+                });
+                $("#TotalGanancia").html(total);
             });
 
             $(".container-btnExcel").html("").append('<button class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel"><span\n' +
