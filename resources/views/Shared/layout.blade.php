@@ -343,6 +343,8 @@
                                 class="title">Apertura Caja</span></a></li>
                 <li><a href="{{route('Juego.Listar')}}" data-toggle="tooltip" title="Juegos"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Juegos</span></a></li>
+                <li><a href="{{route('Venta.IndexNuevo')}}" data-toggle="tooltip" title="Venta"><i class="icon icon-inline fa fa-dollar"></i> <span
+                                class="title">Venta</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
@@ -351,17 +353,6 @@
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                         </li>
-                    </ul>
-                </li>
-                <li class="sub">
-                    <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
-                    </a>
-                    <ul class="sub-menu collapse" data-menu-title="Venta">
-                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span
-                                        class="title">Caja Venta</span></a></li>
-
                     </ul>
                 </li>
                 <li class="sub">

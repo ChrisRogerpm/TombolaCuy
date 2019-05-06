@@ -85,5 +85,5 @@
 @stop
 
 @push('Js')
-    <script src="{{asset('../assets/Caja/CajaInsertar.js')}}"></script>
+    <script src="{{asset('assets/Caja/CajaInsertar.js')}}"></script>
 @endpush

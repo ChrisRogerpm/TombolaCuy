@@ -259,10 +259,13 @@ class Reporte extends Model
     {
         $fecha_ini = Carbon::parse($request->input('fechaInicio'))->startOfDay();
         $fecha_fin = Carbon::parse($request->input('fechaFin'))->endOfDay();
+        $puntoVenta = $request->input('PuntoVenta');
+        $puntoVenta = is_array($puntoVenta) ? implode(",", $puntoVenta) : $puntoVenta;
         $ZonaComercial = $request->input('ZonaComercial');
         $ZonaComercial = is_array($ZonaComercial) ? implode(",", $ZonaComercial) : $ZonaComercial;
 
-        $condicional = $ZonaComercial == 0 ? "" : "and p.ZonaComercial in ($ZonaComercial)";
+//        $condicional = $ZonaComercial == 0 ? "" : "and p.ZonaComercial in ($ZonaComercial)";
+        $condicional = $puntoVenta == 0 ? "" : "and p.idPuntoVenta in ($puntoVenta)";
 
         $listar = DB::select(DB::raw("
         select 
@@ -370,30 +373,57 @@ class Reporte extends Model
         $IdJuego = $request->input('IdJuego');
         $valor_array = array();
         if ($fecha_ini == "" && $fecha_fin == "") {
-            $listar = DB::table('evento as e')
-                ->select('e.idEvento', 'e.fechaEvento')
-                ->where('e.idJuego', $IdJuego)
-                ->where('estadoEvento', 2)
-                ->orderBy('e.idEvento', 'DESC')
-                ->get();
+//            $listar = DB::table('evento as e')
+//                ->select('e.idEvento', 'e.fechaEvento')
+//                ->where('e.idJuego', $IdJuego)
+//                ->where('estadoEvento', 2)
+//                ->orderBy('e.idEvento', 'DESC')
+//                ->get();
+            $listar = DB::select(DB::raw("SELECT re.idEvento,e.fechaEvento,ta.rgb,ta.rgbLetra,re.valorGanador
+                    FROM resultado_evento re
+                    JOIN evento e ON e.idEvento = re.idEvento
+                    JOIN tipo_apuesta ta ON ta.idTipoApuesta = re.idTipoApuesta
+                    where e.fechaEvento >= DATE_SUB(CURDATE(), INTERVAL 2 DAY)
+                    AND e.idJuego = $IdJuego AND e.estadoEvento = 2
+                    GROUP BY re.idEvento,re.valorGanador
+                    ORDER BY re.idEvento desc"));
             foreach ($listar as $l) {
-
                 $valor = self::ValorGanadorEvento($l->idEvento);
                 $descripcion = self::DescripcionResultadoEvento($l->idEvento);
-                $valor_array [] = ['idEvento' => $l->idEvento, 'fechaEvento' => $l->fechaEvento, 'ValorGanador' => $valor, 'Descripcion' => $descripcion];
+                $valor_array [] = [
+                    'idEvento' => $l->idEvento,
+                    'fechaEvento' => $l->fechaEvento,
+                    'rgb' => $l->rgb,
+                    'rgb_letra' => $l->rgbLetra,
+                    'ValorGanador' => $valor,
+                    'Descripcion' => $descripcion];
             }
         } else {
-            $listar = DB::table('evento as e')
-                ->select('e.idEvento', 'e.fechaEvento')
-                ->where('e.idJuego', $IdJuego)
-                ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-                ->where('estadoEvento', 2)
-                ->orderBy('e.idEvento', 'DESC')
-                ->get();
+//            $listar = DB::table('evento as e')
+//                ->select('e.idEvento', 'e.fechaEvento')
+//                ->where('e.idJuego', $IdJuego)
+//                ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
+//                ->where('estadoEvento', 2)
+//                ->orderBy('e.idEvento', 'DESC')
+//                ->get();
+            $listar = DB::select(DB::raw("SELECT re.idEvento,e.fechaEvento,ta.rgb,ta.rgbLetra,re.valorGanador
+                    FROM resultado_evento re
+                    JOIN evento e ON e.idEvento = re.idEvento
+                    JOIN tipo_apuesta ta ON ta.idTipoApuesta = re.idTipoApuesta
+                    where e.fechaEvento BETWEEN '$fecha_ini' AND '$fecha_fin'
+                    AND e.idJuego = $IdJuego AND e.estadoEvento = 2
+                    GROUP BY re.idEvento,re.valorGanador
+                    ORDER BY re.idEvento desc"));
             foreach ($listar as $l) {
                 $valor = self::ValorGanadorEvento($l->idEvento);
                 $descripcion = self::DescripcionResultadoEvento($l->idEvento);
-                $valor_array [] = ['idEvento' => $l->idEvento, 'fechaEvento' => $l->fechaEvento, 'ValorGanador' => $valor, 'Descripcion' => $descripcion];
+                $valor_array [] = [
+                    'idEvento' => $l->idEvento,
+                    'fechaEvento' => $l->fechaEvento,
+                    'rgb' => $l->rgb,
+                    'rgb_letra' => $l->rgbLetra,
+                    'ValorGanador' => $valor,
+                    'Descripcion' => $descripcion];
             }
         }
         return $valor_array;
@@ -493,7 +523,7 @@ class Reporte extends Model
                     'valores' => $re->valores,
                     'estadoGanadorTicket' => $estado
                 ];
-            }else if($TipoTicket == 1 and $estadoGanador == true){
+            } else if ($TipoTicket == 1 and $estadoGanador == true) {
                 $estado = "Ganador";
                 $lista [] = [
                     'fechaevento' => $re->fechaevento,
@@ -510,7 +540,7 @@ class Reporte extends Model
                     'valores' => $re->valores,
                     'estadoGanadorTicket' => $estado
                 ];
-            }else if($TipoTicket == 2 and $estadoGanador == false){
+            } else if ($TipoTicket == 2 and $estadoGanador == false) {
                 $estado = "No Ganador";
                 $lista [] = [
                     'fechaevento' => $re->fechaevento,

@@ -4,17 +4,28 @@ $(document).ready(function () {
     // });
 
     var d = new Date();
-    var datestring = d.getFullYear() + "/" + (d.getMonth()+1) + "/"+ d.getDate();
+
+    var fechaMin = new Date();
+    fechaMin.setDate(fechaMin.getDate() - 45);
+
+    var fechaMax = new Date();
+    fechaMax.setDate(fechaMax.getDate() + 45);
+
+    var datestring = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
     $(".Fecha").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: datestring,
-        useCurrent:'day'
+        maxDate: fechaMax,
+        minDate: fechaMin,
+        useCurrent: 'day'
     });
 
     var dateNow = new Date();
     $(".FechaFin").datetimepicker({
         format: 'YYYY/MM/DD HH:mm:ss',
         defaultDate: dateNow,
+        maxDate: fechaMax,
+        minDate: fechaMin,
     });
 
     $(document).on('click', '.btnJuego', function (e) {
@@ -88,7 +99,7 @@ function ReporteVentaJson(url, dataForm, NombreJuego) {
 
                     {
                         data: null, title: "Nro Ganador", class: 'text-center', "render": function (value) {
-                            return '<span class="badge badge-warning" style="padding-top: 7px;padding-bottom: 7px;">' + value.ValorGanador + '</span>';
+                            return '<span class="badge" style="padding-top: 7px;padding-bottom: 7px; background-color: ' + value.rgb + '; color: ' + value.rgb_letra + '">' + value.ValorGanador + '</span>';
                         }
                     },
                     {

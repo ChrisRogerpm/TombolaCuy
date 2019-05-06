@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label for="">Puntos de Venta</label>
                                     <select multiple id="cboPuntoVenta" name="PuntoVenta"
-                                            class="form-control input-sm" style="width: 100%;">
+                                            class="form-control input-sm multiselect" style="width: 100%;">
                                     </select>
                                 </div>
                             </div>

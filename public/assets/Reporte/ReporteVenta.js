@@ -1,4 +1,13 @@
 $(document).ready(function () {
+
+    $.when(llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboPuntoVenta", "idPuntoVenta", "nombre", "")).then(function (response, textStatus) {
+        $("#cboPuntoVenta").select2();
+    });
+
+
+    // llenarSelect(basePath + "PuntoVentaListarUsuarioJsonFk", {}, "cboTienda", "idPuntoVenta", "nombre", "allOption", false);
+    // $("#cboTienda").select2('val', [0]);
+
     var dateNow = new Date();
     $(".Fecha").datetimepicker({
         // format: 'YYYY/MM/DD HH:mm:ss',
@@ -6,7 +15,17 @@ $(document).ready(function () {
         defaultDate: dateNow,
     });
     $('#cboZona').select2();
-    $("#cboPuntoVenta").select2();
+    // $("#cboPuntoVenta").select2();
+
+    $('.multiselect').select2({
+        tags: false, allowClear: true, buttonWidth: '100%',
+        width: '100%',
+        placeholder: {
+            id: '', // the value of the option
+            text: '--Seleccione--'
+        }
+    });
+
     $(document).on('change', '#cboZona', function () {
         var IdZonaComercial = $(this).val();
         var url = basePath + "ObtenerPuntosVentaZonaComercialJsonFk";
@@ -17,6 +36,12 @@ $(document).ready(function () {
             type: 'POST',
             url: url,
             data: dataForm,
+            beforeSend: function () {
+                $.LoadingOverlay("show");
+            },
+            complete: function () {
+                $.LoadingOverlay("hide");
+            },
             success: function (response) {
                 var data = response.data;
                 $('#cboPuntoVenta').html("");
@@ -26,20 +51,25 @@ $(document).ready(function () {
                     $.each(data, function (key, value) {
                         $('#cboPuntoVenta').append('<option value="' + value.idPuntoVenta + '">' + value.nombre + '</option>')
                     });
-                    $("#cboPuntoVenta").select2();
+                    $("#cboPuntoVenta").select2({
+                        tags: false, allowClear: true, buttonWidth: '100%',
+                        width: '100%',
+                        placeholder: {
+                            id: '', // the value of the option
+                            text: '--Seleccione--'
+                        }
+                    });
                 }
             }
         });
     });
-
     $('#cboPuntoVenta').on('select2:select', function (e) {
         var data = e.params.data;
         var valor = data.id;
         if (valor === 0) {
             $('#cboPuntoVenta').val([]).trigger('change');
             $('#cboPuntoVenta').val(0).trigger('change');
-        }
-        else {
+        } else {
             var valores = $('#cboPuntoVenta').val();
             var nuevo = [];
             $.each(valores, function (index, value) {
@@ -50,7 +80,6 @@ $(document).ready(function () {
             $('#cboPuntoVenta').val(nuevo).trigger('change');
         }
     });
-
     $(document).on('click', '#btnBuscar', function () {
         var url = basePath + "ReporteVentaJsonFk";
         var dataForm = $('#frmNuevo').serializeFormJSON();
