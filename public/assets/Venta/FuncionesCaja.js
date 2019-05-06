@@ -952,6 +952,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
         ///BOTON IMPRIMIR
         $("#div_botones .print").off().on("click",function(){
 
+            if(typeof eventoactual=="undefined"){toastr.error("No hay Evento");return;}
             if(typeof intervalo_contador=="undefined"){
                 toastr.error("Evento Actual "+eventoactual.IdEvento+" Ya Finalizó,   Recargar Página");
                 return;
