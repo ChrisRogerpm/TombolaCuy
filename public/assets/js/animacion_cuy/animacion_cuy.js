@@ -829,6 +829,11 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
                             // linea_camino();
                             t=0;
                             dtSPLINE=0.02;
+                            dist_spline=spline.getLength();
+                            console.info("dist_spline "+dist_spline);
+                            if(dist_spline>4){
+                                dtSPLINE=0.005;
+                            }
         //                     // linea_camino();
 
                             correr_spline();
@@ -1141,6 +1146,63 @@ function cuy_rotacionrapido() {//var_cuy_rotando
 }
 
 
+function mover_cuy_rapido2() {    ///var_cuymoviendo  => animationframe
+    if (!CUY_CORRIENDO) {  return;}
+    mostrar_cuymoviendo();
+  //thrust=0.01;
+x=model.position.x;
+z=model.position.z;
+   tx = (b.x - x).toFixed(10);tx=parseFloat(tx);
+ tz = (b.z - z).toFixed(10);tz=parseFloat(tz);
+ dist = Math.sqrt(tx*tx+tz*tz);
+ dist=dist.toFixed(10);dist=parseFloat(dist);
+ if(x>=b.x){dist=0;}
+    rad = Math.atan2(tz,tx);
+    angle = rad/Math.PI * 180;
+    velX = (tx/dist)*thrust;
+    velZ = (tz/dist)*thrust;
+console.log(dist+"  x:"+x+" z:"+z);
+
+ if(dist>0){
+    x=(x+velX).toFixed(10);
+    z=(z+velZ).toFixed(10);
+          model.position.set(parseFloat(x),
+                             0,
+                              parseFloat(z)); 
+            mixer.update(clock.getDelta());
+    renderer.render(scene, camera);
+    var_cuymoviendo = requestAnimationFrame(mover_cuy_rapido2);
+}  
+  
+  
+else
+    {
+console.log(model.position.x+"  - "+model.position.z);
+        //model.position.set(b.x, b.y, b.z); ///ajustar posición si no llegó exacto
+        a = { x: model.position.x, y: model.position.y, z: model.position.z };   //////nueva posicion
+        detener_var_cuymoviendo();
+        detener_var_cuy_rotando();
+        actualizar_cuyes_posicion();
+            if(!mover_a_ganador){
+                    mover_a_ganador=true;
+                    // b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    if(GANADOR_DE_EVENTO=="x"){
+                         b=ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion;
+                    }else{
+                        b=get_caja(GANADOR_DE_EVENTO).posicion;
+                    }
+            }  
+            else {
+                CUY_CORRIENDO = false;
+                if(ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.x==model.position.x && ARRAY_PUNTOSCAJAS[ARRAY_PUNTOSCAJAS.length-1].posicion.y==model.position.y ){
+                    modelCuyChoque.position.y=-0.1;
+                    cuychoque();
+                    cajax_animacion();
+                }
+             }
+      
+    }  ///fin t>1
+}
 function mover_cuy_rapido() {    ///var_cuymoviendo  => animationframe
     if (!CUY_CORRIENDO) {  return;}
     mostrar_cuymoviendo();
