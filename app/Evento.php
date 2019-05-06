@@ -431,10 +431,14 @@ LIMIT 18
         for($i=0;$i<40;$i++){
             $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)) ;  
             $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)); 
+            $rotarono=$this->random_0_1() >= 0.5 ? true:false;
+            $mostrar_cuydudando=$this->random_0_1() >= 0.5 ? true:false;
             $obj = (object) [
                 'x' => $randomx,
                 'y' => 0,
-                'z' => $randomz
+                'z' => $randomz,
+                'rotarono'=>$rotarono,
+                'mostrar_cuydudando'=>$mostrar_cuydudando
             ];
             array_push($array_puntos, $obj);
 

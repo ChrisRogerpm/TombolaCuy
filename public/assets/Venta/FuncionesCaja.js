@@ -790,6 +790,7 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
                 $("#div_apuestas .seleccionadoapuesta").each(function(ii,ee){
                 SUMAAPUESTAS=SUMAAPUESTAS+$(ee).data("valor");
                 })
+                divisa=divisa.toString()=="[object HTMLSpanElement]"?" ":divisa;
                 $(".rowtableeventos_footer_apuesta").text("APUESTA "+SUMAAPUESTAS+" "+divisa);
         })
 
@@ -799,6 +800,9 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
     $("#div_botones .check").off().on("click",function(){
             ID_EVENTO=$(".id_tituloconfiguracionevento").text();
 
+            if(ID_EVENTO==""){
+                toastr.error("No hay Evento");return;
+            }
             cantidadapuesta=$("#div_apuestas .seleccionadoapuesta").length;
              SUMAAPUESTAS=0;
             $("#div_apuestas .seleccionadoapuesta").each(function(i,e){
