@@ -858,7 +858,7 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             console.info("fin");
         }///ms > tiempo
         else{
-            mostrar_cuydudando=Math.random()>=0.5?true:false;
+            mostrar_cuydudando=b.mostrar_cuydudando;//Math.random()>=0.5?true:false;
             if(mostrar_cuydudando){
                 detener_var_cuydudando();
                 
@@ -871,7 +871,6 @@ function mover_cuyrandom() {    ///var_cuymoviendo  => animationframe
             }
             else{
                 detener_var_cuydudando();
-
                 generar_nueva_posicion_random();//b
                 random_tiempo();
             }
@@ -908,13 +907,15 @@ function iniciar_tiempo_random(tiempo) {
         // console.info(b);
         //esta=typeof var_cuymoviendo === "undefined"?"true":"false";
         //console.warn(esta);
+        // rotarono=b.rotarono;
+        // mostrar_cuydudando=b.mostrar_cuydudando;
             random_tiempo();
     },3500);
 
 }
 function random_tiempo(){
     if (typeof var_cuymoviendo === "undefined") {
-        rotarono=Math.random() >= 0.5 ?true:false;
+        rotarono=b.rotarono;//Math.random() >= 0.5 ?true:false;
         //rotarono=false;
 
         t = 0;  ///coeficiente
