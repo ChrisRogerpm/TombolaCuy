@@ -385,6 +385,9 @@ function accion_evento(DATOS){
                 EVENTO_ACTUAL=EVENTO_ACTUAL;
                 EVENTO_ID= EVENTO_ACTUAL.evento_id_actual;
                 GANADOR_DE_EVENTO =EVENTO_ACTUAL.evento_valor_ganador;
+                if(GANADOR_DE_EVENTO==null){
+                  console.warn(" ---  NO HAY GANADOR_DE_EVENTO "+EVENTO_ID);
+                }
                 TIEMPO_GIRO_CAJA=(EVENTO_ACTUAL.segCajaGirando)*1000;
                 TIEMPO_CUY = (EVENTO_ACTUAL.segBloqueoAntesAnimacion*1000)-TIEMPO_GIRO_CAJA;//EVENTO_ACTUAL.tiempo_cuy_moviendo;
 
@@ -472,7 +475,7 @@ function accion_evento(DATOS){
                           extendedTimeOut: 0,
                           tapToDismiss: false
                           };
-                          console.log(performance.now() +" esperando fecha fin evento actual,para recargar " +FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")) ;
+                          console.log(performance.now() +" esperando fecha fin evento actual "+EVENTO_ACTUAL.evento_id_actual+",para recargar " +FECHA_FIN_EVENTO.format("YYYY-MM-DD HH:mm:ss a")) ;
                               if(segundos_para_fin_evento>0){
 
                                    toast_eventoterminar=toastr.info("Esperando que termine evento actual");

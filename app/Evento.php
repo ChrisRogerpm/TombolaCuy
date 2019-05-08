@@ -344,7 +344,7 @@ LIMIT 18
 
 ///////////////////////NUEVA FUNCIÓN ACTIVACION EVENTOS
 
-        public static function ActivarEventos()
+    public static function ActivarEventos()
     {
         echo '.';
         $lista_Juegos = Juego::JuegoListarLapsoJson();
@@ -375,17 +375,127 @@ LIMIT 18
         }///fin foreach juegos
             //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
     }
+    public static function ActivarEventos22()
+    {
+        echo '.';
+        $lista_Juegos = Juego::JuegoListarLapsoJson();
+        foreach ($lista_Juegos as $juego) {/// foreach  juegos
+                    $idJuego=$juego->idJuego;
+                    $hora=now();
+                    $startTimef = microtime(true);   
+                        echo ":";
 
-        public static function  CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento)
+                    $evento_activo=
+                       DB::select( DB::raw("select idEvento,fechaFinEvento from evento 
+                                            where idJuego=".$idJuego."
+                                            and estadoEvento=1"
+                                            )
+                    );
+                    if(count($evento_activo)>0){
+                         $idEvento=$evento_activo[0]->idEvento;
+                        $fechaFinEvento=$evento_activo[0]->fechaFinEvento;
+                        echo " evena acti:".$idEvento." ";
+                        Evento::CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento);
+                    }
+                    else{ 
+                        // echo "  --- ";
+                        //  $Evento_activar=
+                        //   DB::unprepared("select @idevento_activar:=idEvento from evento 
+                        //                     where idJuego=".$idJuego."
+                        //                     and estadoEvento=0
+                        //                     and fechaEvento <='$hora' 
+                        //                     and fechaFinEvento >='$hora';
+                        //                     update evento set estadoEvento=1 where idEvento=@idevento_activar
+                        //                     "
+                        //                     );
+                        // Sleep(1);
+                    };
+                        echo "_";
+                    //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
+                    // if(count($Evento_para_activar)>0){
+                    //     $idEvento=$Evento_para_activar[0]->idEvento;
+                    //     $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
+                    //     $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
+                    //     Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
+                    //     echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
+                    // }
+        }///fin foreach juegos
+            //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
+    }
+
+
+      public static function ActivarEventos2()
+    {
+        echo '.';
+        $lista_Juegos = Juego::JuegoListarLapsoJson();
+        foreach ($lista_Juegos as $juego) {/// foreach  juegos
+                    $idJuego=$juego->idJuego;
+                    $hora=now();
+                    $startTimef = microtime(true);   
+                        echo ":";
+
+                    $evento_activo=
+                       DB::select( DB::raw("select idEvento,fechaFinEvento from evento 
+                                            where idJuego=".$idJuego."
+                                            and estadoEvento=1"
+                                            )
+                    );
+                    if(count($evento_activo)>0){
+                        Evento::CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento);
+                    }
+                    else{ 
+                         $Evento_activar=
+                         DB::select( DB::raw("select @idevento_activar:=idEvento from evento 
+                                            where idJuego=".$idJuego."
+                                            and estadoEvento=0
+                                            and fechaEvento <='$hora' 
+                                            and fechaFinEvento >='$hora';
+                                            update evento set estadoEvento=1 where idEvento=@idevento_activar
+                                            "
+                                            )
+                        );
+                    };
+                        echo "_";
+
+                    //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
+
+                    if(count($Evento_para_activar)>0){
+                        $idEvento=$Evento_para_activar[0]->idEvento;
+                        $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
+                        $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
+                        Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
+                        echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
+                    }
+        }///fin foreach juegos
+            //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
+    }
+
+    public static function  CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento)
     {
         $nombre_eventomysql=$idJuego."_".$idEvento."_fin";
         $listar=DB::unprepared("DROP EVENT IF EXISTS ".$nombre_eventomysql.";
             create EVENT ".$nombre_eventomysql." 
-    ON SCHEDULE AT '".$fechaFinEvento."'
-    DO 
-      update evento ev set ev.estadoEvento=2 where ev.idEvento=".$idEvento);
+            ON SCHEDULE AT '".$fechaFinEvento."'
+            DO 
+                update evento ev set ev.estadoEvento=2 where ev.idEvento=".$idEvento);
         return $listar;
     }
+    public static function  CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento)
+    {
+        $nombre_eventomysql=$idJuego."_".$idEvento."_fin";
+        $listar=DB::unprepared("  create EVENT  if not exists ".$nombre_eventomysql."
+                                    ON SCHEDULE at '".$fechaFinEvento."'
+                                    DO BEGIN
+                                      select @hora:= now();
+                                      select @ideven:= idEvento from evento where idJuego=".$idJuego." and fechaFinEvento=@hora;
+                                      update evento set estadoEvento=2 where idEvento=@ideven;/*desactivar evento*/
+                                      select @ideven_acti:=idEvento from evento where idJuego=".$idJuego." and  fechaEvento=@hora ;
+                                      update evento set estadoEvento=1 where idEvento=@ideven_acti;/*activar siguiente evento*/
+                                    END ");
+        return $listar;
+    }
+
+   
 
 //////////////////////////////////////////////////
 
