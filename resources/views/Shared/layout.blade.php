@@ -289,43 +289,10 @@
                         <img src="{{asset('images/userdefault.jpg')}}">
                     </div>
                 </a>
-                <!-- /Profile Avatar -->
-
-                <!-- User Information -->
                 <div class="user-info">
                     <div class="name">Bienvenido</div>
                     <div class="post">{{Auth::user()->usuario}}</div>
                 </div>
-                <!-- /User Information -->
-
-                <!-- Profile dropdown menu -->
-                <ul class="dropdown-menu dropdown-menu-dark sidebar-dropdown-profile">
-
-                    <li>
-                        <a href="#"><i class="icon icon-inline fa fa-address-card-o"></i> Profile</a>
-                    </li>
-                    <li>
-                        <a href="#" class="has-badge">
-                            <i class="icon icon-inline fa fa-envelope-o"></i> Inbox
-                            <span class="badge badge-notification badge-danger">3</span>
-                        </a>
-                    </li>
-                    <li><a href="#"><i class="icon icon-inline fa fa-tasks"></i> Tasks</a></li>
-                    <li>
-                        <a href="#" class="has-badge">
-                            <i class="icon icon-inline fa fa-calendar"></i> Calendar
-                            <span class="badge badge-notification badge-primary">5</span>
-                        </a>
-                    </li>
-
-                    <li class="divider"></li>
-
-                    <li><a href="#"><i class="icon icon-inline fa fa-gears"></i> Settings</a></li>
-                    <li><a href="#"><i class="icon icon-inline fa fa-lock"></i> Lock Screen</a></li>
-                    <li><a href="#"><i class="icon icon-inline fa fa-sign-out"></i> Sign out</a></li>
-                </ul>
-                <!-- /Profile dropdown menu -->
-
             </div>
             <!-- /SIDEBAR PROFILE -->
 
@@ -343,6 +310,8 @@
                                 class="title">Apertura Caja</span></a></li>
                 <li><a href="{{route('Juego.Listar')}}" data-toggle="tooltip" title="Juegos"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Juegos</span></a></li>
+                <li><a href="{{route('Venta.IndexNuevo')}}" data-toggle="tooltip" title="Venta"><i class="icon icon-inline fa fa-dollar"></i> <span
+                                class="title">Venta</span></a></li>
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
@@ -351,17 +320,6 @@
                         <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
                         </li>
-                    </ul>
-                </li>
-                <li class="sub">
-                    <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-dollar"></i> <span class="title">Venta</span>
-                    </a>
-                    <ul class="sub-menu collapse" data-menu-title="Venta">
-                        <li><a href="{{route('Venta.IndexNuevo')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span
-                                        class="title">Caja Venta</span></a></li>
-
                     </ul>
                 </li>
                 <li class="sub">

@@ -69,7 +69,7 @@ function MostrarDataCierreCaja() {
                     {data: "Venta", title: "Venta"},
                     {data: "Pagado", title: "Pagado"},
                     {
-                        data: null, title: "Total",
+                        data: null, title: "Utilidad",
                         "render": function (value) {
                             return value.Venta - value.Pagado;
                         }
