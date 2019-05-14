@@ -30,16 +30,16 @@ class ConfiguracionGeneral extends Model
     public static function ObtenerConfiguracionEvento()
     {
         $resultado = DB::table('configuracion_general')->first();
-        $obj = new stdClass();
-        $obj->idConfiguracion = $resultado->idConfiguracion;
-        $obj->HoraInicioIntervalo = $resultado->HoraInicioIntervalo;
-        $obj->HoraFinIntervalo = $resultado->HoraFinIntervalo;
-        $obj->CobrarTicket = $resultado->CobrarTicket;
-        $obj->CuentaCorreo = Crypt::decryptString($resultado->CuentaCorreo);
-        $obj->PasswordCorreo = Crypt::decryptString($resultado->PasswordCorreo);
-        $obj->SMTP = Crypt::decryptString($resultado->SMTP);
-        $obj->SSL = Crypt::decryptString($resultado->SSL);
-        return $obj;
+//        $obj = new stdClass();
+//        $obj->idConfiguracion = $resultado->idConfiguracion;
+//        $obj->HoraInicioIntervalo = $resultado->HoraInicioIntervalo;
+//        $obj->HoraFinIntervalo = $resultado->HoraFinIntervalo;
+//        $obj->CobrarTicket = $resultado->CobrarTicket;
+//        $obj->CuentaCorreo = $resultado->CuentaCorreo;
+//        $obj->PasswordCorreo = $resultado->PasswordCorreo;
+//        $obj->SMTP = $resultado->SMTP;
+//        $obj->SSL = $resultado->SSL;
+        return $resultado;
     }
 
     public static function ConfiguracionEventoInsertar(Request $request)
@@ -77,17 +77,17 @@ class ConfiguracionGeneral extends Model
         $configuracion = ConfiguracionGeneral::ObtenerConfiguracionEvento();
         if ($configuracion != null) {
             $conf = ConfiguracionGeneral::findorfail($configuracion->idConfiguracion);
-            $conf->CuentaCorreo = Crypt::encryptString($request->input('CuentaCorreo'));
-            $conf->PasswordCorreo = Crypt::encryptString($request->input('PasswordCorreo'));
-            $conf->SMTP = Crypt::encryptString($request->input('SMTP'));
-            $conf->SSL = Crypt::encryptString($request->input('SSL'));
+            $conf->CuentaCorreo = $request->input('CuentaCorreo');
+            $conf->PasswordCorreo = $request->input('PasswordCorreo');
+            $conf->SMTP = $request->input('SMTP');
+            $conf->SSL = $request->input('SSL');
             $conf->save();
         } else {
             $conf = new ConfiguracionGeneral();
-            $conf->CuentaCorreo = Crypt::encryptString($request->input('CuentaCorreo'));
-            $conf->PasswordCorreo = Crypt::encryptString($request->input('PasswordCorreo'));
-            $conf->SMTP = Crypt::encryptString($request->input('SMTP'));
-            $conf->SSL = Crypt::encryptString($request->input('SSL'));
+            $conf->CuentaCorreo = $request->input('CuentaCorreo');
+            $conf->PasswordCorreo = $request->input('PasswordCorreo');
+            $conf->SMTP = $request->input('SMTP');
+            $conf->SSL = $request->input('SSL');
             $conf->save();
         }
     }
