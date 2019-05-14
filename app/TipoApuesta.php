@@ -14,7 +14,7 @@ class TipoApuesta extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado','rgb','rgbLetra'];
+    public $fillable = ['idTipoPago' . 'valorapuesta', 'nombre', 'estado', 'rgb', 'rgbLetra'];
 
 
     public static function TipoApuestaListarJson()
@@ -190,7 +190,7 @@ class TipoApuesta extends Model
 
     }
 
-    public static function ValorGanadorRepetidos($ValorGanador,$IdJuego)
+    public static function ValorGanadorRepetidos($ValorGanador, $IdJuego)
     {
         $lista = DB::select(DB::raw("SELECT 
         rev.idEvento,rev.valorGanador
@@ -202,7 +202,7 @@ class TipoApuesta extends Model
         ORDER BY rev.idEvento DESC
         LIMIT 120"));
         $lista_valores = [];
-        foreach ($lista as $l){
+        foreach ($lista as $l) {
             $lista_valores [] = $l->valorGanador;
         }
         $total_coincidencias = array_count_values($lista_valores);
@@ -213,20 +213,30 @@ class TipoApuesta extends Model
     public static function EstadisticaUltimosTipoApuesta($IdJuego)
     {
         $lista_valorapuesta = DB::table('tipo_apuesta as ta')
-            ->select('ta.valorapuesta', 'ta.rgb','ta.rgbLetra')
+            ->select('ta.valorapuesta', 'ta.rgb', 'ta.rgbLetra')
             ->whereIn('ta.idTipoPago', [1, 6])
             ->orderBy('ta.valorapuesta')
             ->get();
         $lista = [];
         foreach ($lista_valorapuesta as $l) {
-            $repetidos = TipoApuesta::ValorGanadorRepetidos($l->valorapuesta,$IdJuego);
+            $repetidos = TipoApuesta::ValorGanadorRepetidos($l->valorapuesta, $IdJuego);
             $lista [] = [
                 'valorapuesta' => $l->valorapuesta,
                 'rgb' => $l->rgb,
-                'rgbLetra'=>$l->rgbLetra,
-                'Repetidos'=> $repetidos
+                'rgbLetra' => $l->rgbLetra,
+                'Repetidos' => $repetidos
             ];
         }
         return $lista;
+    }
+
+    public static function TipoApuestaListar()
+    {
+        $lista_valorapuesta = DB::table('tipo_apuesta as ta')
+            ->select('ta.valorapuesta', 'ta.rgb', 'ta.rgbLetra')
+            ->whereIn('ta.idTipoPago', [1, 6])
+            ->orderBy('ta.valorapuesta')
+            ->get();
+        return $lista_valorapuesta;
     }
 }

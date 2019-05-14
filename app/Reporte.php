@@ -382,12 +382,6 @@ class Reporte extends Model
         $IdJuego = $request->input('IdJuego');
         $valor_array = array();
         if ($fecha_ini == "" && $fecha_fin == "") {
-//            $listar = DB::table('evento as e')
-//                ->select('e.idEvento', 'e.fechaEvento')
-//                ->where('e.idJuego', $IdJuego)
-//                ->where('estadoEvento', 2)
-//                ->orderBy('e.idEvento', 'DESC')
-//                ->get();
             $listar = DB::select(DB::raw("SELECT re.idEvento,e.fechaEvento,ta.rgb,ta.rgbLetra,re.valorGanador
                     FROM resultado_evento re
                     JOIN evento e ON e.idEvento = re.idEvento
@@ -408,13 +402,6 @@ class Reporte extends Model
                     'Descripcion' => $descripcion];
             }
         } else {
-//            $listar = DB::table('evento as e')
-//                ->select('e.idEvento', 'e.fechaEvento')
-//                ->where('e.idJuego', $IdJuego)
-//                ->whereBetween('e.fechaEvento', array($fecha_ini, $fecha_fin))
-//                ->where('estadoEvento', 2)
-//                ->orderBy('e.idEvento', 'DESC')
-//                ->get();
             $listar = DB::select(DB::raw("SELECT re.idEvento,e.fechaEvento,ta.rgb,ta.rgbLetra,re.valorGanador
                     FROM resultado_evento re
                     JOIN evento e ON e.idEvento = re.idEvento

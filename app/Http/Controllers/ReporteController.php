@@ -8,6 +8,7 @@ use App\HistorialAlerta;
 use App\Juego;
 use App\PuntoVenta;
 use App\Reporte;
+use App\TipoApuesta;
 use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -178,14 +179,16 @@ class ReporteController extends Controller
     {
         $lista = "";
         $respuesta = false;
+        $lista_apuestas = "";
         $mensaje_error = "";
         try {
             $lista = Reporte::ReporteVentaJuego($request);
+            $lista_apuestas = TipoApuesta::TipoApuestaListar();
             $respuesta = true;
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-        return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'mensaje' => $mensaje_error]);
+        return response()->json(['respuesta' => $respuesta, 'data' => $lista, 'data_apuestas' => $lista_apuestas, 'mensaje' => $mensaje_error]);
     }
 
     public function ReporteCierreCajaFk()
