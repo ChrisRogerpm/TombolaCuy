@@ -470,9 +470,18 @@ class Reporte extends Model
             $data [] = $l->idPuntoVenta;
         }
         $data = implode(",", $data);
+        $condicional = "";
+        if ($tiendas === null) {
+            return [];
+        }
+        if ($tiendas == 0) {
+            $condicional = "and pv.idPuntoVenta in ($data)";
+        }
+        if ($tiendas != 0 && $tiendas != null) {
+            $condicional = "and pv.idPuntoVenta in ($tiendas)";
+        }
 
-        $condicional = $tiendas == 0 ? "and pv.idPuntoVenta in ($data)" : "and pv.idPuntoVenta in ($tiendas)";
-        $condicional2 = $idEvento == "" ? "" : "and idEvento = $idEvento";
+        $condicional2 = $idEvento == "" ? "" : "and e.idEvento = $idEvento";
         $TipoTicket = $TipoTicket == null ? "0" : $TipoTicket;
 
         $resultado = DB::select(DB::raw("select 

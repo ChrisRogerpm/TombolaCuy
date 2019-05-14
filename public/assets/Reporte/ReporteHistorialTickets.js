@@ -119,10 +119,9 @@ function ReporteHistorialTicket(url, dataForm) {
                     totalpagado += value.pagado;
                     totalutilidad += value.utilidad;
                 });
-                //return total;
-                $('#TotalApostado').html(totalapostado.toFixed(2));
-                $('#TotalPagado').html(totalpagado);
-                $('#TotalUtilidad').html(totalutilidad);
+                $('#TotalApostado').html("").html(totalapostado.toFixed(2));
+                $('#TotalPagado').html("").html(totalpagado);
+                $('#TotalUtilidad').html("").html(totalutilidad);
             });
         }
     })
@@ -142,7 +141,7 @@ function Totales() {
         totalutilidad += value.utilidad;
     });
     //return total;
-    $('#TotalApostado').html(totalapostado.toFixed(2));
-    $('#TotalPagado').html(totalpagado);
-    $('#TotalUtilidad').html(totalutilidad);
+    $('#TotalApostado').html("").html(totalapostado.toFixed(2));
+    $('#TotalPagado').html("").html(totalpagado);
+    $('#TotalUtilidad').html("").html(totalutilidad);
 }
