@@ -55,8 +55,7 @@ class PuntoVentaTipoAlerta extends Model
             $detalle_data->correoDestino = $correo;
             $detalle_data->save();
             $resultado = true;
-        }
-        else {
+        } else {
             $respuesta_idPuntoVentaTipoAlerta = $respuesta->idPuntoVentaTipoAlerta;
             if ($idPuntoVentaTipoAlerta == $respuesta_idPuntoVentaTipoAlerta) {
                 $puntoVentaTipoAlerta->idPuntoVenta = $idPuntoVenta;
@@ -115,12 +114,16 @@ class PuntoVentaTipoAlerta extends Model
         $correoDestino = is_array($correoDestino) ? implode(",", $correoDestino) : $correoDestino;
         $TipoAlerta = TipoAlerta::findorfail($idTipoAlerta);
         foreach ($idPuntoVenta as $pv) {
+            $puntoVenta = PuntoVenta::PuntoVentaInfo($pv);
+            $asunto = str_replace("XXXXX", strtoupper(' '.$puntoVenta->nombre), $TipoAlerta->asunto);
+            $mensaje = str_replace("XXXXX", strtoupper($puntoVenta->nombre), $TipoAlerta->mensaje);
+            $mensaje = str_replace("YYYYYY", strtoupper($TipoAlerta->monto), $mensaje);
             $data = new PuntoVentaTipoAlerta();
             $data->idTipoAlerta = $idTipoAlerta;
             $data->idPuntoVenta = $pv;
             $data->monto = $TipoAlerta->monto;
-            $data->asunto = $TipoAlerta->asunto;
-            $data->mensaje = $TipoAlerta->mensaje;
+            $data->asunto = $asunto;
+            $data->mensaje = $mensaje;
             $data->estado = 1;
             $data->save();
 

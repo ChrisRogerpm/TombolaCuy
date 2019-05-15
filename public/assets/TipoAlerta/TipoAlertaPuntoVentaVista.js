@@ -64,13 +64,20 @@ $(document).ready(function () {
     $(document).on('click', '#btnAgregarCorreo', function () {
         var Correo = $("#txtCorreo").val();
         Correo = Correo.toLowerCase();
-        var respuesta = array_correo.indexOf(Correo);
-        if (respuesta < 0) {
-            if (Correo !== "") {
-                array_correo.push(Correo);
-                $("#table_correo tbody").append('<tr><td>' + Correo + '</td><td class="text-center"><button class="btn btn-danger btn-xs btnEliminarCorreo" data-correo="' + Correo + '"><i class="fa fa-close"></i></button></td></tr>');
-            } else {
-                toastr.warning('Ingrese un correo', 'Mensaje Servidor');
+        var validacion = /\S+@\S+\.\S+/;
+        var validar = validacion.test(Correo);
+        if (!validar) {
+            toastr.warning('El correo ingresado no es valido', 'Mensaje Servidor');
+            return false;
+        } else {
+            var respuesta = array_correo.indexOf(Correo);
+            if (respuesta < 0) {
+                if (Correo !== "") {
+                    array_correo.push(Correo);
+                    $("#table_correo tbody").append('<tr><td>' + Correo + '</td><td class="text-center"><button class="btn btn-danger btn-xs btnEliminarCorreo" data-correo="' + Correo + '"><i class="fa fa-close"></i></button></td></tr>');
+                } else {
+                    toastr.warning('Ingrese un correo', 'Mensaje Servidor');
+                }
             }
         }
     });
@@ -262,7 +269,7 @@ function ListarAlertaPuntoVenta() {
                         "render": function (value) {
                             var mensaje = value.mensaje;
                             var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
-                            return '<textarea class="form-control mensaje' + idPuntoVentaTipoAlerta + '" rows="3" style="resize: none;">' + mensaje + '</textarea>';
+                            return '<textarea class="form-control mensaje' + idPuntoVentaTipoAlerta + '" rows="4" style="resize: none;">' + mensaje + '</textarea>';
                         }
                     },
                     {
@@ -315,7 +322,7 @@ function ListarAlertaPuntoVenta() {
                     $('.btnEditar').tooltip({
                         title: "Editar"
                     });
-                    $('.select_general').select2();
+                    // $('.select_general').select2();
                 }
             });
         },

@@ -118,4 +118,10 @@ class PuntoVenta extends Model
         return $listar;
     }
 
+    public static function PuntoVentaInfo($idPuntoVenta)
+    {
+        $data = PuntoVenta::findorfail($idPuntoVenta);
+        return $data;
+    }
+
 }

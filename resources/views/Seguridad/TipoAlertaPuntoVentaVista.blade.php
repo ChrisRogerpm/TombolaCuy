@@ -79,7 +79,7 @@
                     <h4 class="modal-title text-center">Nueva Alerta por Tipo Venta</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="frmNuevo">
+                    <form id="frmNuevo" autocomplete="off">
                         <div class="row">
                             <input type="hidden" id="idTipoAlerta" name="idTipoAlerta">
                             <div class="col-md-6 container-table-punto"></div>
