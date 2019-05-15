@@ -23,11 +23,11 @@ class MailConfigServiceProvider extends ServiceProvider
             $config = array(
                 'driver' => "smtp",
                 'host' => "smtp.gmail.com",
-                'port' => $conf_mail->SMTP,
-                'from' => array('address' => $conf_mail->CuentaCorreo, 'name' => $conf_mail->CuentaCorreo),
+                'port' => (string)$conf_mail->SMTP,
+                'from' => array('address' => (string)$conf_mail->CuentaCorreo, 'name' => (string)$conf_mail->CuentaCorreo),
                 'encryption' => "tls",
-                'username' => $conf_mail->CuentaCorreo,
-                'password' => $conf_mail->PasswordCorreo,
+                'username' => (string)$conf_mail->CuentaCorreo,
+                'password' => (string)$conf_mail->PasswordCorreo,
             );
             Config::set('mail', $config);
         }
