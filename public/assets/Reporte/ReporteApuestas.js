@@ -46,7 +46,7 @@ $(document).ready(function () {
     $("#cboTienda").select2('val', [0]);
 
     $(document).on('click', '#btnExcel', function () {
-        GenerarExcel("table", "Reporte de Apuestas");
+        GenerarExcel("table", "Reporte de Ventas");
     });
 
     $(document).on('click', '#btnBuscar', function () {

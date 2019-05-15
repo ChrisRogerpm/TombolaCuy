@@ -53,7 +53,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#btnExcel', function () {
         var NombreJuego = $(this).data("nombre");
-        GenerarExcel(NombreJuego, "Reporte de " + NombreJuego);
+        GenerarExcel(NombreJuego, "Reporte Historial de Eventos de " + NombreJuego);
     });
 
 });

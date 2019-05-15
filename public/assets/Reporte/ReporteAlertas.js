@@ -44,7 +44,7 @@ $(document).ready(function () {
     $("#cboTienda").select2('val', [0]);
 
     $(document).on('click', '#btnExcel', function () {
-        GenerarExcel("table", "Reporte de Alerta");
+        GenerarExcel("table", "Reporte de Alertas");
     });
 
     $(document).on('click', '#btnBuscar', function () {

@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#btnExcel', function () {
-        GenerarExcel("table", "Reporte de Historial Ganadores");
+        GenerarExcel("table", "Reporte Detalle Apuesta Evento");
     });
 
 

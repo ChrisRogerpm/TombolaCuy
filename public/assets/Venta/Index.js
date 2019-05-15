@@ -126,7 +126,7 @@ window.location=basePath+"AperturaCajaListar";
 
 }
 function CargarCierreCaja(){
-window.location=basePath+"ReporteCierraVentaVista";
+window.location=basePath+"CierreCajaVista";
 
 }
 

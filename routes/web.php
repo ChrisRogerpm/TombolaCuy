@@ -112,7 +112,7 @@ Route::middleware(['auth', 'permisos'])->group(function () {
     Route::get('ReportedeVentasVista', 'ReporteController@ReporteApuestaVista')->name('Reporte.Ventas');
     Route::get('ReporteVentasEventosVista', 'ReporteController@ReporteVentaVista')->name('Reporte.VentaEvento');
     Route::get('ReporteHistorialEventosVista', 'ReporteController@ReporteVentaJuegoVista')->name('Reporte.VentaJuego');
-    Route::get('ReporteCierraVentaVista', 'ReporteController@ReporteCierraVentaVista')->name('Reporte.CierreCaja');
+    Route::get('CierreCajaVista', 'ReporteController@ReporteCierraVentaVista')->name('Caja.Cierre');
     Route::get('ReporteHistorialTicketVista', 'ReporteController@ReporteHistorialTicketVista')->name('Reporte.HistorialTicket');
     Route::get('ReporteDetalleApuestaEventoVista', 'ReporteController@ReporteHistorialGanadoresVista')->name('Reporte.DetalleApuestaEvento');
     Route::get('ReporteJackPot', 'ReporteController@ReporteJackPotVista')->name('Reporte.JackPot');

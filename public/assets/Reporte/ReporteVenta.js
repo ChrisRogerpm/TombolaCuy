@@ -98,7 +98,7 @@ $(document).ready(function () {
         $("#ValorGanado").html("").html(parseFloat(Ganada).toFixed(2) + " " + Moneda)
     });
     $(document).on('click', '#btnExcel', function () {
-        GenerarExcel("table_panel", "Reporte de Ventas")
+        GenerarExcel("table_panel", "Reporte de Ventas por Eventos")
     });
 });
 

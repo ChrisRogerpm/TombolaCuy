@@ -13,8 +13,8 @@
 </head>
 <body >
 
-<input type="hidden" id="IPSERVIDOR_WEBSOCKETS" value="{{env('IPSERVIDOR_WEBSOCKETS','192.168.1.66')}}">
-<input type="hidden" id="PUERTO_WEBSOCKETS" value="{{env('PUERTO_WEBSOCKETS','50051')}}">
+<input type="hidden" id="IPSERVIDOR_WEBSOCKETS" value="{{env('IPSERVIDOR_WEBSOCKETS','35.184.46.33')}}">
+<input type="hidden" id="PUERTO_WEBSOCKETS" value="{{env('PUERTO_WEBSOCKETS','888')}}">
 	<div style="width:100%;height:100%;position:absolute;z-index: 10;background: 
 	rgba(0, 0, 0, 0) url(images/imgCuyCargando.jpg) no-repeat scroll center center / 100% 100%
 

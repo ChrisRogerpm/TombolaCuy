@@ -17,7 +17,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xs-12 col-sm-12">
                                                 <h6>
-                                                    <i class="glyphicon glyphicon-th mr-2"></i> Reporte de Cierre de Caja
+                                                    <i class="glyphicon glyphicon-th mr-2"></i> Cierre de Caja
                                                 </h6>
                                             </div>
                                         </div>

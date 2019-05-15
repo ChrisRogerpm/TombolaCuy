@@ -308,6 +308,8 @@
 
                 <li><a href="{{route('AperturaCaja.Listar')}}" data-toggle="tooltip" title="Apertura Caja"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Apertura Caja</span></a></li>
+                <li><a href="{{route('Caja.Cierre')}}" data-toggle="tooltip" title="Cierre Caja"><i class="icon icon-inline fa fa-cube"></i> <span
+                                class="title">Cierre Caja</span></a></li>
                 <li><a href="{{route('Juego.Listar')}}" data-toggle="tooltip" title="Juegos"><i class="icon icon-inline fa fa-cube"></i> <span
                                 class="title">Juegos</span></a></li>
                 <li><a href="{{route('Venta.IndexNuevo')}}" data-toggle="tooltip" title="Venta"><i class="icon icon-inline fa fa-dollar"></i> <span
@@ -344,9 +346,9 @@
                         <li><a href="{{route('Reporte.VentaJuego')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Historial de Eventos</span></a></li>
-                        <li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span
-                                        class="title">Cierre Caja</span></a></li>
+                        {{--<li><a href="{{route('Reporte.CierreCaja')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
+                                {{--<span--}}
+                                        {{--class="title">Cierre Caja</span></a></li>--}}
                         <li><a href="{{route('Reporte.HistorialTicket')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
