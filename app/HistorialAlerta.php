@@ -57,4 +57,26 @@ class HistorialAlerta extends Model
 
         return $lista;
     }
+
+    public static function HistorialAlertaVerificarEmail($idPuntoVentaTipoAlerta)
+    {
+        $data = DB::table('historial_alerta')
+            ->where('idPuntoVentaTipoAlerta', $idPuntoVentaTipoAlerta)
+            ->whereDate('fechaAlerta', now()->toDateString())
+            ->first();
+        return $data;
+    }
+
+    public static function HistorialAlertaRegistrar($obj)
+    {
+        $data = new HistorialAlerta();
+        $data->idPuntoVentaTipoAlerta = $obj->idPuntoVentaTipoAlerta;
+        $data->fechaAlerta = $obj->fechaAlerta;
+        $data->monto = $obj->monto;
+        $data->correos_envio = $obj->correos_envio;
+        $data->estado_envio = $obj->estado_envio;
+        $data->asunto = $obj->asunto;
+        $data->mensaje = $obj->mensaje;
+        $data->save();
+    }
 }

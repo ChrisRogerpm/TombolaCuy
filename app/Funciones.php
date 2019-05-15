@@ -8,7 +8,9 @@
 
 namespace App;
 
+use App\Mail\NotificarAlerta;
 use Illuminate\Http\Request;
+use Mail;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Database\QueryException;
@@ -148,6 +150,47 @@ class Funciones
         }
 
         return $archivo;
+    }
+
+    public static function EnviarEmailAlerta($IdPuntoVenta, $MontoPuntoVenta)
+    {
+        $resultado = false;
+        $PuntoVenta = PuntoVenta::PuntoVentaInfo($IdPuntoVenta);
+        $ConfiguracionPuntoVentaTipoAlerta = PuntoVentaTipoAlerta::where('idPuntoVenta', $IdPuntoVenta)->first();
+        if ($ConfiguracionPuntoVentaTipoAlerta != null) {
+            $HistorialAlerta = HistorialAlerta::HistorialAlertaVerificarEmail($ConfiguracionPuntoVentaTipoAlerta->idPuntoVentaTipoAlerta);
+            if ($HistorialAlerta == null) {
+                //enviar correo
+                $correos_destinatario = DetallePuntoVentaTipoAlerta::DetallePuntoVentaTipoAlertaObtenerId($ConfiguracionPuntoVentaTipoAlerta->idPuntoVentaTipoAlerta);
+                if ($correos_destinatario->correoDestino != "") {
+                    $correos = explode(",", $correos_destinatario->correoDestino);
+                    foreach ($correos as $correo) {
+                        $data = array(
+                            'PuntoVenta' => $PuntoVenta->nombre,
+                            'MontoPuntoVenta' => $MontoPuntoVenta,
+                            'MontoConfiguracionAlerta' => $ConfiguracionPuntoVentaTipoAlerta->monto,
+                            'body' => $ConfiguracionPuntoVentaTipoAlerta->mensaje,
+                        );
+                        $asunto = $ConfiguracionPuntoVentaTipoAlerta->asunto;
+                        $correo_receptor = $correo;
+                        Mail::to($correo_receptor)->send(new NotificarAlerta($data, $asunto));
+                    }
+                    $resultado = true;
+                    if ($resultado){
+                        $obj = new \stdClass();
+                        $obj->idPuntoVentaTipoAlerta = $ConfiguracionPuntoVentaTipoAlerta->idPuntoVentaTipoAlerta;
+                        $obj->fechaAlerta = now();
+                        $obj->monto = $MontoPuntoVenta;
+                        $obj->correos_envio = $correos_destinatario->correoDestino;
+                        $obj->estado_envio = 1;
+                        $obj->asunto = $ConfiguracionPuntoVentaTipoAlerta->asunto;
+                        $obj->mensaje = $ConfiguracionPuntoVentaTipoAlerta->mensaje;
+                        HistorialAlerta::HistorialAlertaRegistrar($obj);
+                    }
+                }
+            }
+        }
+        return $resultado;
     }
 }
 

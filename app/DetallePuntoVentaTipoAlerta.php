@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class DetallePuntoVentaTipoAlerta extends Model
@@ -17,4 +18,11 @@ class DetallePuntoVentaTipoAlerta extends Model
     ];
 
     public $timestamps = false;
+
+    public static function DetallePuntoVentaTipoAlertaObtenerId($idPuntoVentaTipoAlerta){
+        $data = DB::table('detalle_punto_venta_tipo_alerta')
+            ->where('idPuntoVentaTipoAlerta',$idPuntoVentaTipoAlerta)
+            ->first();
+        return $data;
+    }
 }

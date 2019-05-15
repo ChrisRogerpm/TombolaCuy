@@ -314,16 +314,16 @@
                                 class="title">Juegos</span></a></li>
                 <li><a href="{{route('Venta.IndexNuevo')}}" data-toggle="tooltip" title="Venta"><i class="icon icon-inline fa fa-dollar"></i> <span
                                 class="title">Venta</span></a></li>
-                <li class="sub">
-                    <a href="#" class="sub-toggle">
-                        <i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>
-                    </a>
-                    <ul class="sub-menu collapse" data-menu-title="Jackpot">
-                        <li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i
-                                        class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>
-                        </li>
-                    </ul>
-                </li>
+                {{--<li class="sub">--}}
+                    {{--<a href="#" class="sub-toggle">--}}
+                        {{--<i class="icon icon-inline fa fa-gamepad"></i> <span class="title">Jackpot</span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="sub-menu collapse" data-menu-title="Jackpot">--}}
+                        {{--<li><a href="{{route('ConfiguracionJackpot.Listar')}}"><i--}}
+                                        {{--class="icon icon-inline fa fa-circle-thin"></i> <span class="title">Configuracion Jackpot</span></a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="sub">
                     <a href="#" class="sub-toggle">
                         <i class="icon icon-inline fa fa-line-chart"></i> <span class="title">Reporte</span>
@@ -336,9 +336,9 @@
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
                                         class="title">Det Apuesta Evento</span></a></li>
-                        <li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i>
-                                <span
-                                        class="title">JackPot</span></a></li>
+                        {{--<li><a href="{{route('Reporte.JackPot')}}"><i class="icon icon-inline fa fa-circle-thin"></i>--}}
+                                {{--<span--}}
+                                        {{--class="title">JackPot</span></a></li>--}}
                         <li><a href="{{route('Reporte.VentaEvento')}}"><i
                                         class="icon icon-inline fa fa-circle-thin"></i>
                                 <span
