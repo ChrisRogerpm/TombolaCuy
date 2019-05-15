@@ -25,7 +25,7 @@ class MailConfigServiceProvider extends ServiceProvider
                 'host' => "smtp.gmail.com",
                 'port' => (string)$conf_mail->SMTP,
                 'from' => array('address' => (string)$conf_mail->CuentaCorreo, 'name' => (string)$conf_mail->CuentaCorreo),
-                'encryption' => "ssl",
+                'encryption' => "tls",
                 'username' => (string)$conf_mail->CuentaCorreo,
                 'password' => (string)$conf_mail->PasswordCorreo,
             );
