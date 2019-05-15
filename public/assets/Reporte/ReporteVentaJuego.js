@@ -1,3 +1,4 @@
+var data_apuestas = [];
 $(document).ready(function () {
     // $(".Fecha").datetimepicker({
     //     format: 'YYYY/MM/DD HH:mm:ss',
@@ -53,7 +54,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#btnExcel', function () {
         var NombreJuego = $(this).data("nombre");
-        GenerarExcel(NombreJuego, "Reporte Historial de Eventos de " + NombreJuego);
+        GenerarExcel(NombreJuego, "Rep. Historial Eventos - " + NombreJuego);
     });
 
 });
@@ -77,6 +78,7 @@ function ReporteVentaJson(url, dataForm, NombreJuego) {
                 '                                    </a>');
 
             var resp = response.data;
+            data_apuestas = response.data_apuestas;
             $("#PanelTabla").show();
             $("#" + NombreJuego).DataTable({
                 "bDestroy": true,
@@ -98,8 +100,20 @@ function ReporteVentaJson(url, dataForm, NombreJuego) {
                     {data: "fechaEvento", title: "Fecha Evento", class: 'text-center'},
 
                     {
-                        data: null, title: "Nro Ganador", class: 'text-center', "render": function (value) {
-                            return '<span class="badge" style="padding-top: 7px;padding-bottom: 7px; background-color: ' + value.rgb + '; color: ' + value.rgb_letra + '">' + value.ValorGanador + '</span>';
+                        data: null, title: "Nro Ganador", class: 'text-center', "render": function (valor) {
+
+                            var ValorGanador = parseInt(valor.ValorGanador);
+                            var color_rgb = "";
+                            var color_rgb_letra = "";
+                            $.each(data_apuestas, function (key, value) {
+                                if (value.valorapuesta === ValorGanador) {
+                                    color_rgb = value.rgb;
+                                    color_rgb_letra = value.rgbLetra;
+                                    return false;
+                                }
+                            });
+
+                            return '<span class="badge" style="padding-top: 7px;padding-bottom: 7px; background-color: ' + color_rgb + '; color: ' + color_rgb_letra + '">' + valor.ValorGanador + '</span>';
                         }
                     },
                     {

@@ -1,3 +1,4 @@
+var tipo_apuesta = [];
 $(document).ready(function () {
     //$(".select2").select2();
     var dateNow = new Date();
@@ -73,6 +74,7 @@ function ListarHistorialGanadores() {
             $("#container-excel").html("").append('<a href="#" class="btn btn-success btn-sm col-md-12 col-xs-12" id="btnExcel">\n' +
                 '                                        <span class="icon fa fa-fw fa-file-excel-o"></span> Excel\n' +
                 '                                    </a>');
+            tipo_apuesta = response.lista_tipo_apuesta;
             $("#container-tabla").show();
             $("#table").DataTable({
                 "bDestroy": true,
@@ -97,11 +99,19 @@ function ListarHistorialGanadores() {
                     {data: "ganador", title: "Pleno", class: "text-center"},
                     {data: "TipoApuesta", title: "Tipo de apuesta", class: "text-center"},
                     {
-                        data: "color", title: "Color",
-                        "render": function (value) {
-                            return '<span class="badge" style="padding-top: 10px;padding-bottom: 5px;background-color: ' + value + ';"> * </span>';
+                        data: null, title: "Color",
+                        "render": function (valor) {
+                            var ValorGanador = parseInt(valor.ganador);
+                            var colorrgb = "";
+                            $.each(tipo_apuesta, function (key, value) {
+                                if (value.valorapuesta === ValorGanador) {
+                                    colorrgb = value.rgb;
+                                    return false;
+                                }
+                            });
+                            return '<span class="badge" style="padding-top: 10px;padding-bottom: 5px;background-color: ' + colorrgb + '"> * </span>';
                         }, class: "text-center"
-                    },
+                    }
                 ],
 
             });

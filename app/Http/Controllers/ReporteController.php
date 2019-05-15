@@ -85,13 +85,15 @@ class ReporteController extends Controller
     public function ReporteHistorialGanadoresListarJson(Request $request)
     {
         $lista = "";
+        $lista_tipo_apuesta = "";
         $mensaje_error = "";
         try {
             $lista = Reporte::ReporteHistorialGanadoresListarJson($request);
+            $lista_tipo_apuesta = TipoApuesta::TipoApuestaListar();
         } catch (QueryException $ex) {
             $mensaje_error = $ex->errorInfo;
         }
-        return response()->json(['data' => $lista, 'mensaje' => $mensaje_error]);
+        return response()->json(['data' => $lista, 'lista_tipo_apuesta' => $lista_tipo_apuesta, 'mensaje' => $mensaje_error]);
     }
 
     //REPORTE HISTORIAL DE JackPot

@@ -84,8 +84,7 @@ class Reporte extends Model
           ,IFNULL(sum(t.montoTotal),0) apuestas
          ,IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
             inner join apuesta apu on apu.idApuesta=ge.idApuesta
-          where apu.idTicket=IFNULL(t.idTicket,tpago.idTicket) ),0) Pagos
-       
+          where apu.idTicket=IFNULL(t.idTicket,tpago.idTicket) ),0) Pagos       
         ,IFNULL( e.idEVento,epago.idEvento) Evento  ,count(t.idticket) Jugadores,
      	  IFNULL(( select count(ti.idTicket) from ganador_evento ge
          inner join apuesta a on a.idApuesta=ge.idApuesta
@@ -122,7 +121,7 @@ class Reporte extends Model
                 'Jugadores' => $l->Jugadores,
                 'totalganadores' => $l->totalganadores,
                 'ganador' => $l->ganador,
-                'color' => $l->color,
+//                'color' => $l->color,
                 'TipoApuesta' => $l->TipoApuesta,
             ];
         }
@@ -396,8 +395,8 @@ class Reporte extends Model
                 $valor_array [] = [
                     'idEvento' => $l->idEvento,
                     'fechaEvento' => $l->fechaEvento,
-                    'rgb' => $l->rgb,
-                    'rgb_letra' => $l->rgbLetra,
+//                    'rgb' => $l->rgb,
+//                    'rgb_letra' => $l->rgbLetra,
                     'ValorGanador' => $valor,
                     'Descripcion' => $descripcion];
             }
@@ -416,8 +415,8 @@ class Reporte extends Model
                 $valor_array [] = [
                     'idEvento' => $l->idEvento,
                     'fechaEvento' => $l->fechaEvento,
-                    'rgb' => $l->rgb,
-                    'rgb_letra' => $l->rgbLetra,
+//                    'rgb' => $l->rgb,
+//                    'rgb_letra' => $l->rgbLetra,
                     'ValorGanador' => $valor,
                     'Descripcion' => $descripcion];
             }
