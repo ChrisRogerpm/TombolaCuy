@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AperturaCaja;
 use App\Evento;
+use App\Funciones;
 use App\Ticket;
 use App\Apuesta;
 use App\GanadorEvento;
@@ -357,7 +358,7 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
                 $MontoPuntoVenta=$PuntoVenta[0]->monto;
             }
             if($montoAperturaCaja>$MontoPuntoVenta){
-            	EnviarEmailAlerta($idPuntoVenta, $montoAperturaCaja);
+            	Funciones::EnviarEmailAlerta($idPuntoVenta, $montoAperturaCaja);
             }
             //funcionChristian($montoAperturaCaja,$MontoPuntoVenta);
             /////////////////////////////////////////////////////////////////////

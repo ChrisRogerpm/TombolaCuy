@@ -311,15 +311,8 @@ LIMIT 18
 
     public static function GenerarResultadoEvento_CambiarEstadoEvento()
     {
-        $Configuracion = DB::table('configuracion_general')
-            ->first();
-        if ($Configuracion != null) {
-            $fechaIni = today()->toDateString() . ' ' . $Configuracion->HoraInicioIntervalo;
-            $fechaFin = today()->toDateString() . ' ' . $Configuracion->HoraFinIntervalo;
-        } else {
-            $fechaIni = today()->startOfDay()->toDateTimeString();
-            $fechaFin = today()->endOfDay()->toDateTimeString();
-        }
+        $fechaIni = today()->startOfDay()->toDateTimeString();
+        $fechaFin = today()->endOfDay()->toDateTimeString();
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {
             $ListaEventosDia = DB::table('evento as e')
