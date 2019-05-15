@@ -343,6 +343,22 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
             $ticketobjeto=$request->merge($ticketobjeto);
             $data=Ticket::GuardarTicket($ticketobjeto);
             
+
+			/////////////////////////////////////////////////////////////////////
+            $idPuntoVenta=$datos["idPuntoVenta"];
+            $idAperturaCaja=$ticketobjeto["idAperturaCaja"];
+            $montoTotal=$ticketobjeto["montoTotal"];
+            $AperturaCaja=Ticket::MontoTickets_idAperturaCaja($idAperturaCaja); 
+            if(count($AperturaCaja)>0){
+                $montoAperturaCaja=$AperturaCaja[0]->monto;
+            }
+            $PuntoVenta=Ticket::MontoPuntoVenta($idPuntoVenta);
+            if(count($PuntoVenta)>0){
+                $MontoPuntoVenta=$PuntoVenta[0]->monto;
+            }
+            //funcionChristian($montoAperturaCaja,$MontoPuntoVenta);
+            /////////////////////////////////////////////////////////////////////
+
             $idZonaComercial = Ubigeo::ObtenerZonaComercial($datos["idUbigeo"]);
 
             $id_ticketinsertado=$data->idTicket;

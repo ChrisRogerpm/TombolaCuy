@@ -169,6 +169,8 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     datosobjeto.TicketObjeto=TicketObjeto;
     datosobjeto.Apuestas=Apuestas;
     datosobjeto.idUbigeo=$("#idUbigeo").val();
+    datosobjeto.idPuntoVenta=$("#idPuntoVenta").val();
+
 
     var totales_maximo=sacar_totales_y_maximo();
     TicketObjeto.montoTotal=totales_maximo.total;

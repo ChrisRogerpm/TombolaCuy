@@ -142,4 +142,17 @@ class Ticket extends Model
     }
 
   
+    public static function MontoTickets_idAperturaCaja($idAperturaCaja)
+    {
+        $listar = DB::select(DB::raw('
+        SELECT sum(montoTotal) as monto FROM `ticket` WHERE idAperturaCaja=' .$idAperturaCaja));
+        return $listar;
+    }
+
+    public static function MontoPuntoVenta($idPuntoVenta)
+    {
+        $listar = DB::select(DB::raw('
+                SELECT monto FROM `punto_venta_tipo_alerta`  as monto WHERE idPuntoVenta=' .$idPuntoVenta));
+        return $listar;
+    }
 }
