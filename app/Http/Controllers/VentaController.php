@@ -357,7 +357,7 @@ $view=view('Venta.CajaTabla', compact("usuario","hora_servidor","aperturacajadat
                 $MontoPuntoVenta=$PuntoVenta[0]->monto;
             }
             if($montoAperturaCaja>$MontoPuntoVenta){
-            	EnviarEmailAlerta($idPuntoVenta, $montoAperturaCaja)
+            	EnviarEmailAlerta($idPuntoVenta, $montoAperturaCaja);
             }
             //funcionChristian($montoAperturaCaja,$MontoPuntoVenta);
             /////////////////////////////////////////////////////////////////////
