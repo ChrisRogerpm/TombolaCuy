@@ -451,6 +451,10 @@
                                     data-nombre="{{ $evento->nombre }}"
                                     data-apuestaMinima="{{ $evento->apuestaMinima }}"
                                     data-apuestaMaxima="{{ $evento->apuestaMaxima }}"
+
+                                    data-apuestaMinimajuego="{{ $evento->apuestaMinimaJuego }}"
+                                    data-apuestaMaximajuego="{{ $evento->apuestaMaximaJuego }}"
+                                    
                                     data-FechaEvento="{{ $evento->FechaEvento }}"
                                     data-fechaFinEvento="{{ $evento->fechaFinEvento }}"
                                     data-segBloqueoAntesEvento="{{ $evento->segBloqueoAntesEvento }}"
@@ -537,6 +541,16 @@
                                                 <div style="width:50%;float:LEFT;text-align:left">Premio Máximo Potencial</div>
                                                 <div style="width:50%;float:LEFT;text-align:right" id="PremioMaximoPotencial"></div>
                                             </div>
+
+                                           <!--  <div style="width:100%;display:table" id="">
+                                                <div style="width:50%;float:LEFT;text-align:left">Apuesta Minima</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="ApuestaMinimaJuego"></div>
+                                            </div> -->
+                                            <div style="width:100%;display:table" id="">
+                                                <div style="width:50%;float:LEFT;text-align:left">Apuesta Máxima</div>
+                                                <div style="width:50%;float:LEFT;text-align:right" id="ApuestaMaximaJuego"></div>
+                                            </div>
+
                                         </div>
                                         <div class="footer" style="width:100%;text-align:center"></div>
                                         <div class="codigoqr_barra" style="width:100%;margin-bottom:8mm;display:table">
