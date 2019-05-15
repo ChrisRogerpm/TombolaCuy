@@ -58,6 +58,12 @@ function BuscarTicket(ticketobjeto){
                 // TICKET_IMPRIMIR_pago.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
                 TICKET_IMPRIMIR_pago.PremioMaximoAPagar=ticketsganadores[0].apuestaMaxima ;
                 TICKET_IMPRIMIR_pago.CantidadGanada=0;
+
+                TICKET_IMPRIMIR_pago.apuestaMinimaJuego=eventoactual.apuestaMinimaJuego
+                TICKET_IMPRIMIR_pago.apuestaMaximaJuego=eventoactual.apuestaMaximaJuego
+
+                
+
                 apuestas=[];
                 totalticket=0;
                 $(ticketsganadores).each(function(i,e){
@@ -150,6 +156,9 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     TicketObjeto.nroTicketParticipante=eventoactual.IdEvento
     TicketObjeto.ganador=0;
     TicketObjeto.estadoTicket=1;
+
+    TicketObjeto.ApuestaMinimaJuego=eventoactual.apuestaMinimaJuego;
+    TicketObjeto.ApuestaMaximaJuego=eventoactual.ApuestaMaximaJuego;
 
     Apuestas=[];
     $(ticketobjeto_imprimir.apuestas).each(function(i,e){
@@ -344,6 +353,10 @@ function EventoDatosJsonNuevo(divelemento,idEvento,idPuntoVenta,segundosantesblo
                 eventoactual.IdEvento=idevento;
                 eventoactual.apuestaMinima=$(divelemento).attr("data-apuestaMinima");
                 eventoactual.apuestaMaxima=$(divelemento).attr("data-apuestaMaxima");
+
+                eventoactual.apuestaMinimaJuego=$(divelemento).attr("data-apuestaMinimaJuego");
+                eventoactual.apuestaMaximaJuego=$(divelemento).attr("data-apuestaMaximaJuego");
+
                 eventoactual.segBloqueoAntesEvento=$(divelemento).attr("data-segBloqueoAntesEvento");
                 eventoactual.idMoneda=$(divelemento).attr("data-idMoneda");
                 eventoactual.Imagen="img/juegos/"+$(divelemento).attr("data-logo");
@@ -982,6 +995,12 @@ $("#numeros_tabla2 .numeros_rect2 div").off().on("click",function(e){
 
                 TICKET_IMPRIMIR.PremioMaximoAPagar=parseFloat(totales.maximo).toFixed(2)+" "+divisa;
                 TICKET_IMPRIMIR.PremioMaximoPotencial=parseFloat(totales.total).toFixed(2)+" "+divisa;
+
+
+                TICKET_IMPRIMIR.apuestaMinimaJuego=eventoactual.apuestaMinimaJuego;
+                TICKET_IMPRIMIR.apuestaMaximaJuego=eventoactual.apuestaMaximaJuego;
+
+
                 apuestas=[];
                 $("#tabla_eventos tbody tr").each(function(i,e){
                         fila_apuesta={};
@@ -1269,11 +1288,15 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
                                 )
                     )
                 })
-                $("#modal_imprimir #divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa)
+                $("#modal_imprimir #divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa);
                 $("#modal_imprimir #divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:mm:s"));
-                $("#modal_imprimir #divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor)
-                $("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar)
-                $("#modal_imprimir #divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial)
+                $("#modal_imprimir #divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor);
+                $("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar);
+                $("#modal_imprimir #divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial);
+
+                // $("#modal_imprimir #divimpresion #ApuestaMinimaJuego").text(TICKET_IMPRIMIR.apuestaMinimaJuego);
+                $("#modal_imprimir #divimpresion #ApuestaMaximaJuego").text(TICKET_IMPRIMIR.apuestaMaximaJuego +" "+divisa);
+
 
                 //$("#modal_imprimir #divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)  demora 
                 ///$("#codigo_barra").html(codigo_barrahtml);

@@ -55,7 +55,8 @@ where ev.estadoEvento=1'));
             INNER JOIN jackpot_punto_venta JPV ON JPV.idJackpot=JACK.idJackpot
             WHERE JPV.idPuntoVenta= ' . $idPuntoVenta . ') as jackpotsuma,
 ev.idEvento,ev.idJuego,ev.nombre as nombre, ev.FechaEvento as FechaEvento, ev.fechaFinEvento  as fechaFinEvento,ju.logo as logo,ju.segBloqueoAntesEvento as segBloqueoAntesEvento,ev.idMoneda,
-ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima    
+ev.apuestaMinima as apuestaMinima, ev.apuestaMaxima as apuestaMaxima,
+ju.apuestaMinima as apuestaMinimaJuego, ju.apuestaMaxima as apuestaMaximaJuego       
 from evento ev
 left join juego ju on ju.idJuego= ev.idJuego
 where ev.estadoEvento=1 and ju.estado=1'));
