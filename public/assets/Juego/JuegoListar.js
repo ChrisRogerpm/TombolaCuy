@@ -34,7 +34,7 @@ function ListarJuegos() {
                     {data: "nombre", title: "Juego", class: "text-center"},
                     {data: "apuestaMinima", title: "Apuesta Minima", class: "text-center"},
                     {data: "apuestaMaxima", title: "Apuesta Maxima", class: "text-center"},
-                    {data: "apuestaMaximaGeneral", title: "Apuesta Maxima General", class: "text-center"},
+                    {data: "PremioMaximoPagar", title: "Premio Maximo Pagar", class: "text-center"},
                     {
                         data: null, title: "",
                         "render": function (value) {

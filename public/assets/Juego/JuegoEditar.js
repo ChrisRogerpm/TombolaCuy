@@ -48,7 +48,7 @@ $("#frmNuevo")
                 {
                     required: true,
                 },
-            apuestaMaximaGeneral:
+            PremioMaximoPagar:
                 {
                     required: true,
                 }
@@ -66,7 +66,7 @@ $("#frmNuevo")
                 {
                     required: '',
                 },
-            apuestaMaximaGeneral:
+            PremioMaximoPagar:
                 {
                     required: '',
                 }

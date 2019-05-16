@@ -28,7 +28,7 @@ class Juego extends Model
         'diasVigentesCobroTicket',
         'estado',
         'segBloqueoAntesAnimacion',
-        'apuestaMaximaGeneral'
+        'PremioMaximoPagar'
     ];
 
     public static function JuegoListarLapsoJson()
@@ -67,7 +67,7 @@ class Juego extends Model
         $juego = Juego::findorfail($idJuego);
         $juego->apuestaMinima = $request->input('apuestaMinima');
         $juego->apuestaMaxima = $request->input('apuestaMaxima');
-        $juego->apuestaMaximaGeneral = $request->input('apuestaMaximaGeneral');
+        $juego->PremioMaximoPagar = $request->input('PremioMaximoPagar');
         $juego->save();
     }
 }
