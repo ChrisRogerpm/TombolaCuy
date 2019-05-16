@@ -76,6 +76,7 @@ function BuscarTicket(ticketobjeto){
                             totalticket=totalticket+apuestafila;
                             apuestas.push(fila_apuesta);
                 })
+
                 TICKET_IMPRIMIR_pago.TotalTicket=parseFloat(totalticket).toFixed(2);
                 TICKET_IMPRIMIR_pago.apuestas=apuestas;
 
@@ -97,7 +98,12 @@ function BuscarTicket(ticketobjeto){
                                 )
                     )
                 })
-                $("#modal_imprimir_pago #divimpresion_pago #total_ticket").text(TICKET_IMPRIMIR_pago.TotalTicket+ " "+divisa)
+
+                var totalpagar_ticket=TICKET_IMPRIMIR_pago.TotalTicket;
+                if(parseFloat(TICKET_IMPRIMIR_pago.TotalTicket)>parseFloat(eventoactual.apuestaMaxima)){
+                    totalpagar_ticket=eventoactual.apuestaMaxima;
+                }
+                $("#modal_imprimir_pago #divimpresion_pago #total_ticket").text(totalpagar_ticket+ " "+divisa)
                 $("#modal_imprimir_pago #divimpresion_pago #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:mm:ss"));
                 $("#modal_imprimir_pago #divimpresion_pago #impreso_por").text(TICKET_IMPRIMIR_pago.ImpresoPor)
                 $("#modal_imprimir_pago #divimpresion_pago #PremioMaximoAPagar").text(parseFloat(TICKET_IMPRIMIR_pago.PremioMaximoAPagar).toFixed(2)+" "+divisa)
@@ -158,7 +164,10 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
     TicketObjeto.estadoTicket=1;
 
     TicketObjeto.ApuestaMinimaJuego=eventoactual.apuestaMinimaJuego;
-    TicketObjeto.ApuestaMaximaJuego=eventoactual.ApuestaMaximaJuego;
+    TicketObjeto.ApuestaMaximaJuego=eventoactual.apuestaMaximaJuego;
+
+        TicketObjeto.ApuestaMinima=eventoactual.apuestaMinima;
+    TicketObjeto.ApuestaMaxima=eventoactual.apuestaMaxima;
 
     Apuestas=[];
     $(ticketobjeto_imprimir.apuestas).each(function(i,e){
@@ -173,6 +182,12 @@ function GuardarTicket(ticketobjeto_imprimir){/////GUARDATICKET EN TICKET Y APUE
         ApuestaObjeto.ZonaComercial=0;///en controlador
         Apuestas.push(ApuestaObjeto);
     })
+
+       ticketobjeto_imprimir.ApuestaMinimaJuego=eventoactual.apuestaMinimaJuego;
+    ticketobjeto_imprimir.ApuestaMaximaJuego=eventoactual.apuestaMaximaJuego;
+
+        ticketobjeto_imprimir.ApuestaMinima=eventoactual.apuestaMinima;
+    ticketobjeto_imprimir.ApuestaMaxima=eventoactual.apuestaMaxima;
 
     datosobjeto={};
     datosobjeto.TicketObjeto=TicketObjeto;
@@ -1291,11 +1306,11 @@ function ImprimirJson(ticketobjeto_imprimir,idTicket){
                 $("#modal_imprimir #divimpresion #total_ticket").text(TICKET_IMPRIMIR.TotalTicket.toFixed(2) + " "+divisa);
                 $("#modal_imprimir #divimpresion #impreso_en").text(moment(new Date()).format("YYYY-MM-DD HH:mm:s"));
                 $("#modal_imprimir #divimpresion #impreso_por").text(TICKET_IMPRIMIR.ImpresoPor);
-                $("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar);
-                $("#modal_imprimir #divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoPotencial);
+                //$("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.PremioMaximoAPagar);
+                $("#modal_imprimir #divimpresion #PremioMaximoPotencial").text(TICKET_IMPRIMIR.PremioMaximoAPagar);
 
                 // $("#modal_imprimir #divimpresion #ApuestaMinimaJuego").text(TICKET_IMPRIMIR.apuestaMinimaJuego);
-                $("#modal_imprimir #divimpresion #ApuestaMaximaJuego").text(TICKET_IMPRIMIR.apuestaMaximaJuego +" "+divisa);
+                $("#modal_imprimir #divimpresion #PremioMaximoAPagar").text(TICKET_IMPRIMIR.ApuestaMaxima +" "+divisa);
 
 
                 //$("#modal_imprimir #divimpresion .imagen img").attr("src",TICKET_IMPRIMIR.ImagenSrc)  demora 
