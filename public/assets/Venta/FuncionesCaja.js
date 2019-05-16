@@ -19,7 +19,7 @@ function BuscarTicket(ticketobjeto){
             ticketsganadores=response.tickets;
             resultados_evento=response.resultados_evento;
             apuestasticket=response.apuestas_ticket;
-            
+            idEvento_ticket=response.idEvento_ticket;
             conf_general=response.conf_general;
              ganadores="";
              if(apuestasticket.length==0){
@@ -116,10 +116,10 @@ function BuscarTicket(ticketobjeto){
                 //      ganadores=ganadores+"<br> "+e.TipoPagoNombre+" "+e.TipoApuestaValor;
                 // })
                 // toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre+" <br>Apuestas Ganadoras:" +ganadores);
-                 toastr.success(" Ticket "+ticketbuscado +" Evento "+ticketobjeto.nombre);
+                 toastr.success(" Ticket "+ticketbuscado +" Evento "+" #"+idEvento_ticket);
              }
              else{
-                toastr.error("Ticket "+ticketbuscado+ " Evento "+ticketobjeto.nombre+"<br>No hay Apuestas Ganadoras");
+                toastr.error("Ticket "+ticketbuscado+ " Evento "+" #"+idEvento_ticket+"<br>No hay Apuestas Ganadoras");
              }
 
            
