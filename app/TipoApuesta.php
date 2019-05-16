@@ -154,12 +154,17 @@ class TipoApuesta extends Model
             ->where('t.valorapuesta', '=', $NumeroGenerado)
             ->first();
 
+        $tipo_pago_colores = DB::table('tipo_apuesta as t')
+            ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
+            ->where('tp.idTipoPago', 2)
+            ->get();
+
         //Color 1
-        if ($color_valorGenerado->rgb == "#F9D716") {
+        if ($color_valorGenerado->rgb == $tipo_pago_colores[0]->rgb) {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 37)
+                ->where('t.idTipoApuesta', '=', $tipo_pago_colores[0]->idTipoApuesta)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
@@ -171,11 +176,11 @@ class TipoApuesta extends Model
             $resultado->save();
         }
         //Color 2
-        if ($color_valorGenerado->rgb == "#16277D") {
+        if ($color_valorGenerado->rgb == $tipo_pago_colores[1]->rgb) {
             $apuesta = DB::table('tipo_apuesta as t')
                 ->select('t.*', 'tp.multiplicadorDefecto')
                 ->join('tipo_pago as tp', 'tp.idTipoPago', 't.idTipoPago')
-                ->where('t.idTipoApuesta', '=', 38)
+                ->where('t.idTipoApuesta', '=', $tipo_pago_colores[1]->idTipoApuesta)
                 ->first();
             $resultado = new ResultadoEvento();
             $resultado->idEvento = $idEvento;
