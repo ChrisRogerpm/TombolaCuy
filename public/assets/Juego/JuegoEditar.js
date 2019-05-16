@@ -47,10 +47,6 @@ $("#frmNuevo")
             apuestaMaxima:
                 {
                     required: true,
-                },
-            PremioMaximoPagar:
-                {
-                    required: true,
                 }
         },
         messages: {
@@ -63,10 +59,6 @@ $("#frmNuevo")
                     required: '',
                 },
             apuestaMaxima:
-                {
-                    required: '',
-                },
-            PremioMaximoPagar:
                 {
                     required: '',
                 }
