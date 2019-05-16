@@ -89,6 +89,14 @@ class PuntoVentaTipoAlerta extends Model
     public static function TipoAlertaPuntoVentaListar(Request $request)
     {
         $idTipoAlerta = $request->input('idTipoAlerta');
+
+        $puntoventa = PuntoVenta::PuntoVentaListarUsuarioJson();
+        $data = [];
+        foreach ($puntoventa as $l) {
+            $data [] = $l->idPuntoVenta;
+        }
+        $data = implode(",", $data);
+
         $lista = DB::select(DB::raw("SELECT 
         pta.idPuntoVentaTipoAlerta,
         ta.nombre Alerta,
@@ -102,7 +110,7 @@ class PuntoVentaTipoAlerta extends Model
         FROM punto_venta_tipo_alerta pta
         JOIN punto_venta p ON p.idPuntoVenta = pta.idPuntoVenta
         JOIN tipo_alerta ta ON ta.idTipoAlerta = pta.idTipoAlerta
-        WHERE pta.idTipoAlerta = $idTipoAlerta"));
+        WHERE pta.idTipoAlerta = $idTipoAlerta AND p.idPuntoVenta IN ($data)"));
         return $lista;
     }
 
