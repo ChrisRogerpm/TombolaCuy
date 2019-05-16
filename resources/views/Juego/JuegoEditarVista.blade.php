@@ -80,9 +80,9 @@
 
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Apuesta Maxima General</label>
-                                    <input type="number" class="form-control" name="apuestaMaximaGeneral"
-                                           value="{{$juego->apuestaMaximaGeneral}}">
+                                    <label>Premio Maximo Pagar</label>
+                                    <input type="number" class="form-control" name="PremioMaximoPagar"
+                                           value="{{$juego->PremioMaximoPagar}}">
                                 </div>
                             </div>
 
