@@ -402,6 +402,7 @@ class VentaController extends Controller
             } else {
                 $resultados_evento = null;
                 $tickets = array();
+                $idEvento = "";
             }
 
             $respuesta = true;
@@ -410,7 +411,7 @@ class VentaController extends Controller
         }
         return response()->json([
             // 'ticketnoexiste'=>$ticketnoexiste,
-            'idEvento_ticket'=>$idEvento,
+            'idEvento_ticket' => $idEvento,
             'apuestas_ticket' => $apuestas_ticket, ////apuestas del ticket
             'resultados_evento' => $resultados_evento,
             'ticketbuscado' => $idticket,
