@@ -500,7 +500,7 @@
                                         <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
                                         <div class="datos" style="width:100%;display:table;padding-top:4px">
                                             <div style="width:100%;border-top:2px dotted;display:table">
-                                                <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                                                <div style="width:50%;float:LEFT;text-align:left">ID Ticket</div>
                                                 <div style="width:50%;float:LEFT;text-align:right" id="IDTique"></div>
                                             </div>
                                             <div style="width:100%;display:table">
@@ -638,13 +638,13 @@
                     <div class="imagen" style="width:100%;text-align:center;display:block;padding:4px"><img id="imagen_evento"  width="200" height="120"></div>
 
                     <div style="width:100%;display:table;border-top:2px dotted;;border-bottom:2px dotted;padding-bottom:4px;padding-top:4px;word-spacing:13px;letter-spacing:3px" id="totales_ticket">
-                        <div style="width:100%;;text-align:center">TIQUE DE PAGO</div>
+                        <div style="width:100%;;text-align:center">TICKET DE PAGO</div>
 
                     </div>
 
                     <div class="datos" style="width:100%;display:table;padding-top:4px;padding-top:17px">
                         <div style="width:100%;border-top:2px dotted;display:table">
-                            <div style="width:50%;float:LEFT;text-align:left">ID Tique</div>
+                            <div style="width:50%;float:LEFT;text-align:left">ID Ticket</div>
                             <div style="width:50%;float:LEFT;text-align:left" id="IDTique"></div>
                         </div>
                         <div style="width:100%;display:table">

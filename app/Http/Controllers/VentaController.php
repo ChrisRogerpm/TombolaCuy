@@ -410,6 +410,7 @@ class VentaController extends Controller
         }
         return response()->json([
             // 'ticketnoexiste'=>$ticketnoexiste,
+            'idEvento_ticket'=>$idEvento,
             'apuestas_ticket' => $apuestas_ticket, ////apuestas del ticket
             'resultados_evento' => $resultados_evento,
             'ticketbuscado' => $idticket,
