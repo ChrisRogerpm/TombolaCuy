@@ -277,29 +277,31 @@ class Reporte extends Model
 
         $listar = DB::select(DB::raw("
         select 
-        IFNULL(e.idEVento,epago.idEvento) Evento,
+         e.idEVento  Evento,
         concat('ZonaComercial ',IFNULL(p.ZonaComercial,0)) ZonaComercial ,
         p.nombre tienda,
-        IFNULL(e.fechaEvento,epago.fechaEvento) Fecha
-        , j.nombre AS Juego, m.simbolo as Moneda,
-        IFNULL(sum(t.montoTotal),0) - IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+           IFNULL(sum(t.montoTotal),0) - IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta apu on apu.idApuesta=ge.idApuesta
         inner join ticket tiint on tiint.idTicket=apu.idTicket                  
-        where tiint.idEvento=IFNULL( e.idEVento,epago.idEvento) ),0) Ganado
-        ,IFNULL( e.idEVento,epago.idEvento) Evento  , IFNULL(e.estadoEvento,epago.estadoEvento) estadoEvento     
+        where tiint.idEvento= e.idEVento  ),0) Ganado,
+         e.fechaEvento  Fecha
+        , j.nombre AS Juego, m.simbolo as Moneda,
+         IFNULL(sum(t.montoTotal),0) - IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
+        inner join apuesta apu on apu.idApuesta=ge.idApuesta
+        inner join ticket tiint on tiint.idTicket=apu.idTicket                  
+        where tiint.idEvento=e.idEVento ),0) Ganado, e.idEVento  Evento  ,  e.estadoEvento  estadoEvento     
         from apertura_caja ac
         LEFT join caja c on c.idCaja=ac.idCaja
         left join punto_venta p on p.idPuntoVenta=c.idPuntoVenta
         left join ticket t on  t.idaperturacaja=ac.idaperturacaja        
         left join evento e on e.idevento=t.idevento          
-        left join ticket tpago on  tpago.idAperturaCajaPago=ac.idaperturacaja    
-        left join evento epago on epago.idevento=tpago.idevento   
-        inner JOIN juego as j on j.idJuego = IFNULL(e.idJuego,epago.idJuego)
-        inner JOIN moneda AS m on m.idMoneda = IFNULL(e.idMoneda,epago.idMoneda)
+        left join ticket tpago on  tpago.idAperturaCajaPago=ac.idaperturacaja           
+        inner JOIN juego as j on j.idJuego = e.idJuego 
+        inner JOIN moneda AS m on m.idMoneda = e.idMoneda  
         where  ac.estado!=0
-        and IFNULL(e.fechaEvento,epago.fechaEvento) between '$fecha_ini' and '$fecha_fin'
+        and  e.fechaEvento  between '$fecha_ini' AND '$fecha_fin'
         $condicional
-        group by p.nombre,e.idEVento,epago.idEvento,ac.fechaoperacion,ac.idturno ,ac.idAperturaCaja,t.idAperturaCaja, e.estadoEvento , j.nombre , m.simbolo,p.ZonaComercial,e.fechaEvento,epago.fechaEvento,epago.estadoEvento
+        group by p.nombre,e.idEVento, ac.fechaoperacion,ac.idturno ,ac.idAperturaCaja,t.idAperturaCaja, e.estadoEvento , j.nombre , m.simbolo,p.ZonaComercial,e.fechaEvento 
         order by 2,3,1"));
 
         $data = [];

@@ -121,25 +121,30 @@ class PuntoVentaTipoAlerta extends Model
         $correoDestino = $request->input('correoDestino');
         $correoDestino = is_array($correoDestino) ? implode(",", $correoDestino) : $correoDestino;
         $TipoAlerta = TipoAlerta::findorfail($idTipoAlerta);
-        foreach ($idPuntoVenta as $pv) {
-            $puntoVenta = PuntoVenta::PuntoVentaInfo($pv);
-            $asunto = str_replace("XXXXX", strtoupper(' '.$puntoVenta->nombre), $TipoAlerta->asunto);
-            $mensaje = str_replace("XXXXX", strtoupper($puntoVenta->nombre), $TipoAlerta->mensaje);
-            $mensaje = str_replace("YYYYYY", strtoupper($TipoAlerta->monto), $mensaje);
-            $data = new PuntoVentaTipoAlerta();
-            $data->idTipoAlerta = $idTipoAlerta;
-            $data->idPuntoVenta = $pv;
-            $data->monto = $TipoAlerta->monto;
-            $data->asunto = $asunto;
-            $data->mensaje = $mensaje;
-            $data->estado = 1;
-            $data->save();
 
-            $data_detalle = new DetallePuntoVentaTipoAlerta();
-            $data_detalle->idPuntoVentaTipoAlerta = $data->idPuntoVentaTipoAlerta;
-            $data_detalle->correoDestino = $correoDestino;
-            $data_detalle->estado = 1;
-            $data_detalle->save();
+
+        foreach ($idPuntoVenta as $pv) {
+
+            $validar = PuntoVentaTipoAlerta::where('idPuntoVenta', $pv)->first();
+            if ($validar == null) {
+                $puntoVenta = PuntoVenta::PuntoVentaInfo($pv);
+                $asunto = str_replace("XXXXX", strtoupper(' ' . $puntoVenta->nombre), $TipoAlerta->asunto);
+                $mensaje = str_replace("XXXXX", strtoupper($puntoVenta->nombre), $TipoAlerta->mensaje);
+                $mensaje = str_replace("YYYYYY", strtoupper($TipoAlerta->monto), $mensaje);
+                $data = new PuntoVentaTipoAlerta();
+                $data->idTipoAlerta = $idTipoAlerta;
+                $data->idPuntoVenta = $pv;
+                $data->monto = $TipoAlerta->monto;
+                $data->asunto = $asunto;
+                $data->mensaje = $mensaje;
+                $data->estado = 1;
+                $data->save();
+                $data_detalle = new DetallePuntoVentaTipoAlerta();
+                $data_detalle->idPuntoVentaTipoAlerta = $data->idPuntoVentaTipoAlerta;
+                $data_detalle->correoDestino = $correoDestino;
+                $data_detalle->estado = 1;
+                $data_detalle->save();
+            }
         }
     }
 
