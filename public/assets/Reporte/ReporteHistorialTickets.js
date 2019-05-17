@@ -116,11 +116,11 @@ function ReporteHistorialTicket(url, dataForm) {
                 var totalutilidad = 0;
                 $.each(data, function (key, value) {
                     totalapostado += parseFloat(value.apostado);
-                    totalpagado += value.pagado;
+                    totalpagado += parseFloat(value.pagado);
                     totalutilidad += value.utilidad;
                 });
                 $('#TotalApostado').html("").html(totalapostado.toFixed(2));
-                $('#TotalPagado').html("").html(totalpagado);
+                $('#TotalPagado').html("").html(totalpagado.toFixed(2));
                 $('#TotalUtilidad').html("").html(totalutilidad);
             });
         }
@@ -137,11 +137,11 @@ function Totales() {
     var totalutilidad = 0;
     $.each(data, function (key, value) {
         totalapostado += parseFloat(value.apostado);
-        totalpagado += value.pagado;
+        totalpagado += parseFloat(value.pagado);
         totalutilidad += value.utilidad;
     });
     //return total;
     $('#TotalApostado').html("").html(totalapostado.toFixed(2));
-    $('#TotalPagado').html("").html(totalpagado);
+    $('#TotalPagado').html("").html(totalpagado.toFixed(2));
     $('#TotalUtilidad').html("").html(totalutilidad);
 }

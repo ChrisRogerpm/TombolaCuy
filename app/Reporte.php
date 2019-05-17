@@ -24,7 +24,7 @@ class Reporte extends Model
         }
         $data = implode(",", $data);
         $condicional = $tiendas == 0 ? "and c.idPuntoVenta in ($data)" : "and c.idPuntoVenta in ($tiendas)";
-        $lista = DB::select(DB::raw("select p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
+        $lista = DB::select(DB::raw("select ac.idAperturaCaja,p.nombre Tienda,ac.fechaoperacion,ac.idturno Turno,IFNULL(sum(t.montoTotal),0) apuestas,
         IFNULL(( select sum(ge.montoAPagar) from ganador_evento ge
         inner join apuesta a on a.idApuesta=ge.idApuesta
         inner join ticket ti on ti.idTicket=a.idTicket
@@ -47,13 +47,15 @@ class Reporte extends Model
         order by ac.fechaoperacion,ac.idturno,p.nombre
         "));
         $data = [];
+
         foreach ($lista as $l) {
             $turno = Turno::TurnoObtenerId($l->Turno);
+            $validar_pagos = Ticket::ValidarPagosAperturaCaja($l->idAperturaCaja);
             $data [] = [
                 'Tienda' => $l->Tienda,
                 'Turno' => ucwords($turno),
                 'apuestas' => $l->apuestas,
-                'Pagos' => $l->Pagos,
+                'Pagos' => $validar_pagos,
                 'Evento' => $l->Evento,
                 'Jugadores' => $l->Jugadores,
                 'fechaoperacion' => $l->fechaoperacion,

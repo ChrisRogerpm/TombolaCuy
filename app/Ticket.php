@@ -169,4 +169,30 @@ class Ticket extends Model
         }
         return $total;
     }
+
+    public static function ValidarPagosAperturaCaja($idAperturaCaja)
+    {
+        $data = DB::select(DB::raw("SELECT 
+        t.idTicket,
+        IFNULL((select sum(ge.montoAPagar) from ganador_evento ge
+        inner join apuesta a on a.idApuesta=ge.idApuesta
+        inner join ticket ti on ti.idTicket=a.idTicket
+        where ti.idTicket= t.idTicket),0) Pagos,
+        t.idEvento 
+        FROM ticket t
+        WHERE t.idAperturaCaja = $idAperturaCaja"));
+
+        $total = 0;
+        foreach ($data as $d){
+            $evento = Evento::findorfail($d->idEvento);
+            $pagos = $d->Pagos;
+            $limitante_evento = $evento->apuestaMaxima;
+            if($pagos>$limitante_evento){
+                $total += $limitante_evento;
+            }else{
+                $total += $pagos;
+            }
+        }
+        return $total;
+    }
 }
