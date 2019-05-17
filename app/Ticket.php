@@ -14,7 +14,7 @@ class Ticket extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['idAperturaCaja', 'idEvento','codigoQR','nroTicketParticipante','ganador','estadoTicket','montoTotal','fechaPago','idAperturaCajaPago'];
+    public $fillable = ['idAperturaCaja', 'idEvento', 'codigoQR', 'nroTicketParticipante', 'ganador', 'estadoTicket', 'montoTotal', 'fechaPago', 'idAperturaCajaPago'];
 
 
     public static function TicketListarJson()
@@ -33,12 +33,12 @@ class Ticket extends Model
         $Ticket->ganador = $request->input('ganador');
         $Ticket->estadoTicket = $request->input('estadoTicket');
         $Ticket->montoTotal = $request->input('montoTotal');
-        $Ticket->fechaRegistro =date('Y-m-d H:i:s');
+        $Ticket->fechaRegistro = date('Y-m-d H:i:s');
         $Ticket->save();
         return $Ticket;
     }
 
-    public static function TicketPagarEstado($idTicket,$idAperturaCaja)
+    public static function TicketPagarEstado($idTicket, $idAperturaCaja)
     {
         $Ticket = Ticket::findorfail($idTicket);
         $Ticket->estadoTicket = 2;
@@ -49,21 +49,21 @@ class Ticket extends Model
     }
 
 
-    public static function BuscarGanadoresTicketidEvento($idEvento,$idTicket)
+    public static function BuscarGanadoresTicketidEvento($idEvento, $idTicket)
     {
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
         $listar = DB::select(DB::raw('select apu.idTipoApuesta ,tipapu.valorapuesta as TipoApuestaValor,tipapu.nombre as TipoApuestaNombre,tipopago.nombre as TipoPagoNombre
             from apuesta AS apu
             left join tipo_apuesta tipapu on tipapu.idTipoApuesta=apu.idTipoApuesta
             left join tipo_pago tipopago on tipopago.idTipoPago=tipapu.idTipoPago
-             where apu.idTicket=(select tick.idTicket from ticket tick where tick.idTicket='.$idTicket.')
+             where apu.idTicket=(select tick.idTicket from ticket tick where tick.idTicket=' . $idTicket . ')
              and  apu.idTipoApuesta 
             in 
             (
                 SELECT idTipoApuesta FROM
                 (
                     SELECT idTipoApuesta
-                    FROM resultado_evento where idEvento='.$idEvento.'
+                    FROM resultado_evento where idEvento=' . $idEvento . '
                     GROUP BY idTipoApuesta
                     
                 ) AS subquery
@@ -74,7 +74,7 @@ class Ticket extends Model
         return $listar;
     }
 
-        public static function BuscarGanadoresTicket($idTicket)
+    public static function BuscarGanadoresTicket($idTicket)
     {
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  en RESULTADO EVENTO  CON idEvento del ticket
         $listar = DB::select(DB::raw('
@@ -89,7 +89,7 @@ class Ticket extends Model
                     left join tipo_pago tipopago on tipopago.idTipoPago=tipapu.idTipoPago 
                     left join resultado_evento resev on resev.idTipoApuesta= tipapu.idTipoApuesta
 
-                     where apu.idTicket='.$idTicket.'  and resev.idEvento=tick.idEvento
+                     where apu.idTicket=' . $idTicket . '  and resev.idEvento=tick.idEvento
                      and  apu.idTipoApuesta 
                     in 
                     (
@@ -124,7 +124,7 @@ class Ticket extends Model
                                 left join punto_venta pu_ve on pu_ve.idPuntoVenta=ca.idPuntoVenta
 
 
-                                where apuesta.idTicket='".$idTicket."'
+                                where apuesta.idTicket='" . $idTicket . "'
                                 "));
         return $listar;
     }
@@ -135,24 +135,38 @@ class Ticket extends Model
 /////////////////BUSCAR APUESTAS  DEL IDTICKET   QUE ESTEN  RESULTADO EVENTO  CON $idEvento
         $listar = DB::select(DB::raw('
                                 SELECT *
-                            FROM resultado_evento where idEvento='.$idEvento.'
+                            FROM resultado_evento where idEvento=' . $idEvento . '
                             
                                 '));
         return $listar;
     }
 
-  
+
     public static function MontoTickets_idAperturaCaja($idAperturaCaja)
     {
         $listar = DB::select(DB::raw('
-        SELECT sum(montoTotal) as monto FROM `ticket` WHERE idAperturaCaja=' .$idAperturaCaja));
+        SELECT sum(montoTotal) as monto FROM `ticket` WHERE idAperturaCaja=' . $idAperturaCaja));
         return $listar;
     }
 
     public static function MontoPuntoVenta($idPuntoVenta)
     {
         $listar = DB::select(DB::raw('
-                SELECT monto FROM `punto_venta_tipo_alerta`  as monto WHERE idPuntoVenta=' .$idPuntoVenta));
+                SELECT monto FROM `punto_venta_tipo_alerta`  as monto WHERE idPuntoVenta=' . $idPuntoVenta));
         return $listar;
+    }
+
+    public static function ValidarPagoPagoMaximoEvento($idticket, $pagado)
+    {
+        $data = Ticket::findorfail($idticket);
+        $evento = Evento::findorfail($data->idEvento);
+        $monto_maximo_pagar_evento = $evento->apuestaMaxima;
+        $total = 0;
+        if ($pagado > $monto_maximo_pagar_evento) {
+            $total = $monto_maximo_pagar_evento;
+        } else {
+            $total = $pagado;
+        }
+        return $total;
     }
 }

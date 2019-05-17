@@ -508,6 +508,7 @@ class Reporte extends Model
         $lista = [];
         foreach ($resultado as $re) {
             $estadoGanador = Reporte::VerificarEstadoGanadorTicket($re->idticket);
+            $monto_pagado_validado = Ticket::ValidarPagoPagoMaximoEvento($re->idticket, $re->pagado);
             if ($TipoTicket == 0) {
                 if ($estadoGanador) {
                     $estado = "Ganador";
@@ -524,7 +525,7 @@ class Reporte extends Model
                     'fechapago' => $re->fechapago,
                     'puntoventapago' => $re->puntoventapago,
                     'apostado' => $re->apostado,
-                    'pagado' => $re->pagado,
+                    'pagado' => $monto_pagado_validado,
                     'utilidad' => $re->utilidad,
                     'valores' => $re->valores,
                     'estadoGanadorTicket' => $estado
@@ -541,7 +542,7 @@ class Reporte extends Model
                     'fechapago' => $re->fechapago,
                     'puntoventapago' => $re->puntoventapago,
                     'apostado' => $re->apostado,
-                    'pagado' => $re->pagado,
+                    'pagado' => $monto_pagado_validado,
                     'utilidad' => $re->utilidad,
                     'valores' => $re->valores,
                     'estadoGanadorTicket' => $estado
@@ -558,7 +559,7 @@ class Reporte extends Model
                     'fechapago' => $re->fechapago,
                     'puntoventapago' => $re->puntoventapago,
                     'apostado' => $re->apostado,
-                    'pagado' => $re->pagado,
+                    'pagado' => $monto_pagado_validado,
                     'utilidad' => $re->utilidad,
                     'valores' => $re->valores,
                     'estadoGanadorTicket' => $estado
