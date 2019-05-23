@@ -40,11 +40,18 @@ class PuntoVentaTipoAlerta extends Model
         $respuesta = PuntoVentaTipoAlerta::ValidarPuntoVentaTipoAlerta($idPuntoVenta, $puntoVentaTipoAlerta->idTipoAlerta);
         $resultado = false;
         if ($respuesta == null) {
+
+            $TipoAlerta = TipoAlerta::findorfail($puntoVentaTipoAlerta->idTipoAlerta);
+            $puntoVenta = PuntoVenta::PuntoVentaInfo($idPuntoVenta);
+            $mensaje = str_replace("XXXXX", strtoupper($puntoVenta->nombre), $TipoAlerta->mensaje);
+            $mensaje = str_replace("YYYYYY", strtoupper($request->input('monto')), $mensaje);
+
+
             //actualizar cabecera alerta punto venta
             $puntoVentaTipoAlerta->idPuntoVenta = $idPuntoVenta;
             $puntoVentaTipoAlerta->monto = $request->input('monto');
             $puntoVentaTipoAlerta->asunto = $request->input('asunto');
-            $puntoVentaTipoAlerta->mensaje = $request->input('mensaje');
+            $puntoVentaTipoAlerta->mensaje = $mensaje;
             $puntoVentaTipoAlerta->estado = $request->input('estado');
             $puntoVentaTipoAlerta->save();
 
@@ -58,10 +65,16 @@ class PuntoVentaTipoAlerta extends Model
         } else {
             $respuesta_idPuntoVentaTipoAlerta = $respuesta->idPuntoVentaTipoAlerta;
             if ($idPuntoVentaTipoAlerta == $respuesta_idPuntoVentaTipoAlerta) {
+
+                $TipoAlerta = TipoAlerta::findorfail($puntoVentaTipoAlerta->idTipoAlerta);
+                $puntoVenta = PuntoVenta::PuntoVentaInfo($idPuntoVenta);
+                $mensaje = str_replace("XXXXX", strtoupper($puntoVenta->nombre), $TipoAlerta->mensaje);
+                $mensaje = str_replace("YYYYYY", strtoupper($request->input('monto')), $mensaje);
+
                 $puntoVentaTipoAlerta->idPuntoVenta = $idPuntoVenta;
                 $puntoVentaTipoAlerta->monto = $request->input('monto');
                 $puntoVentaTipoAlerta->asunto = $request->input('asunto');
-                $puntoVentaTipoAlerta->mensaje = $request->input('mensaje');
+                $puntoVentaTipoAlerta->mensaje = $mensaje;
                 $puntoVentaTipoAlerta->estado = $request->input('estado');
                 $puntoVentaTipoAlerta->save();
                 $detallepuntoventa = DetallePuntoVentaTipoAlerta::where('idPuntoVentaTipoAlerta', $idPuntoVentaTipoAlerta)->first();

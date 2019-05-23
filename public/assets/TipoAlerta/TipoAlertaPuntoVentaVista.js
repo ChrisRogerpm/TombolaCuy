@@ -269,7 +269,7 @@ function ListarAlertaPuntoVenta() {
                         "render": function (value) {
                             var mensaje = value.mensaje;
                             var idPuntoVentaTipoAlerta = value.idPuntoVentaTipoAlerta;
-                            return '<textarea class="form-control mensaje' + idPuntoVentaTipoAlerta + '" rows="4" style="resize: none;">' + mensaje + '</textarea>';
+                            return '<textarea class="form-control mensaje' + idPuntoVentaTipoAlerta + '" readonly rows="4" style="resize: none;">' + mensaje + '</textarea>';
                         }
                     },
                     {
