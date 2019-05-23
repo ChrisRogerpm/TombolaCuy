@@ -131,18 +131,12 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">SMTP</label>
+                                    <label for="">Encriptacion</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-sm" name="SMTP" id="SMTP">
-                                        <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-cog"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">SSL</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-sm" name="SSL" id="SSL">
+                                        <select name="Encriptacion" id="Encriptacion" class="form-control">
+                                            <option value="tls">TLS</option>
+                                            <option value="ssl">SSL</option>
+                                        </select>
                                         <div class="input-group-addon input-group-addon-rounded"><i class="fa fa-cog"></i></div>
                                     </div>
                                 </div>

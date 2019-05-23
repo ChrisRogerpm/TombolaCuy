@@ -23,22 +23,12 @@ class ConfiguracionGeneral extends Model
         'CobrarTicket',
         'CuentaCorreo',
         'PasswordCorreo',
-        'SMTP',
-        'SSL',
+        'Encriptacion'
     ];
 
     public static function ObtenerConfiguracionEvento()
     {
         $resultado = DB::table('configuracion_general')->first();
-//        $obj = new stdClass();
-//        $obj->idConfiguracion = $resultado->idConfiguracion;
-//        $obj->HoraInicioIntervalo = $resultado->HoraInicioIntervalo;
-//        $obj->HoraFinIntervalo = $resultado->HoraFinIntervalo;
-//        $obj->CobrarTicket = $resultado->CobrarTicket;
-//        $obj->CuentaCorreo = $resultado->CuentaCorreo;
-//        $obj->PasswordCorreo = $resultado->PasswordCorreo;
-//        $obj->SMTP = $resultado->SMTP;
-//        $obj->SSL = $resultado->SSL;
         return $resultado;
     }
 
@@ -79,15 +69,13 @@ class ConfiguracionGeneral extends Model
             $conf = ConfiguracionGeneral::findorfail($configuracion->idConfiguracion);
             $conf->CuentaCorreo = $request->input('CuentaCorreo');
             $conf->PasswordCorreo = $request->input('PasswordCorreo');
-            $conf->SMTP = $request->input('SMTP');
-            $conf->SSL = $request->input('SSL');
+            $conf->Encriptacion = $request->input('Encriptacion');
             $conf->save();
         } else {
             $conf = new ConfiguracionGeneral();
             $conf->CuentaCorreo = $request->input('CuentaCorreo');
             $conf->PasswordCorreo = $request->input('PasswordCorreo');
-            $conf->SMTP = $request->input('SMTP');
-            $conf->SSL = $request->input('SSL');
+            $conf->Encriptacion = $request->input('Encriptacion');
             $conf->save();
         }
     }

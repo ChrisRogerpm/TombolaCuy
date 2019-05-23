@@ -36,7 +36,8 @@ class AperturaCaja extends Model
         JOIN caja c ON c.idCaja = ac.idCaja
         JOIN turno t ON t.idTurno = ac.idTurno
         JOIN users u ON u.idUsuario = ac.usuario
-        WHERE ac.usuario = $idUsuario_Activo"));
+        WHERE ac.usuario = $idUsuario_Activo
+        ORDER BY ac.idAperturaCaja desc"));
         return $listar;
     }
 

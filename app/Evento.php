@@ -161,7 +161,7 @@ LIMIT 18
         return $listar;
     }
 
-    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin,$posiciones)
+    public static function RegistrarEvento($juego, $fechaIni, $fechaEventoFin, $posiciones)
     {
         $token_generado = str_random(8);
         $evento = new Evento();
@@ -317,10 +317,10 @@ LIMIT 18
         $lista_Juegos = Juego::JuegoListarLapsoJson();
 
         $evento_activo_dia_diferente = \DB::table('evento')
-            ->whereDate('fechaEvento','!=',now())
-            ->where('estadoEvento',1)
+            ->whereDate('fechaEvento', '!=', now())
+            ->where('estadoEvento', 1)
             ->get();
-        foreach ($evento_activo_dia_diferente as $edf){
+        foreach ($evento_activo_dia_diferente as $edf) {
             $evento = Evento::findorfail($edf->idEvento);
             $evento->estadoEvento = 2;
             $evento->save();
@@ -354,153 +354,152 @@ LIMIT 18
         echo '.';
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {/// foreach  juegos
-                    $idJuego=$juego->idJuego;
-                    $hora=now();
-                    $startTimef = microtime(true);   
-                        echo ":";
-                    $Evento_para_activar=
-                       DB::select( DB::raw("select idEvento,fechaFinEvento from evento 
-                                            where idJuego=".$idJuego."
+            $idJuego = $juego->idJuego;
+            $hora = now();
+            $startTimef = microtime(true);
+            echo ":";
+            $Evento_para_activar =
+                DB::select(DB::raw("select idEvento,fechaFinEvento from evento 
+                                            where idJuego=" . $idJuego . "
                                             and estadoEvento=0
                                             and fechaEvento <='$hora' 
                                             and fechaFinEvento >='$hora'"
-                                            )
-                    );
-                        echo "_";
+                )
+                );
+            echo "_";
 
-                    //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
+            //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
 
-                    if(count($Evento_para_activar)>0){
-                        $idEvento=$Evento_para_activar[0]->idEvento;
-                        $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
-                        $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
-                        Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
-                        echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
-                    }
+            if (count($Evento_para_activar) > 0) {
+                $idEvento = $Evento_para_activar[0]->idEvento;
+                $fechaFinEvento = $Evento_para_activar[0]->fechaFinEvento;
+                $ActivarEvento = DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=" . $idEvento));
+                Evento::CerrarEventoMysql($idJuego, $idEvento, $fechaFinEvento);
+                echo "$hora ACTIVANDO Ev " . $idEvento . " -Juego " . $idJuego . " - Fin:" . $fechaFinEvento . " ...\n";
+            }
         }///fin foreach juegos
-            //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
+        //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
     }
+
     public static function ActivarEventos22()
     {
         echo '.';
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {/// foreach  juegos
-                    $idJuego=$juego->idJuego;
-                    $hora=now();
-                    $startTimef = microtime(true);   
-                        echo ":";
+            $idJuego = $juego->idJuego;
+            $hora = now();
+            $startTimef = microtime(true);
+            echo ":";
 
-                    $evento_activo=
-                       DB::select( DB::raw("select idEvento,fechaFinEvento from evento 
-                                            where idJuego=".$idJuego."
+            $evento_activo =
+                DB::select(DB::raw("select idEvento,fechaFinEvento from evento 
+                                            where idJuego=" . $idJuego . "
                                             and estadoEvento=1"
-                                            )
-                    );
-                    if(count($evento_activo)>0){
-                         $idEvento=$evento_activo[0]->idEvento;
-                        $fechaFinEvento=$evento_activo[0]->fechaFinEvento;
-                        echo " evena acti:".$idEvento." ";
-                        Evento::CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento);
-                    }
-                    else{ 
-                        // echo "  --- ";
-                        //  $Evento_activar=
-                        //   DB::unprepared("select @idevento_activar:=idEvento from evento 
-                        //                     where idJuego=".$idJuego."
-                        //                     and estadoEvento=0
-                        //                     and fechaEvento <='$hora' 
-                        //                     and fechaFinEvento >='$hora';
-                        //                     update evento set estadoEvento=1 where idEvento=@idevento_activar
-                        //                     "
-                        //                     );
-                        // Sleep(1);
-                    };
-                        echo "_";
-                    //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
-                    // if(count($Evento_para_activar)>0){
-                    //     $idEvento=$Evento_para_activar[0]->idEvento;
-                    //     $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
-                    //     $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
-                    //     Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
-                    //     echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
-                    // }
+                )
+                );
+            if (count($evento_activo) > 0) {
+                $idEvento = $evento_activo[0]->idEvento;
+                $fechaFinEvento = $evento_activo[0]->fechaFinEvento;
+                echo " evena acti:" . $idEvento . " ";
+                Evento::CerrarEventoYCrearSigMysql($idJuego, $idEvento, $fechaFinEvento);
+            } else {
+                // echo "  --- ";
+                //  $Evento_activar=
+                //   DB::unprepared("select @idevento_activar:=idEvento from evento
+                //                     where idJuego=".$idJuego."
+                //                     and estadoEvento=0
+                //                     and fechaEvento <='$hora'
+                //                     and fechaFinEvento >='$hora';
+                //                     update evento set estadoEvento=1 where idEvento=@idevento_activar
+                //                     "
+                //                     );
+                // Sleep(1);
+            };
+            echo "_";
+            //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
+            // if(count($Evento_para_activar)>0){
+            //     $idEvento=$Evento_para_activar[0]->idEvento;
+            //     $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
+            //     $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
+            //     Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
+            //     echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
+            // }
         }///fin foreach juegos
-            //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
+        //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
     }
 
 
-      public static function ActivarEventos2()
+    public static function ActivarEventos2()
     {
         echo '.';
         $lista_Juegos = Juego::JuegoListarLapsoJson();
         foreach ($lista_Juegos as $juego) {/// foreach  juegos
-                    $idJuego=$juego->idJuego;
-                    $hora=now();
-                    $startTimef = microtime(true);   
-                        echo ":";
+            $idJuego = $juego->idJuego;
+            $hora = now();
+            $startTimef = microtime(true);
+            echo ":";
 
-                    $evento_activo=
-                       DB::select( DB::raw("select idEvento,fechaFinEvento from evento 
-                                            where idJuego=".$idJuego."
+            $evento_activo =
+                DB::select(DB::raw("select idEvento,fechaFinEvento from evento 
+                                            where idJuego=" . $idJuego . "
                                             and estadoEvento=1"
-                                            )
-                    );
-                    if(count($evento_activo)>0){
-                        Evento::CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento);
-                    }
-                    else{ 
-                         $Evento_activar=
-                         DB::select( DB::raw("select @idevento_activar:=idEvento from evento 
-                                            where idJuego=".$idJuego."
+                )
+                );
+            if (count($evento_activo) > 0) {
+                Evento::CerrarEventoYCrearSigMysql($idJuego, $idEvento, $fechaFinEvento);
+            } else {
+                $Evento_activar =
+                    DB::select(DB::raw("select @idevento_activar:=idEvento from evento 
+                                            where idJuego=" . $idJuego . "
                                             and estadoEvento=0
                                             and fechaEvento <='$hora' 
                                             and fechaFinEvento >='$hora';
                                             update evento set estadoEvento=1 where idEvento=@idevento_activar
                                             "
-                                            )
-                        );
-                    };
-                        echo "_";
+                    )
+                    );
+            };
+            echo "_";
 
-                    //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
+            //echo "   CONSULTA : ". (microtime(true) - $startTimef) ." segundos\n";
 
-                    if(count($Evento_para_activar)>0){
-                        $idEvento=$Evento_para_activar[0]->idEvento;
-                        $fechaFinEvento=$Evento_para_activar[0]->fechaFinEvento;
-                        $ActivarEvento=DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=".$idEvento));
-                        Evento::CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento);
-                        echo "$hora ACTIVANDO Ev ".$idEvento." -Juego ".$idJuego." - Fin:".$fechaFinEvento." ...\n";
-                    }
+            if (count($Evento_para_activar) > 0) {
+                $idEvento = $Evento_para_activar[0]->idEvento;
+                $fechaFinEvento = $Evento_para_activar[0]->fechaFinEvento;
+                $ActivarEvento = DB::SELECT(DB::raw("update evento set estadoEvento=1 where idEvento=" . $idEvento));
+                Evento::CerrarEventoMysql($idJuego, $idEvento, $fechaFinEvento);
+                echo "$hora ACTIVANDO Ev " . $idEvento . " -Juego " . $idJuego . " - Fin:" . $fechaFinEvento . " ...\n";
+            }
         }///fin foreach juegos
-            //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
+        //echo "Tiempo foreachlista : ". (microtime(true) - $startTimef) ." segundos\n";
     }
 
-    public static function  CerrarEventoMysql($idJuego,$idEvento,$fechaFinEvento)
+    public static function CerrarEventoMysql($idJuego, $idEvento, $fechaFinEvento)
     {
-        $nombre_eventomysql=$idJuego."_".$idEvento."_fin";
-        $listar=DB::unprepared("DROP EVENT IF EXISTS ".$nombre_eventomysql.";
-            create EVENT ".$nombre_eventomysql." 
-            ON SCHEDULE AT '".$fechaFinEvento."'
+        $nombre_eventomysql = $idJuego . "_" . $idEvento . "_fin";
+        $listar = DB::unprepared("DROP EVENT IF EXISTS " . $nombre_eventomysql . ";
+            create EVENT " . $nombre_eventomysql . " 
+            ON SCHEDULE AT '" . $fechaFinEvento . "'
             DO 
-                update evento ev set ev.estadoEvento=2 where ev.idEvento=".$idEvento);
+                update evento ev set ev.estadoEvento=2 where ev.idEvento=" . $idEvento);
         return $listar;
     }
-    public static function  CerrarEventoYCrearSigMysql($idJuego,$idEvento,$fechaFinEvento)
+
+    public static function CerrarEventoYCrearSigMysql($idJuego, $idEvento, $fechaFinEvento)
     {
-        $nombre_eventomysql=$idJuego."_".$idEvento."_fin";
-        $listar=DB::unprepared("  create EVENT  if not exists ".$nombre_eventomysql."
-                                    ON SCHEDULE at '".$fechaFinEvento."'
+        $nombre_eventomysql = $idJuego . "_" . $idEvento . "_fin";
+        $listar = DB::unprepared("  create EVENT  if not exists " . $nombre_eventomysql . "
+                                    ON SCHEDULE at '" . $fechaFinEvento . "'
                                     DO BEGIN
                                       select @hora:= now();
-                                      select @ideven:= idEvento from evento where idJuego=".$idJuego." and fechaFinEvento=@hora;
+                                      select @ideven:= idEvento from evento where idJuego=" . $idJuego . " and fechaFinEvento=@hora;
                                       update evento set estadoEvento=2 where idEvento=@ideven;/*desactivar evento*/
-                                      select @ideven_acti:=idEvento from evento where idJuego=".$idJuego." and  fechaEvento=@hora ;
+                                      select @ideven_acti:=idEvento from evento where idJuego=" . $idJuego . " and  fechaEvento=@hora ;
                                       update evento set estadoEvento=1 where idEvento=@ideven_acti;/*activar siguiente evento*/
                                     END ");
         return $listar;
     }
 
-   
 
 //////////////////////////////////////////////////
 
@@ -530,6 +529,24 @@ LIMIT 18
         return $lista;
     }
 
+    public static function ActualizarEventosNoActivos($IdJuego)
+    {
+        $fechaIni = today()->startOfDay()->toDateTimeString();
+        $fechaFin = today()->endOfDay()->toDateTimeString();
+        $eventos = DB::table('evento')
+            ->whereBetween('fechaEvento',array($fechaIni,$fechaFin))
+            ->where('estadoEvento',0)
+            ->where('estadoEvento','!=',1)
+            ->get();
+        $Juego = Juego::findorfail($IdJuego);
+        foreach ($eventos as $evento)
+        {
+            $data = Evento::findorfail($evento->idEvento);
+            $data->apuestaMinima = $Juego->apuestaMinima;
+            $data->apuestaMaxima = $Juego->apuestaMaxima;
+            $data->save();
+        }
+    }
 
     //////////////////////FUNCIONES GENERAR PUNTOS RANDOM
     public function random_posicion($min, $max)
@@ -543,17 +560,17 @@ LIMIT 18
     {
         $array_puntos = array();
         // rango z=> -2.5  a   2.5
-        for($i=0;$i<40;$i++){
-            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)) ;  
-            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35)); 
-            $rotarono=$this->random_0_1() >= 0.5 ? true:false;
-            $mostrar_cuydudando=$this->random_0_1() >= 0.5 ? true:false;
-            $obj = (object) [
+        for ($i = 0; $i < 40; $i++) {
+            $randomx = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35));
+            $randomz = $this->random_0_1() >= 0.5 ? abs($this->random_posicion(0, 2.35)) : -abs($this->random_posicion(0, 2.35));
+            $rotarono = $this->random_0_1() >= 0.5 ? true : false;
+            $mostrar_cuydudando = $this->random_0_1() >= 0.5 ? true : false;
+            $obj = (object)[
                 'x' => $randomx,
                 'y' => 0,
                 'z' => $randomz,
-                'rotarono'=>$rotarono,
-                'mostrar_cuydudando'=>$mostrar_cuydudando
+                'rotarono' => $rotarono,
+                'mostrar_cuydudando' => $mostrar_cuydudando
             ];
             array_push($array_puntos, $obj);
 

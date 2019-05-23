@@ -23,9 +23,9 @@ class MailConfigServiceProvider extends ServiceProvider
             $config = array(
                 'driver' => "smtp",
                 'host' => "smtp.gmail.com",
-                'port' => (string)$conf_mail->SMTP,
+                'port' => "587",
                 'from' => array('address' => (string)$conf_mail->CuentaCorreo, 'name' => (string)$conf_mail->CuentaCorreo),
-                'encryption' => "tls",
+                'encryption' => (string)$conf_mail->Encriptacion,
                 'username' => (string)$conf_mail->CuentaCorreo,
                 'password' => (string)$conf_mail->PasswordCorreo,
             );

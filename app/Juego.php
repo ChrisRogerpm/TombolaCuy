@@ -67,5 +67,6 @@ class Juego extends Model
         $juego->apuestaMinima = $request->input('apuestaMinima');
         $juego->apuestaMaxima = $request->input('apuestaMaxima');
         $juego->save();
+        Evento::ActualizarEventosNoActivos($idJuego);
     }
 }

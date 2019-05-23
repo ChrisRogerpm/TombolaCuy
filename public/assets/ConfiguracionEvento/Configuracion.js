@@ -114,6 +114,7 @@ function MostrarConfiguracionEvento() {
                 radioClass: 'iradio_square-red',
                 increaseArea: '25%'
             });
+            $("#Encriptacion").select2();
         },
         success: function (response) {
             var data = response.data;
@@ -123,8 +124,7 @@ function MostrarConfiguracionEvento() {
                 $("#HoraFinIntervalo").val(data.HoraFinIntervalo);
                 $("#CuentaCorreo").val(data.CuentaCorreo);
                 $("#PasswordCorreo").val(data.PasswordCorreo);
-                $("#SMTP").val(data.SMTP);
-                $("#SSL").val(data.SSL);
+                $("#Encriptacion").val(data.Encriptacion);
                 if (data.CobrarTicket === 1) {
                     $("#CheckTicket").attr('checked', true);
                     $("#txtCobrarTicket").val(1);

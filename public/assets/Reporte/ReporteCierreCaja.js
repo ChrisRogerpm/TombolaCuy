@@ -66,6 +66,14 @@ function MostrarDataCierreCaja() {
                 columns: [
                     {data: "caja", title: "Caja"},
                     {data: "puntoventa", title: "Punto de Venta"},
+                    {data: "fechaOperacion",title:"Fecha Registro"},
+                    {
+                        data: "fechaCierre",title:"Fecha Cierre",
+                        "render":function (o) {
+                            var fechaCierre = o == null ? '--' : o;
+                            return fechaCierre;
+                        },class:"text-center"
+                    },
                     {data: "Venta", title: "Venta"},
                     {data: "Pagado", title: "Pagado"},
                     {
