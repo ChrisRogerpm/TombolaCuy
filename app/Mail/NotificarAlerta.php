@@ -34,7 +34,7 @@ class NotificarAlerta extends Mailable
     public function build()
     {
         return $this
-            ->subject($this->subject)
+            ->subject($this->asunto)
             ->markdown('emails.NotificarAlerta', $this->data);
     }
 }
