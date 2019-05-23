@@ -315,6 +315,17 @@ LIMIT 18
         $fechaIni = today()->startOfDay()->toDateTimeString();
         $fechaFin = today()->endOfDay()->toDateTimeString();
         $lista_Juegos = Juego::JuegoListarLapsoJson();
+
+        $evento_activo_dia_diferente = \DB::table('evento')
+            ->whereDate('fechaEvento','!=',now())
+            ->where('estadoEvento',1)
+            ->get();
+        foreach ($evento_activo_dia_diferente as $edf){
+            $evento = Evento::findorfail($edf->idEvento);
+            $evento->estadoEvento = 2;
+            $evento->save();
+        }
+
         foreach ($lista_Juegos as $juego) {
             $ListaEventosDia = DB::table('evento as e')
                 ->whereBetween('e.fechaEvento', array($fechaIni, $fechaFin))
