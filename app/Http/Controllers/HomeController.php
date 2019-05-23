@@ -10,20 +10,7 @@ class HomeController extends Controller
 {
     public function DashboardVista()
     {
-//        return view('Home.DashboardVista');
-        $ayer = "2019-05-30 15:12:00";
-        $hoy = now();
-
-//        if($ayer<$hoy){
-//            echo 'hoy mayor';
-//        }else{
-//            echo 'ayer mayor';
-//        }
-        $evento_activo_dia_diferente = \DB::table('evento')
-            ->whereDate('fechaEvento','!=',now())
-            ->where('estadoEvento',1)
-            ->get();
-        return $evento_activo_dia_diferente;
+        return view('Home.DashboardVista');
     }
 
     public function GenerarExcel(Request $request)

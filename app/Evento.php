@@ -269,7 +269,7 @@ LIMIT 18
                         $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                         $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
-                    if ($fechaIni > $fecha_fin) {
+                    if ($fechaFin > $fecha_fin) {
                         break;
                     } else {
                         $event = new Evento();
@@ -289,7 +289,7 @@ LIMIT 18
                         $NumeroMinutos = $juego->lapsoProxEventoMinutos;
                         $fechaFin = Carbon::parse($fechaIni)->addMinutes($NumeroMinutos);
                     }
-                    if ($fechaIni >= $fecha_fin) {
+                    if ($fechaFin >= $fecha_fin) {
                         break;
                     } else {
                         $event = new Evento();
